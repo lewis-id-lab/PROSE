@@ -220,3 +220,29 @@ bootstrap-validated 0.83 is recorded in `baseline_validation_targets.csv` but is
 | E1 haplotype phase sign | **fixed** — coupling, confirmed arithmetically |
 
 No Phase 3 decision is outstanding. The next step is to tag this commit as the pre-specification lock.
+
+---
+
+## Addendum, 17 October 2026
+
+Written after the `prespec-lock` tag. No decision above is changed.
+
+Haplotype frequencies were derived directly from phased 1000 Genomes phase 3 European genotypes (503
+samples, 1,006 chromosomes; `data/haplotype_frequencies_phased.csv`) and rescaled to gnomAD v4
+non-Finnish-European allele frequencies by iterative proportional fitting, which keeps the odds-ratio
+structure of the observed table and moves only the allele frequencies.
+
+- **E1 is confirmed directly from phased chromosomes.** In every pair the minor alleles are in coupling
+  (D > 0), as the arithmetic check showed.
+- **The earlier pairwise table is reproduced.** Haplotype frequencies agree to within 0.0014, and r² agrees
+  for PTX3, TLR4 and CLEC7A. For CD209, r² is 0.431 from phased data against 0.414 in the earlier table.
+- **The PTX3 trio has three common haplotypes, not two.** In 1000G EUR: G-A-G 54.4%, A-C-A 39.8%, A-A-A
+  5.8%, and a single A-A-G chromosome (alleles in the order rs2305619, rs3816527, rs1840680). Rescaled to
+  gnomAD NFE: 51.8%, 42.4%, 5.6% and 0.1%. rs2305619 A and rs1840680 A mark the same haplotype class
+  (r² = 0.996), which is A-C-A plus A-A-A (45.6% in 1000G, 48.2% in gnomAD NFE). rs3816527 C splits that
+  class, and A-C-A is about 87% of it.
+
+D2 stands as settled: PTX3 enters as a single h1/h2 term. The evidence mapping will need an explicit
+definition of "h2". Studies that report rs2305619 or rs1840680 identify the whole class (A-C-A and A-A-A);
+studies that report rs3816527 identify only A-C-A. A three-haplotype term would be a sensitivity analysis,
+not a change to D2.

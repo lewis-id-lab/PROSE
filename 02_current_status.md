@@ -425,7 +425,7 @@ independent additive terms would repeat the predecessor thesis's error within a 
 3. Cohort-overlap adjudication: the Spanish registry series (Sainz / Lupiañez / Sánchez-Maldonado, ten records 2007–2020) and the Jena AML cohorts (S018 n=186, S023 n=164) are not independent studies.
 4. Final panel derivation from `panel_candidates.csv` — 13 variants now have three or more meta-analysable studies. Four provisional-panel entries — rs5743836 (TLR9), rs1800450 (MBL2), rs1800795 (IL6), rs1800972 (DEFB1) — have no coverage in the included set; CLEC1A rs2306894 has one study.
 5. Allele frequencies: 7 entries in `candidate_snp_seed_table.csv` still PENDING against gnomAD v4 NFE.
-6. Haplotype frequencies for the PTX3 and TLR4 blocks have not been derived; for biallelic pairs they follow from the allele frequencies and D.
+6. ~~Haplotype frequencies for the PTX3 and TLR4 blocks have not been derived.~~ Derived 17 October 2026 for all four blocks directly from phased 1000 Genomes European genotypes (503 samples, 1,006 chromosomes) and rescaled to gnomAD NFE margins by iterative proportional fitting: `data/haplotype_frequencies_phased.csv`, `data/haplotype_ld_phased.csv`, `scripts/04_haplotype_frequencies.R`. The phase is coupling in every pair, confirmed from the phased chromosomes. The PTX3 trio has three common haplotypes (G-A-G 54%, A-C-A 40%, A-A-A 6% in 1000G EUR), not two; see the addendum to `phase3_decisions.md`.
 7. **TLR4 supplementary retrieval or author contact** — Fisher 2017's supplemental Table 1 and three other supplementary files hold the estimates and counts that would make the TLR4 block poolable.
 
 ## 8. Suggested order of work

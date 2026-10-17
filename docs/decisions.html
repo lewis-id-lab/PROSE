@@ -185,6 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" id="toc-d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" class="nav-link" data-scroll-target="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred">D5. How the genetic term enters the baseline model — <strong>settled: recentred</strong></a></li>
   <li><a href="#d6.-baseline-aroc-calibration-target-settled-0.85" id="toc-d6.-baseline-aroc-calibration-target-settled-0.85" class="nav-link" data-scroll-target="#d6.-baseline-aroc-calibration-target-settled-0.85">D6. Baseline aROC calibration target — <strong>settled: 0.85</strong></a></li>
   <li><a href="#record-of-what-is-now-fixed" id="toc-record-of-what-is-now-fixed" class="nav-link" data-scroll-target="#record-of-what-is-now-fixed">Record of what is now fixed</a></li>
+  <li><a href="#addendum-17-october-2026" id="toc-addendum-17-october-2026" class="nav-link" data-scroll-target="#addendum-17-october-2026">Addendum, 17 October 2026</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -557,6 +558,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>No Phase 3 decision is outstanding. The next step is to tag this commit as the pre-specification lock.</p>
+<hr>
+</section>
+<section id="addendum-17-october-2026" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-17-october-2026">Addendum, 17 October 2026</h2>
+<p>Written after the <code>prespec-lock</code> tag. No decision above is changed.</p>
+<p>Haplotype frequencies were derived directly from phased 1000 Genomes phase 3 European genotypes (503 samples, 1,006 chromosomes; <code>data/haplotype_frequencies_phased.csv</code>) and rescaled to gnomAD v4 non-Finnish-European allele frequencies by iterative proportional fitting, which keeps the odds-ratio structure of the observed table and moves only the allele frequencies.</p>
+<ul>
+<li><strong>E1 is confirmed directly from phased chromosomes.</strong> In every pair the minor alleles are in coupling (D &gt; 0), as the arithmetic check showed.</li>
+<li><strong>The earlier pairwise table is reproduced.</strong> Haplotype frequencies agree to within 0.0014, and r² agrees for PTX3, TLR4 and CLEC7A. For CD209, r² is 0.431 from phased data against 0.414 in the earlier table.</li>
+<li><strong>The PTX3 trio has three common haplotypes, not two.</strong> In 1000G EUR: G-A-G 54.4%, A-C-A 39.8%, A-A-A 5.8%, and a single A-A-G chromosome (alleles in the order rs2305619, rs3816527, rs1840680). Rescaled to gnomAD NFE: 51.8%, 42.4%, 5.6% and 0.1%. rs2305619 A and rs1840680 A mark the same haplotype class (r² = 0.996), which is A-C-A plus A-A-A (45.6% in 1000G, 48.2% in gnomAD NFE). rs3816527 C splits that class, and A-C-A is about 87% of it.</li>
+</ul>
+<p>D2 stands as settled: PTX3 enters as a single h1/h2 term. The evidence mapping will need an explicit definition of “h2”. Studies that report rs2305619 or rs1840680 identify the whole class (A-C-A and A-A-A); studies that report rs3816527 identify only A-C-A. A three-haplotype term would be a sensitivity analysis, not a change to D2.</p>
 
 
 <!-- -->

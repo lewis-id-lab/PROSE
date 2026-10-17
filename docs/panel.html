@@ -180,6 +180,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#linkage-disequilibrium" id="toc-linkage-disequilibrium" class="nav-link" data-scroll-target="#linkage-disequilibrium">Linkage disequilibrium</a></li>
   <li><a href="#haplotype-phase-check" id="toc-haplotype-phase-check" class="nav-link" data-scroll-target="#haplotype-phase-check">Haplotype phase check</a></li>
   <li><a href="#haplotype-frequencies" id="toc-haplotype-frequencies" class="nav-link" data-scroll-target="#haplotype-frequencies">Haplotype frequencies</a></li>
+  <li><a href="#phased-haplotype-frequencies" id="toc-phased-haplotype-frequencies" class="nav-link" data-scroll-target="#phased-haplotype-frequencies">Phased haplotype frequencies</a>
+  <ul class="collapse">
+  <li><a href="#ptx3-three-loci" id="toc-ptx3-three-loci" class="nav-link" data-scroll-target="#ptx3-three-loci">PTX3, three loci</a></li>
+  <li><a href="#clec7a-tlr4-and-cd209" id="toc-clec7a-tlr4-and-cd209" class="nav-link" data-scroll-target="#clec7a-tlr4-and-cd209">CLEC7A, TLR4 and CD209</a></li>
+  </ul></li>
   <li><a href="#allele-frequencies" id="toc-allele-frequencies" class="nav-link" data-scroll-target="#allele-frequencies">Allele frequencies</a></li>
   </ul>
 </nav>
@@ -241,23 +246,23 @@ Table&nbsp;1: Final panel specification.
 </figcaption>
 <div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ikzmiemixm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ikzmiemixm table {
+<div id="dbwjohpilt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dbwjohpilt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ikzmiemixm thead, #ikzmiemixm tbody, #ikzmiemixm tfoot, #ikzmiemixm tr, #ikzmiemixm td, #ikzmiemixm th {
+#dbwjohpilt thead, #dbwjohpilt tbody, #dbwjohpilt tfoot, #dbwjohpilt tr, #dbwjohpilt td, #dbwjohpilt th {
   border-style: none;
 }
 
-#ikzmiemixm p {
+#dbwjohpilt p {
   margin: 0;
   padding: 0;
 }
 
-#ikzmiemixm .gt_table {
+#dbwjohpilt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -283,12 +288,12 @@ Table&nbsp;1: Final panel specification.
   border-left-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_caption {
+#dbwjohpilt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ikzmiemixm .gt_title {
+#dbwjohpilt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -300,7 +305,7 @@ Table&nbsp;1: Final panel specification.
   border-bottom-width: 0;
 }
 
-#ikzmiemixm .gt_subtitle {
+#dbwjohpilt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -312,7 +317,7 @@ Table&nbsp;1: Final panel specification.
   border-top-width: 0;
 }
 
-#ikzmiemixm .gt_heading {
+#dbwjohpilt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -324,13 +329,13 @@ Table&nbsp;1: Final panel specification.
   border-right-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_bottom_border {
+#dbwjohpilt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_col_headings {
+#dbwjohpilt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -345,7 +350,7 @@ Table&nbsp;1: Final panel specification.
   border-right-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_col_heading {
+#dbwjohpilt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -365,7 +370,7 @@ Table&nbsp;1: Final panel specification.
   overflow-x: hidden;
 }
 
-#ikzmiemixm .gt_column_spanner_outer {
+#dbwjohpilt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -377,15 +382,15 @@ Table&nbsp;1: Final panel specification.
   padding-right: 4px;
 }
 
-#ikzmiemixm .gt_column_spanner_outer:first-child {
+#dbwjohpilt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ikzmiemixm .gt_column_spanner_outer:last-child {
+#dbwjohpilt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ikzmiemixm .gt_column_spanner {
+#dbwjohpilt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -397,11 +402,11 @@ Table&nbsp;1: Final panel specification.
   width: 100%;
 }
 
-#ikzmiemixm .gt_spanner_row {
+#dbwjohpilt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ikzmiemixm .gt_group_heading {
+#dbwjohpilt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -427,7 +432,7 @@ Table&nbsp;1: Final panel specification.
   text-align: left;
 }
 
-#ikzmiemixm .gt_empty_group_heading {
+#dbwjohpilt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -442,15 +447,15 @@ Table&nbsp;1: Final panel specification.
   vertical-align: middle;
 }
 
-#ikzmiemixm .gt_from_md > :first-child {
+#dbwjohpilt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ikzmiemixm .gt_from_md > :last-child {
+#dbwjohpilt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ikzmiemixm .gt_row {
+#dbwjohpilt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -469,7 +474,7 @@ Table&nbsp;1: Final panel specification.
   overflow-x: hidden;
 }
 
-#ikzmiemixm .gt_stub {
+#dbwjohpilt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -482,7 +487,7 @@ Table&nbsp;1: Final panel specification.
   padding-right: 5px;
 }
 
-#ikzmiemixm .gt_stub_row_group {
+#dbwjohpilt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -496,15 +501,15 @@ Table&nbsp;1: Final panel specification.
   vertical-align: top;
 }
 
-#ikzmiemixm .gt_row_group_first td {
+#dbwjohpilt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ikzmiemixm .gt_row_group_first th {
+#dbwjohpilt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ikzmiemixm .gt_summary_row {
+#dbwjohpilt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -514,16 +519,16 @@ Table&nbsp;1: Final panel specification.
   padding-right: 5px;
 }
 
-#ikzmiemixm .gt_first_summary_row {
+#dbwjohpilt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_first_summary_row.thick {
+#dbwjohpilt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ikzmiemixm .gt_last_summary_row {
+#dbwjohpilt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -533,7 +538,7 @@ Table&nbsp;1: Final panel specification.
   border-bottom-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_grand_summary_row {
+#dbwjohpilt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -543,7 +548,7 @@ Table&nbsp;1: Final panel specification.
   padding-right: 5px;
 }
 
-#ikzmiemixm .gt_first_grand_summary_row {
+#dbwjohpilt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -553,7 +558,7 @@ Table&nbsp;1: Final panel specification.
   border-top-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_last_grand_summary_row_top {
+#dbwjohpilt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -563,11 +568,11 @@ Table&nbsp;1: Final panel specification.
   border-bottom-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_striped {
+#dbwjohpilt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ikzmiemixm .gt_table_body {
+#dbwjohpilt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -576,7 +581,7 @@ Table&nbsp;1: Final panel specification.
   border-bottom-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_footnotes {
+#dbwjohpilt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -590,7 +595,7 @@ Table&nbsp;1: Final panel specification.
   border-right-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_footnote {
+#dbwjohpilt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -599,7 +604,7 @@ Table&nbsp;1: Final panel specification.
   padding-right: 5px;
 }
 
-#ikzmiemixm .gt_sourcenotes {
+#dbwjohpilt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -613,7 +618,7 @@ Table&nbsp;1: Final panel specification.
   border-right-color: #D3D3D3;
 }
 
-#ikzmiemixm .gt_sourcenote {
+#dbwjohpilt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -621,72 +626,72 @@ Table&nbsp;1: Final panel specification.
   padding-right: 5px;
 }
 
-#ikzmiemixm .gt_left {
+#dbwjohpilt .gt_left {
   text-align: left;
 }
 
-#ikzmiemixm .gt_center {
+#dbwjohpilt .gt_center {
   text-align: center;
 }
 
-#ikzmiemixm .gt_right {
+#dbwjohpilt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ikzmiemixm .gt_font_normal {
+#dbwjohpilt .gt_font_normal {
   font-weight: normal;
 }
 
-#ikzmiemixm .gt_font_bold {
+#dbwjohpilt .gt_font_bold {
   font-weight: bold;
 }
 
-#ikzmiemixm .gt_font_italic {
+#dbwjohpilt .gt_font_italic {
   font-style: italic;
 }
 
-#ikzmiemixm .gt_super {
+#dbwjohpilt .gt_super {
   font-size: 65%;
 }
 
-#ikzmiemixm .gt_footnote_marks {
+#dbwjohpilt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ikzmiemixm .gt_asterisk {
+#dbwjohpilt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ikzmiemixm .gt_indent_1 {
+#dbwjohpilt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ikzmiemixm .gt_indent_2 {
+#dbwjohpilt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ikzmiemixm .gt_indent_3 {
+#dbwjohpilt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ikzmiemixm .gt_indent_4 {
+#dbwjohpilt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ikzmiemixm .gt_indent_5 {
+#dbwjohpilt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ikzmiemixm .katex-display {
+#dbwjohpilt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ikzmiemixm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#dbwjohpilt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -774,23 +779,23 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
 </figcaption>
 <div aria-describedby="tbl-ld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ghgbwuqwhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ghgbwuqwhc table {
+<div id="anskzgqzdf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#anskzgqzdf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ghgbwuqwhc thead, #ghgbwuqwhc tbody, #ghgbwuqwhc tfoot, #ghgbwuqwhc tr, #ghgbwuqwhc td, #ghgbwuqwhc th {
+#anskzgqzdf thead, #anskzgqzdf tbody, #anskzgqzdf tfoot, #anskzgqzdf tr, #anskzgqzdf td, #anskzgqzdf th {
   border-style: none;
 }
 
-#ghgbwuqwhc p {
+#anskzgqzdf p {
   margin: 0;
   padding: 0;
 }
 
-#ghgbwuqwhc .gt_table {
+#anskzgqzdf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -816,12 +821,12 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-left-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_caption {
+#anskzgqzdf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ghgbwuqwhc .gt_title {
+#anskzgqzdf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -833,7 +838,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-bottom-width: 0;
 }
 
-#ghgbwuqwhc .gt_subtitle {
+#anskzgqzdf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -845,7 +850,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-top-width: 0;
 }
 
-#ghgbwuqwhc .gt_heading {
+#anskzgqzdf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -857,13 +862,13 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-right-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_bottom_border {
+#anskzgqzdf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_col_headings {
+#anskzgqzdf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -878,7 +883,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-right-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_col_heading {
+#anskzgqzdf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -898,7 +903,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   overflow-x: hidden;
 }
 
-#ghgbwuqwhc .gt_column_spanner_outer {
+#anskzgqzdf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -910,15 +915,15 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 4px;
 }
 
-#ghgbwuqwhc .gt_column_spanner_outer:first-child {
+#anskzgqzdf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ghgbwuqwhc .gt_column_spanner_outer:last-child {
+#anskzgqzdf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ghgbwuqwhc .gt_column_spanner {
+#anskzgqzdf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -930,11 +935,11 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   width: 100%;
 }
 
-#ghgbwuqwhc .gt_spanner_row {
+#anskzgqzdf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ghgbwuqwhc .gt_group_heading {
+#anskzgqzdf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -960,7 +965,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   text-align: left;
 }
 
-#ghgbwuqwhc .gt_empty_group_heading {
+#anskzgqzdf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -975,15 +980,15 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   vertical-align: middle;
 }
 
-#ghgbwuqwhc .gt_from_md > :first-child {
+#anskzgqzdf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ghgbwuqwhc .gt_from_md > :last-child {
+#anskzgqzdf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ghgbwuqwhc .gt_row {
+#anskzgqzdf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1002,7 +1007,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   overflow-x: hidden;
 }
 
-#ghgbwuqwhc .gt_stub {
+#anskzgqzdf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1015,7 +1020,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 5px;
 }
 
-#ghgbwuqwhc .gt_stub_row_group {
+#anskzgqzdf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1029,15 +1034,15 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   vertical-align: top;
 }
 
-#ghgbwuqwhc .gt_row_group_first td {
+#anskzgqzdf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ghgbwuqwhc .gt_row_group_first th {
+#anskzgqzdf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ghgbwuqwhc .gt_summary_row {
+#anskzgqzdf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1047,16 +1052,16 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 5px;
 }
 
-#ghgbwuqwhc .gt_first_summary_row {
+#anskzgqzdf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_first_summary_row.thick {
+#anskzgqzdf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ghgbwuqwhc .gt_last_summary_row {
+#anskzgqzdf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1066,7 +1071,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-bottom-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_grand_summary_row {
+#anskzgqzdf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1076,7 +1081,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 5px;
 }
 
-#ghgbwuqwhc .gt_first_grand_summary_row {
+#anskzgqzdf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1086,7 +1091,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-top-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_last_grand_summary_row_top {
+#anskzgqzdf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1096,11 +1101,11 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-bottom-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_striped {
+#anskzgqzdf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ghgbwuqwhc .gt_table_body {
+#anskzgqzdf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1109,7 +1114,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-bottom-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_footnotes {
+#anskzgqzdf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1123,7 +1128,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-right-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_footnote {
+#anskzgqzdf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1132,7 +1137,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 5px;
 }
 
-#ghgbwuqwhc .gt_sourcenotes {
+#anskzgqzdf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1146,7 +1151,7 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   border-right-color: #D3D3D3;
 }
 
-#ghgbwuqwhc .gt_sourcenote {
+#anskzgqzdf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1154,72 +1159,72 @@ Table&nbsp;2: Pairwise linkage between the two loci of each block.
   padding-right: 5px;
 }
 
-#ghgbwuqwhc .gt_left {
+#anskzgqzdf .gt_left {
   text-align: left;
 }
 
-#ghgbwuqwhc .gt_center {
+#anskzgqzdf .gt_center {
   text-align: center;
 }
 
-#ghgbwuqwhc .gt_right {
+#anskzgqzdf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ghgbwuqwhc .gt_font_normal {
+#anskzgqzdf .gt_font_normal {
   font-weight: normal;
 }
 
-#ghgbwuqwhc .gt_font_bold {
+#anskzgqzdf .gt_font_bold {
   font-weight: bold;
 }
 
-#ghgbwuqwhc .gt_font_italic {
+#anskzgqzdf .gt_font_italic {
   font-style: italic;
 }
 
-#ghgbwuqwhc .gt_super {
+#anskzgqzdf .gt_super {
   font-size: 65%;
 }
 
-#ghgbwuqwhc .gt_footnote_marks {
+#anskzgqzdf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ghgbwuqwhc .gt_asterisk {
+#anskzgqzdf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ghgbwuqwhc .gt_indent_1 {
+#anskzgqzdf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ghgbwuqwhc .gt_indent_2 {
+#anskzgqzdf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ghgbwuqwhc .gt_indent_3 {
+#anskzgqzdf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ghgbwuqwhc .gt_indent_4 {
+#anskzgqzdf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ghgbwuqwhc .gt_indent_5 {
+#anskzgqzdf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ghgbwuqwhc .katex-display {
+#anskzgqzdf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ghgbwuqwhc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#anskzgqzdf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1322,23 +1327,23 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
 </figcaption>
 <div aria-describedby="tbl-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="ipfpdefbqk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ipfpdefbqk table {
+<div id="bbchxciuow" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bbchxciuow table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ipfpdefbqk thead, #ipfpdefbqk tbody, #ipfpdefbqk tfoot, #ipfpdefbqk tr, #ipfpdefbqk td, #ipfpdefbqk th {
+#bbchxciuow thead, #bbchxciuow tbody, #bbchxciuow tfoot, #bbchxciuow tr, #bbchxciuow td, #bbchxciuow th {
   border-style: none;
 }
 
-#ipfpdefbqk p {
+#bbchxciuow p {
   margin: 0;
   padding: 0;
 }
 
-#ipfpdefbqk .gt_table {
+#bbchxciuow .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1364,12 +1369,12 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-left-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_caption {
+#bbchxciuow .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ipfpdefbqk .gt_title {
+#bbchxciuow .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1381,7 +1386,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-bottom-width: 0;
 }
 
-#ipfpdefbqk .gt_subtitle {
+#bbchxciuow .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1393,7 +1398,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-top-width: 0;
 }
 
-#ipfpdefbqk .gt_heading {
+#bbchxciuow .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1405,13 +1410,13 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-right-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_bottom_border {
+#bbchxciuow .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_col_headings {
+#bbchxciuow .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1426,7 +1431,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-right-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_col_heading {
+#bbchxciuow .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1446,7 +1451,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   overflow-x: hidden;
 }
 
-#ipfpdefbqk .gt_column_spanner_outer {
+#bbchxciuow .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1458,15 +1463,15 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 4px;
 }
 
-#ipfpdefbqk .gt_column_spanner_outer:first-child {
+#bbchxciuow .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ipfpdefbqk .gt_column_spanner_outer:last-child {
+#bbchxciuow .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ipfpdefbqk .gt_column_spanner {
+#bbchxciuow .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1478,11 +1483,11 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   width: 100%;
 }
 
-#ipfpdefbqk .gt_spanner_row {
+#bbchxciuow .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ipfpdefbqk .gt_group_heading {
+#bbchxciuow .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1508,7 +1513,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   text-align: left;
 }
 
-#ipfpdefbqk .gt_empty_group_heading {
+#bbchxciuow .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1523,15 +1528,15 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   vertical-align: middle;
 }
 
-#ipfpdefbqk .gt_from_md > :first-child {
+#bbchxciuow .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ipfpdefbqk .gt_from_md > :last-child {
+#bbchxciuow .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ipfpdefbqk .gt_row {
+#bbchxciuow .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1550,7 +1555,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   overflow-x: hidden;
 }
 
-#ipfpdefbqk .gt_stub {
+#bbchxciuow .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1563,7 +1568,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 5px;
 }
 
-#ipfpdefbqk .gt_stub_row_group {
+#bbchxciuow .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1577,15 +1582,15 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   vertical-align: top;
 }
 
-#ipfpdefbqk .gt_row_group_first td {
+#bbchxciuow .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ipfpdefbqk .gt_row_group_first th {
+#bbchxciuow .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ipfpdefbqk .gt_summary_row {
+#bbchxciuow .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1595,16 +1600,16 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 5px;
 }
 
-#ipfpdefbqk .gt_first_summary_row {
+#bbchxciuow .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_first_summary_row.thick {
+#bbchxciuow .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ipfpdefbqk .gt_last_summary_row {
+#bbchxciuow .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1614,7 +1619,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-bottom-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_grand_summary_row {
+#bbchxciuow .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1624,7 +1629,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 5px;
 }
 
-#ipfpdefbqk .gt_first_grand_summary_row {
+#bbchxciuow .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1634,7 +1639,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-top-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_last_grand_summary_row_top {
+#bbchxciuow .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1644,11 +1649,11 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-bottom-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_striped {
+#bbchxciuow .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ipfpdefbqk .gt_table_body {
+#bbchxciuow .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1657,7 +1662,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-bottom-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_footnotes {
+#bbchxciuow .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1671,7 +1676,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-right-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_footnote {
+#bbchxciuow .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1680,7 +1685,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 5px;
 }
 
-#ipfpdefbqk .gt_sourcenotes {
+#bbchxciuow .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1694,7 +1699,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   border-right-color: #D3D3D3;
 }
 
-#ipfpdefbqk .gt_sourcenote {
+#bbchxciuow .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1702,72 +1707,72 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
   padding-right: 5px;
 }
 
-#ipfpdefbqk .gt_left {
+#bbchxciuow .gt_left {
   text-align: left;
 }
 
-#ipfpdefbqk .gt_center {
+#bbchxciuow .gt_center {
   text-align: center;
 }
 
-#ipfpdefbqk .gt_right {
+#bbchxciuow .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ipfpdefbqk .gt_font_normal {
+#bbchxciuow .gt_font_normal {
   font-weight: normal;
 }
 
-#ipfpdefbqk .gt_font_bold {
+#bbchxciuow .gt_font_bold {
   font-weight: bold;
 }
 
-#ipfpdefbqk .gt_font_italic {
+#bbchxciuow .gt_font_italic {
   font-style: italic;
 }
 
-#ipfpdefbqk .gt_super {
+#bbchxciuow .gt_super {
   font-size: 65%;
 }
 
-#ipfpdefbqk .gt_footnote_marks {
+#bbchxciuow .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ipfpdefbqk .gt_asterisk {
+#bbchxciuow .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ipfpdefbqk .gt_indent_1 {
+#bbchxciuow .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ipfpdefbqk .gt_indent_2 {
+#bbchxciuow .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ipfpdefbqk .gt_indent_3 {
+#bbchxciuow .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ipfpdefbqk .gt_indent_4 {
+#bbchxciuow .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ipfpdefbqk .gt_indent_5 {
+#bbchxciuow .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ipfpdefbqk .katex-display {
+#bbchxciuow .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ipfpdefbqk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bbchxciuow div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1841,7 +1846,7 @@ Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is 
 </figure>
 </div>
 </div>
-<p>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000 Genomes source and not back-calculated from the assumed D.</p>
+<p>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000 Genomes source and not back-calculated from the assumed D. The phased chromosomes below confirm it directly.</p>
 </section>
 <section id="haplotype-frequencies" class="level2">
 <h2 class="anchored" data-anchor-id="haplotype-frequencies">Haplotype frequencies</h2>
@@ -1861,23 +1866,23 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
 </figcaption>
 <div aria-describedby="tbl-hap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="zzgmskbsny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zzgmskbsny table {
+<div id="pndzhwrgaq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pndzhwrgaq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zzgmskbsny thead, #zzgmskbsny tbody, #zzgmskbsny tfoot, #zzgmskbsny tr, #zzgmskbsny td, #zzgmskbsny th {
+#pndzhwrgaq thead, #pndzhwrgaq tbody, #pndzhwrgaq tfoot, #pndzhwrgaq tr, #pndzhwrgaq td, #pndzhwrgaq th {
   border-style: none;
 }
 
-#zzgmskbsny p {
+#pndzhwrgaq p {
   margin: 0;
   padding: 0;
 }
 
-#zzgmskbsny .gt_table {
+#pndzhwrgaq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1903,12 +1908,12 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-left-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_caption {
+#pndzhwrgaq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zzgmskbsny .gt_title {
+#pndzhwrgaq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1920,7 +1925,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-bottom-width: 0;
 }
 
-#zzgmskbsny .gt_subtitle {
+#pndzhwrgaq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1932,7 +1937,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-top-width: 0;
 }
 
-#zzgmskbsny .gt_heading {
+#pndzhwrgaq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1944,13 +1949,13 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-right-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_bottom_border {
+#pndzhwrgaq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_col_headings {
+#pndzhwrgaq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1965,7 +1970,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-right-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_col_heading {
+#pndzhwrgaq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1985,7 +1990,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   overflow-x: hidden;
 }
 
-#zzgmskbsny .gt_column_spanner_outer {
+#pndzhwrgaq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1997,15 +2002,15 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 4px;
 }
 
-#zzgmskbsny .gt_column_spanner_outer:first-child {
+#pndzhwrgaq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zzgmskbsny .gt_column_spanner_outer:last-child {
+#pndzhwrgaq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zzgmskbsny .gt_column_spanner {
+#pndzhwrgaq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2017,11 +2022,11 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   width: 100%;
 }
 
-#zzgmskbsny .gt_spanner_row {
+#pndzhwrgaq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zzgmskbsny .gt_group_heading {
+#pndzhwrgaq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2047,7 +2052,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   text-align: left;
 }
 
-#zzgmskbsny .gt_empty_group_heading {
+#pndzhwrgaq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2062,15 +2067,15 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   vertical-align: middle;
 }
 
-#zzgmskbsny .gt_from_md > :first-child {
+#pndzhwrgaq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zzgmskbsny .gt_from_md > :last-child {
+#pndzhwrgaq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zzgmskbsny .gt_row {
+#pndzhwrgaq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2089,7 +2094,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   overflow-x: hidden;
 }
 
-#zzgmskbsny .gt_stub {
+#pndzhwrgaq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2102,7 +2107,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 5px;
 }
 
-#zzgmskbsny .gt_stub_row_group {
+#pndzhwrgaq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2116,15 +2121,15 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   vertical-align: top;
 }
 
-#zzgmskbsny .gt_row_group_first td {
+#pndzhwrgaq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zzgmskbsny .gt_row_group_first th {
+#pndzhwrgaq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zzgmskbsny .gt_summary_row {
+#pndzhwrgaq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2134,16 +2139,16 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 5px;
 }
 
-#zzgmskbsny .gt_first_summary_row {
+#pndzhwrgaq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_first_summary_row.thick {
+#pndzhwrgaq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zzgmskbsny .gt_last_summary_row {
+#pndzhwrgaq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2153,7 +2158,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-bottom-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_grand_summary_row {
+#pndzhwrgaq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2163,7 +2168,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 5px;
 }
 
-#zzgmskbsny .gt_first_grand_summary_row {
+#pndzhwrgaq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2173,7 +2178,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-top-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_last_grand_summary_row_top {
+#pndzhwrgaq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2183,11 +2188,11 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-bottom-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_striped {
+#pndzhwrgaq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zzgmskbsny .gt_table_body {
+#pndzhwrgaq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2196,7 +2201,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-bottom-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_footnotes {
+#pndzhwrgaq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2210,7 +2215,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-right-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_footnote {
+#pndzhwrgaq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2219,7 +2224,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 5px;
 }
 
-#zzgmskbsny .gt_sourcenotes {
+#pndzhwrgaq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2233,7 +2238,7 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   border-right-color: #D3D3D3;
 }
 
-#zzgmskbsny .gt_sourcenote {
+#pndzhwrgaq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2241,72 +2246,72 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
   padding-right: 5px;
 }
 
-#zzgmskbsny .gt_left {
+#pndzhwrgaq .gt_left {
   text-align: left;
 }
 
-#zzgmskbsny .gt_center {
+#pndzhwrgaq .gt_center {
   text-align: center;
 }
 
-#zzgmskbsny .gt_right {
+#pndzhwrgaq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zzgmskbsny .gt_font_normal {
+#pndzhwrgaq .gt_font_normal {
   font-weight: normal;
 }
 
-#zzgmskbsny .gt_font_bold {
+#pndzhwrgaq .gt_font_bold {
   font-weight: bold;
 }
 
-#zzgmskbsny .gt_font_italic {
+#pndzhwrgaq .gt_font_italic {
   font-style: italic;
 }
 
-#zzgmskbsny .gt_super {
+#pndzhwrgaq .gt_super {
   font-size: 65%;
 }
 
-#zzgmskbsny .gt_footnote_marks {
+#pndzhwrgaq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zzgmskbsny .gt_asterisk {
+#pndzhwrgaq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zzgmskbsny .gt_indent_1 {
+#pndzhwrgaq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zzgmskbsny .gt_indent_2 {
+#pndzhwrgaq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zzgmskbsny .gt_indent_3 {
+#pndzhwrgaq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zzgmskbsny .gt_indent_4 {
+#pndzhwrgaq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zzgmskbsny .gt_indent_5 {
+#pndzhwrgaq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zzgmskbsny .katex-display {
+#pndzhwrgaq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zzgmskbsny div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pndzhwrgaq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2467,43 +2472,56 @@ Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major�
 </figure>
 </div>
 </div>
-<p>The file holds pairwise frequencies only. The three-locus <em>PTX3</em> haplotype (h1/h2) still has to be derived from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.</p>
+<p>That file holds pairwise frequencies derived from allele frequencies and D. The phased frequencies in the next section supersede it.</p>
 </section>
-<section id="allele-frequencies" class="level2">
-<h2 class="anchored" data-anchor-id="allele-frequencies">Allele frequencies</h2>
+<section id="phased-haplotype-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="phased-haplotype-frequencies">Phased haplotype frequencies</h2>
+<p>These come directly from phased 1000 Genomes phase 3 European genotypes (503 samples, 1,006 chromosomes, via the Ensembl REST API), then are rescaled to the gnomAD v4 non-Finnish-European allele frequencies that the project uses as primary. Rescaling is by iterative proportional fitting, which keeps the odds-ratio structure of the observed table, moves only the allele frequencies, and works for three loci. A haplotype that is absent in 1000G stays absent.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies_phased.csv"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ldp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_ld_phased.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div id="tbl-af" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+</div>
+<section id="ptx3-three-loci" class="level3">
+<h3 class="anchored" data-anchor-id="ptx3-three-loci">PTX3, three loci</h3>
+<p>Alleles are in the order rs2305619, rs3816527, rs1840680.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hp <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(block <span class="sc">==</span> <span class="st">"PTX3_trio"</span>, n_chromosomes <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(freq_1000G_EUR)) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Haplotype =</span> haplotype, <span class="at">Chromosomes =</span> n_chromosomes,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> freq_1000G_EUR, <span class="at">SE =</span> se_1000G_EUR, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_rescaled) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span>, SE, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-trio" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-analysable studies.
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-trio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: PTX3 three-locus haplotypes. SE is the binomial standard error on 1,006 chromosomes.
 </figcaption>
-<div aria-describedby="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-trio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fnwgeogrzx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fnwgeogrzx table {
+<div id="sogoinnmwh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sogoinnmwh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fnwgeogrzx thead, #fnwgeogrzx tbody, #fnwgeogrzx tfoot, #fnwgeogrzx tr, #fnwgeogrzx td, #fnwgeogrzx th {
+#sogoinnmwh thead, #sogoinnmwh tbody, #sogoinnmwh tfoot, #sogoinnmwh tr, #sogoinnmwh td, #sogoinnmwh th {
   border-style: none;
 }
 
-#fnwgeogrzx p {
+#sogoinnmwh p {
   margin: 0;
   padding: 0;
 }
 
-#fnwgeogrzx .gt_table {
+#sogoinnmwh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2529,12 +2547,12 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-left-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_caption {
+#sogoinnmwh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fnwgeogrzx .gt_title {
+#sogoinnmwh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2546,7 +2564,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-bottom-width: 0;
 }
 
-#fnwgeogrzx .gt_subtitle {
+#sogoinnmwh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2558,7 +2576,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-top-width: 0;
 }
 
-#fnwgeogrzx .gt_heading {
+#sogoinnmwh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2570,13 +2588,13 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-right-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_bottom_border {
+#sogoinnmwh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_col_headings {
+#sogoinnmwh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2591,7 +2609,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-right-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_col_heading {
+#sogoinnmwh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2611,7 +2629,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   overflow-x: hidden;
 }
 
-#fnwgeogrzx .gt_column_spanner_outer {
+#sogoinnmwh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2623,15 +2641,15 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 4px;
 }
 
-#fnwgeogrzx .gt_column_spanner_outer:first-child {
+#sogoinnmwh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fnwgeogrzx .gt_column_spanner_outer:last-child {
+#sogoinnmwh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fnwgeogrzx .gt_column_spanner {
+#sogoinnmwh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2643,11 +2661,11 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   width: 100%;
 }
 
-#fnwgeogrzx .gt_spanner_row {
+#sogoinnmwh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fnwgeogrzx .gt_group_heading {
+#sogoinnmwh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2673,7 +2691,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   text-align: left;
 }
 
-#fnwgeogrzx .gt_empty_group_heading {
+#sogoinnmwh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2688,15 +2706,15 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   vertical-align: middle;
 }
 
-#fnwgeogrzx .gt_from_md > :first-child {
+#sogoinnmwh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fnwgeogrzx .gt_from_md > :last-child {
+#sogoinnmwh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fnwgeogrzx .gt_row {
+#sogoinnmwh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2715,7 +2733,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   overflow-x: hidden;
 }
 
-#fnwgeogrzx .gt_stub {
+#sogoinnmwh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2728,7 +2746,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 5px;
 }
 
-#fnwgeogrzx .gt_stub_row_group {
+#sogoinnmwh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2742,15 +2760,15 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   vertical-align: top;
 }
 
-#fnwgeogrzx .gt_row_group_first td {
+#sogoinnmwh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fnwgeogrzx .gt_row_group_first th {
+#sogoinnmwh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fnwgeogrzx .gt_summary_row {
+#sogoinnmwh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2760,16 +2778,16 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 5px;
 }
 
-#fnwgeogrzx .gt_first_summary_row {
+#sogoinnmwh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_first_summary_row.thick {
+#sogoinnmwh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fnwgeogrzx .gt_last_summary_row {
+#sogoinnmwh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2779,7 +2797,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-bottom-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_grand_summary_row {
+#sogoinnmwh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2789,7 +2807,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 5px;
 }
 
-#fnwgeogrzx .gt_first_grand_summary_row {
+#sogoinnmwh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2799,7 +2817,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-top-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_last_grand_summary_row_top {
+#sogoinnmwh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2809,11 +2827,11 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-bottom-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_striped {
+#sogoinnmwh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fnwgeogrzx .gt_table_body {
+#sogoinnmwh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2822,7 +2840,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-bottom-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_footnotes {
+#sogoinnmwh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2836,7 +2854,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-right-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_footnote {
+#sogoinnmwh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2845,7 +2863,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 5px;
 }
 
-#fnwgeogrzx .gt_sourcenotes {
+#sogoinnmwh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2859,7 +2877,7 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   border-right-color: #D3D3D3;
 }
 
-#fnwgeogrzx .gt_sourcenote {
+#sogoinnmwh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2867,72 +2885,1728 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
   padding-right: 5px;
 }
 
-#fnwgeogrzx .gt_left {
+#sogoinnmwh .gt_left {
   text-align: left;
 }
 
-#fnwgeogrzx .gt_center {
+#sogoinnmwh .gt_center {
   text-align: center;
 }
 
-#fnwgeogrzx .gt_right {
+#sogoinnmwh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fnwgeogrzx .gt_font_normal {
+#sogoinnmwh .gt_font_normal {
   font-weight: normal;
 }
 
-#fnwgeogrzx .gt_font_bold {
+#sogoinnmwh .gt_font_bold {
   font-weight: bold;
 }
 
-#fnwgeogrzx .gt_font_italic {
+#sogoinnmwh .gt_font_italic {
   font-style: italic;
 }
 
-#fnwgeogrzx .gt_super {
+#sogoinnmwh .gt_super {
   font-size: 65%;
 }
 
-#fnwgeogrzx .gt_footnote_marks {
+#sogoinnmwh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fnwgeogrzx .gt_asterisk {
+#sogoinnmwh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fnwgeogrzx .gt_indent_1 {
+#sogoinnmwh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fnwgeogrzx .gt_indent_2 {
+#sogoinnmwh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fnwgeogrzx .gt_indent_3 {
+#sogoinnmwh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fnwgeogrzx .gt_indent_4 {
+#sogoinnmwh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fnwgeogrzx .gt_indent_5 {
+#sogoinnmwh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fnwgeogrzx .katex-display {
+#sogoinnmwh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fnwgeogrzx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#sogoinnmwh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Haplotype" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Haplotype</th>
+<th id="Chromosomes" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Chromosomes</th>
+<th id="a1000G-EUR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">1000G EUR</th>
+<th id="SE" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">SE</th>
+<th id="gnomAD-NFE-(rescaled)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gnomAD NFE (rescaled)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Haplotype">G-A-G</td>
+<td class="gt_row gt_right" headers="Chromosomes">547</td>
+<td class="gt_row gt_right" headers="a1000G-EUR">0.5437</td>
+<td class="gt_row gt_right" headers="SE">0.0157</td>
+<td class="gt_row gt_right" headers="gnomAD-NFE-(rescaled)">0.5180</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Haplotype">A-C-A</td>
+<td class="gt_row gt_right" headers="Chromosomes">400</td>
+<td class="gt_row gt_right" headers="a1000G-EUR">0.3976</td>
+<td class="gt_row gt_right" headers="SE">0.0154</td>
+<td class="gt_row gt_right" headers="gnomAD-NFE-(rescaled)">0.4242</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Haplotype">A-A-A</td>
+<td class="gt_row gt_right" headers="Chromosomes">58</td>
+<td class="gt_row gt_right" headers="a1000G-EUR">0.0577</td>
+<td class="gt_row gt_right" headers="SE">0.0073</td>
+<td class="gt_row gt_right" headers="gnomAD-NFE-(rescaled)">0.0564</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Haplotype">A-A-G</td>
+<td class="gt_row gt_right" headers="Chromosomes">1</td>
+<td class="gt_row gt_right" headers="a1000G-EUR">0.0010</td>
+<td class="gt_row gt_right" headers="SE">0.0010</td>
+<td class="gt_row gt_right" headers="gnomAD-NFE-(rescaled)">0.0014</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>There are three common haplotypes, not two. rs2305619 A and rs1840680 A mark the same class of chromosome (r² = 0.996), which is A-C-A plus A-A-A. rs3816527 C splits that class, and A-C-A is about 87% of it. The single A-A-G chromosome is too rare to estimate; its rescaled frequency is fixed by the margins alone.</p>
+</section>
+<section id="clec7a-tlr4-and-cd209" class="level3">
+<h3 class="anchored" data-anchor-id="clec7a-tlr4-and-cd209">CLEC7A, TLR4 and CD209</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hp <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(block <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CLEC7A"</span>, <span class="st">"TLR4"</span>, <span class="st">"CD209"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Block =</span> <span class="fu">paste0</span>(block, <span class="st">": "</span>, <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">" x "</span>, loci))) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(Block, <span class="at">Haplotype =</span> haplotype, <span class="at">Chromosomes =</span> n_chromosomes,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> freq_1000G_EUR, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_rescaled,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE (D′ kept)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_dprime) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Block"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span>, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span>, <span class="st">`</span><span class="at">gnomAD NFE (D′ kept)</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-blocks" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;6: Two-locus haplotypes. ‘D′ kept’ rescales by preserving D′; the fitted values use iterative proportional fitting.
+</figcaption>
+<div aria-describedby="tbl-blocks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="jriygnynkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jriygnynkz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jriygnynkz thead, #jriygnynkz tbody, #jriygnynkz tfoot, #jriygnynkz tr, #jriygnynkz td, #jriygnynkz th {
+  border-style: none;
+}
+
+#jriygnynkz p {
+  margin: 0;
+  padding: 0;
+}
+
+#jriygnynkz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jriygnynkz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jriygnynkz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jriygnynkz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jriygnynkz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jriygnynkz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jriygnynkz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jriygnynkz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jriygnynkz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jriygnynkz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jriygnynkz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jriygnynkz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jriygnynkz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jriygnynkz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jriygnynkz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jriygnynkz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jriygnynkz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jriygnynkz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jriygnynkz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jriygnynkz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jriygnynkz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jriygnynkz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jriygnynkz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jriygnynkz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jriygnynkz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jriygnynkz .gt_left {
+  text-align: left;
+}
+
+#jriygnynkz .gt_center {
+  text-align: center;
+}
+
+#jriygnynkz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jriygnynkz .gt_font_normal {
+  font-weight: normal;
+}
+
+#jriygnynkz .gt_font_bold {
+  font-weight: bold;
+}
+
+#jriygnynkz .gt_font_italic {
+  font-style: italic;
+}
+
+#jriygnynkz .gt_super {
+  font-size: 65%;
+}
+
+#jriygnynkz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jriygnynkz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jriygnynkz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jriygnynkz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jriygnynkz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jriygnynkz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jriygnynkz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jriygnynkz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jriygnynkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Haplotype" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Haplotype</th>
+<th id="Chromosomes" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Chromosomes</th>
+<th id="a1000G-EUR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">1000G EUR</th>
+<th id="gnomAD-NFE-(rescaled)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gnomAD NFE (rescaled)</th>
+<th id="gnomAD-NFE-(D′-kept)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">gnomAD NFE (D′ kept)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="5" id="CLEC7A:-rs16910526-x-rs7309123" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">CLEC7A: rs16910526 x rs7309123</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Haplotype">C-G</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Chromosomes">71</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  a1000G-EUR">0.0706</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(rescaled)">0.0771</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(D′-kept)">0.0771</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Haplotype">A-G</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Chromosomes">354</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  a1000G-EUR">0.3519</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(rescaled)">0.3492</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(D′-kept)">0.3492</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Haplotype">C-C</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Chromosomes">0</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  a1000G-EUR">0.0000</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(rescaled)">0.0000</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(D′-kept)">0.0000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Haplotype">A-C</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Chromosomes">581</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  a1000G-EUR">0.5775</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(rescaled)">0.5737</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  gnomAD-NFE-(D′-kept)">0.5737</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="5" id="TLR4:-rs4986790-x-rs4986791" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">TLR4: rs4986790 x rs4986791</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Haplotype">G-T</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Chromosomes">56</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  a1000G-EUR">0.0557</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(rescaled)">0.0608</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(D′-kept)">0.0603</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Haplotype">A-T</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Chromosomes">2</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  a1000G-EUR">0.0020</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(rescaled)">0.0034</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(D′-kept)">0.0039</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Haplotype">G-C</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Chromosomes">1</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  a1000G-EUR">0.0010</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(rescaled)">0.0006</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(D′-kept)">0.0011</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Haplotype">A-C</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Chromosomes">947</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  a1000G-EUR">0.9414</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(rescaled)">0.9352</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  gnomAD-NFE-(D′-kept)">0.9347</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="5" id="CD209:-rs4804800-x-rs7248637" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">CD209: rs4804800 x rs7248637</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Haplotype">G-A</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Chromosomes">84</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  a1000G-EUR">0.0835</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(rescaled)">0.0778</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(D′-kept)">0.0750</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Haplotype">A-A</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Chromosomes">32</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  a1000G-EUR">0.0318</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(rescaled)">0.0257</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(D′-kept)">0.0285</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Haplotype">G-G</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Chromosomes">41</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  a1000G-EUR">0.0408</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(rescaled)">0.0473</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(D′-kept)">0.0501</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Haplotype">A-G</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Chromosomes">849</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  a1000G-EUR">0.8439</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(rescaled)">0.8492</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  gnomAD-NFE-(D′-kept)">0.8464</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The two rescaling methods agree closely. The largest difference is about 0.003, in <em>CD209</em>, where D′ is 0.69. For <em>CLEC7A</em> they are identical because D′ = 1.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ldp <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(r2_1000G)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Block =</span> block, <span class="at">Loci =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">" x "</span>, loci),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">r² (1000G)</span><span class="st">`</span> <span class="ot">=</span> r2_1000G, <span class="st">`</span><span class="at">D′ (1000G)</span><span class="st">`</span> <span class="ot">=</span> dprime_1000G,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">r² (rescaled)</span><span class="st">`</span> <span class="ot">=</span> r2_rescaled, <span class="st">`</span><span class="at">D′ (rescaled)</span><span class="st">`</span> <span class="ot">=</span> dprime_rescaled) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">where</span>(is.numeric), <span class="at">decimals =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-ld-phased" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ld-phased-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;7: Linkage in the phased data and after rescaling to gnomAD NFE margins.
+</figcaption>
+<div aria-describedby="tbl-ld-phased-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="iwsqctslbz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iwsqctslbz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#iwsqctslbz thead, #iwsqctslbz tbody, #iwsqctslbz tfoot, #iwsqctslbz tr, #iwsqctslbz td, #iwsqctslbz th {
+  border-style: none;
+}
+
+#iwsqctslbz p {
+  margin: 0;
+  padding: 0;
+}
+
+#iwsqctslbz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#iwsqctslbz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#iwsqctslbz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#iwsqctslbz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#iwsqctslbz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#iwsqctslbz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#iwsqctslbz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#iwsqctslbz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#iwsqctslbz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#iwsqctslbz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#iwsqctslbz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#iwsqctslbz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#iwsqctslbz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#iwsqctslbz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#iwsqctslbz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwsqctslbz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#iwsqctslbz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#iwsqctslbz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#iwsqctslbz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwsqctslbz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#iwsqctslbz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwsqctslbz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#iwsqctslbz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwsqctslbz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#iwsqctslbz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#iwsqctslbz .gt_left {
+  text-align: left;
+}
+
+#iwsqctslbz .gt_center {
+  text-align: center;
+}
+
+#iwsqctslbz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#iwsqctslbz .gt_font_normal {
+  font-weight: normal;
+}
+
+#iwsqctslbz .gt_font_bold {
+  font-weight: bold;
+}
+
+#iwsqctslbz .gt_font_italic {
+  font-style: italic;
+}
+
+#iwsqctslbz .gt_super {
+  font-size: 65%;
+}
+
+#iwsqctslbz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#iwsqctslbz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#iwsqctslbz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#iwsqctslbz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#iwsqctslbz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#iwsqctslbz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#iwsqctslbz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#iwsqctslbz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#iwsqctslbz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Block" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Block</th>
+<th id="Loci" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Loci</th>
+<th id="r²-(1000G)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r² (1000G)</th>
+<th id="D′-(1000G)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">D′ (1000G)</th>
+<th id="r²-(rescaled)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r² (rescaled)</th>
+<th id="D′-(rescaled)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">D′ (rescaled)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Block">PTX3_a</td>
+<td class="gt_row gt_left" headers="Loci">rs2305619 x rs3816527</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.787</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">1.000</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.792</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Block">PTX3_b</td>
+<td class="gt_row gt_left" headers="Loci">rs2305619 x rs1840680</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.996</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">1.000</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.994</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Block">PTX3_c</td>
+<td class="gt_row gt_left" headers="Loci">rs3816527 x rs1840680</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.790</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">1.000</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.796</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Block">CLEC7A</td>
+<td class="gt_row gt_left" headers="Loci">rs16910526 x rs7309123</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.104</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">1.000</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.112</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Block">TLR4</td>
+<td class="gt_row gt_left" headers="Loci">rs4986790 x rs4986791</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.946</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">0.981</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.933</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">0.989</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Block">CD209</td>
+<td class="gt_row gt_left" headers="Loci">rs4804800 x rs7248637</td>
+<td class="gt_row gt_right" headers="r²-(1000G)">0.431</td>
+<td class="gt_row gt_right" headers="D′-(1000G)">0.685</td>
+<td class="gt_row gt_right" headers="r²-(rescaled)">0.414</td>
+<td class="gt_row gt_right" headers="D′-(rescaled)">0.716</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The phased r² reproduces the earlier table for PTX3, TLR4 and CLEC7A. For <em>CD209</em> it is 0.431 against 0.414 before. In every pair the minor alleles are in coupling.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Assumptions in the rescaling
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>1000 Genomes European samples include a Finnish group (FIN), while gnomAD NFE excludes Finnish individuals. Rescaling assumes the linkage structure carries over and moves only the allele frequencies. Haplotypes seen on a handful of chromosomes are poorly estimated, and the table gives each standard error.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="allele-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="allele-frequencies">Allele frequencies</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-af" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8: Allele frequencies for the 13 variants with three or more meta-analysable studies.
+</figcaption>
+<div aria-describedby="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="smdorcaqhk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#smdorcaqhk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#smdorcaqhk thead, #smdorcaqhk tbody, #smdorcaqhk tfoot, #smdorcaqhk tr, #smdorcaqhk td, #smdorcaqhk th {
+  border-style: none;
+}
+
+#smdorcaqhk p {
+  margin: 0;
+  padding: 0;
+}
+
+#smdorcaqhk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#smdorcaqhk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#smdorcaqhk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#smdorcaqhk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#smdorcaqhk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#smdorcaqhk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#smdorcaqhk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#smdorcaqhk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#smdorcaqhk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#smdorcaqhk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#smdorcaqhk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#smdorcaqhk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#smdorcaqhk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#smdorcaqhk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#smdorcaqhk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdorcaqhk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#smdorcaqhk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#smdorcaqhk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#smdorcaqhk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdorcaqhk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#smdorcaqhk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdorcaqhk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#smdorcaqhk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdorcaqhk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#smdorcaqhk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#smdorcaqhk .gt_left {
+  text-align: left;
+}
+
+#smdorcaqhk .gt_center {
+  text-align: center;
+}
+
+#smdorcaqhk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#smdorcaqhk .gt_font_normal {
+  font-weight: normal;
+}
+
+#smdorcaqhk .gt_font_bold {
+  font-weight: bold;
+}
+
+#smdorcaqhk .gt_font_italic {
+  font-style: italic;
+}
+
+#smdorcaqhk .gt_super {
+  font-size: 65%;
+}
+
+#smdorcaqhk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#smdorcaqhk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#smdorcaqhk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#smdorcaqhk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#smdorcaqhk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#smdorcaqhk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#smdorcaqhk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#smdorcaqhk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#smdorcaqhk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3519,128 +5193,203 @@ Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-ana
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Genetic panel"</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Four haplotype terms, linkage structure and allele frequencies"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/final_panel_spec.csv"</span>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>hap  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies.csv"</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>af   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/panel_allele_frequencies.csv"</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why haplotype terms</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>The unfinished predecessor analysis simulated three *PTX3* SNPs as independent multiplicative risks. They</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>are in near-complete linkage disequilibrium and tag one h1/h2 haplotype, so independent simulation</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>triple-counts a single signal. The same error would recur within *CLEC7A* and *CD209* if their two SNPs each</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>entered as additive terms. The panel therefore enters as four haplotype terms, with *IL10* and *IFNG* as</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>optional single SNPs. *TLR9* rs352140 is dropped (one usable study of three).</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-panel</span></span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Final panel specification."</span></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>spec <span class="sc">|&gt;</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variants =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, variants), <span class="at">study_ids =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, study_ids)) <span class="sc">|&gt;</span></span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="at">Variants =</span> variants, <span class="st">`</span><span class="at">Studies (union)</span><span class="st">`</span> <span class="ot">=</span> n_studies_union,</span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Independent cohorts</span><span class="st">`</span> <span class="ot">=</span> n_independent_cohorts, <span class="st">`</span><span class="at">Study IDs</span><span class="st">`</span> <span class="ot">=</span> study_ids) <span class="sc">|&gt;</span></span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>*Herrero-Sanchez 2018* is excluded from the primary analysis because its endpoint is *Candida* or</span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>*Aspergillus* detection or colonisation and not proven or probable invasive mould disease. The cohort counts</span>
-<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>above include it, and excluding it takes *PTX3* from 7 to 6 and *CLEC7A* from 9 to 8.</span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linkage disequilibrium</span></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>Pairwise values in 1000 Genomes European samples.</span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ld</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pairwise linkage between the two loci of each block."</span></span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(gene, locus_1, locus_2, r2, d_prime) <span class="sc">|&gt;</span></span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2, <span class="st">`</span><span class="at">r²</span><span class="st">`</span> <span class="ot">=</span> r2, <span class="st">`</span><span class="at">D′</span><span class="st">`</span> <span class="ot">=</span> d_prime) <span class="sc">|&gt;</span></span>
-<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">r²</span><span class="st">`</span>, <span class="st">`</span><span class="at">D′</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
-<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>For *CLEC7A*, D′ = 1 means no recombination between the two sites. The rare Y238X allele (rs16910526)</span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>therefore sits entirely on one rs7309123 background, and the low r² reflects the frequency difference and</span>
-<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>not independence. For *CD209*, D′ = 0.67 and all four haplotypes are present.</span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype phase check</span></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>Haplotype frequencies were derived from allele frequencies and D, assuming the minor alleles are in</span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>coupling (D positive). D′ near 1 fixes the size of D but not its sign. The reported r² and the allele</span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>frequencies fix |D| independently of that assumption, so the sign can be checked arithmetically: if even the</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>largest possible negative D is smaller than the |D| that r² requires, negative phase is impossible.</span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-phase</span></span>
-<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Phase check. A negative D is possible only if the required |D| is no larger than the negative-phase ceiling."</span></span>
-<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>phase <span class="ot">&lt;-</span> hap <span class="sc">|&gt;</span></span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, locus_1, locus_2) <span class="sc">|&gt;</span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">r2 =</span> <span class="fu">first</span>(r2),</span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">p1 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">p2 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_2 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">required_D =</span> <span class="fu">sqrt</span>(r2 <span class="sc">*</span> p1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">ceiling_if_negative =</span> <span class="fu">pmin</span>(p1 <span class="sc">*</span> p2, (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">negative_possible =</span> required_D <span class="sc">&lt;=</span> ceiling_if_negative <span class="sc">+</span> <span class="fl">1e-3</span></span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>phase <span class="sc">|&gt;</span></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2,</span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span> <span class="ot">=</span> required_D, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span> <span class="ot">=</span> ceiling_if_negative,</span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Negative phase possible</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(negative_possible, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span>, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000</span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>Genomes source and not back-calculated from the assumed D.</span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype frequencies</span></span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-hap</span></span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Two-locus haplotype frequencies, 1000 Genomes European. 'major' and 'other' denote the non-minor allele."</span></span>
-<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
-<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pair =</span> <span class="fu">paste0</span>(gene, <span class="st">": "</span>, locus_1, <span class="st">" x "</span>, locus_2)) <span class="sc">|&gt;</span></span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(pair, <span class="st">`</span><span class="at">Allele 1</span><span class="st">`</span> <span class="ot">=</span> allele_1, <span class="st">`</span><span class="at">Allele 2</span><span class="st">`</span> <span class="ot">=</span> allele_2, <span class="at">Frequency =</span> haplotype_freq_1000G_EUR) <span class="sc">|&gt;</span></span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"pair"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(Frequency, <span class="at">decimals =</span> <span class="dv">4</span>)</span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>The file holds pairwise frequencies only. The three-locus *PTX3* haplotype (h1/h2) still has to be derived</span>
-<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.</span>
-<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Allele frequencies</span></span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-af</span></span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Allele frequencies for the 13 variants with three or more meta-analysable studies."</span></span>
-<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
-<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
-<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
-<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## rs1800896 is reported on the opposite strand</span></span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>gnomAD gives rs1800896 as T/C where the literature writes A/G. It is the same variant on the other strand,</span>
-<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>and it is the most-cited *IL10* promoter SNP in this field, so a natural place for an orientation error.</span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>:::</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Genetic panel"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Four haplotype terms, linkage structure and allele frequencies"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/final_panel_spec.csv"</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>hap  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies.csv"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>af   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/panel_allele_frequencies.csv"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why haplotype terms</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>The unfinished predecessor analysis simulated three *PTX3* SNPs as independent multiplicative risks. They</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>are in near-complete linkage disequilibrium and tag one h1/h2 haplotype, so independent simulation</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>triple-counts a single signal. The same error would recur within *CLEC7A* and *CD209* if their two SNPs each</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>entered as additive terms. The panel therefore enters as four haplotype terms, with *IL10* and *IFNG* as</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>optional single SNPs. *TLR9* rs352140 is dropped (one usable study of three).</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-panel</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Final panel specification."</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>spec <span class="sc">|&gt;</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variants =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, variants), <span class="at">study_ids =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, study_ids)) <span class="sc">|&gt;</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="at">Variants =</span> variants, <span class="st">`</span><span class="at">Studies (union)</span><span class="st">`</span> <span class="ot">=</span> n_studies_union,</span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Independent cohorts</span><span class="st">`</span> <span class="ot">=</span> n_independent_cohorts, <span class="st">`</span><span class="at">Study IDs</span><span class="st">`</span> <span class="ot">=</span> study_ids) <span class="sc">|&gt;</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>*Herrero-Sanchez 2018* is excluded from the primary analysis because its endpoint is *Candida* or</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>*Aspergillus* detection or colonisation and not proven or probable invasive mould disease. The cohort counts</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>above include it, and excluding it takes *PTX3* from 7 to 6 and *CLEC7A* from 9 to 8.</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linkage disequilibrium</span></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>Pairwise values in 1000 Genomes European samples.</span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ld</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pairwise linkage between the two loci of each block."</span></span>
+<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(gene, locus_1, locus_2, r2, d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2, <span class="st">`</span><span class="at">r²</span><span class="st">`</span> <span class="ot">=</span> r2, <span class="st">`</span><span class="at">D′</span><span class="st">`</span> <span class="ot">=</span> d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">r²</span><span class="st">`</span>, <span class="st">`</span><span class="at">D′</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>For *CLEC7A*, D′ = 1 means no recombination between the two sites. The rare Y238X allele (rs16910526)</span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>therefore sits entirely on one rs7309123 background, and the low r² reflects the frequency difference and</span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>not independence. For *CD209*, D′ = 0.67 and all four haplotypes are present.</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype phase check</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>Haplotype frequencies were derived from allele frequencies and D, assuming the minor alleles are in</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>coupling (D positive). D′ near 1 fixes the size of D but not its sign. The reported r² and the allele</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>frequencies fix |D| independently of that assumption, so the sign can be checked arithmetically: if even the</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>largest possible negative D is smaller than the |D| that r² requires, negative phase is impossible.</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-phase</span></span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Phase check. A negative D is possible only if the required |D| is no larger than the negative-phase ceiling."</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>phase <span class="ot">&lt;-</span> hap <span class="sc">|&gt;</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, locus_1, locus_2) <span class="sc">|&gt;</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">r2 =</span> <span class="fu">first</span>(r2),</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">p1 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">p2 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_2 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">required_D =</span> <span class="fu">sqrt</span>(r2 <span class="sc">*</span> p1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">ceiling_if_negative =</span> <span class="fu">pmin</span>(p1 <span class="sc">*</span> p2, (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">negative_possible =</span> required_D <span class="sc">&lt;=</span> ceiling_if_negative <span class="sc">+</span> <span class="fl">1e-3</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>phase <span class="sc">|&gt;</span></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2,</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span> <span class="ot">=</span> required_D, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span> <span class="ot">=</span> ceiling_if_negative,</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Negative phase possible</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(negative_possible, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span>, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>Genomes source and not back-calculated from the assumed D. The phased chromosomes below confirm it directly.</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype frequencies</span></span>
+<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-hap</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Two-locus haplotype frequencies, 1000 Genomes European. 'major' and 'other' denote the non-minor allele."</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pair =</span> <span class="fu">paste0</span>(gene, <span class="st">": "</span>, locus_1, <span class="st">" x "</span>, locus_2)) <span class="sc">|&gt;</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(pair, <span class="st">`</span><span class="at">Allele 1</span><span class="st">`</span> <span class="ot">=</span> allele_1, <span class="st">`</span><span class="at">Allele 2</span><span class="st">`</span> <span class="ot">=</span> allele_2, <span class="at">Frequency =</span> haplotype_freq_1000G_EUR) <span class="sc">|&gt;</span></span>
+<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"pair"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(Frequency, <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>That file holds pairwise frequencies derived from allele frequencies and D. The phased frequencies in the next</span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>section supersede it.</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Phased haplotype frequencies</span></span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>These come directly from phased 1000 Genomes phase 3 European genotypes (503 samples, 1,006 chromosomes,</span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>via the Ensembl REST API), then are rescaled to the gnomAD v4 non-Finnish-European allele frequencies that the</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>project uses as primary. Rescaling is by iterative proportional fitting, which keeps the odds-ratio structure</span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>of the observed table, moves only the allele frequencies, and works for three loci. A haplotype that is</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>absent in 1000G stays absent.</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup-phased</span></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>hp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies_phased.csv"</span>)</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>ldp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_ld_phased.csv"</span>)</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a><span class="fu">### PTX3, three loci</span></span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>Alleles are in the order rs2305619, rs3816527, rs1840680.</span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-trio</span></span>
+<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "PTX3 three-locus haplotypes. SE is the binomial standard error on 1,006 chromosomes."</span></span>
+<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>hp <span class="sc">|&gt;</span></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(block <span class="sc">==</span> <span class="st">"PTX3_trio"</span>, n_chromosomes <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(freq_1000G_EUR)) <span class="sc">|&gt;</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Haplotype =</span> haplotype, <span class="at">Chromosomes =</span> n_chromosomes,</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> freq_1000G_EUR, <span class="at">SE =</span> se_1000G_EUR, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_rescaled) <span class="sc">|&gt;</span></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span>, SE, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>There are three common haplotypes, not two. rs2305619 A and rs1840680 A mark the same class of chromosome</span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>(r² = 0.996), which is A-C-A plus A-A-A. rs3816527 C splits that class, and A-C-A is about 87% of it. The</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>single A-A-G chromosome is too rare to estimate; its rescaled frequency is fixed by the margins alone.</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a><span class="fu">### CLEC7A, TLR4 and CD209</span></span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-blocks</span></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Two-locus haplotypes. 'D′ kept' rescales by preserving D′; the fitted values use iterative proportional fitting."</span></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>hp <span class="sc">|&gt;</span></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(block <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CLEC7A"</span>, <span class="st">"TLR4"</span>, <span class="st">"CD209"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Block =</span> <span class="fu">paste0</span>(block, <span class="st">": "</span>, <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">" x "</span>, loci))) <span class="sc">|&gt;</span></span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(Block, <span class="at">Haplotype =</span> haplotype, <span class="at">Chromosomes =</span> n_chromosomes,</span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> freq_1000G_EUR, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_rescaled,</span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE (D′ kept)</span><span class="st">`</span> <span class="ot">=</span> freq_gnomAD_NFE_dprime) <span class="sc">|&gt;</span></span>
+<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Block"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span>, <span class="st">`</span><span class="at">gnomAD NFE (rescaled)</span><span class="st">`</span>, <span class="st">`</span><span class="at">gnomAD NFE (D′ kept)</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>The two rescaling methods agree closely. The largest difference is about 0.003, in *CD209*, where D′ is</span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>0.69. For *CLEC7A* they are identical because D′ = 1.</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ld-phased</span></span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Linkage in the phased data and after rescaling to gnomAD NFE margins."</span></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a>ldp <span class="sc">|&gt;</span></span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(r2_1000G)) <span class="sc">|&gt;</span></span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Block =</span> block, <span class="at">Loci =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">" x "</span>, loci),</span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">r² (1000G)</span><span class="st">`</span> <span class="ot">=</span> r2_1000G, <span class="st">`</span><span class="at">D′ (1000G)</span><span class="st">`</span> <span class="ot">=</span> dprime_1000G,</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">r² (rescaled)</span><span class="st">`</span> <span class="ot">=</span> r2_rescaled, <span class="st">`</span><span class="at">D′ (rescaled)</span><span class="st">`</span> <span class="ot">=</span> dprime_rescaled) <span class="sc">|&gt;</span></span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">where</span>(is.numeric), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a>The phased r² reproduces the earlier table for PTX3, TLR4 and CLEC7A. For *CD209* it is 0.431 against 0.414</span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a>before. In every pair the minor alleles are in coupling.</span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a><span class="fu">## Assumptions in the rescaling</span></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>1000 Genomes European samples include a Finnish group (FIN), while gnomAD NFE excludes Finnish individuals.</span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>Rescaling assumes the linkage structure carries over and moves only the allele frequencies. Haplotypes seen</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>on a handful of chromosomes are poorly estimated, and the table gives each standard error.</span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Allele frequencies</span></span>
+<span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-af</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Allele frequencies for the 13 variants with three or more meta-analysable studies."</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## rs1800896 is reported on the opposite strand</span></span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>gnomAD gives rs1800896 as T/C where the literature writes A/G. It is the same variant on the other strand,</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a>and it is the most-cited *IL10* promoter SNP in this field, so a natural place for an orientation error.</span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

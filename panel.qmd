@@ -85,7 +85,7 @@ phase |>
 ```
 
 All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000
-Genomes source and not back-calculated from the assumed D.
+Genomes source and not back-calculated from the assumed D. The phased chromosomes below confirm it directly.
 
 ## Haplotype frequencies
 
@@ -99,8 +99,83 @@ hap |>
   fmt_number(Frequency, decimals = 4)
 ```
 
-The file holds pairwise frequencies only. The three-locus *PTX3* haplotype (h1/h2) still has to be derived
-from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.
+That file holds pairwise frequencies derived from allele frequencies and D. The phased frequencies in the next
+section supersede it.
+
+## Phased haplotype frequencies
+
+These come directly from phased 1000 Genomes phase 3 European genotypes (503 samples, 1,006 chromosomes,
+via the Ensembl REST API), then are rescaled to the gnomAD v4 non-Finnish-European allele frequencies that the
+project uses as primary. Rescaling is by iterative proportional fitting, which keeps the odds-ratio structure
+of the observed table, moves only the allele frequencies, and works for three loci. A haplotype that is
+absent in 1000G stays absent.
+
+```{r}
+#| label: setup-phased
+hp <- read.csv("data/haplotype_frequencies_phased.csv")
+ldp <- read.csv("data/haplotype_ld_phased.csv")
+```
+
+### PTX3, three loci
+
+Alleles are in the order rs2305619, rs3816527, rs1840680.
+
+```{r}
+#| label: tbl-trio
+#| tbl-cap: "PTX3 three-locus haplotypes. SE is the binomial standard error on 1,006 chromosomes."
+hp |>
+  filter(block == "PTX3_trio", n_chromosomes > 0) |>
+  arrange(desc(freq_1000G_EUR)) |>
+  transmute(Haplotype = haplotype, Chromosomes = n_chromosomes,
+            `1000G EUR` = freq_1000G_EUR, SE = se_1000G_EUR, `gnomAD NFE (rescaled)` = freq_gnomAD_NFE_rescaled) |>
+  gt() |>
+  fmt_number(c(`1000G EUR`, SE, `gnomAD NFE (rescaled)`), decimals = 4)
+```
+
+There are three common haplotypes, not two. rs2305619 A and rs1840680 A mark the same class of chromosome
+(r² = 0.996), which is A-C-A plus A-A-A. rs3816527 C splits that class, and A-C-A is about 87% of it. The
+single A-A-G chromosome is too rare to estimate; its rescaled frequency is fixed by the margins alone.
+
+### CLEC7A, TLR4 and CD209
+
+```{r}
+#| label: tbl-blocks
+#| tbl-cap: "Two-locus haplotypes. 'D′ kept' rescales by preserving D′; the fitted values use iterative proportional fitting."
+hp |>
+  filter(block %in% c("CLEC7A", "TLR4", "CD209")) |>
+  mutate(Block = paste0(block, ": ", gsub(";", " x ", loci))) |>
+  transmute(Block, Haplotype = haplotype, Chromosomes = n_chromosomes,
+            `1000G EUR` = freq_1000G_EUR, `gnomAD NFE (rescaled)` = freq_gnomAD_NFE_rescaled,
+            `gnomAD NFE (D′ kept)` = freq_gnomAD_NFE_dprime) |>
+  gt(groupname_col = "Block") |>
+  fmt_number(c(`1000G EUR`, `gnomAD NFE (rescaled)`, `gnomAD NFE (D′ kept)`), decimals = 4)
+```
+
+The two rescaling methods agree closely. The largest difference is about 0.003, in *CD209*, where D′ is
+0.69. For *CLEC7A* they are identical because D′ = 1.
+
+```{r}
+#| label: tbl-ld-phased
+#| tbl-cap: "Linkage in the phased data and after rescaling to gnomAD NFE margins."
+ldp |>
+  filter(!is.na(r2_1000G)) |>
+  transmute(Block = block, Loci = gsub(";", " x ", loci),
+            `r² (1000G)` = r2_1000G, `D′ (1000G)` = dprime_1000G,
+            `r² (rescaled)` = r2_rescaled, `D′ (rescaled)` = dprime_rescaled) |>
+  gt() |>
+  fmt_number(where(is.numeric), decimals = 3)
+```
+
+The phased r² reproduces the earlier table for PTX3, TLR4 and CLEC7A. For *CD209* it is 0.431 against 0.414
+before. In every pair the minor alleles are in coupling.
+
+::: {.callout-note}
+## Assumptions in the rescaling
+
+1000 Genomes European samples include a Finnish group (FIN), while gnomAD NFE excludes Finnish individuals.
+Rescaling assumes the linkage structure carries over and moves only the allele frequencies. Haplotypes seen
+on a handful of chromosomes are poorly estimated, and the table gives each standard error.
+:::
 
 ## Allele frequencies
 

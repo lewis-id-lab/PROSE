@@ -1,0 +1,52 @@
+{
+  "permission": {
+    "bash": {
+      "cd *": "allow",
+      "unzip *": "allow",
+      "diff *": "allow",
+      "echo *": "allow",
+      "head *": "allow",
+      "wc *": "allow",
+      "git log *": "allow",
+      "mkdir *": "allow",
+      "cp *": "allow",
+      "ls *": "allow",
+      "python3 *": "allow",
+      "cat *": "allow",
+      "which *": "allow",
+      "gh auth status *": "allow",
+      "D=\"$PA_SCRATCH_DIR/IMD_genetics_bundle/data\" *": "allow",
+      "printf *": "allow",
+      "gh repo view *": "allow",
+      "quarto render *": "allow",
+      "tail *": "allow",
+      "mv *": "allow",
+      "sed *": "allow",
+      "grep *": "allow",
+      "touch *": "allow",
+      "git status *": "allow",
+      "git config user.name *": "allow",
+      "git config user.email *": "allow",
+      "git tag *": "allow",
+      "git branch *": "allow",
+      "du *": "allow",
+      "git ls-files *": "allow",
+      "curl *": "allow"
+    },
+    "external_directory": {
+      "/tmp/pa-1000/*": "allow"
+    },
+    "edit": {
+      "*.md": "allow",
+      "*.R": "allow",
+      "*.qmd": "allow",
+      "*.yml": "allow"
+    },
+    "executeCode": {
+      "*": "allow"
+    },
+    "skill": {
+      "positron-commands": "allow"
+    }
+  }
+}
