@@ -1,0 +1,296 @@
+---
+title: "Baseline model reproduction"
+subtitle: "The fixed clinical equation and its fitted predictor correlation"
+date: today
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+rep  <- read.csv("output/reproduction_report.csv")
+loss <- read.csv("output/reproduction_loss.csv")
+cmp  <- read.csv("output/fit_comparison.csv")
+```
+
+## The fixed equation
+
+The clinical block is the Stanzani et al. (2019) model, held at its published values and never refitted.
+Only genetic terms will be fitted later.
+
+$$
+\operatorname{logit}(p) = -5.45 + 0.68\,\text{malignancy} + 0.79\,\text{chemo} + 0.80\,\text{steroids}
++ 0.89\,\text{lymphopenia} + 1.14\,\text{CMV} + 1.52\,\text{neutropenia} + 1.64\,\text{prior mould}
+$$
+
+Exponentiating each coefficient reproduces the published adjusted odds ratios in Table 2.
+
+```{r}
+#| label: tbl-params
+#| tbl-cap: "Published predictors. Prevalences are in IMD cases (n = 133), non-cases (n = 3,994) and overall (n = 4,127 admissions)."
+data.frame(
+  Predictor = gsub("_", " ", PREDICTORS),
+  Coefficient = pars$coef[PREDICTORS],
+  `Odds ratio` = exp(pars$coef[PREDICTORS]),
+  `In cases` = pars$prev_case[PREDICTORS],
+  `In non-cases` = pars$prev_non[PREDICTORS],
+  Overall = pars$marginal[PREDICTORS],
+  check.names = FALSE
+) |>
+  gt() |>
+  fmt_number(2:3, decimals = 2) |>
+  fmt_percent(4:6, decimals = 1)
+```
+
+## What has to be reproduced
+
+A synthetic cohort must reproduce 16 published targets: the IMD prevalence, the aROC, and the prevalence of
+each predictor separately in cases and non-cases. The paper does not publish the **joint distribution** of
+the seven predictors, and it is load-bearing. High-risk chemotherapy and prolonged neutropenia, for
+example, are close to the same clinical state and cannot be drawn independently.
+
+I model the joint with a Gaussian copula: each predictor is a thresholded latent normal variable that keeps
+its published marginal prevalence, and the correlation of the latent variables is the assumption to be
+calibrated. Because the predictors are binary, every quantity of interest is a function of the 128
+predictor profiles. The profile probabilities are computed by numerical integration of the 7-dimensional
+normal, so no patient-level sampling enters the results below.
+
+## Reproduction
+
+```{r}
+#| label: tbl-repro
+#| tbl-cap: "Global targets under five joint distributions. Chi-square sums squared errors, in published standard errors, over all 16 targets."
+g <- rep[rep$target %in% c("prevalence", "aroc"), ]
+ch <- setNames(loss$chi2, loss$model)
+pct <- function(x) sprintf("%.2f%%", 100 * x)
+tibble(
+  Quantity = c("IMD prevalence", "aROC", "Chi-square, 16 targets"),
+  Published = c(sprintf("%.1f%%", 100 * g$published[1]), sprintf("%.3f", g$published[2]), "0"),
+  Independence = c(pct(g$independent[1]), sprintf("%.3f", g$independent[2]), sprintf("%.0f", ch[["independent"]])),
+  `Exchangeable rho = 0.30` = c(pct(g$exchangeable_0.30[1]), sprintf("%.3f", g$exchangeable_0.30[2]),
+                                sprintf("%.0f", ch[["exchangeable_0.30"]])),
+  `Fitted v1` = c(pct(g$fitted_v1[1]), sprintf("%.3f", g$fitted_v1[2]), sprintf("%.1f", ch[["fitted_v1"]])),
+  `Fitted v2` = c(pct(g$fitted[1]), sprintf("%.3f", g$fitted[2]), sprintf("%.2f", ch[["fitted"]]))
+) |> gt()
+```
+
+::: {.callout-note}
+## The 3.3% prevalence target
+
+133 of 4,127 admissions is 3.22%, not 3.3%. The 3.3% figure was kept as pre-specified (decision D6). The
+difference is about 0.3 standard errors and does not affect the fit.
+:::
+
+Independence gives the right per-predictor prevalences by construction but a prevalence of 2.2% and an aROC
+of 0.775. A single exchangeable correlation of 0.30 recovers both global targets but misses several
+case-group prevalences. The structured fits do better on both counts.
+
+```{r}
+#| label: fig-z
+#| fig-cap: "Simulated minus published value, in published standard errors, for each of the 16 targets. Dashed lines mark two standard errors. Independence is omitted because it is far outside this range."
+#| fig-height: 6.5
+lab <- gsub("_", " ", sub("^noncase_prev:", "non-case: ", sub("^case_prev:", "case: ", rep$target)))
+rep |>
+  transmute(target = factor(lab, levels = rev(lab)),
+            `Exchangeable rho = 0.30` = z_exchangeable, `Fitted v1` = z_fitted_v1, `Fitted v2` = z_fitted) |>
+  pivot_longer(-target, names_to = "model", values_to = "z") |>
+  mutate(model = factor(model, c("Exchangeable rho = 0.30", "Fitted v1", "Fitted v2"))) |>
+  ggplot(aes(z, target, colour = model)) +
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", colour = "grey60") +
+  geom_point(size = 2) +
+  labs(x = "Standard errors from the published value", y = NULL, colour = NULL) +
+  theme(legend.position = "bottom")
+```
+
+## The fitted correlation structure
+
+The matrix is structured by clinical grouping, with non-negative dependence. The marrow-suppression block
+(malignancy, chemotherapy, lymphopenia, neutropenia) shares a baseline correlation, with extra correlation
+allowed for the pairs that the requested Bologna cross-tabulations would cover. Steroids, CMV and prior
+mould disease are tied to the block by single parameters.
+
+### Version 1 and what went wrong with it
+
+Version 1 had eight parameters. It left **uncontrolled malignancy in cases** simulated at 69% against 59%
+published (2.3 standard errors), and two block parameters sat at their upper bound. Both problems had one
+cause. Neutropenia is tightly tied to both chemotherapy and lymphopenia, which forces chemotherapy and
+lymphopenia to be correlated for the matrix to stay positive definite. In version 1 that pair shared the
+block baseline with malignancy's links, so raising the baseline to satisfy the first pulled malignancy up
+with it.
+
+Version 2 gives chemotherapy-lymphopenia its own parameter and lets the three block extras reach 0.7.
+
+```{r}
+#| label: tbl-compare
+#| tbl-cap: "Three fitted configurations, evaluated by numerical integration."
+cmp |>
+  transmute(
+    Model = recode(config,
+                   v1 = "v1: 8 parameters, extras capped at 0.5",
+                   v2_capped = "v2 with the v1 caps (9 parameters)",
+                   v2 = "v2: 9 parameters, extras capped at 0.7"),
+    `Chi-square` = chi2, Prevalence = prevalence, aROC = auc,
+    `Malignancy in cases (z)` = z_malignancy_case, `Largest |z|` = max_abs_z,
+    `At a bound` = gsub("; ", ", ", at_bound)
+  ) |>
+  gt() |>
+  fmt_number(c(`Chi-square`, `Malignancy in cases (z)`, `Largest |z|`), decimals = 2) |>
+  fmt_percent(Prevalence, decimals = 2) |>
+  fmt_number(aROC, decimals = 3)
+```
+
+The malignancy residual goes away (2.3 to 0.4 standard errors). The new parameter alone, with the old caps,
+gets most of the way (1.4); raising the caps finishes it.
+
+### Fitted version 2
+
+```{r}
+#| label: fig-corr
+#| fig-cap: "Fitted latent correlation matrix, version 2."
+#| fig-height: 5.5
+Rm <- as.matrix(read.csv("output/fitted_correlation_matrix.csv", row.names = 1))
+nm <- gsub("_", " ", rownames(Rm))
+long <- expand.grid(row = nm, col = nm)
+long$r <- as.vector(Rm)
+ggplot(long, aes(col, row, fill = r)) +
+  geom_tile(colour = "white") +
+  geom_text(aes(label = sprintf("%.2f", r)), size = 3) +
+  scale_fill_gradient(low = "white", high = "steelblue", limits = c(0, 1)) +
+  scale_y_discrete(limits = rev(nm)) +
+  labs(x = NULL, y = NULL, fill = "Latent\ncorrelation") +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1), panel.grid = element_blank())
+```
+
+```{r}
+#| label: tbl-theta
+#| tbl-cap: "Fitted parameters, version 2, and their bounds."
+meaning <- c(
+  "Baseline correlation within the marrow-suppression block (this sets malignancy's links)",
+  "Extra: malignancy and chemotherapy",
+  "Extra: chemotherapy and neutropenia",
+  "Extra: neutropenia and lymphopenia",
+  "Extra: chemotherapy and lymphopenia (new in v2)",
+  "Block with high-dose steroids",
+  "Block with CMV",
+  "Steroids with CMV",
+  "Prior mould disease with every other predictor"
+)
+th <- read.csv("output/fitted_theta.csv")
+th$lower <- THETA_LOWER[th$parameter]
+th$upper <- THETA_UPPER[th$parameter]
+th$bound <- ifelse(abs(th$value - th$lower) < 0.01, "at lower bound",
+                   ifelse(abs(th$value - th$upper) < 0.01, "at upper bound", ""))
+th$meaning <- meaning
+th |>
+  select(Parameter = parameter, Meaning = meaning, Value = value, Lower = lower, Upper = upper, Note = bound) |>
+  gt() |>
+  fmt_number(c(Value, Lower, Upper), decimals = 2)
+```
+
+Malignancy is almost uncorrelated with the other block members (latent correlation about 0.04), while
+chemotherapy, neutropenia and lymphopenia are correlated at 0.69 to 0.74 with each other. That is what the
+published figures imply under this structure. It should be checked against the requested Bologna
+cross-tabulation of malignancy by chemotherapy.
+
+### Is the cap on d_chemo_neut costing anything?
+
+`d_chemo_neut` sits at its upper bound of 0.7. Moving it away from the fitted value, with every other
+parameter held, shows whether the bound is binding.
+
+```{r}
+#| label: tbl-scan
+#| tbl-cap: "Fitting loss as d_chemo_neut varies, other parameters held at their fitted values (common random draws, so values differ slightly from the exact chi-square)."
+set.seed(7461)
+Zs <- matrix(rnorm(3e5 * 7), 3e5)
+obj <- make_objective(Zs, pars, targets)
+th_fit <- setNames(th$value, th$parameter)[THETA_NAMES]
+vals <- c(0.5, 0.6, 0.7, 0.8, 0.9)
+tibble(`d_chemo_neut` = vals,
+       `Latent chemo-neutropenia correlation` = th_fit[["rho_A"]] + vals,
+       Loss = sapply(vals, \(v) obj(replace(th_fit, "d_chemo_neut", v)))) |>
+  gt() |>
+  fmt_number(c(`Latent chemo-neutropenia correlation`, Loss), decimals = 2)
+```
+
+The loss is lowest at 0.7 and rises on both sides, so the optimum is at the cap by coincidence and the cap
+is not constraining the fit. The matrix is also well inside the positive-definite region (smallest
+eigenvalue `r sprintf("%.2f", min(eigen(Rm, symmetric = TRUE, only.values = TRUE)$values))`), so
+positive definiteness no longer limits the fit either.
+
+::: {.callout-warning}
+## A near-zero chi-square is expected here and does not validate the structure
+
+The 16 targets are not independent. Given the marginals, the non-case prevalences follow from the case
+prevalences and the overall prevalence, which leaves about nine effective constraints. Version 2 has nine
+parameters. A saturated fit reproduces its targets almost exactly whether or not the structure is right.
+Only information beyond the published margins, such as the Bologna cross-tabulations, can test it.
+:::
+
+## How well is the matrix identified?
+
+Many matrices fit the targets about equally well. A random-walk Metropolis sampler on $\exp(-\chi^2/2)$ gives
+an ensemble of near-optimal matrices (six chains, 400 retained draws each after thinning). It is not a
+formal posterior: the chi-square uses published sampling errors and ignores admission clustering.
+
+```{r}
+#| label: fig-ensemble
+#| fig-cap: "Median and 90% range of each parameter across the ensemble."
+#| fig-height: 4
+raw <- read.csv("output/correlation_ensemble_raw.csv")
+rhat <- function(x, chain) {
+  s <- split(x, chain); n <- length(s[[1]])
+  W <- mean(sapply(s, var)); B <- n * var(sapply(s, mean))
+  sqrt(((n - 1) / n * W + B / n) / W)
+}
+summ <- tibble(
+  parameter = THETA_NAMES,
+  q05 = sapply(THETA_NAMES, \(p) quantile(raw[[p]], 0.05)),
+  median = sapply(THETA_NAMES, \(p) median(raw[[p]])),
+  q95 = sapply(THETA_NAMES, \(p) quantile(raw[[p]], 0.95)),
+  rhat = sapply(THETA_NAMES, \(p) rhat(raw[[p]], raw$chain))
+)
+ggplot(summ, aes(median, factor(parameter, rev(THETA_NAMES)))) +
+  geom_pointrange(aes(xmin = q05, xmax = q95)) +
+  labs(x = "Parameter value", y = NULL)
+```
+
+```{r}
+#| label: tbl-ensemble
+#| tbl-cap: "Ensemble summaries. R-hat above about 1.1 means the chains have not fully mixed."
+summ |>
+  select(Parameter = parameter, `5%` = q05, Median = median, `95%` = q95, `R-hat` = rhat) |>
+  gt() |>
+  fmt_number(2:5, decimals = 2)
+```
+
+The ranges are wide, particularly for the steroid-CMV correlation and the malignancy-chemotherapy extra.
+The chains mix acceptably (largest R-hat `r sprintf("%.2f", max(summ$rhat))`). The consequences of this
+spread for net benefit and the MCID are on the [decision curves](decision-curves.qmd) page.
+
+## Verification
+
+The harness checks the fixed equation against the published odds ratios and counts, verifies the profile
+machinery against brute-force calculations, checks that numerical integration agrees with sampling and with
+itself across seeds, reproduces the documented independence and exchangeable results, tests the saved fit on
+fresh random draws, and tests the decision-curve code against hand calculations.
+
+```{r}
+#| label: tbl-tests
+#| tbl-cap: "Test suite results, run when this page was built."
+tests <- as.data.frame(testthat::test_dir("tests/testthat", reporter = "silent",
+                                          stop_on_failure = FALSE))
+tests |>
+  transmute(File = sub("^test-", "", sub("\\.R$", "", file)), Test = test,
+            Expectations = nb, Result = ifelse(failed == 0 & !error, "pass", "FAIL")) |>
+  gt()
+```
+
+## Limitations
+
+- The correlation structure is an assumption fitted to published margins. It is not data.
+- The fit is saturated, so its quality says little about whether the structure is correct.
+- The fitting loss uses binomial standard errors and ignores that the 4,127 admissions come from 1,944
+  patients.
+- The published aROC of 0.85 is apparent performance. The bootstrap-validated value is 0.83, and the MCID
+  scales with baseline net benefit.
+- The distribution of admissions per patient is unpublished. It will be simulated and varied.
+- No genetic term has been added.

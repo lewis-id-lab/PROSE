@@ -1,0 +1,8 @@
+target,value,detail
+IMD prevalence,0.033,"133/4127 admissions (90 probable, 43 proven)"
+aROC derivation,0.85,95% CI 0.84-0.86
+aROC bootstrap internal validation,0.83,"95% CI 0.79-0.87, bias 0.002, 100 repetitions"
+calibration,good to 0.40 predicted risk,loess plot and septile grouping; over-predicts above 40%
+Youden cut-off,0.05,used in the paper to define high risk
+cohort structure,4127 admissions / 1944 patients,admissions-per-patient distribution NOT published
+predictor joint distribution,NOT PUBLISHED,independence gives prevalence 0.0227 and aROC 0.775; must be calibrated

@@ -1,0 +1,14 @@
+rsid,gene,dbsnp_alleles,chr_pos,gnomad_pop,gnomad_nfe_freqs,tg_eur_pop,tg_eur_freqs,ancestral,minor_allele,maf_global
+rs16910526,CLEC7A,A/C/G/T,12:10118488,gnomADg:nfe,"{""A"": 0.9229, ""C"": 0.0771}",1000GENOMES:phase_3:EUR,"{""C"": 0.0706, ""A"": 0.9294}",,,
+rs7309123,CLEC7A,C/G,12:10119994,gnomADg:nfe,"{""C"": 0.5737, ""G"": 0.4263}",1000GENOMES:phase_3:EUR,"{""G"": 0.4225, ""C"": 0.5775}",,C,0.285322
+rs2305619,PTX3,A/G/T,3:157437072,gnomADg:nfe,"{""A"": 0.482, ""G"": 0.518}",1000GENOMES:phase_3:EUR,"{""A"": 0.4563, ""G"": 0.5437}",,,
+rs4986790,TLR4,A/G/T,9:117713024,gnomADg:nfe,"{""G"": 0.0614, ""A"": 0.9386}",1000GENOMES:phase_3:EUR,"{""A"": 0.9433, ""G"": 0.0567}",,,
+rs4986791,TLR4,C/T,9:117713324,gnomADg:nfe,"{""C"": 0.9358, ""T"": 0.0642}",1000GENOMES:phase_3:EUR,"{""T"": 0.0577, ""C"": 0.9423}",,,
+rs3816527,PTX3,A/C/T,3:157437525,gnomADg:nfe,"{""A"": 0.5758, ""C"": 0.4242}",1000GENOMES:phase_3:EUR,"{""A"": 0.6024, ""C"": 0.3976}",,,
+rs4804800,CD209,A/C/G/T,19:7740242,gnomADg:nfe,"{""A"": 0.8749, ""G"": 0.1251}",1000GENOMES:phase_3:EUR,"{""G"": 0.1243, ""A"": 0.8757}",,G,0.222527
+rs7248637,CD209,A/C/G,19:7742141,gnomADg:nfe,"{""G"": 0.8965, ""A"": 0.1035}",1000GENOMES:phase_3:EUR,"{""G"": 0.8847, ""A"": 0.1153}",,A,0.231554
+rs1840680,PTX3,A/C/G/T,3:157438240,gnomADg:nfe,"{""A"": 0.4806, ""G"": 0.5194}",1000GENOMES:phase_3:EUR,"{""A"": 0.4553, ""G"": 0.5447}",,A,0.344584
+rs5743708,TLR2,A/G/T,4:153705165,gnomADg:nfe,"{""A"": 0.0294, ""G"": 0.9706}",1000GENOMES:phase_3:EUR,"{""A"": 0.0239, ""G"": 0.9761}",,,
+rs1800896,IL10,A/C/G/T,1:206773552,gnomADg:nfe,"{""T"": 0.5134, ""C"": 0.4866}",1000GENOMES:phase_3:EUR,"{""T"": 0.5467, ""C"": 0.4533}",,C,0.273744
+rs2069705,IFNG,A/C/G/T,12:68161231,gnomADg:nfe,"{""A"": 0.6624, ""G"": 0.3379, ""C"": 0.0}",1000GENOMES:phase_3:EUR,"{""A"": 0.673, ""G"": 0.327}",,G,0.476845
+rs5743810,TLR6,A/C/G/T,4:38828729,gnomADg:nfe,"{""A"": 0.4217, ""G"": 0.5783}",1000GENOMES:phase_3:EUR,"{""A"": 0.4085, ""G"": 0.5915}",,,

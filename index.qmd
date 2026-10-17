@@ -1,0 +1,56 @@
+---
+title: "Genetic augmentation of a clinical risk model for invasive mould disease"
+subtitle: "A simulation study of incremental value: data report"
+date: today
+---
+
+## The question
+
+A validated clinical score (Stanzani et al., *J Infect* 2019) already predicts 60-day invasive mould disease
+(IMD) in haematological inpatients with an aROC of 0.85. Candidate host variants in *PTX3*, *CLEC7A*
+(dectin-1), *CD209* (DC-SIGN), *TLR4* and other genes are repeatedly reported as associated with invasive
+aspergillosis. This project asks whether adding them to the score would change what a clinician does.
+
+It is framed as a value-of-information question rather than a prediction-improvement exercise:
+
+> Under what combinations of effect size, risk-allele frequency and linkage structure would host genetic
+> information change clinical decisions for invasive mould disease in haematological patients, and is the
+> published evidence anywhere near those combinations?
+
+A negative answer, that no realistic genetic architecture moves the decision curve, is a finding and not a
+failure. The primary endpoint is decision-curve net benefit at the 5% threshold, judged against a minimum
+clinically important difference fixed before any genetic result exists.
+
+::: {.callout-warning}
+## This is a working report on provisional data
+
+All extracted variant rows are marked `PENDING ROUND 2 VERIFICATION`. The correlation structure of the
+clinical predictors is a fitted modelling assumption, not published data. No genetic result exists yet.
+:::
+
+## Where the project stands
+
+| Phase | State |
+|---|---|
+| 0 Set-up | complete |
+| 1 Literature search | complete: 831 unique records screened |
+| 2 Screening and extraction | round 1 complete including targeted recovery and supplementary files; round 2 (human verification) not started |
+| 3 Parameter derivation | design decisions settled; parameter derivation gated on round 2 |
+| 4 Baseline reproduction | baseline coded and tested, predictor correlation fitted (version 2), exact decision curves and MCID re-derived; Bologna cross-tabulations outstanding |
+| 5 Genetic layer simulation | blocked on phase 3 |
+| 6 Sensitivity and architecture sweep | blocked on phase 5 |
+| 7 Write-up | not started |
+
+## Reading this report
+
+| Page | Contents |
+|---|---|
+| [Evidence base](evidence.qmd) | What the literature search and extraction produced, and how much of it can be pooled |
+| [Genetic panel](panel.qmd) | The four haplotype terms, linkage structure, allele frequencies, and the haplotype phase check |
+| [Baseline model](baseline.qmd) | The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified |
+| [Decision curves](decision-curves.qmd) | Exact net benefit for the baseline model across thresholds 1 to 30%, and the re-derived MCID |
+| [Pre-specified decisions](decisions.qmd) | The record of design decisions, written before any genetic result |
+| [Status log](status.qmd) | The full working status document |
+
+Source code, data and tests are in the
+[repository](https://github.com/Russlewisbo/PROSE).

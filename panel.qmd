@@ -1,0 +1,122 @@
+---
+title: "Genetic panel"
+subtitle: "Four haplotype terms, linkage structure and allele frequencies"
+date: today
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+spec <- read.csv("data/final_panel_spec.csv")
+hap  <- read.csv("data/haplotype_frequencies.csv")
+af   <- read.csv("data/panel_allele_frequencies.csv")
+```
+
+## Why haplotype terms
+
+The unfinished predecessor analysis simulated three *PTX3* SNPs as independent multiplicative risks. They
+are in near-complete linkage disequilibrium and tag one h1/h2 haplotype, so independent simulation
+triple-counts a single signal. The same error would recur within *CLEC7A* and *CD209* if their two SNPs each
+entered as additive terms. The panel therefore enters as four haplotype terms, with *IL10* and *IFNG* as
+optional single SNPs. *TLR9* rs352140 is dropped (one usable study of three).
+
+```{r}
+#| label: tbl-panel
+#| tbl-cap: "Final panel specification."
+spec |>
+  mutate(variants = gsub(";", ", ", variants), study_ids = gsub(";", ", ", study_ids)) |>
+  transmute(Term = term, Variants = variants, `Studies (union)` = n_studies_union,
+            `Independent cohorts` = n_independent_cohorts, `Study IDs` = study_ids) |>
+  gt()
+```
+
+*Herrero-Sanchez 2018* is excluded from the primary analysis because its endpoint is *Candida* or
+*Aspergillus* detection or colonisation and not proven or probable invasive mould disease. The cohort counts
+above include it, and excluding it takes *PTX3* from 7 to 6 and *CLEC7A* from 9 to 8.
+
+## Linkage disequilibrium
+
+Pairwise values in 1000 Genomes European samples.
+
+```{r}
+#| label: tbl-ld
+#| tbl-cap: "Pairwise linkage between the two loci of each block."
+hap |>
+  distinct(gene, locus_1, locus_2, r2, d_prime) |>
+  transmute(Gene = gene, `Locus 1` = locus_1, `Locus 2` = locus_2, `r²` = r2, `D′` = d_prime) |>
+  gt() |>
+  fmt_number(c(`r²`, `D′`), decimals = 3)
+```
+
+For *CLEC7A*, D′ = 1 means no recombination between the two sites. The rare Y238X allele (rs16910526)
+therefore sits entirely on one rs7309123 background, and the low r² reflects the frequency difference and
+not independence. For *CD209*, D′ = 0.67 and all four haplotypes are present.
+
+## Haplotype phase check
+
+Haplotype frequencies were derived from allele frequencies and D, assuming the minor alleles are in
+coupling (D positive). D′ near 1 fixes the size of D but not its sign. The reported r² and the allele
+frequencies fix |D| independently of that assumption, so the sign can be checked arithmetically: if even the
+largest possible negative D is smaller than the |D| that r² requires, negative phase is impossible.
+
+```{r}
+#| label: tbl-phase
+#| tbl-cap: "Phase check. A negative D is possible only if the required |D| is no larger than the negative-phase ceiling."
+phase <- hap |>
+  group_by(gene, locus_1, locus_2) |>
+  summarise(
+    r2 = first(r2),
+    p1 = sum(haplotype_freq_1000G_EUR[!allele_1 %in% c("major", "other")]),
+    p2 = sum(haplotype_freq_1000G_EUR[!allele_2 %in% c("major", "other")]),
+    .groups = "drop"
+  ) |>
+  mutate(
+    required_D = sqrt(r2 * p1 * (1 - p1) * p2 * (1 - p2)),
+    ceiling_if_negative = pmin(p1 * p2, (1 - p1) * (1 - p2)),
+    negative_possible = required_D <= ceiling_if_negative + 1e-3
+  )
+
+phase |>
+  transmute(Gene = gene, `Locus 1` = locus_1, `Locus 2` = locus_2,
+            `Required |D|` = required_D, `Ceiling if D < 0` = ceiling_if_negative,
+            `Negative phase possible` = ifelse(negative_possible, "yes", "no")) |>
+  gt() |>
+  fmt_number(c(`Required |D|`, `Ceiling if D < 0`), decimals = 4)
+```
+
+All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000
+Genomes source and not back-calculated from the assumed D.
+
+## Haplotype frequencies
+
+```{r}
+#| label: tbl-hap
+#| tbl-cap: "Two-locus haplotype frequencies, 1000 Genomes European. 'major' and 'other' denote the non-minor allele."
+hap |>
+  mutate(pair = paste0(gene, ": ", locus_1, " x ", locus_2)) |>
+  transmute(pair, `Allele 1` = allele_1, `Allele 2` = allele_2, Frequency = haplotype_freq_1000G_EUR) |>
+  gt(groupname_col = "pair") |>
+  fmt_number(Frequency, decimals = 4)
+```
+
+The file holds pairwise frequencies only. The three-locus *PTX3* haplotype (h1/h2) still has to be derived
+from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.
+
+## Allele frequencies
+
+```{r}
+#| label: tbl-af
+#| tbl-cap: "Allele frequencies for the 13 variants with three or more meta-analysable studies."
+clean <- function(x) gsub(",", ", ", gsub("[{}\"]", "", x))
+af |>
+  transmute(rsID = rsid, Gene = gene, Position = chr_pos,
+            `gnomAD NFE` = clean(gnomad_nfe_freqs), `1000G EUR` = clean(tg_eur_freqs)) |>
+  gt()
+```
+
+::: {.callout-note}
+## rs1800896 is reported on the opposite strand
+
+gnomAD gives rs1800896 as T/C where the literature writes A/G. It is the same variant on the other strand,
+and it is the most-cited *IL10* promoter SNP in this field, so a natural place for an orientation error.
+:::

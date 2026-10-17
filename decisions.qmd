@@ -1,0 +1,5 @@
+---
+pagetitle: "Pre-specified decisions"
+---
+
+{{< include phase3_decisions.md >}}

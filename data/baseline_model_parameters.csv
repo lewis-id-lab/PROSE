@@ -1,0 +1,9 @@
+term,coefficient,odds_ratio,prev_in_IMD_cases,prev_in_non_cases,prev_overall,n_IMD,n_non_IMD,source
+(Intercept),-5.45,,,,,133,3994,"Stanzani 2019 J Infect 78:484-490, equation p.487"
+uncontrolled_malignancy,0.68,1.974,0.5865,0.4059,0.4117,78,1621,Stanzani 2019 Table 2 (adjusted OR and group counts)
+high_risk_chemo,0.79,2.203,0.6391,0.1945,0.2089,85,777,Stanzani 2019 Table 2 (adjusted OR and group counts)
+high_dose_steroids,0.8,2.226,0.2256,0.1094,0.1132,30,437,Stanzani 2019 Table 2 (adjusted OR and group counts)
+severe_lymphopenia,0.89,2.435,0.4887,0.1157,0.1277,65,462,Stanzani 2019 Table 2 (adjusted OR and group counts)
+cmv,1.14,3.127,0.1278,0.0238,0.0271,17,95,Stanzani 2019 Table 2 (adjusted OR and group counts)
+prolonged_neutropenia,1.52,4.572,0.797,0.2749,0.2917,106,1098,Stanzani 2019 Table 2 (adjusted OR and group counts)
+prior_mould_disease,1.64,5.155,0.1504,0.0218,0.0259,20,87,Stanzani 2019 Table 2 (adjusted OR and group counts)

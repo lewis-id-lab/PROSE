@@ -1,0 +1,5 @@
+---
+pagetitle: "Status log"
+---
+
+{{< include 02_current_status.md >}}

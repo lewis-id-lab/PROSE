@@ -1,0 +1,3665 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-17">
+
+<title>Genetic panel – IMD genetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27b9f889d6e109d015426ac4f274b7e7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">IMD genetics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./evidence.html"> 
+<span class="menu-text">Evidence base</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./panel.html" aria-current="page"> 
+<span class="menu-text">Genetic panel</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./baseline.html"> 
+<span class="menu-text">Baseline model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./decision-curves.html"> 
+<span class="menu-text">Decision curves</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./decisions.html"> 
+<span class="menu-text">Pre-specified decisions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./status.html"> 
+<span class="menu-text">Status log</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Russlewisbo/PROSE" title="Repository" class="quarto-navigation-tool px-1" aria-label="Repository"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-haplotype-terms" id="toc-why-haplotype-terms" class="nav-link active" data-scroll-target="#why-haplotype-terms">Why haplotype terms</a></li>
+  <li><a href="#linkage-disequilibrium" id="toc-linkage-disequilibrium" class="nav-link" data-scroll-target="#linkage-disequilibrium">Linkage disequilibrium</a></li>
+  <li><a href="#haplotype-phase-check" id="toc-haplotype-phase-check" class="nav-link" data-scroll-target="#haplotype-phase-check">Haplotype phase check</a></li>
+  <li><a href="#haplotype-frequencies" id="toc-haplotype-frequencies" class="nav-link" data-scroll-target="#haplotype-frequencies">Haplotype frequencies</a></li>
+  <li><a href="#allele-frequencies" id="toc-allele-frequencies" class="nav-link" data-scroll-target="#allele-frequencies">Allele frequencies</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Genetic panel</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Four haplotype terms, linkage structure and allele frequencies</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 17, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/final_panel_spec.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>hap  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>af   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/panel_allele_frequencies.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="why-haplotype-terms" class="level2">
+<h2 class="anchored" data-anchor-id="why-haplotype-terms">Why haplotype terms</h2>
+<p>The unfinished predecessor analysis simulated three <em>PTX3</em> SNPs as independent multiplicative risks. They are in near-complete linkage disequilibrium and tag one h1/h2 haplotype, so independent simulation triple-counts a single signal. The same error would recur within <em>CLEC7A</em> and <em>CD209</em> if their two SNPs each entered as additive terms. The panel therefore enters as four haplotype terms, with <em>IL10</em> and <em>IFNG</em> as optional single SNPs. <em>TLR9</em> rs352140 is dropped (one usable study of three).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spec <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variants =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, variants), <span class="at">study_ids =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, study_ids)) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="at">Variants =</span> variants, <span class="st">`</span><span class="at">Studies (union)</span><span class="st">`</span> <span class="ot">=</span> n_studies_union,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Independent cohorts</span><span class="st">`</span> <span class="ot">=</span> n_independent_cohorts, <span class="st">`</span><span class="at">Study IDs</span><span class="st">`</span> <span class="ot">=</span> study_ids) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-panel" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Final panel specification.
+</figcaption>
+<div aria-describedby="tbl-panel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="ikzmiemixm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ikzmiemixm table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ikzmiemixm thead, #ikzmiemixm tbody, #ikzmiemixm tfoot, #ikzmiemixm tr, #ikzmiemixm td, #ikzmiemixm th {
+  border-style: none;
+}
+
+#ikzmiemixm p {
+  margin: 0;
+  padding: 0;
+}
+
+#ikzmiemixm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ikzmiemixm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ikzmiemixm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ikzmiemixm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ikzmiemixm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ikzmiemixm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ikzmiemixm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ikzmiemixm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ikzmiemixm .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ikzmiemixm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ikzmiemixm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ikzmiemixm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ikzmiemixm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ikzmiemixm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ikzmiemixm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ikzmiemixm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ikzmiemixm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ikzmiemixm .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ikzmiemixm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ikzmiemixm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ikzmiemixm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ikzmiemixm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ikzmiemixm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ikzmiemixm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ikzmiemixm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ikzmiemixm .gt_left {
+  text-align: left;
+}
+
+#ikzmiemixm .gt_center {
+  text-align: center;
+}
+
+#ikzmiemixm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ikzmiemixm .gt_font_normal {
+  font-weight: normal;
+}
+
+#ikzmiemixm .gt_font_bold {
+  font-weight: bold;
+}
+
+#ikzmiemixm .gt_font_italic {
+  font-style: italic;
+}
+
+#ikzmiemixm .gt_super {
+  font-size: 65%;
+}
+
+#ikzmiemixm .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ikzmiemixm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ikzmiemixm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ikzmiemixm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ikzmiemixm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ikzmiemixm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ikzmiemixm .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ikzmiemixm .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ikzmiemixm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Term</th>
+<th id="Variants" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Variants</th>
+<th id="Studies-(union)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Studies (union)</th>
+<th id="Independent-cohorts" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Independent cohorts</th>
+<th id="Study-IDs" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Study IDs</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">PTX3 haplotype</td>
+<td class="gt_row gt_left" headers="Variants">rs2305619, rs3816527, rs1840680</td>
+<td class="gt_row gt_right" headers="Studies-(union)">7</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">7</td>
+<td class="gt_row gt_left" headers="Study-IDs">S026, S029, S035, S045, S056, S077, S080</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">TLR4 haplotype</td>
+<td class="gt_row gt_left" headers="Variants">rs4986790, rs4986791</td>
+<td class="gt_row gt_right" headers="Studies-(union)">5</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">5</td>
+<td class="gt_row gt_left" headers="Study-IDs">S046, S056, S061, S066, S077</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">CLEC7A haplotype</td>
+<td class="gt_row gt_left" headers="Variants">rs16910526, rs7309123</td>
+<td class="gt_row gt_right" headers="Studies-(union)">11</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">9</td>
+<td class="gt_row gt_left" headers="Study-IDs">S023, S035, S045, S046, S056, S070, S071, S073, S074, S077, S080</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">CD209 haplotype</td>
+<td class="gt_row gt_left" headers="Variants">rs4804800, rs7248637</td>
+<td class="gt_row gt_right" headers="Studies-(union)">5</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">4</td>
+<td class="gt_row gt_left" headers="Study-IDs">S021, S045, S071, S077, S080</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">IL10 rs1800896 (optional)</td>
+<td class="gt_row gt_left" headers="Variants">rs1800896</td>
+<td class="gt_row gt_right" headers="Studies-(union)">3</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">3</td>
+<td class="gt_row gt_left" headers="Study-IDs">S003, S061, S077</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">IFNG rs2069705 (optional)</td>
+<td class="gt_row gt_left" headers="Variants">rs2069705</td>
+<td class="gt_row gt_right" headers="Studies-(union)">3</td>
+<td class="gt_row gt_right" headers="Independent-cohorts">3</td>
+<td class="gt_row gt_left" headers="Study-IDs">S046, S072, S080</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><em>Herrero-Sanchez 2018</em> is excluded from the primary analysis because its endpoint is <em>Candida</em> or <em>Aspergillus</em> detection or colonisation and not proven or probable invasive mould disease. The cohort counts above include it, and excluding it takes <em>PTX3</em> from 7 to 6 and <em>CLEC7A</em> from 9 to 8.</p>
+</section>
+<section id="linkage-disequilibrium" class="level2">
+<h2 class="anchored" data-anchor-id="linkage-disequilibrium">Linkage disequilibrium</h2>
+<p>Pairwise values in 1000 Genomes European samples.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(gene, locus_1, locus_2, r2, d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2, <span class="st">`</span><span class="at">r²</span><span class="st">`</span> <span class="ot">=</span> r2, <span class="st">`</span><span class="at">D′</span><span class="st">`</span> <span class="ot">=</span> d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">r²</span><span class="st">`</span>, <span class="st">`</span><span class="at">D′</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-ld" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Pairwise linkage between the two loci of each block.
+</figcaption>
+<div aria-describedby="tbl-ld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="ghgbwuqwhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ghgbwuqwhc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ghgbwuqwhc thead, #ghgbwuqwhc tbody, #ghgbwuqwhc tfoot, #ghgbwuqwhc tr, #ghgbwuqwhc td, #ghgbwuqwhc th {
+  border-style: none;
+}
+
+#ghgbwuqwhc p {
+  margin: 0;
+  padding: 0;
+}
+
+#ghgbwuqwhc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ghgbwuqwhc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ghgbwuqwhc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ghgbwuqwhc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ghgbwuqwhc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ghgbwuqwhc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ghgbwuqwhc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ghgbwuqwhc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ghgbwuqwhc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ghgbwuqwhc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ghgbwuqwhc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ghgbwuqwhc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ghgbwuqwhc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ghgbwuqwhc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ghgbwuqwhc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ghgbwuqwhc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ghgbwuqwhc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ghgbwuqwhc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ghgbwuqwhc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ghgbwuqwhc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ghgbwuqwhc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ghgbwuqwhc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ghgbwuqwhc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ghgbwuqwhc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ghgbwuqwhc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ghgbwuqwhc .gt_left {
+  text-align: left;
+}
+
+#ghgbwuqwhc .gt_center {
+  text-align: center;
+}
+
+#ghgbwuqwhc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ghgbwuqwhc .gt_font_normal {
+  font-weight: normal;
+}
+
+#ghgbwuqwhc .gt_font_bold {
+  font-weight: bold;
+}
+
+#ghgbwuqwhc .gt_font_italic {
+  font-style: italic;
+}
+
+#ghgbwuqwhc .gt_super {
+  font-size: 65%;
+}
+
+#ghgbwuqwhc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ghgbwuqwhc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ghgbwuqwhc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ghgbwuqwhc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ghgbwuqwhc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ghgbwuqwhc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ghgbwuqwhc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ghgbwuqwhc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ghgbwuqwhc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Gene" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Gene</th>
+<th id="Locus-1" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Locus 1</th>
+<th id="Locus-2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Locus 2</th>
+<th id="r²" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">r²</th>
+<th id="D′" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">D′</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs2305619</td>
+<td class="gt_row gt_left" headers="Locus-2">rs3816527</td>
+<td class="gt_row gt_right" headers="r²">0.787</td>
+<td class="gt_row gt_right" headers="D′">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs2305619</td>
+<td class="gt_row gt_left" headers="Locus-2">rs1840680</td>
+<td class="gt_row gt_right" headers="r²">0.996</td>
+<td class="gt_row gt_right" headers="D′">1.000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs3816527</td>
+<td class="gt_row gt_left" headers="Locus-2">rs1840680</td>
+<td class="gt_row gt_right" headers="r²">0.790</td>
+<td class="gt_row gt_right" headers="D′">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">TLR4</td>
+<td class="gt_row gt_left" headers="Locus-1">rs4986790</td>
+<td class="gt_row gt_left" headers="Locus-2">rs4986791</td>
+<td class="gt_row gt_right" headers="r²">0.945</td>
+<td class="gt_row gt_right" headers="D′">0.981</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">CLEC7A</td>
+<td class="gt_row gt_left" headers="Locus-1">rs16910526</td>
+<td class="gt_row gt_left" headers="Locus-2">rs7309123</td>
+<td class="gt_row gt_right" headers="r²">0.104</td>
+<td class="gt_row gt_right" headers="D′">1.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">CD209</td>
+<td class="gt_row gt_left" headers="Locus-1">rs4804800</td>
+<td class="gt_row gt_left" headers="Locus-2">rs7248637</td>
+<td class="gt_row gt_right" headers="r²">0.413</td>
+<td class="gt_row gt_right" headers="D′">0.671</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>For <em>CLEC7A</em>, D′ = 1 means no recombination between the two sites. The rare Y238X allele (rs16910526) therefore sits entirely on one rs7309123 background, and the low r² reflects the frequency difference and not independence. For <em>CD209</em>, D′ = 0.67 and all four haplotypes are present.</p>
+</section>
+<section id="haplotype-phase-check" class="level2">
+<h2 class="anchored" data-anchor-id="haplotype-phase-check">Haplotype phase check</h2>
+<p>Haplotype frequencies were derived from allele frequencies and D, assuming the minor alleles are in coupling (D positive). D′ near 1 fixes the size of D but not its sign. The reported r² and the allele frequencies fix |D| independently of that assumption, so the sign can be checked arithmetically: if even the largest possible negative D is smaller than the |D| that r² requires, negative phase is impossible.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>phase <span class="ot">&lt;-</span> hap <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, locus_1, locus_2) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">r2 =</span> <span class="fu">first</span>(r2),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">p1 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">p2 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_2 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">required_D =</span> <span class="fu">sqrt</span>(r2 <span class="sc">*</span> p1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">ceiling_if_negative =</span> <span class="fu">pmin</span>(p1 <span class="sc">*</span> p2, (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">negative_possible =</span> required_D <span class="sc">&lt;=</span> ceiling_if_negative <span class="sc">+</span> <span class="fl">1e-3</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>phase <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span> <span class="ot">=</span> required_D, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span> <span class="ot">=</span> ceiling_if_negative,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Negative phase possible</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(negative_possible, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span>, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-phase" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Phase check. A negative D is possible only if the required |D| is no larger than the negative-phase ceiling.
+</figcaption>
+<div aria-describedby="tbl-phase-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="ipfpdefbqk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ipfpdefbqk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ipfpdefbqk thead, #ipfpdefbqk tbody, #ipfpdefbqk tfoot, #ipfpdefbqk tr, #ipfpdefbqk td, #ipfpdefbqk th {
+  border-style: none;
+}
+
+#ipfpdefbqk p {
+  margin: 0;
+  padding: 0;
+}
+
+#ipfpdefbqk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ipfpdefbqk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ipfpdefbqk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ipfpdefbqk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ipfpdefbqk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ipfpdefbqk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ipfpdefbqk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ipfpdefbqk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ipfpdefbqk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ipfpdefbqk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ipfpdefbqk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ipfpdefbqk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ipfpdefbqk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ipfpdefbqk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ipfpdefbqk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ipfpdefbqk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ipfpdefbqk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ipfpdefbqk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ipfpdefbqk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ipfpdefbqk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ipfpdefbqk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ipfpdefbqk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ipfpdefbqk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ipfpdefbqk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ipfpdefbqk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ipfpdefbqk .gt_left {
+  text-align: left;
+}
+
+#ipfpdefbqk .gt_center {
+  text-align: center;
+}
+
+#ipfpdefbqk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ipfpdefbqk .gt_font_normal {
+  font-weight: normal;
+}
+
+#ipfpdefbqk .gt_font_bold {
+  font-weight: bold;
+}
+
+#ipfpdefbqk .gt_font_italic {
+  font-style: italic;
+}
+
+#ipfpdefbqk .gt_super {
+  font-size: 65%;
+}
+
+#ipfpdefbqk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ipfpdefbqk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ipfpdefbqk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ipfpdefbqk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ipfpdefbqk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ipfpdefbqk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ipfpdefbqk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ipfpdefbqk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ipfpdefbqk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Gene" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Gene</th>
+<th id="Locus-1" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Locus 1</th>
+<th id="Locus-2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Locus 2</th>
+<th id="Required-|D|" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Required |D|</th>
+<th id="Ceiling-if-D-<-0" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ceiling if D &lt; 0</th>
+<th id="Negative-phase-possible" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Negative phase possible</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">CD209</td>
+<td class="gt_row gt_left" headers="Locus-1">rs4804800</td>
+<td class="gt_row gt_left" headers="Locus-2">rs7248637</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.0678</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.0143</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">CLEC7A</td>
+<td class="gt_row gt_left" headers="Locus-1">rs16910526</td>
+<td class="gt_row gt_left" headers="Locus-2">rs7309123</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.0408</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.0298</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs2305619</td>
+<td class="gt_row gt_left" headers="Locus-2">rs1840680</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.2475</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.2078</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs2305619</td>
+<td class="gt_row gt_left" headers="Locus-2">rs3816527</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.2162</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.1814</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_left" headers="Locus-1">rs3816527</td>
+<td class="gt_row gt_left" headers="Locus-2">rs1840680</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.2166</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.1810</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Gene">TLR4</td>
+<td class="gt_row gt_left" headers="Locus-1">rs4986790</td>
+<td class="gt_row gt_left" headers="Locus-2">rs4986791</td>
+<td class="gt_row gt_right" headers="Required-|D|">0.0524</td>
+<td class="gt_row gt_right" headers="Ceiling-if-D-<-0">0.0033</td>
+<td class="gt_row gt_left" headers="Negative-phase-possible">no</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000 Genomes source and not back-calculated from the assumed D.</p>
+</section>
+<section id="haplotype-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="haplotype-frequencies">Haplotype frequencies</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pair =</span> <span class="fu">paste0</span>(gene, <span class="st">": "</span>, locus_1, <span class="st">" x "</span>, locus_2)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(pair, <span class="st">`</span><span class="at">Allele 1</span><span class="st">`</span> <span class="ot">=</span> allele_1, <span class="st">`</span><span class="at">Allele 2</span><span class="st">`</span> <span class="ot">=</span> allele_2, <span class="at">Frequency =</span> haplotype_freq_1000G_EUR) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"pair"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(Frequency, <span class="at">decimals =</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-hap" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Two-locus haplotype frequencies, 1000 Genomes European. ‘major’ and ‘other’ denote the non-minor allele.
+</figcaption>
+<div aria-describedby="tbl-hap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="zzgmskbsny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zzgmskbsny table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zzgmskbsny thead, #zzgmskbsny tbody, #zzgmskbsny tfoot, #zzgmskbsny tr, #zzgmskbsny td, #zzgmskbsny th {
+  border-style: none;
+}
+
+#zzgmskbsny p {
+  margin: 0;
+  padding: 0;
+}
+
+#zzgmskbsny .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zzgmskbsny .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zzgmskbsny .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zzgmskbsny .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zzgmskbsny .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zzgmskbsny .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zzgmskbsny .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zzgmskbsny .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zzgmskbsny .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zzgmskbsny .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zzgmskbsny .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zzgmskbsny .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zzgmskbsny .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zzgmskbsny .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zzgmskbsny .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzgmskbsny .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zzgmskbsny .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zzgmskbsny .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zzgmskbsny .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzgmskbsny .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zzgmskbsny .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzgmskbsny .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zzgmskbsny .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzgmskbsny .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zzgmskbsny .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zzgmskbsny .gt_left {
+  text-align: left;
+}
+
+#zzgmskbsny .gt_center {
+  text-align: center;
+}
+
+#zzgmskbsny .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zzgmskbsny .gt_font_normal {
+  font-weight: normal;
+}
+
+#zzgmskbsny .gt_font_bold {
+  font-weight: bold;
+}
+
+#zzgmskbsny .gt_font_italic {
+  font-style: italic;
+}
+
+#zzgmskbsny .gt_super {
+  font-size: 65%;
+}
+
+#zzgmskbsny .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zzgmskbsny .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zzgmskbsny .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zzgmskbsny .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zzgmskbsny .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zzgmskbsny .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zzgmskbsny .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zzgmskbsny .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zzgmskbsny div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Allele-1" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Allele 1</th>
+<th id="Allele-2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Allele 2</th>
+<th id="Frequency" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Frequency</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="PTX3:-rs2305619-x-rs3816527" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">PTX3: rs2305619 x rs3816527</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-1">A</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-2">C</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs3816527  Frequency">0.3976</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-1">A</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs3816527  Frequency">0.0587</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-2">C</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs3816527  Frequency">0.0000</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs3816527  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs3816527  Frequency">0.5437</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="PTX3:-rs2305619-x-rs1840680" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">PTX3: rs2305619 x rs1840680</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-1">A</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-2">A</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs1840680  Frequency">0.4553</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-1">A</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs1840680  Frequency">0.0010</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-2">A</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs1840680  Frequency">0.0000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs2305619-x-rs1840680  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs2305619-x-rs1840680  Frequency">0.5437</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="PTX3:-rs3816527-x-rs1840680" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">PTX3: rs3816527 x rs1840680</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-1">C</td>
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-2">A</td>
+<td class="gt_row gt_right" headers="PTX3:-rs3816527-x-rs1840680  Frequency">0.3976</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-1">C</td>
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs3816527-x-rs1840680  Frequency">0.0000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-2">A</td>
+<td class="gt_row gt_right" headers="PTX3:-rs3816527-x-rs1840680  Frequency">0.0577</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-1">other</td>
+<td class="gt_row gt_left" headers="PTX3:-rs3816527-x-rs1840680  Allele-2">other</td>
+<td class="gt_row gt_right" headers="PTX3:-rs3816527-x-rs1840680  Frequency">0.5447</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="TLR4:-rs4986790-x-rs4986791" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">TLR4: rs4986790 x rs4986791</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-1">G</td>
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-2">T</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Frequency">0.0557</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-1">G</td>
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-2">other</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Frequency">0.0010</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-1">other</td>
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-2">T</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Frequency">0.0020</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-1">other</td>
+<td class="gt_row gt_left" headers="TLR4:-rs4986790-x-rs4986791  Allele-2">other</td>
+<td class="gt_row gt_right" headers="TLR4:-rs4986790-x-rs4986791  Frequency">0.9413</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="CLEC7A:-rs16910526-x-rs7309123" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">CLEC7A: rs16910526 x rs7309123</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-1">C</td>
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-2">G</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Frequency">0.0706</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-1">C</td>
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-2">major</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Frequency">0.0000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-1">major</td>
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-2">G</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Frequency">0.3519</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-1">major</td>
+<td class="gt_row gt_left" headers="CLEC7A:-rs16910526-x-rs7309123  Allele-2">major</td>
+<td class="gt_row gt_right" headers="CLEC7A:-rs16910526-x-rs7309123  Frequency">0.5775</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="CD209:-rs4804800-x-rs7248637" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">CD209: rs4804800 x rs7248637</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-1">G</td>
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-2">A</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Frequency">0.0821</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-1">G</td>
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-2">major</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Frequency">0.0422</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-1">major</td>
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-2">A</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Frequency">0.0332</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-1">major</td>
+<td class="gt_row gt_left" headers="CD209:-rs4804800-x-rs7248637  Allele-2">major</td>
+<td class="gt_row gt_right" headers="CD209:-rs4804800-x-rs7248637  Frequency">0.8425</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The file holds pairwise frequencies only. The three-locus <em>PTX3</em> haplotype (h1/h2) still has to be derived from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.</p>
+</section>
+<section id="allele-frequencies" class="level2">
+<h2 class="anchored" data-anchor-id="allele-frequencies">Allele frequencies</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-af" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Allele frequencies for the 13 variants with three or more meta-analysable studies.
+</figcaption>
+<div aria-describedby="tbl-af-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="fnwgeogrzx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#fnwgeogrzx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#fnwgeogrzx thead, #fnwgeogrzx tbody, #fnwgeogrzx tfoot, #fnwgeogrzx tr, #fnwgeogrzx td, #fnwgeogrzx th {
+  border-style: none;
+}
+
+#fnwgeogrzx p {
+  margin: 0;
+  padding: 0;
+}
+
+#fnwgeogrzx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#fnwgeogrzx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#fnwgeogrzx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#fnwgeogrzx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#fnwgeogrzx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#fnwgeogrzx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#fnwgeogrzx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#fnwgeogrzx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#fnwgeogrzx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#fnwgeogrzx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#fnwgeogrzx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#fnwgeogrzx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#fnwgeogrzx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#fnwgeogrzx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#fnwgeogrzx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fnwgeogrzx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#fnwgeogrzx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#fnwgeogrzx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#fnwgeogrzx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fnwgeogrzx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#fnwgeogrzx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fnwgeogrzx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#fnwgeogrzx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fnwgeogrzx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#fnwgeogrzx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#fnwgeogrzx .gt_left {
+  text-align: left;
+}
+
+#fnwgeogrzx .gt_center {
+  text-align: center;
+}
+
+#fnwgeogrzx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#fnwgeogrzx .gt_font_normal {
+  font-weight: normal;
+}
+
+#fnwgeogrzx .gt_font_bold {
+  font-weight: bold;
+}
+
+#fnwgeogrzx .gt_font_italic {
+  font-style: italic;
+}
+
+#fnwgeogrzx .gt_super {
+  font-size: 65%;
+}
+
+#fnwgeogrzx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#fnwgeogrzx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#fnwgeogrzx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#fnwgeogrzx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#fnwgeogrzx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#fnwgeogrzx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#fnwgeogrzx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#fnwgeogrzx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#fnwgeogrzx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="rsID" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">rsID</th>
+<th id="Gene" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Gene</th>
+<th id="Position" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Position</th>
+<th id="gnomAD-NFE" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">gnomAD NFE</th>
+<th id="a1000G-EUR" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">1000G EUR</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs16910526</td>
+<td class="gt_row gt_left" headers="Gene">CLEC7A</td>
+<td class="gt_row gt_right" headers="Position">12:10118488</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.9229, C: 0.0771</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">C: 0.0706, A: 0.9294</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs7309123</td>
+<td class="gt_row gt_left" headers="Gene">CLEC7A</td>
+<td class="gt_row gt_right" headers="Position">12:10119994</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">C: 0.5737, G: 0.4263</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">G: 0.4225, C: 0.5775</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs2305619</td>
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_right" headers="Position">3:157437072</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.482, G: 0.518</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.4563, G: 0.5437</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs4986790</td>
+<td class="gt_row gt_left" headers="Gene">TLR4</td>
+<td class="gt_row gt_right" headers="Position">9:117713024</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">G: 0.0614, A: 0.9386</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.9433, G: 0.0567</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs4986791</td>
+<td class="gt_row gt_left" headers="Gene">TLR4</td>
+<td class="gt_row gt_right" headers="Position">9:117713324</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">C: 0.9358, T: 0.0642</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">T: 0.0577, C: 0.9423</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs3816527</td>
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_right" headers="Position">3:157437525</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.5758, C: 0.4242</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.6024, C: 0.3976</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs4804800</td>
+<td class="gt_row gt_left" headers="Gene">CD209</td>
+<td class="gt_row gt_right" headers="Position">19:7740242</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.8749, G: 0.1251</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">G: 0.1243, A: 0.8757</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs7248637</td>
+<td class="gt_row gt_left" headers="Gene">CD209</td>
+<td class="gt_row gt_right" headers="Position">19:7742141</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">G: 0.8965, A: 0.1035</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">G: 0.8847, A: 0.1153</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs1840680</td>
+<td class="gt_row gt_left" headers="Gene">PTX3</td>
+<td class="gt_row gt_right" headers="Position">3:157438240</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.4806, G: 0.5194</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.4553, G: 0.5447</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs5743708</td>
+<td class="gt_row gt_left" headers="Gene">TLR2</td>
+<td class="gt_row gt_right" headers="Position">4:153705165</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.0294, G: 0.9706</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.0239, G: 0.9761</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs1800896</td>
+<td class="gt_row gt_left" headers="Gene">IL10</td>
+<td class="gt_row gt_right" headers="Position">1:206773552</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">T: 0.5134, C: 0.4866</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">T: 0.5467, C: 0.4533</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="rsID">rs2069705</td>
+<td class="gt_row gt_left" headers="Gene">IFNG</td>
+<td class="gt_row gt_right" headers="Position">12:68161231</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.6624, G: 0.3379, C: 0.0</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.673, G: 0.327</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="rsID">rs5743810</td>
+<td class="gt_row gt_left" headers="Gene">TLR6</td>
+<td class="gt_row gt_right" headers="Position">4:38828729</td>
+<td class="gt_row gt_left" headers="gnomAD-NFE">A: 0.4217, G: 0.5783</td>
+<td class="gt_row gt_left" headers="a1000G-EUR">A: 0.4085, G: 0.5915</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>rs1800896 is reported on the opposite strand
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>gnomAD gives rs1800896 as T/C where the literature writes A/G. It is the same variant on the other strand, and it is the most-cited <em>IL10</em> promoter SNP in this field, so a natural place for an orientation error.</p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Genetic panel"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Four haplotype terms, linkage structure and allele frequencies"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/final_panel_spec.csv"</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>hap  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/haplotype_frequencies.csv"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>af   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/panel_allele_frequencies.csv"</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why haplotype terms</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>The unfinished predecessor analysis simulated three *PTX3* SNPs as independent multiplicative risks. They</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>are in near-complete linkage disequilibrium and tag one h1/h2 haplotype, so independent simulation</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>triple-counts a single signal. The same error would recur within *CLEC7A* and *CD209* if their two SNPs each</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>entered as additive terms. The panel therefore enters as four haplotype terms, with *IL10* and *IFNG* as</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>optional single SNPs. *TLR9* rs352140 is dropped (one usable study of three).</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-panel</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Final panel specification."</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>spec <span class="sc">|&gt;</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variants =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, variants), <span class="at">study_ids =</span> <span class="fu">gsub</span>(<span class="st">";"</span>, <span class="st">", "</span>, study_ids)) <span class="sc">|&gt;</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="at">Variants =</span> variants, <span class="st">`</span><span class="at">Studies (union)</span><span class="st">`</span> <span class="ot">=</span> n_studies_union,</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Independent cohorts</span><span class="st">`</span> <span class="ot">=</span> n_independent_cohorts, <span class="st">`</span><span class="at">Study IDs</span><span class="st">`</span> <span class="ot">=</span> study_ids) <span class="sc">|&gt;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>*Herrero-Sanchez 2018* is excluded from the primary analysis because its endpoint is *Candida* or</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>*Aspergillus* detection or colonisation and not proven or probable invasive mould disease. The cohort counts</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>above include it, and excluding it takes *PTX3* from 7 to 6 and *CLEC7A* from 9 to 8.</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Linkage disequilibrium</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>Pairwise values in 1000 Genomes European samples.</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-ld</span></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pairwise linkage between the two loci of each block."</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(gene, locus_1, locus_2, r2, d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2, <span class="st">`</span><span class="at">r²</span><span class="st">`</span> <span class="ot">=</span> r2, <span class="st">`</span><span class="at">D′</span><span class="st">`</span> <span class="ot">=</span> d_prime) <span class="sc">|&gt;</span></span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">r²</span><span class="st">`</span>, <span class="st">`</span><span class="at">D′</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">3</span>)</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>For *CLEC7A*, D′ = 1 means no recombination between the two sites. The rare Y238X allele (rs16910526)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>therefore sits entirely on one rs7309123 background, and the low r² reflects the frequency difference and</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>not independence. For *CD209*, D′ = 0.67 and all four haplotypes are present.</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype phase check</span></span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>Haplotype frequencies were derived from allele frequencies and D, assuming the minor alleles are in</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>coupling (D positive). D′ near 1 fixes the size of D but not its sign. The reported r² and the allele</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>frequencies fix |D| independently of that assumption, so the sign can be checked arithmetically: if even the</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>largest possible negative D is smaller than the |D| that r² requires, negative phase is impossible.</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-phase</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Phase check. A negative D is possible only if the required |D| is no larger than the negative-phase ceiling."</span></span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a>phase <span class="ot">&lt;-</span> hap <span class="sc">|&gt;</span></span>
+<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gene, locus_1, locus_2) <span class="sc">|&gt;</span></span>
+<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a>    <span class="at">r2 =</span> <span class="fu">first</span>(r2),</span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a>    <span class="at">p1 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">p2 =</span> <span class="fu">sum</span>(haplotype_freq_1000G_EUR[<span class="sc">!</span>allele_2 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"major"</span>, <span class="st">"other"</span>)]),</span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>    <span class="at">required_D =</span> <span class="fu">sqrt</span>(r2 <span class="sc">*</span> p1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> p2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>    <span class="at">ceiling_if_negative =</span> <span class="fu">pmin</span>(p1 <span class="sc">*</span> p2, (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2)),</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">negative_possible =</span> required_D <span class="sc">&lt;=</span> ceiling_if_negative <span class="sc">+</span> <span class="fl">1e-3</span></span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>phase <span class="sc">|&gt;</span></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Gene =</span> gene, <span class="st">`</span><span class="at">Locus 1</span><span class="st">`</span> <span class="ot">=</span> locus_1, <span class="st">`</span><span class="at">Locus 2</span><span class="st">`</span> <span class="ot">=</span> locus_2,</span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span> <span class="ot">=</span> required_D, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span> <span class="ot">=</span> ceiling_if_negative,</span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Negative phase possible</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">ifelse</span>(negative_possible, <span class="st">"yes"</span>, <span class="st">"no"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Required |D|</span><span class="st">`</span>, <span class="st">`</span><span class="at">Ceiling if D &lt; 0</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>All six pairs are consistent only with coupling. The check assumes r² and D′ were taken from the 1000</span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>Genomes source and not back-calculated from the assumed D.</span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Haplotype frequencies</span></span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-hap</span></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Two-locus haplotype frequencies, 1000 Genomes European. 'major' and 'other' denote the non-minor allele."</span></span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a>hap <span class="sc">|&gt;</span></span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pair =</span> <span class="fu">paste0</span>(gene, <span class="st">": "</span>, locus_1, <span class="st">" x "</span>, locus_2)) <span class="sc">|&gt;</span></span>
+<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(pair, <span class="st">`</span><span class="at">Allele 1</span><span class="st">`</span> <span class="ot">=</span> allele_1, <span class="st">`</span><span class="at">Allele 2</span><span class="st">`</span> <span class="ot">=</span> allele_2, <span class="at">Frequency =</span> haplotype_freq_1000G_EUR) <span class="sc">|&gt;</span></span>
+<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"pair"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(Frequency, <span class="at">decimals =</span> <span class="dv">4</span>)</span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>The file holds pairwise frequencies only. The three-locus *PTX3* haplotype (h1/h2) still has to be derived</span>
+<span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a>from phased data, and frequencies rescaled to the gnomAD margins that the project uses as primary.</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## Allele frequencies</span></span>
+<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-af</span></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Allele frequencies for the 13 variants with three or more meta-analysable studies."</span></span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>clean <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">", "</span>, <span class="fu">gsub</span>(<span class="st">"[{}</span><span class="sc">\"</span><span class="st">]"</span>, <span class="st">""</span>, x))</span>
+<span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a>af <span class="sc">|&gt;</span></span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">rsID =</span> rsid, <span class="at">Gene =</span> gene, <span class="at">Position =</span> chr_pos,</span>
+<span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">gnomAD NFE</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(gnomad_nfe_freqs), <span class="st">`</span><span class="at">1000G EUR</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">clean</span>(tg_eur_freqs)) <span class="sc">|&gt;</span></span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span>
+<span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a><span class="fu">## rs1800896 is reported on the opposite strand</span></span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a>gnomAD gives rs1800896 as T/C where the literature writes A/G. It is the same variant on the other strand,</span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>and it is the most-cited *IL10* promoter SNP in this field, so a natural place for an orientation error.</span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Simulation study of the incremental value of host genetics for invasive mould disease</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Provisional: no extracted row has yet been verified by a human against its source.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

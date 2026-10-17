@@ -41,7 +41,14 @@ Consistent with the evidence and with the thesis's central methodological correc
 
 Parameter cost: these two blocks contribute 2 terms rather than 5.
 
-☐ Outstanding: confirm the haplotype phase sign against a published haplotype table before simulating. The derivation in `haplotype_frequencies.csv` assumes the minor alleles are in coupling; D′ near 1 fixes the magnitude of D, not its direction.
+☑ **E1. Settled 16 October 2026 (arithmetic check): coupling confirmed.** `haplotype_frequencies.csv` assumes
+the minor alleles are in coupling (D > 0). The reported r² and the allele frequencies fix |D| independently
+of that assumption, and for every pair |D| exceeds the largest value a negative D could take given those
+frequencies. For example, for rs2305619 x rs3816527 the r² of 0.787 requires |D| = 0.216, but a negative D
+cannot exceed 0.181. TLR4 (rs4986790 x rs4986791) needs 0.0524 against a negative-phase ceiling of 0.0033.
+CLEC7A and CD209 are likewise consistent only with D > 0. The check assumes r² and D′ were taken from the
+1000G source and not back-calculated from the assumed D. Phased 1000G haplotypes remain the route for the
+three-locus PTX3 frequencies, but the sign is no longer an open question.
 
 ## D3. Final panel — **settled, with the within-gene structure corrected**
 
@@ -86,9 +93,11 @@ CLEC7A is now the best-evidenced term in the panel at nine independent cohorts, 
 
 Three sub-decisions remain:
 
-☐ **D3a.** Drop TLR9 rs352140 — reported by three studies, usable in one. Recommended.
-☐ **D3b.** Herrero-Sanchez 2018 in or out. Its supplementary rows use *Candida*/*Aspergillus* detection or colonisation as the endpoint, not proven or probable invasive mould disease. It contributes a cohort to the PTX3 and CLEC7A terms; excluding it takes PTX3 from 7 to 6 and CLEC7A from 9 to 8.
-☐ **D3c.** TLR4 pooling model. Both SNPs are usable only through genotype counts, and every contributing cohort has zero minor homozygotes in cases and controls, so only a dominant or carrier model is estimable and a continuity correction is required.
+☑ **D3a. Settled 16 October 2026: drop TLR9 rs352140** — reported by three studies, usable in one.
+☑ **D3b. Settled 16 October 2026: excluded from the primary analysis and run as a sensitivity analysis.** The
+reasoning follows. Herrero-Sanchez 2018 in or out. Its supplementary rows use *Candida*/*Aspergillus* detection or colonisation as the endpoint, not proven or probable invasive mould disease. It contributes a cohort to the PTX3 and CLEC7A terms; excluding it takes PTX3 from 7 to 6 and CLEC7A from 9 to 8.
+☑ **D3c. Settled 16 October 2026: carrier (dominant) model, with a continuity correction.** The reasoning
+follows. TLR4 pooling model. Both SNPs are usable only through genotype counts, and every contributing cohort has zero minor homozygotes in cases and controls, so only a dominant or carrier model is estimable and a continuity correction is required.
 
 ## D4. Minimum clinically important difference — **settled: 20% more true cases, no extra false positives**
 
@@ -130,7 +139,62 @@ treating anyone extra unnecessarily. In net-benefit terms that is **+0.00420 at 
 **+0.00191 at the 20% threshold**, on the indicative cohort. Re-derive both on the calibrated cohort
 before locking; the ratios will hold, the absolute values may move.
 
-☐ Outstanding: confirm whether the MCID must be met at both thresholds or either.
+☑ **Settled 16 October 2026: the 5% threshold is primary.** The MCID of +0.00420 is tested at 5%, which is
+the Youden cut-off Stanzani used to define high risk. The 20% threshold (+0.00191) is reported as
+secondary and does not enter the headline conclusion, which avoids a multiplicity problem.
+
+☑ **Re-derived 17 October 2026 on the calibrated cohort.** The predictor correlation structure (D7) was
+fitted to all 16 published targets, and the MCID recomputed exactly from the fitted profile distribution.
+These values replace the indicative figures above:
+
+| threshold | indicative cohort | calibrated cohort | ensemble 90% range |
+|---|---|---|---|
+| 5% (primary) | +0.00420 | **+0.00428** | 0.00397 to 0.00460 |
+| 20% (secondary) | +0.00191 | **+0.00140** | 0.00117 to 0.00167 |
+
+At 5% the baseline net benefit is 0.01478, with 21.4 true and 125.7 false positives per 1,000 admissions and
+14.7% flagged. The primary value moved by 2% from the indicative one; the secondary value fell by 27%. The
+ensemble range reflects the unpublished correlation structure, and the 5% value sits on a plateau of the
+decision curve because the baseline has only 128 clinical profiles. The pre-specification lock (git tag) is
+still to be made.
+
+---
+
+## D7. Predictor correlation structure — **settled: version 2, nine parameters**
+
+Settled 17 October 2026. The joint distribution of the seven clinical predictors is not published, so a
+Gaussian-copula latent correlation matrix is a model assumption. The first version (eight parameters) left
+uncontrolled malignancy in cases 2.3 standard errors too high and two parameters at their upper bound,
+because the chemotherapy-lymphopenia correlation was tied to the block baseline that also set malignancy's
+links. Version 2 gives chemotherapy-lymphopenia its own parameter and allows the three block extras to reach
+0.7.
+
+| | v1 | v2 |
+|---|---|---|
+| Parameters | 8 | 9 |
+| Chi-square, 16 targets | 8.6 | 0.36 |
+| Largest miss (standard errors) | 2.3 (malignancy in cases) | 0.4 |
+| Prevalence, aROC | 3.25%, 0.848 | 3.22%, 0.849 |
+
+The fit is saturated: about nine independent constraints for nine parameters, so a near-zero chi-square is
+expected and does not validate the structure. In the fitted matrix, malignancy is almost uncorrelated with the
+rest of the block (0.04), which is what the published figures imply under this structure and should be
+checked against the Bologna cross-tabulation of malignancy by chemotherapy. The decisions that depend on it
+are carried through an ensemble of 150 near-optimal matrices, not one point estimate.
+
+---
+
+## D5. How the genetic term enters the baseline model — **settled: recentred**
+
+Settled 16 October 2026. The genetic linear predictor is recentred (equivalently, the intercept is adjusted)
+so that marginal IMD prevalence stays at the calibrated baseline value of 3.3%. Any change in net benefit
+therefore reflects discrimination and risk redistribution, not a shift in overall event rate.
+
+## D6. Baseline aROC calibration target — **settled: 0.85**
+
+Settled 16 October 2026. The correlation structure of section A2 is fitted to the published derivation aROC
+of 0.85, together with the 3.3% prevalence and the per-predictor case and non-case prevalences. The
+bootstrap-validated 0.83 is recorded in `baseline_validation_targets.csv` but is not a fitting target.
 
 ---
 
@@ -145,7 +209,14 @@ before locking; the ratios will hold, the absolute values may move.
 | CD209 as a 4-haplotype term | **fixed** — collapsed from two SNPs after LD check |
 | IL10 rs1800896, IFNG rs2069705 | optional, include or drop at the analyst's discretion |
 | MCID | **fixed** — 20% more true cases at no increase in false positives; +0.00420 at 5%, +0.00191 at 20% |
-| D3a drop TLR9 rs352140 | outstanding |
-| D3b Herrero-Sanchez in or out | outstanding |
-| D3c TLR4 dominant or carrier model | outstanding |
-| MCID at both thresholds or either | outstanding |
+| MCID threshold | **fixed** — 5% primary; 20% secondary |
+| MCID values | **re-derived** 17 October 2026 on the calibrated cohort: +0.00428 at 5%, +0.00140 at 20% |
+| D7 correlation structure | **fixed** — version 2, nine parameters |
+| D3a drop TLR9 rs352140 | **fixed** — dropped |
+| D5 genetic term recentred to hold prevalence | **fixed** |
+| D6 baseline aROC target | **fixed** — 0.85 |
+| D3b Herrero-Sanchez | **fixed** — excluded from primary; sensitivity analysis only |
+| D3c TLR4 pooling model | **fixed** — carrier model with continuity correction |
+| E1 haplotype phase sign | **fixed** — coupling, confirmed arithmetically |
+
+No Phase 3 decision is outstanding. The next step is to tag this commit as the pre-specification lock.

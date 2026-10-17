@@ -1,0 +1,9 @@
+"parameter","value"
+"rho_A",0.239882847882857
+"d_malig_chemo",0
+"d_chemo_neut",0.5
+"d_neut_lymph",0.495730650896276
+"rho_A_steroid",0.0128511652342831
+"rho_A_cmv",0.244627150563216
+"rho_steroid_cmv",0.135666726661873
+"rho_prior",0.182359804806018

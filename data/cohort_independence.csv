@@ -1,0 +1,14 @@
+rsid,gene,studies_inclusive,effective_independent_cohorts_worst_case,largest_single_group,contributing_studies,groups
+rs16910526,CLEC7A,7,7,1,S035;S046;S056;S070;S071;S073;S080,"Cunha/Carvalho PTX3-dectin series×1;Spanish/aspBIOmics (Sainz, Lupiañez, Sánchez-Maldonado)×1;Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs7309123,CLEC7A,8,6,3,S023;S045;S056;S071;S073;S074;S077;S080,"Jena AML (Schnetzke, Fischer, Scholl)×3;Spanish/aspBIOmics (Sainz, Lupiañez, Sánchez-Maldonado)×1"
+rs2305619,PTX3,7,7,1,S026;S029;S035;S045;S056;S077;S080,"Swiss (Wójtowicz, Bochud, Brunel)×1;Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs4986790,TLR4,5,5,0,S046;S056;S061;S066;S077,
+rs4986791,TLR4,4,4,0,S046;S056;S061;S066,
+rs3816527,PTX3,6,6,1,S026;S029;S035;S045;S056;S080,"Swiss (Wójtowicz, Bochud, Brunel)×1;Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs4804800,CD209,4,3,2,S021;S045;S071;S077,"Spanish/aspBIOmics (Sainz, Lupiañez, Sánchez-Maldonado)×2;Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs7248637,CD209,4,3,2,S021;S045;S071;S080,"Spanish/aspBIOmics (Sainz, Lupiañez, Sánchez-Maldonado)×2;Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs1840680,PTX3,3,3,1,S026;S035;S045,"Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs5743708,TLR2,3,3,1,S046;S066;S073,"Jena AML (Schnetzke, Fischer, Scholl)×1"
+rs1800896,IL10,3,3,1,S003;S061;S077,Cunha/Carvalho PTX3-dectin series×1
+rs2069705,IFNG,3,3,1,S046;S072;S080,"Spanish/aspBIOmics (Sainz, Lupiañez, Sánchez-Maldonado)×1"
+rs5743810,TLR6,3,3,0,S046;S061;S080,

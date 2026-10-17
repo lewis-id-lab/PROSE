@@ -1,0 +1,4 @@
+threshold,nb_model,nb_treat_all,nb_treat_none,pct_flagged,tp_per_1000,fp_per_1000,mcid_a_rel20,mcid_b_20pc_more_tp,source
+0.05,0.01514,-0.01843,0,0.1327,21.02,111.69,0.00303,0.0042,"synthetic cohort, exchangeable latent rho=0.30, N=400000, prevalence 3.25%, aROC 0.852 — indicative only, re-derive on the calibrated cohort"
+0.1,0.01007,-0.07501,0,0.0599,15.05,44.89,0.00201,0.00301,"synthetic cohort, exchangeable latent rho=0.30, N=400000, prevalence 3.25%, aROC 0.852 — indicative only, re-derive on the calibrated cohort"
+0.2,0.0057,-0.20939,0,0.0249,9.54,15.36,0.00114,0.00191,"synthetic cohort, exchangeable latent rho=0.30, N=400000, prevalence 3.25%, aROC 0.852 — indicative only, re-derive on the calibrated cohort"

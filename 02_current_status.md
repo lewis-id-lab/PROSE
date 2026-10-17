@@ -12,7 +12,7 @@ As at 16 October 2026.
 | 1 Literature search | complete — PubMed and Embase, 831 unique records screened |
 | 2 Screening and extraction | **round 1 complete including Jobs A and B and the supplementary-file pass; round 2 not started** |
 | 3 Parameter derivation | not started — gated on round 2 |
-| 4 Baseline reproduction | **unblocked, can start now** |
+| 4 Baseline reproduction | **in progress** — baseline coded, test harness in place and correlation structure fitted (17 October 2026); decision curves across thresholds and the Bologna cross-tabulations outstanding |
 | 5 Genetic layer simulation | blocked on phase 3 |
 | 6 Sensitivity and architecture sweep | blocked on phase 5 |
 | 7 Write-up | not started |
@@ -368,16 +368,50 @@ Worth requesting from Bologna: 2x2 cross-tabulations for chemotherapy x neutrope
 lymphopenia and malignancy status x chemotherapy, plus the distribution of admissions per patient. That
 would convert an assumption into data.
 
+**Update, 17 October 2026 — correlation structure fitted.** A structured latent correlation matrix
+(non-negative dependence, clinically grouped) was fitted to the 16 published targets. The first version had
+eight parameters and reduced chi-square against the targets from 346 under independence and 47 under the
+exchangeable rho = 0.30 to 8.6. Two problems remained: uncontrolled malignancy in cases was simulated at 69%
+against 59% published (2.3 standard errors), and two parameters sat at their upper bound because the
+chemotherapy-lymphopenia correlation was tied to the block baseline, which also set malignancy's links.
+Version 2 adds a separate chemotherapy-lymphopenia parameter (nine in all) and lets the block extras reach
+0.7. Chi-square falls to 0.36, the largest miss is 0.4 standard errors, and the malignancy residual is gone.
+The fitted matrix has malignancy almost uncorrelated with the rest of the block (about 0.04) and
+chemotherapy, neutropenia and lymphopenia at 0.69 to 0.74 with each other. `d_chemo_neut` sits at its 0.7
+cap, but the loss is lowest there, so the cap is not costing fit. Positive definiteness is no longer
+limiting (smallest eigenvalue 0.26).
+
+Read the near-zero chi-square with care. The 16 targets collapse to about nine independent constraints, since
+the non-case prevalences follow from the case prevalences and the overall prevalence, and the model now has
+nine parameters. A saturated fit is expected to be this good and does not validate the structure. A 150-matrix
+ensemble (six chains, R-hat at most 1.09) shows the parameters are wide: the chemotherapy-neutropenia extra
+0.24 to 0.68, steroids-CMV 0.02 to 0.60, the malignancy-chemotherapy extra 0.01 to 0.42 (5th to 95th
+percentiles). The
+Bologna cross-tabulations, especially malignancy by chemotherapy, would turn these into data.
+
+Decision curves for thresholds of 1 to 30% are now exact functions of the profile distribution, which comes
+from numerical integration of the fitted copula (no patient-level sampling). On the fitted cohort the minimum
+clinically important difference is **+0.00428** net benefit at the 5% threshold (ensemble 90% range 0.00397
+to 0.00460) and **+0.00140** at 20% (0.00117 to 0.00167). Baseline net benefit at 5% is 0.01478, with 21.4
+true and 125.7 false positives per 1,000 admissions and 14.7% flagged. The curves are step functions because
+there are only 128 clinical profiles. See `scripts/01_fit_correlation.R`, `02_correlation_ensemble.R` and
+`03_decision_curves.R`, and the baseline and decision-curve pages of the report website. The first-version
+outputs are kept in `output/v1/`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to
 the allogeneic HSCT stratum. The panel is four haplotype terms — PTX3 (rs2305619/rs3816527/rs1840680),
 CLEC7A (rs16910526/rs7309123, 3 haplotypes), TLR4 (rs4986790/rs4986791) and CD209 (rs4804800/rs7248637,
 4 haplotypes) — with IL10 rs1800896 and IFNG rs2069705 optional. The minimum clinically important
-difference is 20% more true cases of invasive mould disease at no increase in false positives: +0.00420
-net benefit at the 5% threshold and +0.00191 at 20%, to be re-derived on the calibrated cohort. Full
-record in `phase3_decisions.md`; outstanding sub-decisions are D3a (drop TLR9), D3b (Herrero-Sanchez in
-or out) and D3c (TLR4 dominant or carrier).
+difference is 20% more true cases of invasive mould disease at no increase in false positives. It was
+stated as +0.00420 net benefit at the 5% threshold and +0.00191 at 20% on an indicative cohort, and was
+re-derived on the calibrated cohort on 17 October 2026 as +0.00428 at 5% (primary) and +0.00140 at 20%
+(secondary). Full record in `phase3_decisions.md`. All sub-decisions are now settled (17 October 2026): 5% is the primary
+MCID threshold; TLR9 rs352140 is dropped (D3a); Herrero-Sanchez 2018 is excluded from the primary analysis
+and run as a sensitivity analysis (D3b); TLR4 is pooled under a carrier model with a continuity correction
+(D3c); the genetic term is recentred to hold prevalence (D5); the baseline aROC target is 0.85 (D6); and the
+haplotype phase is coupling, confirmed arithmetically (E1).
 
 The CLEC7A and CD209 terms were collapsed from single SNPs to haplotypes after a linkage check:
 rs16910526 x rs7309123 sit at D' = 1.000 with the Y238X allele entirely on one rs7309123 background, and

@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - evidence.qmd
+    - panel.qmd
+    - baseline.qmd
+    - decision-curves.qmd
+    - decisions.qmd
+    - status.qmd
+  resources:
+    - .nojekyll
+
+execute:
+  freeze: auto
+  warning: false
+  message: false
+
+website:
+  title: "IMD genetics"
+  page-footer:
+    left: "Simulation study of the incremental value of host genetics for invasive mould disease"
+    right: "Provisional: no extracted row has yet been verified by a human against its source."
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: evidence.qmd
+        text: Evidence base
+      - href: panel.qmd
+        text: Genetic panel
+      - href: baseline.qmd
+        text: Baseline model
+      - href: decision-curves.qmd
+        text: Decision curves
+      - href: decisions.qmd
+        text: Pre-specified decisions
+      - href: status.qmd
+        text: Status log
+    tools:
+      - icon: github
+        href: https://github.com/Russlewisbo/PROSE
+        text: Repository
+
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true

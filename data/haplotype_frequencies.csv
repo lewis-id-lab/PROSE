@@ -1,0 +1,25 @@
+gene,locus_1,locus_2,allele_1,allele_2,haplotype_freq_1000G_EUR,r2,d_prime,D,Dmax,freq_locus1_minor,freq_locus2_minor,phase_assumption
+PTX3,rs2305619,rs3816527,A,C,0.3976,0.786612,0.999998,0.21618,0.21618,0.4563,0.3976,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs3816527,A,other,0.0587,0.786612,0.999998,0.21618,0.21618,0.4563,0.3976,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs3816527,other,C,0.0,0.786612,0.999998,0.21618,0.21618,0.4563,0.3976,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs3816527,other,other,0.5437,0.786612,0.999998,0.21618,0.21618,0.4563,0.3976,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs1840680,A,A,0.4553,0.996001,1.0,0.24755,0.24755,0.4563,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs1840680,A,other,0.001,0.996001,1.0,0.24755,0.24755,0.4563,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs1840680,other,A,0.0,0.996001,1.0,0.24755,0.24755,0.4563,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs2305619,rs1840680,other,other,0.5437,0.996001,1.0,0.24755,0.24755,0.4563,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs3816527,rs1840680,C,A,0.3976,0.78977,0.999998,0.21657,0.21657,0.3976,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs3816527,rs1840680,C,other,0.0,0.78977,0.999998,0.21657,0.21657,0.3976,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs3816527,rs1840680,other,A,0.0577,0.78977,0.999998,0.21657,0.21657,0.3976,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+PTX3,rs3816527,rs1840680,other,other,0.5447,0.78977,0.999998,0.21657,0.21657,0.3976,0.4553,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+TLR4,rs4986790,rs4986791,G,T,0.05571,0.945441,0.981347,0.05243,0.05343,0.0567,0.0577,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+TLR4,rs4986790,rs4986791,G,other,0.00099,0.945441,0.981347,0.05243,0.05343,0.0567,0.0577,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+TLR4,rs4986790,rs4986791,other,T,0.00199,0.945441,0.981347,0.05243,0.05343,0.0567,0.0577,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+TLR4,rs4986790,rs4986791,other,other,0.94131,0.945441,0.981347,0.05243,0.05343,0.0567,0.0577,minor alleles in coupling (D taken positive); confirm sign against a source haplotype table
+CLEC7A,rs16910526,rs7309123,C,G,0.07059,0.10379,0.999911,0.04076,0.04077,,,minor alleles in coupling; confirm sign against a source haplotype table
+CLEC7A,rs16910526,rs7309123,C,major,1e-05,0.10379,0.999911,0.04076,0.04077,,,minor alleles in coupling; confirm sign against a source haplotype table
+CLEC7A,rs16910526,rs7309123,major,G,0.35191,0.10379,0.999911,0.04076,0.04077,,,minor alleles in coupling; confirm sign against a source haplotype table
+CLEC7A,rs16910526,rs7309123,major,major,0.57749,0.10379,0.999911,0.04076,0.04077,,,minor alleles in coupling; confirm sign against a source haplotype table
+CD209,rs4804800,rs7248637,G,A,0.08209,0.413489,0.670911,0.06776,0.10097,,,minor alleles in coupling; confirm sign against a source haplotype table
+CD209,rs4804800,rs7248637,G,major,0.04221,0.413489,0.670911,0.06776,0.10097,,,minor alleles in coupling; confirm sign against a source haplotype table
+CD209,rs4804800,rs7248637,major,A,0.03321,0.413489,0.670911,0.06776,0.10097,,,minor alleles in coupling; confirm sign against a source haplotype table
+CD209,rs4804800,rs7248637,major,major,0.84249,0.413489,0.670911,0.06776,0.10097,,,minor alleles in coupling; confirm sign against a source haplotype table
