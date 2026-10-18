@@ -398,6 +398,16 @@ there are only 128 clinical profiles. See `scripts/01_fit_correlation.R`, `02_co
 `03_decision_curves.R`, and the baseline and decision-curve pages of the report website. The first-version
 outputs are kept in `output/v1/`.
 
+**Update, 18 October 2026 — baseline cohort switched to the empirical joint (D8).** The admission-level derivation data
+(`bs.xlsx`, 4,127 admissions) reproduces Table 2 apart from two non-case counts that are one lower than published, and a
+refit recovers the published coefficients. Its real joint distribution shows the fitted copula is 0.098 away in total
+variation distance, with several correlations wrong in sign, so the copula is now a sensitivity analysis and the
+baseline cohort is the observed distribution of the 128 profiles (75 observed). The MCID rule is unchanged; its values
+on the empirical cohort are **+0.00445 at 5%** (bootstrap 90% 0.00412 to 0.00478) and **+0.00142 at 20%**, replacing
++0.00428 and +0.00140. Admissions per patient and the rule defining the 4,127 admissions are still needed from
+Bologna. A full BOSCORE export with identifiers (8,660 rows) cannot be linked to the 4,127 admissions; a pseudonymised
+extract of it is in `data/restricted/` (gitignored). See `phase3_decisions.md` addendum 2 and `status.md`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

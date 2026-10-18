@@ -246,3 +246,71 @@ D2 stands as settled: PTX3 enters as a single h1/h2 term. The evidence mapping w
 definition of "h2". Studies that report rs2305619 or rs1840680 identify the whole class (A-C-A and A-A-A);
 studies that report rs3816527 identify only A-C-A. A three-haplotype term would be a sensitivity analysis,
 not a change to D2.
+
+---
+
+## Addendum 2, 18 October 2026: baseline cohort switched to the empirical profile distribution (D8)
+
+Written after the `prespec-lock` tag. No genetic-layer result exists. The pre-specified MCID rule and every
+decision above except the primary status of D7 are unchanged.
+
+**What prompted it.** The admission-level derivation data (`bs.xlsx`, 4,127 admissions) became available. It
+reproduces the published Table 2 counts apart from two non-case counts that are one lower than published (high-risk
+chemotherapy 776 against 777, prolonged neutropenia 1,097 against 1,098). A refit recovers the published
+coefficients to within 0.0063, and the apparent aROC is 0.853. It is the cohort the model was derived on, and it
+gives the joint distribution of the seven predictors that D7 had to assume.
+
+**What the real joint shows.** Only 75 of the 128 predictor profiles occur, 35 of them in fewer than 5 admissions.
+The fitted copula (D7) is 0.098 away from the real distribution in total variation distance, against 0.188 for the
+exchangeable copula and 0.274 for independence. Several of its correlations are wrong, including some in sign (four
+of the 21 pairs are negative in the data, and D7 allowed none):
+
+| pair | latent correlation in the data | fitted copula |
+|---|---|---|
+| malignancy and CMV | -0.15 | +0.23 |
+| steroids and lymphopenia | 0.33 | 0.03 |
+| steroids and prior mould disease | -0.10 | 0.18 |
+| lymphopenia and CMV | 0.49 | 0.23 |
+
+The saturated fit reproduced the 16 published targets without recovering the structure, as D7 warned.
+
+### D8. Baseline cohort: settled
+
+1. **The baseline cohort is the observed distribution of the 128 clinical profiles in the 4,127 admissions.** Each
+   profile's outcome risk is the fixed Stanzani equation's predicted risk, as before. The observed outcomes give a
+   cross-check on that assumption.
+2. **Sampling uncertainty** comes from bootstrapping the admissions (2,000 resamples). Clustering of admissions
+   within patients is ignored until the patient link is available.
+3. **The fitted copula (D7) is demoted from primary to a sensitivity analysis.** It smooths the 53 profiles that are
+   not observed and stress-tests the joint distribution. It is not used for headline results.
+4. **The MCID rule is unchanged:** 20% more true cases of invasive mould disease at no increase in false positives,
+   with 5% as the primary threshold and 20% secondary. The numeric values are a function of the baseline cohort, so
+   they are re-derived on the new one and replace the copula-based values:
+
+| threshold | copula, at the lock | **empirical cohort (adopted)** | observed outcomes (cross-check) |
+|---|---|---|---|
+| 5% (primary) | +0.00428 (ensemble 0.00397 to 0.00460) | **+0.00445** (bootstrap 90% 0.00412 to 0.00478) | +0.00436 |
+| 20% (secondary) | +0.00140 (ensemble 0.00117 to 0.00167) | **+0.00142** (bootstrap 90% 0.00116 to 0.00170) | +0.00141 |
+
+   On the empirical cohort the baseline net benefit at 5% is 0.01501, with 22.3 true and 137.9 false positives per
+   1,000 admissions and 16.0% flagged. The two sets of MCID values differ by 4% at 5% and 1% at 20%, and each lies
+   inside the other's uncertainty range, so the switch does not change what the primary test asks for.
+
+**Disclosure.** The MCID under both cohorts was seen before this switch was adopted. The rule and the threshold were
+fixed first, and the new values follow mechanically from the data, but the choice of cohort was made after seeing
+that they were close. No genetic result was in view.
+
+**Still open, both from Bologna:** the rule that defines the 4,127 admissions out of the full BOSCORE database (no
+date filter reproduces it), and the key linking `bs.xlsx` rows to patients, which is needed for admissions per
+patient. Until then the bootstrap treats admissions as independent. The empirical cohort is re-derived if the file
+changes.
+
+| decision | before | now |
+|---|---|---|
+| D7 predictor correlation structure | primary baseline | **sensitivity analysis** |
+| D8 baseline cohort | (none) | **empirical 128-profile distribution** |
+| MCID values | +0.00428 at 5%, +0.00140 at 20% | **+0.00445 at 5%, +0.00142 at 20%** |
+| MCID rule, primary threshold, D1 to D6, E1 | fixed | unchanged |
+
+Code and outputs: `scripts/07_empirical_baseline.R`, `output/dca_empirical_summary.csv`,
+`output/empirical_vs_copula_summary.csv`, `output/empirical_vs_copula_correlations.csv`.

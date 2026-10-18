@@ -36,7 +36,7 @@ clinical predictors is a fitted modelling assumption, not published data. No gen
 | 1 Literature search | complete: 831 unique records screened |
 | 2 Screening and extraction | round 1 complete including targeted recovery and supplementary files; round 2 (human verification) not started |
 | 3 Parameter derivation | design decisions settled; parameter derivation gated on round 2 |
-| 4 Baseline reproduction | baseline coded and tested, predictor correlation fitted (version 2), exact decision curves and MCID re-derived; Bologna cross-tabulations outstanding |
+| 4 Baseline reproduction | baseline coded and tested; baseline cohort is the observed distribution of the clinical profiles (D8), with the fitted copula as a sensitivity analysis; exact decision curves and MCID re-derived; patient link from Bologna outstanding |
 | 5 Genetic layer simulation | blocked on phase 3 |
 | 6 Sensitivity and architecture sweep | blocked on phase 5 |
 | 7 Write-up | not started |

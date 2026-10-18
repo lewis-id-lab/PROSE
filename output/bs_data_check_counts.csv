@@ -1,0 +1,8 @@
+"predictor","cases_data","cases_published","non_cases_data","non_cases_published","diff_cases","diff_non_cases"
+"uncontrolled_malignancy",78,78,1621,1621,0,0
+"high_risk_chemo",85,85,776,777,0,-1
+"high_dose_steroids",30,30,437,437,0,0
+"severe_lymphopenia",65,65,462,462,0,0
+"cmv",17,17,95,95,0,0
+"prolonged_neutropenia",106,106,1097,1098,0,-1
+"prior_mould_disease",20,20,87,87,0,0

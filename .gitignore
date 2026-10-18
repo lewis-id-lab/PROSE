@@ -5,3 +5,15 @@
 /.quarto/
 **/*.quarto_ipynb
 .posit/
+
+# Patient-level data must never be committed to this public repository
+/bs*.xlsx
+
+# Spreadsheets and statistical data files are patient-level source data here; never commit them
+*.xlsx
+*.xls
+*.sav
+*.dta
+
+# Pseudonymised extracts are still personal data
+data/restricted/

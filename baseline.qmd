@@ -4,6 +4,15 @@ subtitle: "The fixed clinical equation and its fitted predictor correlation"
 date: today
 ---
 
+::: {.callout-important}
+## The copula is now a sensitivity analysis
+
+The real joint distribution of the predictors became available after the lock, and the copula turned out to be
+10% of probability mass away from it. Since decision D8 (18 October 2026) the baseline cohort is the observed
+distribution of the 128 profiles, and everything on this page describes the copula that is kept as a sensitivity
+analysis. See [the comparison with the real data](#checking-the-copula-against-the-real-data).
+:::
+
 ```{r}
 #| label: setup
 source("_setup.R")
@@ -266,6 +275,44 @@ The ranges are wide, particularly for the steroid-CMV correlation and the malign
 The chains mix acceptably (largest R-hat `r sprintf("%.2f", max(summ$rhat))`). The consequences of this
 spread for net benefit and the MCID are on the [decision curves](decision-curves.qmd) page.
 
+## Checking the copula against the real data
+
+The admission-level derivation data (4,127 admissions) reproduces the published Table 2 counts apart from two
+non-case counts that are one lower than published, and a refit recovers the published coefficients. Only 75 of the
+128 profiles occur, and 35 of those in fewer than 5 admissions.
+
+```{r}
+#| label: tbl-tv
+#| tbl-cap: "Total variation distance between each modelled joint distribution and the observed one (0 is identical)."
+cmp_emp <- read.csv("output/empirical_vs_copula_summary.csv")
+cmp_emp |>
+  filter(grepl("^tv_", metric)) |>
+  transmute(`Joint distribution` = c("Independence", "Exchangeable, rho = 0.30", "Copula v2"),
+            `Distance from the data` = value) |>
+  gt() |>
+  fmt_number(2, decimals = 3)
+```
+
+The saturated copula fit is far closer than the simpler alternatives, but still misses about 10% of the
+probability mass. Several of its correlations are wrong, some in sign.
+
+```{r}
+#| label: tbl-corr-gaps
+#| tbl-cap: "The eight largest gaps between the fitted copula and the latent (tetrachoric) correlations in the data."
+read.csv("output/empirical_vs_copula_correlations.csv") |>
+  arrange(desc(abs(difference))) |>
+  head(8) |>
+  transmute(`Predictor 1` = gsub("_", " ", predictor_1), `Predictor 2` = gsub("_", " ", predictor_2),
+            `In the data` = empirical_tetrachoric, `Fitted copula` = copula_v2, Difference = difference) |>
+  gt() |>
+  fmt_number(3:5, decimals = 2)
+```
+
+Four of the 21 pairs are negative in the data, and the copula's non-negativity constraint ruled that out. The
+malignancy-by-chemotherapy correlation that worried me turns out to be right (0.03 in the data against 0.04
+fitted). The MCID barely moves between the two cohorts; the values are on the [decision curves](decision-curves.qmd)
+page.
+
 ## Verification
 
 The harness checks the fixed equation against the published odds ratios and counts, verifies the profile
@@ -286,8 +333,10 @@ tests |>
 
 ## Limitations
 
-- The correlation structure is an assumption fitted to published margins. It is not data.
-- The fit is saturated, so its quality says little about whether the structure is correct.
+- The correlation structure is an assumption fitted to published margins. It is not data. The real data now exist,
+  and the copula is kept only as a sensitivity analysis.
+- The fit is saturated, so its quality said little about whether the structure was correct, and the comparison with
+  the real data confirms it was not entirely.
 - The fitting loss uses binomial standard errors and ignores that the 4,127 admissions come from 1,944
   patients.
 - The published aROC of 0.85 is apparent performance. The bootstrap-validated value is 0.83, and the MCID
