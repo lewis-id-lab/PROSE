@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Pre-specified decisions – IMD genetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27b9f889d6e109d015426ac4f274b7e7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">IMD genetics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./evidence.html"> 
+<span class="menu-text">Evidence base</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./panel.html"> 
+<span class="menu-text">Genetic panel</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./baseline.html"> 
+<span class="menu-text">Baseline model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./decision-curves.html"> 
+<span class="menu-text">Decision curves</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./decisions.html" aria-current="page"> 
+<span class="menu-text">Pre-specified decisions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./status.html"> 
+<span class="menu-text">Status log</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/Russlewisbo/PROSE" title="Repository" class="quarto-navigation-tool px-1" aria-label="Repository"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#phase-3-gate-decisions" id="toc-phase-3-gate-decisions" class="nav-link active" data-scroll-target="#phase-3-gate-decisions">Phase 3 gate: decisions</a>
+  <ul class="collapse">
+  <li><a href="#d1.-primary-genotype-settled-recipient-primary-donor-secondary-in-the-allo-hsct-stratum" id="toc-d1.-primary-genotype-settled-recipient-primary-donor-secondary-in-the-allo-hsct-stratum" class="nav-link" data-scroll-target="#d1.-primary-genotype-settled-recipient-primary-donor-secondary-in-the-allo-hsct-stratum">D1. Primary genotype — <strong>settled: recipient primary, donor secondary in the allo-HSCT stratum</strong></a></li>
+  <li><a href="#d2.-ptx3-and-tlr4-as-haplotypes-accepted" id="toc-d2.-ptx3-and-tlr4-as-haplotypes-accepted" class="nav-link" data-scroll-target="#d2.-ptx3-and-tlr4-as-haplotypes-accepted">D2. PTX3 and TLR4 as haplotypes — <strong>accepted</strong></a></li>
+  <li><a href="#d3.-final-panel-settled-with-the-within-gene-structure-corrected" id="toc-d3.-final-panel-settled-with-the-within-gene-structure-corrected" class="nav-link" data-scroll-target="#d3.-final-panel-settled-with-the-within-gene-structure-corrected">D3. Final panel — <strong>settled, with the within-gene structure corrected</strong></a></li>
+  <li><a href="#d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives" id="toc-d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives" class="nav-link" data-scroll-target="#d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives">D4. Minimum clinically important difference — <strong>settled: 20% more true cases, no extra false positives</strong></a></li>
+  <li><a href="#d7.-predictor-correlation-structure-settled-version-2-nine-parameters" id="toc-d7.-predictor-correlation-structure-settled-version-2-nine-parameters" class="nav-link" data-scroll-target="#d7.-predictor-correlation-structure-settled-version-2-nine-parameters">D7. Predictor correlation structure — <strong>settled: version 2, nine parameters</strong></a></li>
+  <li><a href="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" id="toc-d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" class="nav-link" data-scroll-target="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred">D5. How the genetic term enters the baseline model — <strong>settled: recentred</strong></a></li>
+  <li><a href="#d6.-baseline-aroc-calibration-target-settled-0.85" id="toc-d6.-baseline-aroc-calibration-target-settled-0.85" class="nav-link" data-scroll-target="#d6.-baseline-aroc-calibration-target-settled-0.85">D6. Baseline aROC calibration target — <strong>settled: 0.85</strong></a></li>
+  <li><a href="#record-of-what-is-now-fixed" id="toc-record-of-what-is-now-fixed" class="nav-link" data-scroll-target="#record-of-what-is-now-fixed">Record of what is now fixed</a></li>
+  <li><a href="#addendum-17-october-2026" id="toc-addendum-17-october-2026" class="nav-link" data-scroll-target="#addendum-17-october-2026">Addendum, 17 October 2026</a></li>
+  <li><a href="#addendum-2-18-october-2026-baseline-cohort-switched-to-the-empirical-profile-distribution-d8" id="toc-addendum-2-18-october-2026-baseline-cohort-switched-to-the-empirical-profile-distribution-d8" class="nav-link" data-scroll-target="#addendum-2-18-october-2026-baseline-cohort-switched-to-the-empirical-profile-distribution-d8">Addendum 2, 18 October 2026: baseline cohort switched to the empirical profile distribution (D8)</a>
+  <ul class="collapse">
+  <li><a href="#d8.-baseline-cohort-settled" id="toc-d8.-baseline-cohort-settled" class="nav-link" data-scroll-target="#d8.-baseline-cohort-settled">D8. Baseline cohort: settled</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+
+
+
+
+<section id="phase-3-gate-decisions" class="level1">
+<h1>Phase 3 gate: decisions</h1>
+<p>Recorded 16 October 2026. This is the pre-specification record — it is written <strong>before</strong> any genetic result exists and should not be revised once results are in view.</p>
+<hr>
+<section id="d1.-primary-genotype-settled-recipient-primary-donor-secondary-in-the-allo-hsct-stratum" class="level2">
+<h2 class="anchored" data-anchor-id="d1.-primary-genotype-settled-recipient-primary-donor-secondary-in-the-allo-hsct-stratum">D1. Primary genotype — <strong>settled: recipient primary, donor secondary in the allo-HSCT stratum</strong></h2>
+<p>Agreed 16 October 2026. Recipient genotype is the primary exposure. Donor genotype enters as a pre-specified secondary analysis restricted to the allogeneic HSCT stratum, which carries 33% of all IMD events on 7% of admissions, and which gives Aim 3b a second host-context contrast alongside the neutropenia split. The reasoning that forced the revision is kept below for the record.</p>
+<p><strong>Originally stated:</strong> donor genotype as the primary exposure.</p>
+<p><strong>The biology supports you, the cohort does not.</strong> After allogeneic transplant the reconstituted innate immune system is donor-derived, so for PTX3, dectin-1 and the TLR genes the donor is arguably the right genome — that is the Cunha 2014 <em>NEJM</em> argument. But two facts block donor as the <em>primary</em> exposure:</p>
+<ol type="1">
+<li><strong>The baseline cohort is overwhelmingly not transplanted.</strong> In Stanzani’s Table 1, allogeneic HSCT is the reason for admission in 248 of 3,994 non-IMD admissions and 44 of 133 IMD admissions — <strong>292 of 4,127 admissions, 7.1%</strong>. Donor genotype is undefined for the other 93%. A donor-genotype term cannot enter a model whose denominator is all haematology admissions.</li>
+<li><strong>The evidence base cannot parameterise it.</strong> Of 970 usable variant rows, only 90 are donor-stratified. Per panel variant, the number of studies contributing a donor-specific usable estimate is <strong>at most one</strong>, and rs4804800 and rs1840680 have none. No panel variant reaches two donor studies, let alone three.</li>
+</ol>
+<p>Donor-as-primary would therefore shrink the analysis to a 7% subgroup — 292 admissions, 44 events — parameterised from single studies.</p>
+<p><strong>Proposed instead:</strong> recipient genotype as the primary exposure, with <strong>donor genotype as a pre-specified secondary analysis restricted to the allogeneic HSCT stratum</strong>. That stratum carries 33% of all IMD events despite being 7% of admissions, so it is where a genetic effect has the most room to show, and it is where the donor-genome argument actually applies. This also gives Aim 3b a second natural contrast alongside the neutropenia split.</p>
+<p>☑ Revision confirmed.</p>
+</section>
+<section id="d2.-ptx3-and-tlr4-as-haplotypes-accepted" class="level2">
+<h2 class="anchored" data-anchor-id="d2.-ptx3-and-tlr4-as-haplotypes-accepted">D2. PTX3 and TLR4 as haplotypes — <strong>accepted</strong></h2>
+<p>Consistent with the evidence and with the thesis’s central methodological correction.</p>
+<ul>
+<li><strong>PTX3</strong> enters as a single h1/h2 haplotype term, not three SNPs. In 1000 Genomes EUR, rs2305619 and rs1840680 sit at r² = 0.996 and are interchangeable; rs3816527 is at r² ≈ 0.79 with both; D′ ≈ 1 throughout. The trio collapses to two haplotypes at roughly 0.40–0.46 (h2) and 0.54 (h1). Simulating the three independently is what inflated the predecessor’s result.</li>
+<li><strong>TLR4</strong> enters as a single rs4986790–rs4986791 haplotype term. D′ = 0.981, r² = 0.945, GT haplotype frequency 0.056 in EUR, with about 0.3% recombinant chromosomes.</li>
+</ul>
+<p>Parameter cost: these two blocks contribute 2 terms rather than 5.</p>
+<p>☑ <strong>E1. Settled 16 October 2026 (arithmetic check): coupling confirmed.</strong> <code>haplotype_frequencies.csv</code> assumes the minor alleles are in coupling (D &gt; 0). The reported r² and the allele frequencies fix |D| independently of that assumption, and for every pair |D| exceeds the largest value a negative D could take given those frequencies. For example, for rs2305619 x rs3816527 the r² of 0.787 requires |D| = 0.216, but a negative D cannot exceed 0.181. TLR4 (rs4986790 x rs4986791) needs 0.0524 against a negative-phase ceiling of 0.0033. CLEC7A and CD209 are likewise consistent only with D &gt; 0. The check assumes r² and D′ were taken from the 1000G source and not back-calculated from the assumed D. Phased 1000G haplotypes remain the route for the three-locus PTX3 frequencies, but the sign is no longer an open question.</p>
+</section>
+<section id="d3.-final-panel-settled-with-the-within-gene-structure-corrected" class="level2">
+<h2 class="anchored" data-anchor-id="d3.-final-panel-settled-with-the-within-gene-structure-corrected">D3. Final panel — <strong>settled, with the within-gene structure corrected</strong></h2>
+<p>The panel chosen was: PTX3 haplotype, TLR4 haplotype, CLEC7A rs16910526, CLEC7A rs7309123, CD209 rs4804800 and/or rs7248637, with IL10 rs1800896 and IFNG rs2069705 as possibles.</p>
+<p><strong>Two of those terms had to be collapsed.</strong> The panel as listed carries two CLEC7A SNPs and two CD209 SNPs as separate additive terms, which is structurally the same error the thesis exists to correct — the predecessor’s mistake was treating linked SNPs within one gene as independent. Pairwise linkage disequilibrium in 1000 Genomes EUR:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>pair</th>
+<th>gene</th>
+<th>r²</th>
+<th>D′</th>
+<th>haplotypes present</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rs16910526 × rs7309123</td>
+<td>CLEC7A</td>
+<td>0.104</td>
+<td>1.000</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>rs4804800 × rs7248637</td>
+<td>CD209</td>
+<td>0.413</td>
+<td>0.671</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>CLEC7A: D′ = 1 means no recombination between the two sites, so the rare Y238X allele (rs16910526, MAF 0.071) sits <strong>entirely on one rs7309123 background</strong>. The low r² reflects the frequency difference, not independence. Three haplotypes exist — CG 0.071, majG 0.352, majmaj 0.578 — and the Cmaj haplotype is absent. Entering both SNPs as independent additive terms double-counts the 7% of chromosomes carrying Y238X.</p>
+<p>CD209: D′ = 0.671 means recombination has occurred and all four haplotypes are present — GA 0.082, Gmaj 0.042, majA 0.033, majmaj 0.843. The two SNPs are correlated at r² = 0.41, so again not independent.</p>
+<p><strong>Final panel: four core haplotype terms, with two optional single SNPs.</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>term</th>
+<th>variants</th>
+<th>contributing studies</th>
+<th>independent cohorts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PTX3 haplotype (h1/h2)</td>
+<td>rs2305619, rs3816527, rs1840680</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>CLEC7A haplotype (3 haplotypes)</td>
+<td>rs16910526, rs7309123</td>
+<td>11</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>TLR4 haplotype</td>
+<td>rs4986790, rs4986791</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>CD209 haplotype (4 haplotypes)</td>
+<td>rs4804800, rs7248637</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>IL10 rs1800896 <em>(optional)</em></td>
+<td>rs1800896</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>IFNG rs2069705 <em>(optional)</em></td>
+<td>rs2069705</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>That is <strong>four core terms, six with the optional pair</strong> — comfortably inside the roughly ten-parameter ceiling that 133 events supports, and it leaves room for the Aim 4 sweep to add synthetic loci without the baseline panel already being overfitted.</p>
+<p>CLEC7A is now the best-evidenced term in the panel at nine independent cohorts, ahead of PTX3 at seven.</p>
+<p>Three sub-decisions remain:</p>
+<p>☑ <strong>D3a. Settled 16 October 2026: drop TLR9 rs352140</strong> — reported by three studies, usable in one. ☑ <strong>D3b. Settled 16 October 2026: excluded from the primary analysis and run as a sensitivity analysis.</strong> The reasoning follows. Herrero-Sanchez 2018 in or out. Its supplementary rows use <em>Candida</em>/<em>Aspergillus</em> detection or colonisation as the endpoint, not proven or probable invasive mould disease. It contributes a cohort to the PTX3 and CLEC7A terms; excluding it takes PTX3 from 7 to 6 and CLEC7A from 9 to 8. ☑ <strong>D3c. Settled 16 October 2026: carrier (dominant) model, with a continuity correction.</strong> The reasoning follows. TLR4 pooling model. Both SNPs are usable only through genotype counts, and every contributing cohort has zero minor homozygotes in cases and controls, so only a dominant or carrier model is estimable and a continuity correction is required.</p>
+</section>
+<section id="d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives" class="level2">
+<h2 class="anchored" data-anchor-id="d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives">D4. Minimum clinically important difference — <strong>settled: 20% more true cases, no extra false positives</strong></h2>
+<p><strong>Stated:</strong> a 20% improvement in prediction.</p>
+<p>Net benefit is measured in true positives per patient, not in percent, so “20%” needs saying <em>of what</em> before it can be tested. Three defensible readings, with what each requires numerically. The figures come from the synthetic cohort at an exchangeable latent correlation of 0.30 (N = 400,000, prevalence 3.25%, aROC 0.852) and should be re-derived once the calibrated cohort of section A2 exists.</p>
+<p>Baseline clinical model, net benefit:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th>NB (model)</th>
+<th>NB (treat all)</th>
+<th>% flagged</th>
+<th>true positives / 1000</th>
+<th>false positives / 1000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5%</td>
+<td>0.01514</td>
+<td>−0.01843</td>
+<td>13.3%</td>
+<td>21.0</td>
+<td>111.7</td>
+</tr>
+<tr class="even">
+<td>10%</td>
+<td>0.01007</td>
+<td>−0.07501</td>
+<td>6.0%</td>
+<td>15.1</td>
+<td>44.9</td>
+</tr>
+<tr class="odd">
+<td>20%</td>
+<td>0.00571</td>
+<td>−0.20939</td>
+<td>2.5%</td>
+<td>9.5</td>
+<td>15.4</td>
+</tr>
+</tbody>
+</table>
+<p>What the genetic layer would have to add:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>reading</th>
+<th>at the 5% threshold</th>
+<th>at the 20% threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>(a)</strong> 20% relative increase in net benefit</td>
+<td>+0.00303</td>
+<td>+0.00114</td>
+</tr>
+<tr class="even">
+<td><strong>(b)</strong> 20% more true cases detected at no increase in false positives</td>
+<td>+0.00420</td>
+<td>+0.00191</td>
+</tr>
+<tr class="odd">
+<td><strong>(c)</strong> 20% relative increase in standardised net benefit</td>
+<td>+0.00303</td>
+<td>+0.00114</td>
+</tr>
+</tbody>
+</table>
+<p>For scale: a net-benefit increment of 0.00100 is one extra true case found per 1,000 admissions, which across the 4,127-admission Bologna registry is about four extra cases over the decade.</p>
+<p><strong>Recommendation: reading (b).</strong> It is the one a clinician can state in a sentence — “the genetic layer must find 20% more cases of invasive mould disease without treating anyone extra unnecessarily” — and it is the strictest of the three. Reading (a) is simplest to compute and is the conventional decision-curve formulation. Avoid framing the MCID in terms of reclassification: a “20% improvement” expressed as NRI is precisely the predecessor thesis’s 22.5% figure, and moving off that metric is one of the reasons for redoing the work.</p>
+<p>☑ <strong>Settled: reading (b).</strong> The genetic layer must find 20% more cases of invasive mould disease without treating anyone extra unnecessarily. In net-benefit terms that is <strong>+0.00420 at the 5% threshold</strong> and <strong>+0.00191 at the 20% threshold</strong>, on the indicative cohort. Re-derive both on the calibrated cohort before locking; the ratios will hold, the absolute values may move.</p>
+<p>☑ <strong>Settled 16 October 2026: the 5% threshold is primary.</strong> The MCID of +0.00420 is tested at 5%, which is the Youden cut-off Stanzani used to define high risk. The 20% threshold (+0.00191) is reported as secondary and does not enter the headline conclusion, which avoids a multiplicity problem.</p>
+<p>☑ <strong>Re-derived 17 October 2026 on the calibrated cohort.</strong> The predictor correlation structure (D7) was fitted to all 16 published targets, and the MCID recomputed exactly from the fitted profile distribution. These values replace the indicative figures above:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th>indicative cohort</th>
+<th>calibrated cohort</th>
+<th>ensemble 90% range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5% (primary)</td>
+<td>+0.00420</td>
+<td><strong>+0.00428</strong></td>
+<td>0.00397 to 0.00460</td>
+</tr>
+<tr class="even">
+<td>20% (secondary)</td>
+<td>+0.00191</td>
+<td><strong>+0.00140</strong></td>
+<td>0.00117 to 0.00167</td>
+</tr>
+</tbody>
+</table>
+<p>At 5% the baseline net benefit is 0.01478, with 21.4 true and 125.7 false positives per 1,000 admissions and 14.7% flagged. The primary value moved by 2% from the indicative one; the secondary value fell by 27%. The ensemble range reflects the unpublished correlation structure, and the 5% value sits on a plateau of the decision curve because the baseline has only 128 clinical profiles. The pre-specification lock (git tag) is still to be made.</p>
+<hr>
+</section>
+<section id="d7.-predictor-correlation-structure-settled-version-2-nine-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="d7.-predictor-correlation-structure-settled-version-2-nine-parameters">D7. Predictor correlation structure — <strong>settled: version 2, nine parameters</strong></h2>
+<p>Settled 17 October 2026. The joint distribution of the seven clinical predictors is not published, so a Gaussian-copula latent correlation matrix is a model assumption. The first version (eight parameters) left uncontrolled malignancy in cases 2.3 standard errors too high and two parameters at their upper bound, because the chemotherapy-lymphopenia correlation was tied to the block baseline that also set malignancy’s links. Version 2 gives chemotherapy-lymphopenia its own parameter and allows the three block extras to reach 0.7.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>v1</th>
+<th>v2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Parameters</td>
+<td>8</td>
+<td>9</td>
+</tr>
+<tr class="even">
+<td>Chi-square, 16 targets</td>
+<td>8.6</td>
+<td>0.36</td>
+</tr>
+<tr class="odd">
+<td>Largest miss (standard errors)</td>
+<td>2.3 (malignancy in cases)</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>Prevalence, aROC</td>
+<td>3.25%, 0.848</td>
+<td>3.22%, 0.849</td>
+</tr>
+</tbody>
+</table>
+<p>The fit is saturated: about nine independent constraints for nine parameters, so a near-zero chi-square is expected and does not validate the structure. In the fitted matrix, malignancy is almost uncorrelated with the rest of the block (0.04), which is what the published figures imply under this structure and should be checked against the Bologna cross-tabulation of malignancy by chemotherapy. The decisions that depend on it are carried through an ensemble of 150 near-optimal matrices, not one point estimate.</p>
+<hr>
+</section>
+<section id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" class="level2">
+<h2 class="anchored" data-anchor-id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred">D5. How the genetic term enters the baseline model — <strong>settled: recentred</strong></h2>
+<p>Settled 16 October 2026. The genetic linear predictor is recentred (equivalently, the intercept is adjusted) so that marginal IMD prevalence stays at the calibrated baseline value of 3.3%. Any change in net benefit therefore reflects discrimination and risk redistribution, not a shift in overall event rate.</p>
+</section>
+<section id="d6.-baseline-aroc-calibration-target-settled-0.85" class="level2">
+<h2 class="anchored" data-anchor-id="d6.-baseline-aroc-calibration-target-settled-0.85">D6. Baseline aROC calibration target — <strong>settled: 0.85</strong></h2>
+<p>Settled 16 October 2026. The correlation structure of section A2 is fitted to the published derivation aROC of 0.85, together with the 3.3% prevalence and the per-predictor case and non-case prevalences. The bootstrap-validated 0.83 is recorded in <code>baseline_validation_targets.csv</code> but is not a fitting target.</p>
+<hr>
+</section>
+<section id="record-of-what-is-now-fixed" class="level2">
+<h2 class="anchored" data-anchor-id="record-of-what-is-now-fixed">Record of what is now fixed</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>decision</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Primary genotype</td>
+<td><strong>fixed</strong> — recipient primary; donor secondary, restricted to the allo-HSCT stratum</td>
+</tr>
+<tr class="even">
+<td>PTX3 as h1/h2 haplotype</td>
+<td><strong>fixed</strong></td>
+</tr>
+<tr class="odd">
+<td>TLR4 as rs4986790–rs4986791 haplotype</td>
+<td><strong>fixed</strong></td>
+</tr>
+<tr class="even">
+<td>CLEC7A as a 3-haplotype term</td>
+<td><strong>fixed</strong> — collapsed from two SNPs after LD check</td>
+</tr>
+<tr class="odd">
+<td>CD209 as a 4-haplotype term</td>
+<td><strong>fixed</strong> — collapsed from two SNPs after LD check</td>
+</tr>
+<tr class="even">
+<td>IL10 rs1800896, IFNG rs2069705</td>
+<td>optional, include or drop at the analyst’s discretion</td>
+</tr>
+<tr class="odd">
+<td>MCID</td>
+<td><strong>fixed</strong> — 20% more true cases at no increase in false positives; +0.00420 at 5%, +0.00191 at 20%</td>
+</tr>
+<tr class="even">
+<td>MCID threshold</td>
+<td><strong>fixed</strong> — 5% primary; 20% secondary</td>
+</tr>
+<tr class="odd">
+<td>MCID values</td>
+<td><strong>re-derived</strong> 17 October 2026 on the calibrated cohort: +0.00428 at 5%, +0.00140 at 20%</td>
+</tr>
+<tr class="even">
+<td>D7 correlation structure</td>
+<td><strong>fixed</strong> — version 2, nine parameters</td>
+</tr>
+<tr class="odd">
+<td>D3a drop TLR9 rs352140</td>
+<td><strong>fixed</strong> — dropped</td>
+</tr>
+<tr class="even">
+<td>D5 genetic term recentred to hold prevalence</td>
+<td><strong>fixed</strong></td>
+</tr>
+<tr class="odd">
+<td>D6 baseline aROC target</td>
+<td><strong>fixed</strong> — 0.85</td>
+</tr>
+<tr class="even">
+<td>D3b Herrero-Sanchez</td>
+<td><strong>fixed</strong> — excluded from primary; sensitivity analysis only</td>
+</tr>
+<tr class="odd">
+<td>D3c TLR4 pooling model</td>
+<td><strong>fixed</strong> — carrier model with continuity correction</td>
+</tr>
+<tr class="even">
+<td>E1 haplotype phase sign</td>
+<td><strong>fixed</strong> — coupling, confirmed arithmetically</td>
+</tr>
+</tbody>
+</table>
+<p>No Phase 3 decision is outstanding. The next step is to tag this commit as the pre-specification lock.</p>
+<hr>
+</section>
+<section id="addendum-17-october-2026" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-17-october-2026">Addendum, 17 October 2026</h2>
+<p>Written after the <code>prespec-lock</code> tag. No decision above is changed.</p>
+<p>Haplotype frequencies were derived directly from phased 1000 Genomes phase 3 European genotypes (503 samples, 1,006 chromosomes; <code>data/haplotype_frequencies_phased.csv</code>) and rescaled to gnomAD v4 non-Finnish-European allele frequencies by iterative proportional fitting, which keeps the odds-ratio structure of the observed table and moves only the allele frequencies.</p>
+<ul>
+<li><strong>E1 is confirmed directly from phased chromosomes.</strong> In every pair the minor alleles are in coupling (D &gt; 0), as the arithmetic check showed.</li>
+<li><strong>The earlier pairwise table is reproduced.</strong> Haplotype frequencies agree to within 0.0014, and r² agrees for PTX3, TLR4 and CLEC7A. For CD209, r² is 0.431 from phased data against 0.414 in the earlier table.</li>
+<li><strong>The PTX3 trio has three common haplotypes, not two.</strong> In 1000G EUR: G-A-G 54.4%, A-C-A 39.8%, A-A-A 5.8%, and a single A-A-G chromosome (alleles in the order rs2305619, rs3816527, rs1840680). Rescaled to gnomAD NFE: 51.8%, 42.4%, 5.6% and 0.1%. rs2305619 A and rs1840680 A mark the same haplotype class (r² = 0.996), which is A-C-A plus A-A-A (45.6% in 1000G, 48.2% in gnomAD NFE). rs3816527 C splits that class, and A-C-A is about 87% of it.</li>
+</ul>
+<p>D2 stands as settled: PTX3 enters as a single h1/h2 term. The evidence mapping will need an explicit definition of “h2”. Studies that report rs2305619 or rs1840680 identify the whole class (A-C-A and A-A-A); studies that report rs3816527 identify only A-C-A. A three-haplotype term would be a sensitivity analysis, not a change to D2.</p>
+<hr>
+</section>
+<section id="addendum-2-18-october-2026-baseline-cohort-switched-to-the-empirical-profile-distribution-d8" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-2-18-october-2026-baseline-cohort-switched-to-the-empirical-profile-distribution-d8">Addendum 2, 18 October 2026: baseline cohort switched to the empirical profile distribution (D8)</h2>
+<p>Written after the <code>prespec-lock</code> tag. No genetic-layer result exists. The pre-specified MCID rule and every decision above except the primary status of D7 are unchanged.</p>
+<p><strong>What prompted it.</strong> The admission-level derivation data (<code>bs.xlsx</code>, 4,127 admissions) became available. It reproduces the published Table 2 counts apart from two non-case counts that are one lower than published (high-risk chemotherapy 776 against 777, prolonged neutropenia 1,097 against 1,098). A refit recovers the published coefficients to within 0.0063, and the apparent aROC is 0.853. It is the cohort the model was derived on, and it gives the joint distribution of the seven predictors that D7 had to assume.</p>
+<p><strong>What the real joint shows.</strong> Only 75 of the 128 predictor profiles occur, 35 of them in fewer than 5 admissions. The fitted copula (D7) is 0.098 away from the real distribution in total variation distance, against 0.188 for the exchangeable copula and 0.274 for independence. Several of its correlations are wrong, including some in sign (four of the 21 pairs are negative in the data, and D7 allowed none):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>pair</th>
+<th>latent correlation in the data</th>
+<th>fitted copula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>malignancy and CMV</td>
+<td>-0.15</td>
+<td>+0.23</td>
+</tr>
+<tr class="even">
+<td>steroids and lymphopenia</td>
+<td>0.33</td>
+<td>0.03</td>
+</tr>
+<tr class="odd">
+<td>steroids and prior mould disease</td>
+<td>-0.10</td>
+<td>0.18</td>
+</tr>
+<tr class="even">
+<td>lymphopenia and CMV</td>
+<td>0.49</td>
+<td>0.23</td>
+</tr>
+</tbody>
+</table>
+<p>The saturated fit reproduced the 16 published targets without recovering the structure, as D7 warned.</p>
+<section id="d8.-baseline-cohort-settled" class="level3">
+<h3 class="anchored" data-anchor-id="d8.-baseline-cohort-settled">D8. Baseline cohort: settled</h3>
+<ol type="1">
+<li><strong>The baseline cohort is the observed distribution of the 128 clinical profiles in the 4,127 admissions.</strong> Each profile’s outcome risk is the fixed Stanzani equation’s predicted risk, as before. The observed outcomes give a cross-check on that assumption.</li>
+<li><strong>Sampling uncertainty</strong> comes from bootstrapping the admissions (2,000 resamples). Clustering of admissions within patients is ignored until the patient link is available.</li>
+<li><strong>The fitted copula (D7) is demoted from primary to a sensitivity analysis.</strong> It smooths the 53 profiles that are not observed and stress-tests the joint distribution. It is not used for headline results.</li>
+<li><strong>The MCID rule is unchanged:</strong> 20% more true cases of invasive mould disease at no increase in false positives, with 5% as the primary threshold and 20% secondary. The numeric values are a function of the baseline cohort, so they are re-derived on the new one and replace the copula-based values:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th>copula, at the lock</th>
+<th><strong>empirical cohort (adopted)</strong></th>
+<th>observed outcomes (cross-check)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5% (primary)</td>
+<td>+0.00428 (ensemble 0.00397 to 0.00460)</td>
+<td><strong>+0.00445</strong> (bootstrap 90% 0.00412 to 0.00478)</td>
+<td>+0.00436</td>
+</tr>
+<tr class="even">
+<td>20% (secondary)</td>
+<td>+0.00140 (ensemble 0.00117 to 0.00167)</td>
+<td><strong>+0.00142</strong> (bootstrap 90% 0.00116 to 0.00170)</td>
+<td>+0.00141</td>
+</tr>
+</tbody>
+</table>
+<p>On the empirical cohort the baseline net benefit at 5% is 0.01501, with 22.3 true and 137.9 false positives per 1,000 admissions and 16.0% flagged. The two sets of MCID values differ by 4% at 5% and 1% at 20%, and each lies inside the other’s uncertainty range, so the switch does not change what the primary test asks for.</p>
+<p><strong>Disclosure.</strong> The MCID under both cohorts was seen before this switch was adopted. The rule and the threshold were fixed first, and the new values follow mechanically from the data, but the choice of cohort was made after seeing that they were close. No genetic result was in view.</p>
+<p><strong>Still open, both from Bologna:</strong> the rule that defines the 4,127 admissions out of the full BOSCORE database (no date filter reproduces it), and the key linking <code>bs.xlsx</code> rows to patients, which is needed for admissions per patient. Until then the bootstrap treats admissions as independent. The empirical cohort is re-derived if the file changes.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>decision</th>
+<th>before</th>
+<th>now</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D7 predictor correlation structure</td>
+<td>primary baseline</td>
+<td><strong>sensitivity analysis</strong></td>
+</tr>
+<tr class="even">
+<td>D8 baseline cohort</td>
+<td>(none)</td>
+<td><strong>empirical 128-profile distribution</strong></td>
+</tr>
+<tr class="odd">
+<td>MCID values</td>
+<td>+0.00428 at 5%, +0.00140 at 20%</td>
+<td><strong>+0.00445 at 5%, +0.00142 at 20%</strong></td>
+</tr>
+<tr class="even">
+<td>MCID rule, primary threshold, D1 to D6, E1</td>
+<td>fixed</td>
+<td>unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Code and outputs: <code>scripts/07_empirical_baseline.R</code>, <code>output/dca_empirical_summary.csv</code>, <code>output/empirical_vs_copula_summary.csv</code>, <code>output/empirical_vs_copula_correlations.csv</code>.</p>
+
+
+<!-- -->
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">pagetitle:</span><span class="co"> "Pre-specified decisions"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>{{&lt; include phase3_decisions.md &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Simulation study of the incremental value of host genetics for invasive mould disease</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Provisional: no extracted row has yet been verified by a human against its source.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
