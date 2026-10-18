@@ -41,7 +41,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 78 tests, 404 expectations, all passing at the last run
+source("tests/run_tests.R")     # 84 tests, 431 expectations, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -62,6 +62,7 @@ scripts, run them from the project root, in this order:
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
 | `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
 | `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
+| `scripts/10_outcome_risk_sensitivity.R` | MCID under four readings of the outcome risk (published, refit, refit rule, observed), refit repeated inside a patient bootstrap | about 40 s |
 | `scripts/07_empirical_baseline.R` | baseline decision curve and MCID on the empirical cohort, with bootstrap intervals and the comparison with the copula | under 1 min |
 
 Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts` if you need to.
@@ -162,6 +163,10 @@ the file that reconciles everything:
   0.00405 to 0.00489 on the rows, 0.00371 to 0.00439 on the unique admissions).
 - **Why `boscore_tidy.xlsx` and the `.dta` did not reconcile:** they carry the older `SCORE*` items, not the
   `BOSCORE_*` (2017) definitions, hence different predictors and 108 events.
+- **Outcome-risk sensitivity (addendum 4):** the adopted MCID, which treats the published equation as truth, is the lowest of four
+  readings at every threshold. Using the refit as truth gives +0.00452 at 5% (+12%) and +0.00137 at 20% (+21%); the observed
+  outcomes give +0.00441 and +0.00142. The intervals overlap, and the published coefficients are inside the refit's intervals. The
+  4,127-row MCID (+0.00445, +0.00142) sits close to these, so reporting against it brackets them.
 - **Decided (D9, addendum 3 of `phase3_decisions.md`):** the baseline cohort is the 4,078 unique admissions and the bootstrap resamples
   patients. The MCID is +0.00404 at 5% and +0.00113 at 20%. Bologna should still confirm that the 49 pairs are an artefact.
 

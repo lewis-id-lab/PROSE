@@ -417,6 +417,12 @@ bootstrap 90% 0.00370 to 0.00438) and **+0.00113 at 20%**, against +0.00445 and 
 reported against both. Admissions per patient: 2.10 on average, 1,000 patients with one admission. See
 `phase3_decisions.md` addendum 3 and `status.md`.
 
+**Update, 18 October 2026 — outcome-risk sensitivity (addendum 4).** Scoring the published equation's decisions against a refit
+truth, a refit rule and the observed outcomes gives a primary MCID of +0.00452, +0.00458 and +0.00441, against the adopted
++0.00404, and a secondary MCID of +0.00137, +0.00160 and +0.00142 against +0.00113. The adopted value is the lowest of the
+four, the intervals overlap, and the published coefficients lie inside the refit's intervals. No decision changed; results
+will be reported against the 4,127-row MCID as well, which brackets these. See `phase3_decisions.md` addendum 4.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

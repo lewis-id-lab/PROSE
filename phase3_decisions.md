@@ -390,3 +390,37 @@ against 1,097). If the pairs turn out to be legitimate, the 4,127-row cohort bec
 Code and outputs: `scripts/08_reconcile_boscore.R`, `scripts/09_baseline_cohort.R`, `R/boscore_data.R`,
 `output/boscore_reconciliation.csv`, `output/boscore_predictor_mapping.csv`, `output/boscore_cohort_summary.csv`,
 `output/admissions_per_patient.csv`, `output/dca_baseline_summary.csv`, `output/dca_baseline_sensitivity.csv`.
+
+---
+
+## Addendum 4, 18 October 2026: how the MCID depends on the outcome risk (no decision changed)
+
+Written after the tag. D9 item 5 recorded a "truth equals the refit" scenario as a sensitivity analysis. It has now
+been run on the base cohort (4,078 admissions in 1,945 patients), resampling patients 2,000 times with the refit
+repeated inside each resample, so its uncertainty is included. The decision rule is the published equation's, except
+in scenario C.
+
+| MCID (90% patient-bootstrap interval) | A: published truth (adopted) | B: refit truth, published rule | C: refit truth and rule | D: observed outcomes |
+|---|---|---|---|---|
+| 5% (primary) | +0.00404 (0.00368 to 0.00439) | +0.00452 (0.00380 to 0.00529) | +0.00458 (0.00386 to 0.00564) | +0.00441 (0.00367 to 0.00519) |
+| 10% | +0.00239 (0.00208 to 0.00271) | +0.00277 (0.00222 to 0.00333) | +0.00285 (0.00239 to 0.00454) | +0.00265 (0.00205 to 0.00328) |
+| 20% (secondary) | +0.00113 (0.00090 to 0.00138) | +0.00137 (0.00100 to 0.00175) | +0.00160 (0.00121 to 0.00301) | +0.00142 (0.00100 to 0.00188) |
+
+- **The adopted value is the lowest of the four readings at every threshold.** The alternatives raise it by 9 to 13% at 5%,
+  11 to 19% at 10% and 21 to 41% at 20%.
+- **The data cannot separate them.** The intervals overlap, and the published coefficient lies inside the refit's 90%
+  bootstrap interval for every term. The refit coefficients are larger (CMV 1.42 against 1.14, prior mould disease 1.99
+  against 1.64, intercept -5.59 against -5.45), but not detectably so.
+- **Why the direction is upward.** The published equation under-predicts on the corrected cohort (3.06% against 3.26%
+  observed), so the people it flags contain more true cases than the model implies, and the MCID is 0.2 times the true
+  positives.
+- **Scenario C at 20% is unstable** (interval 0.00121 to 0.00301): few profiles sit near the threshold, so the refit rule
+  changes which profiles it flags from one resample to the next.
+
+No decision changes. Treating the published equation as truth is the most permissive reading for the primary test, and
+that is stated here. The D9 commitment to report against the 4,127-row MCID also brackets the other readings: at 5% it
+is +0.00445 against +0.00441 to +0.00458, and at 20% it is +0.00142 against +0.00137 and +0.00142 (scenario C, +0.00160,
+is above it). The genetic layer itself has not been scored against a refit truth, because that needs genotype effects.
+
+Code and outputs: `scripts/10_outcome_risk_sensitivity.R`, `R/outcome_risk.R`, `output/mcid_outcome_risk_sensitivity.csv`,
+`output/refit_coefficients.csv`.

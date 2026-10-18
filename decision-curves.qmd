@@ -137,6 +137,43 @@ value at 5% for thresholds from about `r sprintf("%.1f%%", 100 * plateau[1])` to
 `r sprintf("%.1f%%", 100 * plateau[2])`. The spread across the ensemble, about plus or minus 7% at 5% and
 plus or minus 18% at 20%, is the part that rests on the unpublished correlation structure.
 
+## How much does the MCID depend on the outcome risk?
+
+The published equation was fitted with the 49 twin rows in, and on the corrected cohort it under-predicts slightly
+(3.06% predicted against 3.26% observed). So the MCID can be computed under different readings of the "true" outcome
+risk. The decision rule is the published equation's, except in scenario C. Patients are resampled, with the refit
+repeated inside every resample.
+
+```{r}
+#| label: tbl-outcome-risk
+#| tbl-cap: "MCID under four readings of the outcome risk, with 90% patient-bootstrap intervals."
+sens <- read.csv("output/mcid_outcome_risk_sensitivity.csv")
+sens |>
+  transmute(Scenario = scenario, Threshold = threshold, MCID = mcid_b, `5%` = mcid_lo, `95%` = mcid_hi,
+            `Relative to A` = mcid_relative_to_A, `True positives per 1,000` = tp_per_1000) |>
+  gt(groupname_col = "Threshold") |>
+  fmt_percent(`Relative to A`, decimals = 0) |>
+  fmt_number(c(MCID, `5%`, `95%`), decimals = 5) |>
+  fmt_number(`True positives per 1,000`, decimals = 1)
+```
+
+The adopted value (A, published equation as truth) is the lowest at every threshold. The alternatives raise the primary
+MCID by 9 to 13% and the secondary by 21 to 41%, which makes the adopted reading the most permissive one for the primary
+test. The intervals overlap, so the data cannot separate the readings, and the published coefficient lies inside the
+refit's interval for every term:
+
+```{r}
+#| label: tbl-refit
+#| tbl-cap: "Published coefficients against a refit on the 4,078 unique admissions (90% patient-bootstrap interval)."
+read.csv("output/refit_coefficients.csv") |>
+  transmute(Term = gsub("_", " ", term), Published = published, Refit = refit, `5%` = lo, `95%` = hi) |>
+  gt() |>
+  fmt_number(2:5, decimals = 2)
+```
+
+The 4,127-row MCID (+0.00445 at 5%, +0.00142 at 20%) sits close to the refit-truth and observed-outcome readings, so
+reporting against it, as decision D9 commits to, brackets them.
+
 ## Using the machinery for the genetic layer
 
 ```r
