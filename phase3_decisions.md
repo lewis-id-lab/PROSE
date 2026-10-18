@@ -424,3 +424,24 @@ is above it). The genetic layer itself has not been scored against a refit truth
 
 Code and outputs: `scripts/10_outcome_risk_sensitivity.R`, `R/outcome_risk.R`, `output/mcid_outcome_risk_sensitivity.csv`,
 `output/refit_coefficients.csv`.
+
+---
+
+## Addendum 5, 18 October 2026: the 49 duplicate pairs are confirmed as an artefact
+
+Written after the tag. The 49 admission numbers that appear on two rows (same patient, identical predictor profile,
+one event row and one non-event twin) have been confirmed as a recording artefact. This settles the condition left
+open in D9 and in addendum 3, which said the 4,127-row cohort would become the baseline again if the pairs proved
+legitimate.
+
+- **D9 stands.** The baseline cohort is the 4,078 unique admissions, and the bootstrap resamples patients. The revert
+  condition no longer applies.
+- **The 4,127-row cohort is now a sensitivity analysis only,** which was its role in D9. It is a record of how the
+  paper's analysis set was built, not an alternative baseline. The D9 commitment to report results against the
+  4,127-row MCID (+0.00445 at 5%, +0.00142 at 20%) is unchanged. It still brackets the outcome-risk readings of
+  addendum 4, and any decision to drop it should be taken and recorded separately.
+- **Set aside, not pursued:** the two Table 2 non-case counts that exceed the file's by one (high-risk chemotherapy 777
+  against 776, prolonged neutropenia 1,098 against 1,097), and whether the published equation was fitted with the twin
+  rows in. The analysis uses the counts in the file, and the equation stays fixed at its published coefficients either
+  way, so neither question affects any result. Addenda 3 and 4 mention them as open; this addendum retires them.
+  No request to Bologna remains outstanding.

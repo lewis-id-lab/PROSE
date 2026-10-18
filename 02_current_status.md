@@ -414,8 +414,8 @@ and `id` is the key. 49 admission numbers appear on two rows (an event row and a
 profile), so the 4,127 rows are 4,078 unique admissions, and 133 of 4,078 is the paper's 3.3%. The baseline cohort is now
 the 4,078 admissions in 1,945 patients, with patients resampled in the bootstrap. The MCID is **+0.00404 at 5%** (patient
 bootstrap 90% 0.00370 to 0.00438) and **+0.00113 at 20%**, against +0.00445 and +0.00142 on the 4,127 rows; results will be
-reported against both. Admissions per patient: 2.10 on average, 1,000 patients with one admission. See
-`phase3_decisions.md` addendum 3 and `status.md`.
+reported against both. Admissions per patient: 2.10 on average, 1,000 patients with one admission. The 49 twin pairs are confirmed as an artefact
+(addendum 5) and no request to Bologna remains open. See `phase3_decisions.md` addenda 3 to 5 and `status.md`.
 
 **Update, 18 October 2026 — outcome-risk sensitivity (addendum 4).** Scoring the published equation's decisions against a refit
 truth, a refit rule and the observed outcomes gives a primary MCID of +0.00452, +0.00458 and +0.00441, against the adopted

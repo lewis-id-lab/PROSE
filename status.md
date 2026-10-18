@@ -100,7 +100,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Baseline aROC target | 0.85 |
 | Haplotype phase | coupling in every pair |
 | Baseline cohort (D9, addendum 3) | **the 4,078 unique admissions of `boscore.xlsx`** (twins removed, event rows kept), patients resampled in the bootstrap; the 4,127 rows and the version 2 copula (D7) are sensitivity analyses |
-| MCID (20% more true cases, no extra false positives) | **+0.00404 net benefit at 5% (primary)**, +0.00113 at 20% (secondary), on the base cohort. Earlier values: +0.00445 / +0.00142 on the 4,127 rows (D8) and +0.00428 / +0.00140 from the copula at the tag. Results are reported against the 4,127-row values too |
+| MCID (20% more true cases, no extra false positives) | **+0.00404 net benefit at 5% (primary)**, +0.00113 at 20% (secondary), on the base cohort. Earlier values: +0.00445 / +0.00142 on the 4,127 rows (D8) and +0.00428 / +0.00140 from the copula at the tag. Results are reported against the 4,127-row values too (still committed after addendum 5) |
 
 `phase3_decisions.md` has a dated addendum written after the lock. Further changes there should be dated addenda,
 not edits.
@@ -168,7 +168,8 @@ the file that reconciles everything:
   outcomes give +0.00441 and +0.00142. The intervals overlap, and the published coefficients are inside the refit's intervals. The
   4,127-row MCID (+0.00445, +0.00142) sits close to these, so reporting against it brackets them.
 - **Decided (D9, addendum 3 of `phase3_decisions.md`):** the baseline cohort is the 4,078 unique admissions and the bootstrap resamples
-  patients. The MCID is +0.00404 at 5% and +0.00113 at 20%. Bologna should still confirm that the 49 pairs are an artefact.
+  patients. The MCID is +0.00404 at 5% and +0.00113 at 20%. The 49 pairs are confirmed as a recording artefact (addendum 5), so the
+  4,127-row cohort is a sensitivity analysis only and the revert condition is retired.
 
 ### Full BOSCORE dataset (`BOSCORE_recoded_2019.xlsx`, gitignored, contains direct identifiers)
 
@@ -215,7 +216,7 @@ first 1,000 rows and silently turns later values in columns 135 onward into miss
   score items; 5 admissions appear on more than one row; the last column has no name and two columns share a name.
 - **What would reconcile it:** the Stata `.do` file (or the `.dta`) that built the paper's analysis set. The
   `_st` and `_d` fields show the analysis was run in Stata, and the `id` in `bs.xlsx` (2 to 4,694) looks like a Stata
-  row number. Ask Bologna for it, together with the inclusion and outcome rules.
+  row number. This is no longer needed: `boscore.xlsx` (next section) supplies the rule.
 
 **`boscore_tidy.dta` (gitignored) is the Stata source of that spreadsheet, and it does not reconcile either.** 8,038 rows by
 73 columns, with no patient ID or name (only the hospital admission number `idrico`, admission and event dates, age and
@@ -248,10 +249,9 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 
 ## What to do next
 
-1. **Email Bologna** (you), now only confirmation questions, since `boscore.xlsx` answers the rest: are the 49 admission
-   numbers that appear on two rows (an event row and a non-event twin) a data artefact, and was the published model
-   fitted with them in; and why do Table 2 counts for high-risk chemotherapy and prolonged neutropenia in non-cases
-   (777 and 1,098) exceed the file's (776 and 1,097) by one.
+1. ~~Email Bologna.~~ Nothing left to ask. The 49 twin pairs are confirmed as an artefact (addendum 5), and the two
+   off-by-one Table 2 counts and the question of whether the published equation was fitted with the twins are set
+   aside by decision.
 2. ~~Decide on the empirical joint.~~ Done: adopted as D8 (addendum 2).
 3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
    strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
