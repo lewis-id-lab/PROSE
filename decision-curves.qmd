@@ -33,9 +33,10 @@ model it can score a clinical-only rule against the true risk without change.
 ::: {.callout-important}
 ## The curve and bands below come from the fitted copula
 
-Since decision D8 (18 October 2026), the baseline cohort for the genetic layer is the observed distribution of the
-clinical profiles in the 4,127 admissions, and the copula below is a sensitivity analysis. The MCID table at the end
-of this page shows the adopted empirical values next to the copula's.
+Since decision D9 (18 October 2026), the baseline cohort for the genetic layer is the observed distribution of the
+clinical profiles in the 4,078 unique admissions of `boscore.xlsx` (the 49 non-event twin rows removed), with patients
+resampled in the bootstrap. The copula below is a sensitivity analysis. The MCID table at the end of this page shows
+the adopted values next to the earlier ones.
 :::
 
 ## The baseline decision curve
@@ -99,6 +100,7 @@ q_v1 <- read.csv("output/v1/profile_probabilities.csv")
 risk <- plogis(profile_logit(pars, all_profiles()))
 v1 <- dca_exact(q_v1$q, risk, thresholds = c(0.05, 0.20))
 emp <- read.csv("output/dca_empirical_summary.csv")
+base <- read.csv("output/dca_baseline_summary.csv")
 sel <- function(d, col) d[[col]][d$threshold %in% c(0.05, 0.20)]
 tibble(
   Threshold = c("5% (primary)", "20% (secondary)"),
@@ -107,10 +109,11 @@ tibble(
   `Copula v2 (at the lock)` = sel(summ, "mcid_b"),
   `v2 ensemble 5%` = sel(summ, "mcid_lo"),
   `v2 ensemble 95%` = sel(summ, "mcid_hi"),
-  `Empirical (adopted)` = sel(emp, "mcid_b"),
-  `Bootstrap 5%` = sel(emp, "mcid_lo"),
-  `Bootstrap 95%` = sel(emp, "mcid_hi"),
-  `Observed outcomes` = sel(emp, "observed_mcid")
+  `4,127 rows (D8)` = sel(emp, "mcid_b"),
+  `Base cohort (adopted)` = sel(base, "mcid_b"),
+  `Patient bootstrap 5%` = sel(base, "mcid_lo"),
+  `Patient bootstrap 95%` = sel(base, "mcid_hi"),
+  `Observed outcomes` = sel(base, "observed_mcid")
 ) |>
   gt() |>
   fmt_number(where(is.numeric), decimals = 5)
@@ -126,8 +129,10 @@ plateau <- fit$threshold[c(lo, hi)]
 ```
 
 The primary value is stable across the four cohorts (within about 6% of the indicative figure), while the
-secondary value falls by about a quarter. The adopted empirical values are +0.00445 at 5% and +0.00142 at 20%, and
-each lies inside the copula's ensemble range; the copula's lock-time values lie inside the bootstrap interval. The 5% value sits on a plateau: the MCID stays within 5% of its
+secondary value falls by about a quarter. The adopted base-cohort values are +0.00404 at 5% and +0.00113 at 20%. Removing the 49 twin
+rows lowers the primary value by 9% and the secondary by 20% compared with the 4,127 rows, so results are reported
+against both. The observed-outcome column is higher because the published equation under-predicts slightly on the
+corrected cohort (3.06% predicted against 3.26% observed). The 5% value sits on a plateau: the MCID stays within 5% of its
 value at 5% for thresholds from about `r sprintf("%.1f%%", 100 * plateau[1])` to
 `r sprintf("%.1f%%", 100 * plateau[2])`. The spread across the ensemble, about plus or minus 7% at 5% and
 plus or minus 18% at 20%, is the part that rests on the unpublished correlation structure.

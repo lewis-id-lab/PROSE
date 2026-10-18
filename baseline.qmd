@@ -8,9 +8,9 @@ date: today
 ## The copula is now a sensitivity analysis
 
 The real joint distribution of the predictors became available after the lock, and the copula turned out to be
-10% of probability mass away from it. Since decision D8 (18 October 2026) the baseline cohort is the observed
-distribution of the 128 profiles, and everything on this page describes the copula that is kept as a sensitivity
-analysis. See [the comparison with the real data](#checking-the-copula-against-the-real-data).
+10% of probability mass away from it. Since decisions D8 and D9 (18 October 2026) the baseline cohort is the observed
+distribution of the 128 profiles in the 4,078 unique admissions of `boscore.xlsx`, and everything on this page
+describes the copula that is kept as a sensitivity analysis. See [the comparison with the real data](#checking-the-copula-against-the-real-data).
 :::
 
 ```{r}

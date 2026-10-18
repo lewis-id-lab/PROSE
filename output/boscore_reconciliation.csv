@@ -1,0 +1,17 @@
+"check","value","expected","pass"
+"rows in boscore.xlsx",4694,4694,TRUE
+"ids run 1 to the number of rows",1,1,TRUE
+"rows complete on the seven BOSCORE items",4127,4127,TRUE
+"admission numbers on two rows",49,49,TRUE
+"unique admissions after removing twins",4078,4078,TRUE
+"IMD events in the base cohort",133,133,TRUE
+"patients in the base cohort",1945,1945,TRUE
+"bs_ids_all_in_boscore",1,1,TRUE
+"included_rows_are_the_bs_rows",1,1,TRUE
+"predictors_identical",1,1,TRUE
+"outcome_identical",1,1,TRUE
+"pred_missing_exactly_when_excluded",1,1,TRUE
+"twin_pairs_all_pairs_have_two_rows",1,1,TRUE
+"twin_pairs_each_pair_has_one_event",1,1,TRUE
+"twin_pairs_same_patient",1,1,TRUE
+"twin_pairs_predictors_identical",1,1,TRUE

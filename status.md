@@ -41,7 +41,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 62 tests, 264 expectations, all passing at the last run
+source("tests/run_tests.R")     # 78 tests, 404 expectations, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -60,6 +60,8 @@ scripts, run them from the project root, in this order:
 | `scripts/04_haplotype_frequencies.R` | phased 1000G haplotypes, rescaled to gnomAD NFE | seconds (genotypes cached; set `REFRESH <- TRUE` to refetch, needs network) |
 | `scripts/05_check_bs_data.R` | checks `bs.xlsx` against the published counts and coefficients; needs the gitignored file | seconds |
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
+| `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
+| `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
 | `scripts/07_empirical_baseline.R` | baseline decision curve and MCID on the empirical cohort, with bootstrap intervals and the comparison with the copula | under 1 min |
 
 Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts` if you need to.
@@ -71,7 +73,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 0 Set-up, 1 Literature search | complete (831 unique records screened) |
 | 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
 | 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
-| 4 Baseline reproduction | **done**; the real joint distribution is now available (`bs.xlsx`), and whether to switch to it is pending; admissions per patient still needs Bologna |
+| 4 Baseline reproduction | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9, addendum 3): 4,078 admissions in 1,945 patients, patients resampled in the bootstrap |
 | 5 Genetic layer simulation | not started |
 | 6 Sensitivity and architecture sweep | not started |
 | 7 Write-up | not started |
@@ -96,8 +98,8 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Genetic term | recentred so prevalence stays at 3.3% |
 | Baseline aROC target | 0.85 |
 | Haplotype phase | coupling in every pair |
-| Baseline cohort (D8, addendum 2) | **the empirical 128-profile distribution from `bs.xlsx`**; the version 2 copula (D7) is a sensitivity analysis |
-| MCID (20% more true cases, no extra false positives) | **+0.00445 net benefit at 5% (primary)**, +0.00142 at 20% (secondary), on the empirical cohort. The values at the tag were +0.00428 and +0.00140 (copula) |
+| Baseline cohort (D9, addendum 3) | **the 4,078 unique admissions of `boscore.xlsx`** (twins removed, event rows kept), patients resampled in the bootstrap; the 4,127 rows and the version 2 copula (D7) are sensitivity analyses |
+| MCID (20% more true cases, no extra false positives) | **+0.00404 net benefit at 5% (primary)**, +0.00113 at 20% (secondary), on the base cohort. Earlier values: +0.00445 / +0.00142 on the 4,127 rows (D8) and +0.00428 / +0.00140 from the copula at the tag. Results are reported against the 4,127-row values too |
 
 `phase3_decisions.md` has a dated addendum written after the lock. Further changes there should be dated addenda,
 not edits.
@@ -121,16 +123,47 @@ checks it. It reproduces Table 2 except two non-case counts that are one lower t
 chemotherapy 776 against 777, prolonged neutropenia 1,097 against 1,098), a refit recovers the published
 coefficients to within 0.006, and the apparent aROC is 0.853.
 
-- `id` is unique per row, so it is an admission number. **Admissions per patient cannot be recovered**, and that
-  still needs Bologna.
+- `id` is the row number of `boscore.xlsx` (next section), which carries the patient link, so admissions per patient
+  are recoverable.
 - Only 75 of the 128 predictor profiles occur (35 with fewer than 5 admissions). The fitted copula is still about 10%
   of probability mass away from the real joint, and some of its correlations are wrong in sign (for example
   malignancy by CMV is -0.15 in the data against +0.23 fitted), so the saturated fit did not validate the structure.
 - The MCID on the real joint is +0.00445 at 5% (bootstrap 90% interval 0.00412 to 0.00478) and +0.00142 at 20%
   (0.00116 to 0.00170). The values locked at the tag (+0.00428, +0.00140) are inside those intervals.
-- **Decision made (D8, addendum 2 of `phase3_decisions.md`):** the baseline cohort for the genetic layer is the empirical
+- **Decision made earlier (D8, addendum 2; superseded by D9):** the baseline cohort for the genetic layer is the empirical
   128-profile distribution, with the copula kept as a sensitivity analysis. Read it with `read_bs_data()` and
   `empirical_profile_counts()`; the profile counts themselves are not saved, because several profiles have fewer than 5 admissions.
+
+### `boscore.xlsx`: the parent of `bs.xlsx` (gitignored, contains direct identifiers)
+
+4,694 rows by 119 columns, ids 1 to 4,694, admissions 2007 to 2016, 133 EORTC proven or probable cases, and the
+identifiers (`IDRICO`, `IDIND`, name, birth date). Its `id` is the `id` in `bs.xlsx`, so it is the key to patients. This is
+the file that reconciles everything:
+
+- **The seven `bs.xlsx` predictors are the `BOSCORE_*` columns, exactly** (all 4,127 rows agree): `BOSCORE_4` prior IA, `_6`
+  steroids, `_8` active malignancy, `_9` high-risk chemotherapy, `_10` neutropenia, `_11` lymphopenia, `_15` CMV. The
+  outcome `EORTC_PROV_PROB` matches too, with 133 cases in both. `pred` is the published equation (largest difference
+  0.006), and `[pred >= 0.05]` flags 661 of the 4,127 (16.0%).
+- **The inclusion rule:** the 4,127 are exactly the rows with complete data on the seven `BOSCORE_*` items. All 567
+  excluded rows have missing items, and `pred` is missing for the same rows.
+- **Patients:** 1,945 in the 4,127 (the paper says 1,944), 2.122 admissions per patient, 985 patients (50.6%) with one
+  admission, at most 11. The 133 events fall in 128 patients (5 with two), 52 at a first admission and 81 at a later one.
+  Among the 960 patients with more than one admission, 79% have a different predictor profile or outcome at different
+  admissions, so covariates are admission-level while genotype will be patient-level.
+- **49 admission numbers appear twice, and the pairs look like an event row plus a non-event twin.** In every pair the
+  patient and predictor profile are identical and exactly one row is an event. The 4,127 rows are therefore 4,078 unique
+  admissions, and 133 of 4,078 is 3.26%, which is the paper's stated 3.3% (133 of 4,127 is 3.22%). The published
+  equation reproduces from the rows with the twins in, so it appears to have been fitted on them. Refit on the 4,078
+  unique admissions, the coefficients are larger (CMV 1.42 against 1.14, prior mould 1.99 against 1.64, intercept
+  -5.59 against -5.45).
+- **Consequence for the baseline cohort:** on the 4,078 unique admissions the published equation predicts 3.06% against
+  3.26% observed (aROC 0.859), and the MCID is +0.00404 at 5% and +0.00113 at 20%, against +0.00445 and +0.00142 on the
+  4,127 rows (D8). Resampling patients instead of admissions widens the bootstrap intervals by 17 to 28% (5% MCID:
+  0.00405 to 0.00489 on the rows, 0.00371 to 0.00439 on the unique admissions).
+- **Why `boscore_tidy.xlsx` and the `.dta` did not reconcile:** they carry the older `SCORE*` items, not the
+  `BOSCORE_*` (2017) definitions, hence different predictors and 108 events.
+- **Decided (D9, addendum 3 of `phase3_decisions.md`):** the baseline cohort is the 4,078 unique admissions and the bootstrap resamples
+  patients. The MCID is +0.00404 at 5% and +0.00113 at 20%. Bologna should still confirm that the 49 pairs are an artefact.
 
 ### Full BOSCORE dataset (`BOSCORE_recoded_2019.xlsx`, gitignored, contains direct identifiers)
 
@@ -140,7 +173,7 @@ and several rows per admission (fever episodes). Only counts and coded values ha
 value has been printed.
 
 - It is **not** the 4,127-row analysis file and cannot be linked to it: there is no shared key (`bs.xlsx` `id` runs 2
-  to 4,694, `IDRICO` 7,496 to 14,455).
+  to 4,694, `IDRICO` 7,496 to 14,455). `boscore.xlsx` is the file that carries both keys.
 - I did not find an EORTC proven/probable IMD outcome column, and the predictor definitions differ (for example
   neutropenia over 10 days is 40% of rows against 29% for prolonged neutropenia in `bs.xlsx`).
 - A date filter does not reproduce the paper's cohort: 2007 to 2016 gives 4,799 admissions in 2,151 patients, against
@@ -156,6 +189,51 @@ top-codes age at 90. Patient and admission structure is preserved one to one, an
 name or ID anywhere in it. `data/boscore_pseudonymisation_manifest.csv` (tracked) lists what was done to each column.
 It is still personal data, because anyone holding the original file can re-link it: keep it out of git and email. The
 codes come from a seeded permutation (seed 6283), so they regenerate from the original file and no key file exists.
+### `boscore_tidy.xlsx` (gitignored, contains direct identifiers)
+
+8,037 rows by 412 columns, one row per admission with the fever episodes spread across numbered column blocks (`_2` to
+`_12`), plus Stata survival fields (`_st`, `_d`, `_t`, `_t0`) and an outcome column (`EORTC_PROV_PROB`). It spans 2006 to
+2021: 8,031 admissions in 3,571 patients. Read it with `col_types = "text"`, because `readxl` guesses types from the
+first 1,000 rows and silently turns later values in columns 135 onward into missing.
+
+- **It is a consistent superset of the earlier export.** All 5,784 admissions of `BOSCORE_recoded_2019.xlsx` are in
+  it, and on those the clinical variables agree to 99.9% or better. It adds 2,247 admissions (1,582 in 2019 to 2021 and
+  560 in 2007 to 2016), so the earlier export was incomplete.
+- **It does not reproduce the paper's cohort.** For 2007 to 2016 it has 5,359 admissions in 2,377 patients, against
+  4,127 in 1,944. The outcome flag gives 83 cases in that window, and cases coded as proven or probable mould in any
+  episode number 156 (111 within 60 days of admission), against 133. No year, age or ward filter matches, and the
+  score items that resemble the model's predictors differ from Table 2 by up to 4 percentage points even in the best
+  window. Only corticosteroids (11.4% against 11.3%) and aspergillus colonisation (2.6% against 2.6%) line up.
+- **Data quality to fix before relying on it:** the outcome flag misses 91 admissions that have a proven or probable
+  episode; 44 episode dates in 2007 to 2016 fall before the admission date (up to 304 days); 29 shared admissions have
+  a different patient ID than in the earlier export, and 113 a different age; one age is 1,069; 646 admissions have no
+  score items; 5 admissions appear on more than one row; the last column has no name and two columns share a name.
+- **What would reconcile it:** the Stata `.do` file (or the `.dta`) that built the paper's analysis set. The
+  `_st` and `_d` fields show the analysis was run in Stata, and the `id` in `bs.xlsx` (2 to 4,694) looks like a Stata
+  row number. Ask Bologna for it, together with the inclusion and outcome rules.
+
+**`boscore_tidy.dta` (gitignored) is the Stata source of that spreadsheet, and it does not reconcile either.** 8,038 rows by
+73 columns, with no patient ID or name (only the hospital admission number `idrico`, admission and event dates, age and
+death). It matches the spreadsheet exactly on all 8,031 shared admissions (age, length of stay and the seven analysis
+variables), has one extra admission, and leaves the outcome missing for 6,400 admissions with no fever episode, which
+the spreadsheet silently filled with 0. The analysis is a competing-risks set-up (`_st`, `_d`, `comptrisk`): 108 IMD
+events, 398 competing events and 7,532 censored, with all rows used. Its analysis variables carry the same names as
+`bs.xlsx` (`prior_IA`, `hd_corticoster`, `uncont_malign`, `highrisk_chemo`, `neutropenia_10d`, `lymphopenia_50`,
+`cmv`), but they are not the same population:
+
+| | `bs.xlsx` (the paper's 4,127) | `boscore_tidy.dta` (7,391 with all 7 predictors) |
+|---|---|---|
+| IMD events | 133 (3.2%) | 108 (1.5%) |
+| Mean predicted risk of the published equation | 3.26% | 3.61% |
+| aROC of the published equation | 0.853 | 0.747 |
+| Refit, high-risk chemotherapy / CMV | 0.79 / 1.14 (published) | 0.10 / -0.25 |
+
+So the `.dta` is a different, later dataset (2006 to 2021, different outcome adjudication), not the derivation cohort. It
+cannot give admissions per patient (no patient ID), and the spreadsheet's `IDIND` is the only linkage. It may be
+useful as a rough external check on the baseline model, but only after the outcome definitions are reconciled: the
+equation over-predicts here (3.6% against 1.5%) and discriminates less well. `haven` reads it; it is not in
+`renv.lock` because no script uses it yet.
+
 ### Haplotypes
 
 Derived from phased 1000G EUR (503 samples, 1,006 chromosomes) and rescaled to gnomAD NFE margins. The PTX3 trio
@@ -165,10 +243,10 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 
 ## What to do next
 
-1. **Email Bologna** (you), now a short request: an anonymised patient code (or, at minimum, the number of patients
-   with 1, 2, 3, ... admissions and how many of the 133 events were at a first versus a later admission), and
-   whether the paper or the file is right on the two counts that differ by one. The three cross-tabulations are no
-   longer needed, since `bs.xlsx` gives them directly.
+1. **Email Bologna** (you), now only confirmation questions, since `boscore.xlsx` answers the rest: are the 49 admission
+   numbers that appear on two rows (an event row and a non-event twin) a data artefact, and was the published model
+   fitted with them in; and why do Table 2 counts for high-risk chemotherapy and prolonged neutropenia in non-cases
+   (777 and 1,098) exceed the file's (776 and 1,097) by one.
 2. ~~Decide on the empirical joint.~~ Done: adopted as D8 (addendum 2).
 3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
    strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
@@ -176,7 +254,7 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 4. **Evidence-to-parameter mapping:** one effect per study per term, as a log odds ratio per risk allele
    with nucleotide-pinned alleles; collapse overlapping cohorts (Spanish registry, Jena AML); map SNP effects to
    haplotype effects; Bayesian random-effects pooling with prediction intervals.
-5. **Genetic layer:** draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the
+5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the
    score) and the realised value (published estimates in the score, a shrunk truth). Carry the correlation
    ensemble through. Decide how to handle admissions per patient (about 2.1 per patient, genotype fixed per
    patient).
@@ -194,7 +272,7 @@ Italian thesis title is required (F4).
 
 | Path | Contents |
 |---|---|
-| `R/` | `baseline.R` (equation, profile metrics, net benefit), `copula.R` (correlation structure, fitting, exact profile probabilities), `decision_curve.R` (exact curves, comparison, plots), `haplotypes.R` (IPF rescaling, LD), `bs_data.R` (checks and empirical cohort from the admission-level data), `pseudonymise.R` (BOSCORE extract) |
+| `R/` | `baseline.R` (equation, profile metrics, net benefit), `copula.R` (correlation structure, fitting, exact profile probabilities), `decision_curve.R` (exact curves, comparison, plots), `haplotypes.R` (IPF rescaling, LD), `bs_data.R` (checks and empirical cohort from the admission-level data), `pseudonymise.R` (BOSCORE extract), `boscore_data.R` (base cohort, twin correction, patient bootstrap, reconciliation) |
 | `scripts/` | the scripts above |
 | `bs.xlsx` | admission-level derivation data. **Gitignored and not in the repository**; copy it over separately |
 | `tests/testthat/` | the test suite, run with `tests/run_tests.R` |
@@ -228,5 +306,8 @@ Italian thesis title is required (F4).
   them by a secure route, and note that the two `bs.xlsx` tests skip without the file. Further copies sit in
   `~/Downloads` and `~/Projects`, and `~/riskscore/` (a Shiny app with an `rsconnect` folder) holds a copy of
   `bs.xlsx`, so check whether that app was deployed with the file.
+- `boscore.xlsx` is the base dataset. `read_boscore()` skips names, birth dates and every column it does not need when it reads the
+  file, and `scripts/08_reconcile_boscore.R` writes `data/restricted/base_cohort_pseudonymised.csv` (gitignored), which
+  `load_base_cohort()` prefers, so analysis does not need the identified file. Without either file the `boscore` tests skip.
 - Before using the identified file with any AI tool, check that the data-sharing agreement and ethics approval allow
   it. Analyse the pseudonymised extract (`data/restricted/`) and not the identified file.

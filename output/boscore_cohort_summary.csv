@@ -1,0 +1,3 @@
+"cohort","admissions","patients","events","prevalence","mean_predicted_risk","apparent_auc"
+"4,127 rows (with the 49 non-event twins)",4127,1945,133,0.0322267991276957,0.0325997113264301,0.852644568356294
+"4,078 unique admissions (base cohort)",4078,1945,133,0.0326140264835704,0.0306000488020633,0.858480802767375

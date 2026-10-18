@@ -1,0 +1,8 @@
+"predictor","boscore_column","agreement"
+"uncontrolled_malignancy","BOSCORE_8",1
+"high_risk_chemo","BOSCORE_9",1
+"high_dose_steroids","BOSCORE_6",1
+"severe_lymphopenia","BOSCORE_11",1
+"cmv","BOSCORE_15",1
+"prolonged_neutropenia","BOSCORE_10",1
+"prior_mould_disease","BOSCORE_4",1

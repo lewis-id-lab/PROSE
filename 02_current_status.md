@@ -408,6 +408,15 @@ on the empirical cohort are **+0.00445 at 5%** (bootstrap 90% 0.00412 to 0.00478
 Bologna. A full BOSCORE export with identifiers (8,660 rows) cannot be linked to the 4,127 admissions; a pseudonymised
 extract of it is in `data/restricted/` (gitignored). See `phase3_decisions.md` addendum 2 and `status.md`.
 
+**Update, 18 October 2026 — base dataset reconciled and baseline cohort corrected (D9).** `boscore.xlsx`, the parent of
+`bs.xlsx`, reconciles exactly: the seven predictors are the `BOSCORE_*` columns, the 4,127 are the rows complete on them,
+and `id` is the key. 49 admission numbers appear on two rows (an event row and a non-event twin with the same patient and
+profile), so the 4,127 rows are 4,078 unique admissions, and 133 of 4,078 is the paper's 3.3%. The baseline cohort is now
+the 4,078 admissions in 1,945 patients, with patients resampled in the bootstrap. The MCID is **+0.00404 at 5%** (patient
+bootstrap 90% 0.00370 to 0.00438) and **+0.00113 at 20%**, against +0.00445 and +0.00142 on the 4,127 rows; results will be
+reported against both. Admissions per patient: 2.10 on average, 1,000 patients with one admission. See
+`phase3_decisions.md` addendum 3 and `status.md`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

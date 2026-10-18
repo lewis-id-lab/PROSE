@@ -314,3 +314,79 @@ changes.
 
 Code and outputs: `scripts/07_empirical_baseline.R`, `output/dca_empirical_summary.csv`,
 `output/empirical_vs_copula_summary.csv`, `output/empirical_vs_copula_correlations.csv`.
+
+---
+
+## Addendum 3, 18 October 2026: base dataset, twin correction and patient-level bootstrap (D9)
+
+Written after the `prespec-lock` tag and after addendum 2. No genetic-layer result exists. The MCID rule, the primary
+threshold, the fixed published equation and every decision above except the baseline cohort and the bootstrap are
+unchanged.
+
+**What prompted it.** `boscore.xlsx`, the parent file of `bs.xlsx`, became available. It reconciles with `bs.xlsx`
+exactly (`scripts/08_reconcile_boscore.R` checks this and stops if anything changes):
+
+- The seven `bs.xlsx` predictors are the `BOSCORE_*` columns: `BOSCORE_8` uncontrolled malignancy, `_9` high-risk
+  chemotherapy, `_6` high-dose steroids, `_11` severe lymphopenia, `_15` CMV, `_10` prolonged neutropenia and `_4` prior
+  mould disease, with 100% agreement on all 4,127 rows. The outcome matches, and `id` in `bs.xlsx` is the row number.
+- The paper's analysis set is the 4,127 of the 4,694 rows with complete data on those seven items. All 567 excluded
+  rows have a missing item.
+- 49 admission numbers appear on two rows. In every pair the patient and the predictor profile are identical and
+  exactly one row is an event. So the 4,127 rows are 4,078 unique admissions, and 133 events in 4,078 is 3.26%, the
+  paper's stated 3.3% (133 in 4,127 is 3.22%). The published equation reproduces only from the rows with the twins
+  in, so it appears to have been fitted with them.
+
+### D9. Base dataset and baseline cohort: settled
+
+1. **The base dataset is `boscore.xlsx`**, restricted by the inclusion rule above to the 4,127 rows of the analysis set.
+2. **The baseline cohort is the 4,078 unique admissions.** For each of the 49 duplicated admission numbers the event
+   row is kept and the non-event twin is dropped. The cohort has 4,078 admissions in 1,945 patients (2.10 per patient)
+   and all 133 events. It replaces the 4,127-row cohort of D8. The 4,127 rows stay as a sensitivity analysis.
+3. **The bootstrap resamples patients**, with all their admissions, 2,000 resamples. This replaces the admission-level
+   bootstrap of D8, which ignored clustering. The admission-level intervals are kept for comparison.
+4. **The MCID rule is unchanged** (20% more true cases at no increase in false positives; 5% primary, 20%
+   secondary). Its values are a function of the baseline cohort, so they are re-derived on the new one:
+
+| threshold | copula, at the lock | 4,127 rows (D8) | **base cohort, 4,078 (adopted)** | observed outcomes (cross-check) |
+|---|---|---|---|---|
+| 5% (primary) | +0.00428 | +0.00445 | **+0.00404** (patient bootstrap 90% 0.00370 to 0.00438) | +0.00441 |
+| 10% | not recorded | +0.00276 | +0.00239 (0.00207 to 0.00269) | +0.00265 |
+| 20% (secondary) | +0.00140 | +0.00142 | **+0.00113** (0.00090 to 0.00137) | +0.00142 |
+
+   On the base cohort the baseline net benefit at 5% is 0.01327, with 20.2 true and 131.8 false positives per 1,000
+   admissions and 15.2% flagged. With the twins in, the patient-level intervals are about 25% wider than the
+   admission-level ones (5% MCID: 0.00404 to 0.00488 against 0.00412 to 0.00477). On the base cohort they are 3 to 12%
+   wider (0.00370 to 0.00438 against 0.00373 to 0.00435), because the twins were adding within-patient correlation.
+5. **The outcome risk stays the published equation's.** The equation was fitted with the twins in, and on the
+   corrected cohort it under-predicts slightly: mean predicted risk 3.06% against 3.26% observed, aROC 0.858. A refit
+   on the unique admissions gives larger coefficients (CMV 1.42 against 1.14, prior mould disease 1.99 against 1.64,
+   intercept -5.59 against -5.45). The model is not refitted, as before. Because the observed-outcome cross-check gives
+   a higher MCID at 5% (+0.00441, 9% above the model-implied value) and at 20% (+0.00142, 25% above), the choice of
+   outcome risk matters. A "truth equals the refit" scenario is recorded as a sensitivity analysis for the genetic
+   layer and has not been run.
+6. **D6 is consistent with the correction.** The 3.3% prevalence target is the corrected prevalence (3.26%); the 3.22%
+   noted earlier came from counting the twin rows.
+7. **Data handling.** The cohort is stored as `data/restricted/base_cohort_pseudonymised.csv` (gitignored): random
+   patient and admission codes, admission year, the seven predictors, the outcome and a twin flag. `read_boscore()`
+   skips names, birth dates and every column it does not need when it reads the file.
+
+**Disclosure.** The MCID on the rows and on the unique admissions was seen before this decision was taken, and the
+correction lowers the primary threshold by 9% (+0.00445 to +0.00404) and the secondary by 20%. A lower threshold is
+easier to meet. The correction is made because the twin rows are duplicate records of event admissions, not because of
+its effect on the MCID. To keep the primary test honest, results will be reported against both the base-cohort MCID
+and the 4,127-row MCID (+0.00445 at 5%).
+
+**Still open.** Bologna should confirm that the 49 pairs are a recording artefact, and explain the two Table 2
+non-case counts that exceed the file's by one (high-risk chemotherapy 777 against 776, prolonged neutropenia 1,098
+against 1,097). If the pairs turn out to be legitimate, the 4,127-row cohort becomes the baseline again.
+
+| decision | before (addendum 2) | now |
+|---|---|---|
+| Baseline cohort | 4,127 rows of `bs.xlsx` (D8) | **4,078 unique admissions of `boscore.xlsx` (D9)** |
+| Bootstrap | admissions | **patients** |
+| MCID at 5% / 20% | +0.00445 / +0.00142 | **+0.00404 / +0.00113** |
+| D7 copula, MCID rule, primary threshold, fixed equation, D1 to D6, E1 | as stated | unchanged |
+
+Code and outputs: `scripts/08_reconcile_boscore.R`, `scripts/09_baseline_cohort.R`, `R/boscore_data.R`,
+`output/boscore_reconciliation.csv`, `output/boscore_predictor_mapping.csv`, `output/boscore_cohort_summary.csv`,
+`output/admissions_per_patient.csv`, `output/dca_baseline_summary.csv`, `output/dca_baseline_sensitivity.csv`.

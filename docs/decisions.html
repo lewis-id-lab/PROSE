@@ -190,6 +190,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#d8.-baseline-cohort-settled" id="toc-d8.-baseline-cohort-settled" class="nav-link" data-scroll-target="#d8.-baseline-cohort-settled">D8. Baseline cohort: settled</a></li>
   </ul></li>
+  <li><a href="#addendum-3-18-october-2026-base-dataset-twin-correction-and-patient-level-bootstrap-d9" id="toc-addendum-3-18-october-2026-base-dataset-twin-correction-and-patient-level-bootstrap-d9" class="nav-link" data-scroll-target="#addendum-3-18-october-2026-base-dataset-twin-correction-and-patient-level-bootstrap-d9">Addendum 3, 18 October 2026: base dataset, twin correction and patient-level bootstrap (D9)</a>
+  <ul class="collapse">
+  <li><a href="#d9.-base-dataset-and-baseline-cohort-settled" id="toc-d9.-base-dataset-and-baseline-cohort-settled" class="nav-link" data-scroll-target="#d9.-base-dataset-and-baseline-cohort-settled">D9. Base dataset and baseline cohort: settled</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -691,6 +695,107 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Code and outputs: <code>scripts/07_empirical_baseline.R</code>, <code>output/dca_empirical_summary.csv</code>, <code>output/empirical_vs_copula_summary.csv</code>, <code>output/empirical_vs_copula_correlations.csv</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-3-18-october-2026-base-dataset-twin-correction-and-patient-level-bootstrap-d9" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-3-18-october-2026-base-dataset-twin-correction-and-patient-level-bootstrap-d9">Addendum 3, 18 October 2026: base dataset, twin correction and patient-level bootstrap (D9)</h2>
+<p>Written after the <code>prespec-lock</code> tag and after addendum 2. No genetic-layer result exists. The MCID rule, the primary threshold, the fixed published equation and every decision above except the baseline cohort and the bootstrap are unchanged.</p>
+<p><strong>What prompted it.</strong> <code>boscore.xlsx</code>, the parent file of <code>bs.xlsx</code>, became available. It reconciles with <code>bs.xlsx</code> exactly (<code>scripts/08_reconcile_boscore.R</code> checks this and stops if anything changes):</p>
+<ul>
+<li>The seven <code>bs.xlsx</code> predictors are the <code>BOSCORE_*</code> columns: <code>BOSCORE_8</code> uncontrolled malignancy, <code>_9</code> high-risk chemotherapy, <code>_6</code> high-dose steroids, <code>_11</code> severe lymphopenia, <code>_15</code> CMV, <code>_10</code> prolonged neutropenia and <code>_4</code> prior mould disease, with 100% agreement on all 4,127 rows. The outcome matches, and <code>id</code> in <code>bs.xlsx</code> is the row number.</li>
+<li>The paper’s analysis set is the 4,127 of the 4,694 rows with complete data on those seven items. All 567 excluded rows have a missing item.</li>
+<li>49 admission numbers appear on two rows. In every pair the patient and the predictor profile are identical and exactly one row is an event. So the 4,127 rows are 4,078 unique admissions, and 133 events in 4,078 is 3.26%, the paper’s stated 3.3% (133 in 4,127 is 3.22%). The published equation reproduces only from the rows with the twins in, so it appears to have been fitted with them.</li>
+</ul>
+<section id="d9.-base-dataset-and-baseline-cohort-settled" class="level3">
+<h3 class="anchored" data-anchor-id="d9.-base-dataset-and-baseline-cohort-settled">D9. Base dataset and baseline cohort: settled</h3>
+<ol type="1">
+<li><strong>The base dataset is <code>boscore.xlsx</code></strong>, restricted by the inclusion rule above to the 4,127 rows of the analysis set.</li>
+<li><strong>The baseline cohort is the 4,078 unique admissions.</strong> For each of the 49 duplicated admission numbers the event row is kept and the non-event twin is dropped. The cohort has 4,078 admissions in 1,945 patients (2.10 per patient) and all 133 events. It replaces the 4,127-row cohort of D8. The 4,127 rows stay as a sensitivity analysis.</li>
+<li><strong>The bootstrap resamples patients</strong>, with all their admissions, 2,000 resamples. This replaces the admission-level bootstrap of D8, which ignored clustering. The admission-level intervals are kept for comparison.</li>
+<li><strong>The MCID rule is unchanged</strong> (20% more true cases at no increase in false positives; 5% primary, 20% secondary). Its values are a function of the baseline cohort, so they are re-derived on the new one:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th>copula, at the lock</th>
+<th>4,127 rows (D8)</th>
+<th><strong>base cohort, 4,078 (adopted)</strong></th>
+<th>observed outcomes (cross-check)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5% (primary)</td>
+<td>+0.00428</td>
+<td>+0.00445</td>
+<td><strong>+0.00404</strong> (patient bootstrap 90% 0.00370 to 0.00438)</td>
+<td>+0.00441</td>
+</tr>
+<tr class="even">
+<td>10%</td>
+<td>not recorded</td>
+<td>+0.00276</td>
+<td>+0.00239 (0.00207 to 0.00269)</td>
+<td>+0.00265</td>
+</tr>
+<tr class="odd">
+<td>20% (secondary)</td>
+<td>+0.00140</td>
+<td>+0.00142</td>
+<td><strong>+0.00113</strong> (0.00090 to 0.00137)</td>
+<td>+0.00142</td>
+</tr>
+</tbody>
+</table>
+<p>On the base cohort the baseline net benefit at 5% is 0.01327, with 20.2 true and 131.8 false positives per 1,000 admissions and 15.2% flagged. With the twins in, the patient-level intervals are about 25% wider than the admission-level ones (5% MCID: 0.00404 to 0.00488 against 0.00412 to 0.00477). On the base cohort they are 3 to 12% wider (0.00370 to 0.00438 against 0.00373 to 0.00435), because the twins were adding within-patient correlation. 5. <strong>The outcome risk stays the published equation’s.</strong> The equation was fitted with the twins in, and on the corrected cohort it under-predicts slightly: mean predicted risk 3.06% against 3.26% observed, aROC 0.858. A refit on the unique admissions gives larger coefficients (CMV 1.42 against 1.14, prior mould disease 1.99 against 1.64, intercept -5.59 against -5.45). The model is not refitted, as before. Because the observed-outcome cross-check gives a higher MCID at 5% (+0.00441, 9% above the model-implied value) and at 20% (+0.00142, 25% above), the choice of outcome risk matters. A “truth equals the refit” scenario is recorded as a sensitivity analysis for the genetic layer and has not been run. 6. <strong>D6 is consistent with the correction.</strong> The 3.3% prevalence target is the corrected prevalence (3.26%); the 3.22% noted earlier came from counting the twin rows. 7. <strong>Data handling.</strong> The cohort is stored as <code>data/restricted/base_cohort_pseudonymised.csv</code> (gitignored): random patient and admission codes, admission year, the seven predictors, the outcome and a twin flag. <code>read_boscore()</code> skips names, birth dates and every column it does not need when it reads the file.</p>
+<p><strong>Disclosure.</strong> The MCID on the rows and on the unique admissions was seen before this decision was taken, and the correction lowers the primary threshold by 9% (+0.00445 to +0.00404) and the secondary by 20%. A lower threshold is easier to meet. The correction is made because the twin rows are duplicate records of event admissions, not because of its effect on the MCID. To keep the primary test honest, results will be reported against both the base-cohort MCID and the 4,127-row MCID (+0.00445 at 5%).</p>
+<p><strong>Still open.</strong> Bologna should confirm that the 49 pairs are a recording artefact, and explain the two Table 2 non-case counts that exceed the file’s by one (high-risk chemotherapy 777 against 776, prolonged neutropenia 1,098 against 1,097). If the pairs turn out to be legitimate, the 4,127-row cohort becomes the baseline again.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>decision</th>
+<th>before (addendum 2)</th>
+<th>now</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline cohort</td>
+<td>4,127 rows of <code>bs.xlsx</code> (D8)</td>
+<td><strong>4,078 unique admissions of <code>boscore.xlsx</code> (D9)</strong></td>
+</tr>
+<tr class="even">
+<td>Bootstrap</td>
+<td>admissions</td>
+<td><strong>patients</strong></td>
+</tr>
+<tr class="odd">
+<td>MCID at 5% / 20%</td>
+<td>+0.00445 / +0.00142</td>
+<td><strong>+0.00404 / +0.00113</strong></td>
+</tr>
+<tr class="even">
+<td>D7 copula, MCID rule, primary threshold, fixed equation, D1 to D6, E1</td>
+<td>as stated</td>
+<td>unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Code and outputs: <code>scripts/08_reconcile_boscore.R</code>, <code>scripts/09_baseline_cohort.R</code>, <code>R/boscore_data.R</code>, <code>output/boscore_reconciliation.csv</code>, <code>output/boscore_predictor_mapping.csv</code>, <code>output/boscore_cohort_summary.csv</code>, <code>output/admissions_per_patient.csv</code>, <code>output/dca_baseline_summary.csv</code>, <code>output/dca_baseline_sensitivity.csv</code>.</p>
 
 
 <!-- -->
