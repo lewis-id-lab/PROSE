@@ -41,7 +41,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 84 tests, 431 expectations, all passing at the last run
+source("tests/run_tests.R")     # 91 tests, 451 expectations, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -62,6 +62,7 @@ scripts, run them from the project root, in this order:
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
 | `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
 | `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
+| `scripts/11_refit_baseline.R` | refits the baseline on the base cohort, with robust SE, patient bootstrap, optimism and the MCID; writes the fixed baseline parameters | about 1 min |
 | `scripts/10_outcome_risk_sensitivity.R` | MCID under four readings of the outcome risk (published, refit, refit rule, observed), refit repeated inside a patient bootstrap | about 40 s |
 | `scripts/07_empirical_baseline.R` | baseline decision curve and MCID on the empirical cohort, with bootstrap intervals and the comparison with the copula | under 1 min |
 
@@ -74,7 +75,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 0 Set-up, 1 Literature search | complete (831 unique records screened) |
 | 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
 | 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
-| 4 Baseline reproduction | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9, addendum 3): 4,078 admissions in 1,945 patients, patients resampled in the bootstrap |
+| 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
 | 5 Genetic layer simulation | not started |
 | 6 Sensitivity and architecture sweep | not started |
 | 7 Write-up | not started |
@@ -100,7 +101,8 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Baseline aROC target | 0.85 |
 | Haplotype phase | coupling in every pair |
 | Baseline cohort (D9, addendum 3) | **the 4,078 unique admissions of `boscore.xlsx`** (twins removed, event rows kept), patients resampled in the bootstrap; the 4,127 rows and the version 2 copula (D7) are sensitivity analyses |
-| MCID (20% more true cases, no extra false positives) | **+0.00404 net benefit at 5% (primary)**, +0.00113 at 20% (secondary), on the base cohort. Earlier values: +0.00445 / +0.00142 on the 4,127 rows (D8) and +0.00428 / +0.00140 from the copula at the tag. Results are reported against the 4,127-row values too (still committed after addendum 5) |
+| Baseline model (D10, addendum 6) | **maximum-likelihood refit of the seven predictors on the 4,078 admissions** (`output/baseline_refit_parameters.csv`); the published equation is a sensitivity analysis |
+| MCID (20% more true cases, no extra false positives) | **+0.00458 net benefit at 5% (primary)**, +0.00160 at 20% (secondary), on the refit baseline. Sensitivity thresholds: +0.00404 (published equation) and +0.00445 (4,127 rows) |
 
 `phase3_decisions.md` has a dated addendum written after the lock. Further changes there should be dated addenda,
 not edits.
@@ -163,6 +165,8 @@ the file that reconciles everything:
   0.00405 to 0.00489 on the rows, 0.00371 to 0.00439 on the unique admissions).
 - **Why `boscore_tidy.xlsx` and the `.dta` did not reconcile:** they carry the older `SCORE*` items, not the
   `BOSCORE_*` (2017) definitions, hence different predictors and 108 events.
+- **Refit baseline (D10, addendum 6):** the baseline is now the refit, with aROC 0.858 apparent and 0.853 corrected, calibration slope 0.97, and a
+  primary MCID of +0.00458 (bootstrap 90% 0.00387 to 0.00566) and a secondary of +0.00160. The published equation is a sensitivity analysis.
 - **Outcome-risk sensitivity (addendum 4):** the adopted MCID, which treats the published equation as truth, is the lowest of four
   readings at every threshold. Using the refit as truth gives +0.00452 at 5% (+12%) and +0.00137 at 20% (+21%); the observed
   outcomes give +0.00441 and +0.00142. The intervals overlap, and the published coefficients are inside the refit's intervals. The
@@ -259,7 +263,7 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 4. **Evidence-to-parameter mapping:** one effect per study per term, as a log odds ratio per risk allele
    with nucleotide-pinned alleles; collapse overlapping cohorts (Spanish registry, Jena AML); map SNP effects to
    haplotype effects; Bayesian random-effects pooling with prediction intervals.
-5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the
+5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient) and the refit baseline (`load_refit_params()`). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the
    score) and the realised value (published estimates in the score, a shrunk truth). Carry the correlation
    ensemble through. Decide how to handle admissions per patient (about 2.1 per patient, genotype fixed per
    patient).

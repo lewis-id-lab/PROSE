@@ -195,6 +195,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#d9.-base-dataset-and-baseline-cohort-settled" id="toc-d9.-base-dataset-and-baseline-cohort-settled" class="nav-link" data-scroll-target="#d9.-base-dataset-and-baseline-cohort-settled">D9. Base dataset and baseline cohort: settled</a></li>
   </ul></li>
   <li><a href="#addendum-4-18-october-2026-how-the-mcid-depends-on-the-outcome-risk-no-decision-changed" id="toc-addendum-4-18-october-2026-how-the-mcid-depends-on-the-outcome-risk-no-decision-changed" class="nav-link" data-scroll-target="#addendum-4-18-october-2026-how-the-mcid-depends-on-the-outcome-risk-no-decision-changed">Addendum 4, 18 October 2026: how the MCID depends on the outcome risk (no decision changed)</a></li>
+  <li><a href="#addendum-5-18-october-2026-the-49-duplicate-pairs-are-confirmed-as-an-artefact" id="toc-addendum-5-18-october-2026-the-49-duplicate-pairs-are-confirmed-as-an-artefact" class="nav-link" data-scroll-target="#addendum-5-18-october-2026-the-49-duplicate-pairs-are-confirmed-as-an-artefact">Addendum 5, 18 October 2026: the 49 duplicate pairs are confirmed as an artefact</a></li>
+  <li><a href="#addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10" id="toc-addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10" class="nav-link" data-scroll-target="#addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10">Addendum 6, 18 October 2026: the baseline model is refit on the base cohort (D10)</a>
+  <ul class="collapse">
+  <li><a href="#d10.-the-baseline-model-settled" id="toc-d10.-the-baseline-model-settled" class="nav-link" data-scroll-target="#d10.-the-baseline-model-settled">D10. The baseline model: settled</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -852,10 +857,204 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>No decision changes. Treating the published equation as truth is the most permissive reading for the primary test, and that is stated here. The D9 commitment to report against the 4,127-row MCID also brackets the other readings: at 5% it is +0.00445 against +0.00441 to +0.00458, and at 20% it is +0.00142 against +0.00137 and +0.00142 (scenario C, +0.00160, is above it). The genetic layer itself has not been scored against a refit truth, because that needs genotype effects.</p>
 <p>Code and outputs: <code>scripts/10_outcome_risk_sensitivity.R</code>, <code>R/outcome_risk.R</code>, <code>output/mcid_outcome_risk_sensitivity.csv</code>, <code>output/refit_coefficients.csv</code>.</p>
+<hr>
+</section>
+<section id="addendum-5-18-october-2026-the-49-duplicate-pairs-are-confirmed-as-an-artefact" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-5-18-october-2026-the-49-duplicate-pairs-are-confirmed-as-an-artefact">Addendum 5, 18 October 2026: the 49 duplicate pairs are confirmed as an artefact</h2>
+<p>Written after the tag. The 49 admission numbers that appear on two rows (same patient, identical predictor profile, one event row and one non-event twin) have been confirmed as a recording artefact. This settles the condition left open in D9 and in addendum 3, which said the 4,127-row cohort would become the baseline again if the pairs proved legitimate.</p>
+<ul>
+<li><strong>D9 stands.</strong> The baseline cohort is the 4,078 unique admissions, and the bootstrap resamples patients. The revert condition no longer applies.</li>
+<li><strong>The 4,127-row cohort is now a sensitivity analysis only,</strong> which was its role in D9. It is a record of how the paper’s analysis set was built, not an alternative baseline. The D9 commitment to report results against the 4,127-row MCID (+0.00445 at 5%, +0.00142 at 20%) is unchanged. It still brackets the outcome-risk readings of addendum 4, and any decision to drop it should be taken and recorded separately.</li>
+<li><strong>Set aside, not pursued:</strong> the two Table 2 non-case counts that exceed the file’s by one (high-risk chemotherapy 777 against 776, prolonged neutropenia 1,098 against 1,097), and whether the published equation was fitted with the twin rows in. The analysis uses the counts in the file, and the equation stays fixed at its published coefficients either way, so neither question affects any result. Addenda 3 and 4 mention them as open; this addendum retires them. No request to Bologna remains outstanding.</li>
+</ul>
+<hr>
+</section>
+<section id="addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10">Addendum 6, 18 October 2026: the baseline model is refit on the base cohort (D10)</h2>
+<p>Written after the tag and after addendum 5. No genetic-layer result exists. This amends the design rule that the clinical block is “kept fixed, never refitted” at its published values, and item 5 of D9 (“the outcome risk stays the published equation’s”). It was decided to use the data in hand to estimate the baseline directly.</p>
+<p><strong>Background.</strong> On the corrected base cohort the published equation under-predicts slightly (mean predicted risk 3.06% against 3.26% observed), and its coefficients reproduce from the 4,127 rows but not from the 4,078 unique admissions. A refit on the 4,078 gives larger coefficients, but every published coefficient lies inside the refit’s 90% interval (addendum 4), so the refit is a better-fitting baseline for this cohort and not a correction of a detectable error.</p>
+<section id="d10.-the-baseline-model-settled" class="level3">
+<h3 class="anchored" data-anchor-id="d10.-the-baseline-model-settled">D10. The baseline model: settled</h3>
+<ol type="1">
+<li><strong>The baseline is a maximum-likelihood logistic refit of the seven predictors on the 4,078 unique admissions in 1,945 patients.</strong> It is fixed from here on: genetic terms are added to it and fitted, the clinical block is not refitted again in the simulation.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>term</th>
+<th>published</th>
+<th>refit</th>
+<th>robust SE</th>
+<th>bootstrap 90% interval</th>
+<th>odds ratio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>intercept</td>
+<td>-5.45</td>
+<td>-5.591</td>
+<td>0.275</td>
+<td>-6.129 to -5.220</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>uncontrolled malignancy</td>
+<td>0.68</td>
+<td>0.764</td>
+<td>0.201</td>
+<td>0.438 to 1.111</td>
+<td>2.15</td>
+</tr>
+<tr class="odd">
+<td>high-risk chemotherapy</td>
+<td>0.79</td>
+<td>0.862</td>
+<td>0.237</td>
+<td>0.490 to 1.263</td>
+<td>2.37</td>
+</tr>
+<tr class="even">
+<td>high-dose steroids</td>
+<td>0.80</td>
+<td>0.803</td>
+<td>0.252</td>
+<td>0.341 to 1.205</td>
+<td>2.23</td>
+</tr>
+<tr class="odd">
+<td>severe lymphopenia</td>
+<td>0.89</td>
+<td>0.933</td>
+<td>0.226</td>
+<td>0.562 to 1.323</td>
+<td>2.54</td>
+</tr>
+<tr class="even">
+<td>CMV</td>
+<td>1.14</td>
+<td>1.421</td>
+<td>0.324</td>
+<td>0.854 to 1.960</td>
+<td>4.14</td>
+</tr>
+<tr class="odd">
+<td>prolonged neutropenia</td>
+<td>1.52</td>
+<td>1.575</td>
+<td>0.292</td>
+<td>1.130 to 2.095</td>
+<td>4.83</td>
+</tr>
+<tr class="even">
+<td>prior mould disease</td>
+<td>1.64</td>
+<td>1.985</td>
+<td>0.281</td>
+<td>1.499 to 2.465</td>
+<td>7.28</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li><strong>Uncertainty.</strong> Standard errors are clustered by patient, and the bootstrap resamples patients and repeats the refit in every resample (2,000 resamples). The intervals are available for a sensitivity analysis of the baseline coefficients; the main analysis treats the refit as fixed.</li>
+<li><strong>Optimism is reported and not subtracted</strong> (a bootstrap refit in each resample, Harrell’s method). aROC is 0.858 apparent and 0.853 corrected (optimism 0.005). The calibration slope is 0.97 (optimism 0.029). The model is calibrated in the large by construction (3.26% predicted and observed). Observed net benefit at 5% is 0.0152 apparent and 0.0148 corrected, at 10% 0.0086 and 0.0079, and at 20% 0.0040 and 0.0033.</li>
+<li><strong>The published equation becomes a sensitivity analysis,</strong> with the 4,127-row cohort and the copula (D7), which keeps the published coefficients. D6 (the 0.85 aROC target) applies to those published-equation analyses only.</li>
+<li><strong>The MCID rule is unchanged</strong> (20% more true cases at no increase in false positives; 5% primary, 20% secondary). Its values are re-derived on the refit baseline and replace D9’s. They equal scenario C of addendum 4.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th><strong>refit baseline (adopted)</strong></th>
+<th>published equation, base cohort (D9)</th>
+<th>4,127 rows (D8)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5% (primary)</td>
+<td><strong>+0.00458</strong> (patient bootstrap 90% 0.00387 to 0.00566)</td>
+<td>+0.00404</td>
+<td>+0.00445</td>
+</tr>
+<tr class="even">
+<td>10%</td>
+<td>+0.00285 (0.00236 to 0.00460)</td>
+<td>+0.00239</td>
+<td>+0.00276</td>
+</tr>
+<tr class="odd">
+<td>20% (secondary)</td>
+<td><strong>+0.00160</strong> (0.00122 to 0.00301)</td>
+<td>+0.00113</td>
+<td>+0.00142</td>
+</tr>
+</tbody>
+</table>
+<p>On the refit baseline the net benefit at 5% is 0.01584, with 22.9 true and 133.8 false positives per 1,000 admissions and 15.7% flagged. The 20% interval is wide because few profiles sit near the threshold, so the refit rule flags different profiles from one resample to the next. 6. <strong>Aim 2 changes</strong> from reproducing the published baseline to estimating the baseline on the base cohort and comparing it with the published equation. 7. <strong>Reporting.</strong> Results are reported against the refit MCID (primary) and against +0.00404 (published equation) and +0.00445 (4,127 rows) as sensitivity thresholds. The commitment in D9 to report against the 4,127-row value stands.</p>
+<p><strong>Disclosure.</strong> The MCID under every reading was seen before this decision. The refit gives the highest value of the four readings in addendum 4, so adopting it makes the primary test harder for the genetic layer, by 13% at 5% and 41% at 20% compared with the published reading. The change is made to use the data in hand, not for its effect on the MCID. The baseline’s own performance is apparent, since it is evaluated on the data it was fitted on; the optimism above is small.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>decision</th>
+<th>before</th>
+<th>now</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Baseline model</td>
+<td>published equation, never refitted</td>
+<td><strong>refit on the 4,078 admissions (D10)</strong></td>
+</tr>
+<tr class="even">
+<td>Published equation</td>
+<td>the baseline</td>
+<td><strong>sensitivity analysis</strong></td>
+</tr>
+<tr class="odd">
+<td>MCID at 5% / 20%</td>
+<td>+0.00404 / +0.00113</td>
+<td><strong>+0.00458 / +0.00160</strong></td>
+</tr>
+<tr class="even">
+<td>Aim 2</td>
+<td>reproduce the published baseline</td>
+<td><strong>estimate the baseline and compare</strong></td>
+</tr>
+<tr class="odd">
+<td>Base cohort (D9), patient bootstrap, MCID rule, primary threshold, D1 to D5, D7 as a sensitivity analysis, E1</td>
+<td>as stated</td>
+<td>unchanged</td>
+</tr>
+</tbody>
+</table>
+<p>Code and outputs: <code>scripts/11_refit_baseline.R</code>, <code>R/refit_baseline.R</code>, <code>output/baseline_refit_parameters.csv</code>, <code>output/baseline_refit_performance.csv</code>, <code>output/dca_baseline_refit_summary.csv</code>.</p>
 
 
 <!-- -->
 
+</section>
 </section>
 </section>
 

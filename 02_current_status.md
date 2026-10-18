@@ -423,6 +423,13 @@ truth, a refit rule and the observed outcomes gives a primary MCID of +0.00452, 
 four, the intervals overlap, and the published coefficients lie inside the refit's intervals. No decision changed; results
 will be reported against the 4,127-row MCID as well, which brackets these. See `phase3_decisions.md` addendum 4.
 
+**Update, 18 October 2026 — the baseline model is refit on the base cohort (D10).** The clinical block is now a maximum-likelihood
+refit of the seven predictors on the 4,078 unique admissions (patient-clustered SE, patient bootstrap), replacing the published
+equation, which becomes a sensitivity analysis. aROC is 0.858 apparent and 0.853 optimism-corrected, the calibration slope is
+0.97, and every published coefficient lies inside the refit's 90% interval. The MCID is **+0.00458 at 5%** (bootstrap 90% 0.00387
+to 0.00566) and **+0.00160 at 20%**, against +0.00404 and +0.00113 under the published equation. Aim 2 becomes estimating the
+baseline and comparing it with the published equation. See `phase3_decisions.md` addendum 6 and `status.md`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

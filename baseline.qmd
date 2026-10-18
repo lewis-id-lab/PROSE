@@ -8,9 +8,10 @@ date: today
 ## The copula is now a sensitivity analysis
 
 The real joint distribution of the predictors became available after the lock, and the copula turned out to be
-10% of probability mass away from it. Since decisions D8 and D9 (18 October 2026) the baseline cohort is the observed
-distribution of the 128 profiles in the 4,078 unique admissions of `boscore.xlsx`, and everything on this page
-describes the copula that is kept as a sensitivity analysis. See [the comparison with the real data](#checking-the-copula-against-the-real-data).
+10% of probability mass away from it. Since decisions D8, D9 and D10 (18 October 2026) the baseline cohort is the observed
+distribution of the 128 profiles in the 4,078 unique admissions of `boscore.xlsx`, the baseline model is a refit on
+it (next section), and everything else on this page describes the published equation and the copula that are kept as
+sensitivity analyses. See [the comparison with the real data](#checking-the-copula-against-the-real-data).
 :::
 
 ```{r}
@@ -21,10 +22,41 @@ loss <- read.csv("output/reproduction_loss.csv")
 cmp  <- read.csv("output/fit_comparison.csv")
 ```
 
-## The fixed equation
+## The refit baseline (D10)
 
-The clinical block is the Stanzani et al. (2019) model, held at its published values and never refitted.
-Only genetic terms will be fitted later.
+The baseline model is a maximum-likelihood logistic refit of the seven predictors on the 4,078 unique admissions in
+1,945 patients. It is fixed from here on, and genetic terms will be fitted on top of it. Standard errors are clustered
+by patient, and the bootstrap resamples patients and repeats the refit in every resample.
+
+```{r}
+#| label: tbl-refit-baseline
+#| tbl-cap: "Refit coefficients against the published ones. Every published coefficient lies inside the refit's 90% bootstrap interval."
+rp <- read.csv("output/baseline_refit_parameters.csv")
+rp |>
+  transmute(Term = gsub("_", " ", term), Published = published, Refit = refit, `Robust SE` = se_robust,
+            `Bootstrap 5%` = lo, `Bootstrap 95%` = hi, `Odds ratio` = ifelse(term == "(Intercept)", NA, odds_ratio)) |>
+  gt() |>
+  fmt_number(2:6, decimals = 2) |>
+  fmt_number(7, decimals = 2) |>
+  sub_missing(missing_text = "")
+```
+
+```{r}
+#| label: tbl-refit-perf
+#| tbl-cap: "Performance of the refit baseline. Optimism is reported and not subtracted."
+read.csv("output/baseline_refit_performance.csv") |>
+  transmute(Metric = metric, Apparent = apparent, Optimism = optimism, Corrected = corrected) |>
+  gt() |>
+  fmt_number(2:4, decimals = 4)
+```
+
+The refit is calibrated in the large by construction, and the optimism is small: aROC falls from 0.858 to 0.853 and the
+calibration slope is 0.97. The published equation is kept as a sensitivity analysis, described in the rest of this
+page.
+
+## The published equation (sensitivity analysis)
+
+This is the Stanzani et al. (2019) equation. Until decision D10 it was the fixed clinical block.
 
 $$
 \operatorname{logit}(p) = -5.45 + 0.68\,\text{malignancy} + 0.79\,\text{chemo} + 0.80\,\text{steroids}
