@@ -430,6 +430,13 @@ equation, which becomes a sensitivity analysis. aROC is 0.858 apparent and 0.853
 to 0.00566) and **+0.00160 at 20%**, against +0.00404 and +0.00113 under the published equation. Aim 2 becomes estimating the
 baseline and comparing it with the published equation. See `phase3_decisions.md` addendum 6 and `status.md`.
 
+**Update, 18 October 2026 — PTX3 defined and the evidence mapping started (D11, addendum 7).** `h2` is the PTX3 chromosome class
+carrying A at rs2305619 (A-C-A, A-A-A, A-A-G; 48.2% in gnomAD NFE); h1 is G-A-G; rs1840680 A is the same class and rs3816527 C
+marks only A-C-A. Each study's contrast is converted to a per-copy h2 effect by solving a haplotype model, one effect is taken per
+study, and the effects are pooled with a Bayesian random-effects model. Provisional PTX3 result from five studies: OR 1.35 per
+h2 copy (90% interval 0.99 to 1.81), tau 0.17. The rows are unverified and most mapping rules and the priors are proposals open
+to change. See `phase3_decisions.md` addendum 7 and `status.md`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

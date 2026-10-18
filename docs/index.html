@@ -152,6 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Decision curves</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./mapping.html"> 
+<span class="menu-text">Evidence mapping</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./decisions.html"> 
 <span class="menu-text">Pre-specified decisions</span></a>
   </li>  
@@ -305,14 +309,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified</td>
 </tr>
 <tr class="even">
+<td><a href="./mapping.html">Evidence mapping</a></td>
+<td>How extracted studies become model parameters: the PTX3 h2 definition, the conversion to one scale, and the provisional pooled effect</td>
+</tr>
+<tr class="odd">
 <td><a href="./decision-curves.html">Decision curves</a></td>
 <td>Exact net benefit for the baseline model across thresholds 1 to 30%, and the re-derived MCID</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="./decisions.html">Pre-specified decisions</a></td>
 <td>The record of design decisions, written before any genetic result</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="./status.html">Status log</a></td>
 <td>The full working status document</td>
 </tr>
@@ -827,12 +835,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Evidence base</span><span class="co">](evidence.qmd)</span> <span class="pp">|</span> What the literature search and extraction produced, and how much of it can be pooled <span class="pp">|</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Genetic panel</span><span class="co">](panel.qmd)</span> <span class="pp">|</span> The four haplotype terms, linkage structure, allele frequencies, and the haplotype phase check <span class="pp">|</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Baseline model</span><span class="co">](baseline.qmd)</span> <span class="pp">|</span> The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified <span class="pp">|</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Decision curves</span><span class="co">](decision-curves.qmd)</span> <span class="pp">|</span> Exact net benefit for the baseline model across thresholds 1 to 30%, and the re-derived MCID <span class="pp">|</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Pre-specified decisions</span><span class="co">](decisions.qmd)</span> <span class="pp">|</span> The record of design decisions, written before any genetic result <span class="pp">|</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Status log</span><span class="co">](status.qmd)</span> <span class="pp">|</span> The full working status document <span class="pp">|</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Source code, data and tests are in the</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/Russlewisbo/PROSE)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Evidence mapping</span><span class="co">](mapping.qmd)</span> <span class="pp">|</span> How extracted studies become model parameters: the PTX3 h2 definition, the conversion to one scale, and the provisional pooled effect <span class="pp">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Decision curves</span><span class="co">](decision-curves.qmd)</span> <span class="pp">|</span> Exact net benefit for the baseline model across thresholds 1 to 30%, and the re-derived MCID <span class="pp">|</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Pre-specified decisions</span><span class="co">](decisions.qmd)</span> <span class="pp">|</span> The record of design decisions, written before any genetic result <span class="pp">|</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> <span class="co">[</span><span class="ot">Status log</span><span class="co">](status.qmd)</span> <span class="pp">|</span> The full working status document <span class="pp">|</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Source code, data and tests are in the</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/Russlewisbo/PROSE)</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

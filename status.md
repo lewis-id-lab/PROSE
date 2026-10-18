@@ -41,7 +41,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 91 tests, 451 expectations, all passing at the last run
+source("tests/run_tests.R")     # 113 tests, 586 expectations, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -62,6 +62,7 @@ scripts, run them from the project root, in this order:
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
 | `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
 | `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
+| `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
 | `scripts/11_refit_baseline.R` | refits the baseline on the base cohort, with robust SE, patient bootstrap, optimism and the MCID; writes the fixed baseline parameters | about 1 min |
 | `scripts/10_outcome_risk_sensitivity.R` | MCID under four readings of the outcome risk (published, refit, refit rule, observed), refit repeated inside a patient bootstrap | about 40 s |
 | `scripts/07_empirical_baseline.R` | baseline decision curve and MCID on the empirical cohort, with bootstrap intervals and the comparison with the copula | under 1 min |
@@ -244,6 +245,16 @@ useful as a rough external check on the baseline model, but only after the outco
 equation over-predicts here (3.6% against 1.5%) and discriminates less well. `haven` reads it; it is not in
 `renv.lock` because no script uses it yet.
 
+### PTX3 evidence mapping (pilot, addendum 7; provisional)
+
+`h2` is the chromosome class carrying A at rs2305619 (A-C-A, A-A-A, A-A-G: 45.6% in 1000G EUR, 48.2% gnomAD NFE); h1 is
+G-A-G. rs1840680 A is the same class; rs3816527 C marks only A-C-A. `scripts/12_map_ptx3_evidence.R` maps each study's contrast
+to a per-copy h2 effect by solving a haplotype model, picks one effect per study, and pools with a Bayesian random-effects
+model. Primary result: log OR 0.300 per h2 copy (90% interval -0.010 to 0.591), OR 1.35 (0.99 to 1.81), five studies, tau 0.17.
+Of 162 usable PTX3 rows, 104 map. The rows are unverified (round 2 pending), Herrero-Sanchez 2018 points the other way, and the
+priors and most mapping rules are proposals open to change (the table in addendum 7 says which). Donor genotype (Fisher 2017)
+gives 1.24 per copy and is described, not pooled.
+
 ### Haplotypes
 
 Derived from phased 1000G EUR (503 samples, 1,006 chromosomes) and rescaled to gnomAD NFE margins. The PTX3 trio
@@ -260,7 +271,7 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
    strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
    reported allele's control frequency with gnomAD (G 0.43, C 0.57) in European cohorts.
-4. **Evidence-to-parameter mapping:** one effect per study per term, as a log odds ratio per risk allele
+4. **Evidence-to-parameter mapping (started; PTX3 pilot done, addendum 7):** repeat the PTX3 pipeline for CLEC7A, TLR4, CD209, IL10 and IFNG. The PTX3 h2 definition is settled (D11) and the pooled per-copy effect is a provisional OR of 1.35 (0.99 to 1.81). The original plan: one effect per study per term, as a log odds ratio per risk allele
    with nucleotide-pinned alleles; collapse overlapping cohorts (Spanish registry, Jena AML); map SNP effects to
    haplotype effects; Bayesian random-effects pooling with prediction intervals.
 5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient) and the refit baseline (`load_refit_params()`). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the

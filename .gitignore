@@ -17,3 +17,6 @@
 
 # Pseudonymised extracts are still personal data
 data/restricted/
+
+# Quarto intermediates
+*.knit.md

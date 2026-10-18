@@ -48,6 +48,7 @@ clinical predictors is a fitted modelling assumption, not published data. No gen
 | [Evidence base](evidence.qmd) | What the literature search and extraction produced, and how much of it can be pooled |
 | [Genetic panel](panel.qmd) | The four haplotype terms, linkage structure, allele frequencies, and the haplotype phase check |
 | [Baseline model](baseline.qmd) | The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified |
+| [Evidence mapping](mapping.qmd) | How extracted studies become model parameters: the PTX3 h2 definition, the conversion to one scale, and the provisional pooled effect |
 | [Decision curves](decision-curves.qmd) | Exact net benefit for the baseline model across thresholds 1 to 30%, and the re-derived MCID |
 | [Pre-specified decisions](decisions.qmd) | The record of design decisions, written before any genetic result |
 | [Status log](status.qmd) | The full working status document |

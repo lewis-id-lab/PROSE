@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Decision curves</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./mapping.html"> 
+<span class="menu-text">Evidence mapping</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link active" href="./decisions.html" aria-current="page"> 
 <span class="menu-text">Pre-specified decisions</span></a>
   </li>  
@@ -199,6 +203,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10" id="toc-addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10" class="nav-link" data-scroll-target="#addendum-6-18-october-2026-the-baseline-model-is-refit-on-the-base-cohort-d10">Addendum 6, 18 October 2026: the baseline model is refit on the base cohort (D10)</a>
   <ul class="collapse">
   <li><a href="#d10.-the-baseline-model-settled" id="toc-d10.-the-baseline-model-settled" class="nav-link" data-scroll-target="#d10.-the-baseline-model-settled">D10. The baseline model: settled</a></li>
+  </ul></li>
+  <li><a href="#addendum-7-18-october-2026-ptx3-h2-defined-and-the-evidence-to-parameter-mapping-started-d11" id="toc-addendum-7-18-october-2026-ptx3-h2-defined-and-the-evidence-to-parameter-mapping-started-d11" class="nav-link" data-scroll-target="#addendum-7-18-october-2026-ptx3-h2-defined-and-the-evidence-to-parameter-mapping-started-d11">Addendum 7, 18 October 2026: PTX3 h2 defined, and the evidence-to-parameter mapping started (D11)</a>
+  <ul class="collapse">
+  <li><a href="#d11.-the-ptx3-term-and-what-h2-means-settled" id="toc-d11.-the-ptx3-term-and-what-h2-means-settled" class="nav-link" data-scroll-target="#d11.-the-ptx3-term-and-what-h2-means-settled">D11. The PTX3 term, and what “h2” means: settled</a></li>
+  <li><a href="#the-mapping-rules" id="toc-the-mapping-rules" class="nav-link" data-scroll-target="#the-mapping-rules">The mapping rules</a></li>
+  <li><a href="#pilot-results-ptx3-provisional" id="toc-pilot-results-ptx3-provisional" class="nav-link" data-scroll-target="#pilot-results-ptx3-provisional">Pilot results (PTX3, provisional)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -1050,6 +1060,205 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Code and outputs: <code>scripts/11_refit_baseline.R</code>, <code>R/refit_baseline.R</code>, <code>output/baseline_refit_parameters.csv</code>, <code>output/baseline_refit_performance.csv</code>, <code>output/dca_baseline_refit_summary.csv</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-7-18-october-2026-ptx3-h2-defined-and-the-evidence-to-parameter-mapping-started-d11" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-7-18-october-2026-ptx3-h2-defined-and-the-evidence-to-parameter-mapping-started-d11">Addendum 7, 18 October 2026: PTX3 h2 defined, and the evidence-to-parameter mapping started (D11)</h2>
+<p>Written after the tag. No genetic-layer result exists. Nothing in D1 to D10 changes. This settles the meaning of “h2” that addendum 2 left open, and records the rules for turning extracted evidence into model parameters, with PTX3 as the pilot.</p>
+<section id="d11.-the-ptx3-term-and-what-h2-means-settled" class="level3">
+<h3 class="anchored" data-anchor-id="d11.-the-ptx3-term-and-what-h2-means-settled">D11. The PTX3 term, and what “h2” means: settled</h3>
+<ul>
+<li><strong>h2 is the chromosome class that carries the A allele at rs2305619</strong> (forward strand). In the phased 1000G EUR data that is A-C-A (39.8%), A-A-A (5.8%) and A-A-G (0.1%), 45.6% in all; rescaled to gnomAD NFE it is 48.2%. <strong>h1 is G-A-G</strong> (54.4%, or 51.8% rescaled). The model term is an additive per-copy effect of h2 in the recipient: dosage 0, 1 or 2, on the log-odds scale. The single A-A-G chromosome goes to h2 by the rs2305619 rule.</li>
+<li><strong>rs1840680 A marks the same class</strong> (r2 = 0.996), so it is an interchangeable tag. The h2 dosage is the number of A alleles at either SNP.</li>
+<li><strong>rs3816527 C is not interchangeable.</strong> It marks only A-C-A, about 87% of h2. Evidence reported on rs3816527 is mapped to h2 through the haplotype structure, which attenuates a per-copy effect by about 12% at a log OR of 0.8, and is used as a cross-check, not as primary evidence.</li>
+<li>A three-haplotype term that separates A-C-A from A-A-A is a sensitivity analysis. It has not been run.</li>
+</ul>
+</section>
+<section id="the-mapping-rules" class="level3">
+<h3 class="anchored" data-anchor-id="the-mapping-rules">The mapping rules</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>rule</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>The target is the log OR per h2 copy, recipient genotype</td>
+<td>settled earlier (D1, D2)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Every study contrast (dominant, recessive, allelic, counts) is converted to that one scale by solving a haplotype model: additive on the log-odds per h2 copy, Hardy-Weinberg haplotype pairs, case-control sampling. Standard errors by the delta method</td>
+<td>proposed</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>The contrast is read from the comparison text, including which side is the reference. If the text cannot be read, the model label is used and flagged</td>
+<td>proposed</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Primary evidence is recipient genotype, on the odds-ratio scale (counts are converted), from whole-cohort analyses. Herrero-Sanchez 2018 is excluded (D3b). Donor genotype is the secondary analysis (D1), described and not pooled. Hazard ratios are excluded from the primary analysis</td>
+<td>D3b and D1 earlier; HR rule proposed</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>One effect per study, from rs2305619 and then rs1840680; within a SNP the best of counts (additive trend), allelic, dominant, recessive, other. A study with several independent cohorts is combined by fixed-effect inverse variance</td>
+<td>proposed</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Pooling is Bayesian random effects: mu ~ N(0, 1), tau ~ half-normal(0.5), on a grid, with a 90% credible interval and a prediction interval</td>
+<td>proposed</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Haplotype frequencies are the gnomAD NFE rescaled ones for every cohort, including non-European ones</td>
+<td>proposed, a limitation</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>The extraction is round 1 and unverified, so every number below is provisional</td>
+<td>fact</td>
+</tr>
+</tbody>
+</table>
+<p>Rules 2 to 7 are my proposals and are open to change before the genetic layer uses them.</p>
+</section>
+<section id="pilot-results-ptx3-provisional" class="level3">
+<h3 class="anchored" data-anchor-id="pilot-results-ptx3-provisional">Pilot results (PTX3, provisional)</h3>
+<p>Of 162 usable PTX3 rows, 104 map to a per-copy h2 effect. The others are 39 three-group genotype comparisons, 18 heterozygote-only contrasts (no single effect explains them) and 1 estimate that lies outside its own interval.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>study</th>
+<th>evidence used</th>
+<th>log OR as reported</th>
+<th>per-copy h2 effect (SE)</th>
+<th>OR per h2 copy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tang 2020 (S026)</td>
+<td>dominant estimate</td>
+<td>0.495</td>
+<td>0.364 (0.265)</td>
+<td>1.44</td>
+</tr>
+<tr class="even">
+<td>Brunel 2018 (S029)</td>
+<td>2x2 counts, homozygotes; allele inferred as the minor allele</td>
+<td>0.803</td>
+<td>0.625 (0.353)</td>
+<td>1.87</td>
+</tr>
+<tr class="odd">
+<td>Schnetzke 2024 (S045)</td>
+<td>two cohorts combined (they disagree, Q = 5.5)</td>
+<td>0.049</td>
+<td>0.441 (0.257)</td>
+<td>1.55</td>
+</tr>
+<tr class="even">
+<td>Kalkanci 2020 (S056)</td>
+<td>2x3 counts, additive trend</td>
+<td>0.046</td>
+<td>-0.046 (0.342)</td>
+<td>0.96</td>
+</tr>
+<tr class="odd">
+<td>Tanpaibule 2020 (S077)</td>
+<td>dominant estimate, G carriers against A/A</td>
+<td>0.226</td>
+<td>-0.165 (0.569)</td>
+<td>0.85</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>studies</th>
+<th>log OR per h2 copy (90% interval)</th>
+<th>OR</th>
+<th>tau</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>primary</strong></td>
+<td>5</td>
+<td><strong>0.300</strong> (-0.010 to 0.591)</td>
+<td><strong>1.35</strong> (0.99 to 1.81)</td>
+<td>0.17 (0.01 to 0.56)</td>
+</tr>
+<tr class="even">
+<td>with Herrero-Sanchez 2018</td>
+<td>6</td>
+<td>0.141 (-0.166 to 0.442)</td>
+<td>1.15 (0.85 to 1.56)</td>
+<td>0.30</td>
+</tr>
+<tr class="odd">
+<td>European-ancestry cohorts only</td>
+<td>3</td>
+<td>0.335 (-0.099 to 0.758)</td>
+<td>1.40 (0.91 to 2.13)</td>
+<td>0.24</td>
+</tr>
+<tr class="even">
+<td>rs3816527 as the tag SNP</td>
+<td>4</td>
+<td>0.363 (0.006 to 0.727)</td>
+<td>1.44 (1.01 to 2.07)</td>
+<td>0.20</td>
+</tr>
+<tr class="odd">
+<td>with hazard-ratio studies</td>
+<td>5</td>
+<td>0.304 (-0.004 to 0.599)</td>
+<td>1.36 (1.00 to 1.82)</td>
+<td>0.17</td>
+</tr>
+</tbody>
+</table>
+<p>The primary prediction interval for a new study’s per-copy effect is an OR of 0.81 to 2.21, and the probability that the pooled effect is below zero is 5.5%.</p>
+<ul>
+<li><strong>The evidence is weak.</strong> The primary interval just reaches 1. Two of five studies are near null.</li>
+<li><strong>Herrero-Sanchez 2018 points the other way</strong> (-0.43 per copy) and raises the heterogeneity (tau 0.17 to 0.30). Its direction should be checked against the source in round 2.</li>
+<li><strong>Mapping through rs3816527 agrees</strong> with the h2 tag SNP within 0.15 for every study, which supports the h2 definition.</li>
+<li><strong>The donor-genotype evidence</strong> (Fisher 2017, one study, allo-HSCT, hazard ratio) gives 1.24 per h2 copy (SE 0.08 on the log scale). It is the largest study and secondary by D1, so it is described and not pooled.</li>
+<li><strong>Limits:</strong> the rows are unverified, Brunel’s allele is inferred, the Chinese and Thai cohorts use European haplotype frequencies, there are only five studies, and the priors on mu and tau are mine. The 2x3 additive trend is mapped as an allelic effect, an approximation.</li>
+</ul>
+<p>The draws of (mu, tau) from the primary analysis are in <code>output/ptx3_h2_posterior_draws.csv</code>, for the genetic layer.</p>
+<p><strong>Next.</strong> Repeat for CLEC7A, TLR4, CD209, and the optional IL10 and IFNG terms. Verify the PTX3 rows in round 2, starting with Herrero-Sanchez and Brunel. Decide how donor evidence should inform the allo-HSCT stratum.</p>
+<p>Code and outputs: <code>R/evidence_mapping.R</code>, <code>R/ptx3_evidence.R</code>, <code>scripts/12_map_ptx3_evidence.R</code>, <code>output/ptx3_row_effects.csv</code>, <code>output/ptx3_study_effects.csv</code>, <code>output/ptx3_h2_pooled.csv</code>, <code>output/ptx3_snp_crosscheck.csv</code>, <code>output/ptx3_donor_effects.csv</code>, <code>output/ptx3_h2_posterior_draws.csv</code>.</p>
 
 
 <!-- -->

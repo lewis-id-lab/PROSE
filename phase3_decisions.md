@@ -518,3 +518,81 @@ small.
 
 Code and outputs: `scripts/11_refit_baseline.R`, `R/refit_baseline.R`, `output/baseline_refit_parameters.csv`,
 `output/baseline_refit_performance.csv`, `output/dca_baseline_refit_summary.csv`.
+
+---
+
+## Addendum 7, 18 October 2026: PTX3 h2 defined, and the evidence-to-parameter mapping started (D11)
+
+Written after the tag. No genetic-layer result exists. Nothing in D1 to D10 changes. This settles the meaning of "h2" that
+addendum 2 left open, and records the rules for turning extracted evidence into model parameters, with PTX3 as the pilot.
+
+### D11. The PTX3 term, and what "h2" means: settled
+
+- **h2 is the chromosome class that carries the A allele at rs2305619** (forward strand). In the phased 1000G EUR data
+  that is A-C-A (39.8%), A-A-A (5.8%) and A-A-G (0.1%), 45.6% in all; rescaled to gnomAD NFE it is 48.2%. **h1 is G-A-G**
+  (54.4%, or 51.8% rescaled). The model term is an additive per-copy effect of h2 in the recipient: dosage 0, 1 or 2, on
+  the log-odds scale. The single A-A-G chromosome goes to h2 by the rs2305619 rule.
+- **rs1840680 A marks the same class** (r2 = 0.996), so it is an interchangeable tag. The h2 dosage is the number of A
+  alleles at either SNP.
+- **rs3816527 C is not interchangeable.** It marks only A-C-A, about 87% of h2. Evidence reported on rs3816527 is mapped
+  to h2 through the haplotype structure, which attenuates a per-copy effect by about 12% at a log OR of 0.8, and is used
+  as a cross-check, not as primary evidence.
+- A three-haplotype term that separates A-C-A from A-A-A is a sensitivity analysis. It has not been run.
+
+### The mapping rules
+
+| # | rule | status |
+|---|---|---|
+| 1 | The target is the log OR per h2 copy, recipient genotype | settled earlier (D1, D2) |
+| 2 | Every study contrast (dominant, recessive, allelic, counts) is converted to that one scale by solving a haplotype model: additive on the log-odds per h2 copy, Hardy-Weinberg haplotype pairs, case-control sampling. Standard errors by the delta method | proposed |
+| 3 | The contrast is read from the comparison text, including which side is the reference. If the text cannot be read, the model label is used and flagged | proposed |
+| 4 | Primary evidence is recipient genotype, on the odds-ratio scale (counts are converted), from whole-cohort analyses. Herrero-Sanchez 2018 is excluded (D3b). Donor genotype is the secondary analysis (D1), described and not pooled. Hazard ratios are excluded from the primary analysis | D3b and D1 earlier; HR rule proposed |
+| 5 | One effect per study, from rs2305619 and then rs1840680; within a SNP the best of counts (additive trend), allelic, dominant, recessive, other. A study with several independent cohorts is combined by fixed-effect inverse variance | proposed |
+| 6 | Pooling is Bayesian random effects: mu ~ N(0, 1), tau ~ half-normal(0.5), on a grid, with a 90% credible interval and a prediction interval | proposed |
+| 7 | Haplotype frequencies are the gnomAD NFE rescaled ones for every cohort, including non-European ones | proposed, a limitation |
+| 8 | The extraction is round 1 and unverified, so every number below is provisional | fact |
+
+Rules 2 to 7 are my proposals and are open to change before the genetic layer uses them.
+
+### Pilot results (PTX3, provisional)
+
+Of 162 usable PTX3 rows, 104 map to a per-copy h2 effect. The others are 39 three-group genotype comparisons, 18
+heterozygote-only contrasts (no single effect explains them) and 1 estimate that lies outside its own interval.
+
+| study | evidence used | log OR as reported | per-copy h2 effect (SE) | OR per h2 copy |
+|---|---|---|---|---|
+| Tang 2020 (S026) | dominant estimate | 0.495 | 0.364 (0.265) | 1.44 |
+| Brunel 2018 (S029) | 2x2 counts, homozygotes; allele inferred as the minor allele | 0.803 | 0.625 (0.353) | 1.87 |
+| Schnetzke 2024 (S045) | two cohorts combined (they disagree, Q = 5.5) | 0.049 | 0.441 (0.257) | 1.55 |
+| Kalkanci 2020 (S056) | 2x3 counts, additive trend | 0.046 | -0.046 (0.342) | 0.96 |
+| Tanpaibule 2020 (S077) | dominant estimate, G carriers against A/A | 0.226 | -0.165 (0.569) | 0.85 |
+
+| analysis | studies | log OR per h2 copy (90% interval) | OR | tau |
+|---|---|---|---|---|
+| **primary** | 5 | **0.300** (-0.010 to 0.591) | **1.35** (0.99 to 1.81) | 0.17 (0.01 to 0.56) |
+| with Herrero-Sanchez 2018 | 6 | 0.141 (-0.166 to 0.442) | 1.15 (0.85 to 1.56) | 0.30 |
+| European-ancestry cohorts only | 3 | 0.335 (-0.099 to 0.758) | 1.40 (0.91 to 2.13) | 0.24 |
+| rs3816527 as the tag SNP | 4 | 0.363 (0.006 to 0.727) | 1.44 (1.01 to 2.07) | 0.20 |
+| with hazard-ratio studies | 5 | 0.304 (-0.004 to 0.599) | 1.36 (1.00 to 1.82) | 0.17 |
+
+The primary prediction interval for a new study's per-copy effect is an OR of 0.81 to 2.21, and the probability that the
+pooled effect is below zero is 5.5%.
+
+- **The evidence is weak.** The primary interval just reaches 1. Two of five studies are near null.
+- **Herrero-Sanchez 2018 points the other way** (-0.43 per copy) and raises the heterogeneity (tau 0.17 to 0.30). Its
+  direction should be checked against the source in round 2.
+- **Mapping through rs3816527 agrees** with the h2 tag SNP within 0.15 for every study, which supports the h2 definition.
+- **The donor-genotype evidence** (Fisher 2017, one study, allo-HSCT, hazard ratio) gives 1.24 per h2 copy (SE 0.08 on the
+  log scale). It is the largest study and secondary by D1, so it is described and not pooled.
+- **Limits:** the rows are unverified, Brunel's allele is inferred, the Chinese and Thai cohorts use European haplotype
+  frequencies, there are only five studies, and the priors on mu and tau are mine. The 2x3 additive trend is mapped as
+  an allelic effect, an approximation.
+
+The draws of (mu, tau) from the primary analysis are in `output/ptx3_h2_posterior_draws.csv`, for the genetic layer.
+
+**Next.** Repeat for CLEC7A, TLR4, CD209, and the optional IL10 and IFNG terms. Verify the PTX3 rows in round 2, starting
+with Herrero-Sanchez and Brunel. Decide how donor evidence should inform the allo-HSCT stratum.
+
+Code and outputs: `R/evidence_mapping.R`, `R/ptx3_evidence.R`, `scripts/12_map_ptx3_evidence.R`,
+`output/ptx3_row_effects.csv`, `output/ptx3_study_effects.csv`, `output/ptx3_h2_pooled.csv`, `output/ptx3_snp_crosscheck.csv`,
+`output/ptx3_donor_effects.csv`, `output/ptx3_h2_posterior_draws.csv`.

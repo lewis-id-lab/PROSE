@@ -1,0 +1,130 @@
+---
+title: "Evidence mapping"
+subtitle: "From extracted studies to model parameters: the PTX3 pilot"
+date: today
+---
+
+```{r}
+#| label: setup
+source("_setup.R")
+studies <- read.csv("output/ptx3_study_effects.csv")
+pooled  <- read.csv("output/ptx3_h2_pooled.csv")
+cross   <- read.csv("output/ptx3_snp_crosscheck.csv")
+donor   <- read.csv("output/ptx3_donor_effects.csv")
+```
+
+::: {.callout-warning}
+## Provisional
+
+The extraction rows are round 1 and have **not** been verified against their sources. Most mapping rules and the priors are
+proposals, set out in addendum 7 of the decision record. Treat every number on this page as provisional.
+:::
+
+## What "h2" means
+
+PTX3 has three loci in strong linkage (rs2305619, rs3816527, rs1840680). In the phased 1000 Genomes European data the common
+haplotypes are G-A-G (54%), A-C-A (40%) and A-A-A (6%), with alleles in that locus order.
+
+- **h2 is the chromosome class that carries the A allele at rs2305619**: A-C-A, A-A-A and the very rare A-A-G, 45.6% in
+  1000G EUR and 48.2% in gnomAD NFE. **h1 is G-A-G.** The model term is an additive per-copy effect of h2 in the recipient.
+- **rs1840680 A is the same class** (r² = 0.996), so it is an interchangeable tag.
+- **rs3816527 C is not interchangeable.** It marks only A-C-A, about 87% of h2, so evidence reported on it is mapped to h2
+  through the haplotype structure and used as a cross-check.
+
+## How each study is converted
+
+Studies report PTX3 in different ways: dominant or recessive contrasts, allelic odds ratios, or genotype counts, with the
+contrast sometimes written in both directions. Each one is converted to a single scale, the log odds ratio per h2 copy, by
+finding the effect that a haplotype model would need to produce the study's contrast. The model is additive on the log-odds
+scale, uses Hardy-Weinberg haplotype pairs and case-control sampling, and the standard error follows by the delta method.
+The direction of each contrast is read from the comparison text, including which side is the reference.
+
+## One effect per study
+
+```{r}
+#| label: tbl-studies
+#| tbl-cap: "Primary analysis: recipient genotype, odds-ratio scale, whole-cohort analyses, without Herrero-Sanchez 2018."
+studies |>
+  transmute(Study = paste0(sub(",.*", "", first_author), " ", year), `Evidence used` = paste(tier, model, sep = ", "),
+            `Log OR as reported` = y, `Per-copy h2 effect` = beta, SE = se_beta, `OR per h2 copy` = or_per_h2_copy,
+            Note = flag) |>
+  gt() |>
+  fmt_number(c(`Log OR as reported`, `Per-copy h2 effect`, SE, `OR per h2 copy`), decimals = 2)
+```
+
+```{r}
+#| label: fig-forest
+#| fig-cap: "Per-copy h2 effect for each study (90% interval) and the pooled estimate with its 90% credible interval."
+#| fig-height: 3.5
+pr <- pooled[1, ]
+d <- bind_rows(
+  studies |> transmute(label = paste0(sub(",.*", "", first_author), " ", year), est = beta, lo = beta - 1.645 * se_beta, hi = beta + 1.645 * se_beta, kind = "Study"),
+  tibble(label = "Pooled (primary)", est = pr$mu, lo = pr$mu_lo, hi = pr$mu_hi, kind = "Pooled")
+)
+d$label <- factor(d$label, levels = rev(d$label))
+ggplot(d, aes(est, label, shape = kind)) +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
+  geom_pointrange(aes(xmin = lo, xmax = hi)) +
+  scale_shape_manual(values = c(Study = 16, Pooled = 18)) +
+  labs(x = "Log odds ratio per h2 copy", y = NULL, shape = NULL) +
+  theme(legend.position = "none")
+```
+
+## Pooled effect
+
+```{r}
+#| label: tbl-pooled
+#| tbl-cap: "Bayesian random-effects pooling, with sensitivity analyses. mu ~ N(0, 1) and tau ~ half-normal(0.5) on the log-odds scale."
+pooled |>
+  transmute(Analysis = scenario, Studies = k, `Log OR` = mu, `5%` = mu_lo, `95%` = mu_hi, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi,
+            tau = tau, `P(effect < 0)` = prob_below_zero) |>
+  gt() |>
+  fmt_number(c(`Log OR`, `5%`, `95%`, OR, `OR 5%`, `OR 95%`, tau), decimals = 2) |>
+  fmt_percent(`P(effect < 0)`, decimals = 0)
+```
+
+The primary estimate is an odds ratio of `r sprintf("%.2f", pooled$or[1])` per h2 copy, with a 90% interval of
+`r sprintf("%.2f", pooled$or_lo[1])` to `r sprintf("%.2f", pooled$or_hi[1])`. The interval just reaches 1, and the prediction
+interval for a new study is wide (an odds ratio of `r sprintf("%.2f", exp(pooled$pred_lo[1]))` to `r sprintf("%.2f", exp(pooled$pred_hi[1]))`),
+so the evidence is weak. Adding Herrero-Sanchez 2018, which points the other way, pulls the estimate towards 1 and raises the
+heterogeneity.
+
+## Does the h2 definition hold?
+
+If h2 explains the signal, mapping a study through rs3816527 instead of the h2 tag SNP should give about the same per-copy
+effect.
+
+```{r}
+#| label: tbl-cross
+#| tbl-cap: "The same study mapped through the h2 tag SNP and through rs3816527."
+cross |>
+  transmute(Study = study_id, `Through the h2 tag SNP` = beta_tag, `Through rs3816527` = beta_rs3816527, Difference = difference) |>
+  gt() |>
+  fmt_number(2:4, decimals = 2)
+```
+
+The two agree to within about 0.15 for every study, which supports defining h2 by the rs2305619 and rs1840680 A alleles.
+
+## Donor genotype
+
+Donor genotype is the pre-specified secondary analysis (allogeneic HSCT only). Only one study reports it, so it is described
+and not pooled.
+
+```{r}
+#| label: tbl-donor
+#| tbl-cap: "Donor-genotype evidence, mapped to a per-copy h2 effect."
+donor |>
+  transmute(Study = paste0(sub(",.*", "", first_author), " ", year), Evidence = paste(tier, model, measure, sep = ", "),
+            `Per-copy h2 effect` = beta, SE = se_beta, `OR per h2 copy` = or_per_h2_copy) |>
+  gt() |>
+  fmt_number(3:5, decimals = 2)
+```
+
+## Limits
+
+- The rows are unverified (round 2 is pending). Herrero-Sanchez 2018 and Brunel 2018 should be checked first.
+- Brunel 2018 states "the minor allele", so its effect allele is inferred from European frequencies.
+- The Chinese and Thai cohorts use European haplotype frequencies.
+- Five studies is few. The priors on the pooled effect and on tau are proposals.
+- Of 162 usable PTX3 rows, 104 map: 39 are three-group comparisons, 18 are heterozygote-only contrasts and 1 has an
+  estimate outside its own interval.

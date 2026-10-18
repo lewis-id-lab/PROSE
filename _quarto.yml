@@ -7,6 +7,7 @@ project:
     - panel.qmd
     - baseline.qmd
     - decision-curves.qmd
+    - mapping.qmd
     - decisions.qmd
     - status.qmd
   resources:
@@ -35,6 +36,8 @@ website:
         text: Baseline model
       - href: decision-curves.qmd
         text: Decision curves
+      - href: mapping.qmd
+        text: Evidence mapping
       - href: decisions.qmd
         text: Pre-specified decisions
       - href: status.qmd

@@ -1,0 +1,2 @@
+"study_id","first_author","year","rsid","tier","model","measure","method","y","se","beta","se_beta","or_per_h2_copy","flag"
+"S080","Fisher, Cynthia E.",2017,"rs2305619","estimate","recessive","HR","estimate, model_label",0.285178942233662,0.104215829682942,0.21512674513871,0.0800228014622462,1.24001905339337,"contrast taken from the model label"
