@@ -1504,3 +1504,94 @@ The realised-score version of the Aim 4 sweep and the pathogen-specificity scena
 
 Code and outputs: `R/aim4_sweep.R`, `scripts/23_aim4_sweep.R`, `scripts/22_clec7a_second_parameter.R`, `scripts/20_genetic_donor_stratum.R`, `data/extraction_corrections.csv` (12 new rows for S073), `R/genetic_layer.R` (`haplotype_gene_part`, `joint_grid`, `allo_stratum_smooth`), `R/evidence_mapping.R` (offset haplotypes),
 `data/rs7309123_strand_resolution.csv`, `output/clec7a_second_*.csv`, `output/aim4_*.csv`, `output/figures/aim4_sweep_*.png`, `output/genetic_donor_*.csv` (a `smoothed` stratum), and the tests.
+
+---
+
+## Addendum 17, 19 October 2026: Aim 3b and the attribution with the second CLEC7A parameter, and the Aim 4 sweep with a realised score (D21)
+
+Written after the tag. Provisional, like addenda 11 to 16, and conditional on the second CLEC7A parameter of addendum 16 (OR 1.8 per A-G copy, from two strand-resolved European studies). The primary four-term results of earlier addenda are unchanged and stay the headline; this addendum shows what changes when CLEC7A is an active term.
+
+### 1. Aim 3b with five terms
+
+Same design as addendum 15 (D19): the strata, the six effect-modification scenarios, the five scores, 1,000 draws, and the interaction test in simulated studies of the cohort's size, now with PTX3, CLEC7A (Y238X), CLEC7A_AG (A-G, with the joint genotype structure of CLEC7A), TLR4 and CD209. The modification applies to every term in the same way (an assumption: Brunel's pattern is PTX3's). Outputs: `output/aim3b_*_second_clec7a.csv`
+(`scripts/21_aim3b_neutropenia.R` with `AIM3B_SECOND_CLEC7A <- TRUE`; the default run reproduces addendum 15 exactly).
+
+Whole-cohort gain over the baseline, pooled-mean reading, median (four terms, five terms); the last column is the share of worlds in which the ceiling score reaches the whole-cohort MCID (five terms):
+
+| truth | threshold | ceiling | common | ceiling reaches the MCID |
+|---|---|---|---|---|
+| all in neutropenic | 5% | +0.00081, +0.00156 | +0.00047, +0.00109 | 0.3% |
+| ratio 4 | 5% | +0.00072, +0.00140 | +0.00045, +0.00104 | 0.2% |
+| homogeneous | 5% | +0.00059, +0.00118 | +0.00043, +0.00095 | 0.1% |
+| ratio 1/4 | 5% | +0.00117, +0.00204 | +0.00045, +0.00078 | 1.4% |
+| all in non-neutropenic | 5% | +0.00356, +0.00438 | +0.00033, +0.00002 | 40% |
+| Brunel's stratum effects | 5% | +0.00049, +0.00092 | -0.00016, -0.00087 | 0% |
+| all in neutropenic | 20% | +0.00151, +0.00260 | +0.00106, +0.00195 | 84% |
+| ratio 4 | 20% | +0.00135, +0.00232 | +0.00099, +0.00181 | 78% |
+| homogeneous | 20% | +0.00106, +0.00180 | +0.00082, +0.00147 | 60% |
+| ratio 1/4 | 20% | +0.00083, +0.00142 | +0.00043, +0.00066 | 38% |
+| all in non-neutropenic | 20% | +0.00195, +0.00257 | -0.00030, -0.00083 | 83% |
+| Brunel's stratum effects | 20% | +0.00023, +0.00044 | -0.00055, -0.00128 | 0.3% |
+
+- **The gain roughly doubles in every scenario**, as it does in the unstratified layer (addendum 16), and at 20% the ceiling score reaches the MCID in a majority of worlds in four of the six scenarios (it did in one). At 5% the MCID is still out of reach except when all the effect is in non-neutropenic admissions (40%).
+- **The structure of addendum 15 is unchanged.** With homogeneous effects the neutropenic stratum supplies 82% of the whole-cohort gain at 5% and 95% at 20% (81% and 96% before), and its gain per admission is +0.00344 (4.1 extra true cases per 1,000) against +0.00028.
+- **The common score is more exposed.** When the effect is in the wrong place it now does worse: with Brunel's stratum effects it loses -0.00087 at 5% and -0.00128 at 20% (-0.00016 and -0.00055 before), and it keeps almost none of the oracle's gain when all the effect is in non-neutropenic admissions (+0.00002 of +0.00438). The wrong-direction stratified scores are worse still, as before. A stronger weight on a term whose stratum pattern is wrong costs more.
+
+**The falsification test is better powered** (1,000 studies per row, pooled medians; four terms in brackets):
+
+| truth | true interaction | median estimate (SD) | estimate has the true sign | P < 0.05 in the true direction |
+|---|---|---|---|---|
+| all in neutropenic | +1.25 | +1.26 (0.42) | 99.8% (98%) | **88%** (59%) |
+| ratio 4 | +0.88 | +0.89 (0.42) | 98% (94%) | **59%** (34%) |
+| homogeneous | 0 | -0.03 (0.41) | | 2.6% positive, 2.5% negative (2.9%, 2.7%) |
+| ratio 1/4 | -1.86 | -1.90 (0.42) | 100% | 99.8% (95%) |
+| all in non-neutropenic | -4.93 | -5.00 (0.64) | 100% | 100% |
+| Brunel's stratum effects | -2.08 | -2.10 (0.39) | 100% | 100% (96%) |
+
+The extra term does not change the true interaction (it is defined on the score scale) but lowers the estimate's standard deviation from about 0.6 to 0.4, because a score with more signal separates the strata better. The false-positive rate stays at 5%. At the 95th-percentile effects the power is 99.8% (all in neutropenic) and 96% (ratio 4). So the answer to E5 of addendum 15 gets stronger:
+a cohort of this size would resolve the Feys reading from the Brunel reading with high probability, and would detect a Feys-sized modification more often than not, provided genotype is measured and the weights are right.
+
+### 2. The Shapley attribution with five terms
+
+Same design as addendum 12 (1,000 draws per reading, ceiling and realised scores, empirical cohort), `scripts/24_attribution_second_clec7a.R`, `output/genetic_attribution_second_clec7a_summary.csv`. Shapley values add, so the two CLEC7A terms can be combined.
+
+| term | share, ceiling, 5% | ceiling, 20% | realised, 5% | four terms (ceiling, 5%) |
+|---|---|---|---|---|
+| CLEC7A A-G (beta2) | **44.6%** | 43.1% | 46.3% | |
+| CLEC7A Y238X (beta1) | 3.9% | 3.0% | 1.2% | |
+| **CLEC7A combined** | **48.5%** | 46.1% | 47.5% | 6.7% |
+| CD209 | 28.2% | 29.2% | 32.6% | 51.7% |
+| PTX3 | 13.1% | 14.4% | 12.2% | 22.6% |
+| TLR4 | 10.3% | 10.4% | 7.7% | 19.0% |
+
+(Pooled-mean reading; under the predictive reading CLEC7A combined is 43% to 47% and CD209 26% to 35%.) **With the second parameter CLEC7A supplies close to half of the gain, almost all of it through the common A-G haplotype, and CD209 falls from half to under a third.** The total gain doubles (+0.0012 against +0.0006 at 5%). Taken alone, A-G gives +0.00041 at 5% and leaving it out of the full score costs +0.00049, against +0.00032 and +0.00027 for CD209.
+The ranking of addendum 12 ("CD209 carries about half of the gain") therefore holds only for the four-term panel. It rests on the beta2 estimate, which comes from two studies; it is stable across the strand-assumption scenarios of addendum 16 (OR 1.5 to 1.9), but it is the least mature part of the evidence.
+
+### 3. The Aim 4 sweep with a realised score
+
+**Design.** As the sweep of addendum 16, but the weights of the score are estimates: each locus's log odds ratio carries an independent, unbiased error with standard deviation sigma (its stated precision), while the truth uses the real odds ratio. The loci are fixed in advance, so there is no winner's curse. Without a small exact form for the joint distribution of the number of alleles and a score with estimated weights,
+the genotypes are simulated (2,000 per replicate, crossed with the exact profile distribution; the truth's recentring and the baseline are exact), 12 replicate discovery studies per architecture (the spread over replicates is the study-to-study variation in how good the score is). Grid: 1 to 20 loci x OR 1.2 to 3.0 (10 values) x frequency 0.1, 0.3, 0.5 x sigma 0.05, 0.10, 0.20, 0.40 (2,400 architecture-precision cells).
+`scripts/25_aim4_realised_sweep.R`, `output/aim4_realised_*.csv`.
+
+**What sigma means.** For a discovery sample of n subjects with case fraction pi, sigma = 1 / sqrt(n pi (1 - pi) 2 p (1 - p)). A balanced design at frequency 0.3 needs about 4,000, 1,000, 240 and 60 subjects for sigma 0.05, 0.10, 0.20 and 0.40. A discovery cohort the size of the Bologna one (4,078 admissions, 3.3% events) gives sigma of about **0.14** for a locus at frequency 0.3 and **0.22** at frequency 0.1. The pooled estimates of this project have standard deviations of about 0.2 to 0.4 on the log scale (PTX3 0.18, CLEC7A A-G 0.28, CD209 0.26, TLR4 0.38), so sigma 0.2 to 0.4 is the relevant range for the present evidence.
+
+**Check.** At sigma = 0 the simulation reproduces the exact ceiling of addendum 16 to 3% on average (largest absolute difference 0.0007, for large gains); entries near the frontier are good to about one locus.
+
+![Fewest loci that reach the MCID, by precision of the weights](output/figures/aim4_realised_frontier.png)
+
+**Results.**
+
+- **Gain kept.** The realised score keeps a median of 100% (sigma 0.05), 96% (0.10), 89% (0.20) and 58% (0.40) of the ceiling gain at 5%, and 99%, 96%, 86% and 55% at 20% (over architectures with a ceiling gain above +0.001).
+- **Share of architectures reaching the MCID** (median replicate, on this grid): at 5%, 29.3% with exact weights, 29.2%, 28.7%, 25.8% and **19.7%** at sigma 0.05 to 0.40; at 20%, 69.2% with exact weights, 69.2%, 67.5%, 61.0% and **44.8%**.
+- **The frontier moves outwards only with large errors.** Fewest loci at frequency 0.3 that reach the 5% MCID (exact weights, then sigma 0.05, 0.10, 0.20, 0.40): OR 2.0: 8, 7, 8, 9, 11; OR 2.5: 5, 4, 4, 5, 5; OR 3.0: 3, 3, 3, 4, 3; OR 1.7: 13, 12, 12, 17, none within 20; OR 1.5 and below: none for any precision. At 20%: OR 1.5: 5, 5, 6, 7, 17; OR 1.7: 3, 3, 3, 4, 6; OR 1.3: 13, 13, 14, none, none.
+- **Smallest OR** at 20 loci and frequency 0.3: 1.6 with exact weights and for sigma up to 0.10, 1.7 at 0.20 and 1.8 at 0.40 (5%); at 20% 1.3, 1.3, 1.3, 1.4, 1.6. With 10 loci: 2.0 for sigma up to 0.20 and 2.5 at 0.40 (5%).
+- **Near the frontier the spread matters.** 10 loci of OR 2.0 at frequency 0.3 have a ceiling gain of +0.00604 at 5%; with sigma 0.2 the median is +0.00537 and 75% of replicate studies reach the MCID, with sigma 0.4 the median is +0.00433 and 33% do. 20 loci of OR 1.5 are at 91% of the MCID with exact weights, and drop to +0.00383 at sigma 0.2 and +0.00054 at sigma 0.4 (13% of the ceiling).
+
+**Reading.** With per-locus precision of 0.1 or better (a discovery sample of about 1,000 balanced subjects at a common frequency) the weights cost almost nothing, and the requirements of addendum 16 stand. At the precision the present evidence has (0.2 to 0.4), about 12% (sigma 0.2) to a third (sigma 0.4) of the architectures that would reach the MCID with exact weights no longer do so, and the loci needed for a given odds ratio rise by one to several; at 0.4 an architecture that reaches the MCID only just (20 loci of OR 1.5) loses most of its gain. The frontier moves outwards little for strong effects and much for weak ones: error in many weak weights is what costs.
+
+### Not done
+
+Locus-specific error that grows with rarity of the allele (the sweep uses one precision per cell), selection of the loci from the same data (winner's curse), and linkage between the loci. The Aim 3b stratified analysis and the attribution have not been repeated for the correlation ensemble or the sensitivity cohorts with five terms.
+
+Code and outputs: `R/genetic_layer.R` (`clec7a_second_setup`), `R/aim3b.R` (a joint-genotype sampler for the interaction study), `R/aim4_sweep.R` (`sweep_cell_realised`, `sigma_for_sample`), `scripts/21_aim3b_neutropenia.R` (the five-term option), `scripts/24_attribution_second_clec7a.R`, `scripts/25_aim4_realised_sweep.R`,
+`output/aim3b_layer_summary_second_clec7a.csv`, `output/aim3b_interaction_summary_second_clec7a.csv`, `output/genetic_attribution_second_clec7a_summary.csv`, `output/aim4_realised_{sweep,frontier,check}.csv`, `output/figures/aim4_realised_frontier.png`, and the tests.

@@ -42,3 +42,24 @@ test_that("first_reaching finds the smallest value on the axis, or NA", {
   expect_equal(first_reaching(1:5, c(0, 0.1, 0.5, 0.9, 1.2), 0.5), 3)
   expect_true(is.na(first_reaching(1:3, c(0, 0.1, 0.2), 0.5)))
 })
+
+test_that("the discovery-sample formulas are inverses and give the expected scale", {
+  expect_equal(sample_for_sigma(sigma_for_sample(1000, 0.5, 0.3), 0.5, 0.3), 1000)
+  expect_equal(sigma_for_sample(4078, 0.0326, 0.3), 0.142, tolerance = 0.01)
+  expect_gt(sigma_for_sample(1000, 0.5, 0.05), sigma_for_sample(1000, 0.5, 0.3))        # rarer alleles are estimated less precisely
+})
+
+test_that("the realised-score simulation reproduces the exact ceiling at zero error, and loses gain as the error grows", {
+  th <- c(0.05, 0.2)
+  ex <- sweep_cell(q0, lp0, 5, 2.0, 0.3, th)$gain
+  r0 <- sweep_cell_realised(q0, lp0, 5, 2.0, 0.3, 0, th, R = 10, N = 2500, seed = 21L)
+  m0 <- tapply(r0$gain, r0$threshold, mean)
+  expect_equal(as.numeric(m0), ex, tolerance = 0.06)
+  expect_equal(nrow(r0), 10L * 2L); expect_setequal(names(r0), c("n_loci", "odds_ratio", "raf", "sigma", "replicate", "threshold", "gain"))
+  r1 <- sweep_cell_realised(q0, lp0, 5, 2.0, 0.3, 0.2, th, R = 10, N = 2500, seed = 21L)
+  r2 <- sweep_cell_realised(q0, lp0, 5, 2.0, 0.3, 1.0, th, R = 10, N = 2500, seed = 21L)
+  mg <- function(r) tapply(r$gain, r$threshold, mean)
+  expect_true(all(mg(r2) < mg(r1))); expect_true(all(mg(r1) < m0 * 1.05))
+  expect_true(all(mg(r2) < 0.7 * m0))                                                     # large errors cost a lot
+  expect_equal(sweep_cell_realised(q0, lp0, 5, 2.0, 0.3, 0.2, th, R = 3, N = 1500, seed = 5L), sweep_cell_realised(q0, lp0, 5, 2.0, 0.3, 0.2, th, R = 3, N = 1500, seed = 5L))
+})

@@ -409,3 +409,28 @@ allo_stratum_smooth <- function(cohort, lp_profile, profiles = all_profiles()) {
   list(share = sum(w), q = q, offset = offset, event_rate = rate, n = n, events = events, profiles_present = sum(q > 1e-6),
        predicted_rate_baseline = sum(q * stats::plogis(lp_profile)), coefficients = cf, converged = fit$converged)
 }
+
+# Inputs for the genetic layer with two CLEC7A parameters (addendum 16): the joint dosage grid of PTX3, CLEC7A (Y238X copies), CLEC7A_AG (A-G copies),
+# TLR4 and CD209; the true effects drawn for each reading (the four-term draws plus beta2 from its pooled posterior); and the pooled estimates carried by the realised score.
+clec7a_second_setup <- function(n_draw = 2000L, seed = 6724L, dir = "output", hap_path = "data/haplotype_frequencies_phased.csv") {
+  hap <- block_haplotypes("CLEC7A", c("C", NA), path = hap_path, source = "gnomAD_NFE")
+  p <- genetic_term_frequencies(path = hap_path)
+  terms <- c("PTX3", "CLEC7A", "CLEC7A_AG", "TLR4", "CD209")
+  grid <- joint_grid(list(dosage_grid(p["PTX3"]), haplotype_gene_part(hap, c(CLEC7A = "C-G", CLEC7A_AG = "A-G")), dosage_grid(p["TLR4"]), dosage_grid(p["CD209"])))
+  grid$G <- grid$G[, terms]
+  b2 <- utils::read.csv(file.path(dir, "clec7a_second_posterior_draws.csv"))
+  ef <- utils::read.csv(file.path(dir, "genetic_layer_effects.csv"))
+  stopifnot(nrow(b2) >= n_draw)
+  set.seed(seed)
+  b2_draw <- list(mean = b2$mu[seq_len(n_draw)], predictive = stats::rnorm(n_draw, b2$mu[seq_len(n_draw)], b2$tau[seq_len(n_draw)]))
+  effects <- lapply(c(mean = "mean", predictive = "predictive"), function(h) {
+    m <- ef[ef$truth == h & ef$draw <= n_draw, c("PTX3", "CLEC7A", "TLR4", "CD209")]
+    cbind(PTX3 = m$PTX3, CLEC7A = m$CLEC7A, CLEC7A_AG = b2_draw[[h]], TLR4 = m$TLR4, CD209 = m$CD209)
+  })
+  pooled <- load_term_draws(dir = dir)
+  pe <- pooled_estimates(pooled)
+  beta_hat <- c(PTX3 = pe[["PTX3"]], CLEC7A = pe[["CLEC7A"]], CLEC7A_AG = stats::median(b2$mu), TLR4 = pe[["TLR4"]], CD209 = pe[["CD209"]])
+  beta_hi <- c(PTX3 = unname(stats::quantile(pooled$PTX3$mu, 0.95)), CLEC7A = unname(stats::quantile(pooled$CLEC7A$mu, 0.95)), CLEC7A_AG = unname(stats::quantile(b2$mu, 0.95)),
+               TLR4 = unname(stats::quantile(pooled$TLR4$mu, 0.95)), CD209 = unname(stats::quantile(pooled$CD209$mu, 0.95)))
+  list(grid = grid, terms = terms, effects = effects, beta_hat = beta_hat, beta_hi = beta_hi, hap = hap, p = p)
+}

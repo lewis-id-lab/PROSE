@@ -346,3 +346,20 @@ test_that("the smoothed allo stratum keeps the observed share and event rate and
   co$rows$allo_hsct <- NA
   expect_error(allo_stratum_smooth(co, lp0), "no allo-HSCT flag")
 })
+
+test_that("the second-parameter setup has the five terms, the joint CLEC7A grid and effects for both readings", {
+  need <- file.path(proj_root, "output", c("clec7a_second_posterior_draws.csv", "genetic_layer_effects.csv", "ptx3_h2_posterior_draws.csv"))
+  hap <- file.path(proj_root, "data", "haplotype_frequencies_phased.csv")
+  skip_if_not(all(file.exists(need)) && file.exists(hap))
+  su <- clec7a_second_setup(n_draw = 200L, dir = file.path(proj_root, "output"), hap_path = hap)
+  expect_equal(su$terms, c("PTX3", "CLEC7A", "CLEC7A_AG", "TLR4", "CD209"))
+  expect_equal(colnames(su$grid$G), su$terms); expect_equal(sum(su$grid$prob), 1)
+  expect_equal(nrow(su$grid$G), 3L * 6L * 3L * 3L)
+  expect_equal(names(su$effects), c("mean", "predictive")); expect_equal(dim(su$effects$mean), c(200L, 5L)); expect_equal(colnames(su$effects$predictive), su$terms)
+  expect_equal(names(su$beta_hat), su$terms); expect_true(su$beta_hat[["CLEC7A_AG"]] > 0)
+  # margins of the CLEC7A genotypes: copies of Y238X and of A-G
+  expect_equal(sum(su$grid$G[, "CLEC7A"] * su$grid$prob), 2 * 0.077, tolerance = 0.01); expect_equal(sum(su$grid$G[, "CLEC7A_AG"] * su$grid$prob), 2 * 0.349, tolerance = 0.01)
+  # the first 200 draws do not depend on how many are asked for
+  su2 <- clec7a_second_setup(n_draw = 100L, dir = file.path(proj_root, "output"), hap_path = hap)
+  expect_equal(su2$effects$predictive, su$effects$predictive[1:100, ])
+})

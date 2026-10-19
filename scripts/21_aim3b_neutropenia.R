@@ -15,7 +15,12 @@ base <- select_cohort(load_base_cohort(), include_twins = FALSE)
 lp <- profile_logit(load_refit_params())
 q <- tabulate(profile_index(base$X), 2L^length(PREDICTORS)) / nrow(base$X)
 strata <- neutropenia_strata(q, lp)
+# Set AIM3B_SECOND_CLEC7A <- TRUE before sourcing to run the analysis with the second CLEC7A parameter (addendum 17): five terms, joint CLEC7A genotypes,
+# outputs with the suffix _second_clec7a.
+second <- exists("AIM3B_SECOND_CLEC7A") && isTRUE(AIM3B_SECOND_CLEC7A)
+suffix <- if (second) "_second_clec7a" else ""
 p <- genetic_term_frequencies(); grid <- dosage_grid(p); terms <- names(GENETIC_TERMS)
+if (second) { setup <- clec7a_second_setup(n_draw = 1000L); grid <- setup$grid; terms <- setup$terms }
 cells <- lapply(list(N = strata$N, NN = strata$NN), function(s) trim_cells(genetic_cells(s$q, lp, grid)))
 mcid_tab <- read.csv("output/dca_baseline_refit_summary.csv")
 mcid_whole <- setNames(mcid_tab$mcid_b[match(at, mcid_tab$threshold)], as.character(at))
@@ -58,8 +63,9 @@ pooled <- load_term_draws(); beta_hat <- pooled_estimates(pooled)
 beta_hi <- vapply(pooled, function(d) unname(stats::quantile(d$mu, 0.95)), numeric(1))
 effects_file <- read.csv("output/genetic_layer_effects.csv")
 n_draw <- 1000L
-effects <- list(mean = as.matrix(effects_file[effects_file$truth == "mean" & effects_file$draw <= n_draw, terms]),
-                predictive = as.matrix(effects_file[effects_file$truth == "predictive" & effects_file$draw <= n_draw, terms]))
+effects <- list(mean = as.matrix(effects_file[effects_file$truth == "mean" & effects_file$draw <= n_draw, c("PTX3", "CLEC7A", "TLR4", "CD209")]),
+                predictive = as.matrix(effects_file[effects_file$truth == "predictive" & effects_file$draw <= n_draw, c("PTX3", "CLEC7A", "TLR4", "CD209")]))
+if (second) { effects <- setup$effects; beta_hat <- setup$beta_hat; beta_hi <- setup$beta_hi }
 
 cl <- start_workers(files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim3b.R"))
 lay <- do.call(rbind, lapply(names(effects), function(h) {
@@ -89,10 +95,11 @@ levels_tab <- list(medians = beta_hat, upper = beta_hi)
 inter <- do.call(rbind, lapply(names(levels_tab), function(lv) do.call(rbind, lapply(names(r_values), function(sc) {
   tr <- scenario_effects(levels_tab[[lv]], r_values[[sc]], strata$w)
   sh <- list(N = genetic_scores(cells$N, tr$N, tr$N)$a_true, NN = genetic_scores(cells$NN, tr$NN, tr$NN)$a_true)
-  ctx <- list(cg = cg, neut = neut, lp = lp, p = p, shifts = sh, tN = tr$N, tNN = tr$NN, bh = beta_hat, seed = 3706L + nchar(lv) * 100L + match(sc, names(r_values)))
+  ctx <- list(cg = cg, neut = neut, lp = lp, p = p, grid = if (second) grid else NULL, shifts = sh, tN = tr$N, tNN = tr$NN, bh = beta_hat, seed = 3706L + nchar(lv) * 100L + match(sc, names(r_values)))
   res <- parallel::parLapply(cl, chunk_ids(n_sim, 15L), function(ch, ctx) {
     set.seed(ctx$seed + ch[1])
-    t(vapply(ch, function(i) simulate_interaction_study(ctx$cg, ctx$neut, ctx$lp, ctx$p, ctx$shifts, ctx$tN, ctx$tNN, ctx$bh), numeric(5)))
+    smp <- if (!is.null(ctx$grid)) function(n) ctx$grid$G[sample.int(nrow(ctx$grid$G), n, replace = TRUE, prob = ctx$grid$prob), , drop = FALSE] else NULL
+    t(vapply(ch, function(i) simulate_interaction_study(ctx$cg, ctx$neut, ctx$lp, ctx$p, ctx$shifts, ctx$tN, ctx$tNN, ctx$bh, sampler = smp), numeric(5)))
   }, ctx)
   r <- as.data.frame(do.call(rbind, res))
   data.frame(effect_level = lv, scenario = sc, true_difference_in_score_units = scenario_difference(r_values[[sc]], strata$w),
@@ -105,10 +112,12 @@ inter <- do.call(rbind, lapply(names(levels_tab), function(lv) do.call(rbind, la
 parallel::stopCluster(cl)
 
 dir.create("output", showWarnings = FALSE)
-write.csv(strata_tab, "output/aim3b_strata.csv", row.names = FALSE)
-write.csv(brunel, "output/aim3b_brunel_modification.csv", row.names = FALSE)
-write.csv(layer_sum, "output/aim3b_layer_summary.csv", row.names = FALSE)
-write.csv(inter, "output/aim3b_interaction_summary.csv", row.names = FALSE)
+if (!second) {
+  write.csv(strata_tab, "output/aim3b_strata.csv", row.names = FALSE)
+  write.csv(brunel, "output/aim3b_brunel_modification.csv", row.names = FALSE)
+}
+write.csv(layer_sum, paste0("output/aim3b_layer_summary", suffix, ".csv"), row.names = FALSE)
+write.csv(inter, paste0("output/aim3b_interaction_summary", suffix, ".csv"), row.names = FALSE)
 message("\nGain by scenario (whole cohort, mean reading, 5%):")
 show_df(layer_sum[layer_sum$truth == "mean" & layer_sum$level == "whole" & layer_sum$threshold == 0.05, c("scenario", "score", "gain", "lo", "hi", "extra_cases_per_1000", "p_meets_mcid", "share_of_gain_from_neutropenic")])
 message("\nThe interaction test:"); show_df(inter)

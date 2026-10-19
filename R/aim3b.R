@@ -106,18 +106,19 @@ stratum_mcid <- function(strata_one, lp_profile, thresholds) baseline_mcid(strat
 # One simulated study of the cohort's size with stratum-specific true effects, and the interaction fit that tests whether the effect is
 # larger in neutropenic admissions: outcome ~ N + S + S:N + offset(baseline logit), with S the pooled-estimate genetic score.
 #   shifts: list(N =, NN =) recentring shifts of the truth (genetic_scores()$a_true of each stratum's cells)
-simulate_interaction_study <- function(cg, neut, lp_profile, p, shifts, beta_true_N, beta_true_NN, beta_hat, resample = TRUE) {
+#   sampler: optional function(n) returning an n x terms matrix of dosages drawn jointly (for terms that are not independent binomials, such as the two CLEC7A parameters)
+simulate_interaction_study <- function(cg, neut, lp_profile, p, shifts, beta_true_N, beta_true_NN, beta_hat, resample = TRUE, sampler = NULL) {
   by <- cg$groups
   idx <- if (resample) sample.int(length(by), replace = TRUE) else seq_along(by)
   rows <- unlist(by[idx], use.names = FALSE)
   pat <- rep(seq_along(idx), lengths(by[idx]))
-  g <- matrix(vapply(p, function(pj) stats::rbinom(length(idx), 2, pj), numeric(length(idx))), nrow = length(idx), dimnames = list(NULL, names(p)))
+  g <- if (is.null(sampler)) matrix(vapply(p, function(pj) stats::rbinom(length(idx), 2, pj), numeric(length(idx))), nrow = length(idx), dimnames = list(NULL, names(p))) else sampler(length(idx))
   G <- g[pat, , drop = FALSE]
   n <- neut[rows]
   lp_b <- lp_profile[cg$prof[rows]]
-  gl <- ifelse(n, drop(G %*% beta_true_N[names(p)]), drop(G %*% beta_true_NN[names(p)]))
+  gl <- ifelse(n, drop(G %*% beta_true_N[colnames(g)]), drop(G %*% beta_true_NN[colnames(g)]))
   y <- stats::rbinom(length(rows), 1, stats::plogis(lp_b + gl + ifelse(n, shifts$N, shifts$NN)))
-  S <- drop(G %*% beta_hat[names(p)])
+  S <- drop(G %*% beta_hat[colnames(g)])
   # The neutropenia main effect is in the model: the truth is recentred within each stratum, so the strata differ in intercept
   nn <- as.numeric(n); SN <- S * nn
   fit <- tryCatch(suppressWarnings(stats::glm(y ~ nn + S + SN + offset(lp_b), family = stats::binomial)), error = function(e) NULL)
