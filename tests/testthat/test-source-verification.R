@@ -78,8 +78,9 @@ test_that("every recorded correction matches the real extraction and carries its
   skip_if_not(file.exists(bundle) && file.exists(corr_path), "the evidence bundle or the corrections file is not present")
   vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
   cr <- read.csv(corr_path, stringsAsFactors = FALSE)
-  expect_equal(nrow(cr), 42L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L)
-  expect_setequal(cr$study_id, c("S035", "S073"))
+  expect_equal(nrow(cr), 43L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S071"), 1L)
+  expect_setequal(cr$study_id, c("S035", "S073", "S071"))
+  expect_equal(cr$corrected_value[cr$variant_row_id == "V0261"], "G/G vs C/C+C/G")
   expect_true(all(nzchar(cr$evidence)) && all(nzchar(cr$checked_by)) && all(nzchar(cr$checked_on)))
   expect_false(anyDuplicated(paste(cr$variant_row_id, cr$field)) > 0)
   out <- apply_corrections(vr, cr)                                                       # stops if any original value has changed
@@ -91,6 +92,9 @@ test_that("every recorded correction matches the real extraction and carries its
   s73 <- out$data[out$data$variant_row_id %in% cr$variant_row_id[cr$study_id == "S073"], ]
   expect_true(all(s73$comparison_as_reported %in% c("A/C vs A/A", "G/G vs C/C + C/G", "G/G + C/G vs C/C")))
   expect_equal(sort(unique(s73$rsid)), c("rs16910526", "rs7309123"))
+  # Sainz 2012 (S071): the recessive rs7309123 row now reads G/G against the rest, like its duplicate V0322
+  v <- out$data[out$data$variant_row_id %in% c("V0261", "V0322"), ]
+  expect_equal(unique(v$comparison_as_reported), "G/G vs C/C+C/G")
 })
 
 test_that("after the S073 correction Fischer 2016 reads as risk for rs7309123 G and as no excess for Y238X carriers", {

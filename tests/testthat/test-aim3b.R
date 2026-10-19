@@ -98,3 +98,42 @@ test_that("the interaction fit recovers the true difference on a large cohort an
   set.seed(9); b <- simulate_interaction_study(cg, neut, lp0, p4, sh, tr$N, tr$NN, b4)
   expect_equal(a, b)
 })
+
+# ---- five-term helpers used by the robustness analysis (addendum 18) ------------------------------------------------------------------
+source(file.path(proj_root, "R", "genetic_helpers.R"))
+source(file.path(proj_root, "R", "robustness.R"))
+
+hap5 <- data.frame(haplotype = c("C-G", "A-G", "A-C"), freq = c(0.08, 0.35, 0.57), stringsAsFactors = FALSE)
+grid5 <- joint_grid(list(dosage_grid(c(PTX3 = 0.48)), haplotype_gene_part(hap5, c(CLEC7A = "C-G", CLEC7A_AG = "A-G")), dosage_grid(c(TLR4 = 0.06)), dosage_grid(c(CD209 = 0.125))))
+grid5$G <- grid5$G[, c("PTX3", "CLEC7A", "CLEC7A_AG", "TLR4", "CD209")]
+eff5 <- rbind(c(PTX3 = 0.3, CLEC7A = -0.1, CLEC7A_AG = 0.6, TLR4 = 0.4, CD209 = 0.6), c(PTX3 = 0.2, CLEC7A = 0, CLEC7A_AG = 0.5, TLR4 = 0.1, CD209 = 0.8))
+bh5 <- colMeans(eff5)
+
+test_that("Shapley rows for a profile distribution add up to the total gain and carry the five terms", {
+  a <- attribution_member_rows(q0, lp0, grid5, eff5, 1:2, bh5, c(0.05, 0.2))
+  expect_equal(nrow(a), 2L * 2L * 2L)
+  expect_true(all(c("phi_PTX3", "phi_CLEC7A", "phi_CLEC7A_AG", "phi_TLR4", "phi_CD209") %in% names(a)))
+  expect_equal(unname(rowSums(a[, grep("^phi_", names(a))])), a$total, tolerance = 1e-10)
+  a$truth <- "mean"; a$member <- 1
+  s <- summarise_attribution_rows(a, colnames(eff5))
+  expect_equal(s$share_CLEC7A_combined, s$share_CLEC7A + s$share_CLEC7A_AG)
+  expect_true(all(s$p_clec7a_combined_largest >= 0 & s$p_clec7a_combined_largest <= 1))
+  expect_equal(unname(rowSums(s[, paste0("share_", colnames(eff5))])), rep(1, nrow(s)), tolerance = 1e-9)
+})
+
+test_that("Aim 3b rows for a profile distribution carry the MCID of each level and the stratum share", {
+  r <- aim3b_member_rows(q0, lp0, grid5, eff5, 1:2, bh5, list(homogeneous = 1, `H_F only` = Inf), c(0.05, 0.2))
+  st <- neutropenia_strata(q0, lp0)
+  expect_equal(unique(r$share_N), st$N$share)
+  expect_equal(unique(r$mcid[r$level == "whole" & r$threshold == 0.05]), baseline_mcid(q0, lp0, 0.05))
+  expect_equal(unique(r$mcid[r$level == "N" & r$threshold == 0.2]), baseline_mcid(st$N$q, lp0, 0.2))
+  expect_true(all(r$delta_nb[r$score == "baseline"] == 0))
+  r$truth <- "mean"
+  s <- summarise_aim3b_rows(r)
+  expect_true(all(is.na(s$share_of_gain_from_neutropenic[s$level != "whole"])))
+  # for the ceiling score under homogeneous effects both strata gain, so the neutropenic share is a proper share
+  h <- s$share_of_gain_from_neutropenic[s$level == "whole" & s$score == "ceiling" & s$scenario == "homogeneous"]
+  expect_true(all(h > 0 & h <= 1.0001))
+  expect_equal(s$p_meets_mcid[s$level == "whole" & s$score == "ceiling" & s$scenario == "homogeneous" & s$threshold == 0.05],
+               mean(r$delta_nb[r$level == "whole" & r$score == "ceiling" & r$scenario == "homogeneous" & r$threshold == 0.05] >= baseline_mcid(q0, lp0, 0.05)))
+})

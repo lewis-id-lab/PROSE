@@ -1409,7 +1409,7 @@ the share of worlds reaching the MCID by at most 3 points for the whole cohort, 
 **The tables in addenda 11 to 14 still show the values before the correction; the regenerated files in `output/` hold the corrected ones. The Aim 3b tables of addendum 15 were rewritten with the corrected values.** The donor results do not use CLEC7A's recipient posterior and are unchanged.
 
 **The wider question.** In the four terms' analyses, 139 rows were read from a comparison text that carries no reference marker, so the first group was taken as the numerator (Tang S026, Herrero-Sanchez S035 (corrected in addendum 8), Sainz S071, Fischer S073, Chen S074, Tanpaibule S077, Fisher S080). In the primary analyses five rows are of this kind: Tang (PTX3), Tanpaibule (PTX3 and CD209), Sainz (CLEC7A, "A/C vs A/A") and Fischer (CLEC7A, now corrected).
-The four others read variant carriers against wild type, the usual convention, but were not checked against their papers. **A direction check of those studies' tables is the next job for the round-2 verification.**
+The four others read variant carriers against wild type, the usual convention, but were not checked against their papers. **A direction check of those studies' tables is the next job for the round-2 verification.** (Done in addendum 18: Tang and Tanpaibule are correct, one Sainz row was reversed and corrected, Chen and Fisher cannot be confirmed from the open text.)
 
 ### 1. The second CLEC7A parameter: the strand of rs7309123 in each study
 
@@ -1595,3 +1595,68 @@ Locus-specific error that grows with rarity of the allele (the sweep uses one pr
 
 Code and outputs: `R/genetic_layer.R` (`clec7a_second_setup`), `R/aim3b.R` (a joint-genotype sampler for the interaction study), `R/aim4_sweep.R` (`sweep_cell_realised`, `sigma_for_sample`), `scripts/21_aim3b_neutropenia.R` (the five-term option), `scripts/24_attribution_second_clec7a.R`, `scripts/25_aim4_realised_sweep.R`,
 `output/aim3b_layer_summary_second_clec7a.csv`, `output/aim3b_interaction_summary_second_clec7a.csv`, `output/genetic_attribution_second_clec7a_summary.csv`, `output/aim4_realised_{sweep,frontier,check}.csv`, `output/figures/aim4_realised_frontier.png`, and the tests.
+
+---
+
+## Addendum 18, 19 October 2026: the direction check of the text-parsed rows, and whether CLEC7A's lead holds (D22)
+
+Written after the tag. Provisional, like addenda 11 to 17. Nothing in D1 to D21 changes.
+
+### 1. The direction check
+
+**The rule under test.** For a comparison written "X vs Y" with no reference marker, the pipeline takes the first-named group as the numerator. Fischer 2016 listed the reference group first, which reversed its effects (addendum 16). The check below tests the rule against the tables of the five other studies that carry such rows, using the printed genotype counts wherever there are any: the crude odds ratio of the first-named group against the second is compared with the extracted estimate, and the reading is correct if the estimate is on the same side of 1 as the crude odds ratio and not the reciprocal (adjusted odds ratios can differ in size from crude ones, so direction is what is judged). The papers were read through subagents (Europe PMC full text, PMC, the PLoS supplement).
+
+| study | rows with no marker | verdict | basis |
+|---|---|---|---|
+| Tang 2020 (S026, PTX3) | 60 (88 rows in all) | **correct, no change** | every contrast type (AA, AG, GG, AG+AA, GG+AG, and the rs3816527 equivalents) tested on the whole cohort and one or two other subgroups against the printed counts; 18 rows tested in detail, the crude odds ratio of the first-named group matches the extracted estimate to two decimals in each |
+| Tanpaibule 2020 (S077, IL10, CD209, PTX3) | 9 | **correct, no change** | the paper prints a "(ref)" row per SNP (A/A for CD209 and PTX3, T/T for IL10), each odds ratio is the named genotype against it; the nine extracted values equal the printed ones and agree in direction with the crude odds ratios. Its rs7309123 contrast (G carriers against C/C, OR 0.404) also matches the reading from the model label |
+| Sainz 2012 (S071, CD209 and CLEC7A) | 19 | **one row reversed, corrected** | Table 3 puts the reference genotype first and the odds ratio is the named genotype against it, which matches the pipeline's reading for the heterozygote, homozygote and dominant rows. The recessive rs7309123 row was extracted twice, as "C/C+C/G vs G/G" (V0261) and "G/G vs C/C+C/G" (V0322), both with OR 5.52; the counts (GG 13 of 57 cases, 10 of 125 controls) show the odds ratio belongs to G/G, so V0261 is reversed. Corrected in `data/extraction_corrections.csv` (43 rows now). The Y238X row (V0315, A/C vs A/A, OR 1.14), which is not in the main text, was checked in the supplement (Table S1: A/A is the reference) and is correct |
+| Chen 2019 (S074, rs7309123) | 2 (4 rows in all) | **cannot tell** | the paper is closed access and only the abstract could be read; the two rows that carry a "(reference)" marker put G/G second, and the other two (dominant, recessive) follow the same order, but the table was not seen. This study is non-European with an undetermined strand and enters only the sensitivity scenarios |
+| Fisher 2017 (S080, hazard ratios) | 3 | **probably correct, not confirmed** | the tables carry no footnote on what the HR compares, except that Table 3 defines wild type as the comparison for the rs16910526 dominant row (HR 1.49) and the allelic HRs for rs16910526 are above 1, which fits carriers being the numerator. The IFNG donor row (0.73) and rs7309123 recessive row (1.29) are not defined. These rows enter only the hazard-ratio sensitivity analyses |
+
+Herrero-Sanchez 2018 (S035, 41 rows) was checked and corrected in addendum 8, and Fischer 2016 (S073, 9 rows) in addendum 16. Not checked: Lupianez 2015 (S072, 2 IFNG rows, a term that is no longer in the panel).
+
+**Effect on the results.** The V0261 correction changes one mapped row (`output/clec7a_row_effects.csv`) and no study effect, pooled estimate or draw: the recessive rs7309123 row is not the one selected for Sainz 2012 (the additive row is). Everything downstream is unchanged. Two incidental points: the extraction lists Sainz 2012's Table 3 twice (the "whole cohort (IPA vs non-IPA)" rows are exact duplicates of the "whole cohort" rows), which is harmless because one row per study and cohort is selected, and Tang 2020's effect-allele field does not always name the genotype that is the numerator,
+which is also harmless because the contrast is read from the comparison text.
+
+**Where this leaves the rule.** Of the five studies, two follow the rule everywhere, one (Sainz) once in 19 rows contradicted itself, and two cannot be settled from the open text. The reversed row came from a source that wrote "CC+CG vs GG" for an odds ratio that belongs to GG, so a duplicate of a row in the opposite order is a signal to look for. The remaining unconfirmed rows (Chen, Fisher) need the full tables.
+
+### 2. Does CLEC7A's lead hold?
+
+**Design.** The five-term Aim 3b layer and the Shapley attribution of addendum 17, rerun on (a) the three sensitivity cohorts of addendum 12 (the published equation on 4,078 and on 4,127 rows, a refit on the 4,127 rows), each with its own baseline and its own MCIDs, and (b) the 150-member correlation ensemble (the refit baseline on the base cohort, the clinical correlation structure drawn from the members, about 7 of the 1,000 draws of the effects per member). 1,000 draws per reading, second CLEC7A parameter included. `scripts/26_five_term_robustness.R`, `output/robust5_*.csv`.
+The interaction test of Aim 3b is not repeated (it depends on the cohort rows).
+
+**Attribution.** Shapley share of the gain, pooled-mean reading, 5% threshold, ceiling score (primary is script 24 of addendum 17):
+
+| term | primary | published, 4,078 | published, 4,127 | refit, 4,127 | correlation ensemble |
+|---|---|---|---|---|---|
+| **CLEC7A combined** | **48.5%** | 48.7% | 48.7% | 49.1% | 47.6% |
+| of which A-G (beta2) | 44.6% | 44.9% | 44.8% | 45.2% | 44.0% |
+| CD209 | 28.2% | 27.9% | 27.9% | 27.6% | 28.6% |
+| PTX3 | 13.1% | 13.2% | 13.2% | 13.1% | 13.3% |
+| TLR4 | 10.3% | 10.2% | 10.2% | 10.1% | 10.4% |
+
+With the realised score the combined CLEC7A share is 46.9% to 48.3% (CD209 32.7% to 33.1%). Over every setting, reading, score and threshold the combined CLEC7A share lies between 42.5% and 49.1% and CD209's between 25.5% and 35.7%. **CLEC7A's lead holds in every setting.** It is the largest single contributor in 62% of draws (ceiling, pooled mean) and in 50% to 53% under the predictive reading, so the median lead is
+clear but individual draws vary: in the other draws CD209 or PTX3 leads, as the effects are drawn from wide posteriors.
+
+**Aim 3b.** Whole-cohort gain over the baseline, pooled-mean reading, 5% threshold, ceiling score (primary, published 4,078, published 4,127, refit 4,127, ensemble):
+
+| truth | gain |
+|---|---|
+| all in neutropenic | +0.00156, +0.00172, +0.00168, +0.00168, +0.00151 |
+| ratio 4 | +0.00140, +0.00153, +0.00151, +0.00150, +0.00136 |
+| homogeneous | +0.00118, +0.00125, +0.00127, +0.00126, +0.00121 |
+| ratio 1/4 | +0.00204, +0.00200, +0.00211, +0.00208, +0.00223 |
+| all in non-neutropenic | +0.00438, +0.00413, +0.00435, +0.00430, +0.00464 |
+| Brunel's stratum effects | +0.00092, +0.00095, +0.00095, +0.00094, +0.00104 |
+
+The common score again keeps almost nothing when all the effect is in non-neutropenic admissions (+0.00002, +0.00006, +0.00006, +0.00002, +0.00031) and is harmful with Brunel's stratum effects (-0.00087, -0.00083, -0.00086, -0.00086, -0.00065). At 20% the ceiling score reaches the whole-cohort MCID in the homogeneous scenario in 60%, 76%, 67%, 65% and 55% of draws, and in the all-in-neutropenic scenario in 84%, 93%, 88%, 87% and 81% (the published equation sets a lower bar: MCID +0.00113 at 20% on 4,078).
+**The neutropenic stratum supplies 78% to 83% of the whole-cohort gain at 5% and 95% to 97% at 20% in every setting** (82% and 95% in the primary), a little less in the ensemble at 5%.
+
+**Reading.** The two findings of addendum 17 do not depend on the cohort, the baseline equation or the clinical correlation structure: the A-G haplotype makes CLEC7A the largest contributor, with about 48% of the gain, and the neutropenic stratum carries most of the gain whichever way the effect modification runs. Both remain conditional on the second CLEC7A parameter (two studies); the robustness checks vary the clinical side, not the evidence behind beta2.
+
+### Not done
+
+The interaction test of Aim 3b on the sensitivity cohorts and the ensemble; the direction of Chen 2019's and Fisher 2017's tables (they need the full tables); Lupianez 2015's two rows.
+
+Code and outputs: `R/robustness.R`, `scripts/26_five_term_robustness.R`, `data/extraction_corrections.csv` (V0261), `output/robust5_aim3b_summary.csv`, `output/robust5_attribution_summary.csv` (and the per-setting files), `output/clec7a_row_effects.csv`, and the tests.
