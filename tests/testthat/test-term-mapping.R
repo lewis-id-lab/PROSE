@@ -92,3 +92,19 @@ test_that("CD209, IL10 and IFNG on the real extraction give the documented study
   expect_equal(ptx3_study_effects(rl, snp_order = "rs1800896")$study_id, "S077")
   expect_true(all(rl$genotype[rl$study_id == "S061"] == "unstated"))
 })
+
+test_that("the rs7309123 strand file is complete, graded and consistent with how the second parameter uses it", {
+  f <- file.path(proj_root, "data", "rs7309123_strand_resolution.csv")
+  skip_if_not(file.exists(f))
+  sr <- read.csv(f, stringsAsFactors = FALSE)
+  expect_equal(nrow(sr), 10L); expect_false(anyDuplicated(sr$study_id) > 0)
+  expect_true(all(sr$grade %in% c("A", "B", "C", "D")))
+  expect_true(all(sr$strand_conclusion[sr$grade == "D"] == "undetermined")); expect_true(all(sr$strand_conclusion[sr$grade != "D"] == "same_as_forward"))
+  expect_equal(sr$use_in_primary, sr$grade %in% c("A", "B"))
+  expect_true(all(nzchar(sr$evidence)) && all(nzchar(sr$source)))
+  expect_true(all(c("S056", "S074") %in% sr$study_id[sr$grade == "A"]))            # strands settled from the full texts (addendum 19)
+  expect_equal(sr$study_id[sr$grade == "D"], "S081")
+  # where a labelled-allele frequency and its two references are given, the likelihood ratio favours the stated conclusion
+  ok <- !is.na(sr$log10_likelihood_ratio_forward_vs_opposite)
+  expect_true(all(sr$log10_likelihood_ratio_forward_vs_opposite[ok & sr$strand_conclusion == "same_as_forward"] > 0))
+})

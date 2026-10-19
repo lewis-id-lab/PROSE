@@ -1,3 +1,4 @@
 "study_id","first_author","year","rsid","cohort","tier","model","measure","method","y","se","beta","se_beta","flag","or_per_copy"
 "S045","Schnetzke, Ulf",2024,"rs7309123","stratification+validation","estimate","dominant","OR","estimate, model_label; 2 cohorts combined by fixed-effect inverse variance",1.03318448334565,0.455978318468579,0.594630275881161,0.213503770715557,"cohorts disagree (Q = 1.2 on 1 df)",1.8123607475933
+"S056","Kalkanci, Ayse",2020,"rs7309123","whole","counts_2x3","genotypic_3level","none_reported","counts 2x3, carriers against non-carriers",0.887303195000903,0.516348464899405,0.778567242030743,0.395139560812884,"",2.17834898171425
 "S071","Sainz, Juan",2012,"rs7309123","whole","estimate","additive_per_allele","OR","estimate, model_label",0.559615787935423,0.278573932103113,0.667891015440358,0.305181524517285,"contrast taken from the model label",1.95012020729109

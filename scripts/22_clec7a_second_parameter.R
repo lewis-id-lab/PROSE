@@ -3,7 +3,7 @@
 # CLEC7A has three haplotypes (rs16910526 and rs7309123, gnomAD NFE): A-C 57.4% (the reference), A-G 34.9% and C-G 7.7% (Y238X). Y238X's effect (beta1) comes from
 # the rs16910526 rows (script 14). The second parameter, beta2, is the per-copy effect of A-G (the G allele of rs7309123 on the non-Y238X background), and is
 # identified by the rs7309123 rows once the strand of each study is known. rs7309123 is a C/G palindrome; the strand of each study was determined from its control
-# frequencies and the papers (data/rs7309123_strand_resolution.csv). Studies with no usable evidence (grade D) are left out of the primary analysis.
+# frequencies and the papers (data/rs7309123_strand_resolution.csv). Studies with no usable evidence (grade D) are left out of the primary analysis; after the full texts of Kalkanci 2020 and Chen 2019 were read (addendum 19) only Zhao 2022 is grade D.
 #
 # Each rs7309123 row is mapped to beta2 by solving the three-haplotype model with beta1 held at its pooled median (the C-G chromosomes carry 18% of the G alleles, so the
 # effect of this plug-in is small). Non-European studies are left out of the primary analysis: the European haplotype frequencies do not describe them (G is 0.43 in
@@ -38,7 +38,7 @@ excl <- function(grades) setdiff(all_studies, strand$study_id[strand$grade %in% 
 se <- function(r, ...) ptx3_study_effects(r, snp_order = "rs7309123", ...)
 scenarios <- list(
   "primary: strand resolved (grades A and B), European, odds ratios" = se(re, exclude_studies = excl(c("A", "B")), allow_non_european = FALSE),
-  "adding the Thai study (S077), with the European haplotype frequencies" = se(re, exclude_studies = excl(c("A", "B")), allow_non_european = TRUE),
+  "adding the non-European strand-resolved studies (S077 Thai, S074 Chinese), with the European haplotype frequencies" = se(re, exclude_studies = excl(c("A", "B")), allow_non_european = TRUE),
   "adding hazard ratios (S080)" = se(re, exclude_studies = excl(c("A", "B")), allow_non_european = FALSE, allow_hr = TRUE),
   "adding the Jena cohort (grade C)" = se(re, exclude_studies = excl(c("A", "B", "C")), allow_non_european = FALSE),
   "all studies, unresolved ones taken as forward" = se(re, exclude_studies = character(), allow_non_european = TRUE),

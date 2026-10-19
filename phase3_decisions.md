@@ -1385,6 +1385,9 @@ Code and outputs: `R/aim3b.R`, `scripts/21_aim3b_neutropenia.R`, `tests/testthat
 
 ## Addendum 16, 19 October 2026: an error in one study's direction, the second CLEC7A parameter, the Aim 4 sweep, and a smoothed allo stratum (D20)
 
+> **Update (19 October 2026, addendum 19):** the full texts of Kalkanci 2020 and Chen 2019 resolved their rs7309123 strands (both forward), which adds Kalkanci to the primary second-parameter analysis (OR 1.86, 1.26 to 2.63, from three studies). The tables in this addendum show the values before that update; the regenerated files in `output/` hold the new ones, and the differences are small.
+
+
 Written after the tag. Provisional, like addenda 11 to 15. Nothing in D1 to D19 changes. One data error found on the way (below) changes the CLEC7A evidence and was propagated through every result that uses it.
 
 ### 0. Erratum: the direction of Fischer 2016 (S073) was reversed
@@ -1509,6 +1512,9 @@ Code and outputs: `R/aim4_sweep.R`, `scripts/23_aim4_sweep.R`, `scripts/22_clec7
 
 ## Addendum 17, 19 October 2026: Aim 3b and the attribution with the second CLEC7A parameter, and the Aim 4 sweep with a realised score (D21)
 
+> **Update (19 October 2026, addendum 19):** the full texts of Kalkanci 2020 and Chen 2019 resolved their rs7309123 strands (both forward), which adds Kalkanci to the primary second-parameter analysis (OR 1.86, 1.26 to 2.63, from three studies). The tables in this addendum show the values before that update; the regenerated files in `output/` hold the new ones, and the differences are small.
+
+
 Written after the tag. Provisional, like addenda 11 to 16, and conditional on the second CLEC7A parameter of addendum 16 (OR 1.8 per A-G copy, from two strand-resolved European studies). The primary four-term results of earlier addenda are unchanged and stay the headline; this addendum shows what changes when CLEC7A is an active term.
 
 ### 1. Aim 3b with five terms
@@ -1600,6 +1606,9 @@ Code and outputs: `R/genetic_layer.R` (`clec7a_second_setup`), `R/aim3b.R` (a jo
 
 ## Addendum 18, 19 October 2026: the direction check of the text-parsed rows, and whether CLEC7A's lead holds (D22)
 
+> **Update (19 October 2026, addendum 19):** the full texts of Kalkanci 2020 and Chen 2019 resolved their rs7309123 strands (both forward), which adds Kalkanci to the primary second-parameter analysis (OR 1.86, 1.26 to 2.63, from three studies). The tables in this addendum show the values before that update; the regenerated files in `output/` hold the new ones, and the differences are small.
+
+
 Written after the tag. Provisional, like addenda 11 to 17. Nothing in D1 to D21 changes.
 
 ### 1. The direction check
@@ -1660,3 +1669,55 @@ The common score again keeps almost nothing when all the effect is in non-neutro
 The interaction test of Aim 3b on the sensitivity cohorts and the ensemble; the direction of Chen 2019's and Fisher 2017's tables (they need the full tables); Lupianez 2015's two rows.
 
 Code and outputs: `R/robustness.R`, `scripts/26_five_term_robustness.R`, `data/extraction_corrections.csv` (V0261), `output/robust5_aim3b_summary.csv`, `output/robust5_attribution_summary.csv` (and the per-setting files), `output/clec7a_row_effects.csv`, and the tests.
+
+---
+
+## Addendum 19, 19 October 2026: Kalkanci 2020 and Chen 2019 read in full (D23)
+
+Written after the tag. The two closed-access papers were supplied as PDFs and read in full. Nothing in D1 to D22 changes.
+
+### What the papers settled
+
+**Kalkanci 2020 (S056).**
+- *The extraction matches the paper.* All six genotype rows (TLR4 rs4986790 and rs4986791, CLEC7A rs16910526 and rs7309123, PTX3 rs2305619 and rs3816527) reproduce Table 3's counts.
+- *The strand of rs7309123 is forward, from the primers.* Table 1 gives allele-specific forward primers whose 3' base is the allele (C or G) after the sequence GTAGAAGTATACGTGTTGAAATAATAGATT[A]. The forward-strand sequence upstream of rs7309123 (Ensembl, GRCh38, + strand) ends in ...GATTT before the SNP, so the primers lie on the forward strand (the extra mismatch at the penultimate base is the usual allele-specific design), and the allele letters are forward-strand alleles.
+- *rs16910526 is on the opposite strand, which confirms the earlier "strand flip" flag.* Its primers (AACTGTGTAGTGTGCCCTCATT[C/G/T]) are the reverse complement of the forward sequence downstream of the SNP, so the paper's G (the Y238X stop allele) is the forward-strand C and its T is the forward A. One paper uses the two strands for its two CLEC7A SNPs.
+- *Data concerns, recorded in `data/rs7309123_strand_resolution.csv`.* The control genotypes for rs7309123 (CC 22, CG 4, GG 7) are far from Hardy-Weinberg equilibrium (chi-square 15.9, P < 0.0001; 4 heterozygotes against 13.1 expected) although the paper states that all genotypes fit; the IA group has 31 patients in the tables and 26 in the abstract and text; and the abstract's odds ratio for the GT genotype (3.635, interval 0.690 to 3.138) is the reciprocal of the effect it describes and its interval differs from the text's (0.690 to 9.138).
+
+**Chen 2019 (S074).**
+- *The direction of the four extracted rows is as read.* Table 4 gives the counts, and the crude odds ratio of the first-named genotype against the second equals the printed value for each row (C/C against G/G 9.00, C/G+C/C against G/G 1.846, C/C against G/G+C/G 7.532, C/G against G/G 1.66 against 1.62 adjusted), with G/G the reference. The direction check of addendum 18 is closed for this study.
+- *The strand of rs7309123 is forward.* Table 3 gives G/G 108, C/G 59, C/C 4 of 171 typed, so the labelled risk allele C has frequency 0.196, the forward-strand East Asian frequency of C (gnomAD EAS 0.188, 1000 Genomes CHB 0.209) and not the opposite-strand value 0.81 (log10 likelihood ratio about 132).
+- *The extraction's group sizes are wrong.* Table 2 gives 113 and 108 patients (221) although 172 were genotyped; Table 4 has 51 and 120 for rs7309123. The extraction took 113 and 108. The pipeline does not use group sizes, so no estimate changes.
+
+**Strand status of rs7309123 after this addendum:** resolved with medium to high confidence for five studies (Fisher, Schnetzke, Tanpaibule, Kalkanci, Chen), low to medium for one (Sainz), weakly for three (Fischer 2016 and 2015, White), and undetermined only for Zhao 2022. Kalkanci (Turkish) enters the primary second-parameter analysis with the European haplotype frequencies; Chen (Chinese Han) does not (the European frequencies do not describe it).
+
+### The second CLEC7A parameter, updated
+
+The primary analysis now has three studies (Schnetzke 2024, Kalkanci 2020, Sainz 2012). Kalkanci's own estimate is OR 2.18 per A-G copy (SE 0.40 on the log scale).
+
+| analysis | studies | OR per A-G copy (90% interval) | tau |
+|---|---|---|---|
+| **primary** (Schnetzke, Kalkanci, Sainz) | 3 | **1.86** (1.26 to 2.63) | 0.17 |
+| adding the non-European strand-resolved studies (Thai, Chinese Han), with European frequencies | 4 | 1.43 (0.89 to 2.20) | 0.45 |
+| adding hazard ratios (Fisher 2017) | 3 | 1.86 (1.25 to 2.68) | 0.17 |
+| adding the Jena cohort (Fischer 2016) | 4 | 1.92 (1.43 to 2.57) | 0.14 |
+| all studies, unresolved taken as forward | 5 | 1.54 (1.03 to 2.25) | 0.41 |
+| unresolved studies taken as the opposite strand | 5 | 1.53 (1.01 to 2.23) | 0.42 |
+
+(Before: 1.78 (1.07 to 2.71) from two studies.) The estimate is a little larger and tighter, and the interval excludes 1 in every analysis. The row that adds the non-European studies is not valid as an estimate: the Chinese study's contrasts are mapped through haplotype frequencies from Europeans (C is 0.57 there and 0.19 in East Asians), which is why it drags the estimate down; it is shown only to document why those studies are excluded.
+
+Layer with two CLEC7A parameters (2,000 draws; before in brackets): ceiling score +0.00122 at 5% and +0.00182 at 20% (+0.00116 and +0.00174), with the MCID reached at 20% in 63% of worlds (57%); realised score +0.00100 and +0.00151 (+0.00092 and +0.00141), reaching it in 45% (40%); predictive reading, ceiling, +0.00150 and +0.00216, 72% at 20% (70%). The four-term panel is unchanged (+0.00059 and +0.00105).
+
+### Results carried forward (all scripts that use the second parameter rerun)
+
+- **Attribution with five terms (addendum 17).** CLEC7A combined supplies **49.7%** of the Shapley gain at 5% (48.5% before), with A-G 45.9%, Y238X 3.8%, CD209 27.5% (28.2%), PTX3 12.8% (13.1%), TLR4 10.0% (10.3%); at 20% 47.5%; with the realised score 51.3% (47.5%) at 5% and 49.7% at 20%. Under the predictive reading CLEC7A combined is 45% to 49%.
+- **Aim 3b with five terms (addendum 17).** Whole-cohort gain at 5% and 20%, ceiling, pooled-mean reading (before in brackets for the homogeneous row, +0.00118 and +0.00180): all in neutropenic +0.00164 and +0.00271; ratio 4 +0.00147 and +0.00242; homogeneous **+0.00124 and +0.00187**; ratio 1/4 +0.00212 and +0.00147; all in non-neutropenic +0.00443 and +0.00261; Brunel's stratum effects +0.00096 and +0.00046. The share of worlds reaching the 20% MCID is 88%, 83%, 66%, 41%, 84% and 0.3% in the same order (84%, 78%, 60%, 38%, 83%, 0.3% before). The interaction test: power 90% for a Feys-sized modification (88%), 62% at ratio 4 (59%), 100% for Brunel-sized ones; false positives 5.1%.
+- **Robustness (addendum 18).** CLEC7A's lead holds on every cohort and the ensemble: combined share 48.9% to 50.4% at 5% (ceiling, pooled mean) and 44.8% to 52.8% across every reading, score and threshold; CD209 25.7% to 32.5%; CLEC7A is the largest single contributor in 64% to 69% of draws under the pooled-mean reading and 54% to 57% under the predictive one (about 4 to 6 points more than before). The neutropenic stratum supplies 78.5% to 83.5% of the Aim 3b gain at 5% (homogeneous, ceiling). Whole-cohort gains in the five settings rose by at most 0.00023 and the share reaching the MCID by at most 11 points.
+
+**Tables in addenda 16 (section 1), 17 and 18 show the values before this update** (the regenerated files in `output/` hold the new ones); the differences are in the third significant figure of the gains and at most 11 points in the shares reaching the MCID, and no conclusion changes. Addendum 16's direction check of rs7309123 rows and its statements about Kalkanci and Chen are superseded by this addendum.
+
+### Not done
+
+Zhao 2022's strand (rs7309123 appears only in a donor-genotype screening table with no allele letters); East Asian haplotype frequencies (which would let Chen's and Tanpaibule's contrasts enter the second parameter); Fisher 2017's hazard-ratio rows, whose direction is still unconfirmed.
+
+Code and outputs: `data/rs7309123_strand_resolution.csv` (S056 and S074 now grade A, with a `data_concern` column), `scripts/22_clec7a_second_parameter.R`, `output/clec7a_second_*.csv`, `output/genetic_attribution_second_clec7a_summary.csv`, `output/aim3b_*_second_clec7a.csv`, `output/robust5_*.csv`.

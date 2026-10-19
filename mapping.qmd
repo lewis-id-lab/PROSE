@@ -217,7 +217,7 @@ clec$pooled |>
 Among the small odds-ratio studies Y238X is null. The largest study (Fisher 2017, 483 cases) reports hazard ratios above 1, and
 including it moves the pooled effect up. **The second CLEC7A effect** is the per-copy effect of the A-G haplotype, the G allele of rs7309123 on the non-Y238X background (A-C is the reference). rs7309123 is a C/G
 palindrome, so the strand each study used had to be determined from its control frequencies and the papers themselves; the evidence for each study is in
-`data/rs7309123_strand_resolution.csv` and in addendum 16 of the decision record. Studies are graded A to D, and only grades A and B (resolved with at least low-to-medium confidence)
+`data/rs7309123_strand_resolution.csv` and in addendum 16 of the decision record. Studies are graded A to D, and only grades A and B (resolved with at least low-to-medium confidence; the full texts of Kalkanci 2020 and Chen 2019 settled their strands, addendum 19)
 enter the primary estimate.
 
 ```{r}
@@ -240,9 +240,8 @@ clec2 |>
   fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
 ```
 
-The primary estimate rests on two studies (Schnetzke 2024 and Sainz 2012) and is an odds ratio of `r sprintf("%.2f", clec2$or[1])` per A-G copy, with a 90% interval from `r sprintf("%.2f", clec2$or_lo[1])`
-to `r sprintf("%.2f", clec2$or_hi[1])`. It is fragile: adding the Jena cohort, whose strand is only weakly resolved, brings it to `r sprintf("%.2f", clec2$or[clec2$scenario == "adding the Jena cohort (grade C)"])`
-with an interval that includes 1, and taking every study as forward strand gives `r sprintf("%.2f", clec2$or[clec2$scenario == "all studies, unresolved ones taken as forward"])`.
+The primary estimate rests on three studies (Schnetzke 2024, Kalkanci 2020 and Sainz 2012) and is an odds ratio of `r sprintf("%.2f", clec2$or[1])` per A-G copy, with a 90% interval from `r sprintf("%.2f", clec2$or_lo[1])`
+to `r sprintf("%.2f", clec2$or_hi[1])`. The interval excludes 1 in every analysis. Adding the Jena cohort, whose strand is only weakly resolved, gives `r sprintf("%.2f", clec2$or[clec2$scenario == "adding the Jena cohort (grade C)"])`, and taking every study as forward strand gives `r sprintf("%.2f", clec2$or[clec2$scenario == "all studies, unresolved ones taken as forward"])`. The row that adds the non-European studies is not a valid estimate (their contrasts are mapped through European haplotype frequencies) and is shown only to document why they are excluded.
 
 ## TLR4: the G-T haplotype
 
@@ -345,5 +344,5 @@ fallback adds nothing because Fisher's IFNG rows are donor genotype only. Puttin
 - The Chinese and Thai cohorts use European haplotype frequencies.
 - Three to five studies per term is few. The priors on the pooled effect and on tau are proposals.
 - Open questions from addendum 8 that the human checks did not settle: whether to use Herrero-Sanchez's invasive aspergillosis rows
-  and whether to keep Brunel in the primary analysis. The rs7309123 strand is resolved with some confidence for four of the ten studies and weakly for three more (addendum 16). Hazard-ratio studies join a term's primary
+  and whether to keep Brunel in the primary analysis. The rs7309123 strand is resolved with some confidence for six of the ten studies and weakly for three more; only Zhao 2022 is undetermined (addenda 16 and 19). Hazard-ratio studies join a term's primary
   analysis only when it has fewer than three odds-ratio studies (addendum 9).
