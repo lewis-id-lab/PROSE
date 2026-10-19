@@ -437,6 +437,13 @@ study, and the effects are pooled with a Bayesian random-effects model. Provisio
 h2 copy (90% interval 0.99 to 1.81), tau 0.17. The rows are unverified and most mapping rules and the priors are proposals open
 to change. See `phase3_decisions.md` addendum 7 and `status.md`.
 
+**Update, 18 October 2026 — rows checked against sources, and the mapping extended to CLEC7A and TLR4 (addendum 8).** Herrero-Sanchez
+2018, read in full, has its reference label reversed in every table; the extraction followed it, so the study looked as if it pointed
+the other way, which was an artefact (30 rows corrected, and the addendum 7 statement retracted). Brunel 2018's design is confirmed
+but its per-SNP counts cannot be checked from the text and may be the wrong homozygote group. Provisional primary results, as odds
+ratios per copy of the risk haplotype: PTX3 h2 1.35 (0.99 to 1.81), CLEC7A Y238X 0.98 (0.56 to 1.72), TLR4 G-T 1.44 (0.77 to 2.69).
+The second CLEC7A effect needs the strand of rs7309123 resolved for each study. See `phase3_decisions.md` addendum 8 and `status.md`.
+
 ## 6b. Phase 3 gate — settled 16 October 2026
 
 Recipient genotype is the primary exposure, with donor genotype as a pre-specified secondary restricted to

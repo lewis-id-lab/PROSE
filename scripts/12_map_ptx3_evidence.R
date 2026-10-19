@@ -7,19 +7,26 @@
 #          output/ptx3_snp_crosscheck.csv        the same study mapped through rs2305619 and through rs3816527
 #          output/ptx3_h2_posterior_draws.csv    draws of (mu, tau) from the primary analysis
 #
-# The extraction rows are round-1 and unverified against source, so every number here is provisional.
+# The extraction rows are round-1. Corrections found by checking rows against their sources (scripts/13) are applied first;
+# everything else is unverified, so every number here is provisional.
 
 source("R/evidence_mapping.R")
 source("R/ptx3_evidence.R")
+source("R/source_verification.R")
 
 vr <- read_bundle_table("extraction_variants_round1.csv")
 st <- read_bundle_table("extraction_studies_round1.csv")
-hap <- ptx3_haplotypes(source = "gnomAD_NFE")
-re <- ptx3_row_effects(vr, st, hap)
+corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE) else NULL
+applied <- apply_corrections(vr, corrections)
+vr <- applied$data
+hap <- block_haplotypes("PTX3_trio", risk_alleles = c("A", NA, NA), source = "gnomAD_NFE")
+re <- ptx3_row_effects(vr, st, hap, loci = PTX3_LOCI, counts_model = "trend", corrected_ids = applied$applied)
 
 scenarios <- list(
   "primary: recipient, OR scale, whole cohort, without Herrero-Sanchez" = ptx3_study_effects(re),
-  "with Herrero-Sanchez 2018 (S035)" = ptx3_study_effects(re, exclude_studies = character()),
+  "with Herrero-Sanchez 2018 (S035), detection endpoint" = ptx3_study_effects(re, exclude_studies = character()),
+  "with Herrero-Sanchez 2018 (S035), invasive aspergillosis endpoint" = ptx3_study_effects(use_s035_ia_endpoint(re), exclude_studies = character()),
+  "without Brunel 2018 (S029)" = ptx3_study_effects(re, exclude_studies = c("S035", "S029")),
   "European-ancestry cohorts only" = ptx3_study_effects(re, allow_non_european = FALSE),
   "rs3816527 as the tag SNP, mapped to h2" = ptx3_study_effects(re, snp_order = "rs3816527"),
   "with hazard-ratio studies" = ptx3_study_effects(re, allow_hr = TRUE)
@@ -64,7 +71,7 @@ if (nrow(donor)) {
 }
 write.csv(pooled[[1]]$draws, "output/ptx3_h2_posterior_draws.csv", row.names = FALSE)
 
-message("haplotype frequencies used (gnomAD NFE): h2 = ", sprintf("%.3f", sum(hap$freq[hap$h2 == 1])))
+message("haplotype frequencies used (gnomAD NFE): h2 = ", sprintf("%.3f", sum(hap$freq[hap$risk == 1])), " | rows corrected: ", length(applied$applied))
 message("usable PTX3 rows: ", nrow(re), " | mapped to a per-copy h2 effect: ", sum(!is.na(re$beta)))
 message("\nPrimary analysis, one effect per study:")
 print(cbind(study_tab[, c("study_id", "rsid", "tier", "model")], round(study_tab[, c("y", "se", "beta", "se_beta", "or_per_h2_copy")], 3)), row.names = FALSE)

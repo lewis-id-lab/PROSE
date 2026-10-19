@@ -1,0 +1,19 @@
+"table","snp","model","reference_label","printed_or","printed_ci_lo","printed_ci_hi","crude_ref_vs_other","reading","decisive","distance_if_reference_numerator","distance_if_other_numerator"
+"Table 3","rs2305619","dominant","AA",1.83,0.89,3.76,1.76178451178451,"reference-labelled group is the numerator",TRUE,0.0379887443299202,1.17064318937674
+"Table 3","rs2305619","recessive","AA+AG",1.55,0.8,3.01,1.49802631578947,"reference-labelled group is the numerator",TRUE,0.0341064787077377,0.842403383154573
+"Table 3","rs3816527","dominant","CC",1.74,0.8,3.78,1.70095238095238,"reference-labelled group is the numerator",TRUE,0.0226967949415623,1.08507343151131
+"Table 3","rs3816527","recessive","CC+CA",2.02,1.07,3.84,2.02985074626866,"reference-labelled group is the numerator",TRUE,0.00486475493197258,1.4110597777582
+"Table 3","rs1840680","dominant","AA",1.94,0.95,3.98,1.86666666666667,"reference-labelled group is the numerator",TRUE,0.038533664002243,1.28684228214823
+"Table 3","rs1840680","recessive","AA+AG",1.76,0.92,1.76,1.7013698630137,"reference-labelled group is the numerator",TRUE,0.0338800806990732,1.09674753740105
+"Table 4","rs2305619","dominant","AA",3.28,1.24,8.69,3.11538461538462,"reference-labelled group is the numerator",TRUE,0.0514908057450956,2.32419603904701
+"Table 4","rs2305619","recessive","AA+AG",2.03,0.63,6.5,1.73622047244094,"reference-labelled group is the numerator",TRUE,0.156325184625386,1.25974640148201
+"Table 4","rs3816527","dominant","CC",2.55,0.9,7.16,2.57530864197531,"reference-labelled group is the numerator",TRUE,0.00987602872389859,1.88206274706457
+"Table 4","rs3816527","recessive","CC+CA",1.97,0.67,5.8,1.67118644067797,"reference-labelled group is the numerator",TRUE,0.164499725047027,1.19156736045277
+"Table 4","rs1840680","dominant","AA",3.98,1.52,10.4,3.75,"reference-labelled group is the numerator",TRUE,0.0595259793140268,2.70303765927867
+"Table 4","rs1840680","recessive","AA+AG",2.24,0.7,7.2,1.88709677419355,"reference-labelled group is the numerator",TRUE,0.171436316114284,1.44151541561961
+"Table 5","rs2305619","dominant","AA",4.2,1.22,14.57,4.31428571428571,"reference-labelled group is the numerator",TRUE,0.0268472500361878,2.89701630061483
+"Table 5","rs2305619","recessive","AA+AG",1.27,0.32,5.13,1.10294117647059,"reference-labelled group is the numerator",FALSE,0.141036492110296,0.336997308830704
+"Table 5","rs3816527","dominant","CC",5.1,1.45,17.97,5.64285714285714,"reference-labelled group is the numerator",TRUE,0.101149983121483,3.35963106258204
+"Table 5","rs3816527","recessive","CC+CA",1.63,0.41,6.52,1.42857142857143,"reference-labelled group is the numerator",TRUE,0.131905070879939,0.845254958757403
+"Table 5","rs1840680","dominant","AA",4.15,1.21,14.3,4.16666666666667,"reference-labelled group is the numerator",TRUE,0.00400802139753864,2.85022468988275
+"Table 5","rs1840680","recessive","AA+AG",1.36,0.34,5.51,1.19548872180451,"reference-labelled group is the numerator",FALSE,0.128929625749483,0.486039773746438

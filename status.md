@@ -41,7 +41,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 113 tests, 586 expectations, all passing at the last run
+source("tests/run_tests.R")     # 130 tests, 706 expectations, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -62,6 +62,8 @@ scripts, run them from the project root, in this order:
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
 | `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
 | `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
+| `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
+| `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
 | `scripts/11_refit_baseline.R` | refits the baseline on the base cohort, with robust SE, patient bootstrap, optimism and the MCID; writes the fixed baseline parameters | about 1 min |
 | `scripts/10_outcome_risk_sensitivity.R` | MCID under four readings of the outcome risk (published, refit, refit rule, observed), refit repeated inside a patient bootstrap | about 40 s |
@@ -245,15 +247,27 @@ useful as a rough external check on the baseline model, but only after the outco
 equation over-predicts here (3.6% against 1.5%) and discriminates less well. `haven` reads it; it is not in
 `renv.lock` because no script uses it yet.
 
-### PTX3 evidence mapping (pilot, addendum 7; provisional)
+### Evidence mapping (addenda 7 and 8; provisional)
 
-`h2` is the chromosome class carrying A at rs2305619 (A-C-A, A-A-A, A-A-G: 45.6% in 1000G EUR, 48.2% gnomAD NFE); h1 is
-G-A-G. rs1840680 A is the same class; rs3816527 C marks only A-C-A. `scripts/12_map_ptx3_evidence.R` maps each study's contrast
-to a per-copy h2 effect by solving a haplotype model, picks one effect per study, and pools with a Bayesian random-effects
-model. Primary result: log OR 0.300 per h2 copy (90% interval -0.010 to 0.591), OR 1.35 (0.99 to 1.81), five studies, tau 0.17.
-Of 162 usable PTX3 rows, 104 map. The rows are unverified (round 2 pending), Herrero-Sanchez 2018 points the other way, and the
-priors and most mapping rules are proposals open to change (the table in addendum 7 says which). Donor genotype (Fisher 2017)
-gives 1.24 per copy and is described, not pooled.
+`h2` is the PTX3 chromosome class carrying A at rs2305619 (A-C-A, A-A-A, A-A-G: 45.6% in 1000G EUR, 48.2% gnomAD NFE); h1 is
+G-A-G. rs1840680 A is the same class; rs3816527 C marks only A-C-A. Each study's contrast is converted to a per-copy effect by
+solving a haplotype model, one effect is taken per study, and the effects are pooled with a Bayesian random-effects model. The
+pipeline now takes any haplotype block: CLEC7A uses the Y238X haplotype (C-G, 7.7%), TLR4 the G-T haplotype (6.1%) through carriers
+against non-carriers (D3c).
+
+| term | primary analysis | OR per copy (90% interval) | tau |
+|---|---|---|---|
+| PTX3 h2 | 5 studies | 1.35 (0.99 to 1.81) | 0.17 |
+| CLEC7A Y238X | 4 studies | 0.98 (0.56 to 1.72) | 0.26 |
+| TLR4 G-T | 4 studies | 1.44 (0.77 to 2.69) | 0.27 |
+
+**Source checks (addendum 8).** Herrero-Sanchez 2018 was read in full: the reference label is reversed in every table of the paper,
+so the extraction looked as if the study pointed the other way. That was an artefact, 30 rows are corrected, and the study's effect is
+positive (the statement in addendum 7 is retracted). Brunel 2018 was read from a summary of the page: the design is confirmed but the
+per-SNP counts are only in a supplementary figure, and a Hardy-Weinberg check suggests its rs3816527 "homozygous" group may be the
+major-allele homozygotes, so its sign is not secure. The other PTX3 studies are unchecked. The CLEC7A rs7309123 rows (26, from 8
+studies) are not used because the SNP is a C/G palindrome with no control frequency recorded. The rows are otherwise unverified
+(round 2 pending), and the priors and most mapping rules are proposals. Four questions are open for you at the end of addendum 8.
 
 ### Haplotypes
 
@@ -271,7 +285,7 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
    strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
    reported allele's control frequency with gnomAD (G 0.43, C 0.57) in European cohorts.
-4. **Evidence-to-parameter mapping (started; PTX3 pilot done, addendum 7):** repeat the PTX3 pipeline for CLEC7A, TLR4, CD209, IL10 and IFNG. The PTX3 h2 definition is settled (D11) and the pooled per-copy effect is a provisional OR of 1.35 (0.99 to 1.81). The original plan: one effect per study per term, as a log odds ratio per risk allele
+4. **Evidence-to-parameter mapping (PTX3, CLEC7A and TLR4 done provisionally, addenda 7 and 8):** still to do are CD209 and the optional IL10 and IFNG terms, the second CLEC7A parameter (needs the strand of rs7309123 per study) and checking the remaining rows against their sources (Tang, Schnetzke, Kalkanci, Tanpaibule, Fisher, and the supplements). The original plan: one effect per study per term, as a log odds ratio per risk allele
    with nucleotide-pinned alleles; collapse overlapping cohorts (Spanish registry, Jena AML); map SNP effects to
    haplotype effects; Bayesian random-effects pooling with prediction intervals.
 5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient) and the refit baseline (`load_refit_params()`). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the

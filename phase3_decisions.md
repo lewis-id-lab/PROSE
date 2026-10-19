@@ -596,3 +596,129 @@ with Herrero-Sanchez and Brunel. Decide how donor evidence should inform the all
 Code and outputs: `R/evidence_mapping.R`, `R/ptx3_evidence.R`, `scripts/12_map_ptx3_evidence.R`,
 `output/ptx3_row_effects.csv`, `output/ptx3_study_effects.csv`, `output/ptx3_h2_pooled.csv`, `output/ptx3_snp_crosscheck.csv`,
 `output/ptx3_donor_effects.csv`, `output/ptx3_h2_posterior_draws.csv`.
+
+---
+
+## Addendum 8, 18 October 2026: PTX3 rows checked against sources, and the mapping extended to CLEC7A and TLR4 (D12)
+
+Written after the tag. No genetic-layer result exists. Nothing in D1 to D11 changes, but one statement in addendum 7 is
+retracted (below). The source checks are read-throughs by the assistant. They are not the human round-2 check, which is
+still pending, and the two papers were read differently: Herrero-Sanchez 2018 as full text from PMC, Brunel 2018 from a
+summary of the article page returned by the fetch tool, so its figures and quotes are not verbatim and should be re-read.
+
+### Herrero-Sanchez 2018 (S035): corrected, and addendum 7 was wrong about its direction
+
+Addendum 7 said this study "points the other way" (-0.43 per h2 copy) and raised the heterogeneity. **That was an artefact.**
+In every table of the paper the reference group is labelled 1.00, but the printed odds ratio belongs to that group
+*against the others*. The genotype counts show it: for rs2305619 and the Candida or Aspergillus detection endpoint (Table 3),
+AA is the "reference", yet AA has the higher share of cases (23 of 41 against 66 of 157) and the printed 1.83 is the crude
+1.76 for AA against the rest, not its reciprocal 0.57. All 18 dominant and recessive odds ratios in Tables 3, 4 and 5
+(three SNPs) agree with that reading: 16 decisively, 2 too close to 1 to tell, none contradicting. The paper's text agrees,
+calling AA (rs2305619, rs1840680) and CC (rs3816527) the risk genotypes and A-C-A the risk haplotype.
+
+The extraction copied the table faithfully and my parser followed its "(ref)" marker. 30 dominant and recessive rows are now
+corrected (`data/extraction_corrections.csv`, each with its evidence and a check that the value it replaces is unchanged).
+Corrected, the study's per-copy h2 effect is **+0.47** (SE 0.29) on the detection endpoint and **+1.16** (SE 0.55) on invasive
+aspergillosis (Table 5: 12 patients with EORTC/MSG invasive disease), so it agrees in direction with the other studies.
+Also confirmed: the extracted Table 3 values match the paper, samples were taken before HSCT (a recipient study), and the
+analysis is adjusted for sex, age and malignancy. The paper prints 1.76 (0.92 to 1.76) for the rs1840680 recessive row, an
+upper limit equal to the estimate, a printing error in the source. The supplementary CLEC7A tables were not read.
+
+**D3b is not changed,** but note what it rests on. It excluded this study because its extracted endpoint (Table 3) includes
+colonisation. Table 5 is an invasive mould endpoint in the whole cohort, and it is in the extraction; it is run as a
+sensitivity analysis below. Whether the primary analysis should use the Table 5 rows is a question for you.
+
+### Brunel 2018 (S029): the design is confirmed, the per-SNP counts cannot be, and one check is worrying
+
+Confirmed from the page: 185 patients and 212 courses (2007 to 2017), 26 probable or proven invasive mould infections (16
+probable, 10 proven), all moulds, and an adjusted HR of 5.06 (1.68 to 15.2) without pre-existing neutropenia. The reported minor
+allele frequencies, 0.48 for rs2305619 and 0.44 for rs3816527, fit A and C as the minor alleles. But the main text gives only
+a combined exposure ("two copies of the minor allele of rs2305619 and/or rs3816527"); the per-SNP counts are in Online
+Supplementary Figure S2, an image, so **the extracted counts cannot be checked against the text.**
+
+A frequency check on the extracted counts raises a doubt. With a minor allele frequency of 0.44 the rs3816527 CC
+homozygotes should be about 19% of courses, but the extracted "homozygous" group is 30% (z = +4.0 against CC) and fits the
+major-allele AA homozygotes (31%). It is the same in the two strata (z = +2.7 and +3.1). For rs2305619 the two homozygote
+shares (23% and 27%) are too close to separate, but the observed 27% fits the major-allele group slightly better. So the
+extracted groups may not be the minor-allele homozygotes the paper describes, and the sign of Brunel's effect is not
+secure. Genotype source is also not stated in the text. This study stays in the primary analysis for now, flagged, and a
+sensitivity analysis drops it.
+
+### Updated PTX3 results
+
+The primary analysis is unchanged, because Herrero-Sanchez is outside it (D3b): OR **1.35** per h2 copy (90% interval 0.99 to
+1.81), tau 0.17, five studies. 128 of 162 usable rows now map, up from 104, because the cleaned comparison text is readable.
+
+| analysis | studies | OR per h2 copy (90% interval) | tau |
+|---|---|---|---|
+| **primary** | 5 | **1.35** (0.99 to 1.81) | 0.17 |
+| with Herrero-Sanchez, detection endpoint | 6 | 1.40 (1.08 to 1.80) | 0.14 |
+| with Herrero-Sanchez, invasive aspergillosis endpoint | 6 | 1.45 (1.08 to 1.96) | 0.18 |
+| without Brunel 2018 | 4 | 1.26 (0.87 to 1.79) | 0.19 |
+| European-ancestry cohorts only | 3 | 1.39 (0.91 to 2.11) | 0.23 |
+| rs3816527 as the tag SNP | 4 | 1.44 (1.00 to 2.04) | 0.20 |
+| with hazard-ratio studies | 5 | 1.35 (1.00 to 1.81) | 0.18 |
+
+The h2 effect is positive in every analysis. Its interval includes 1 in the primary analysis and when Brunel is dropped, and
+excludes 1 once Herrero-Sanchez is added. The other PTX3 studies (Tang, Schnetzke, Kalkanci, Tanpaibule, Fisher) have not been
+checked against their sources.
+
+### Mapping extended (rules proposed, open to change)
+
+The pipeline now takes any haplotype block. New or changed rules: a study reported on the opposite strand has its alleles
+and the genotypes in its text complemented; "carrier" is read as a dominant contrast; for rare risk alleles (CLEC7A, TLR4) a
+2x3 table is mapped as carriers against non-carriers with 0.5 added to a zero cell (D3c), while PTX3 keeps the additive
+trend; a row's genotype source is read from its text, then the study, and **rows whose source is stated nowhere are left out of
+the recipient analysis**; and three table-specific subgroup labels count as whole-cohort analyses (Ceesay's "patients tested for
+SNP" and "HSCT donors", Fisher's "recipient (patient) genotype").
+
+### D12. CLEC7A: the Y238X haplotype
+
+The term is the Y238X haplotype, the C allele of rs16910526 on the forward strand, which sits only on the C-G haplotype of
+rs16910526 and rs7309123 (7.7% in gnomAD NFE; A-G is 34.9% and A-C 57.4%). Strand flips are handled: Kalkanci and
+Cunha write the allele as G, which is forward-strand C.
+
+| analysis | studies | OR per Y238X copy (90% interval) |
+|---|---|---|
+| **primary** (Ceesay, Kalkanci, Sainz, Fischer) | 4 | **0.98** (0.56 to 1.72), tau 0.26 |
+| with Herrero-Sanchez | 4 | same four studies: none of its CLEC7A rows maps (they come from the supplementary tables, which were not read) |
+| with hazard-ratio studies (adds Fisher 2017) | 5 | 1.36 (0.81 to 1.88) |
+
+Among the small odds-ratio studies Y238X is null. The one large study, Fisher 2017 (483 cases), reports hazard ratios above 1
+(allelic 1.69 for recipient genotype), and including it moves the pooled effect up. Whether hazard ratios should join the
+primary analysis is a decision for you.
+
+**The second CLEC7A parameter is not estimated.** The three-haplotype structure has two effects, one for Y238X and one for
+rs7309123 G on the non-Y238X background. rs7309123 is a C/G palindrome, so its strand cannot be settled from the letters, and
+none of its 26 usable rows from 8 studies records a control allele frequency to settle it. Used anyway, it forces its signal
+onto the Y238X haplotype, which carries only 18% of the G alleles, and produced an odds ratio of 4.5. Those rows are not used,
+and the second effect is held at zero until the strand of each study is resolved (round 2, item C2).
+
+### D12. TLR4: the G-T haplotype, carrier model
+
+The term is the G-T haplotype of rs4986790 (G) and rs4986791 (T), 6.1% in gnomAD NFE, with no cohort showing minor
+homozygotes, so every study enters through carriers against non-carriers (D3c).
+
+| analysis | studies | OR per G-T copy (90% interval) |
+|---|---|---|
+| **primary** (Ceesay, Kalkanci, Grube, Tanpaibule) | 4 | **1.44** (0.77 to 2.69), tau 0.27, P(effect < 0) 16% |
+| with de Boer 2011 (genotype source unstated, treated as recipient) | 5 | 1.78 (1.02 to 3.02) |
+| European-ancestry cohorts only | 3 | 1.57 (0.82 to 3.04) |
+| rs4986791 as the tag SNP | 3 | 0.98 (0.48 to 2.00) |
+| donor genotype (secondary) | 2 | 1.24 (0.46 to 3.00) |
+
+The effect is positive but uncertain, and the two SNPs disagree within the large sampling error (differences of 0.3 to 0.9 on
+the log scale against standard errors of 0.6 to 1.5), which is expected from carrier counts this small. de Boer 2011 analysed
+donors and recipients and the extraction does not say which genotype its rows use. Tanpaibule's allele is carried by no case
+(0 of 33) against 11 of 295 controls, so its estimate rests on the 0.5 correction.
+
+### Open for you
+
+1. Whether the primary analysis should use Herrero-Sanchez's Table 5 (invasive aspergillosis) rows, which would reopen D3b.
+2. Whether Brunel 2018 stays in the primary analysis while its counts are unverifiable and may be the wrong homozygote group.
+3. Whether hazard-ratio studies, above all Fisher 2017, join the primary analysis. Rule 4 of addendum 7 excluded them.
+4. How to resolve rs7309123 strand for each study, to estimate the second CLEC7A effect.
+
+Code and outputs: `R/source_verification.R`, `scripts/13_verify_ptx3_rows.R`, `scripts/14_map_clec7a_tlr4_evidence.R`,
+`data/source_checks_S035.csv`, `data/extraction_corrections.csv`, `output/ptx3_verification_log.csv`,
+`output/s035_direction_check.csv`, `output/s029_genotype_frequency_check.csv`, `output/clec7a_*.csv`, `output/tlr4_*.csv`.

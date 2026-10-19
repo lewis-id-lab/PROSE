@@ -15,13 +15,19 @@
 
 PTX3_LOCI <- c("rs2305619", "rs3816527", "rs1840680")
 
+# The haplotype class whose per-copy effect is estimated is marked 1 in a column named `risk` (or `h2` for PTX3)
+risk_of <- function(hap) if ("risk" %in% names(hap)) hap$risk else hap$h2
+
+complement_base <- function(x) chartr("ACGT", "TGCA", x)
+
 # Read one table from the evidence bundle without unpacking it
 read_bundle_table <- function(name, zip = "IMD_genetics_analysis_bundle (1).zip") {
   # read.csv opens and closes an unopened connection itself, so it is not closed again here
   utils::read.csv(unz(zip, paste0("IMD_genetics_bundle/data/", name)), stringsAsFactors = FALSE, na.strings = c("", "NA"))
 }
 
-# PTX3 haplotypes and their frequencies; h2 = A at rs2305619
+# PTX3 haplotypes and their frequencies; h2 = A at rs2305619. Kept for the earlier code and tests; block_haplotypes() below
+# is the general form.
 ptx3_haplotypes <- function(path = "data/haplotype_frequencies_phased.csv", source = c("gnomAD_NFE", "1000G_EUR")) {
   source <- match.arg(source)
   d <- utils::read.csv(path, stringsAsFactors = FALSE)
@@ -42,7 +48,7 @@ genotype_pairs <- function(hap, locus) {
   ij <- expand.grid(i = seq_len(nrow(hap)), j = seq_len(nrow(hap)))
   data.frame(prob = hap$freq[ij$i] * hap$freq[ij$j],
              genotype = vapply(seq_len(nrow(ij)), function(r) paste(sort(c(al[ij$i[r]], al[ij$j[r]])), collapse = ""), ""),
-             k = hap$h2[ij$i] + hap$h2[ij$j], stringsAsFactors = FALSE)
+             k = risk_of(hap)[ij$i] + risk_of(hap)[ij$j], stringsAsFactors = FALSE)
 }
 
 # Log OR of one genotype group against another, under h2 effect beta. Cases are weighted by exp(beta * h2 copies).
@@ -57,7 +63,7 @@ implied_log_or_genotype <- function(beta, pairs, numerator, reference) {
 # Log OR per copy of an allele, chromosome level (exact for an allelic test under multiplicative risk)
 implied_log_or_allele <- function(beta, hap, locus, allele) {
   has <- hap[[paste0("a", locus)]] == allele
-  f <- function(b) { w <- hap$freq * exp(b * hap$h2); log(sum(w[has]) / sum(w[!has])) }
+  f <- function(b) { w <- hap$freq * exp(b * risk_of(hap)); log(sum(w[has]) / sum(w[!has])) }
   f(beta) - f(0)
 }
 
@@ -82,12 +88,15 @@ parse_genotype_tokens <- function(txt) {
 }
 
 # Which genotype group is compared with which? Read the comparison text; if it cannot be read, use the model label.
-parse_contrast <- function(comparison, genetic_model, effect_allele, other_allele) {
+parse_contrast <- function(comparison, genetic_model, effect_allele, other_allele, flip_text = FALSE) {
+  # The alleles are given on the forward strand. If the study wrote its text on the opposite strand, flip_text complements
+  # the genotypes read from the comparison text.
   e <- effect_allele; o <- other_allele
+  tok <- function(txt) { t <- parse_genotype_tokens(txt); if (flip_text) unique(vapply(t, function(g) paste(sort(strsplit(complement_base(g), "")[[1]]), collapse = ""), "")) else t }
   valid <- if (!is.na(e) && !is.na(o)) c(paste0(e, e), paste(sort(c(e, o)), collapse = ""), paste0(o, o)) else character()
   parts <- if (!is.na(comparison)) strsplit(comparison, "(?i)\\s+(vs\\.?|versus)\\s+", perl = TRUE)[[1]] else character()
   if (length(parts) == 2 && length(valid)) {
-    L <- parse_genotype_tokens(parts[1]); R <- parse_genotype_tokens(parts[2])
+    L <- tok(parts[1]); R <- tok(parts[2])
     if (length(L) && length(R) && all(c(L, R) %in% valid) && !length(intersect(L, R))) {
       left_ref <- grepl("ref", parts[1], ignore.case = TRUE) && !grepl("ref", parts[2], ignore.case = TRUE)
       return(list(type = "genotype", numerator = if (left_ref) R else L, reference = if (left_ref) L else R, method = "text", flag = ""))
@@ -97,7 +106,7 @@ parse_contrast <- function(comparison, genetic_model, effect_allele, other_allel
   if (!length(valid)) return(list(type = NA, numerator = NULL, reference = NULL, method = "unreadable", flag = "effect allele not stated"))
   het <- paste(sort(c(e, o)), collapse = ""); ee <- paste0(e, e); oo <- paste0(o, o)
   switch(as.character(genetic_model),
-         dominant = list(type = "genotype", numerator = c(ee, het), reference = oo, method = "model_label", flag = "contrast taken from the model label"),
+         dominant = , carrier = list(type = "genotype", numerator = c(ee, het), reference = oo, method = "model_label", flag = "contrast taken from the model label"),
          recessive = list(type = "genotype", numerator = ee, reference = c(het, oo), method = "model_label", flag = "contrast taken from the model label"),
          allelic = list(type = "allele", allele = e, method = "model_label", flag = "contrast taken from the model label"),
          additive_per_allele = list(type = "allele", allele = e, method = "model_label", flag = "contrast taken from the model label"),
@@ -185,4 +194,24 @@ bayes_meta_grid <- function(y, se, prior_sd_mu = 1, prior_scale_tau = 0.5, n_dra
   q <- function(x) stats::quantile(x, c(0.05, 0.5, 0.95), names = FALSE)
   list(draws = data.frame(mu = mu, tau = tdraw), mu = q(mu), tau = q(tdraw), prediction = q(pred),
        prob_mu_below_zero = mean(mu < 0), k = length(y))
+}
+
+# Haplotypes and frequencies of any block in the phased table, with the risk class marked.
+#   locus_alleles: the allele at each locus that defines the risk class, e.g. c(A = "A") for PTX3 (rs2305619 A) or
+#   c("C", NA) for the CLEC7A Y238X allele; NA means the locus is not part of the rule.
+block_haplotypes <- function(block, risk_alleles, path = "data/haplotype_frequencies_phased.csv", source = c("gnomAD_NFE", "1000G_EUR")) {
+  source <- match.arg(source)
+  d <- utils::read.csv(path, stringsAsFactors = FALSE)
+  d <- d[d$block == block, , drop = FALSE]
+  if (!nrow(d)) stop("block not found: ", block, call. = FALSE)
+  col <- if (source == "gnomAD_NFE") "freq_gnomAD_NFE_rescaled" else "freq_1000G_EUR"
+  n_loci <- sum(grepl("^allele_[0-9]+$", names(d)))
+  h <- data.frame(haplotype = d$haplotype, freq = d[[col]], stringsAsFactors = FALSE)
+  for (j in seq_len(n_loci)) h[[paste0("a", j)]] <- d[[paste0("allele_", j)]]
+  h <- h[h$freq > 0, , drop = FALSE]
+  h$freq <- h$freq / sum(h$freq)
+  inrule <- Reduce(`&`, lapply(seq_len(n_loci), function(j) is.na(risk_alleles[j]) | h[[paste0("a", j)]] == risk_alleles[j]))
+  h$risk <- as.integer(inrule)
+  rownames(h) <- NULL
+  h
 }

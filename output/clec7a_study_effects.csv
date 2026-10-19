@@ -1,0 +1,5 @@
+"study_id","first_author","year","rsid","cohort","tier","model","measure","method","y","se","beta","se_beta","flag","ancestry_as_reported","or_per_copy"
+"S046","Ceesay, M. Mansour",2016,"rs16910526","whole","counts_2x3","genotypic_3level","none_reported","counts 2x3, carriers against non-carriers",0.0327898228229908,0.706346042094663,0.0315072293573399,0.678313992815115,"","87% white Europeans",1.03200883632933
+"S056","Kalkanci, Ayse",2020,"rs16910526","whole","counts_2x3","genotypic_3level","none_reported","counts 2x3, carriers against non-carriers",-0.885038188370051,0.742757734183261,-0.861609869782749,0.73009695042607,"reported on the opposite strand, complemented","Turkish population",0.422481394524586
+"S071","Sainz, Juan",2012,"rs16910526","whole","estimate","genotypic_3level","OR","estimate, text",0.131028262406404,0.514015317739398,0.131028262406404,0.514015317739455,"","Caucasian",1.14
+"S073","Fischer, Mike",2016,"rs16910526","whole","estimate","carrier","OR","estimate, text",-0.356674943938732,0.644330371433068,0.356674943938733,0.644330371433139,"","Caucasian",1.42857142857143

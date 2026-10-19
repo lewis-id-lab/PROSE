@@ -21,12 +21,7 @@ A negative answer, that no realistic genetic architecture moves the decision cur
 failure. The primary endpoint is decision-curve net benefit at the 5% threshold, judged against a minimum
 clinically important difference fixed before any genetic result exists.
 
-::: {.callout-warning}
-## This is a working report on provisional data
 
-All extracted variant rows are marked `PENDING ROUND 2 VERIFICATION`. The correlation structure of the
-clinical predictors is a fitted modelling assumption, not published data. No genetic result exists yet.
-:::
 
 ## Where the project stands
 

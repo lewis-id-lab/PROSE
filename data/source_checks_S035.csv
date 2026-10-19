@@ -1,0 +1,19 @@
+table,endpoint,snp,model,reference_label,reference_events,reference_nonevents,other_events,other_nonevents,printed_or,printed_ci_lo,printed_ci_hi
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs2305619,dominant,AA,23,18,66,91,1.83,0.89,3.76
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs2305619,recessive,AA+AG,69,76,20,33,1.55,0.80,3.01
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs3816527,dominant,CC,19,15,70,94,1.74,0.80,3.78
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs3816527,recessive,CC+CA,68,67,21,42,2.02,1.07,3.84
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs1840680,dominant,AA,24,18,65,91,1.94,0.95,3.98
+Table 3,detection of Candida and/or Aspergillus (includes colonisation),rs1840680,recessive,AA+AG,69,73,20,36,1.76,0.92,1.76
+Table 4,invasive fungal infection,rs2305619,dominant,AA,9,32,13,144,3.28,1.24,8.69
+Table 4,invasive fungal infection,rs2305619,recessive,AA+AG,18,127,4,49,2.03,0.63,6.50
+Table 4,invasive fungal infection,rs3816527,dominant,CC,7,27,15,149,2.55,0.90,7.16
+Table 4,invasive fungal infection,rs3816527,recessive,CC+CA,17,118,5,58,1.97,0.67,5.80
+Table 4,invasive fungal infection,rs1840680,dominant,AA,10,32,12,144,3.98,1.52,10.40
+Table 4,invasive fungal infection,rs1840680,recessive,AA+AG,18,124,4,52,2.24,0.70,7.20
+Table 5,invasive aspergillosis,rs2305619,dominant,AA,6,35,6,151,4.20,1.22,14.57
+Table 5,invasive aspergillosis,rs2305619,recessive,AA+AG,9,136,3,50,1.27,0.32,5.13
+Table 5,invasive aspergillosis,rs3816527,dominant,CC,6,28,6,158,5.10,1.45,17.97
+Table 5,invasive aspergillosis,rs3816527,recessive,CC+CA,9,126,3,60,1.63,0.41,6.52
+Table 5,invasive aspergillosis,rs1840680,dominant,AA,6,36,6,150,4.15,1.21,14.30
+Table 5,invasive aspergillosis,rs1840680,recessive,AA+AG,9,133,3,53,1.36,0.34,5.51

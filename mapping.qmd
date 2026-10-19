@@ -11,13 +11,20 @@ studies <- read.csv("output/ptx3_study_effects.csv")
 pooled  <- read.csv("output/ptx3_h2_pooled.csv")
 cross   <- read.csv("output/ptx3_snp_crosscheck.csv")
 donor   <- read.csv("output/ptx3_donor_effects.csv")
+rows    <- read.csv("output/ptx3_row_effects.csv")
+vlog    <- read.csv("output/ptx3_verification_log.csv")
+s035    <- read.csv("output/s035_direction_check.csv")
+s029    <- read.csv("output/s029_genotype_frequency_check.csv")
+clec    <- list(study = read.csv("output/clec7a_study_effects.csv"), pooled = read.csv("output/clec7a_pooled.csv"), rows = read.csv("output/clec7a_row_effects.csv"))
+tlr4    <- list(study = read.csv("output/tlr4_study_effects.csv"), pooled = read.csv("output/tlr4_pooled.csv"), cross = read.csv("output/tlr4_snp_crosscheck.csv"))
 ```
 
 ::: {.callout-warning}
 ## Provisional
 
-The extraction rows are round 1 and have **not** been verified against their sources. Most mapping rules and the priors are
-proposals, set out in addendum 7 of the decision record. Treat every number on this page as provisional.
+The extraction rows are round 1. Two papers (Herrero-Sanchez 2018 and Brunel 2018) have been read against the extraction by the
+assistant, which is not the human round-2 check, and the rest have not been checked. Most mapping rules and the priors are
+proposals, set out in addenda 7 and 8 of the decision record. Treat every number on this page as provisional.
 :::
 
 ## What "h2" means
@@ -86,8 +93,63 @@ pooled |>
 The primary estimate is an odds ratio of `r sprintf("%.2f", pooled$or[1])` per h2 copy, with a 90% interval of
 `r sprintf("%.2f", pooled$or_lo[1])` to `r sprintf("%.2f", pooled$or_hi[1])`. The interval just reaches 1, and the prediction
 interval for a new study is wide (an odds ratio of `r sprintf("%.2f", exp(pooled$pred_lo[1]))` to `r sprintf("%.2f", exp(pooled$pred_hi[1]))`),
-so the evidence is weak. Adding Herrero-Sanchez 2018, which points the other way, pulls the estimate towards 1 and raises the
-heterogeneity.
+so the evidence is weak. Herrero-Sanchez 2018 first appeared to point the other way; reading the paper showed that the extraction followed a
+reference label that is reversed in the source, and corrected it is positive (see the next section). Adding it
+raises the estimate and tightens the interval, and dropping Brunel 2018 lowers the estimate and widens it.
+
+## Checking rows against their sources
+
+Two studies drive most of the doubt about direction, so they were read first.
+
+```{r}
+#| label: tbl-verification
+#| tbl-cap: "What was checked, what the source says, and what follows. Herrero-Sanchez 2018 was read as full text; Brunel 2018 from a summary of the article page, so its figures are not verbatim."
+vlog |>
+  transmute(Study = study, Item = item, `The source says` = source_says, Verdict = verdict, Consequence = consequence) |>
+  gt() |>
+  tab_options(table.font.size = "small")
+```
+
+**Herrero-Sanchez 2018.** In every table the reference group is labelled 1.00, but the printed odds ratio belongs to that group
+against the others. The genotype counts show it for every SNP and model checked:
+
+```{r}
+#| label: tbl-s035
+#| tbl-cap: "Herrero-Sanchez 2018: the printed odds ratio against the crude odds ratio from the genotype counts, in each direction. Reading A: the reference-labelled group is the numerator. Reading B: the other group is."
+s035 |>
+  transmute(Table = table, SNP = snp, Model = model, Printed = printed_or, `Crude, reading A` = crude_ref_vs_other,
+            `Distance, A` = distance_if_reference_numerator, `Distance, B` = distance_if_other_numerator,
+            Decisive = ifelse(decisive, "yes", "no")) |>
+  gt() |>
+  fmt_number(c(Printed, `Crude, reading A`, `Distance, A`, `Distance, B`), decimals = 2)
+```
+
+All 18 comparisons favour reading A (16 decisively, 2 too close to 1 to tell). The extracted study therefore has a positive per-copy
+h2 effect, like the others.
+
+**Brunel 2018.** The extracted counts for the group labelled "homozygous for the minor allele" can be compared with what
+Hardy-Weinberg predicts from the paper's own minor allele frequencies (0.48 for rs2305619, 0.44 for rs3816527):
+
+```{r}
+#| label: tbl-s029
+#| tbl-cap: "Brunel 2018: the share of courses in the extracted homozygote group, against the minor-allele and major-allele homozygote shares that Hardy-Weinberg predicts."
+s029 |>
+  transmute(SNP = rsid, Analysis = analysis, Observed = observed, `Expected, minor homozygotes` = expected_minor_homozygotes,
+            `Expected, major homozygotes` = expected_major_homozygotes, `z, minor` = z_minor_homozygotes, `z, major` = z_major_homozygotes) |>
+  gt() |>
+  fmt_number(2:7, decimals = 2)
+```
+
+For rs3816527 the extracted group fits the major-allele homozygotes and not the minor ones (z about 3 to 4), in every stratum. So the
+group may not be the one the paper describes, and the sign of this study's effect is not secure. The per-SNP counts themselves are
+only in a supplementary figure.
+
+```{r}
+#| label: tbl-unmapped
+#| tbl-cap: "Why usable PTX3 rows do not map to a per-copy h2 effect."
+tab <- table(Reason = ifelse(is.na(rows$beta), sub(";.*", "", rows$flag), "mapped"))
+tibble(Reason = names(tab), Rows = as.integer(tab)) |> arrange(desc(Rows)) |> gt()
+```
 
 ## Does the h2 definition hold?
 
@@ -120,11 +182,73 @@ donor |>
   fmt_number(3:5, decimals = 2)
 ```
 
+## CLEC7A: the Y238X haplotype
+
+Y238X (the C allele of rs16910526 on the forward strand) sits only on the C-G haplotype of rs16910526 and rs7309123, which is
+7.7% of chromosomes in gnomAD NFE (A-G is 34.9% and A-C 57.4%). The term is the per-copy effect of that haplotype. Studies that
+write the allele as G are on the opposite strand, and are complemented.
+
+```{r}
+#| label: tbl-clec7a
+#| tbl-cap: "CLEC7A, primary analysis: one effect per study, per copy of the Y238X haplotype."
+clec$study |>
+  transmute(Study = paste0(sub(",.*", "", first_author), " ", year), `Evidence used` = paste(tier, model, sep = ", "),
+            `Log OR as reported` = y, `Per-copy effect` = beta, SE = se_beta, `OR per copy` = or_per_copy) |>
+  gt() |>
+  fmt_number(c(`Log OR as reported`, `Per-copy effect`, SE, `OR per copy`), decimals = 2)
+```
+
+```{r}
+#| label: tbl-clec7a-pooled
+#| tbl-cap: "CLEC7A pooled effect."
+clec$pooled |>
+  transmute(Analysis = scenario, Studies = k, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi, tau = tau) |>
+  gt() |>
+  fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
+```
+
+Among the small odds-ratio studies Y238X is null. The largest study (Fisher 2017, 483 cases) reports hazard ratios above 1, and
+including it moves the pooled effect up. **The second CLEC7A effect is not estimated.** rs7309123 is a C/G palindrome, so its
+strand cannot be settled from the allele letters, and none of its `r sum(clec$rows$rsid == "rs7309123")` usable rows from
+`r length(unique(clec$rows$study_id[clec$rows$rsid == "rs7309123"]))` studies records a control allele frequency to settle it. Used
+anyway, its signal is forced onto the Y238X haplotype, which carries only 18% of the G alleles, and it produced an odds ratio
+of 4.5. Those rows are left out until the strand of each study is resolved.
+
+## TLR4: the G-T haplotype
+
+The term is the G-T haplotype of rs4986790 (G) and rs4986791 (T), 6.1% of chromosomes in gnomAD NFE. No cohort has minor
+homozygotes, so every study enters as carriers against non-carriers, with 0.5 added to a zero cell (decision D3c).
+
+```{r}
+#| label: tbl-tlr4
+#| tbl-cap: "TLR4, primary analysis: one effect per study, per copy of the G-T haplotype."
+tlr4$study |>
+  transmute(Study = paste0(sub(",.*", "", first_author), " ", year), SNP = rsid, `Log OR as reported` = y, `Per-copy effect` = beta,
+            SE = se_beta, `OR per copy` = or_per_copy) |>
+  gt() |>
+  fmt_number(c(`Log OR as reported`, `Per-copy effect`, SE, `OR per copy`), decimals = 2)
+```
+
+```{r}
+#| label: tbl-tlr4-pooled
+#| tbl-cap: "TLR4 pooled effect."
+tlr4$pooled |>
+  transmute(Analysis = scenario, Studies = k, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi, tau = tau) |>
+  gt() |>
+  fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
+```
+
+The effect is positive but uncertain. The two SNPs disagree within a large sampling error, which is expected from carrier counts this
+small. de Boer 2011 analysed donors and recipients and the extraction does not say which genotype its rows use, so it is left out
+of the primary analysis; treating it as a recipient study raises the estimate. Tanpaibule's allele is carried by none of its 33 cases
+against 11 of 295 controls, so its estimate rests on the continuity correction.
+
 ## Limits
 
-- The rows are unverified (round 2 is pending). Herrero-Sanchez 2018 and Brunel 2018 should be checked first.
-- Brunel 2018 states "the minor allele", so its effect allele is inferred from European frequencies.
+- The rows are unverified except where stated above, and the checks so far are the assistant's, not the human round-2 check.
+- Brunel 2018 states "the minor allele", so its effect allele is inferred from European frequencies, and the frequency check above
+  casts doubt on it.
 - The Chinese and Thai cohorts use European haplotype frequencies.
-- Five studies is few. The priors on the pooled effect and on tau are proposals.
-- Of 162 usable PTX3 rows, 104 map: 39 are three-group comparisons, 18 are heterozygote-only contrasts and 1 has an
-  estimate outside its own interval.
+- Four or five studies per term is few. The priors on the pooled effect and on tau are proposals.
+- Open questions are listed at the end of addendum 8: whether to use Herrero-Sanchez's invasive aspergillosis rows, whether to keep
+  Brunel in the primary analysis, whether hazard-ratio studies join the primary analysis, and how to resolve the rs7309123 strand.
