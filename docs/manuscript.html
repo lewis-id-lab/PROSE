@@ -1,0 +1,2759 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-10-19">
+
+<title>Draft manuscript – IMD genetics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27b9f889d6e109d015426ac4f274b7e7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">IMD genetics</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./manuscript.html" aria-current="page"> 
+<span class="menu-text">Draft manuscript</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./evidence.html"> 
+<span class="menu-text">Evidence base</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./panel.html"> 
+<span class="menu-text">Genetic panel</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./baseline.html"> 
+<span class="menu-text">Baseline model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./decision-curves.html"> 
+<span class="menu-text">Decision curves</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./mapping.html"> 
+<span class="menu-text">Evidence mapping</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./decisions.html"> 
+<span class="menu-text">Pre-specified decisions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./status.html"> 
+<span class="menu-text">Status log</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/lewis-id-lab/PROSE" title="Repository" class="quarto-navigation-tool px-1" aria-label="Repository"><i class="bi bi-github"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
+  <ul class="collapse">
+  <li><a href="#design-and-pre-specification" id="toc-design-and-pre-specification" class="nav-link" data-scroll-target="#design-and-pre-specification">Design and pre-specification</a></li>
+  <li><a href="#clinical-cohort-and-baseline-model" id="toc-clinical-cohort-and-baseline-model" class="nav-link" data-scroll-target="#clinical-cohort-and-baseline-model">Clinical cohort and baseline model</a></li>
+  <li><a href="#evidence-synthesis" id="toc-evidence-synthesis" class="nav-link" data-scroll-target="#evidence-synthesis">Evidence synthesis</a></li>
+  <li><a href="#the-genetic-layer" id="toc-the-genetic-layer" class="nav-link" data-scroll-target="#the-genetic-layer">The genetic layer</a></li>
+  <li><a href="#secondary-and-sensitivity-analyses" id="toc-secondary-and-sensitivity-analyses" class="nav-link" data-scroll-target="#secondary-and-sensitivity-analyses">Secondary and sensitivity analyses</a></li>
+  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#cohort-and-clinical-baseline" id="toc-cohort-and-clinical-baseline" class="nav-link" data-scroll-target="#cohort-and-clinical-baseline">Cohort and clinical baseline</a></li>
+  <li><a href="#evidence-base" id="toc-evidence-base" class="nav-link" data-scroll-target="#evidence-base">Evidence base</a></li>
+  <li><a href="#primary-result-the-four-term-panel" id="toc-primary-result-the-four-term-panel" class="nav-link" data-scroll-target="#primary-result-the-four-term-panel">Primary result: the four-term panel</a></li>
+  <li><a href="#the-second-clec7a-parameter" id="toc-the-second-clec7a-parameter" class="nav-link" data-scroll-target="#the-second-clec7a-parameter">The second CLEC7A parameter</a></li>
+  <li><a href="#sampling-variability-and-robustness" id="toc-sampling-variability-and-robustness" class="nav-link" data-scroll-target="#sampling-variability-and-robustness">Sampling variability and robustness</a></li>
+  <li><a href="#which-terms-carry-the-gain" id="toc-which-terms-carry-the-gain" class="nav-link" data-scroll-target="#which-terms-carry-the-gain">Which terms carry the gain</a></li>
+  <li><a href="#effect-modification-by-neutropenia" id="toc-effect-modification-by-neutropenia" class="nav-link" data-scroll-target="#effect-modification-by-neutropenia">Effect modification by neutropenia</a></li>
+  <li><a href="#donor-genotype-in-allogeneic-transplant-recipients" id="toc-donor-genotype-in-allogeneic-transplant-recipients" class="nav-link" data-scroll-target="#donor-genotype-in-allogeneic-transplant-recipients">Donor genotype in allogeneic transplant recipients</a></li>
+  <li><a href="#genetic-architectures-that-would-reach-the-mcid" id="toc-genetic-architectures-that-would-reach-the-mcid" class="nav-link" data-scroll-target="#genetic-architectures-that-would-reach-the-mcid">Genetic architectures that would reach the MCID</a></li>
+  </ul></li>
+  <li><a href="#still-to-write" id="toc-still-to-write" class="nav-link" data-scroll-target="#still-to-write">Still to write</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Draft manuscript</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Abstract, introduction, methods and results: working draft</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Working draft
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a first draft of the write-up (phase 7). Every number comes from the files in <code>output/</code> as of 19 October 2026, after the corrections recorded in addenda 16 to 21 of the <a href="./decisions.html">decision record</a>. The evidence is still provisional:</p>
+<ul>
+<li>The record of the human round-2 verification is not yet in the repository.</li>
+<li>The priors on the pooled effects and the reading of the “realised” score are proposals.</li>
+<li>Cohort overlap between the Spanish registry series and the Jena AML cohorts is only partly adjudicated.</li>
+</ul>
+<p>The discussion, references, author list, ethics statement and data-availability statement are not yet written. Citations are informal author–year placeholders, and <code>[ref]</code> marks a statement that still needs a reference.</p>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="cf">function</span>(f) <span class="fu">read.csv</span>(<span class="fu">file.path</span>(<span class="st">"output"</span>, f))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p><strong>Background.</strong> Variants in the innate immune genes <em>PTX3</em>, <em>CLEC7A</em> (dectin-1), <em>TLR4</em> and <em>CD209</em> (DC-SIGN) are repeatedly reported as associated with invasive aspergillosis, and adding genotype to clinical risk scores has been proposed. Whether doing so would change clinical decisions, rather than improve discrimination, has not been tested.</p>
+<p><strong>Methods.</strong> We did a pre-specified simulation study of the value of host genetic information. The baseline was a seven-predictor clinical score for proven or probable invasive mould disease (IMD) within 60 days, refit on 4,078 haematology admissions in 1,945 patients (Bologna, 2007–2016; 133 events, 3.3%). A systematic review supplied the genetic effects (831 records screened, 63 studies extracted). Effects for four haplotype terms were mapped to a common per-copy scale and pooled with Bayesian random-effects models. The net-benefit gain over the clinical score was computed exactly over all clinical profiles and genotype combinations, for 2,000 draws from the pooled posteriors. The primary endpoint was the gain at a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of 20% more true cases at no extra false positives (+0.00458). Secondary analyses added a second CLEC7A haplotype, effect modification by neutropenia, donor genotype after allogeneic transplantation, and a sweep of 4,000 hypothetical genetic architectures.</p>
+<p><strong>Results.</strong> Pooled odds ratios per copy of the risk haplotype class (90% credible interval) were 1.35 (0.99 to 1.81) for PTX3, 0.84 (0.48 to 1.48) for CLEC7A Y238X, 1.44 (0.77 to 2.69) for TLR4 and 1.80 (1.14 to 2.73) for CD209. With the true effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00059 (90% range 0.00015 to 0.00137). That is about an eighth of the MCID: 1.2 extra true cases per 1,000 admissions, against 4.6 required. No draw reached the MCID, and 1.3% did when between-study heterogeneity was propagated. The area under the ROC curve (aROC) rose from 0.857 to 0.870. A second CLEC7A haplotype (OR 1.86, three studies) doubled the gain to +0.00122, but at most 3.3% of draws reached the MCID. In simulated studies of the cohort’s size, the sampling standard deviation of the observed gain was as large as the expected gain. Neutropenic admissions (28% of admissions, 80% of events) supplied about four-fifths of the gain. In the architecture sweep, no panel of up to 20 independent loci with per-allele odds ratios of 1.5 or less reached the MCID. At an odds ratio of 2.0, seven to nine common loci were needed.</p>
+<p><strong>Conclusions.</strong> On the published evidence, genotype at these four genes is unlikely to change decisions at the 5% threshold in haematological inpatients. A panel that could change them would need much larger effects than candidate-gene studies report, or many more loci. A genotyped, neutropenia-stratified study of this cohort’s size could test whether genetic effects depend on the inflammatory state of the host.</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [ref]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna (Stanzani et al., <em>J Infect</em> 2019). It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted probability of 5%.</p>
+<p>Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan receptor dectin-1 (<em>CLEC7A</em>), Toll-like receptor 4 and DC-SIGN (<em>CD209</em>) [refs]. After allogeneic transplantation the reconstituted innate immune system is donor-derived, which has led to proposals to use donor genotype to stratify transplant recipients (Cunha et al., <em>N Engl J Med</em> 2014). These findings have prompted proposals for genetically augmented risk scores.</p>
+<p>Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous. Linked variants in the same gene are often reported as separate findings, and adding them to a model as independent terms counts the same signal more than once. An earlier analysis of this question did that and reported a net reclassification improvement of 22.5%. Second, gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis does: it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that the threshold implies (Vickers and Elkin, <em>Med Decis Making</em> 2006).</p>
+<p>We therefore framed the question as one of value of information, not of prediction. Under what combinations of effect size, risk-allele frequency and linkage structure would host genetic information change clinical decisions for IMD in haematological patients, and is the published evidence anywhere near those combinations? We fixed the size of a clinically important change before any genetic result existed, so that a negative answer would be a finding and not a failure. Our objectives were to:</p>
+<ol type="1">
+<li>estimate the clinical baseline on the derivation cohort and compare it with the published equation;</li>
+<li>quantify the decision value of the variants with the best evidence, as pooled from the literature;</li>
+<li>test whether the genetic effects depend on neutropenia, as a proxy for the inflammatory state of the host;</li>
+<li>find the genetic architectures that would be needed to reach a clinically important change.</li>
+</ol>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<section id="design-and-pre-specification" class="level3">
+<h3 class="anchored" data-anchor-id="design-and-pre-specification">Design and pre-specification</h3>
+<p>This is a simulation study that combines individual admission-level clinical data with a meta-analysis of the published genetic evidence. The design is summarised below in the ADEMP structure for simulation studies (Morris, White and Crowther, <em>Stat Med</em> 2019). Design decisions were recorded before any genetic result existed and locked at a git tag (<code>prespec-lock</code>, commit <code>90e3656</code>, 17 October 2026). Every later change is a dated addendum to the <a href="./decisions.html">decision record</a>. Each addendum states what had been seen when the change was made. Two changes after the lock affected the primary analysis. In both, no genetic result had yet been computed:</p>
+<ul>
+<li>The baseline cohort moved from a copula reconstruction to the admission-level data (D8 and D9).</li>
+<li>The baseline model became a refit on those data (D10). This raised the MCID by 13% at the 5% threshold, which made the primary test harder.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ADEMP element</th>
+<th>This study</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aims</td>
+<td>Decision value of host genotype added to a clinical IMD score; the architectures that would be needed</td>
+</tr>
+<tr class="even">
+<td>Data-generating mechanisms</td>
+<td>Clinical profiles from the observed cohort; genotypes in Hardy–Weinberg equilibrium at gnomAD non-Finnish European frequencies; true genetic effects drawn from the pooled posteriors under two readings; architecture sweep on a grid</td>
+</tr>
+<tr class="odd">
+<td>Estimand</td>
+<td>Gain in decision-curve net benefit over the clinical score, at thresholds of 5% (primary) and 20% (secondary)</td>
+</tr>
+<tr class="even">
+<td>Methods compared</td>
+<td>Clinical score alone; clinical score plus a genetic score with the true effects (ceiling) or the pooled estimates (realised)</td>
+</tr>
+<tr class="odd">
+<td>Performance measures</td>
+<td>Median gain and 90% range over draws; share of draws reaching the MCID; extra true cases per 1,000 admissions; aROC</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="clinical-cohort-and-baseline-model" class="level3">
+<h3 class="anchored" data-anchor-id="clinical-cohort-and-baseline-model">Clinical cohort and baseline model</h3>
+<p>The clinical data are the admission-level derivation data of the Stanzani score, from the BOSCORE registry of the haematology unit in Bologna (admissions 2007–2016). The outcome is proven or probable IMD by EORTC criteria within 60 days of admission. The seven predictors are:</p>
+<ul>
+<li>prior mould disease;</li>
+<li>high-dose corticosteroids;</li>
+<li>uncontrolled malignancy;</li>
+<li>high-risk chemotherapy;</li>
+<li>prolonged neutropenia;</li>
+<li>severe lymphopenia;</li>
+<li>cytomegalovirus infection.</li>
+</ul>
+<p>The published analysis file has 4,127 rows. These are exactly the rows of the parent registry extract that are complete on the seven items. Forty-nine admission numbers appeared twice, each time as an event row plus a non-event row with the same patient and predictor profile. We confirmed these pairs as a recording artefact and removed the duplicate row. The base cohort is therefore 4,078 unique admissions in 1,945 patients, with 133 events (3.26%). Only counts and pseudonymised fields were used, and no patient-level data are in the repository. [Ethics approval and data-access statement to add.]</p>
+<p>The baseline is a maximum-likelihood logistic regression of the outcome on the seven predictors in the base cohort. Its uncertainty was handled as follows:</p>
+<ul>
+<li>Standard errors are clustered by patient.</li>
+<li>The bootstrap resamples patients and repeats the refit in each of 2,000 resamples.</li>
+<li>Optimism was estimated by Harrell’s bootstrap method. It is reported, not subtracted.</li>
+</ul>
+<p>The baseline is held fixed from here on. The joint distribution of clinical risk is the observed distribution of the 128 possible predictor profiles, 75 of which occur. Three alternatives were kept as sensitivity analyses:</p>
+<ul>
+<li>the published equation;</li>
+<li>the 4,127-row cohort;</li>
+<li>a Gaussian-copula reconstruction of the predictor correlation, fitted to the published marginal counts. It was carried as an ensemble of 150 near-optimal correlation matrices.</li>
+</ul>
+</section>
+<section id="evidence-synthesis" class="level3">
+<h3 class="anchored" data-anchor-id="evidence-synthesis">Evidence synthesis</h3>
+<p><strong>Search and extraction.</strong> We searched PubMed (263 records; search date [to confirm]) and Embase (568 records; 8 October 2026) for studies of host genetic variants and invasive fungal disease. The searches gave 831 unique records. Of the 81 studies included, 63 had a usable source document. Twelve had no full text available, and six links pointed to the wrong document. The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables. [Describe the extraction process and the round-2 human verification.]</p>
+<p>Every row whose comparison text had no reference marker was checked against the source tables. That covered seven studies. The two reversals found (Herrero-Sanchez 2018, Fischer 2016) and one duplicated row read in the opposite direction (Sainz 2012) were corrected and logged with their evidence (43 corrected rows in all).</p>
+<p><strong>Panel.</strong> Candidate variants needed at least three meta-analysable studies. Within each gene, pairwise linkage was measured in phased 1000 Genomes phase 3 European haplotypes (503 samples). Haplotype frequencies were rescaled to gnomAD v4 non-Finnish European allele frequencies by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term per gene. Each term is an additive per-copy effect of a risk haplotype class:</p>
+<ul>
+<li><strong>PTX3:</strong> h2, the class carrying A at rs2305619 (tagged equally by rs1840680), frequency 48.2%.</li>
+<li><strong>CLEC7A:</strong> the Y238X haplotype, the C allele of rs16910526, which lies only on one rs7309123 background, frequency 7.7%.</li>
+<li><strong>TLR4:</strong> the G-T haplotype of rs4986790 and rs4986791, frequency 6.1%. It was pooled under a carrier model with a continuity correction, because no cohort had minor homozygotes.</li>
+<li><strong>CD209:</strong> chromosomes carrying G at rs4804800, frequency 12.5%.</li>
+</ul>
+<p>TLR9 rs352140 was dropped because only one study was usable. IL10 rs1800896 and IFNG rs2069705 were dropped because they had one and two studies respectively, and the two IFNG studies disagreed in direction. Herrero-Sanchez 2018 was excluded from the primary analysis because its main endpoint included colonisation.</p>
+<p><strong>Mapping and pooling.</strong> Each study’s contrast (allelic, dominant, recessive or genotype counts) was converted to a log odds ratio per copy of the risk class. The conversion solves a haplotype model: additive on the log-odds scale, haplotype pairs in Hardy–Weinberg equilibrium, case–control sampling. Standard errors come from the delta method. One effect was taken per study. The primary analysis used recipient genotype, the odds-ratio scale and whole-cohort analyses. Hazard-ratio studies were added only as a sensitivity analysis, or as a labelled fallback where fewer than three odds-ratio studies existed. Effects were pooled with a Bayesian random-effects model, μ ~ N(0, 1) and τ ~ half-normal(0.5), evaluated on a grid.</p>
+<p><strong>Second CLEC7A parameter.</strong> The three CLEC7A haplotypes carry a second effect: the A-G haplotype (G at rs7309123 on the non-Y238X background) against A-C. rs7309123 is a C/G palindrome. Its strand was therefore resolved study by study, from control allele frequencies, primer sequences and full texts. The primary estimate uses the three strand-resolved studies of European or Turkish cohorts. Two East Asian studies were mapped through 1000 Genomes East Asian haplotype frequencies and entered a sensitivity analysis. This parameter was not part of the pre-specified four-term panel. The four-term analysis is therefore primary, and the five-term analysis is secondary.</p>
+</section>
+<section id="the-genetic-layer" class="level3">
+<h3 class="anchored" data-anchor-id="the-genetic-layer">The genetic layer</h3>
+<p>Each patient receives one genotype, which is shared by all of their admissions. The dosage of each risk class (0, 1 or 2) follows Hardy–Weinberg equilibrium at the gnomAD frequencies. Genotype is independent across terms and of the clinical profile. The true risk of an admission is</p>
+<p><span class="math display">\[
+\operatorname{logit} p = \eta_{\text{clin}} + \sum_j \beta_j g_j + a,
+\]</span></p>
+<p>where <span class="math display">\[\eta_{\text{clin}}\]</span> is the baseline linear predictor and <span class="math display">\[g_j\]</span> the dosage of term <span class="math display">\[j\]</span>. The constant <span class="math display">\[a\]</span> recentres the genetic contribution so that the prevalence stays at 3.26%. A change in net benefit therefore reflects discrimination, not a shift in the event rate.</p>
+<p>True effects <span class="math display">\[\beta_j\]</span> were drawn 2,000 times from each term’s pooled posterior under two readings:</p>
+<ul>
+<li><strong>mean:</strong> the pooled mean μ;</li>
+<li><strong>predictive:</strong> a new-study effect drawn from N(μ, τ), which carries between-study heterogeneity.</li>
+</ul>
+<p>Three scores were compared under the same truth:</p>
+<ul>
+<li>the clinical score alone;</li>
+<li>the <strong>ceiling</strong> score, which uses the true effects (the best any genetic score could do);</li>
+<li>the <strong>realised</strong> score, which uses the pooled posterior medians, recentred.</li>
+</ul>
+<p>Net benefit at threshold <span class="math display">\[p_t\]</span> is</p>
+<p><span class="math display">\[
+\text{NB}(p_t) = \frac{\text{TP}}{n} - \frac{\text{FP}}{n}\cdot\frac{p_t}{1-p_t}.
+\]</span></p>
+<p>The gain is the net benefit of a genetic score minus that of the clinical score. It was computed exactly over the 128 clinical profiles and all genotype combinations (81 for four terms), with no patient-level sampling. A patient-level simulation on a 100-fold replicated cohort reproduced the exact gain (0.00041 against 0.00040 at 5%).</p>
+<p><strong>MCID.</strong> Before any genetic result, the minimum clinically important difference was defined as 20% more true cases at no increase in false positives. That is <span class="math display">\[0.2 \times \text{TP}_{\text{clin}}/n\]</span>. The 5% threshold, the high-risk cut-off of the original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three quantities:</p>
+<ul>
+<li>the median gain over draws, with its 90% range;</li>
+<li>the extra true cases per 1,000 admissions;</li>
+<li>the share of draws in which the gain reaches the MCID.</li>
+</ul>
+</section>
+<section id="secondary-and-sensitivity-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="secondary-and-sensitivity-analyses">Secondary and sensitivity analyses</h3>
+<ul>
+<li><strong>Sampling variability.</strong> We simulated 2,000 studies of the cohort’s size per scenario. Each study resampled patients with their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.</li>
+<li><strong>Robustness.</strong> The layer was repeated in three settings, each with its own MCID:
+<ul>
+<li>the 150 correlation-ensemble members;</li>
+<li>the published equation on 4,078 and on 4,127 rows;</li>
+<li>a refit on 4,127 rows.</li>
+</ul></li>
+<li><strong>Attribution.</strong> The gain was divided among the terms by Shapley decomposition. The value of a subset is the gain of a score carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in the terms, so the split is a fair division of the gain and not a set of separable effects.</li>
+<li><strong>Effect modification by neutropenia.</strong> This tests the hypothesis that per-copy effects are larger in neutropenic admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues). The direction we expected was recorded before the run.
+<ul>
+<li><strong>Strata:</strong> admissions were split by the prolonged-neutropenia predictor.</li>
+<li><strong>Truth:</strong> stratum-specific effects were constrained to average, weighted by events, to the pooled effect. The ratio of the neutropenic to the non-neutropenic effect was set to ∞, 4, 1, 1/4 and 0. A further scenario applied the stratum effects of the only stratified study (Brunel 2018) directly.</li>
+<li><strong>Scores:</strong> an oracle score, a common score with the pooled estimates, and two scores that assume a direction.</li>
+<li><strong>Interaction test:</strong> in 1,000 simulated studies per scenario, a logistic model with the baseline logit as an offset estimated the interaction between the genetic score and neutropenia.</li>
+</ul></li>
+<li><strong>Donor genotype.</strong> In the allogeneic transplant stratum (272 admissions, 43 events, from an admission-level flag), donor effects from the donor-genotype studies were tested against the stratum’s own MCID.</li>
+<li><strong>Architecture sweep.</strong> The sweep covered k independent loci with the same risk-allele frequency and the same per-allele odds ratio:
+<ul>
+<li>k from 1 to 20;</li>
+<li>odds ratio from 1.1 to 3.0 by 0.1;</li>
+<li>frequency from 0.05 to 0.50 by 0.05.</li>
+</ul>
+That gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per architecture.</li>
+</ul>
+</section>
+<section id="software" class="level3">
+<h3 class="anchored" data-anchor-id="software">Software</h3>
+<p>Analyses used R 4.6.1, with package versions pinned by renv. The code, the test suite and every summary output are public at https://github.com/lewis-id-lab/PROSE. Scripts 01 to 28 reproduce the results in order.</p>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="cohort-and-clinical-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="cohort-and-clinical-baseline">Cohort and clinical baseline</h3>
+<p>The base cohort has 4,078 admissions in 1,945 patients (2.10 admissions per patient) and 133 events (3.26%). The refit baseline’s odds ratios ranged from 2.15 for uncontrolled malignancy to 7.28 for prior mould disease. Every published coefficient lies inside the refit’s 90% bootstrap interval. The aROC was 0.858 apparent and 0.853 after optimism correction, and the calibration slope was 0.97. On the same admissions, the published equation under-predicted slightly (3.06% against 3.26%).</p>
+<p>At the 5% threshold the refit baseline flags 15.7% of admissions, with 22.9 true and 133.8 false positives per 1,000. Its net benefit is 0.0158. The MCID is therefore +0.00458 (patient bootstrap 90% interval 0.00387 to 0.00566), or 4.6 extra true cases per 1,000 admissions at no extra false positives. At 20% the MCID is +0.00160. Under the published equation the MCIDs would be +0.00404 and +0.00113.</p>
+</section>
+<section id="evidence-base" class="level3">
+<h3 class="anchored" data-anchor-id="evidence-base">Evidence base</h3>
+<p><a href="#tbl-pooled" class="quarto-xref">Table&nbsp;1</a> shows the pooled effects. Each term rests on three to five studies. CD209 is the only term in the four-term panel whose interval excludes an odds ratio of 1. PTX3 is borderline, with a 5.5% posterior probability that its effect is below zero. CLEC7A Y238X is centred below 1. The second CLEC7A parameter, A-G against A-C, is estimated at an odds ratio of 1.86 per copy. Its interval excludes 1 under every strand assumption (1.5 to 1.9).</p>
+<p>The two East Asian studies point the other way (difference from the European estimate −1.19 on the log scale, SE 0.31, P = 0.0001). Adding them gives 1.28 (0.79 to 1.95). The linkage of rs7309123 with rs3901533 in phased 1000 Genomes data explains this pattern: it is the reversal expected when a tag SNP sits on different haplotype backgrounds in the two ancestries.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pool_row <span class="ot">&lt;-</span> <span class="cf">function</span>(file, term, risk_class, freq) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rd</span>(file)[<span class="dv">1</span>, ] <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="st">`</span><span class="at">Risk class</span><span class="st">`</span> <span class="ot">=</span> risk_class, <span class="at">Frequency =</span> freq, <span class="at">Studies =</span> k,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">OR =</span> or, <span class="st">`</span><span class="at">90% CrI</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.2f to %.2f"</span>, or_lo, or_hi), <span class="at">tau =</span> tau)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"ptx3_h2_pooled.csv"</span>, <span class="st">"PTX3"</span>, <span class="st">"h2 (A at rs2305619)"</span>, <span class="fl">0.482</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"clec7a_pooled.csv"</span>, <span class="st">"CLEC7A"</span>, <span class="st">"Y238X (C at rs16910526)"</span>, <span class="fl">0.077</span>),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"tlr4_pooled.csv"</span>, <span class="st">"TLR4"</span>, <span class="st">"G-T (rs4986790, rs4986791)"</span>, <span class="fl">0.061</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"cd209_pooled.csv"</span>, <span class="st">"CD209"</span>, <span class="st">"G at rs4804800"</span>, <span class="fl">0.125</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"clec7a_second_pooled.csv"</span>, <span class="st">"CLEC7A, second parameter (secondary)"</span>, <span class="st">"A-G (G at rs7309123, non-Y238X)"</span>, <span class="fl">0.349</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(Frequency, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(OR, tau), <span class="at">decimals =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-pooled" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pooled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Pooled effects per copy of each term’s risk haplotype class, primary analysis (recipient genotype, odds-ratio scale). Bayesian random-effects model; 90% credible intervals. Frequencies are gnomAD v4 non-Finnish European.
+</figcaption>
+<div aria-describedby="tbl-pooled-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="ofmozxbnit" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ofmozxbnit table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ofmozxbnit thead, #ofmozxbnit tbody, #ofmozxbnit tfoot, #ofmozxbnit tr, #ofmozxbnit td, #ofmozxbnit th {
+  border-style: none;
+}
+
+#ofmozxbnit p {
+  margin: 0;
+  padding: 0;
+}
+
+#ofmozxbnit .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ofmozxbnit .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ofmozxbnit .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ofmozxbnit .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ofmozxbnit .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ofmozxbnit .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ofmozxbnit .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ofmozxbnit .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ofmozxbnit .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ofmozxbnit .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ofmozxbnit .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ofmozxbnit .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ofmozxbnit .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ofmozxbnit .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ofmozxbnit .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ofmozxbnit .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ofmozxbnit .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ofmozxbnit .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ofmozxbnit .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ofmozxbnit .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ofmozxbnit .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ofmozxbnit .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ofmozxbnit .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ofmozxbnit .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ofmozxbnit .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ofmozxbnit .gt_left {
+  text-align: left;
+}
+
+#ofmozxbnit .gt_center {
+  text-align: center;
+}
+
+#ofmozxbnit .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ofmozxbnit .gt_font_normal {
+  font-weight: normal;
+}
+
+#ofmozxbnit .gt_font_bold {
+  font-weight: bold;
+}
+
+#ofmozxbnit .gt_font_italic {
+  font-style: italic;
+}
+
+#ofmozxbnit .gt_super {
+  font-size: 65%;
+}
+
+#ofmozxbnit .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ofmozxbnit .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ofmozxbnit .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ofmozxbnit .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ofmozxbnit .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ofmozxbnit .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ofmozxbnit .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ofmozxbnit .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ofmozxbnit div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Term</th>
+<th id="Risk-class" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Risk class</th>
+<th id="Frequency" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Frequency</th>
+<th id="Studies" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Studies</th>
+<th id="OR" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">OR</th>
+<th id="a90%-CrI" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">90% CrI</th>
+<th id="tau" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">tau</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">PTX3</td>
+<td class="gt_row gt_left" headers="Risk-class">h2 (A at rs2305619)</td>
+<td class="gt_row gt_right" headers="Frequency">48.2%</td>
+<td class="gt_row gt_right" headers="Studies">5</td>
+<td class="gt_row gt_right" headers="OR">1.35</td>
+<td class="gt_row gt_left" headers="a90%-CrI">0.99 to 1.81</td>
+<td class="gt_row gt_right" headers="tau">0.17</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">CLEC7A</td>
+<td class="gt_row gt_left" headers="Risk-class">Y238X (C at rs16910526)</td>
+<td class="gt_row gt_right" headers="Frequency">7.7%</td>
+<td class="gt_row gt_right" headers="Studies">4</td>
+<td class="gt_row gt_right" headers="OR">0.84</td>
+<td class="gt_row gt_left" headers="a90%-CrI">0.48 to 1.48</td>
+<td class="gt_row gt_right" headers="tau">0.25</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">TLR4</td>
+<td class="gt_row gt_left" headers="Risk-class">G-T (rs4986790, rs4986791)</td>
+<td class="gt_row gt_right" headers="Frequency">6.1%</td>
+<td class="gt_row gt_right" headers="Studies">4</td>
+<td class="gt_row gt_right" headers="OR">1.44</td>
+<td class="gt_row gt_left" headers="a90%-CrI">0.76 to 2.69</td>
+<td class="gt_row gt_right" headers="tau">0.27</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Term">CD209</td>
+<td class="gt_row gt_left" headers="Risk-class">G at rs4804800</td>
+<td class="gt_row gt_right" headers="Frequency">12.5%</td>
+<td class="gt_row gt_right" headers="Studies">3</td>
+<td class="gt_row gt_right" headers="OR">1.80</td>
+<td class="gt_row gt_left" headers="a90%-CrI">1.14 to 2.73</td>
+<td class="gt_row gt_right" headers="tau">0.21</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Term">CLEC7A, second parameter (secondary)</td>
+<td class="gt_row gt_left" headers="Risk-class">A-G (G at rs7309123, non-Y238X)</td>
+<td class="gt_row gt_right" headers="Frequency">34.9%</td>
+<td class="gt_row gt_right" headers="Studies">3</td>
+<td class="gt_row gt_right" headers="OR">1.86</td>
+<td class="gt_row gt_left" headers="a90%-CrI">1.26 to 2.63</td>
+<td class="gt_row gt_right" headers="tau">0.17</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="primary-result-the-four-term-panel" class="level3">
+<h3 class="anchored" data-anchor-id="primary-result-the-four-term-panel">Primary result: the four-term panel</h3>
+<p><a href="#tbl-headline" class="quarto-xref">Table&nbsp;2</a> and <a href="#fig-headline" class="quarto-xref">Figure&nbsp;1</a> show the main results. With the true effects in the score, the four terms raised net benefit at the 5% threshold by a median of +0.00059 (90% range 0.00015 to 0.00137). That is 1.2 extra true cases per 1,000 admissions, against the 4.6 the MCID requires. The gain came with extra false positives: the share flagged rose from 15.7% to 16.9%. No draw reached the MCID under the pooled-mean reading, and 1.3% did under the predictive reading. With the pooled estimates in the score the gain was +0.00042 (−0.00009 to 0.00098), and no draw reached the MCID. The expected aROC rose from 0.857 to 0.870 with the ceiling score and to 0.867 with the realised score.</p>
+<p>At the secondary 20% threshold the ceiling score gained +0.00105 and reached the MCID of +0.00160 in 16% of draws (36% under the predictive reading). The realised score reached it in 3% of draws (9% under the predictive reading).</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>four <span class="ot">&lt;-</span> <span class="fu">rd</span>(<span class="st">"genetic_layer_summary.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(scenario <span class="sc">!=</span> <span class="st">"baseline"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">panel =</span> <span class="st">"Four terms (primary)"</span>, truth, scenario, threshold,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">gain =</span> delta_nb, <span class="at">lo =</span> delta_lo, <span class="at">hi =</span> delta_hi, <span class="at">extra =</span> extra_cases_per_1000, <span class="at">p =</span> p_meets_mcid, auc)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>five <span class="ot">&lt;-</span> <span class="fu">rd</span>(<span class="st">"clec7a_second_layer_summary.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(second_parameter <span class="sc">==</span> <span class="st">"estimated"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">panel =</span> <span class="st">"Five terms, CLEC7A A-G added (secondary)"</span>, truth, scenario, threshold,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            gain, lo, hi, <span class="at">extra =</span> extra_cases_per_1000, <span class="at">p =</span> p_meets_mcid, auc)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(four, five) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">panel =</span> <span class="fu">factor</span>(panel, <span class="fu">unique</span>(panel)),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">Threshold =</span> <span class="fu">paste0</span>(threshold <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%"</span>),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">Truth =</span> truth,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">Score =</span> <span class="fu">if_else</span>(scenario <span class="sc">==</span> <span class="st">"ceiling"</span>, <span class="st">"true effects (ceiling)"</span>, <span class="st">"pooled estimates (realised)"</span>),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">range =</span> <span class="fu">sprintf</span>(<span class="st">"%.5f to %.5f"</span>, lo, hi)) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(panel, threshold, Truth, Score) <span class="sc">|&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(panel, Threshold, Truth, Score, gain, range, extra, p, auc) <span class="sc">|&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"panel"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(gain, <span class="at">decimals =</span> <span class="dv">5</span>, <span class="at">pattern =</span> <span class="st">"+{x}"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(extra, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(auc, <span class="at">decimals =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(p, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">gain =</span> <span class="st">"Median gain"</span>, <span class="at">range =</span> <span class="st">"90% range"</span>, <span class="at">extra =</span> <span class="st">"Extra true cases per 1,000"</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>             <span class="at">p =</span> <span class="st">"Draws reaching MCID"</span>, <span class="at">auc =</span> <span class="st">"aROC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-headline" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-headline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Net-benefit gain over the clinical score: median and 90% range over 2,000 draws of the true effects, and the share of draws reaching the MCID (+0.00458 at 5%, +0.00160 at 20%). Mean: true effect is the pooled mean; predictive: a new-study effect including between-study heterogeneity.
+</figcaption>
+<div aria-describedby="tbl-headline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="jfeqtepzca" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jfeqtepzca table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#jfeqtepzca thead, #jfeqtepzca tbody, #jfeqtepzca tfoot, #jfeqtepzca tr, #jfeqtepzca td, #jfeqtepzca th {
+  border-style: none;
+}
+
+#jfeqtepzca p {
+  margin: 0;
+  padding: 0;
+}
+
+#jfeqtepzca .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#jfeqtepzca .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jfeqtepzca .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jfeqtepzca .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jfeqtepzca .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jfeqtepzca .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jfeqtepzca .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jfeqtepzca .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jfeqtepzca .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#jfeqtepzca .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#jfeqtepzca .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jfeqtepzca .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jfeqtepzca .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jfeqtepzca .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jfeqtepzca .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfeqtepzca .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jfeqtepzca .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jfeqtepzca .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#jfeqtepzca .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfeqtepzca .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jfeqtepzca .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfeqtepzca .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jfeqtepzca .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfeqtepzca .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jfeqtepzca .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jfeqtepzca .gt_left {
+  text-align: left;
+}
+
+#jfeqtepzca .gt_center {
+  text-align: center;
+}
+
+#jfeqtepzca .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jfeqtepzca .gt_font_normal {
+  font-weight: normal;
+}
+
+#jfeqtepzca .gt_font_bold {
+  font-weight: bold;
+}
+
+#jfeqtepzca .gt_font_italic {
+  font-style: italic;
+}
+
+#jfeqtepzca .gt_super {
+  font-size: 65%;
+}
+
+#jfeqtepzca .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#jfeqtepzca .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jfeqtepzca .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jfeqtepzca .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jfeqtepzca .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jfeqtepzca .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jfeqtepzca .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#jfeqtepzca .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#jfeqtepzca div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table cell caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="Threshold" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Threshold</th>
+<th id="Truth" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Truth</th>
+<th id="Score" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Score</th>
+<th id="gain" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median gain</th>
+<th id="range" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">90% range</th>
+<th id="extra" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Extra true cases per 1,000</th>
+<th id="p" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Draws reaching MCID</th>
+<th id="auc" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">aROC</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="8" id="Four-terms-(primary)" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Four terms (primary)</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00042</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">-0.00009 to 0.00098</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">1.2</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">0.0%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.867</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00059</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">0.00015 to 0.00137</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">1.2</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">0.0%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.870</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00043</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">-0.00030 to 0.00136</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">1.2</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">0.0%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.867</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00079</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">0.00018 to 0.00276</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">1.4</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">1.2%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.872</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00080</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">0.00003 to 0.00147</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">2.8</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">2.8%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.867</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00105</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">0.00042 to 0.00209</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">2.7</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">16.0%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.870</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00080</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">-0.00034 to 0.00183</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">2.8</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">9.3%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.867</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Four-terms-(primary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  gain">+0.00129</td>
+<td class="gt_row gt_left" headers="Four-terms-(primary)  range">0.00044 to 0.00371</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  extra">3.0</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  p">35.8%</td>
+<td class="gt_row gt_right" headers="Four-terms-(primary)  auc">0.872</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="8" id="Five-terms,-CLEC7A-A-G-added-(secondary)" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Five terms, CLEC7A A-G added (secondary)</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00100</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00007 to 0.00195</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">1.3</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">0.0%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.873</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00122</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00048 to 0.00242</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">1.4</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">0.1%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.876</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00104</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">-0.00050 to 0.00252</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">1.3</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">0.2%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.872</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">5%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00150</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00050 to 0.00414</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">1.6</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">3.3%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.879</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00151</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00035 to 0.00259</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">3.3</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">45.2%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.873</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">mean</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00182</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00090 to 0.00326</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">3.6</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">63.2%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.876</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">pooled estimates (realised)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00151</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">-0.00035 to 0.00307</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">3.3</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">45.6%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.872</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Threshold">20%</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Truth">predictive</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  Score">true effects (ceiling)</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  gain">+0.00216</td>
+<td class="gt_row gt_left" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  range">0.00091 to 0.00517</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  extra">4.0</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  p">72.0%</td>
+<td class="gt_row gt_right" headers="Five-terms,-CLEC7A-A-G-added-(secondary)  auc">0.879</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div id="fig-headline" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-headline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="output/figures/fig_headline.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-headline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Net-benefit gain over the clinical score against the MCID (dashed line), for the four-term panel and the five-term panel with the European or all-ancestry estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-second-clec7a-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="the-second-clec7a-parameter">The second CLEC7A parameter</h3>
+<p>Adding the A-G haplotype made CLEC7A an active term and roughly doubled the gain: +0.00122 (0.00048 to 0.00242) at 5% with the ceiling score, and +0.00100 with the realised score. The 5% MCID stayed out of reach, reached in 0.1% of draws under the pooled-mean reading and 3.3% under the predictive reading. At 20% the ceiling score reached the MCID in 63% of draws (72% under the predictive reading) and the realised score in 45%. With the all-ancestry estimate of the second parameter the gain at 5% was +0.00077, and 28% of draws reached the 20% MCID.</p>
+</section>
+<section id="sampling-variability-and-robustness" class="level3">
+<h3 class="anchored" data-anchor-id="sampling-variability-and-robustness">Sampling variability and robustness</h3>
+<p>A study of the cohort’s size would observe the gain with a standard deviation as large as the expected gain or larger: 0.00064 to 0.00131 at 5%. With the effects fixed at the pooled medians, the observed gain at 5% averaged +0.00039 (SD 0.00064). It was above zero in 72% of studies and never reached the MCID. With the effects drawn from the posteriors, the observed gain was positive in 69% to 82% of studies and reached the MCID in at most 1.6%. Even with every effect at the 95th percentile of its posterior, the ceiling score’s observed gain reached the 5% MCID in 1.0% of studies (78% at 20%).</p>
+<p>The clinical correlation structure moved the median gain by at most 0.00016 (between-member SD 0.00007 to 0.00028). The published-equation and 4,127-row cohorts gave gains at 5% of +0.00059 to +0.00064 (ceiling, pooled mean). In those settings at most 1.8% of draws reached that setting’s MCID. The settings differed mainly at 20%, where the published equation sets a lower bar (+0.00113).</p>
+</section>
+<section id="which-terms-carry-the-gain" class="level3">
+<h3 class="anchored" data-anchor-id="which-terms-carry-the-gain">Which terms carry the gain</h3>
+<p>In the four-term panel, CD209 supplied 51.7% of the Shapley gain at 5% (ceiling, pooled mean). PTX3 supplied 22.6%, TLR4 19.0% and CLEC7A 6.7% (<a href="#fig-attribution" class="quarto-xref">Figure&nbsp;2</a>). CD209 has the largest pooled effect but rests on three studies. With the second CLEC7A parameter the ranking changed. CLEC7A supplied 49.7%, almost all of it through the common A-G haplotype (45.9%), and CD209 fell to 27.5%, PTX3 to 12.8% and TLR4 to 10.0%. CLEC7A’s share stayed between 44.8% and 52.8% in every combination of cohort, correlation structure, reading, score and threshold. It was the largest single contributor in 64% to 69% of draws.</p>
+<div id="fig-attribution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-attribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="output/figures/fig_attribution.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-attribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Shapley shares of the net-benefit gain at the 5% threshold, four- and five-term panels, with pooled estimates or true effects in the score (pooled-mean reading).
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="effect-modification-by-neutropenia" class="level3">
+<h3 class="anchored" data-anchor-id="effect-modification-by-neutropenia">Effect modification by neutropenia</h3>
+<p>Neutropenic admissions were 28% of the cohort (1,157), with an event rate of 9.2% and 106 of the 133 events (80%). With homogeneous effects, the gain per admission was 11 times larger in neutropenic admissions (+0.00170 against +0.00015 at 5%). That stratum supplied 81% of the whole-cohort gain at 5% and 96% at 20%. With five terms it supplied 83% and 95%, and 78% to 84% at 5% across every sensitivity setting.</p>
+<p>The only stratified evidence, Brunel 2018, points against H_F. Mapped to the per-copy PTX3 h2 scale, its effect was +1.17 in non-neutropenic and −0.13 in neutropenic courses for rs2305619 (difference −1.30, SE 0.72, P = 0.07). For rs3816527 the difference was −1.99 (SE 1.01, P = 0.049). These estimates come from 212 courses and 26 events, with neutropenia defined at presentation.</p>
+<p>Across scenarios (<a href="#fig-aim3b" class="quarto-xref">Figure&nbsp;3</a>), the 5% MCID came within reach only when the whole effect was placed in non-neutropenic admissions. There the oracle score gained +0.00356, reaching the MCID in 18% of draws. With five terms it gained +0.00443 and reached the MCID in 42% of draws. The common score with pooled estimates lost little under an H_F truth (+0.00047 against an oracle +0.00081 at 5%). It was harmful if Brunel’s stratum effects held (−0.00016 with four terms, −0.00090 with five). A score built on H_F was the most harmful when the truth ran the other way.</p>
+<p>In simulated studies of the cohort’s size, the interaction test detected the effect modification more often than we had predicted. With five terms and pooled-median effects, it reached P &lt; 0.05 in the true direction as follows:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>scenario</th>
+<th>power</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>all of the effect in neutropenic admissions</td>
+<td>90%</td>
+</tr>
+<tr class="even">
+<td>ratio of 4</td>
+<td>62%</td>
+</tr>
+<tr class="odd">
+<td>Brunel-sized modifications</td>
+<td>≥ 99.9%</td>
+</tr>
+</tbody>
+</table>
+<p>The false-positive rate was 5.1%. The corresponding four-term figures were 59%, 34% and 95% to 96%. Of the five predictions recorded before the run, two held, one mostly held, one was not borne out, and one was wrong: we had predicted that the test would be underpowered.</p>
+<div id="fig-aim3b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aim3b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="output/figures/fig_aim3b_gain.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aim3b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Whole-cohort net-benefit gain under six effect-modification scenarios, for four scores, at 5% and 20%, four- and five-term panels. Dashed line: MCID. Points: median; bars: 90% range over draws of the true effects.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="donor-genotype-in-allogeneic-transplant-recipients" class="level3">
+<h3 class="anchored" data-anchor-id="donor-genotype-in-allogeneic-transplant-recipients">Donor genotype in allogeneic transplant recipients</h3>
+<p>The allogeneic stratum held 272 admissions and 43 events (32% of events). The baseline already flagged 77% of these admissions at 5%. Donor genotype added 0.4 to 1.4 extra true cases per 1,000 transplant admissions at 5%, against about 30 needed for the stratum’s MCID, and 14 to 28 at 20%, against about 12 needed. Whole-cohort, the gain at 5% was at most +0.0001. The donor evidence is one study each for PTX3 and CLEC7A, two for TLR4 and none for CD209. A smoothed version of the stratum’s profile distribution gave the same conclusions.</p>
+</section>
+<section id="genetic-architectures-that-would-reach-the-mcid" class="level3">
+<h3 class="anchored" data-anchor-id="genetic-architectures-that-would-reach-the-mcid">Genetic architectures that would reach the MCID</h3>
+<p>Of the 4,000 architectures, 46% reached the 5% MCID and 77% reached the 20% MCID (<a href="#fig-aim4" class="quarto-xref">Figure&nbsp;4</a>). The pattern was:</p>
+<ul>
+<li><strong>One locus:</strong> never enough. At an odds ratio of 3.0 and frequency 0.5 it reached 39% of the MCID.</li>
+<li><strong>Odds ratio 1.5 or less:</strong> no number of loci up to 20 reached it.</li>
+<li><strong>Odds ratio 2.0:</strong> 7 to 9 loci were needed at frequencies of 0.2 to 0.5, and 16 at 0.1.</li>
+<li><strong>Odds ratio 3.0:</strong> 3 to 4 common loci were enough.</li>
+</ul>
+<p>The four-term panel corresponds to about 7 loci of odds ratio 1.3 at frequency 0.3, and would need to be roughly eight times stronger to reach the 5% MCID. Architectures near the frontier depended on the unpublished correlation structure (gain over MCID varied by about 15% across ensemble members). Those well inside or outside it did not.</p>
+<p>With estimated weights, a score kept a median of 96% of the ceiling gain at a per-locus precision of σ = 0.10. It kept 89% at σ = 0.20 and 58% at σ = 0.40, which is the range of precision of the present pooled estimates (0.18 to 0.38). At those precisions, between 12% and a third of the architectures that reached the MCID with exact weights no longer did. The loci needed for a given odds ratio rose by one to several.</p>
+<div id="fig-aim4" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-aim4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="output/figures/aim4_sweep_5pct.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-aim4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Gain of the ceiling score relative to the MCID at the 5% threshold, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="still-to-write" class="level2">
+<h2 class="anchored" data-anchor-id="still-to-write">Still to write</h2>
+<ul>
+<li>Discussion: principal findings, comparison with the earlier reclassification result, strengths, limitations and implications for a genotyped, neutropenia-stratified study.</li>
+<li>Limitations to cover:
+<ul>
+<li>small and partly overlapping evidence;</li>
+<li>genotype assumed independent of the clinical profile;</li>
+<li>European haplotype frequencies;</li>
+<li>the realised score uses shrunk posterior medians, with no winner’s curse;</li>
+<li>one cohort.</li>
+</ul></li>
+<li>References (no <code>.bib</code> file yet), author list, ethics and data access, funding.</li>
+<li>The record of the round-2 human verification, before any number here is treated as final.</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Draft manuscript"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Abstract, introduction, methods and results: working draft"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>::: {.callout-warning}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## Working draft</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>This is a first draft of the write-up (phase 7). Every number comes from the files in <span class="in">`output/`</span> as of 19 October 2026, after</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>the corrections recorded in addenda 16 to 21 of the <span class="co">[</span><span class="ot">decision record</span><span class="co">](decisions.qmd)</span>. The evidence is still provisional:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The record of the human round-2 verification is not yet in the repository.</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The priors on the pooled effects and the reading of the "realised" score are proposals.</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cohort overlap between the Spanish registry series and the Jena AML cohorts is only partly adjudicated.</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>The discussion, references, author list, ethics statement and data-availability statement are not yet written. Citations</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>are informal author–year placeholders, and <span class="in">`[ref]`</span> marks a statement that still needs a reference.</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"_setup.R"</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>rd <span class="ot">&lt;-</span> <span class="cf">function</span>(f) <span class="fu">read.csv</span>(<span class="fu">file.path</span>(<span class="st">"output"</span>, f))</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Abstract</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>**Background.** Variants in the innate immune genes *PTX3*, *CLEC7A* (dectin-1), *TLR4* and *CD209* (DC-SIGN) are</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>repeatedly reported as associated with invasive aspergillosis, and adding genotype to clinical risk scores has been</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>proposed. Whether doing so would change clinical decisions, rather than improve discrimination, has not been tested.</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>**Methods.** We did a pre-specified simulation study of the value of host genetic information. The baseline was a</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>seven-predictor clinical score for proven or probable invasive mould disease (IMD) within 60 days, refit on 4,078</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>haematology admissions in 1,945 patients (Bologna, 2007–2016; 133 events, 3.3%). A systematic review supplied the genetic</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>effects (831 records screened, 63 studies extracted). Effects for four haplotype terms were mapped to a common per-copy scale</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>and pooled with Bayesian random-effects models. The net-benefit gain over the clinical score was computed exactly over all</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>clinical profiles and genotype combinations, for 2,000 draws from the pooled posteriors. The primary endpoint was the gain at</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of 20% more true</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>cases at no extra false positives (+0.00458). Secondary analyses added a second CLEC7A haplotype, effect modification by</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>neutropenia, donor genotype after allogeneic transplantation, and a sweep of 4,000 hypothetical genetic architectures.</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>**Results.** Pooled odds ratios per copy of the risk haplotype class (90% credible interval) were 1.35 (0.99 to 1.81) for</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>PTX3, 0.84 (0.48 to 1.48) for CLEC7A Y238X, 1.44 (0.77 to 2.69) for TLR4 and 1.80 (1.14 to 2.73) for CD209. With the true</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00059 (90% range 0.00015 to 0.00137).</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>That is about an eighth of the MCID: 1.2 extra true cases per 1,000 admissions, against 4.6 required. No draw reached the MCID,</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>and 1.3% did when between-study heterogeneity was propagated. The area under the ROC curve (aROC) rose from 0.857 to 0.870. A second CLEC7A haplotype</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>(OR 1.86, three studies) doubled the gain to +0.00122, but at most 3.3% of draws reached the MCID. In simulated studies of the</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>cohort's size, the sampling standard deviation of the observed gain was as large as the expected gain. Neutropenic admissions</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>(28% of admissions, 80% of events) supplied about four-fifths of the gain. In the architecture sweep, no panel of up to 20</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>independent loci with per-allele odds ratios of 1.5 or less reached the MCID. At an odds ratio of 2.0, seven to nine common</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>loci were needed.</span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>**Conclusions.** On the published evidence, genotype at these four genes is unlikely to change decisions at the 5% threshold</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>in haematological inpatients. A panel that could change them would need much larger effects than candidate-gene studies</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>report, or many more loci. A genotyped, neutropenia-stratified study of this cohort's size could test whether genetic effects</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>depend on the inflammatory state of the host.</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>haematological malignancies <span class="co">[</span><span class="ot">ref</span><span class="co">]</span>. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a>a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna (Stanzani et al.,</span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>*J Infect* 2019). It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>probability of 5%.</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*) <span class="co">[</span><span class="ot">refs</span><span class="co">]</span>. After allogeneic transplantation the</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>reconstituted innate immune system is donor-derived, which has led to proposals to use donor genotype to stratify transplant</span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>recipients (Cunha et al., *N Engl J Med* 2014). These findings have prompted proposals for genetically augmented risk scores.</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous. Linked variants in the same</span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>gene are often reported as separate findings, and adding them to a model as independent terms counts the same signal more</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>than once. An earlier analysis of this question did that and reported a net reclassification improvement of 22.5%. Second,</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>does: it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>the threshold implies (Vickers and Elkin, *Med Decis Making* 2006).</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>We therefore framed the question as one of value of information, not of prediction. Under what combinations of effect size,</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>risk-allele frequency and linkage structure would host genetic information change clinical decisions for IMD in</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>haematological patients, and is the published evidence anywhere near those combinations? We fixed the size of a clinically</span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>important change before any genetic result existed, so that a negative answer would be a finding and not a failure. Our</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>objectives were to:</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>estimate the clinical baseline on the derivation cohort and compare it with the published equation;</span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>quantify the decision value of the variants with the best evidence, as pooled from the literature;</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>test whether the genetic effects depend on neutropenia, as a proxy for the inflammatory state of the host;</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>find the genetic architectures that would be needed to reach a clinically important change.</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Methods</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Design and pre-specification</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>This is a simulation study that combines individual admission-level clinical data with a meta-analysis of the published</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>genetic evidence. The design is summarised below in the ADEMP structure for simulation studies (Morris, White and Crowther,</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>*Stat Med* 2019). Design decisions were recorded before any genetic result existed and locked at a git tag (<span class="in">`prespec-lock`</span>,</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>commit <span class="in">`90e3656`</span>, 17 October 2026). Every later change is a dated addendum to the <span class="co">[</span><span class="ot">decision record</span><span class="co">](decisions.qmd)</span>. Each</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>addendum states what had been seen when the change was made. Two changes after the lock affected the primary analysis. In</span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>both, no genetic result had yet been computed:</span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The baseline cohort moved from a copula reconstruction to the admission-level data (D8 and D9).</span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The baseline model became a refit on those data (D10). This raised the MCID by 13% at the 5% threshold, which made the</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>  primary test harder.</span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ADEMP element <span class="pp">|</span> This study <span class="pp">|</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Aims <span class="pp">|</span> Decision value of host genotype added to a clinical IMD score; the architectures that would be needed <span class="pp">|</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Data-generating mechanisms <span class="pp">|</span> Clinical profiles from the observed cohort; genotypes in Hardy–Weinberg equilibrium at gnomAD non-Finnish European frequencies; true genetic effects drawn from the pooled posteriors under two readings; architecture sweep on a grid <span class="pp">|</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Estimand <span class="pp">|</span> Gain in decision-curve net benefit over the clinical score, at thresholds of 5% (primary) and 20% (secondary) <span class="pp">|</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Methods compared <span class="pp">|</span> Clinical score alone; clinical score plus a genetic score with the true effects (ceiling) or the pooled estimates (realised) <span class="pp">|</span></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Performance measures <span class="pp">|</span> Median gain and 90% range over draws; share of draws reaching the MCID; extra true cases per 1,000 admissions; aROC <span class="pp">|</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="fu">### Clinical cohort and baseline model</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>The clinical data are the admission-level derivation data of the Stanzani score, from the BOSCORE registry of the</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>haematology unit in Bologna (admissions 2007–2016). The outcome is proven or probable IMD by EORTC criteria within 60 days of</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>admission. The seven predictors are:</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>prior mould disease;</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>high-dose corticosteroids;</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>uncontrolled malignancy;</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>high-risk chemotherapy;</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>prolonged neutropenia;</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>severe lymphopenia;</span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>cytomegalovirus infection.</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>The published analysis file has 4,127 rows. These are exactly the rows of the parent registry extract that are complete on the</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>seven items. Forty-nine admission numbers appeared twice, each time as an event row plus a non-event row with the same patient</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>and predictor profile. We confirmed these pairs as a recording artefact and removed the duplicate row. The base cohort is</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>therefore 4,078 unique admissions in 1,945 patients, with 133 events (3.26%). Only counts and pseudonymised fields were used,</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>and no patient-level data are in the repository. <span class="co">[</span><span class="ot">Ethics approval and data-access statement to add.</span><span class="co">]</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>The baseline is a maximum-likelihood logistic regression of the outcome on the seven predictors in the base cohort. Its</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>uncertainty was handled as follows:</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Standard errors are clustered by patient.</span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The bootstrap resamples patients and repeats the refit in each of 2,000 resamples.</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Optimism was estimated by Harrell's bootstrap method. It is reported, not subtracted.</span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>The baseline is held fixed from here on. The joint distribution of clinical risk is the observed distribution of the 128</span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>possible predictor profiles, 75 of which occur. Three alternatives were kept as sensitivity analyses:</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the published equation;</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the 4,127-row cohort;</span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a Gaussian-copula reconstruction of the predictor correlation, fitted to the published marginal counts. It was carried as</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>  an ensemble of 150 near-optimal correlation matrices.</span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evidence synthesis</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>**Search and extraction.** We searched PubMed (263 records; search date <span class="co">[</span><span class="ot">to confirm</span><span class="co">]</span>) and Embase (568 records; 8 October 2026)</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>for studies of host genetic variants and invasive fungal disease. The searches gave 831 unique records. Of the 81 studies</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>included, 63 had a usable source document. Twelve had no full text available, and six links pointed to the wrong document. The</span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables. [Describe the extraction process and</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>the round-2 human verification.]</span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>Every row whose comparison text had no reference marker was checked against the source tables. That covered seven studies.</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>The two reversals found (Herrero-Sanchez 2018, Fischer 2016) and one duplicated row read in the opposite direction</span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>(Sainz 2012) were corrected and logged with their evidence (43 corrected rows in all).</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>**Panel.** Candidate variants needed at least three meta-analysable studies. Within each gene, pairwise linkage was measured</span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>in phased 1000 Genomes phase 3 European haplotypes (503 samples). Haplotype frequencies were rescaled to gnomAD v4</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>non-Finnish European allele frequencies by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>per gene. Each term is an additive per-copy effect of a risk haplotype class:</span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PTX3:** h2, the class carrying A at rs2305619 (tagged equally by rs1840680), frequency 48.2%.</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CLEC7A:** the Y238X haplotype, the C allele of rs16910526, which lies only on one rs7309123 background, frequency 7.7%.</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**TLR4:** the G-T haplotype of rs4986790 and rs4986791, frequency 6.1%. It was pooled under a carrier model with a</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>  continuity correction, because no cohort had minor homozygotes.</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**CD209:** chromosomes carrying G at rs4804800, frequency 12.5%.</span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>TLR9 rs352140 was dropped because only one study was usable. IL10 rs1800896 and IFNG rs2069705 were dropped because they</span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>had one and two studies respectively, and the two IFNG studies disagreed in direction. Herrero-Sanchez 2018 was excluded</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>from the primary analysis because its main endpoint included colonisation.</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>**Mapping and pooling.** Each study's contrast (allelic, dominant, recessive or genotype counts) was converted to a log odds</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>ratio per copy of the risk class. The conversion solves a haplotype model: additive on the log-odds scale, haplotype pairs in</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>Hardy–Weinberg equilibrium, case–control sampling. Standard errors come from the delta method. One effect was taken per</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>study. The primary analysis used recipient genotype, the odds-ratio scale and whole-cohort analyses. Hazard-ratio studies</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>were added only as a sensitivity analysis, or as a labelled fallback where fewer than three odds-ratio studies existed.</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>Effects were pooled with a Bayesian random-effects model, μ ~ N(0, 1) and τ ~ half-normal(0.5), evaluated on a grid.</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>**Second CLEC7A parameter.** The three CLEC7A haplotypes carry a second effect: the A-G haplotype (G at rs7309123 on the</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>non-Y238X background) against A-C. rs7309123 is a C/G palindrome. Its strand was therefore resolved study by study, from</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>control allele frequencies, primer sequences and full texts. The primary estimate uses the three strand-resolved studies of</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>European or Turkish cohorts. Two East Asian studies were mapped through 1000 Genomes East Asian haplotype frequencies and</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>entered a sensitivity analysis. This parameter was not part of the pre-specified four-term panel. The four-term analysis is</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>therefore primary, and the five-term analysis is secondary.</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### The genetic layer</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>Each patient receives one genotype, which is shared by all of their admissions. The dosage of each risk class (0, 1 or 2)</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>follows Hardy–Weinberg equilibrium at the gnomAD frequencies. Genotype is independent across terms and of the clinical</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>profile. The true risk of an admission is</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>\operatorname{logit} p = \eta_{\text{clin}} + \sum_j \beta_j g_j + a,</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>where $$\eta_{\text{clin}}$$ is the baseline linear predictor and $$g_j$$ the dosage of term $$j$$. The constant $$a$$</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>recentres the genetic contribution so that the prevalence stays at 3.26%. A change in net benefit therefore reflects</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>discrimination, not a shift in the event rate.</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>True effects $$\beta_j$$ were drawn 2,000 times from each term's pooled posterior under two readings:</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**mean:** the pooled mean μ;</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**predictive:** a new-study effect drawn from N(μ, τ), which carries between-study heterogeneity.</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>Three scores were compared under the same truth:</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the clinical score alone;</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the **ceiling** score, which uses the true effects (the best any genetic score could do);</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the **realised** score, which uses the pooled posterior medians, recentred.</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>Net benefit at threshold $$p_t$$ is</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>\text{NB}(p_t) = \frac{\text{TP}}{n} - \frac{\text{FP}}{n}\cdot\frac{p_t}{1-p_t}.</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>The gain is the net benefit of a genetic score minus that of the clinical score. It was computed exactly over the 128 clinical</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>profiles and all genotype combinations (81 for four terms), with no patient-level sampling. A patient-level simulation on a</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>100-fold replicated cohort reproduced the exact gain (0.00041 against 0.00040 at 5%).</span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>**MCID.** Before any genetic result, the minimum clinically important difference was defined as 20% more true cases at no</span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>increase in false positives. That is $$0.2 \times \text{TP}_{\text{clin}}/n$$. The 5% threshold, the high-risk cut-off of the</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three</span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>quantities:</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the median gain over draws, with its 90% range;</span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the extra true cases per 1,000 admissions;</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the share of draws in which the gain reaches the MCID.</span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="fu">### Secondary and sensitivity analyses</span></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Sampling variability.** We simulated 2,000 studies of the cohort's size per scenario. Each study resampled patients with</span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a>  their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.</span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Robustness.** The layer was repeated in three settings, each with its own MCID:</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>the 150 correlation-ensemble members;</span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>the published equation on 4,078 and on 4,127 rows;</span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>a refit on 4,127 rows.</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Attribution.** The gain was divided among the terms by Shapley decomposition. The value of a subset is the gain of a score</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a>  carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>  the terms, so the split is a fair division of the gain and not a set of separable effects.</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Effect modification by neutropenia.** This tests the hypothesis that per-copy effects are larger in neutropenic</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>  admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues). The direction we expected was recorded</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>  before the run.</span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Strata:** admissions were split by the prolonged-neutropenia predictor.</span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Truth:** stratum-specific effects were constrained to average, weighted by events, to the pooled effect. The ratio of</span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>    the neutropenic to the non-neutropenic effect was set to ∞, 4, 1, 1/4 and 0. A further scenario applied the stratum</span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a>    effects of the only stratified study (Brunel 2018) directly.</span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Scores:** an oracle score, a common score with the pooled estimates, and two scores that assume a direction.</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Interaction test:** in 1,000 simulated studies per scenario, a logistic model with the baseline logit as an offset</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a>    estimated the interaction between the genetic score and neutropenia.</span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Donor genotype.** In the allogeneic transplant stratum (272 admissions, 43 events, from an admission-level flag), donor</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>  effects from the donor-genotype studies were tested against the stratum's own MCID.</span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Architecture sweep.** The sweep covered k independent loci with the same risk-allele frequency and the same per-allele</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>  odds ratio:</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>k from 1 to 20;</span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>odds ratio from 1.1 to 3.0 by 0.1;</span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>frequency from 0.05 to 0.50 by 0.05.</span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a>  That gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus</span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>  weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per</span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a>  architecture.</span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a><span class="fu">### Software</span></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a>Analyses used R 4.6.1, with package versions pinned by renv. The code, the test suite and every summary output are public at</span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a>https://github.com/lewis-id-lab/PROSE. Scripts 01 to 28 reproduce the results in order.</span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a><span class="fu">## Results</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cohort and clinical baseline</span></span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>The base cohort has 4,078 admissions in 1,945 patients (2.10 admissions per patient) and 133 events (3.26%). The refit</span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>baseline's odds ratios ranged from 2.15 for uncontrolled malignancy to 7.28 for prior mould disease. Every published</span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>coefficient lies inside the refit's 90% bootstrap interval. The aROC was 0.858 apparent and 0.853 after optimism correction,</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>and the calibration slope was 0.97. On the same admissions, the published equation under-predicted slightly (3.06% against</span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>3.26%).</span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>At the 5% threshold the refit baseline flags 15.7% of admissions, with 22.9 true and 133.8 false positives per 1,000. Its net</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>benefit is 0.0158. The MCID is therefore +0.00458 (patient bootstrap 90% interval 0.00387 to 0.00566), or 4.6 extra true cases</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>per 1,000 admissions at no extra false positives. At 20% the MCID is +0.00160. Under the published equation the MCIDs would be</span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>+0.00404 and +0.00113.</span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a><span class="fu">### Evidence base</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>@tbl-pooled shows the pooled effects. Each term rests on three to five studies. CD209 is the only term in the four-term panel</span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>whose interval excludes an odds ratio of 1. PTX3 is borderline, with a 5.5% posterior probability that its effect is below zero.</span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>CLEC7A Y238X is centred below 1. The second CLEC7A parameter, A-G against A-C, is estimated at an odds ratio of 1.86 per copy.</span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>Its interval excludes 1 under every strand assumption (1.5 to 1.9).</span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>The two East Asian studies point the other way (difference from the European estimate −1.19 on the log scale, SE 0.31,</span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>P = 0.0001). Adding them gives 1.28 (0.79 to 1.95). The linkage of rs7309123 with rs3901533 in phased 1000 Genomes data</span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>explains this pattern: it is the reversal expected when a tag SNP sits on different haplotype backgrounds in the two</span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>ancestries.</span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-pooled</span></span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Pooled effects per copy of each term's risk haplotype class, primary analysis (recipient genotype, odds-ratio scale). Bayesian random-effects model; 90% credible intervals. Frequencies are gnomAD v4 non-Finnish European."</span></span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a>pool_row <span class="ot">&lt;-</span> <span class="cf">function</span>(file, term, risk_class, freq) {</span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rd</span>(file)[<span class="dv">1</span>, ] <span class="sc">|&gt;</span></span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(<span class="at">Term =</span> term, <span class="st">`</span><span class="at">Risk class</span><span class="st">`</span> <span class="ot">=</span> risk_class, <span class="at">Frequency =</span> freq, <span class="at">Studies =</span> k,</span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>              <span class="at">OR =</span> or, <span class="st">`</span><span class="at">90% CrI</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.2f to %.2f"</span>, or_lo, or_hi), <span class="at">tau =</span> tau)</span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"ptx3_h2_pooled.csv"</span>, <span class="st">"PTX3"</span>, <span class="st">"h2 (A at rs2305619)"</span>, <span class="fl">0.482</span>),</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"clec7a_pooled.csv"</span>, <span class="st">"CLEC7A"</span>, <span class="st">"Y238X (C at rs16910526)"</span>, <span class="fl">0.077</span>),</span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"tlr4_pooled.csv"</span>, <span class="st">"TLR4"</span>, <span class="st">"G-T (rs4986790, rs4986791)"</span>, <span class="fl">0.061</span>),</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"cd209_pooled.csv"</span>, <span class="st">"CD209"</span>, <span class="st">"G at rs4804800"</span>, <span class="fl">0.125</span>),</span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pool_row</span>(<span class="st">"clec7a_second_pooled.csv"</span>, <span class="st">"CLEC7A, second parameter (secondary)"</span>, <span class="st">"A-G (G at rs7309123, non-Y238X)"</span>, <span class="fl">0.349</span>)</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(Frequency, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(OR, tau), <span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a><span class="fu">### Primary result: the four-term panel</span></span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a>@tbl-headline and @fig-headline show the main results. With the true effects in the score, the four terms raised net benefit</span>
+<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a>at the 5% threshold by a median of +0.00059 (90% range 0.00015 to 0.00137). That is 1.2 extra true cases per 1,000</span>
+<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a>admissions, against the 4.6 the MCID requires. The gain came with extra false positives: the share flagged rose from 15.7% to</span>
+<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a>16.9%. No draw reached the MCID under the pooled-mean reading, and 1.3% did under the predictive reading. With the pooled</span>
+<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a>estimates in the score the gain was +0.00042 (−0.00009 to 0.00098), and no draw reached the MCID. The expected aROC rose from</span>
+<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a>0.857 to 0.870 with the ceiling score and to 0.867 with the realised score.</span>
+<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>At the secondary 20% threshold the ceiling score gained +0.00105 and reached the MCID of +0.00160 in 16% of draws (36% under</span>
+<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a>the predictive reading). The realised score reached it in 3% of draws (9% under the predictive reading).</span>
+<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-headline</span></span>
+<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Net-benefit gain over the clinical score: median and 90% range over 2,000 draws of the true effects, and the share of draws reaching the MCID (+0.00458 at 5%, +0.00160 at 20%). Mean: true effect is the pooled mean; predictive: a new-study effect including between-study heterogeneity."</span></span>
+<span id="cb4-342"><a href="#cb4-342" aria-hidden="true" tabindex="-1"></a>four <span class="ot">&lt;-</span> <span class="fu">rd</span>(<span class="st">"genetic_layer_summary.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-343"><a href="#cb4-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(scenario <span class="sc">!=</span> <span class="st">"baseline"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-344"><a href="#cb4-344" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">panel =</span> <span class="st">"Four terms (primary)"</span>, truth, scenario, threshold,</span>
+<span id="cb4-345"><a href="#cb4-345" aria-hidden="true" tabindex="-1"></a>            <span class="at">gain =</span> delta_nb, <span class="at">lo =</span> delta_lo, <span class="at">hi =</span> delta_hi, <span class="at">extra =</span> extra_cases_per_1000, <span class="at">p =</span> p_meets_mcid, auc)</span>
+<span id="cb4-346"><a href="#cb4-346" aria-hidden="true" tabindex="-1"></a>five <span class="ot">&lt;-</span> <span class="fu">rd</span>(<span class="st">"clec7a_second_layer_summary.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-347"><a href="#cb4-347" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(second_parameter <span class="sc">==</span> <span class="st">"estimated"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-348"><a href="#cb4-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">panel =</span> <span class="st">"Five terms, CLEC7A A-G added (secondary)"</span>, truth, scenario, threshold,</span>
+<span id="cb4-349"><a href="#cb4-349" aria-hidden="true" tabindex="-1"></a>            gain, lo, hi, <span class="at">extra =</span> extra_cases_per_1000, <span class="at">p =</span> p_meets_mcid, auc)</span>
+<span id="cb4-350"><a href="#cb4-350" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(four, five) <span class="sc">|&gt;</span></span>
+<span id="cb4-351"><a href="#cb4-351" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">panel =</span> <span class="fu">factor</span>(panel, <span class="fu">unique</span>(panel)),</span>
+<span id="cb4-352"><a href="#cb4-352" aria-hidden="true" tabindex="-1"></a>         <span class="at">Threshold =</span> <span class="fu">paste0</span>(threshold <span class="sc">*</span> <span class="dv">100</span>, <span class="st">"%"</span>),</span>
+<span id="cb4-353"><a href="#cb4-353" aria-hidden="true" tabindex="-1"></a>         <span class="at">Truth =</span> truth,</span>
+<span id="cb4-354"><a href="#cb4-354" aria-hidden="true" tabindex="-1"></a>         <span class="at">Score =</span> <span class="fu">if_else</span>(scenario <span class="sc">==</span> <span class="st">"ceiling"</span>, <span class="st">"true effects (ceiling)"</span>, <span class="st">"pooled estimates (realised)"</span>),</span>
+<span id="cb4-355"><a href="#cb4-355" aria-hidden="true" tabindex="-1"></a>         <span class="at">range =</span> <span class="fu">sprintf</span>(<span class="st">"%.5f to %.5f"</span>, lo, hi)) <span class="sc">|&gt;</span></span>
+<span id="cb4-356"><a href="#cb4-356" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(panel, threshold, Truth, Score) <span class="sc">|&gt;</span></span>
+<span id="cb4-357"><a href="#cb4-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(panel, Threshold, Truth, Score, gain, range, extra, p, auc) <span class="sc">|&gt;</span></span>
+<span id="cb4-358"><a href="#cb4-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"panel"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-359"><a href="#cb4-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(gain, <span class="at">decimals =</span> <span class="dv">5</span>, <span class="at">pattern =</span> <span class="st">"+{x}"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-360"><a href="#cb4-360" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(extra, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-361"><a href="#cb4-361" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(auc, <span class="at">decimals =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-362"><a href="#cb4-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(p, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-363"><a href="#cb4-363" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">gain =</span> <span class="st">"Median gain"</span>, <span class="at">range =</span> <span class="st">"90% range"</span>, <span class="at">extra =</span> <span class="st">"Extra true cases per 1,000"</span>,</span>
+<span id="cb4-364"><a href="#cb4-364" aria-hidden="true" tabindex="-1"></a>             <span class="at">p =</span> <span class="st">"Draws reaching MCID"</span>, <span class="at">auc =</span> <span class="st">"aROC"</span>)</span>
+<span id="cb4-365"><a href="#cb4-365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-366"><a href="#cb4-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-367"><a href="#cb4-367" aria-hidden="true" tabindex="-1"></a><span class="al">![Net-benefit gain over the clinical score against the MCID (dashed line), for the four-term panel and the five-term panel with the European or all-ancestry estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.](output/figures/fig_headline.png)</span>{#fig-headline}</span>
+<span id="cb4-368"><a href="#cb4-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-369"><a href="#cb4-369" aria-hidden="true" tabindex="-1"></a><span class="fu">### The second CLEC7A parameter</span></span>
+<span id="cb4-370"><a href="#cb4-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-371"><a href="#cb4-371" aria-hidden="true" tabindex="-1"></a>Adding the A-G haplotype made CLEC7A an active term and roughly doubled the gain: +0.00122 (0.00048 to 0.00242) at 5% with the</span>
+<span id="cb4-372"><a href="#cb4-372" aria-hidden="true" tabindex="-1"></a>ceiling score, and +0.00100 with the realised score. The 5% MCID stayed out of reach, reached in 0.1% of draws under the</span>
+<span id="cb4-373"><a href="#cb4-373" aria-hidden="true" tabindex="-1"></a>pooled-mean reading and 3.3% under the predictive reading. At 20% the ceiling score reached the MCID in 63% of draws (72%</span>
+<span id="cb4-374"><a href="#cb4-374" aria-hidden="true" tabindex="-1"></a>under the predictive reading) and the realised score in 45%. With the all-ancestry estimate of the second parameter the gain at</span>
+<span id="cb4-375"><a href="#cb4-375" aria-hidden="true" tabindex="-1"></a>5% was +0.00077, and 28% of draws reached the 20% MCID.</span>
+<span id="cb4-376"><a href="#cb4-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-377"><a href="#cb4-377" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sampling variability and robustness</span></span>
+<span id="cb4-378"><a href="#cb4-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-379"><a href="#cb4-379" aria-hidden="true" tabindex="-1"></a>A study of the cohort's size would observe the gain with a standard deviation as large as the expected gain or larger: 0.00064</span>
+<span id="cb4-380"><a href="#cb4-380" aria-hidden="true" tabindex="-1"></a>to 0.00131 at 5%. With the effects fixed at the pooled medians, the observed gain at 5% averaged +0.00039 (SD 0.00064). It was</span>
+<span id="cb4-381"><a href="#cb4-381" aria-hidden="true" tabindex="-1"></a>above zero in 72% of studies and never reached the MCID. With the effects drawn from the posteriors, the observed gain was</span>
+<span id="cb4-382"><a href="#cb4-382" aria-hidden="true" tabindex="-1"></a>positive in 69% to 82% of studies and reached the MCID in at most 1.6%. Even with every effect at the 95th percentile of its</span>
+<span id="cb4-383"><a href="#cb4-383" aria-hidden="true" tabindex="-1"></a>posterior, the ceiling score's observed gain reached the 5% MCID in 1.0% of studies (78% at 20%).</span>
+<span id="cb4-384"><a href="#cb4-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-385"><a href="#cb4-385" aria-hidden="true" tabindex="-1"></a>The clinical correlation structure moved the median gain by at most 0.00016 (between-member SD 0.00007 to 0.00028). The</span>
+<span id="cb4-386"><a href="#cb4-386" aria-hidden="true" tabindex="-1"></a>published-equation and 4,127-row cohorts gave gains at 5% of +0.00059 to +0.00064 (ceiling, pooled mean). In those settings at</span>
+<span id="cb4-387"><a href="#cb4-387" aria-hidden="true" tabindex="-1"></a>most 1.8% of draws reached that setting's MCID. The settings differed mainly at 20%, where the published equation sets a lower</span>
+<span id="cb4-388"><a href="#cb4-388" aria-hidden="true" tabindex="-1"></a>bar (+0.00113).</span>
+<span id="cb4-389"><a href="#cb4-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-390"><a href="#cb4-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### Which terms carry the gain</span></span>
+<span id="cb4-391"><a href="#cb4-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-392"><a href="#cb4-392" aria-hidden="true" tabindex="-1"></a>In the four-term panel, CD209 supplied 51.7% of the Shapley gain at 5% (ceiling, pooled mean). PTX3 supplied 22.6%, TLR4</span>
+<span id="cb4-393"><a href="#cb4-393" aria-hidden="true" tabindex="-1"></a>19.0% and CLEC7A 6.7% (@fig-attribution). CD209 has the largest pooled effect but rests on three studies. With the second</span>
+<span id="cb4-394"><a href="#cb4-394" aria-hidden="true" tabindex="-1"></a>CLEC7A parameter the ranking changed. CLEC7A supplied 49.7%, almost all of it through the common A-G haplotype (45.9%), and</span>
+<span id="cb4-395"><a href="#cb4-395" aria-hidden="true" tabindex="-1"></a>CD209 fell to 27.5%, PTX3 to 12.8% and TLR4 to 10.0%. CLEC7A's share stayed between 44.8% and 52.8% in every combination of</span>
+<span id="cb4-396"><a href="#cb4-396" aria-hidden="true" tabindex="-1"></a>cohort, correlation structure, reading, score and threshold. It was the largest single contributor in 64% to 69% of draws.</span>
+<span id="cb4-397"><a href="#cb4-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-398"><a href="#cb4-398" aria-hidden="true" tabindex="-1"></a><span class="al">![Shapley shares of the net-benefit gain at the 5% threshold, four- and five-term panels, with pooled estimates or true effects in the score (pooled-mean reading).](output/figures/fig_attribution.png)</span>{#fig-attribution}</span>
+<span id="cb4-399"><a href="#cb4-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-400"><a href="#cb4-400" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect modification by neutropenia</span></span>
+<span id="cb4-401"><a href="#cb4-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-402"><a href="#cb4-402" aria-hidden="true" tabindex="-1"></a>Neutropenic admissions were 28% of the cohort (1,157), with an event rate of 9.2% and 106 of the 133 events (80%). With</span>
+<span id="cb4-403"><a href="#cb4-403" aria-hidden="true" tabindex="-1"></a>homogeneous effects, the gain per admission was 11 times larger in neutropenic admissions (+0.00170 against +0.00015 at 5%).</span>
+<span id="cb4-404"><a href="#cb4-404" aria-hidden="true" tabindex="-1"></a>That stratum supplied 81% of the whole-cohort gain at 5% and 96% at 20%. With five terms it supplied 83% and 95%, and 78% to</span>
+<span id="cb4-405"><a href="#cb4-405" aria-hidden="true" tabindex="-1"></a>84% at 5% across every sensitivity setting.</span>
+<span id="cb4-406"><a href="#cb4-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-407"><a href="#cb4-407" aria-hidden="true" tabindex="-1"></a>The only stratified evidence, Brunel 2018, points against H_F. Mapped to the per-copy PTX3 h2 scale, its effect was +1.17 in</span>
+<span id="cb4-408"><a href="#cb4-408" aria-hidden="true" tabindex="-1"></a>non-neutropenic and −0.13 in neutropenic courses for rs2305619 (difference −1.30, SE 0.72, P = 0.07). For rs3816527 the</span>
+<span id="cb4-409"><a href="#cb4-409" aria-hidden="true" tabindex="-1"></a>difference was −1.99 (SE 1.01, P = 0.049). These estimates come from 212 courses and 26 events, with neutropenia defined at</span>
+<span id="cb4-410"><a href="#cb4-410" aria-hidden="true" tabindex="-1"></a>presentation.</span>
+<span id="cb4-411"><a href="#cb4-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-412"><a href="#cb4-412" aria-hidden="true" tabindex="-1"></a>Across scenarios (@fig-aim3b), the 5% MCID came within reach only when the whole effect was placed in non-neutropenic</span>
+<span id="cb4-413"><a href="#cb4-413" aria-hidden="true" tabindex="-1"></a>admissions. There the oracle score gained +0.00356, reaching the MCID in 18% of draws. With five terms it gained +0.00443 and</span>
+<span id="cb4-414"><a href="#cb4-414" aria-hidden="true" tabindex="-1"></a>reached the MCID in 42% of draws. The common score with pooled estimates lost little under an H_F truth (+0.00047 against an</span>
+<span id="cb4-415"><a href="#cb4-415" aria-hidden="true" tabindex="-1"></a>oracle +0.00081 at 5%). It was harmful if Brunel's stratum effects held (−0.00016 with four terms, −0.00090 with five). A score built on H_F was the most harmful</span>
+<span id="cb4-416"><a href="#cb4-416" aria-hidden="true" tabindex="-1"></a>when the truth ran the other way.</span>
+<span id="cb4-417"><a href="#cb4-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-418"><a href="#cb4-418" aria-hidden="true" tabindex="-1"></a>In simulated studies of the cohort's size, the interaction test detected the effect modification more often than we had</span>
+<span id="cb4-419"><a href="#cb4-419" aria-hidden="true" tabindex="-1"></a>predicted. With five terms and pooled-median effects, it reached P &lt; 0.05 in the true direction as follows:</span>
+<span id="cb4-420"><a href="#cb4-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-421"><a href="#cb4-421" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> scenario <span class="pp">|</span> power <span class="pp">|</span></span>
+<span id="cb4-422"><a href="#cb4-422" aria-hidden="true" tabindex="-1"></a><span class="pp">|---|---|</span></span>
+<span id="cb4-423"><a href="#cb4-423" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> all of the effect in neutropenic admissions <span class="pp">|</span> 90% <span class="pp">|</span></span>
+<span id="cb4-424"><a href="#cb4-424" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> ratio of 4 <span class="pp">|</span> 62% <span class="pp">|</span></span>
+<span id="cb4-425"><a href="#cb4-425" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Brunel-sized modifications <span class="pp">|</span> ≥ 99.9% <span class="pp">|</span></span>
+<span id="cb4-426"><a href="#cb4-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-427"><a href="#cb4-427" aria-hidden="true" tabindex="-1"></a>The false-positive rate was 5.1%. The corresponding four-term figures were 59%, 34% and 95% to 96%. Of the five predictions</span>
+<span id="cb4-428"><a href="#cb4-428" aria-hidden="true" tabindex="-1"></a>recorded before the run, two held, one mostly held, one was not borne out, and one was wrong: we had predicted that the test</span>
+<span id="cb4-429"><a href="#cb4-429" aria-hidden="true" tabindex="-1"></a>would be underpowered.</span>
+<span id="cb4-430"><a href="#cb4-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-431"><a href="#cb4-431" aria-hidden="true" tabindex="-1"></a><span class="al">![Whole-cohort net-benefit gain under six effect-modification scenarios, for four scores, at 5% and 20%, four- and five-term panels. Dashed line: MCID. Points: median; bars: 90% range over draws of the true effects.](output/figures/fig_aim3b_gain.png)</span>{#fig-aim3b}</span>
+<span id="cb4-432"><a href="#cb4-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-433"><a href="#cb4-433" aria-hidden="true" tabindex="-1"></a><span class="fu">### Donor genotype in allogeneic transplant recipients</span></span>
+<span id="cb4-434"><a href="#cb4-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-435"><a href="#cb4-435" aria-hidden="true" tabindex="-1"></a>The allogeneic stratum held 272 admissions and 43 events (32% of events). The baseline already flagged 77% of these admissions</span>
+<span id="cb4-436"><a href="#cb4-436" aria-hidden="true" tabindex="-1"></a>at 5%. Donor genotype added 0.4 to 1.4 extra true cases per 1,000 transplant admissions at 5%, against about 30 needed for the</span>
+<span id="cb4-437"><a href="#cb4-437" aria-hidden="true" tabindex="-1"></a>stratum's MCID, and 14 to 28 at 20%, against about 12 needed. Whole-cohort, the gain at 5% was at most +0.0001. The donor</span>
+<span id="cb4-438"><a href="#cb4-438" aria-hidden="true" tabindex="-1"></a>evidence is one study each for PTX3 and CLEC7A, two for TLR4 and none for CD209. A smoothed version of the stratum's profile</span>
+<span id="cb4-439"><a href="#cb4-439" aria-hidden="true" tabindex="-1"></a>distribution gave the same conclusions.</span>
+<span id="cb4-440"><a href="#cb4-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-441"><a href="#cb4-441" aria-hidden="true" tabindex="-1"></a><span class="fu">### Genetic architectures that would reach the MCID</span></span>
+<span id="cb4-442"><a href="#cb4-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-443"><a href="#cb4-443" aria-hidden="true" tabindex="-1"></a>Of the 4,000 architectures, 46% reached the 5% MCID and 77% reached the 20% MCID (@fig-aim4). The pattern was:</span>
+<span id="cb4-444"><a href="#cb4-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-445"><a href="#cb4-445" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**One locus:** never enough. At an odds ratio of 3.0 and frequency 0.5 it reached 39% of the MCID.</span>
+<span id="cb4-446"><a href="#cb4-446" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Odds ratio 1.5 or less:** no number of loci up to 20 reached it.</span>
+<span id="cb4-447"><a href="#cb4-447" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Odds ratio 2.0:** 7 to 9 loci were needed at frequencies of 0.2 to 0.5, and 16 at 0.1.</span>
+<span id="cb4-448"><a href="#cb4-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Odds ratio 3.0:** 3 to 4 common loci were enough.</span>
+<span id="cb4-449"><a href="#cb4-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-450"><a href="#cb4-450" aria-hidden="true" tabindex="-1"></a>The four-term panel corresponds to about 7 loci of odds ratio 1.3 at frequency 0.3, and would need to be roughly eight times</span>
+<span id="cb4-451"><a href="#cb4-451" aria-hidden="true" tabindex="-1"></a>stronger to reach the 5% MCID. Architectures near the frontier depended on the unpublished correlation structure (gain over</span>
+<span id="cb4-452"><a href="#cb4-452" aria-hidden="true" tabindex="-1"></a>MCID varied by about 15% across ensemble members). Those well inside or outside it did not.</span>
+<span id="cb4-453"><a href="#cb4-453" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-454"><a href="#cb4-454" aria-hidden="true" tabindex="-1"></a>With estimated weights, a score kept a median of 96% of the ceiling gain at a per-locus precision of σ = 0.10. It kept 89% at</span>
+<span id="cb4-455"><a href="#cb4-455" aria-hidden="true" tabindex="-1"></a>σ = 0.20 and 58% at σ = 0.40, which is the range of precision of the present pooled estimates (0.18 to 0.38). At those</span>
+<span id="cb4-456"><a href="#cb4-456" aria-hidden="true" tabindex="-1"></a>precisions, between 12% and a third of the architectures that reached the MCID with exact weights no longer did. The loci</span>
+<span id="cb4-457"><a href="#cb4-457" aria-hidden="true" tabindex="-1"></a>needed for a given odds ratio rose by one to several.</span>
+<span id="cb4-458"><a href="#cb4-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-459"><a href="#cb4-459" aria-hidden="true" tabindex="-1"></a><span class="al">![Gain of the ceiling score relative to the MCID at the 5% threshold, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct.png)</span>{#fig-aim4}</span>
+<span id="cb4-460"><a href="#cb4-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-461"><a href="#cb4-461" aria-hidden="true" tabindex="-1"></a><span class="fu">## Still to write</span></span>
+<span id="cb4-462"><a href="#cb4-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-463"><a href="#cb4-463" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Discussion: principal findings, comparison with the earlier reclassification result, strengths, limitations and</span>
+<span id="cb4-464"><a href="#cb4-464" aria-hidden="true" tabindex="-1"></a>  implications for a genotyped, neutropenia-stratified study.</span>
+<span id="cb4-465"><a href="#cb4-465" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Limitations to cover:</span>
+<span id="cb4-466"><a href="#cb4-466" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>small and partly overlapping evidence;</span>
+<span id="cb4-467"><a href="#cb4-467" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>genotype assumed independent of the clinical profile;</span>
+<span id="cb4-468"><a href="#cb4-468" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>European haplotype frequencies;</span>
+<span id="cb4-469"><a href="#cb4-469" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>the realised score uses shrunk posterior medians, with no winner's curse;</span>
+<span id="cb4-470"><a href="#cb4-470" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>one cohort.</span>
+<span id="cb4-471"><a href="#cb4-471" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>References (no <span class="in">`.bib`</span> file yet), author list, ethics and data access, funding.</span>
+<span id="cb4-472"><a href="#cb4-472" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The record of the round-2 human verification, before any number here is treated as final.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Simulation study of the incremental value of host genetics for invasive mould disease</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Provisional: no extracted row has yet been verified by a human against its source.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

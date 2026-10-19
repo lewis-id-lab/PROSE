@@ -3,6 +3,7 @@ project:
   output-dir: docs
   render:
     - index.qmd
+    - manuscript.qmd
     - evidence.qmd
     - panel.qmd
     - baseline.qmd
@@ -28,6 +29,8 @@ website:
     left:
       - href: index.qmd
         text: Overview
+      - href: manuscript.qmd
+        text: Draft manuscript
       - href: evidence.qmd
         text: Evidence base
       - href: panel.qmd

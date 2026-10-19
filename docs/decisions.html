@@ -135,6 +135,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./manuscript.html"> 
+<span class="menu-text">Draft manuscript</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./evidence.html"> 
 <span class="menu-text">Evidence base</span></a>
   </li>  
@@ -297,6 +301,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#not-done-3" id="toc-not-done-3" class="nav-link" data-scroll-target="#not-done-3">Not done</a></li>
   </ul></li>
   <li><a href="#addendum-20-19-october-2026-fisher-2017-read-in-full-and-the-direction-check-is-closed-d24" id="toc-addendum-20-19-october-2026-fisher-2017-read-in-full-and-the-direction-check-is-closed-d24" class="nav-link" data-scroll-target="#addendum-20-19-october-2026-fisher-2017-read-in-full-and-the-direction-check-is-closed-d24">Addendum 20, 19 October 2026: Fisher 2017 read in full, and the direction check is closed (D24)</a></li>
+  <li><a href="#addendum-21-19-october-2026-east-asian-haplotype-frequencies-the-thai-and-chinese-studies-in-the-second-clec7a-parameter-and-a-check-of-their-direction-d25" id="toc-addendum-21-19-october-2026-east-asian-haplotype-frequencies-the-thai-and-chinese-studies-in-the-second-clec7a-parameter-and-a-check-of-their-direction-d25" class="nav-link" data-scroll-target="#addendum-21-19-october-2026-east-asian-haplotype-frequencies-the-thai-and-chinese-studies-in-the-second-clec7a-parameter-and-a-check-of-their-direction-d25">Addendum 21, 19 October 2026: East Asian haplotype frequencies, the Thai and Chinese studies in the second CLEC7A parameter, and a check of their direction (D25)</a>
+  <ul class="collapse">
+  <li><a href="#east-asian-haplotype-frequencies" id="toc-east-asian-haplotype-frequencies" class="nav-link" data-scroll-target="#east-asian-haplotype-frequencies">1. East Asian haplotype frequencies</a></li>
+  <li><a href="#what-changes-in-the-second-parameter" id="toc-what-changes-in-the-second-parameter" class="nav-link" data-scroll-target="#what-changes-in-the-second-parameter">2. What changes in the second parameter</a></li>
+  <li><a href="#is-the-opposite-direction-a-strand-or-reference-group-error-chen-2019-and-tanpaibule-2020-re-read" id="toc-is-the-opposite-direction-a-strand-or-reference-group-error-chen-2019-and-tanpaibule-2020-re-read" class="nav-link" data-scroll-target="#is-the-opposite-direction-a-strand-or-reference-group-error-chen-2019-and-tanpaibule-2020-re-read">3. Is the opposite direction a strand or reference-group error? Chen 2019 and Tanpaibule 2020 re-read</a></li>
+  <li><a href="#decision-d25" id="toc-decision-d25" class="nav-link" data-scroll-target="#decision-d25">Decision D25</a></li>
+  <li><a href="#the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes" id="toc-the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes" class="nav-link" data-scroll-target="#the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes">4. The linkage check: rs3901533 and rs7309123 in the phased 1000 Genomes chromosomes</a></li>
+  <li><a href="#not-done-4" id="toc-not-done-4" class="nav-link" data-scroll-target="#not-done-4">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -4390,10 +4403,290 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><em>Hazard-ratio rows only enter sensitivity analyses,</em> so no result changes.</li>
 </ul>
 <p>Code and outputs: <code>data/direction_check_log.csv</code>, <code>tests/testthat/test-term-mapping.R</code>.</p>
+<hr>
+</section>
+<section id="addendum-21-19-october-2026-east-asian-haplotype-frequencies-the-thai-and-chinese-studies-in-the-second-clec7a-parameter-and-a-check-of-their-direction-d25" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-21-19-october-2026-east-asian-haplotype-frequencies-the-thai-and-chinese-studies-in-the-second-clec7a-parameter-and-a-check-of-their-direction-d25">Addendum 21, 19 October 2026: East Asian haplotype frequencies, the Thai and Chinese studies in the second CLEC7A parameter, and a check of their direction (D25)</h2>
+<p>Written after the tag. Nothing in D1 to D24 changes. This closes the item “East Asian haplotype frequencies” left open in addenda 16 and 19.</p>
+<section id="east-asian-haplotype-frequencies" class="level3">
+<h3 class="anchored" data-anchor-id="east-asian-haplotype-frequencies">1. East Asian haplotype frequencies</h3>
+<p><code>scripts/28_east_asian_haplotypes.R</code> takes the phased phase 3 genotypes of the 1000 Genomes East Asian samples from the Ensembl REST API (cached in <code>data/phased_1000G_EAS_genotypes.csv</code>, 1,008 chromosomes) and counts the four haplotypes of rs16910526 (Y238X, forward-strand C) and rs7309123 (forward-strand G or C). Output: <code>data/haplotype_frequencies_eas.csv</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>population (chromosomes)</th>
+<th>A-G</th>
+<th>A-C</th>
+<th>C-G</th>
+<th>C-C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chinese Han, CHB + CHS (416), used for Chen 2019 (S074)</td>
+<td>0.798</td>
+<td>0.200</td>
+<td>0.002</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Dai in Xishuangbanna, CDX (186), used for Tanpaibule 2020 (S077)</td>
+<td>0.769</td>
+<td>0.226</td>
+<td>0.005</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>all five East Asian populations (1,008)</td>
+<td>0.821</td>
+<td>0.175</td>
+<td>0.004</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>European (addendum 7, for comparison)</td>
+<td>0.352</td>
+<td>0.577</td>
+<td>0.071</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>In East Asians rs7309123 G is the common allele (0.77 to 0.88) and Y238X is almost absent (0.2% to 1%), so the second parameter, the effect of the A-G haplotype against A-C, is estimated against a very different background from the European one. CDX is a proxy for the Thai: Tanpaibule’s controls carry G at 0.83 (addendum 16), CDX 0.77. The five-population table, Kinh and Japanese are in the file but no study uses them.</p>
+<p><code>scripts/22_clec7a_second_parameter.R</code> now maps the rows of S074 and S077 through these tables (the beta1 offset for C-G is kept) and all other rows through the European ones. Test: <code>tests/testthat/test-haplotypes.R</code> (the table is a frequency table, no C-C haplotype, G common).</p>
+</section>
+<section id="what-changes-in-the-second-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="what-changes-in-the-second-parameter">2. What changes in the second parameter</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>studies</th>
+<th>OR per A-G copy (90% interval)</th>
+<th>tau</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>primary: Schnetzke, Kalkanci, Sainz (European)</strong></td>
+<td>3</td>
+<td><strong>1.86</strong> (1.26 to 2.63)</td>
+<td>0.17</td>
+</tr>
+<tr class="even">
+<td>adding S074 and S077 with East Asian frequencies</td>
+<td>5</td>
+<td>1.28 (0.79 to 1.95)</td>
+<td>0.49</td>
+</tr>
+<tr class="odd">
+<td>S074 and S077 alone, East Asian frequencies</td>
+<td>2</td>
+<td>0.62 (0.35 to 1.15)</td>
+<td>0.26</td>
+</tr>
+<tr class="even">
+<td>adding S074 and S077 with European frequencies (not valid; for comparison only)</td>
+<td>5</td>
+<td>1.36 (0.84 to 2.08)</td>
+<td>0.46</td>
+</tr>
+</tbody>
+</table>
+<p>The two East Asian studies do not agree with the three European ones in direction, and the disagreement is not small (<code>output/clec7a_second_ancestry_heterogeneity.csv</code>, fixed-effect combination within each group):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>group</th>
+<th>studies</th>
+<th>log odds ratio per A-G copy (SE)</th>
+<th>Q within group</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>European</td>
+<td>3</td>
+<td>+0.645 (0.160)</td>
+<td>0.18</td>
+</tr>
+<tr class="even">
+<td>East Asian</td>
+<td>2</td>
+<td>-0.547 (0.264)</td>
+<td>0.004</td>
+</tr>
+<tr class="odd">
+<td>difference, East Asian minus European</td>
+<td></td>
+<td><strong>-1.19</strong> (0.31)</td>
+<td>z = -3.9, P = 0.0001</td>
+</tr>
+</tbody>
+</table>
+<p>Across all five studies Cochran’s Q is 15.1 on 4 degrees of freedom (P = 0.0045, I-squared 74%). Against the pooled European estimate, Chen is z = -3.6 (P = 0.0004) and Tanpaibule z = -1.9 (P = 0.054), so Chen carries most of the conflict. The within-group agreement is good in both groups: the conflict is between ancestries (or between the two designs), not within them.</p>
+<p>Layer gain over the baseline (2,000 draws, ceiling score, pooled-mean reading; the MCID is +0.00458 at 5% and +0.00160 at 20%):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>second parameter</th>
+<th>gain at 5%</th>
+<th>gain at 20%</th>
+<th>worlds reaching the 20% MCID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>estimated from the three European studies (primary)</td>
+<td>+0.00122</td>
+<td>+0.00182</td>
+<td>63%</td>
+</tr>
+<tr class="even">
+<td>estimated from all five studies (East Asian frequencies)</td>
+<td>+0.00077</td>
+<td>+0.00128</td>
+<td>28%</td>
+</tr>
+<tr class="odd">
+<td>held at zero</td>
+<td>+0.00059</td>
+<td>+0.00105</td>
+<td>16%</td>
+</tr>
+</tbody>
+</table>
+<p>With the realised score the same three rows are +0.00100, +0.00053 and +0.00042 at 5%, and 45%, 9% and 3% at 20%. Under the predictive reading (ceiling) the all-study row is +0.00122 and +0.00184 (59% at 20%) against +0.00150 and +0.00216 (72%) for the primary. No reading reaches the 5% MCID in more than 4% of worlds, as before. Outputs: <code>output/clec7a_second_layer_summary.csv</code> (new row “estimated from all ancestries”), <code>output/clec7a_second_pooled.csv</code>, <code>output/clec7a_second_posterior_draws_all_ancestries.csv</code>.</p>
+</section>
+<section id="is-the-opposite-direction-a-strand-or-reference-group-error-chen-2019-and-tanpaibule-2020-re-read" class="level3">
+<h3 class="anchored" data-anchor-id="is-the-opposite-direction-a-strand-or-reference-group-error-chen-2019-and-tanpaibule-2020-re-read">3. Is the opposite direction a strand or reference-group error? Chen 2019 and Tanpaibule 2020 re-read</h3>
+<p>Chen 2019 was read again from the supplied PDF (Curr Med Sci 39:906). Tanpaibule 2020 was read again from its open-access text (PMC7680473); the supplementary table with the assay details is not in that text.</p>
+<p><strong>Chen 2019 (S074), Chinese Han, 172 AML patients, pulmonary IFD (proven or probable) after induction chemotherapy.</strong> - <em>Reference group.</em> Table 4 lays out rs7309123 as G/G (reference, 27 of 108 with pulmonary IFD), C/G (21 of 59, OR 1.622), C/C (3 of 4, OR 9.000), C/G + C/C against G/G (24 of 63, <strong>OR 1.846, 0.945 to 3.606</strong>), C/C against the rest (7.532) and per C allele (1.919, 1.047 to 3.518). The Results and Discussion say that carriers of the rs7309123 C allele have the higher risk. The counts reproduce the printed odds ratios (the crude carrier odds ratio is 1.84, Fisher P = 0.084). The extraction reads each row in the right direction, as addendum 19 found. - <em>Strand.</em> The typed genotypes are G/G 108, C/G 59, C/C 4 (C = 0.196), and all eight SNPs are said to be in Hardy-Weinberg equilibrium. That is the forward-strand East Asian frequency of C (gnomAD 0.188, CHB 0.209), not the opposite-strand 0.81; the paper states no assay strand (KASPar). rs16910526 shows no variant carrier (171 of 172 homozygous for the common allele), as expected for East Asians. - <em>Caveats that do not change the sign.</em> The outcome is pulmonary IFD of any fungus, not aspergillosis; the comparison group is other AML patients; three of the four C/C patients had the outcome, so the estimate rests on very few people. The authors call their result “similar” to Sainz’s although Sainz’s risk allele is G and theirs is C, so they did not compare orientations.</p>
+<p><strong>Tanpaibule 2020 (S077), Thai, 357 patients with hematologic disease, proven or probable IA in 36.</strong> - <em>Reference group.</em> Table 2 sets C/C as the reference (2 of 10 with IA) against C/G (8 of 91, OR 0.311), G/G (23 of 228, 0.449) and G/G + C/G (31 of 319, <strong>OR 0.404, 0.068 to 2.404</strong>, adjusted for age group and high-risk hematologic disease). The paper does not name a risk allele for this SNP; its methods call the absence of the SNP “homozygous wild-type” and the table puts C/C first, so the direction is read from the table, not from the text. The counts agree with it: crude risk of IA is 20% in C/C, 8.8% in C/G and 10.1% in G/G (crude carrier odds ratio 0.43, Fisher P = 0.26). - <em>Strand.</em> G/G is 69% of controls (G = 0.83), against forward East Asian G 0.81 and opposite 0.19 (addendum 16); TaqMan assay, strand not stated. - <em>Caveat.</em> The reference group is <strong>10 people</strong>. The interval is compatible with no effect and with the European effect (from the pooled European estimate z = -1.9).</p>
+<p><strong>The mapping is not the source of the sign.</strong> For the odds ratios the European estimate (+0.62 per A-G copy) would produce in these frequencies, the answer is 0.51 for Chen’s C-carriers against G/G (observed 1.85) and 2.86 for Tanpaibule’s G-carriers against C/C (observed 0.40). A per-copy effect of about -0.55 reproduces both (1.88 and 0.42). So the two studies do say that the C-bearing haplotype (A-C) carries the higher risk, and the mapping reads them that way.</p>
+<p><strong>Verdict.</strong> I found no strand error and no reference-group error in either study. In both, the extracted direction equals the printed one, the counts reproduce it, and the allele frequencies place the labels on the forward strand. This does not exclude a strand mislabelling inside a paper that gives no assay strand (the evidence is the allele frequency, which is strong for Chen, medium to high for Tanpaibule). What remains are four explanations that the data cannot separate: 1. noise from very small reference cells (4 C/C patients in Chen, 10 in Tanpaibule), in which case the East Asian estimate is imprecise and not truly opposite (only Tanpaibule alone is compatible with the European effect); 2. different outcomes (pulmonary IFD of any fungus in AML against IA in a mixed hematologic cohort); 3. ancestry-specific linkage: rs7309123 is intronic and probably tags a causal variant, and a tag SNP whose allele frequency is 0.43 in Europeans and 0.81 in East Asians can have its effect reversed (flip-flop) when the linkage differs; 4. a problem in the European studies’ orientation. This looks least likely: the European and Turkish cohorts that were read for direction (Sainz, Fischer 2016, Kalkanci) all show G (forward) carrying the risk, and Schnetzke’s mapped effect points the same way; their strand grades are A or B, although Sainz is low to medium. Fisher 2017’s rs7309123 row was not re-read for this question.</p>
+</section>
+<section id="decision-d25" class="level3">
+<h3 class="anchored" data-anchor-id="decision-d25">Decision D25</h3>
+<p><strong>The primary estimate of the second CLEC7A parameter stays the European-only one</strong> (OR 1.86 per A-G copy, three studies), as in addenda 16 and 19. The estimate that adds the Thai and Chinese studies with East Asian frequencies (OR 1.28, tau 0.49) is a <strong>sensitivity analysis</strong>, reported next to it in every table that uses the second parameter. Reasons: - the five-study estimate averages two effects whose direction differs, with a heterogeneity (I-squared 74%) that a random-effects mean does not describe; - one per-copy effect of A-G against A-C is unlikely to transfer across ancestries with such different frequencies and linkage, and the layer is simulated in a cohort whose genotypes follow European frequencies (addendum 7); - the East Asian evidence is two studies, each resting on a reference cell of 4 (Chen’s C/C) or 10 (Tanpaibule’s C/C) patients, and one has a different outcome.</p>
+<p>This is a change in how the evidence is used, not in the primary analysis; the primary numbers of addenda 16 to 20 are unchanged. If the primary analysis ever moves to a non-European cohort, the East Asian estimate becomes the relevant one and its imprecision (90% interval 0.35 to 1.15 for the two studies alone) must be carried in full.</p>
+</section>
+<section id="the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes" class="level3">
+<h3 class="anchored" data-anchor-id="the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes">4. The linkage check: rs3901533 and rs7309123 in the phased 1000 Genomes chromosomes</h3>
+<p><code>scripts/28_east_asian_haplotypes.R</code> now also fetches rs3901533 (the second intronic SNP of Sainz 2012 and Chen 2019) and crosses its allele with the CLEC7A haplotypes on the phased chromosomes, East Asian from the script’s cache and European from script 04’s cache (<code>data/rs3901533_linkage_eas.csv</code>). Sainz labels the SNP G/T on the opposite strand: his risk allele T is the forward-strand A (Ensembl labels it A/C, forward).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>population</th>
+<th>haplotype</th>
+<th>chromosomes</th>
+<th>rs3901533 C</th>
+<th>rs3901533 A</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chinese Han (CHB + CHS)</td>
+<td>A-G</td>
+<td>664</td>
+<td>77</td>
+<td>587 (88%)</td>
+</tr>
+<tr class="even">
+<td>Chinese Han (CHB + CHS)</td>
+<td>A-C</td>
+<td>166</td>
+<td>97 (58%)</td>
+<td>69</td>
+</tr>
+<tr class="odd">
+<td>Thai proxy (CDX)</td>
+<td>A-G</td>
+<td>286</td>
+<td>31</td>
+<td>255 (89%)</td>
+</tr>
+<tr class="even">
+<td>Thai proxy (CDX)</td>
+<td>A-C</td>
+<td>84</td>
+<td>57 (68%)</td>
+<td>27</td>
+</tr>
+<tr class="odd">
+<td>East Asian (all five)</td>
+<td>A-G</td>
+<td>1,656</td>
+<td>154</td>
+<td>1,502 (91%)</td>
+</tr>
+<tr class="even">
+<td>East Asian (all five)</td>
+<td>A-C</td>
+<td>352</td>
+<td>215 (61%)</td>
+<td>137</td>
+</tr>
+<tr class="odd">
+<td>European (EUR)</td>
+<td>A-G</td>
+<td>708</td>
+<td>451 (64%)</td>
+<td>257</td>
+</tr>
+<tr class="even">
+<td>European (EUR)</td>
+<td>A-C</td>
+<td>1,162</td>
+<td>1,011 (87%)</td>
+<td>151</td>
+</tr>
+</tbody>
+</table>
+<p>(East Asian chromosomes in the table: 1,008 genotyped at rs7309123, all of them genotyped at rs3901533 in this cache; European: 1,006 genotyped at both.) | European (EUR) | C-G | 142 | 62 | 80 |</p>
+<p>The three observations:</p>
+<ol type="1">
+<li><strong>The two SNPs sit on different chromosomes in East Asians, in a pattern that reverses the tags.</strong> Forward A at rs3901533 sits on the rs7309123 G chromosome in 91% of the East Asian A-G chromosomes (88% in the Chinese Han, 89% in CDX); the LD of the two SNPs is r-squared 0.26, D’ -0.52 in East Asians (and r-squared 0.09, D’ -0.46 in Europeans), moderate, negative in D’. Chen typed both: his rs7309123 per-C-allele odds ratio is 1.919 and his rs3901533 per-G-allele odds ratio 2.201. Because the risk allele of each is the background allele of the other in this ancestry, the two contrasts are nearly independent (the shared-haplotype correlation of their log odds ratios is about 0.03, against 0.52 for two markers of one causal allele), and each is about what the other predicts. <strong>Chen’s two results therefore say the same thing: an effect on the rs3901533-A-carrying background, which in East Asians is the rs7309123 G chromosome, so the risk reads on C.</strong> Sainz’s own rs3901533 result (T/T against G/G 5.59, the risk on the forward A) is consistent in direction with an effect tagged by A; in Europeans the forward A sits on the A-G chromosome only 36% of the time, so the rs3901533 tag reads the risk more weakly there, as his per-allele odds ratio shows (1.39 against 1.75 for rs7309123).</li>
+<li><strong>The European A-C reference haplotype carries the rs3901533 complement</strong> (87% C). So the European A-G against A-C comparison, which the second parameter estimates, is confounded by rs3901533 in the opposite direction from the East Asian one: in Europe the A-G chromosome tends to lack Sainz’s risk allele, in East Asia it tends to carry it.</li>
+<li><strong>This is the flip-flop the addendum listed, and the two tag SNPs now show its mechanism.</strong> If the causal variant is nearer rs3901533 (an A/C SNP in intron 3, 12:10,124,484; rs7309123 is at 12:10,119,964, 4.5 kb away) and sits mainly on the A-bearing background, then the rs7309123 G allele tags it in East Asians (risk on G, against the reading above) and the rs7309123 C tags the reference; in Europeans the linkage is weaker and partly reversed. The observed signs match this: East Asian risk on C (the A-C chromosome, 61 to 68% rs3901533 C, is the background against which A-G carries the A), European risk on G.</li>
+</ol>
+<p>The verdict of section 3 stands: the data cannot separate this from the small-cells explanation, and nothing in the table fixes the sign of the true effect. What the table adds is that the opposite directions are a coherent pattern expected from the linkage, not an error; it also warns that the pooled East Asian estimate is not a replication of the European one at the same variant.</p>
+<p>Test: <code>tests/testthat/test-haplotypes.R</code>.</p>
+</section>
+<section id="not-done-4" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-4">Not done</h3>
+<p>Zhao 2022’s strand (rs7309123 appears only in a donor-genotype screening table with no allele letters; it is a Chinese Han study and would enter the East Asian analysis if resolved); the supplementary table of Tanpaibule 2020 (assay details); an independent East Asian cohort to tell noise from a true reversal; a direct genotyping or imputation of the candidate causal variant near rs3901533.</p>
+<p>Code and outputs: <code>scripts/28_east_asian_haplotypes.R</code>, <code>scripts/22_clec7a_second_parameter.R</code>, <code>data/haplotype_frequencies_eas.csv</code>, <code>data/phased_1000G_EAS_genotypes.csv</code>, <code>data/rs3901533_phased_genotypes.csv</code>, <code>data/rs3901533_linkage_eas.csv</code>, <code>output/clec7a_second_*.csv</code> (including the ancestry files), <code>tests/testthat/test-haplotypes.R</code>.</p>
 
 
 <!-- -->
 
+</section>
 </section>
 </section>
 

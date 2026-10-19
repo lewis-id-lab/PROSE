@@ -34,12 +34,13 @@ clinically important difference fixed before any genetic result exists.
 | 4 Baseline reproduction | baseline coded and tested; base dataset reconciled (`boscore.xlsx`, 4,078 unique admissions in 1,945 patients, D9) and the baseline model refit on it (D10), with the published equation and the copula as sensitivity analyses; exact decision curves and MCID re-derived |
 | 5 Genetic layer simulation | blocked on phase 3 |
 | 6 Sensitivity and architecture sweep | blocked on phase 5 |
-| 7 Write-up | not started |
+| 7 Write-up | first draft of abstract, introduction, methods and results ([Draft manuscript](manuscript.qmd)); discussion not started |
 
 ## Reading this report
 
 | Page | Contents |
 |---|---|
+| [Draft manuscript](manuscript.qmd) | Working draft of the abstract, introduction, methods and results |
 | [Evidence base](evidence.qmd) | What the literature search and extraction produced, and how much of it can be pooled |
 | [Genetic panel](panel.qmd) | The four haplotype terms, linkage structure, allele frequencies, and the haplotype phase check |
 | [Baseline model](baseline.qmd) | The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified |
