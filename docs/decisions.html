@@ -310,6 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes" id="toc-the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes" class="nav-link" data-scroll-target="#the-linkage-check-rs3901533-and-rs7309123-in-the-phased-1000-genomes-chromosomes">4. The linkage check: rs3901533 and rs7309123 in the phased 1000 Genomes chromosomes</a></li>
   <li><a href="#not-done-4" id="toc-not-done-4" class="nav-link" data-scroll-target="#not-done-4">Not done</a></li>
   </ul></li>
+  <li><a href="#addendum-22-19-october-2026-the-tertiary-nri-comparison-d26" id="toc-addendum-22-19-october-2026-the-tertiary-nri-comparison-d26" class="nav-link" data-scroll-target="#addendum-22-19-october-2026-the-tertiary-nri-comparison-d26">Addendum 22, 19 October 2026: the tertiary NRI comparison (D26)</a>
+  <ul class="collapse">
+  <li><a href="#design-proposed" id="toc-design-proposed" class="nav-link" data-scroll-target="#design-proposed">Design (proposed)</a></li>
+  <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1">Results</a></li>
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -4682,6 +4688,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="not-done-4">Not done</h3>
 <p>Zhao 2022’s strand (rs7309123 appears only in a donor-genotype screening table with no allele letters; it is a Chinese Han study and would enter the East Asian analysis if resolved); the supplementary table of Tanpaibule 2020 (assay details); an independent East Asian cohort to tell noise from a true reversal; a direct genotyping or imputation of the candidate causal variant near rs3901533.</p>
 <p>Code and outputs: <code>scripts/28_east_asian_haplotypes.R</code>, <code>scripts/22_clec7a_second_parameter.R</code>, <code>data/haplotype_frequencies_eas.csv</code>, <code>data/phased_1000G_EAS_genotypes.csv</code>, <code>data/rs3901533_phased_genotypes.csv</code>, <code>data/rs3901533_linkage_eas.csv</code>, <code>output/clec7a_second_*.csv</code> (including the ancestry files), <code>tests/testthat/test-haplotypes.R</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-22-19-october-2026-the-tertiary-nri-comparison-d26" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-22-19-october-2026-the-tertiary-nri-comparison-d26">Addendum 22, 19 October 2026: the tertiary NRI comparison (D26)</h2>
+<p>Written after the tag. Nothing in D1 to D25 changes. The project description kept net reclassification improvement as a tertiary comparator only, because it is the metric behind the predecessor’s 22.5%. This addendum computes it.</p>
+<section id="design-proposed" class="level3">
+<h3 class="anchored" data-anchor-id="design-proposed">Design (proposed)</h3>
+<ul>
+<li><strong>NRI, exact over cells</strong> (<code>R/nri.R</code>, <code>nri_exact()</code>), in three forms: categorical at 5% (the decision threshold), three categories with cuts at 5% and 20%, and continuous (any change in predicted risk counts as a move). Reported with the net-benefit gain at 5% and the change in expected aROC, all under the same truth, on the base cohort with the refit baseline.</li>
+<li><strong>Scores, each against the baseline.</strong>
+<ol type="1">
+<li>The four-term panel, ceiling and realised (as script 16).</li>
+<li>The PTX3 h2 term alone (correct structure).</li>
+<li>A three-SNP score on real chromosomes: truth on h2, score adding the effect once per SNP (rs2305619 A, rs3816527 C, rs1840680 A) over the phased PTX3 diplotypes (<code>ptx3_diplotype_grid()</code>).</li>
+<li>The predecessor’s structure: the three SNPs drawn independently at their gnomAD NFE frequencies (0.482, 0.424, 0.481), with the effect in truth and score alike.</li>
+</ol></li>
+<li><strong>Effects.</strong> The predecessor’s per-SNP effects are not on record (only a homozygote OR of 15.2 for rs1840680). Every PTX3 structure therefore carries the pooled per-copy h2 effect, which isolates the linkage error. The draws are the same 2,000 as script 16 (pooled-mean reading, seed 6417). An effect grid traces NRI against the per-copy log OR from 0 to 1.6.</li>
+<li><strong>Not reproduced:</strong> the predecessor’s global allele frequency (rs2305619 0.36), its effect sizes, and the form of its NRI (categorical or continuous is not recorded).</li>
+</ul>
+</section>
+<section id="results-1" class="level3">
+<h3 class="anchored" data-anchor-id="results-1">Results</h3>
+<p>Median over draws (90% range); NRI in percent:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>score</th>
+<th>NRI at 5%</th>
+<th>NRI, 5% and 20%</th>
+<th>continuous NRI</th>
+<th>gain at 5%</th>
+<th>aROC change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>four-term panel, ceiling</td>
+<td>2.6 (1.1 to 4.7)</td>
+<td>10.0 (6.2 to 15.6)</td>
+<td>31.4 (17.1 to 46.9)</td>
+<td>+0.0006</td>
+<td>+0.012</td>
+</tr>
+<tr class="even">
+<td>four-term panel, realised</td>
+<td>2.2 (0.6 to 3.9)</td>
+<td>10.0 (6.6 to 13.4)</td>
+<td>27.6 (11.3 to 42.3)</td>
+<td>+0.0004</td>
+<td>+0.010</td>
+</tr>
+<tr class="odd">
+<td>PTX3 h2 haplotype</td>
+<td>0.9 (0.0 to 2.1)</td>
+<td>4.8 (0.6 to 7.0)</td>
+<td>13.3 (2.1 to 26.5)</td>
+<td>+0.00008</td>
+<td>+0.004</td>
+</tr>
+<tr class="even">
+<td>PTX3 three SNPs, real chromosomes</td>
+<td>-1.3 (-3.6 to 0.7)</td>
+<td>2.6 (0.2 to 4.6)</td>
+<td>13.3 (2.1 to 26.5)</td>
+<td>-0.0004</td>
+<td>-0.005</td>
+</tr>
+<tr class="odd">
+<td>PTX3 three SNPs, independent</td>
+<td>2.0 (0.0 to 4.7)</td>
+<td>7.3 (1.5 to 15.9)</td>
+<td>24.7 (4.1 to 46.9)</td>
+<td>+0.00035</td>
+<td>+0.009</td>
+</tr>
+</tbody>
+</table>
+<p>Per-copy odds ratio needed (effect grid): continuous NRI of 22.5%, 1.32 for the independent structure and 1.65 for h2; three-category NRI of 22.5%, 2.27 and 3.46; the 5% MCID, 2.89 for the independent structure and not reached by h2 within the grid (OR 4.95).</p>
+</section>
+<section id="reading" class="level3">
+<h3 class="anchored" data-anchor-id="reading">Reading</h3>
+<ul>
+<li><strong>Continuous NRI of the predecessor’s size is compatible with no decision value.</strong> The four-term haplotype panel reaches 31% while its net-benefit gain is an eighth of the MCID. At the pooled effect the predecessor’s structure gives 25%, close to the reported 22.5%; that is consistency, not a reproduction, given what is not on record.</li>
+<li><strong>Linkage roughly doubles the apparent signal</strong> at the same per-copy effect (continuous NRI 25% against 13%) and more than quadruples the net-benefit gain (+0.00035 against +0.00008), because independent SNPs triple the true genetic variance.</li>
+<li><strong>The three-SNP score on real chromosomes is harmful</strong> (gain -0.0004, aROC -0.005, categorical NRI negative) <strong>but its continuous NRI is unchanged</strong> (13%): the continuous measure does not register the over-weighting.</li>
+<li><strong>Continuous NRI is unstable.</strong> For the correctly specified h2 term the event component is -41% and the non-event component +54%, because heterozygotes’ risk moves by a hair after recentring and any move counts; across draws the event component runs from -45% to +53%.</li>
+</ul>
+<p>Code and outputs: <code>R/nri.R</code>, <code>scripts/29_nri_comparison.R</code>, <code>tests/testthat/test-nri.R</code>, <code>output/nri_comparison.csv</code>, <code>output/nri_effect_grid.csv</code>.</p>
 
 
 <!-- -->
@@ -5158,7 +5261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Provisional: no extracted row has yet been verified by a human against its source.</p>
+<p>Provisional: the human round-2 verification is reported complete but not yet recorded in the repository, and each effect rests on three to five studies.</p>
 </div>
   </div>
 </footer>

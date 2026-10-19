@@ -1,21 +1,31 @@
 ---
 title: "Draft manuscript"
-subtitle: "Abstract, introduction, methods and results: working draft"
+subtitle: "Abstract, introduction, methods, results and discussion: working draft"
 date: today
+bibliography: references.bib
+csl: vancouver.csl
+link-citations: true
 ---
 
 ::: {.callout-warning}
 ## Working draft
 
 This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 19 October 2026, after
-the corrections recorded in addenda 16 to 21 of the [decision record](decisions.qmd). The evidence is still provisional:
+the corrections recorded in addenda 16 to 22 of the [decision record](decisions.qmd). The evidence is still provisional:
 
 - The record of the human round-2 verification is not yet in the repository.
 - The priors on the pooled effects and the reading of the "realised" score are proposals.
 - Cohort overlap between the Spanish registry series and the Jena AML cohorts is only partly adjudicated.
 
-The discussion, references, author list, ethics statement and data-availability statement are not yet written. Citations
-are informal author–year placeholders, and `[ref]` marks a statement that still needs a reference.
+Still to do:
+
+- the author list, ethics statement, data-availability statement and funding;
+- the PubMed search date and a description of the extraction and round-2 verification;
+- two missing references, marked `[ref]`: one on the burden of IMD, and Feys et al. (*J Infect Dis* 2026), which is not yet
+  indexed in Crossref.
+
+References are in `references.bib`. They were fetched from doi.org and should be checked against the journals before
+submission.
 :::
 
 ```{r}
@@ -26,57 +36,51 @@ rd <- function(f) read.csv(file.path("output", f))
 
 ## Abstract
 
-**Background.** Variants in the innate immune genes *PTX3*, *CLEC7A* (dectin-1), *TLR4* and *CD209* (DC-SIGN) are
-repeatedly reported as associated with invasive aspergillosis, and adding genotype to clinical risk scores has been
-proposed. Whether doing so would change clinical decisions, rather than improve discrimination, has not been tested.
+**Background.** Variants in *PTX3*, *CLEC7A*, *TLR4* and *CD209* are often reported to be associated with invasive
+aspergillosis, and adding genotype to clinical risk scores has been proposed. Whether this would change clinical decisions
+has not been tested.
 
-**Methods.** We did a pre-specified simulation study of the value of host genetic information. The baseline was a
-seven-predictor clinical score for proven or probable invasive mould disease (IMD) within 60 days, refit on 4,078
-haematology admissions in 1,945 patients (Bologna, 2007–2016; 133 events, 3.3%). A systematic review supplied the genetic
-effects (831 records screened, 63 studies extracted). Effects for four haplotype terms were mapped to a common per-copy scale
-and pooled with Bayesian random-effects models. The net-benefit gain over the clinical score was computed exactly over all
-clinical profiles and genotype combinations, for 2,000 draws from the pooled posteriors. The primary endpoint was the gain at
-a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of 20% more true
-cases at no extra false positives (+0.00458). Secondary analyses added a second CLEC7A haplotype, effect modification by
-neutropenia, donor genotype after allogeneic transplantation, and a sweep of 4,000 hypothetical genetic architectures.
+**Methods.** In a pre-specified simulation study, we added host genotype to a seven-predictor score for proven or probable
+invasive mould disease (IMD) within 60 days. The score was refit on 4,078 haematology admissions in 1,945 patients (Bologna,
+2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (63 studies extracted) and were pooled
+with Bayesian random-effects models. Net-benefit gains were computed exactly for 2,000 posterior draws. The primary endpoint
+was the gain at a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of
+20% more true cases at no extra false positives (+0.00458).
 
-**Results.** Pooled odds ratios per copy of the risk haplotype class (90% credible interval) were 1.35 (0.99 to 1.81) for
-PTX3, 0.84 (0.48 to 1.48) for CLEC7A Y238X, 1.44 (0.77 to 2.69) for TLR4 and 1.80 (1.14 to 2.73) for CD209. With the true
+**Results.** Pooled odds ratios per copy of the risk haplotype ranged from 0.84 (CLEC7A Y238X) to 1.80 (CD209). With the true
 effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00059 (90% range 0.00015 to 0.00137).
-That is about an eighth of the MCID: 1.2 extra true cases per 1,000 admissions, against 4.6 required. No draw reached the MCID,
-and 1.3% did when between-study heterogeneity was propagated. The area under the ROC curve (aROC) rose from 0.857 to 0.870. A second CLEC7A haplotype
-(OR 1.86, three studies) doubled the gain to +0.00122, but at most 3.3% of draws reached the MCID. In simulated studies of the
-cohort's size, the sampling standard deviation of the observed gain was as large as the expected gain. Neutropenic admissions
-(28% of admissions, 80% of events) supplied about four-fifths of the gain. In the architecture sweep, no panel of up to 20
-independent loci with per-allele odds ratios of 1.5 or less reached the MCID. At an odds ratio of 2.0, seven to nine common
-loci were needed.
+That is 1.2 extra true cases per 1,000 admissions, against 4.6 required. At most 1.3% of draws reached the MCID, although the
+area under the ROC curve rose from 0.857 to 0.870 and the continuous net reclassification improvement was 31%. A second
+CLEC7A haplotype doubled the gain to +0.00122, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied
+about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID.
 
-**Conclusions.** On the published evidence, genotype at these four genes is unlikely to change decisions at the 5% threshold
-in haematological inpatients. A panel that could change them would need much larger effects than candidate-gene studies
-report, or many more loci. A genotyped, neutropenia-stratified study of this cohort's size could test whether genetic effects
-depend on the inflammatory state of the host.
+**Conclusions.** On the published evidence, genotype at these genes is unlikely to change decisions at the 5% threshold in
+haematological inpatients. Doing so would need much larger effects, or many more loci, than candidate-gene studies report. A
+genotyped, neutropenia-stratified cohort of this size could test whether genetic effects depend on the inflammatory state of
+the host.
 
 ## Introduction
 
 Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with
 haematological malignancies [ref]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend
 on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived
-a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna (Stanzani et al.,
-*J Infect* 2019). It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted
+a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019].
+It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted
 probability of 5%.
 
 Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations
 between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan
-receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*) [refs]. After allogeneic transplantation the
+receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*)
+[@cunha2014; @sainz2012; @brunel2018; @fisher2017; @kalkanci2020; @schnetzke2024]. After allogeneic transplantation the
 reconstituted innate immune system is donor-derived, which has led to proposals to use donor genotype to stratify transplant
-recipients (Cunha et al., *N Engl J Med* 2014). These findings have prompted proposals for genetically augmented risk scores.
+recipients [@cunha2014]. These findings have prompted proposals for genetically augmented risk scores.
 
 Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous. Linked variants in the same
 gene are often reported as separate findings, and adding them to a model as independent terms counts the same signal more
-than once. An earlier analysis of this question did that and reported a net reclassification improvement of 22.5%. Second,
-gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis
-does: it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that
-the threshold implies (Vickers and Elkin, *Med Decis Making* 2006).
+than once. An earlier, unpublished analysis of this question did that and reported a net reclassification improvement of
+22.5%. Second, gains in discrimination or reclassification do not show whether anyone would be managed differently.
+Decision-curve analysis does: it counts true and false positives at a clinically chosen risk threshold, weighted by the
+harm-to-benefit ratio that the threshold implies [@vickers2006].
 
 We therefore framed the question as one of value of information, not of prediction. Under what combinations of effect size,
 risk-allele frequency and linkage structure would host genetic information change clinical decisions for IMD in
@@ -94,8 +98,7 @@ objectives were to:
 ### Design and pre-specification
 
 This is a simulation study that combines individual admission-level clinical data with a meta-analysis of the published
-genetic evidence. The design is summarised below in the ADEMP structure for simulation studies (Morris, White and Crowther,
-*Stat Med* 2019). Design decisions were recorded before any genetic result existed and locked at a git tag (`prespec-lock`,
+genetic evidence. The design is summarised below in the ADEMP structure for simulation studies [@morris2019]. Design decisions were recorded before any genetic result existed and locked at a git tag (`prespec-lock`,
 commit `90e3656`, 17 October 2026). Every later change is a dated addendum to the [decision record](decisions.qmd). Each
 addendum states what had been seen when the change was made. Two changes after the lock affected the primary analysis. In
 both, no genetic result had yet been computed:
@@ -137,7 +140,7 @@ uncertainty was handled as follows:
 
 - Standard errors are clustered by patient.
 - The bootstrap resamples patients and repeats the refit in each of 2,000 resamples.
-- Optimism was estimated by Harrell's bootstrap method. It is reported, not subtracted.
+- Optimism was estimated by Harrell's bootstrap method [@harrell1996]. It is reported, not subtracted.
 
 The baseline is held fixed from here on. The joint distribution of clinical risk is the observed distribution of the 128
 possible predictor profiles, 75 of which occur. Three alternatives were kept as sensitivity analyses:
@@ -157,12 +160,12 @@ orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2
 the round-2 human verification.]
 
 Every row whose comparison text had no reference marker was checked against the source tables. That covered seven studies.
-The two reversals found (Herrero-Sanchez 2018, Fischer 2016) and one duplicated row read in the opposite direction
-(Sainz 2012) were corrected and logged with their evidence (43 corrected rows in all).
+The two reversals found [@herrerosanchez2018; @fischer2016] and one duplicated row read in the opposite direction
+[@sainz2012] were corrected and logged with their evidence (43 corrected rows in all).
 
 **Panel.** Candidate variants needed at least three meta-analysable studies. Within each gene, pairwise linkage was measured
-in phased 1000 Genomes phase 3 European haplotypes (503 samples). Haplotype frequencies were rescaled to gnomAD v4
-non-Finnish European allele frequencies by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term
+in phased 1000 Genomes phase 3 European haplotypes (503 samples) [@genomes2015]. Haplotype frequencies were rescaled to
+gnomAD v4 non-Finnish European allele frequencies [@gnomad] by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term
 per gene. Each term is an additive per-copy effect of a risk haplotype class:
 
 - **PTX3:** h2, the class carrying A at rs2305619 (tagged equally by rs1840680), frequency 48.2%.
@@ -172,8 +175,8 @@ per gene. Each term is an additive per-copy effect of a risk haplotype class:
 - **CD209:** chromosomes carrying G at rs4804800, frequency 12.5%.
 
 TLR9 rs352140 was dropped because only one study was usable. IL10 rs1800896 and IFNG rs2069705 were dropped because they
-had one and two studies respectively, and the two IFNG studies disagreed in direction. Herrero-Sanchez 2018 was excluded
-from the primary analysis because its main endpoint included colonisation.
+had one and two studies respectively, and the two IFNG studies disagreed in direction. One study [@herrerosanchez2018] was
+excluded from the primary analysis because its main endpoint included colonisation.
 
 **Mapping and pooling.** Each study's contrast (allelic, dominant, recessive or genotype counts) was converted to a log odds
 ratio per copy of the risk class. The conversion solves a haplotype model: additive on the log-odds scale, haplotype pairs in
@@ -185,7 +188,8 @@ Effects were pooled with a Bayesian random-effects model, μ ~ N(0, 1) and τ ~ 
 **Second CLEC7A parameter.** The three CLEC7A haplotypes carry a second effect: the A-G haplotype (G at rs7309123 on the
 non-Y238X background) against A-C. rs7309123 is a C/G palindrome. Its strand was therefore resolved study by study, from
 control allele frequencies, primer sequences and full texts. The primary estimate uses the three strand-resolved studies of
-European or Turkish cohorts. Two East Asian studies were mapped through 1000 Genomes East Asian haplotype frequencies and
+European or Turkish cohorts [@schnetzke2024; @kalkanci2020; @sainz2012]. Two East Asian studies [@chen2019; @tanpaibule2020]
+were mapped through 1000 Genomes East Asian haplotype frequencies and
 entered a sensitivity analysis. This parameter was not part of the pre-specified four-term panel. The four-term analysis is
 therefore primary, and the five-term analysis is secondary.
 
@@ -237,20 +241,21 @@ quantities:
 
 - **Sampling variability.** We simulated 2,000 studies of the cohort's size per scenario. Each study resampled patients with
   their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.
-- **Robustness.** The layer was repeated in three settings, each with its own MCID:
+- **Robustness.** The layer was repeated in four further settings, each with its own MCID:
   - the 150 correlation-ensemble members;
-  - the published equation on 4,078 and on 4,127 rows;
-  - a refit on 4,127 rows.
+  - the published equation on the 4,078 admissions;
+  - the published equation on the 4,127 rows;
+  - a refit on the 4,127 rows.
 - **Attribution.** The gain was divided among the terms by Shapley decomposition. The value of a subset is the gain of a score
   carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in
   the terms, so the split is a fair division of the gain and not a set of separable effects.
 - **Effect modification by neutropenia.** This tests the hypothesis that per-copy effects are larger in neutropenic
-  admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues). The direction we expected was recorded
-  before the run.
+  admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues [ref]). The direction we expected was
+  recorded before the run.
   - **Strata:** admissions were split by the prolonged-neutropenia predictor.
   - **Truth:** stratum-specific effects were constrained to average, weighted by events, to the pooled effect. The ratio of
     the neutropenic to the non-neutropenic effect was set to ∞, 4, 1, 1/4 and 0. A further scenario applied the stratum
-    effects of the only stratified study (Brunel 2018) directly.
+    effects of the only stratified study [@brunel2018] directly.
   - **Scores:** an oracle score, a common score with the pooled estimates, and two scores that assume a direction.
   - **Interaction test:** in 1,000 simulated studies per scenario, a logistic model with the baseline logit as an offset
     estimated the interaction between the genetic score and neutropenia.
@@ -265,11 +270,27 @@ quantities:
   That gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus
   weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per
   architecture.
+- **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
+  computed exactly in three forms:
+  - categorical at 5%;
+  - three categories, with cuts at 5% and 20%;
+  - continuous, in which any change in predicted risk counts as a reclassification.
+
+  Five scores were compared with the clinical score:
+  - the four-term panel, with true effects or pooled estimates;
+  - the PTX3 h2 term alone;
+  - a score that adds the PTX3 effect once for each of the three SNPs, applied to real, linked chromosomes;
+  - the earlier analysis's structure, in which the three SNPs are simulated independently and the effect enters both the
+    truth and the score.
+
+  The earlier per-SNP effects are not on record, so every PTX3 structure used the pooled per-copy effect, over the same
+  2,000 posterior draws as the main analysis. We also traced NRI against the per-copy effect from a log odds ratio of 0
+  to 1.6.
 
 ### Software
 
 Analyses used R 4.6.1, with package versions pinned by renv. The code, the test suite and every summary output are public at
-https://github.com/lewis-id-lab/PROSE. Scripts 01 to 28 reproduce the results in order.
+https://github.com/lewis-id-lab/PROSE. Scripts 01 to 29 reproduce the results in order.
 
 ## Results
 
@@ -398,7 +419,7 @@ homogeneous effects, the gain per admission was 11 times larger in neutropenic a
 That stratum supplied 81% of the whole-cohort gain at 5% and 96% at 20%. With five terms it supplied 83% and 95%, and 78% to
 84% at 5% across every sensitivity setting.
 
-The only stratified evidence, Brunel 2018, points against H_F. Mapped to the per-copy PTX3 h2 scale, its effect was +1.17 in
+The only stratified evidence [@brunel2018] points against H_F. Mapped to the per-copy PTX3 h2 scale, its effect was +1.17 in
 non-neutropenic and −0.13 in neutropenic courses for rs2305619 (difference −1.30, SE 0.72, P = 0.07). For rs3816527 the
 difference was −1.99 (SE 1.01, P = 0.049). These estimates come from 212 courses and 26 events, with neutropenia defined at
 presentation.
@@ -452,15 +473,212 @@ needed for a given odds ratio rose by one to several.
 
 ![Gain of the ceiling score relative to the MCID at the 5% threshold, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct.png){#fig-aim4}
 
-## Still to write
+### Net reclassification improvement (tertiary)
 
-- Discussion: principal findings, comparison with the earlier reclassification result, strengths, limitations and
-  implications for a genotyped, neutropenia-stratified study.
-- Limitations to cover:
-  - small and partly overlapping evidence;
-  - genotype assumed independent of the clinical profile;
-  - European haplotype frequencies;
-  - the realised score uses shrunk posterior medians, with no winner's curse;
-  - one cohort.
-- References (no `.bib` file yet), author list, ethics and data access, funding.
-- The record of the round-2 human verification, before any number here is treated as final.
+Continuous NRI was large even where net benefit barely moved (@tbl-nri). For the four-term panel with true effects, the
+continuous NRI was 31% (90% range 17% to 47%), yet the net-benefit gain at 5% was +0.0006, about an eighth of the MCID. The
+categorical NRI at the 5% decision threshold was 2.6%.
+
+**The earlier analysis's structure.** Simulating the three PTX3 SNPs independently, at the pooled per-copy effect, gave a
+continuous NRI of 25% (4% to 47%). That is consistent with the 22.5% the earlier analysis reported, but does not reproduce it
+(see Limitations).
+
+**Linkage at the same per-copy effect.** The correct h2 structure gave about half the independent model's continuous NRI (13%)
+and less than a quarter of its net-benefit gain (+0.00008 against +0.00035). That is because the independent model triples the
+true genetic variance. @fig-nri-grid traces both structures across per-copy effects, and the table below gives the crossing points:
+
+| target | three SNPs, independent | PTX3 h2 haplotype |
+|---|---|---|
+| continuous NRI of 22.5% | OR 1.32 per copy | OR 1.65 per copy |
+| three-category NRI of 22.5% | OR 2.27 | OR 3.46 |
+| the 5% MCID | OR 2.89 | not reached by OR 4.95, the end of the grid |
+
+```{r}
+#| label: fig-nri-grid
+#| fig-cap: "NRI and net-benefit gain at 5% against the per-copy PTX3 effect, for the correct h2 haplotype structure and the earlier analysis's structure (three SNPs simulated independently). Dashed lines: an NRI of 22.5% (the earlier analysis's figure) and the 5% MCID. Grey line: the pooled per-copy odds ratio (1.35)."
+#| fig-height: 5.5
+mcid5 <- rd("dca_baseline_refit_summary.csv") |> filter(threshold == 0.05) |> pull(mcid_b)
+panels <- c(nri_cont = "Continuous NRI", nri_cat3 = "NRI, cuts at 5% and 20%",
+            nri_cat5 = "NRI at 5%", dnb_05 = "Net-benefit gain at 5%")
+rd("nri_effect_grid.csv") |>
+  pivot_longer(all_of(names(panels)), names_to = "metric") |>
+  mutate(metric = factor(panels[metric], panels), or = exp(log_or),
+         structure = recode(structure, "PTX3 h2 haplotype" = "h2 haplotype (correct)",
+                            "PTX3 three SNPs, independent" = "three SNPs, independent (earlier analysis)")) |>
+  ggplot(aes(or, value, colour = structure)) +
+  geom_hline(data = data.frame(metric = factor(panels, panels), y = c(0.225, 0.225, 0.225, mcid5)),
+             aes(yintercept = y), linetype = "dashed") +
+  geom_vline(xintercept = 1.35, colour = "grey60") +
+  geom_line() +
+  facet_wrap(~metric, scales = "free_y") +
+  scale_x_log10(breaks = c(1, 1.5, 2, 3, 4, 5)) +
+  labs(x = "Odds ratio per copy (log scale)", y = NULL, colour = NULL) +
+  theme(legend.position = "bottom")
+```
+
+**Applying the three-SNP score to real chromosomes.** Here the haplotype is counted up to three times. The score lowered net
+benefit (−0.0004 at 5%) and the aROC (−0.005), and its categorical NRI at 5% was negative (−1.3%). Its continuous NRI was
+unchanged at 13%, so the continuous measure did not register the miscalibration.
+
+**Instability of continuous NRI.** Even for the correctly specified h2 term, its components were unstable. The event component
+was −41% and the non-event component +54%. Heterozygotes' predicted risk shifts by a very small amount after recentring, and
+the continuous NRI counts any shift as a reclassification. Across draws the event component ranged from −45% to +53%.
+
+```{r}
+#| label: tbl-nri
+#| tbl-cap: "Net reclassification improvement, net-benefit gain and aROC change against the clinical score, under the same truth: median and 90% range over 2,000 draws of the true effects (pooled-mean reading). Every PTX3 structure carries the pooled per-copy h2 effect."
+labs_nri <- c(
+  "four-term panel, ceiling"     = "Four-term haplotype panel, true effects",
+  "four-term panel, realised"    = "Four-term haplotype panel, pooled estimates",
+  "PTX3 h2 haplotype"            = "PTX3 h2 haplotype (correct structure)",
+  "PTX3 three SNPs, real LD"     = "PTX3 three-SNP score on real (linked) chromosomes",
+  "PTX3 three SNPs, independent" = "PTX3 three SNPs simulated independently (earlier analysis)"
+)
+pct <- function(m, lo, hi) sprintf("%.1f (%.1f to %.1f)", 100 * m, 100 * lo, 100 * hi)
+rd("nri_comparison.csv") |>
+  filter(metric %in% c("nri_cat5", "nri_cat3", "nri_cont", "dnb_05", "dauc")) |>
+  mutate(value = case_when(
+    metric == "dnb_05" ~ sprintf("%.5f (%.5f to %.5f)", median, lo, hi),
+    metric == "dauc" ~ sprintf("%.3f (%.3f to %.3f)", median, lo, hi),
+    TRUE ~ pct(median, lo, hi)),
+    scenario = unname(labs_nri[scenario])) |>
+  select(scenario, metric, value) |>
+  pivot_wider(names_from = metric, values_from = value) |>
+  gt() |>
+  cols_label(scenario = "Score", nri_cat5 = "NRI at 5% (%)", nri_cat3 = "NRI, cuts at 5% and 20% (%)",
+             nri_cont = "Continuous NRI (%)", dnb_05 = "Net-benefit gain at 5%", dauc = "aROC change")
+```
+
+## Discussion
+
+### Principal findings
+
+On the published evidence, adding the four best-evidenced host variants to a validated clinical score for invasive mould
+disease would change few decisions at the 5% threshold. With the true effects in the score, the panel found about one extra
+case per 1,000 admissions, against a pre-specified bar of 4.6. Every combination of evidence reading, cohort, baseline equation
+and correlation structure we examined gave the same conclusion. The most favourable addition the evidence allows, a second
+CLEC7A parameter, still left the gain at about a quarter of the MCID.
+
+A real gain of this size would also be hard to observe: it would show as no gain, or a loss, in a fifth to a third of cohorts
+the size of the derivation cohort. Taken together, the panel behaves like about seven loci of odds ratio 1.3, far from the
+architectures the sweep shows would be needed.
+
+### Comparison with the earlier reclassification result
+
+An earlier, unpublished analysis of the same question reported a net reclassification improvement (NRI) of 22.5% from adding
+PTX3 variants to the same clinical score. Our results differ from it for two reasons.
+
+**Linkage.** The earlier analysis simulated rs2305619, rs3816527 and rs1840680 as independent multiplicative risks, although in
+European haplotypes they tag one haplotype class (r² 0.79 to 0.996, D′ = 1). Its homozygote odds ratio of 15.2 for rs1840680
+came from that triple counting. It also used the global dbSNP frequency of rs2305619 (0.36) rather than the non-Finnish
+European one (0.48), which shrinks the homozygote class from 21% to 13% of the cohort. At the same per-copy effect, the
+independent structure doubled the continuous NRI and more than quadrupled the net-benefit gain (@fig-nri-grid). Treated
+correctly as one haplotype, PTX3 adds +0.00008 in net benefit at 5%, about 2% of the MCID. It does not reach the MCID at any per-copy odds ratio
+up to 5.
+
+**The metric.** NRI counts movements across risk categories without weighing the consequences of the decisions they imply. It
+can be positive for uninformative markers, and it can reward miscalibration [@kerr2014; @pepe2014; @hilden2013]. Our own
+four-term haplotype panel had a continuous NRI of 31%, above the earlier 22.5%, with a net-benefit gain an eighth of the MCID.
+An NRI of this size is therefore no evidence that decisions would change.
+
+Genotype does improve the ranking (aROC +0.013), but few admissions cross the threshold. The extra admissions flagged at 5%
+included about nine false positives for every extra true case. At this threshold a true case is worth up to 19 false
+positives, so these moves are beneficial on balance, but there are too few of them to matter.
+
+Continuous NRI also failed to register harm. The three-SNP score applied to real, linked chromosomes lowered net benefit yet
+kept its continuous NRI, and the measure's components swung with tiny shifts in heterozygotes' predicted risk. Net benefit at
+a clinically chosen threshold, judged against a difference fixed in advance, asks the question a clinician would ask: does the
+score find more patients who will develop disease without treating more who will not [@vickers2006]?
+
+### Where genetic information might matter
+
+The analyses point to four settings where genotype could carry more value. Each comes with qualifications.
+
+**At a higher threshold.** At the secondary 20% threshold, fewer admissions are flagged and each extra true case is worth
+fewer false positives. There the five-term ceiling score reached the MCID in 63% of draws. This result is secondary, rests on a
+parameter estimated from three studies, and should be read as a hypothesis.
+
+**In neutropenic admissions.** Neutropenic admissions hold 80% of the events. They supplied about four-fifths of the gain
+whichever way the effect modification ran, unless the effect was placed entirely in non-neutropenic admissions. The only
+stratified data [@brunel2018] point the opposite way to the inflammatory-levelling hypothesis. They come from one small study
+with a different definition of neutropenia, so they do not settle the question.
+
+The design analysis shows what a genotyped cohort of this size could do, provided genotype is measured and the weights are
+right. With the five-term score, it would detect a modification of the size the inflammatory-levelling argument implies in 60% to
+90% of studies, and a modification of Brunel's size almost always. Of the follow-up studies these results suggest, this one would be the most
+informative. It would test the biology directly. It would also show whether a single pooled score is safe to use: under
+Brunel's pattern, such a score would do harm.
+
+**With larger effects or more loci.** Reaching the frontier needs loci with odds ratios of 2 or more, or many loci with
+precise weights. A per-locus precision of 0.1 on the log scale needs a discovery sample of about 1,000 balanced subjects per
+locus at a common frequency. A cohort the size of the Bologna one gives 0.14 to 0.22. To our knowledge no genome-wide
+association study of invasive aspergillosis has been published. The candidate-gene literature cannot supply the number of
+precisely estimated loci the sweep shows would be needed.
+
+**In allogeneic transplant recipients.** Here the biological case for donor genotype is strongest [@cunha2014]. But the
+baseline already flags 77% of these admissions at 5%, which leaves little room for genotype to add. At 20% donor genotype could
+plausibly reach the stratum's MCID. The evidence is one or two studies per term, however, and none for CD209.
+
+### Strengths and limitations
+
+The study has six main strengths:
+
+- The MCID, the primary threshold and the panel were fixed before any genetic result existed and locked in version control.
+  Every later change is a dated addendum that discloses what had been seen.
+- Gains were computed exactly rather than by Monte Carlo sampling.
+- Linked SNPs were modelled as haplotypes.
+- Every primary-analysis contrast with an ambiguous reference group was checked against its source, and errors were corrected
+  and logged. The predictions for the neutropenia analysis were committed before it was run.
+- The clinical baseline comes from individual admission-level data rather than published margins.
+- The code, tests and summary outputs are public.
+
+The limitations fall into seven groups.
+
+**The evidence is thin.** Each term rests on three to five studies. Some cohorts overlap, notably the Spanish registry series
+and the Jena AML cohorts, and that overlap has only partly been adjudicated. The record of the human round-2 verification is
+not yet in the repository. Small candidate-gene studies are prone to publication bias and inflated effects. If so, our pooled
+effects are optimistic, which would strengthen the negative conclusion at 5% rather than weaken it.
+
+**The mapping rests on assumptions.** Converting heterogeneous contrasts to one per-copy scale assumes additive effects and
+Hardy–Weinberg equilibrium. It also uses European haplotype frequencies for every cohort except the two East Asian studies in
+the CLEC7A sensitivity analysis. The priors on μ and τ, and the continuity correction for TLR4, are analytic choices with
+little data to check them against.
+
+**Several simulation assumptions favour the genetic score.** The realised score uses posterior medians, which are already
+shrunk, and it ignores the winner's curse. Real-world realised gains would therefore be lower.
+
+**Other simulation assumptions could cut either way.** Genotype is assumed independent across genes and independent of the
+clinical profile. The analysis considers one threshold decision per admission. Only candidate genes are modelled.
+
+**The second CLEC7A parameter is the least mature part of the evidence.** It comes from three studies. The opposite direction
+in East Asian studies fits a tag SNP whose linkage to a causal variant differs between ancestries, but the causal variant has
+not been identified.
+
+**The cohort is a single pre-pandemic centre.** Admissions run from 2007 to 2016, and the outcome is all invasive moulds, not
+aspergillosis alone. The baseline is evaluated on the data it was fitted to, although the optimism was small (0.005 in aROC).
+Prophylaxis practice has changed since 2016, and the score's calibration today is unknown.
+
+**The decision framework is narrow.** Net benefit at a fixed threshold captures one use of a risk score. The MCID of 20% more
+true cases is a judgement, though the strictest of the three readings we considered. Other uses of genotype, such as choosing
+an antifungal agent or enriching a trial, were not evaluated.
+
+Two planned analyses are not yet done:
+
+- the pathogen-specificity scenario;
+- locus-specific error, winner's curse and linkage in the architecture sweep.
+
+The NRI comparison rests on the pooled PTX3 effect, because the earlier analysis's per-SNP inputs are not on record, and we
+do not know which form of NRI it reported.
+
+### Conclusions
+
+On the published evidence, host genotype at PTX3, CLEC7A, TLR4 and CD209 is unlikely to change decisions at the 5% threshold
+for invasive mould disease in haematological inpatients. A study the size of the derivation cohort could not reliably detect
+the gain it would give. Genotyping would become worth doing only with variants of larger effect, or many more of them, than
+candidate-gene studies have found. A more immediate use for a genotyped cohort of this size would be to test whether genetic
+effects depend on neutropenia, which would also show whether a single pooled score is safe.
+
+## References {.unnumbered}
+
+::: {#refs}
+:::

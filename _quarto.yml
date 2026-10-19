@@ -23,7 +23,7 @@ website:
   title: "IMD genetics"
   page-footer:
     left: "Simulation study of the incremental value of host genetics for invasive mould disease"
-    right: "Provisional: no extracted row has yet been verified by a human against its source."
+    right: "Provisional: the human round-2 verification is reported complete but not yet recorded in the repository, and each effect rests on three to five studies."
   navbar:
     background: primary
     left:

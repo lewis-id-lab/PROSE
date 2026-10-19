@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>5 Genetic layer simulation</td>
-<td><strong>in progress, first results in</strong> (addenda 11 to 17): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b</td>
+<td><strong>first results in</strong> (addenda 11 to 22): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison</td>
 </tr>
 <tr class="odd">
 <td>6 Sensitivity and architecture sweep</td>
@@ -266,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>7 Write-up</td>
-<td>not started. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026)</td>
+<td><strong>full first draft</strong> (19 October 2026) on the Draft manuscript page (<code>manuscript.qmd</code>, references in <code>references.bib</code>, Vancouver style); authors, ethics, data availability, funding and two references still to add. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026)</td>
 </tr>
 </tbody>
 </table>
@@ -1005,7 +1005,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>CLEC7A’s lead holds (addendum 18).</strong> The five-term attribution and Aim 3b layer, rerun on the three sensitivity cohorts and on the 150-member correlation ensemble, give CLEC7A about 50% of the gain in every setting (44.8% to 52.8% over every reading, score and threshold) and CD209 26% to 33%; CLEC7A is the largest single contributor in 54% to 69% of draws. The neutropenic stratum supplies 78% to 83% of the gain at 5% and 95% to 97% at 20% in every setting.</p>
 <p><strong>Aim 3b, the neutropenia-stratified falsification test (addendum 15; five-term version in addendum 17).</strong> The expected direction was committed before the run. The Feys reading (effects larger in neutropenic admissions) and Brunel 2018’s stratified data (larger in non-neutropenic, difference P = 0.07 and 0.049) point opposite ways. Neutropenic admissions hold 80% of the events and supply 81% to 96% of the whole-cohort gain under homogeneous effects. A single score with the pooled estimates is the safe choice; a score built on the Feys reading is the most harmful when wrong. In simulated studies of the cohort’s size an interaction test is better powered than predicted (59% to 88% for a Feys-sized modification, 95% to 100% for Brunel-sized ones, false positives 5%). Of the five predictions, two held, one mostly held, one did not hold in general and one (that the test would be underpowered) was wrong.</p>
 <p><strong>Aim 4, the genetic-architecture requirements sweep (addenda 16 and 17).</strong> 1 to 20 identical independent loci x OR 1.1 to 3.0 x frequency 0.05 to 0.50, by exact convolution: 46% of the 4,000 architectures reach the 5% MCID and 77% the 20% MCID. At OR 1.5 or below no number of loci up to 20 reaches the 5% MCID; at OR 2.0 it takes 7 to 9 loci at common frequencies. The four-term panel is equivalent to about 7 loci of OR 1.3. With estimated weights (independent per-locus error, SD 0.05 to 0.40) precision of 0.1 or better costs almost nothing (a discovery sample of about 1,000 balanced subjects), while at 0.2 to 0.4, the precision of the present evidence, 12% to a third of the architectures that reach the MCID with exact weights no longer do.</p>
-<p><strong>Where the work lives.</strong> Scripts 01 to 25 in <code>scripts/</code> (run order in <code>status.md</code>), the model code in <code>R/</code>, the test suite in <code>tests/testthat/</code>, results in <code>output/</code>, pinned packages in <code>renv.lock</code>. The repository is lewis-id-lab/PROSE (public); the Quarto site in <code>docs/</code> is published to GitHub Pages on every push to <code>main</code>. No patient-level data are in the repository; the identified files were read locally with the user’s permission and only counts or a binary flag were kept (the pseudonymised base cohort is gitignored).</p>
+<p><strong>Tertiary NRI comparison (addendum 22).</strong> NRI computed exactly, with net benefit and aROC under the same truth. The four-term haplotype panel has a continuous NRI of about 31% (90% range 17% to 47%) while its net-benefit gain at 5% is an eighth of the MCID; the categorical NRI at 5% is 2.6%. At the pooled PTX3 effect, the predecessor’s structure (three SNPs simulated independently) gives a continuous NRI of 25%, close to its reported 22.5%, against 13% for the h2 haplotype. The three-SNP score applied to real, linked chromosomes is harmful (gain -0.0004, aROC -0.005) but keeps a continuous NRI of 13%. The continuous NRI is unstable: its event component for the correctly specified h2 term is -41%. The predecessor’s own effects and the form of its NRI are not on record, so the match is consistency, not reproduction.</p>
+<p><strong>Write-up (19 October 2026).</strong> A full first draft is on the Draft manuscript page: abstract, introduction, methods (ADEMP), results, discussion with limitations and the comparison with the 22.5% result, and Vancouver-style references.</p>
+<p><strong>Where the work lives.</strong> Scripts 01 to 29 in <code>scripts/</code> (run order in <code>status.md</code>), the model code in <code>R/</code>, the test suite in <code>tests/testthat/</code>, results in <code>output/</code>, pinned packages in <code>renv.lock</code>. The repository is lewis-id-lab/PROSE (public); the Quarto site in <code>docs/</code> is published to GitHub Pages on every push to <code>main</code>. No patient-level data are in the repository; the identified files were read locally with the user’s permission and only counts or a binary flag were kept (the pseudonymised base cohort is gitignored).</p>
 </section>
 <section id="what-is-open" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-open">7. What is open</h2>
@@ -1015,7 +1017,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Cohort overlap.</strong> The Spanish registry series (Sainz / Lupiañez / Sánchez-Maldonado) and the Jena AML cohorts (S018, S023, S073; S023 is treated as the same cohort as S073) are not independent studies and have only been partly adjudicated.</li>
 <li><strong>Thin evidence.</strong> One to five studies per term; donor genotype one to two studies per term and none for CD209; TLR4’s supplementary retrieval (Fisher 2017’s supplement) is still outstanding; the priors on the pooled effect and on tau are proposals.</li>
 <li><strong>Choices to confirm.</strong> The reading of the “realised” score (addendum 11), the independence of genotype from the clinical profile, and the rule that the Brunel pattern applies to every term in Aim 3b.</li>
-<li><strong>Not done.</strong> The interaction test of Aim 3b on the sensitivity cohorts and the ensemble; the pathogen-specificity scenario of Aim 4; locus-specific error, winner’s curse and linkage in the sweep; a genotyped neutropenia-stratified analysis (the real test of Aim 3b); write-up.</li>
+<li><strong>Not done.</strong> The interaction test of Aim 3b on the sensitivity cohorts and the ensemble; the pathogen-specificity scenario of Aim 4; locus-specific error, winner’s curse and linkage in the sweep; a genotyped neutropenia-stratified analysis (the real test of Aim 3b). The write-up has a full first draft (authors, ethics, data availability, funding and two references to add).</li>
 </ol>
 </section>
 <section id="suggested-order-of-work" class="level2">
@@ -1024,7 +1026,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Add the round-2 verification record to the repository (the direction check is closed).</li>
 <li>Resolve what can be resolved of the three undetermined strands, and decide whether to obtain East Asian haplotype frequencies.</li>
 <li><del>Repeat Aim 3b and the attribution with five terms on the correlation ensemble and the sensitivity cohorts</del> Done (addendum 18): CLEC7A’s lead and the neutropenia pattern hold.</li>
-<li>Decide the write-up structure from the results above (the headline is that a four-term panel falls well short of the 5% MCID, and what architecture would not), with the figures of addenda 16 and 17.</li>
+<li><del>Decide the write-up structure from the results above</del> Done: full first draft on the Draft manuscript page, with the tertiary NRI comparison (addendum 22). Original item: (the headline is that a four-term panel falls well short of the 5% MCID, and what architecture would not), with the figures of addenda 16 and 17.</li>
 <li>Plan the genotyped, neutropenia-stratified study that the Aim 3b design analysis shows is feasible at this cohort size.</li>
 </ol>
 
@@ -1502,7 +1504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Provisional: no extracted row has yet been verified by a human against its source.</p>
+<p>Provisional: the human round-2 verification is reported complete but not yet recorded in the repository, and each effect rests on three to five studies.</p>
 </div>
   </div>
 </footer>

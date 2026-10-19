@@ -12,9 +12,10 @@ cand <- read.csv("data/panel_candidates.csv")
 ind  <- read.csv("data/cohort_independence.csv")
 ```
 
-Counts on this page are taken from the working status document as at 16 October 2026 unless a table is
-computed from a file in `data/`. **No extracted row has been checked against its source PDF by a human.**
-Treat every number below as provisional.
+Counts in the search, tier and orientation sections are from the working status document as at 16 October 2026, unless a
+table is computed from a file in `data/`. The source checks and corrections below are current to 19 October 2026. The user
+reports that the human round-2 checks confirmed the extraction against the source PDFs. The record of those checks is not yet
+in the repository, so the numbers below are still provisional.
 
 ## From search to extracted rows
 
@@ -106,10 +107,50 @@ tibble(
 ```
 
 Within the panel, the affected variants are rs16910526, rs1800896, rs2069705 and rs5743810 (10 study by
-variant cells). rs7309123 is a C/G palindrome, so its strand cannot be settled from allele letters alone.
-Seven study cells need an assay reference, a strand statement or an allele-frequency comparison.
+variant cells). All are handled by complementing the alleles.
+
+rs7309123 is a C/G palindrome, so its strand cannot be settled from the allele letters. It was resolved study by study from
+control allele frequencies, primer sequences and full texts (addenda 16, 19 and 21).
+
+```{r}
+#| label: tbl-strand
+#| tbl-cap: "Strand of rs7309123 by study (A: resolved, high confidence; B: low to medium; C: weak or by inference; D: undetermined). From data/rs7309123_strand_resolution.csv."
+read.csv("data/rs7309123_strand_resolution.csv") |>
+  transmute(Study = paste(first_author, year), Ancestry = ancestry, Strand = gsub("_", " ", strand_conclusion),
+            Grade = grade, `In primary analysis` = ifelse(use_in_primary, "yes", "no")) |>
+  arrange(Grade, Study) |>
+  gt()
+```
+
+## Source checks and corrections
+
+Every row read from a comparison text with no reference marker was checked against its source table. Each correction is
+logged with its evidence.
+
+```{r}
+#| label: tbl-direction
+#| tbl-cap: "Direction check of the text-parsed rows, by study (data/direction_check_log.csv)."
+read.csv("data/direction_check_log.csv") |>
+  transmute(Study = study, `Rows without a reference marker` = rows_without_reference_marker, Verdict = verdict,
+            Corrections = corrections) |>
+  gt()
+```
+
+```{r}
+#| label: corrections
+corr <- read.csv("data/extraction_corrections.csv")
+n_dir <- sum(corr$study_id %in% c("S035", "S073", "S071"))
+```
+
+`data/extraction_corrections.csv` holds `r nrow(corr)` corrected rows across `r length(unique(corr$study_id))` studies.
+`r n_dir` correct a reversed direction: Herrero-Sanchez 2018, Fischer 2016 and one row of Sainz 2012. The remaining
+`r nrow(corr) - n_dir` makes a comparison text readable (Tanpaibule 2020). Only Lupiañez 2015's two IFNG rows were left
+unchecked, and IFNG is no longer in the panel.
 
 ## What extraction could not recover
+
+As at 16 October 2026. Since then, the full texts of Kalkanci 2020, Chen 2019 and Fisher 2017 were supplied and read
+(addenda 19 and 20).
 
 | Gap | Cells | Route |
 |---|---|---|

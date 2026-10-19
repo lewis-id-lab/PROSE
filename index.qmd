@@ -28,19 +28,19 @@ clinically important difference fixed before any genetic result exists.
 | Phase | State |
 |---|---|
 | 0 Set-up | complete |
-| 1 Literature search | complete: 831 unique records screened |
-| 2 Screening and extraction | round 1 complete including targeted recovery and supplementary files; round 2 (human verification) not started |
-| 3 Parameter derivation | design decisions settled; parameter derivation gated on round 2 |
-| 4 Baseline reproduction | baseline coded and tested; base dataset reconciled (`boscore.xlsx`, 4,078 unique admissions in 1,945 patients, D9) and the baseline model refit on it (D10), with the published equation and the copula as sensitivity analyses; exact decision curves and MCID re-derived |
-| 5 Genetic layer simulation | blocked on phase 3 |
-| 6 Sensitivity and architecture sweep | blocked on phase 5 |
-| 7 Write-up | first draft of abstract, introduction, methods and results ([Draft manuscript](manuscript.qmd)); discussion not started |
+| 1 Literature search | complete: 831 unique records screened (the PubMed search date is still to be recorded) |
+| 2 Screening and extraction | round 1 complete, including targeted recovery and supplementary files. Human round-2 checks are reported complete, but the record is not yet in the repository. Direction check of the text-parsed rows closed: 43 rows corrected in all, each with its evidence |
+| 3 Parameter derivation | done provisionally for PTX3, CLEC7A (two parameters), TLR4 and CD209; IL10 and IFNG dropped (D14) |
+| 4 Baseline | done: refit on the base cohort of 4,078 unique admissions in 1,945 patients (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20%; the published equation, the 4,127 rows and the copula are sensitivity analyses |
+| 5 Genetic layer simulation | first results in (addenda 11 to 22): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison |
+| 6 Sensitivity and architecture sweep | Aim 4 sweep done (exact, and with estimated weights) and sensitivity analyses done. Still to do: the pathogen-specificity scenario, and the Aim 3b interaction test on the sensitivity cohorts |
+| 7 Write-up | full first draft ([Draft manuscript](manuscript.qmd)); author list, ethics, data-availability statement and two references still to add |
 
 ## Reading this report
 
 | Page | Contents |
 |---|---|
-| [Draft manuscript](manuscript.qmd) | Working draft of the abstract, introduction, methods and results |
+| [Draft manuscript](manuscript.qmd) | Working draft of the abstract, introduction, methods, results and discussion |
 | [Evidence base](evidence.qmd) | What the literature search and extraction produced, and how much of it can be pooled |
 | [Genetic panel](panel.qmd) | The four haplotype terms, linkage structure, allele frequencies, and the haplotype phase check |
 | [Baseline model](baseline.qmd) | The fixed clinical equation, the fitted predictor correlation, how it was improved, and how well it is identified |

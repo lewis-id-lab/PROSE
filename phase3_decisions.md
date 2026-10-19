@@ -1856,3 +1856,57 @@ Test: `tests/testthat/test-haplotypes.R`.
 Zhao 2022's strand (rs7309123 appears only in a donor-genotype screening table with no allele letters; it is a Chinese Han study and would enter the East Asian analysis if resolved); the supplementary table of Tanpaibule 2020 (assay details); an independent East Asian cohort to tell noise from a true reversal; a direct genotyping or imputation of the candidate causal variant near rs3901533.
 
 Code and outputs: `scripts/28_east_asian_haplotypes.R`, `scripts/22_clec7a_second_parameter.R`, `data/haplotype_frequencies_eas.csv`, `data/phased_1000G_EAS_genotypes.csv`, `data/rs3901533_phased_genotypes.csv`, `data/rs3901533_linkage_eas.csv`, `output/clec7a_second_*.csv` (including the ancestry files), `tests/testthat/test-haplotypes.R`.
+
+---
+
+## Addendum 22, 19 October 2026: the tertiary NRI comparison (D26)
+
+Written after the tag. Nothing in D1 to D25 changes. The project description kept net reclassification improvement as a tertiary
+comparator only, because it is the metric behind the predecessor's 22.5%. This addendum computes it.
+
+### Design (proposed)
+
+- **NRI, exact over cells** (`R/nri.R`, `nri_exact()`), in three forms: categorical at 5% (the decision threshold), three categories with
+  cuts at 5% and 20%, and continuous (any change in predicted risk counts as a move). Reported with the net-benefit gain at 5% and the
+  change in expected aROC, all under the same truth, on the base cohort with the refit baseline.
+- **Scores, each against the baseline.**
+  1. The four-term panel, ceiling and realised (as script 16).
+  2. The PTX3 h2 term alone (correct structure).
+  3. A three-SNP score on real chromosomes: truth on h2, score adding the effect once per SNP (rs2305619 A, rs3816527 C,
+     rs1840680 A) over the phased PTX3 diplotypes (`ptx3_diplotype_grid()`).
+  4. The predecessor's structure: the three SNPs drawn independently at their gnomAD NFE frequencies (0.482, 0.424, 0.481),
+     with the effect in truth and score alike.
+- **Effects.** The predecessor's per-SNP effects are not on record (only a homozygote OR of 15.2 for rs1840680). Every PTX3
+  structure therefore carries the pooled per-copy h2 effect, which isolates the linkage error. The draws are the same 2,000 as
+  script 16 (pooled-mean reading, seed 6417). An effect grid traces NRI against the per-copy log OR from 0 to 1.6.
+- **Not reproduced:** the predecessor's global allele frequency (rs2305619 0.36), its effect sizes, and the form of its NRI
+  (categorical or continuous is not recorded).
+
+### Results
+
+Median over draws (90% range); NRI in percent:
+
+| score | NRI at 5% | NRI, 5% and 20% | continuous NRI | gain at 5% | aROC change |
+|---|---|---|---|---|---|
+| four-term panel, ceiling | 2.6 (1.1 to 4.7) | 10.0 (6.2 to 15.6) | 31.4 (17.1 to 46.9) | +0.0006 | +0.012 |
+| four-term panel, realised | 2.2 (0.6 to 3.9) | 10.0 (6.6 to 13.4) | 27.6 (11.3 to 42.3) | +0.0004 | +0.010 |
+| PTX3 h2 haplotype | 0.9 (0.0 to 2.1) | 4.8 (0.6 to 7.0) | 13.3 (2.1 to 26.5) | +0.00008 | +0.004 |
+| PTX3 three SNPs, real chromosomes | -1.3 (-3.6 to 0.7) | 2.6 (0.2 to 4.6) | 13.3 (2.1 to 26.5) | -0.0004 | -0.005 |
+| PTX3 three SNPs, independent | 2.0 (0.0 to 4.7) | 7.3 (1.5 to 15.9) | 24.7 (4.1 to 46.9) | +0.00035 | +0.009 |
+
+Per-copy odds ratio needed (effect grid): continuous NRI of 22.5%, 1.32 for the independent structure and 1.65 for h2; three-category
+NRI of 22.5%, 2.27 and 3.46; the 5% MCID, 2.89 for the independent structure and not reached by h2 within the grid (OR 4.95).
+
+### Reading
+
+- **Continuous NRI of the predecessor's size is compatible with no decision value.** The four-term haplotype panel reaches 31% while
+  its net-benefit gain is an eighth of the MCID. At the pooled effect the predecessor's structure gives 25%, close to the reported 22.5%;
+  that is consistency, not a reproduction, given what is not on record.
+- **Linkage roughly doubles the apparent signal** at the same per-copy effect (continuous NRI 25% against 13%) and more than quadruples
+  the net-benefit gain (+0.00035 against +0.00008), because independent SNPs triple the true genetic variance.
+- **The three-SNP score on real chromosomes is harmful** (gain -0.0004, aROC -0.005, categorical NRI negative) **but its continuous NRI is
+  unchanged** (13%): the continuous measure does not register the over-weighting.
+- **Continuous NRI is unstable.** For the correctly specified h2 term the event component is -41% and the non-event component +54%,
+  because heterozygotes' risk moves by a hair after recentring and any move counts; across draws the event component runs from -45% to +53%.
+
+Code and outputs: `R/nri.R`, `scripts/29_nri_comparison.R`, `tests/testthat/test-nri.R`, `output/nri_comparison.csv`, `output/nri_effect_grid.csv`.

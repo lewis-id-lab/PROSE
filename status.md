@@ -77,6 +77,7 @@ scripts, run them from the project root, in this order:
 | `scripts/26_five_term_robustness.R` | the five-term Aim 3b layer and Shapley attribution on the sensitivity cohorts and the correlation ensemble (set `ROBUST_ONLY` to run one setting at a time); run after 16, 22 and 24 | about 5 min per setting |
 | `scripts/27_writeup_figures.R` | figures for the write-up: the headline gain against the MCID, the Aim 3b gain and power, and the attribution; run after 16, 21, 22 and 24 | seconds |
 | `scripts/28_east_asian_haplotypes.R` | phased 1000 Genomes East Asian CLEC7A haplotype frequencies and the rs3901533 linkage cross-tab (genotypes cached; set `REFRESH <- TRUE` to refetch, needs network) | seconds |
+| `scripts/29_nri_comparison.R` | tertiary NRI comparison (addendum 22): the haplotype panel and the PTX3 h2 term against the predecessor's three-SNP independent model, with net benefit and aROC under the same truth, and an effect grid; run after 16 | about 1 min |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
@@ -94,9 +95,9 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 2 Screening and extraction | round 1 complete; the user reports the human round-2 checks confirmed the extraction (record not in the repo); a direction check of the text-parsed rows is still to do |
 | 3 Parameter derivation | **done provisionally** for PTX3, CLEC7A (two parameters), TLR4 and CD209 (addenda 7 to 9 and 16); IL10 and IFNG dropped (D14) |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **in progress, first results in** (addenda 11 to 20): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b and the second CLEC7A parameter |
-| 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done |
-| 7 Write-up | not started; the analysis site is live |
+| 5 Genetic layer simulation | **first results in** (addenda 11 to 22): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check (addendum 21) and the tertiary NRI comparison (addendum 22) |
+| 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done. Not done: the pathogen-specificity scenario, and the Aim 3b interaction test on the sensitivity cohorts |
+| 7 Write-up | **full first draft** in `manuscript.qmd` (the Draft manuscript page): abstract, introduction, methods, results, discussion; references in `references.bib`, Vancouver style (`vancouver.csl`). Still to add: authors, ethics, data availability, funding, and two references (IMD burden; Feys et al. 2026, not yet in Crossref) |
 
 ### Evidence base (provisional: the human round-2 checks are reported complete but not recorded here; one study's direction was corrected from its paper on 19 October)
 
@@ -262,7 +263,7 @@ useful as a rough external check on the baseline model, but only after the outco
 equation over-predicts here (3.6% against 1.5%) and discriminates less well. `haven` reads it; it is not in
 `renv.lock` because no script uses it yet.
 
-### Evidence mapping (addenda 7 and 8; provisional)
+### Evidence mapping (addenda 7 to 9, 16, 19 and 21; provisional)
 
 `h2` is the PTX3 chromosome class carrying A at rs2305619 (A-C-A, A-A-A, A-A-G: 45.6% in 1000G EUR, 48.2% gnomAD NFE); h1 is
 G-A-G. rs1840680 A is the same class; rs3816527 C marks only A-C-A. Each study's contrast is converted to a per-copy effect by
@@ -273,7 +274,8 @@ against non-carriers (D3c).
 | term | primary analysis | OR per copy (90% interval) | tau |
 |---|---|---|---|
 | PTX3 h2 | 5 studies | 1.35 (0.99 to 1.81) | 0.17 |
-| CLEC7A Y238X | 4 studies | 0.98 (0.56 to 1.72) | 0.26 |
+| CLEC7A Y238X | 4 studies | 0.84 (0.48 to 1.48), after the Fischer 2016 correction (addendum 16) | 0.25 |
+| CLEC7A A-G (second parameter, secondary) | 3 strand-resolved European studies | 1.86 (1.26 to 2.63); with the two East Asian studies 1.28 (0.79 to 1.95), a sensitivity analysis (D25) | 0.17 |
 | TLR4 G-T | 4 studies | 1.44 (0.77 to 2.69) | 0.27 |
 | CD209 G at rs4804800 | 3 studies | 1.80 (1.14 to 2.73) | 0.21 |
 | IL10 rs1800896 C | 1 study, HR fallback | 2.59 (1.01 to 5.02), prior-dominated; **dropped from the panel (D14)** | 0.33 |
@@ -283,16 +285,20 @@ against non-carriers (D3c).
 so the extraction looked as if the study pointed the other way. That was an artefact, 30 rows are corrected, and the study's effect is
 positive (the statement in addendum 7 is retracted). Brunel 2018 was read from a summary of the page: the design is confirmed but the
 per-SNP counts are only in a supplementary figure, and a Hardy-Weinberg check suggests its rs3816527 "homozygous" group may be the
-major-allele homozygotes, so its sign is not secure. The other PTX3 studies are unchecked. The CLEC7A rs7309123 rows (26, from 8
-studies) are not used because the SNP is a C/G palindrome with no control frequency recorded. The rows are otherwise unverified
-(round 2 pending), and the priors and most mapping rules are proposals. Four questions are open for you at the end of addendum 8.
+major-allele homozygotes, so its sign is not secure. **Since then (addenda 16 to 21):** the direction check of every text-parsed row is
+closed (`data/direction_check_log.csv`; Fischer 2016 and one Sainz 2012 row corrected, 43 direction corrections in all in
+`data/extraction_corrections.csv`, plus one comparison-text fix for Tanpaibule 2020); the rs7309123 strand is resolved for nine of ten
+studies (`data/rs7309123_strand_resolution.csv`, only Zhao 2022 undetermined), which gives the second CLEC7A parameter; and the East
+Asian studies point the opposite way, which the rs3901533 linkage explains as an ancestry-specific tag (addendum 21). The user reports the
+human round-2 checks confirmed the extraction, but the record is not in the repository. The priors and most mapping rules are proposals.
 
 ### Haplotypes
 
 Derived from phased 1000G EUR (503 samples, 1,006 chromosomes) and rescaled to gnomAD NFE margins. The PTX3 trio
 has **three** common haplotypes: G-A-G 54%, A-C-A 40%, A-A-A 6% (alleles ordered rs2305619, rs3816527,
-rs1840680). **"h2" in the settled h1/h2 term needs an explicit definition.** I recommend the rs2305619/rs1840680
-A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity analysis.
+rs1840680). **h2 is settled (D11)** as the rs2305619/rs1840680 A class (A-C-A plus A-A-A, 48.2% in gnomAD NFE); the
+three-haplotype split is an unrun sensitivity analysis. East Asian CLEC7A haplotype frequencies (1000 Genomes EAS) are in
+`data/haplotype_frequencies_eas.csv` (addendum 21).
 
 ## What to do next
 
@@ -322,6 +328,11 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 7. **Aim 4 sweep (addenda 16 and 17):** 46% of the 4,000 architectures reach the 5% MCID and 77% the 20% MCID. At OR 1.5 or below no number of loci up to 20 reaches the 5% MCID; at OR 2.0 it takes 7 to 9 loci at common frequencies;
    the four-term panel is equivalent to about 7 loci of OR 1.3. With estimated weights, per-locus precision of 0.1 or better costs almost nothing; at 0.2 to 0.4, the precision of the present evidence, 12% to a third of the architectures that reach the MCID with exact weights no longer do. Not done: the pathogen-specificity scenario.
 8. **Strand and overlap:** only Zhao 2022's rs7309123 strand remains undetermined; the Spanish registry and Jena overlaps are only partly adjudicated.
+9. **Tertiary NRI comparison (addendum 22): done.** The four-term haplotype panel has a continuous NRI of about 31% with a net-benefit gain an eighth of the MCID; the predecessor's
+   three-SNP independent structure gives 25% at the pooled PTX3 effect (close to its reported 22.5%) against 13% for the h2 haplotype; the three-SNP score on real chromosomes is
+   harmful in net benefit but has an unchanged continuous NRI. The predecessor's own effects and NRI form are not on record.
+10. **Write-up:** full first draft on the Draft manuscript page (`manuscript.qmd`). To do: authors, ethics and data-access statements, funding, the two missing references, and a
+    review of the discussion.
 
 Loose ends for write-up: the PubMed search date is unrecorded (Embase was 8 October 2026); the automated
 screening decision file for all 831 records is not assembled; Skonieczna 2017's supplement is missing; whether an
@@ -338,7 +349,7 @@ Italian thesis title is required (F4).
 | `data/` | baseline inputs, panel tables, allele frequencies, phased haplotype outputs; `data/restricted/` (gitignored) holds the pseudonymised extract |
 | `output/` | fitted results; `output/v1/` is the archived first fit; `output/figures/` has PNGs |
 | `renv.lock`, `renv/`, `.Rprofile` | pinned package versions; the private library in `renv/library/` is not tracked |
-| `*.qmd`, `_quarto.yml`, `_setup.R` | the report site; the render list in `_quarto.yml` is explicit, so add new pages there |
+| `*.qmd`, `_quarto.yml`, `_setup.R` | the report site; the render list in `_quarto.yml` is explicit, so add new pages there. `manuscript.qmd` is the draft paper, with `references.bib` and `vancouver.csl` |
 | `docs/` | rendered site (committed). `_freeze/` caches executed pages |
 | `phase3_decisions.md` | the locked pre-specification record |
 | `02_current_status.md` | the long working status document |
@@ -355,10 +366,9 @@ Italian thesis title is required (F4).
 - The README, project description and pre-analysis checklist inside the zip pre-date the targeted-recovery pass and
   supplementary files, so their counts are out of date. `02_current_status.md` outranks them. The round-2
   verification list is 907 rows in the bundle file but "1,380" in the text, and this is unresolved.
-- The repository was set to **private** on 18 October 2026. It was public until then. The history contains no
-  spreadsheets or patient-level data, but the bundle zip, the decision record and the data summaries were visible,
-  and any clones or forks made in that time cannot be recalled. GitHub Pages is not enabled, and a private
-  repository needs a plan that supports private Pages before the site can be published.
+- The repository was private from 18 to 19 October 2026 and is **public again since 19 October** (lewis-id-lab/PROSE), with
+  GitHub Pages publishing `docs/`. The history contains no spreadsheets or patient-level data, but the bundle zip, the decision
+  record and the data summaries are visible. Switching back to private would take the site down on the free plan.
 - `.posit/` (assistant settings) is ignored and untracked.
 - `bs.xlsx` and `BOSCORE_recoded_2019.xlsx` are patient-level data, and the second has direct identifiers. All
   spreadsheets and `.sav`/`.dta` files are gitignored, so they will not reach the other computer through git. Move
