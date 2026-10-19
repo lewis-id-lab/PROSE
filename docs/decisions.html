@@ -257,6 +257,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#results-data-stratum" id="toc-results-data-stratum" class="nav-link" data-scroll-target="#results-data-stratum">Results (data stratum)</a></li>
   <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a></li>
   </ul></li>
+  <li><a href="#addendum-15-19-october-2026-aim-3b-started-the-expected-direction-stated-before-the-run-d19" id="toc-addendum-15-19-october-2026-aim-3b-started-the-expected-direction-stated-before-the-run-d19" class="nav-link" data-scroll-target="#addendum-15-19-october-2026-aim-3b-started-the-expected-direction-stated-before-the-run-d19">Addendum 15, 19 October 2026: Aim 3b started, the expected direction stated before the run (D19)</a>
+  <ul class="collapse">
+  <li><a href="#what-aim-3b-is-and-the-tension" id="toc-what-aim-3b-is-and-the-tension" class="nav-link" data-scroll-target="#what-aim-3b-is-and-the-tension">What Aim 3b is, and the tension</a></li>
+  <li><a href="#what-the-simulation-can-and-cannot-do" id="toc-what-the-simulation-can-and-cannot-do" class="nav-link" data-scroll-target="#what-the-simulation-can-and-cannot-do">What the simulation can and cannot do</a></li>
+  <li><a href="#expected-direction-written-before-the-run" id="toc-expected-direction-written-before-the-run" class="nav-link" data-scroll-target="#expected-direction-written-before-the-run">Expected direction (written before the run)</a></li>
+  <li><a href="#d19.-design-proposed-fixed-before-the-run" id="toc-d19.-design-proposed-fixed-before-the-run" class="nav-link" data-scroll-target="#d19.-design-proposed-fixed-before-the-run">D19. Design (proposed; fixed before the run)</a></li>
+  <li><a href="#results-written-after-the-run" id="toc-results-written-after-the-run" class="nav-link" data-scroll-target="#results-written-after-the-run">Results (written after the run)</a></li>
+  <li><a href="#the-predictions-against-the-results" id="toc-the-predictions-against-the-results" class="nav-link" data-scroll-target="#the-predictions-against-the-results">The predictions against the results</a></li>
+  <li><a href="#what-this-does-and-does-not-show" id="toc-what-this-does-and-does-not-show" class="nav-link" data-scroll-target="#what-this-does-and-does-not-show">What this does and does not show</a></li>
+  <li><a href="#limits-1" id="toc-limits-1" class="nav-link" data-scroll-target="#limits-1">Limits</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -3055,6 +3066,340 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The identified file was read to derive the flag. If your data-sharing agreement or ethics approval does not cover use with an AI tool, say so and I will not run script 08 again; the pseudonymised cohort carries only the binary flag, with no date or identifier.</li>
 </ul>
 <p>Code and outputs: <code>R/boscore_data.R</code> (<code>allo_hsct_flag</code>, <code>allo_summary</code>), <code>scripts/08_reconcile_boscore.R</code>, <code>R/genetic_layer.R</code> (<code>allo_stratum_data</code>), <code>scripts/20_genetic_donor_stratum.R</code>, <code>tests/testthat/test-boscore-data.R</code>, <code>tests/testthat/test-genetic-layer.R</code>, <code>output/allo_hsct_summary.csv</code>, <code>output/genetic_donor_{strata,stratum_summary,baseline_stratum,sampling_summary}.csv</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-15-19-october-2026-aim-3b-started-the-expected-direction-stated-before-the-run-d19" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-15-19-october-2026-aim-3b-started-the-expected-direction-stated-before-the-run-d19">Addendum 15, 19 October 2026: Aim 3b started, the expected direction stated before the run (D19)</h2>
+<p>Written after the tag and <strong>before any Aim 3b result exists</strong>. This section (prediction and design) was committed and pushed first, so the prediction cannot be adjusted to the results. Results follow in a later section of this addendum. Provisional, like addenda 11 to 14.</p>
+<section id="what-aim-3b-is-and-the-tension" class="level3">
+<h3 class="anchored" data-anchor-id="what-aim-3b-is-and-the-tension">What Aim 3b is, and the tension</h3>
+<p>Aim 3b is a neutropenia-stratified falsification test (project description). Feys and colleagues found that PTX3 and CLEC7A variants do not predispose to influenza- or COVID-associated aspergillosis, and explain it by inflammatory levelling: severe viral pneumonia induces PTX3 as an acute-phase protein, so genotype-determined baseline differences are swamped. Neutropenia is used as a <strong>proxy for the non-inflamed host</strong>, not as a claim that the effects are neutrophil-dependent. The hypothesis under test, <strong>H_F</strong>, is therefore that <strong>per-copy genetic effects are larger in neutropenic than in non-neutropenic admissions</strong>. The only direct stratified evidence, Brunel 2018 (supplementary figure, transcribed by an agent, derived by subtraction and flagged ambiguous), points the other way: the PTX3 homozygote contrast is significant in the non-neutropenic stratum (P = 0.008 and 0.002 for the two SNPs) and not in the neutropenic one (P = 0.7 and 0.6). Its stratum is neutropenia at presentation (ANC below 500), which is not the cohort’s prolonged-neutropenia predictor, so even that evidence is not like for like.</p>
+</section>
+<section id="what-the-simulation-can-and-cannot-do" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-simulation-can-and-cannot-do">What the simulation can and cannot do</h3>
+<p>The effect modification is an input of the simulation, so the simulation cannot decide between Feys and Brunel. It can show (i) what each reading would mean for decisions, at the same pooled effect; (ii) what it costs to build a stratified score on the wrong reading; and (iii) whether a study of this size could tell the readings apart, which is the question that matters for a falsification test.</p>
+</section>
+<section id="expected-direction-written-before-the-run" class="level3">
+<h3 class="anchored" data-anchor-id="expected-direction-written-before-the-run">Expected direction (written before the run)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>prediction</th>
+<th>confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E1</td>
+<td>The effect-modification ratio estimated from Brunel’s counts (neutropenic over non-neutropenic) has a point estimate <strong>below 1</strong>, the opposite of H_F, with an interval that includes 1</td>
+<td>high for the sign of the point estimate, high that the interval includes 1</td>
+</tr>
+<tr class="even">
+<td>E2</td>
+<td>With <strong>homogeneous</strong> effects, the gain per admission is larger in the neutropenic stratum, because it holds most of the events, and the neutropenic stratum contributes more than its share of admissions (about a quarter) to the whole-cohort gain</td>
+<td>medium</td>
+</tr>
+<tr class="odd">
+<td>E3</td>
+<td>At the same pooled effect, a truth in the H_F direction gives a <strong>larger whole-cohort gain</strong> than a truth in the Brunel direction at the 20% threshold, because the effects sit where the events are. At 5% the baseline probably already flags most neutropenic admissions (as in the allo stratum), leaving little room, so I do not commit to a direction at 5%</td>
+<td>low to medium at 20%, none at 5%</td>
+</tr>
+<tr class="even">
+<td>E4</td>
+<td>A stratified score built on the wrong reading <strong>loses gain</strong>: under a Brunel-direction truth, a score that assumes H_F does worse than the common-effect score, and the reverse</td>
+<td>high, qualitatively</td>
+</tr>
+<tr class="odd">
+<td>E5</td>
+<td>The falsification test is <strong>underpowered</strong> in a study of this size (133 events). Fitting a genotype-by-neutropenia interaction in simulated studies, the estimate has the true sign in at most about 75% of studies under a moderate modification (ratio 4 or 1/4), and the interaction reaches P &lt; 0.05 in at most 15%</td>
+<td>medium</td>
+</tr>
+</tbody>
+</table>
+<p>So the expected headline is: the neutropenia split matters less than the question of whether the whole-cohort pooled effects are right, and a study of this size could not confirm or reject H_F. If E1 holds, the available evidence leans against H_F, but weakly.</p>
+</section>
+<section id="d19.-design-proposed-fixed-before-the-run" class="level3">
+<h3 class="anchored" data-anchor-id="d19.-design-proposed-fixed-before-the-run">D19. Design (proposed; fixed before the run)</h3>
+<ul>
+<li><strong>Strata.</strong> The prolonged-neutropenia predictor of the base cohort (4,078 admissions): neutropenic and non-neutropenic. The decision rule is the refit baseline in both. Each stratum has its own profile distribution, share, and event rate.</li>
+<li><strong>Truth.</strong> Stratum-specific per-copy effects, beta_N and beta_NN, with the event-weighted average equal to the pooled effect beta, so the whole-cohort pooled evidence stays consistent: w beta_N + (1 - w) beta_NN = beta, where w is the share of the baseline’s events that fall in the neutropenic stratum. The modification ratio r = beta_N / beta_NN takes the values infinity (all in neutropenic admissions), 4, 1 (homogeneous, as in addenda 11 to 14), 1/4 and 0 (all in non-neutropenic), plus a data-based value: r drawn from the Brunel counts, log r ~ N(estimate, SE). The truth is recentred within each stratum to hold that stratum’s event rate (D5). Effects are drawn from the pooled posteriors as before (mean reading, 1,000 draws).</li>
+<li><strong>Scores</strong> (fixed, not fitted): the baseline; the <strong>ceiling</strong> (true stratum-specific effects, an oracle that knows the modification); the <strong>common</strong> score (pooled medians in both strata, the “realised” score of the earlier addenda); and <strong>assumed-H_F</strong> and <strong>assumed-Brunel</strong> scores (pooled medians distributed between the strata as ratios of 4 and 1/4 would imply). Each is recentred to its stratum’s baseline mean risk.</li>
+<li><strong>Outcomes.</strong> Net-benefit gain over the baseline in each stratum (per stratum admission) and for the whole cohort (shares times the stratum gains, a single threshold), at 5% (primary) and 20% (secondary), against the whole-cohort MCID (+0.00458, +0.00160) and each stratum’s own MCID (20% more true cases among its admissions at no extra false positives).</li>
+<li><strong>The falsification test.</strong> In each simulated study of 4,078 admissions (patients resampled, genotype per patient, outcomes from the truth), a logistic model with the baseline logit as an offset, outcome ~ offset(logit) + S + S:N, where S is the pooled-median genetic score and N the neutropenia indicator. The interaction coefficient is the estimated modification on the log-odds scale. Reported: the share of studies in which it has the true sign, and the share with P &lt; 0.05 in the true direction. 1,000 studies per truth.</li>
+<li><strong>Not included:</strong> per-term attribution, the correlation ensemble, the sensitivity cohorts, donor genotype, and any link between genotype and neutropenia (genotype is independent of the clinical profile, as before).</li>
+</ul>
+</section>
+<section id="results-written-after-the-run" class="level3">
+<h3 class="anchored" data-anchor-id="results-written-after-the-run">Results (written after the run)</h3>
+<p><strong>Changes to the plan, and one error found.</strong></p>
+<ul>
+<li>The data-based Brunel scenario was planned as a ratio drawn with log r ~ N(estimate, SE). The estimate is negative (ratio -0.11), so its logarithm does not exist, and holding the pooled effect as the event-weighted average would need an effect 8.6 times the pooled one in the non-neutropenic stratum (the Bologna event share in neutropenic admissions is 0.80, Brunel’s about 0.4). The scenario instead applies Brunel’s stratum effects directly, as fractions of its own whole-cohort effect: <strong>-0.21 in neutropenic admissions and +1.87 in non-neutropenic ones</strong>, which leaves a whole-cohort effect of about 0.2 of the pooled one.</li>
+<li>The first run of the interaction fit left the neutropenia main effect out of the model. The truth is recentred within each stratum, so the strata differ in intercept, and the omission pulled the interaction estimate towards zero (it recovered about a third of the true difference). A check against known truths on a large replicated cohort found it. All interaction results below are from the corrected model, and the layer results were not affected.</li>
+<li>The recentring bracket was widened (an effect several times the pooled one in the small non-neutropenic stratum needs a shift beyond 8 on the logit scale). The earlier results are unchanged.</li>
+</ul>
+<p><strong>The strata.</strong> Neutropenic admissions are 28% of the cohort (1,157), with a baseline event rate of 9.2% and 106 of the 133 events (80%). Non-neutropenic admissions are 72% (2,921), with an event rate of 0.9% and 27 events. The stratum MCIDs are +0.01516 (5%) and +0.00553 (20%) for neutropenic admissions, and +0.00039 and +0.00004 for non-neutropenic ones, where there are so few events that almost any gain clears them.</p>
+<p><strong>E1, the Brunel evidence.</strong> Mapped to the per-copy h2 scale, Brunel’s PTX3 effect is +1.17 (SE 0.49) in the non-neutropenic stratum and -0.13 (SE 0.53) in the neutropenic stratum (rs2305619), a difference of -1.30 (SE 0.72; 95% interval -2.71 to +0.12; P = 0.07). Through rs3816527 it is +1.76 (SE 0.86) and -0.24 (SE 0.54), a difference of -1.99 (SE 1.01; 95% interval -3.98 to -0.01; P = 0.049). The point estimates are opposite to H_F, as predicted. The interval includes no difference for rs2305619 but only just excludes it for rs3816527, so “the interval includes 1” holds for one of the two SNPs. The data are 212 courses and 26 events, the stratum is neutropenia at presentation (not the cohort’s prolonged-neutropenia item), and the counts have the doubts recorded in addendum 8.</p>
+<p><strong>Net-benefit gain, whole cohort</strong> (mean reading, 1,000 draws, median; the 90% ranges, the predictive reading and the stratum results are in <code>output/aim3b_layer_summary.csv</code>). The ceiling score knows the true stratum effects, the common score applies the pooled estimates to everyone, and the assumed scores split the pooled estimates between the strata as a ratio of 4 (assumed H_F) or 1/4 (assumed Brunel) would imply:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>truth</th>
+<th>threshold</th>
+<th>ceiling</th>
+<th>common</th>
+<th>assumed H_F</th>
+<th>assumed Brunel</th>
+<th>ceiling reaches the whole-cohort MCID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>all in neutropenic (ratio infinity)</td>
+<td>5%</td>
+<td>+0.00080</td>
+<td>+0.00047</td>
+<td>+0.00059</td>
+<td>-0.00023</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>ratio 4</td>
+<td>5%</td>
+<td>+0.00070</td>
+<td>+0.00045</td>
+<td>+0.00052</td>
+<td>-0.00017</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>homogeneous</td>
+<td>5%</td>
+<td>+0.00058</td>
+<td>+0.00043</td>
+<td>+0.00037</td>
+<td>+0.00005</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>ratio 1/4</td>
+<td>5%</td>
+<td>+0.00118</td>
+<td>+0.00044</td>
+<td>+0.00005</td>
+<td>+0.00086</td>
+<td>0.4%</td>
+</tr>
+<tr class="odd">
+<td>all in non-neutropenic (ratio 0)</td>
+<td>5%</td>
+<td>+0.00362</td>
+<td>+0.00033</td>
+<td>-0.00047</td>
+<td>+0.00222</td>
+<td>19%</td>
+</tr>
+<tr class="even">
+<td>Brunel’s stratum effects</td>
+<td>5%</td>
+<td>+0.00050</td>
+<td>-0.00011</td>
+<td>-0.00072</td>
+<td>+0.00009</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>all in neutropenic</td>
+<td>20%</td>
+<td>+0.00151</td>
+<td>+0.00105</td>
+<td>+0.00112</td>
+<td>+0.00063</td>
+<td>45%</td>
+</tr>
+<tr class="even">
+<td>ratio 4</td>
+<td>20%</td>
+<td>+0.00136</td>
+<td>+0.00098</td>
+<td>+0.00101</td>
+<td>+0.00061</td>
+<td>36%</td>
+</tr>
+<tr class="odd">
+<td>homogeneous</td>
+<td>20%</td>
+<td>+0.00106</td>
+<td>+0.00080</td>
+<td>+0.00076</td>
+<td>+0.00058</td>
+<td>17%</td>
+</tr>
+<tr class="even">
+<td>ratio 1/4</td>
+<td>20%</td>
+<td>+0.00084</td>
+<td>+0.00040</td>
+<td>+0.00022</td>
+<td>+0.00058</td>
+<td>12%</td>
+</tr>
+<tr class="odd">
+<td>all in non-neutropenic</td>
+<td>20%</td>
+<td>+0.00198</td>
+<td>-0.00034</td>
+<td>-0.00063</td>
+<td>+0.00035</td>
+<td>64%</td>
+</tr>
+<tr class="even">
+<td>Brunel’s stratum effects</td>
+<td>20%</td>
+<td>+0.00023</td>
+<td>-0.00058</td>
+<td>-0.00089</td>
+<td>-0.00026</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<p>With homogeneous effects the gain per admission is 11 times larger in the neutropenic stratum (+0.00168 against +0.00015 at 5%, 4.0 extra true cases per 1,000 neutropenic admissions), and that stratum supplies <strong>81% of the whole-cohort gain at 5% and 96% at 20%</strong>.</p>
+<p><strong>The falsification test in simulated studies of the cohort’s size</strong> (1,000 studies per row; patients resampled, genotype per patient, outcomes from the truth; the interaction estimate is the extra effect per unit of the pooled-estimate score in neutropenic admissions; effects at the pooled medians):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>truth</th>
+<th>true interaction</th>
+<th>median estimate (SD)</th>
+<th>estimate has the true sign</th>
+<th>P &lt; 0.05 in the true direction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>all in neutropenic</td>
+<td>+1.25</td>
+<td>+1.28 (0.64)</td>
+<td>98%</td>
+<td>57%</td>
+</tr>
+<tr class="even">
+<td>ratio 4</td>
+<td>+0.88</td>
+<td>+0.91 (0.62)</td>
+<td>94%</td>
+<td>33%</td>
+</tr>
+<tr class="odd">
+<td>homogeneous</td>
+<td>0</td>
+<td>+0.02 (0.57)</td>
+<td></td>
+<td>2.2% positive, 2.8% negative</td>
+</tr>
+<tr class="even">
+<td>ratio 1/4</td>
+<td>-1.86</td>
+<td>-1.87 (0.52)</td>
+<td>100%</td>
+<td>94%</td>
+</tr>
+<tr class="odd">
+<td>all in non-neutropenic</td>
+<td>-4.93</td>
+<td>-5.00 (0.67)</td>
+<td>100%</td>
+<td>100%</td>
+</tr>
+<tr class="even">
+<td>Brunel’s stratum effects</td>
+<td>-2.08</td>
+<td>-2.08 (0.55)</td>
+<td>100%</td>
+<td>96%</td>
+</tr>
+</tbody>
+</table>
+<p>At the 95th-percentile effects the power rises (98% for all-in-neutropenic, 84% for ratio 4). The interaction fit is unbiased and its false-positive rate is about 5%, as it should be. The modifications are not symmetric in size, because holding the pooled effect fixed with 80% of events in the neutropenic stratum means a ratio of 1/4 needs an effect 2.5 times the pooled one in the small non-neutropenic stratum: the true difference for “ratio 1/4” (-1.86) is twice that for “ratio 4” (+0.88), and power differs accordingly.</p>
+</section>
+<section id="the-predictions-against-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="the-predictions-against-the-results">The predictions against the results</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>E1</td>
+<td><strong>Mostly held.</strong> Point estimate opposite to H_F for both SNPs; the interval includes no difference for rs2305619 (P = 0.07) but not quite for rs3816527 (P = 0.049)</td>
+</tr>
+<tr class="even">
+<td>E2</td>
+<td><strong>Held, more strongly than predicted.</strong> The neutropenic stratum has 11 times the gain per admission and supplies 81% to 96% of the whole-cohort gain under homogeneous effects</td>
+</tr>
+<tr class="odd">
+<td>E3</td>
+<td><strong>Not borne out in general.</strong> At 20% an H_F truth beats a Brunel truth at the moderate setting (ratio 4 against 1/4: +0.00136 against +0.00084) but not at the extreme (all in neutropenic against all in non-neutropenic: +0.00151 against +0.00198). At 5% the Brunel direction wins at both settings. Placing the effect in the low-risk stratum, where it must be large to keep the pooled effect, moves many admissions across the threshold</td>
+</tr>
+<tr class="even">
+<td>E4</td>
+<td><strong>Held.</strong> Under a Brunel-direction truth the assumed-H_F score does worse than the common score (+0.00005 against +0.00044 at ratio 1/4, 5%), and under an H_F truth the assumed-Brunel score does worse (-0.00017 against +0.00045 at ratio 4)</td>
+</tr>
+<tr class="odd">
+<td>E5</td>
+<td><strong>Wrong.</strong> I predicted an underpowered test (at most 75% correct sign and 15% significant at a moderate modification). The estimate has the right sign in 94% to 100% of studies and is significant in 33% (ratio 4) to 94% (ratio 1/4)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="what-this-does-and-does-not-show" class="level3">
+<h3 class="anchored" data-anchor-id="what-this-does-and-does-not-show">What this does and does not show</h3>
+<ul>
+<li>The neutropenia split matters for where the decisions are: whichever way the effect modification runs, most of the gain comes from neutropenic admissions unless the effect is placed entirely in non-neutropenic ones.</li>
+<li>A single score with pooled estimates is the safer choice. It never loses much under an H_F truth (+0.00047 against an oracle +0.00080 at 5%) but loses nearly all of the achievable gain under a Brunel-direction truth (+0.00033 against +0.00362), and it is harmful if Brunel’s stratum effects held here (-0.00011 at 5%, -0.00058 at 20%). A score built on H_F is the most harmful when wrong.</li>
+<li>The falsification test is feasible in a cohort of this size and is better powered than I predicted, at least for modifications as large as Brunel’s. This is a design result: it assumes genotype is measured, the weights of the score are right, and there is no misspecification, so the real power would be lower. A genotyped Bologna cohort would not be needed to learn that H_F and Brunel’s reading differ by amounts a study of this size can resolve, but it is needed to resolve them.</li>
+<li>Brunel’s direction (effect larger in non-neutropenic patients) is the opposite of H_F and is borderline significant (P = 0.07 and 0.049). It is one small study with unverified counts and a different neutropenia definition, so it does not settle the question.</li>
+</ul>
+</section>
+<section id="limits-1" class="level3">
+<h3 class="anchored" data-anchor-id="limits-1">Limits</h3>
+<ul>
+<li>Neutropenia is the cohort’s prolonged-neutropenia item (the stratum has 80% of the events); Brunel’s stratum is neutropenia at presentation. The Brunel scenario assumes all four terms follow PTX3’s pattern.</li>
+<li>The pooled effect is held as the event-weighted average in the ratio scenarios, which makes the scenarios asymmetric in size (see above). Brunel’s stratum effects are applied unconstrained and imply a whole-cohort effect of about 0.2 of the pooled one.</li>
+<li>Genotype is independent of the clinical profile and of neutropenia. The interaction test takes the score weights as known.</li>
+<li>One threshold decision per admission, strata combined by their shares, no correlation ensemble, no donor genotype, no Shapley attribution.</li>
+</ul>
+<p>Code and outputs: <code>R/aim3b.R</code>, <code>scripts/21_aim3b_neutropenia.R</code>, <code>tests/testthat/test-aim3b.R</code>, <code>output/aim3b_{strata,brunel_modification,layer_summary,interaction_summary}.csv</code>.</p>
 
 
 <!-- -->

@@ -71,6 +71,7 @@ scripts, run them from the project root, in this order:
 | `scripts/18_genetic_ensemble_sampling.R` | sampling variability of a study with the clinical mix drawn from a copula member, plus controls; run after 17 | about 35 s |
 | `scripts/19_genetic_sensitivity_cohorts.R` | the genetic layer (exact, attribution, sampling) on the published equation (4,078 and 4,127 rows) and the refit on 4,127 rows; set `SENS_ONLY` to run one setting at a time | about 1.5 min each |
 | `scripts/20_genetic_donor_stratum.R` | donor genotype in the allo-HSCT stratum (D1 secondary analysis): the stratum from the cohort's allo flag (and, as a sensitivity analysis, from Table 1 margins), donor effects, gain against the stratum and whole-cohort MCIDs, sampling variability; needs the donor draws from scripts 12 and 14 | about 1 min |
+| `scripts/21_aim3b_neutropenia.R` | Aim 3b: the genetic layer split by neutropenia status (six effect-modification scenarios, five scores), Brunel's stratified effects, and the interaction test in simulated studies; run after 16 | about 3 min |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
@@ -88,7 +89,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
 | 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **in progress** (addenda 11 to 14): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum; Aim 3b and the CLEC7A second parameter remain |
+| 5 Genetic layer simulation | **in progress** (addenda 11 to 15): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum and a first Aim 3b; the CLEC7A second parameter and the Aim 4 sweep remain |
 | 6 Sensitivity and architecture sweep | not started |
 | 7 Write-up | not started |
 
@@ -311,10 +312,11 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
    5% of repetitions in any run. CD209 supplies half or more of the gain (Shapley), PTX3 and TLR4 most of the rest, CLEC7A almost none. Donor genotype
    in the allo-HSCT stratum (6.7% of admissions; the base cohort now carries an admission-level allo flag, addendum 14) adds 0.4 to 1.4 cases per 1,000 allo admissions at 5%
    against 30 needed, because the baseline already flags 77% of that stratum (secondary analysis; donor evidence is one to two studies per term, none for CD209).
-   To do: confirm the reading of "realised" (addendum 11); the CLEC7A second parameter; Aim 3b.
-6. **Aim 3b:** note the design tension. The Feys logic predicts a genotype effect in neutropenic patients, but the
-   only direct stratified evidence (Brunel 2018, derived by subtraction and flagged ambiguous) shows it in
-   non-neutropenic patients. State the expected direction before running it.
+   To do: confirm the reading of "realised" (addendum 11); the CLEC7A second parameter.
+6. **Aim 3b (started, addendum 15):** the expected direction was committed before the run (`dc60a4e`). The Feys hypothesis (effects larger in neutropenic admissions) and Brunel's stratified data (larger in non-neutropenic,
+   P = 0.07 and 0.049) point opposite ways. Neutropenic admissions supply 81% to 96% of the whole-cohort gain under homogeneous effects. A common score with pooled estimates is the safer choice (a score built on the Feys reading is the
+   most harmful when wrong), and a cohort-sized study could detect a Brunel-sized interaction (96% power) and a Feys-sized one (57% to 98%), better than predicted. To do: a genotyped neutropenia-stratified analysis would be the real test; per-term
+   attribution, the correlation ensemble and the sensitivity cohorts are not repeated for Aim 3b.
 7. **Aim 4 sweep:** 1 to 20 loci by OR 1.1 to 3.0 by risk-allele frequency 0.05 to 0.50, using the exact
    convolution approach.
 

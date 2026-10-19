@@ -76,7 +76,8 @@ genetic_cells <- function(q, lp_profile, grid, offset = 0) {
 
 # The shift a that holds mean risk at `target` when a linear predictor changes (D5)
 recentre_shift <- function(lp, w, target) {
-  stats::uniroot(function(a) sum(w * stats::plogis(lp + a)) - target, c(-8, 8), tol = 1e-12)$root
+  # extendInt widens the bracket when a large effect in a small stratum needs a shift beyond +-8
+  stats::uniroot(function(a) sum(w * stats::plogis(lp + a)) - target, c(-8, 8), tol = 1e-12, extendInt = "yes")$root
 }
 
 # Cell-level logits of the true risk, of the ceiling score (true effects, no allo offset) and of the realised score, each recentred
