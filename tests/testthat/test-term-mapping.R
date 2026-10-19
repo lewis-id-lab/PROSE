@@ -108,3 +108,20 @@ test_that("the rs7309123 strand file is complete, graded and consistent with how
   ok <- !is.na(sr$log10_likelihood_ratio_forward_vs_opposite)
   expect_true(all(sr$log10_likelihood_ratio_forward_vs_opposite[ok & sr$strand_conclusion == "same_as_forward"] > 0))
 })
+
+test_that("the direction-check log covers every study that has text-parsed rows without a reference marker", {
+  f <- file.path(proj_root, "data", "direction_check_log.csv")
+  skip_if_not(file.exists(f))
+  lg <- read.csv(f, stringsAsFactors = FALSE)
+  expect_false(anyDuplicated(lg$study_id) > 0)
+  expect_setequal(lg$study_id, c("S026", "S035", "S071", "S073", "S074", "S077", "S080", "S072"))
+  expect_true(all(nzchar(lg$verdict)) && all(nzchar(lg$basis)))
+  checked <- lg$study_id != "S072"
+  expect_true(all(nzchar(lg$checked_on[checked])) && all(nzchar(lg$checked_by[checked])))
+  # every correction listed in the log exists in the corrections file
+  cf <- file.path(proj_root, "data", "extraction_corrections.csv")
+  skip_if_not(file.exists(cf))
+  cr <- read.csv(cf, stringsAsFactors = FALSE)
+  expect_equal(sum(cr$study_id == "S071"), 1L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S035"), 30L)
+  expect_true(all(lg$study_id[nzchar(lg$corrections)] %in% unique(cr$study_id)))
+})

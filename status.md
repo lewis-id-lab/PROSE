@@ -92,7 +92,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 2 Screening and extraction | round 1 complete; the user reports the human round-2 checks confirmed the extraction (record not in the repo); a direction check of the text-parsed rows is still to do |
 | 3 Parameter derivation | **done provisionally** for PTX3, CLEC7A (two parameters), TLR4 and CD209 (addenda 7 to 9 and 16); IL10 and IFNG dropped (D14) |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **in progress, first results in** (addenda 11 to 19): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b and the second CLEC7A parameter |
+| 5 Genetic layer simulation | **in progress, first results in** (addenda 11 to 20): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b and the second CLEC7A parameter |
 | 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done |
 | 7 Write-up | not started; the analysis site is live |
 
@@ -298,13 +298,13 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
    off-by-one Table 2 counts and the question of whether the published equation was fitted with the twins are set
    aside by decision.
 2. ~~Decide on the empirical joint.~~ Done: adopted as D8 (addendum 2).
-3. **Round-2 verification:** add the record of the human checks to `data/`. The **direction check of the text-parsed rows is done** (addendum 18): Tang and Tanpaibule are correct, one Sainz row (V0261) was reversed and is corrected,
-   Chen is confirmed from its full text (addendum 19); only Fisher (no footnote on the comparison) remains unconfirmed and needs its full tables; Lupianez's two rows (IFNG, no longer in the panel) were not checked. Fischer 2016 was corrected earlier (addendum 16, section 0).
+3. **Round-2 verification:** add the record of the human checks to `data/`. The **direction check of the text-parsed rows is closed** (addenda 18 to 20, `data/direction_check_log.csv`): Tang, Tanpaibule, Chen and Fisher are correct, one Sainz row (V0261) and all of Fischer 2016 and Herrero-Sanchez 2018's reversed rows are corrected;
+   only Lupianez's two IFNG rows (a term no longer in the panel) were not checked.
 4. **Evidence-to-parameter mapping (all terms done provisionally, addenda 7 to 9 and 16):** the user reports (19 October) that the human round-2
    checks confirmed the extraction against the PDFs and changed none of the flagged items; the verification record is not in the repo, so
    add it to `data/`. IL10 and IFNG were dropped on 19 October (addendum 10), so the panel is PTX3, CLEC7A, TLR4 and CD209. **An error was found on 19 October (addendum 16, section 0):**
    Fischer 2016 (S073) had its direction reversed (the table lists the reference group first, and the pipeline read the first group as the numerator); 12 rows are corrected and every script that uses CLEC7A was rerun
-   (the Y238X pooled OR moved from 0.98 to 0.84; the layer results by at most 0.00006 in gain). **The direction check of the other text-parsed rows is done (addenda 18 and 19; only Fisher unconfirmed).**
+   (the Y238X pooled OR moved from 0.98 to 0.84; the layer results by at most 0.00006 in gain). **The direction check of the other text-parsed rows is closed (addenda 18 to 20).**
    The second CLEC7A parameter (OR 1.9 per A-G copy, 1.26 to 2.63, from three strand-resolved studies after Kalkanci 2020 was added, addenda 16 and 19) is estimated and roughly doubles the CLEC7A-containing layer's gain; only Zhao 2022's strand remains undetermined.
    Open questions from addendum 8 that the checks did not settle: Herrero-Sanchez Table 5, Brunel, hazard ratios for the terms with enough odds-ratio studies.
 5. **Genetic layer (addenda 11 to 17):** `R/genetic_layer.R`, `R/genetic_helpers.R` and scripts 16 to 25 add the panel to the refit baseline on `load_base_cohort()` (genotype fixed per patient, exact over 128 profiles by the dosage combinations,

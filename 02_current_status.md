@@ -10,7 +10,7 @@ Last updated 19 October 2026. Sections 1, 6c, 7 and 8 describe the current posit
 |---|---|
 | 0 Set-up | complete |
 | 1 Literature search | complete — PubMed and Embase, 831 unique records screened |
-| 2 Screening and extraction | **round 1 complete including Jobs A and B and the supplementary-file pass.** The user reports (19 October) that the human round-2 checks confirmed the extraction against the source PDFs; the record is not in the repository. Direction errors in two studies (Fischer 2016, and one row of Sainz 2012) were found and corrected from their papers on 19 October; the direction check of the other text-parsed rows is done except for Fisher 2017, which cannot be confirmed from the open text (Chen 2019 was confirmed from its full text, addendum 19) |
+| 2 Screening and extraction | **round 1 complete including Jobs A and B and the supplementary-file pass.** The user reports (19 October) that the human round-2 checks confirmed the extraction against the source PDFs; the record is not in the repository. Direction errors in two studies (Fischer 2016, and one row of Sainz 2012) were found and corrected from their papers on 19 October; the direction check of the other text-parsed rows is closed (addenda 18 to 20, `data/direction_check_log.csv`): the full texts of Chen 2019 and Fisher 2017 confirmed their rows |
 | 3 Parameter derivation | **done provisionally** for the four-term panel (PTX3, CLEC7A with two parameters, TLR4, CD209); IL10 and IFNG dropped (D14). One to five strand-resolved or odds-ratio studies per term, so every effect is provisional |
 | 4 Baseline | **done**: the refit baseline on the 4,078-admission base cohort (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20% |
 | 5 Genetic layer simulation | **in progress, first results in** (addenda 11 to 17): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b |
@@ -473,7 +473,7 @@ CD209 G at rs4804800 1.80 (1.14 to 2.73, 3). IL10 (one study) and IFNG (two, dis
 The strand of rs7309123 in each of ten studies was determined from control frequencies and the papers (`data/rs7309123_strand_resolution.csv`): resolved with medium to high confidence for five (Fisher, Schnetzke, Tanpaibule, and, from their full texts, Kalkanci 2020 and Chen 2019), low to medium for one, weakly for three, undetermined for one (Zhao 2022). Kalkanci's primers also confirm that its rs16910526 labels are on the opposite strand while its rs7309123 labels are forward.
 
 **An error found and corrected (19 October, addendum 16 section 0).** Fischer 2016 lists the reference group first in its table; the pipeline read the first group as the numerator, so its Y238X and rs7309123 effects were reversed. 12 rows are corrected with their evidence, the Y238X pooled OR moved from 0.98 to 0.84, and every script using CLEC7A was rerun: the layer gains moved by at most 0.00006. 139 rows in the four terms' analyses were read from comparison text with no reference marker;
-the five used in primary analyses were inspected and the studies behind them have since been checked against their tables. The direction check (addenda 18 and 19) found Tang 2020, Tanpaibule 2020 and Chen 2019 correct, one reversed row in Sainz 2012 (corrected), and could not confirm Fisher 2017 from the open text. Two earlier errors of the same family: Herrero-Sanchez 2018's reversed reference label (addendum 8) and a first interaction model for Aim 3b that left out the neutropenia main effect (found and fixed during the run).
+the five used in primary analyses were inspected and the studies behind them have since been checked against their tables. The direction check (addenda 18 to 20) found Tang 2020, Tanpaibule 2020, Chen 2019 and Fisher 2017 correct and one reversed row in Sainz 2012 (corrected); only Lupianez 2015's two IFNG rows were not checked. Two earlier errors of the same family: Herrero-Sanchez 2018's reversed reference label (addendum 8) and a first interaction model for Aim 3b that left out the neutropenia main effect (found and fixed during the run).
 
 **The genetic layer (addenda 11 to 14).** On the base cohort with the refit baseline, genotype fixed per patient, each term's risk-class dosage Hardy-Weinberg in gnomAD NFE frequencies, the true logit recentred to hold prevalence, the gain over the baseline computed exactly over 128 clinical profiles by the dosage combinations, for 2,000 draws of the true effects from the pooled posteriors:
 - **Primary result.** With the true effects in the score (the ceiling) the median gain is +0.0006 at 5% and +0.0010 at 20%; with the pooled estimates in the score (realised), +0.0004 and +0.0008. The MCID is +0.00458 at 5% (reached in at most about 1% of draws) and +0.00160 at 20% (reached in 16% of draws for the ceiling score, 3% for the realised score).
@@ -498,7 +498,7 @@ With estimated weights (independent per-locus error, SD 0.05 to 0.40) precision 
 
 ## 7. What is open
 
-1. **Round-2 verification.** Add the record of the human checks to `data/`; obtain Fisher 2017's full tables to settle the direction of its hazard-ratio rows (the other studies are checked, addenda 18 and 19); decide the three questions left in addendum 8 (Herrero-Sanchez Table 5, Brunel's counts and homozygote group, hazard-ratio studies).
+1. **Round-2 verification.** Add the record of the human checks to `data/` (the direction check is closed, addenda 18 to 20); decide the three questions left in addendum 8 (Herrero-Sanchez Table 5, Brunel's counts and homozygote group, hazard-ratio studies).
 2. **rs7309123 strand.** Only Zhao 2022 is undetermined (no allele letters printed). East Asian haplotype frequencies would let the Thai and Chinese studies enter the second parameter.
 3. **Cohort overlap.** The Spanish registry series (Sainz / Lupiañez / Sánchez-Maldonado) and the Jena AML cohorts (S018, S023, S073; S023 is treated as the same cohort as S073) are not independent studies and have only been partly adjudicated.
 4. **Thin evidence.** One to five studies per term; donor genotype one to two studies per term and none for CD209; TLR4's supplementary retrieval (Fisher 2017's supplement) is still outstanding; the priors on the pooled effect and on tau are proposals.
@@ -507,7 +507,7 @@ With estimated weights (independent per-locus error, SD 0.05 to 0.40) precision 
 
 ## 8. Suggested order of work
 
-1. Add the round-2 verification record to the repository and obtain Fisher 2017's full tables to close the direction check.
+1. Add the round-2 verification record to the repository (the direction check is closed).
 2. Resolve what can be resolved of the three undetermined strands, and decide whether to obtain East Asian haplotype frequencies.
 3. ~~Repeat Aim 3b and the attribution with five terms on the correlation ensemble and the sensitivity cohorts~~ Done (addendum 18): CLEC7A's lead and the neutropenia pattern hold.
 4. Decide the write-up structure from the results above (the headline is that a four-term panel falls well short of the 5% MCID, and what architecture would not), with the figures of addenda 16 and 17.

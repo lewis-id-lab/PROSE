@@ -1721,3 +1721,23 @@ Layer with two CLEC7A parameters (2,000 draws; before in brackets): ceiling scor
 Zhao 2022's strand (rs7309123 appears only in a donor-genotype screening table with no allele letters); East Asian haplotype frequencies (which would let Chen's and Tanpaibule's contrasts enter the second parameter); Fisher 2017's hazard-ratio rows, whose direction is still unconfirmed.
 
 Code and outputs: `data/rs7309123_strand_resolution.csv` (S056 and S074 now grade A, with a `data_concern` column), `scripts/22_clec7a_second_parameter.R`, `output/clec7a_second_*.csv`, `output/genetic_attribution_second_clec7a_summary.csv`, `output/aim3b_*_second_clec7a.csv`, `output/robust5_*.csv`.
+
+---
+
+## Addendum 20, 19 October 2026: Fisher 2017 read in full, and the direction check is closed (D24)
+
+Written after the tag. The paper was supplied as a PDF and read in full. Nothing in D1 to D23 changes.
+
+**What the paper settles.**
+
+- **The extracted numbers.** Every one of the 23 extracted hazard ratios for the panel SNPs (rs16910526, rs2305619, rs3816527, rs7309123, rs7248637 and rs2069705) equals a value printed in Table 3 or Table 4, with its interval: six rows for rs16910526, six for rs2305619, four for rs3816527, five for rs7248637, one each for rs7309123 and rs2069705.
+- **The direction of the hazard ratios.** The Figure 1 legend defines the dominant model for the minor allele ("*a, Aa, or aa") with AA, homozygous for the major allele, as the comparison. The cumulative-incidence curves agree with every hazard ratio: carriers of the rs16910526 minor allele have more proven or probable IA than AA (about 21% to 30% against 16%, HR 1.49, 1.77 and 1.30); minor-allele homozygotes of rs7309123 have more than the others (19.5% against 15.5%, recessive HR 1.29); carriers of the rs2069705 minor allele have less IA by serum galactomannan than AA (HR 0.73). So the numerator is the carriers of the minor allele (dominant model) or the minor-allele homozygotes (recessive model), as the extraction reads it, and **the direction check of addenda 18 and 19 is closed**: all seven studies with text-parsed rows have a recorded verdict (`data/direction_check_log.csv`), and only Lupianez 2015's two IFNG rows (a term no longer in the panel) were not checked.
+- **Genome labels.** Table 4's blank genome and time cells carry down, so the 2-year allelic and dominant rows for rs16910526 (1.29 and 1.30) belong to the recipient, as extracted.
+
+**Caveats the paper adds.**
+
+- *Allele designations change between tables.* Table 3 lists PTX3's alleles as minor/major "to keep our model consistent with the original articles", where Table 4 lists major/minor, and rs16910526 appears as G/T in Tables 1 and 3 and A/C in Table 4 (strand). For rs16910526 the minor allele is C in every reading (MAF 0.08), so the dominant rows are unambiguous. For the PTX3 donor row that the pipeline uses (Table 3, recessive, HR 1.33 for A/A against the others), the identity of the homozygote group rests on the paper's note that the original articles' allele is analysed; it agrees with the h2 definition (A at rs2305619 is the risk allele), so no change is made, but the donor PTX3 evidence carries this one assumption.
+- *The text and the tables disagree on which SNPs were validated.* The Results text says rs1840680 (PTX3) and rs7309123 (CLEC7A) were replicated; Table 3 lists rs2305619 and rs16910526, and rs7309123 appears only in Table 4. The pipeline follows the tables.
+- *Hazard-ratio rows only enter sensitivity analyses,* so no result changes.
+
+Code and outputs: `data/direction_check_log.csv`, `tests/testthat/test-term-mapping.R`.
