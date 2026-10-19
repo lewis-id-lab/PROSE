@@ -1235,3 +1235,54 @@ Sampling variability of a study with the stratum's size (272 admissions, 43 even
 
 Code and outputs: `R/boscore_data.R` (`allo_hsct_flag`, `allo_summary`), `scripts/08_reconcile_boscore.R`, `R/genetic_layer.R` (`allo_stratum_data`), `scripts/20_genetic_donor_stratum.R`,
 `tests/testthat/test-boscore-data.R`, `tests/testthat/test-genetic-layer.R`, `output/allo_hsct_summary.csv`, `output/genetic_donor_{strata,stratum_summary,baseline_stratum,sampling_summary}.csv`.
+
+---
+
+## Addendum 15, 19 October 2026: Aim 3b started, the expected direction stated before the run (D19)
+
+Written after the tag and **before any Aim 3b result exists**. This section (prediction and design) was committed and pushed first, so the prediction cannot be adjusted to the results.
+Results follow in a later section of this addendum. Provisional, like addenda 11 to 14.
+
+### What Aim 3b is, and the tension
+
+Aim 3b is a neutropenia-stratified falsification test (project description). Feys and colleagues found that PTX3 and CLEC7A variants do not predispose to influenza- or COVID-associated aspergillosis, and
+explain it by inflammatory levelling: severe viral pneumonia induces PTX3 as an acute-phase protein, so genotype-determined baseline differences are swamped. Neutropenia is used as a **proxy for the
+non-inflamed host**, not as a claim that the effects are neutrophil-dependent. The hypothesis under test, **H_F**, is therefore that **per-copy genetic effects are larger in neutropenic than in non-neutropenic
+admissions**. The only direct stratified evidence, Brunel 2018 (supplementary figure, transcribed by an agent, derived by subtraction and flagged ambiguous), points the other way: the PTX3 homozygote contrast is
+significant in the non-neutropenic stratum (P = 0.008 and 0.002 for the two SNPs) and not in the neutropenic one (P = 0.7 and 0.6). Its stratum is neutropenia at presentation (ANC below 500), which is not
+the cohort's prolonged-neutropenia predictor, so even that evidence is not like for like.
+
+### What the simulation can and cannot do
+
+The effect modification is an input of the simulation, so the simulation cannot decide between Feys and Brunel. It can show (i) what each reading would mean for decisions, at the same pooled
+effect; (ii) what it costs to build a stratified score on the wrong reading; and (iii) whether a study of this size could tell the readings apart, which is the question that matters for a falsification test.
+
+### Expected direction (written before the run)
+
+| # | prediction | confidence |
+|---|---|---|
+| E1 | The effect-modification ratio estimated from Brunel's counts (neutropenic over non-neutropenic) has a point estimate **below 1**, the opposite of H_F, with an interval that includes 1 | high for the sign of the point estimate, high that the interval includes 1 |
+| E2 | With **homogeneous** effects, the gain per admission is larger in the neutropenic stratum, because it holds most of the events, and the neutropenic stratum contributes more than its share of admissions (about a quarter) to the whole-cohort gain | medium |
+| E3 | At the same pooled effect, a truth in the H_F direction gives a **larger whole-cohort gain** than a truth in the Brunel direction at the 20% threshold, because the effects sit where the events are. At 5% the baseline probably already flags most neutropenic admissions (as in the allo stratum), leaving little room, so I do not commit to a direction at 5% | low to medium at 20%, none at 5% |
+| E4 | A stratified score built on the wrong reading **loses gain**: under a Brunel-direction truth, a score that assumes H_F does worse than the common-effect score, and the reverse | high, qualitatively |
+| E5 | The falsification test is **underpowered** in a study of this size (133 events). Fitting a genotype-by-neutropenia interaction in simulated studies, the estimate has the true sign in at most about 75% of studies under a moderate modification (ratio 4 or 1/4), and the interaction reaches P < 0.05 in at most 15% | medium |
+
+So the expected headline is: the neutropenia split matters less than the question of whether the whole-cohort pooled effects are right, and a study of this size could not confirm or reject H_F. If E1 holds, the
+available evidence leans against H_F, but weakly.
+
+### D19. Design (proposed; fixed before the run)
+
+- **Strata.** The prolonged-neutropenia predictor of the base cohort (4,078 admissions): neutropenic and non-neutropenic. The decision rule is the refit baseline in both. Each stratum has its own profile
+  distribution, share, and event rate.
+- **Truth.** Stratum-specific per-copy effects, beta_N and beta_NN, with the event-weighted average equal to the pooled effect beta, so the whole-cohort pooled evidence stays consistent:
+  w beta_N + (1 - w) beta_NN = beta, where w is the share of the baseline's events that fall in the neutropenic stratum. The modification ratio r = beta_N / beta_NN takes the values
+  infinity (all in neutropenic admissions), 4, 1 (homogeneous, as in addenda 11 to 14), 1/4 and 0 (all in non-neutropenic), plus a data-based value: r drawn from the Brunel counts,
+  log r ~ N(estimate, SE). The truth is recentred within each stratum to hold that stratum's event rate (D5). Effects are drawn from the pooled posteriors as before (mean reading, 1,000 draws).
+- **Scores** (fixed, not fitted): the baseline; the **ceiling** (true stratum-specific effects, an oracle that knows the modification); the **common** score (pooled medians in both strata, the
+  "realised" score of the earlier addenda); and **assumed-H_F** and **assumed-Brunel** scores (pooled medians distributed between the strata as ratios of 4 and 1/4 would imply). Each is recentred to its stratum's baseline mean risk.
+- **Outcomes.** Net-benefit gain over the baseline in each stratum (per stratum admission) and for the whole cohort (shares times the stratum gains, a single threshold), at 5% (primary) and 20% (secondary),
+  against the whole-cohort MCID (+0.00458, +0.00160) and each stratum's own MCID (20% more true cases among its admissions at no extra false positives).
+- **The falsification test.** In each simulated study of 4,078 admissions (patients resampled, genotype per patient, outcomes from the truth), a logistic model with the baseline logit as an offset,
+  outcome ~ offset(logit) + S + S:N, where S is the pooled-median genetic score and N the neutropenia indicator. The interaction coefficient is the estimated modification on the log-odds scale. Reported: the share of studies
+  in which it has the true sign, and the share with P < 0.05 in the true direction. 1,000 studies per truth.
+- **Not included:** per-term attribution, the correlation ensemble, the sensitivity cohorts, donor genotype, and any link between genotype and neutropenia (genotype is independent of the clinical profile, as before).
