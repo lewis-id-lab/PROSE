@@ -1,6 +1,6 @@
 # Where we are, and how to pick this up
 
-Written 17 October 2026. This is the short hand-off. The long working record is `02_current_status.md`
+First written 17 October 2026, last updated 19 October 2026. This is the short hand-off. The long working record is `02_current_status.md`
 (evidence base, extraction detail), and the design decisions are in `phase3_decisions.md`.
 
 The project asks whether adding host genetic variants to a validated clinical score (Stanzani 2019) for invasive
@@ -9,17 +9,15 @@ the 5% threshold as the primary endpoint.
 
 ## Where the code lives, and the website
 
-The repository is **lewis-id-lab/PROSE** (private), set as `origin`; the earlier personal copy, Russlewisbo/PROSE, is the remote `personal` and is no
+The repository is **lewis-id-lab/PROSE** (public since 19 October 2026), set as `origin`; the earlier personal copy, Russlewisbo/PROSE, is the remote `personal` and is no
 longer updated. Push both `main` and the pre-specification tag (`git push origin main prespec-lock`) from this computer if either has changed.
 `git status` should show no spreadsheet before you commit. The per-draw simulation files of the genetic layer
 (`output/genetic_*_draws.csv`, 2 to 9 MB each) are gitignored and regenerate exactly from scripts 16 to 18.
 
-**The website** is the Quarto site in `docs/`. To update it: edit the `.qmd` pages (or the decision record, which is included in the Pre-specified decisions page),
-run `quarto render` from the project root, and commit `docs/` and `_freeze/` with the source. The workflow `.github/workflows/pages.yml` publishes `docs/` to GitHub Pages
-on every push to `main`, but only when the repository is public, because the organisation is on the free GitHub plan and Pages is not available there for private
-repositories. While the repository is private the job is skipped. To go live: make the repository public (this exposes the unpublished analysis, the decision record,
-the results and the extraction bundle zip; the repository was private from 18 October for that reason), then enable Pages once with
-`gh api -X POST repos/lewis-id-lab/PROSE/pages -f build_type=workflow` (or Settings, Pages, Source: GitHub Actions). The site would be at https://lewis-id-lab.github.io/PROSE/.
+**The website** is the Quarto site in `docs/`, live at https://lewis-id-lab.github.io/PROSE/ and linked from https://lewis-id-lab.github.io/. To update it: edit the `.qmd` pages (or the decision record and the status log,
+which are included in the Pre-specified decisions and Status log pages), run `quarto render` from the project root, and commit `docs/` and `_freeze/` with the source. The workflow `.github/workflows/pages.yml`
+publishes `docs/` to GitHub Pages on every push to `main` that changes it. Pages is enabled with the workflow build; to switch the repository back to private, which would take the site down on the
+free plan, change its visibility in Settings.
 
 ## Starting on another computer
 
@@ -90,21 +88,21 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Phase | State |
 |---|---|
 | 0 Set-up, 1 Literature search | complete (831 unique records screened) |
-| 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
-| 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
+| 2 Screening and extraction | round 1 complete; the user reports the human round-2 checks confirmed the extraction (record not in the repo); a direction check of the text-parsed rows is still to do |
+| 3 Parameter derivation | **done provisionally** for PTX3, CLEC7A (two parameters), TLR4 and CD209 (addenda 7 to 9 and 16); IL10 and IFNG dropped (D14) |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **in progress** (addenda 11 to 17): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum a first Aim 3b, the second CLEC7A parameter and the Aim 4 sweep; a direction check of the text-parsed extraction rows remains |
-| 6 Sensitivity and architecture sweep | not started |
-| 7 Write-up | not started |
+| 5 Genetic layer simulation | **in progress, first results in** (addenda 11 to 17): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b and the second CLEC7A parameter |
+| 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done |
+| 7 Write-up | not started; the analysis site is live |
 
-### Evidence base (provisional: no row has been checked against a source PDF by a human)
+### Evidence base (provisional: the human round-2 checks are reported complete but not recorded here; one study's direction was corrected from its paper on 19 October)
 
 - 81 records included, 63 extracted, 2,008 variant rows. 970 are usable (823 estimates, 115 complete 2x3 genotype
   tables, 32 complete 2x2 tables).
 - 13 variants reach three or more meta-analysable studies. Six reach four or more independent cohorts:
   rs16910526, rs2305619, rs7309123, rs3816527, rs4986790, rs4986791.
-- Allele orientation is unresolved for 10 study-by-variant cells (strand flips) and 7 rs7309123 cells (C/G
-  palindrome).
+- Allele orientation: the 10 strand-flip cells are handled; the strand of rs7309123 is resolved for four of ten studies (grades A and B), weakly for three and undetermined for three
+  (`data/rs7309123_strand_resolution.csv`).
 
 ### Pre-specification, locked at tag `prespec-lock` (commit `90e3656`)
 
@@ -299,9 +297,8 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
    off-by-one Table 2 counts and the question of whether the published equation was fitted with the twins are set
    aside by decision.
 2. ~~Decide on the empirical joint.~~ Done: adopted as D8 (addendum 2).
-3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
-   strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
-   reported allele's control frequency with gnomAD (G 0.43, C 0.57) in European cohorts.
+3. **Round-2 verification:** add the record of the human checks to `data/`, and run the **direction check of the text-parsed rows** (Tang S026, Tanpaibule S077, Sainz S071, Chen S074, Fisher S080) against their tables:
+   139 rows were read from comparison text with no reference marker, and one study (Fischer 2016) had its direction reversed (addendum 16, section 0).
 4. **Evidence-to-parameter mapping (all terms done provisionally, addenda 7 to 9 and 16):** the user reports (19 October) that the human round-2
    checks confirmed the extraction against the PDFs and changed none of the flagged items; the verification record is not in the repo, so
    add it to `data/`. IL10 and IFNG were dropped on 19 October (addendum 10), so the panel is PTX3, CLEC7A, TLR4 and CD209. **An error was found on 19 October (addendum 16, section 0):**
@@ -309,24 +306,18 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
    (the Y238X pooled OR moved from 0.98 to 0.84; the layer results by at most 0.00006 in gain). **To do: a direction check of the other text-parsed rows (Tang, Tanpaibule, Sainz, Chen, Fisher) against their tables.**
    The second CLEC7A parameter (OR 1.8 per A-G copy, from two strand-resolved studies) is estimated (addendum 16) and roughly doubles the CLEC7A-containing layer's gain; three studies' strands remain undetermined.
    Open questions from addendum 8 that the checks did not settle: Herrero-Sanchez Table 5, Brunel, hazard ratios for the terms with enough odds-ratio studies.
-5. **Genetic layer (addenda 11 to 13):** `R/genetic_layer.R`, `R/genetic_helpers.R` and scripts 16 to 20 add the four terms to the refit baseline
-   on `load_base_cohort()` (genotype fixed per patient, exact over 128 profiles by 81 dosage combinations, recentred to hold prevalence)
-   and compare the gain with the MCID. Results: at 5% the median gain is +0.0004 to +0.0008 against an MCID of +0.00458, reached in
-   at most about 1% of draws; at 20% (secondary) +0.0008 to +0.0013 against +0.00160, reached in 3.5% to 36%. Neither the 150-member correlation
-   ensemble nor the sensitivity cohorts (published equation on 4,078 or 4,127 rows, refit on 4,127) change this materially. A study of this size has a
-   sampling SD of the observed gain of 0.0006 to 0.0013 at 5%, the same size as the expected gain or larger, and it reaches the 5% MCID in at most
-   5% of repetitions in any run. CD209 supplies half or more of the gain (Shapley), PTX3 and TLR4 most of the rest, CLEC7A almost none. Donor genotype
-   in the allo-HSCT stratum (6.7% of admissions; the base cohort now carries an admission-level allo flag, addendum 14) adds 0.4 to 1.4 cases per 1,000 allo admissions at 5%
-   against 30 needed, because the baseline already flags 77% of that stratum (secondary analysis; donor evidence is one to two studies per term, none for CD209).
+5. **Genetic layer (addenda 11 to 17):** `R/genetic_layer.R`, `R/genetic_helpers.R` and scripts 16 to 25 add the panel to the refit baseline on `load_base_cohort()` (genotype fixed per patient, exact over 128 profiles by the dosage combinations,
+   recentred to hold prevalence) and compare the gain with the MCID. Four-term panel: the median gain is about +0.0006 at 5% against an MCID of +0.00458 (reached in at most 1% of draws) and +0.0010 at 20% against +0.00160 (reached in 16%).
+   The correlation ensemble and the sensitivity cohorts change this little; a study of this size has a sampling SD of the observed gain of 0.0006 to 0.0013 at 5%, as large as the gain. Shapley: CD209 about 52%, PTX3 23%, TLR4 19%, CLEC7A 7%.
+   **With the second CLEC7A parameter (OR 1.8 per A-G copy, two strand-resolved studies) the gain roughly doubles and CLEC7A supplies about 48% of it** (CD209 28%, PTX3 13%, TLR4 10%); this is conditional on two studies.
+   Donor genotype in the allo-HSCT stratum (6.7% of admissions, admission-level flag from addendum 14) adds 0.4 to 1.4 cases per 1,000 allo admissions at 5% against 30 needed, because the baseline already flags 77% of that stratum (donor evidence: one to two studies per term, none for CD209).
    To do: confirm the reading of "realised" (addendum 11).
-6. **Aim 3b (started, addendum 15):** the expected direction was committed before the run (`dc60a4e`). The Feys hypothesis (effects larger in neutropenic admissions) and Brunel's stratified data (larger in non-neutropenic,
-   P = 0.07 and 0.049) point opposite ways. Neutropenic admissions supply 81% to 96% of the whole-cohort gain under homogeneous effects. A common score with pooled estimates is the safer choice (a score built on the Feys reading is the
-   most harmful when wrong), and a cohort-sized study could detect a Brunel-sized interaction (96% power) and a Feys-sized one (59% to 97%), better than predicted. To do: a genotyped neutropenia-stratified analysis would be the real test; per-term
-   attribution, the correlation ensemble and the sensitivity cohorts are not repeated for Aim 3b.
-   With the second CLEC7A parameter (addendum 17) the whole-cohort gain roughly doubles in every scenario, the neutropenic stratum still supplies about 82% to 95% of it, and the interaction test is better powered (88% for a Feys-sized
-   modification, 59% at ratio 4, 100% for Brunel-sized ones).
-7. **Aim 4 sweep (done, addendum 16):** 46% of the 4,000 architectures reach the 5% MCID and 77% the 20% MCID. At OR 1.5 or below no number of loci up to 20 reaches the 5% MCID; at OR 2.0 it takes 7 to 9 loci at common frequencies;
-   the four-term panel is equivalent to about 7 loci of OR 1.3. With estimated weights (addendum 17) per-locus precision of 0.1 or better costs almost nothing; at 0.2 to 0.4, the precision of the present evidence, 12% to a third of the architectures that reach the MCID with exact weights no longer do. Not done: the pathogen-specificity scenario.
+6. **Aim 3b (addenda 15 and 17):** the expected direction was committed before the run (`dc60a4e`). The Feys hypothesis (effects larger in neutropenic admissions) and Brunel's stratified data (larger in non-neutropenic, P = 0.07 and 0.049) point opposite ways.
+   Neutropenic admissions supply 81% to 96% of the whole-cohort gain under homogeneous effects. A common score with pooled estimates is the safer choice (a score built on the Feys reading is the most harmful when wrong). A cohort-sized study would detect a Feys-sized modification
+   (59% power with four terms, 88% with five) and a Brunel-sized one (95% to 100%), better than predicted. The five-term gain roughly doubles in every scenario. To do: a genotyped neutropenia-stratified analysis would be the real test; the correlation ensemble and the sensitivity cohorts are not repeated for Aim 3b.
+7. **Aim 4 sweep (addenda 16 and 17):** 46% of the 4,000 architectures reach the 5% MCID and 77% the 20% MCID. At OR 1.5 or below no number of loci up to 20 reaches the 5% MCID; at OR 2.0 it takes 7 to 9 loci at common frequencies;
+   the four-term panel is equivalent to about 7 loci of OR 1.3. With estimated weights, per-locus precision of 0.1 or better costs almost nothing; at 0.2 to 0.4, the precision of the present evidence, 12% to a third of the architectures that reach the MCID with exact weights no longer do. Not done: the pathogen-specificity scenario.
+8. **Strand and overlap:** three rs7309123 studies remain undetermined (two need their full texts); the Spanish registry and Jena overlaps are only partly adjudicated.
 
 Loose ends for write-up: the PubMed search date is unrecorded (Embase was 8 October 2026); the automated
 screening decision file for all 831 records is not assembled; Skonieczna 2017's supplement is missing; whether an
