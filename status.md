@@ -7,21 +7,24 @@ The project asks whether adding host genetic variants to a validated clinical sc
 mould disease (IMD) would change clinical decisions. It is a simulation study, with decision-curve net benefit at
 the 5% threshold as the primary endpoint.
 
-## Before you leave this computer
+## Where the code lives, and the website
 
-Local `main` is one commit ahead of GitHub, and the pre-specification tag exists only locally.
+The repository is **lewis-id-lab/PROSE** (private), set as `origin`; the earlier personal copy, Russlewisbo/PROSE, is the remote `personal` and is no
+longer updated. Push both `main` and the pre-specification tag (`git push origin main prespec-lock`) from this computer if either has changed.
+`git status` should show no spreadsheet before you commit. The per-draw simulation files of the genetic layer
+(`output/genetic_*_draws.csv`, 2 to 9 MB each) are gitignored and regenerate exactly from scripts 16 to 18.
 
-```bash
-git add -A        # bs.xlsx is gitignored; check `git status` shows no spreadsheet
-git commit -m "Add hand-off status file, renv lockfile and bs.xlsx checks"
-git push origin main
-git push origin prespec-lock
-```
+**The website** is the Quarto site in `docs/`. To update it: edit the `.qmd` pages (or the decision record, which is included in the Pre-specified decisions page),
+run `quarto render` from the project root, and commit `docs/` and `_freeze/` with the source. The workflow `.github/workflows/pages.yml` publishes `docs/` to GitHub Pages
+on every push to `main`, but only when the repository is public, because the organisation is on the free GitHub plan and Pages is not available there for private
+repositories. While the repository is private the job is skipped. To go live: make the repository public (this exposes the unpublished analysis, the decision record,
+the results and the extraction bundle zip; the repository was private from 18 October for that reason), then enable Pages once with
+`gh api -X POST repos/lewis-id-lab/PROSE/pages -f build_type=workflow` (or Settings, Pages, Source: GitHub Actions). The site would be at https://lewis-id-lab.github.io/PROSE/.
 
 ## Starting on another computer
 
 ```bash
-git clone https://github.com/Russlewisbo/PROSE.git
+git clone https://github.com/lewis-id-lab/PROSE.git
 cd PROSE
 git fetch --tags        # needs the tag pushed first
 ```
@@ -41,7 +44,7 @@ libraries), which Posit Public Package Manager binaries avoid. After installing 
 Check everything works, from the project root:
 
 ```r
-source("tests/run_tests.R")     # 130 tests, 706 expectations, all passing at the last run
+source("tests/run_tests.R")     # the full suite, all passing at the last run
                                 # (some tests skip if the gitignored data files are absent)
 ```
 
@@ -62,6 +65,12 @@ scripts, run them from the project root, in this order:
 | `scripts/06_pseudonymise_boscore.R` | builds the pseudonymised extract of the full BOSCORE file into `data/restricted/` (gitignored) | seconds |
 | `scripts/08_reconcile_boscore.R` | reconciles `boscore.xlsx` with `bs.xlsx` (predictor mapping, inclusion rule, the 49 twin pairs), stops if any check fails, writes the pseudonymised base cohort | seconds |
 | `scripts/09_baseline_cohort.R` | baseline decision curve and MCID on the base cohort (4,078 unique admissions) with a patient-level bootstrap, plus sensitivity analyses | about 10 s |
+| `scripts/15_map_cd209_il10_ifng_evidence.R` | CD209 (G at rs4804800), IL10 and IFNG mapping and pooling, with a per-term hazard-ratio fallback; run after 13 | seconds |
+| `scripts/16_genetic_layer.R` | first pass of the genetic layer: four terms on the refit baseline, 2,000 posterior draws under two readings of the truth, gain over the baseline against the MCID, check against simulation; run after 11, 12, 14 and 15 | about 70 s |
+| `scripts/17_genetic_layer_extensions.R` | genetic layer extensions: the 150-member correlation ensemble, Shapley attribution to the four terms, sampling variability of a 4,078-admission study; run after 16 (builds the cached ensemble profile distributions on first run) | about 2.5 min on 15 cores |
+| `scripts/18_genetic_ensemble_sampling.R` | sampling variability of a study with the clinical mix drawn from a copula member, plus controls; run after 17 | about 35 s |
+| `scripts/19_genetic_sensitivity_cohorts.R` | the genetic layer (exact, attribution, sampling) on the published equation (4,078 and 4,127 rows) and the refit on 4,127 rows; set `SENS_ONLY` to run one setting at a time | about 1.5 min each |
+| `scripts/20_genetic_donor_stratum.R` | donor genotype in the allo-HSCT stratum (D1 secondary analysis): stratum built from Table 1 margins, donor effects, gain against the stratum and whole-cohort MCIDs, sampling variability; needs the donor draws from scripts 12 and 14 | about 1 min |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
@@ -79,7 +88,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
 | 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | not started |
+| 5 Genetic layer simulation | **in progress** (addenda 11 to 13): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum; Aim 3b and the CLEC7A second parameter remain |
 | 6 Sensitivity and architecture sweep | not started |
 | 7 Write-up | not started |
 
@@ -97,7 +106,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Decision | Settled |
 |---|---|
 | Primary genotype | recipient; donor is a secondary analysis in the allogeneic HSCT stratum only |
-| Panel | four haplotype terms (PTX3, CLEC7A, TLR4, CD209); IL10 rs1800896 and IFNG rs2069705 optional |
+| Panel | four haplotype terms (PTX3, CLEC7A, TLR4, CD209); IL10 rs1800896 and IFNG rs2069705 dropped on 19 October 2026 (addendum 10, D14) |
 | Dropped / excluded | TLR9 rs352140 dropped; Herrero-Sanchez 2018 excluded from the primary analysis |
 | TLR4 pooling | carrier model with a continuity correction |
 | Genetic term | recentred so prevalence stays at 3.3% |
@@ -260,6 +269,9 @@ against non-carriers (D3c).
 | PTX3 h2 | 5 studies | 1.35 (0.99 to 1.81) | 0.17 |
 | CLEC7A Y238X | 4 studies | 0.98 (0.56 to 1.72) | 0.26 |
 | TLR4 G-T | 4 studies | 1.44 (0.77 to 2.69) | 0.27 |
+| CD209 G at rs4804800 | 3 studies | 1.80 (1.14 to 2.73) | 0.21 |
+| IL10 rs1800896 C | 1 study, HR fallback | 2.59 (1.01 to 5.02), prior-dominated; **dropped from the panel (D14)** | 0.33 |
+| IFNG rs2069705 G | 2 studies, HR fallback | 0.82 (0.49 to 1.69), prior-dominated; **dropped from the panel (D14)** | 0.33 |
 
 **Source checks (addendum 8).** Herrero-Sanchez 2018 was read in full: the reference label is reversed in every table of the paper,
 so the extraction looked as if the study pointed the other way. That was an artefact, 30 rows are corrected, and the study's effect is
@@ -285,13 +297,22 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
 3. **Round-2 verification of the 299 panel rows** (`panel_verification_worklist.csv`, inside the zip): the 10
    strand-flip cells and 7 rs7309123 cells first, then the 33 agent-transcribed rows. For rs7309123, compare the
    reported allele's control frequency with gnomAD (G 0.43, C 0.57) in European cohorts.
-4. **Evidence-to-parameter mapping (PTX3, CLEC7A and TLR4 done provisionally, addenda 7 and 8):** still to do are CD209 and the optional IL10 and IFNG terms, the second CLEC7A parameter (needs the strand of rs7309123 per study) and checking the remaining rows against their sources (Tang, Schnetzke, Kalkanci, Tanpaibule, Fisher, and the supplements). The original plan: one effect per study per term, as a log odds ratio per risk allele
-   with nucleotide-pinned alleles; collapse overlapping cohorts (Spanish registry, Jena AML); map SNP effects to
-   haplotype effects; Bayesian random-effects pooling with prediction intervals.
-5. **Genetic layer:** build it on `load_base_cohort()` (patients with their admissions; genotype fixed per patient) and the refit baseline (`load_refit_params()`). Draw effects from the pooled posterior, recentre, and report the ceiling (true effects in the
-   score) and the realised value (published estimates in the score, a shrunk truth). Carry the correlation
-   ensemble through. Decide how to handle admissions per patient (about 2.1 per patient, genotype fixed per
-   patient).
+4. **Evidence-to-parameter mapping (all terms done provisionally, addenda 7 to 9):** the user reports (19 October) that the human round-2
+   checks confirmed the extraction against the PDFs and changed none of the flagged items; the verification record is not in the repo, so
+   add it to `data/`. IL10 and IFNG were dropped on 19 October (addendum 10), so the panel is PTX3, CLEC7A, TLR4 and CD209. Still to do: the second CLEC7A parameter
+   (needs the strand of rs7309123 per study; held at zero), and the open questions at the end of addendum 8 that the checks did not settle
+   (Herrero-Sanchez Table 5, Brunel, hazard ratios for the terms with enough odds-ratio studies).
+5. **Genetic layer (addenda 11 to 13):** `R/genetic_layer.R`, `R/genetic_helpers.R` and scripts 16 to 20 add the four terms to the refit baseline
+   on `load_base_cohort()` (genotype fixed per patient, exact over 128 profiles by 81 dosage combinations, recentred to hold prevalence)
+   and compare the gain with the MCID. Results: at 5% the median gain is +0.0004 to +0.0008 against an MCID of +0.00458, reached in
+   at most about 1% of draws; at 20% (secondary) +0.0008 to +0.0013 against +0.00160, reached in 3.5% to 36%. Neither the 150-member correlation
+   ensemble nor the sensitivity cohorts (published equation on 4,078 or 4,127 rows, refit on 4,127) change this materially. A study of this size has a
+   sampling SD of the observed gain of 0.0006 to 0.0013 at 5%, the same size as the expected gain or larger, and it reaches the 5% MCID in at most
+   5% of repetitions in any run. CD209 supplies half or more of the gain (Shapley), PTX3 and TLR4 most of the rest, CLEC7A almost none. Donor genotype
+   in the allo-HSCT stratum (7.1% of admissions) adds 3 to 4 cases per 1,000 allo admissions at 5% against 21 needed (secondary analysis; the stratum
+   is built from Table 1 margins because the base cohort has no allo flag, and donor evidence is one to two studies per term, none for CD209).
+   To do: confirm the reading of "realised" (addendum 11); add an admission-level allo flag to the pseudonymised base cohort if the analysis file has one;
+   the CLEC7A second parameter; Aim 3b.
 6. **Aim 3b:** note the design tension. The Feys logic predicts a genotype effect in neutropenic patients, but the
    only direct stratified evidence (Brunel 2018, derived by subtraction and flagged ambiguous) shows it in
    non-neutropenic patients. State the expected direction before running it.

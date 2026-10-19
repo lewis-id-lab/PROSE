@@ -1,0 +1,3 @@
+"study_id","first_author","year","rsid","cohort","tier","model","measure","method","y","se","beta","se_beta","flag","ancestry_as_reported","or_per_copy"
+"S046","Ceesay, M. Mansour",2016,"rs2069705","whole","counts_2x3","genotypic_3level","none_reported","counts 2x3, carriers against non-carriers",-0.925340567394073,0.951743088136134,0.654026951507622,0.711535971892795,"","87% white Europeans",1.92327017144164
+"S072","Lupiañez, C. B.",2015,"rs2069705","whole","estimate","dominant","OR","estimate, text",-0.462035459596559,0.21968233054067,-0.393620668174905,0.191560412327815,"reported on the opposite strand, complemented",NA,0.674609908718784

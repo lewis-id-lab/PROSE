@@ -49,4 +49,4 @@ clinically important difference fixed before any genetic result exists.
 | [Status log](status.qmd) | The full working status document |
 
 Source code, data and tests are in the
-[repository](https://github.com/Russlewisbo/PROSE).
+[repository](https://github.com/lewis-id-lab/PROSE).

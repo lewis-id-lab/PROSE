@@ -44,7 +44,7 @@ website:
         text: Status log
     tools:
       - icon: github
-        href: https://github.com/Russlewisbo/PROSE
+        href: https://github.com/lewis-id-lab/PROSE
         text: Repository
 
 format:

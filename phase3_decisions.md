@@ -722,3 +722,417 @@ donors and recipients and the extraction does not say which genotype its rows us
 Code and outputs: `R/source_verification.R`, `scripts/13_verify_ptx3_rows.R`, `scripts/14_map_clec7a_tlr4_evidence.R`,
 `data/source_checks_S035.csv`, `data/extraction_corrections.csv`, `output/ptx3_verification_log.csv`,
 `output/s035_direction_check.csv`, `output/s029_genotype_frequency_check.csv`, `output/clec7a_*.csv`, `output/tlr4_*.csv`.
+
+---
+
+## Addendum 9, 19 October 2026: CD209, IL10 and IFNG mapped (D13)
+
+Written after the tag. No genetic-layer result exists. Nothing in D1 to D12 changes.
+
+**Round-2 status.** The user reports that the human checks confirmed the extraction against the source PDFs and that none of the flagged
+items in addendum 8 changed. No verification record is in the repository, so the extraction used here is still the round-1 file plus the
+30 Herrero-Sanchez corrections, and the Brunel, de Boer, rs7309123 strand and Herrero-Sanchez Table 5 questions keep their addendum 8 treatment.
+The record of the checks should be added to `data/` so the claim can be traced.
+
+### D13. Decisions made on 19 October 2026
+
+- **CD209 risk class: chromosomes carrying G at rs4804800** (G-A and G-G, 12.5% in gnomAD NFE). rs4804800 rows map to it directly;
+  rs7248637 rows (A allele, r2 = 0.41) map through the haplotype structure and are used only where a study has no rs4804800 row.
+  A second CD209 parameter is not estimated.
+- **Hazard-ratio rule, per term.** Odds-ratio evidence is the primary analysis. If it has fewer than three studies, hazard-ratio studies
+  are added and the scenario is labelled as a fallback. PTX3, CLEC7A and TLR4 are unchanged (all have four or more studies, and their
+  hazard-ratio versions stay sensitivity analyses). The question of Fisher 2017 joining the primary analysis for those terms stays closed.
+- **IL10 and IFNG risk alleles** (my choice, open to change): the forward-strand allele most studies report as their effect allele, IL10 C
+  (reported as G) and IFNG G (reported as C). A study that reports the other allele maps to the same class with the sign reversed.
+
+### Mapping rule changes
+
+Two changes to the shared code, both checked by re-running scripts 12 and 14, which reproduce every earlier output unchanged (the
+row-effect files gain one column):
+
+1. Three more subgroup labels count as whole-cohort analyses: Lupianez 2015's "patient (recipient) genotype" (phase 1 and overall
+   combined) and Fisher 2017's "recipient (PT) genotype". Without them, IFNG lost its only odds-ratio study and Fisher's CD209 rows were dropped.
+2. Within a study, an "overall combined" analysis is preferred to the phase analyses it contains. Before, the phase 1 additive row
+   outranked the combined dominant row only because of the model-type ordering, which would have used the smaller cohort by accident.
+
+### Results (provisional)
+
+| term | primary analysis | studies | OR per copy of the risk class (90% interval) | tau |
+|---|---|---|---|---|
+| CD209 G at rs4804800 | odds ratios | 3 (Schnetzke 2024, Sainz 2012, Tanpaibule 2020) | 1.80 (1.14 to 2.73) | 0.21 |
+| IL10 rs1800896 C | fallback, hazard ratios added | 1 (Tanpaibule 2020) | 2.59 (1.01 to 5.02) | 0.33 |
+| IFNG rs2069705 G | fallback, hazard ratios added | 2 (Ceesay 2016, Lupianez 2015) | 0.82 (0.49 to 1.69) | 0.33 |
+
+- **CD209** is positive in all three studies. Adding Fisher 2017 (hazard ratios, rs7248637) gives 1.45 (0.85 to 2.22), and the
+  European-ancestry subset 1.91 (1.09 to 3.20). The two rs7248637-mapped studies agree with rs4804800 (differences 0.21 and 0.07 on the log scale).
+  Sainz 2011's two rows cannot be mapped (an allele is missing and the comparison has more than two groups).
+- **IL10 rests on one study** with a dominant odds ratio of 5.3 (log 1.67, SE 0.49). The pooled value is that study shrunk by the prior, so
+  it is not a meta-analysis. Treating de Boer 2011 (genotype source unstated) as recipient gives two studies and 1.80 (0.95 to 3.20).
+  Cunha 2017 is donor genotype only.
+- **IFNG has two studies that disagree in direction** (OR per G copy 1.92 and 0.68). The hazard-ratio fallback adds nothing, because
+  Fisher's IFNG rows are donor genotype only. The pooled interval is mostly the prior.
+- For IL10 and IFNG the fallback does not reach three studies, so their posterior draws should enter the genetic layer only with that
+  caveat, or the terms should be dropped. This is a decision for you, since both are optional (D3).
+
+Code and outputs: `R/term_mapping.R`, `scripts/15_map_cd209_il10_ifng_evidence.R`, `tests/testthat/test-term-mapping.R`,
+`output/{cd209,il10,ifng}_*.csv`. Script 14 now uses the shared `run_term()`.
+
+---
+
+## Addendum 10, 19 October 2026: IL10 and IFNG dropped from the panel (D14)
+
+Written after the tag. No genetic-layer result exists. This uses the discretion D3 left open ("IL10 rs1800896, IFNG rs2069705:
+optional, include or drop at the analyst's discretion"), so no pre-specified decision is reversed.
+
+### D14. The panel is the four core terms
+
+**IL10 rs1800896 and IFNG rs2069705 are dropped.** The genetic layer uses four terms: PTX3 (h2), CLEC7A (Y238X), TLR4 (G-T) and
+CD209 (G at rs4804800).
+
+Reasons (addendum 9): after the hazard-ratio fallback IL10 rests on one study and IFNG on two, so a pooled value is mostly the
+prior. IFNG's two studies disagree in direction. Neither term has enough evidence to estimate an effect or its heterogeneity, and
+using a prior-dominated draw would add a term whose size is set by the prior rather than the literature.
+
+- The mapping outputs (`output/il10_*.csv`, `output/ifng_*.csv`) and the code stay in the repository and are described on the
+  evidence-mapping page. They are not read by the genetic layer.
+- Adding either term back later is a sensitivity analysis, not a change to the primary panel. It needs more studies or an
+  explicit prior for its effect.
+- Four terms is well inside the roughly ten-parameter ceiling that 133 events supports (D3), which leaves room for the Aim 4 sweep.
+
+---
+
+## Addendum 11, 19 October 2026: the genetic layer started (D15)
+
+Written after the tag. This is the first genetic-layer result. It is provisional, because every effect comes from the provisional
+evidence mapping (addenda 7 to 9), and the design below is my proposal, open to change before the layer is extended.
+
+### D15. Design of the first pass (proposed)
+
+| element | choice |
+|---|---|
+| Cohort | the base cohort of `load_base_cohort()`: 4,078 unique admissions, 1,945 patients, empirical profile distribution |
+| Baseline | the refit model (D10), as the clinical score and as the clinical part of the truth |
+| Terms | PTX3 h2, CLEC7A Y238X, TLR4 G-T, CD209 G at rs4804800 (D14); recipient genotype |
+| Genotype | dosage 0, 1 or 2 of each risk class, Hardy-Weinberg, gnomAD NFE class frequencies 48.2%, 7.7%, 6.1%, 12.5%; independent across terms (four chromosomes) and of the clinical profile (an assumption) |
+| Per patient | one genotype per patient, shared by all of the patient's admissions. This does not change the expected net benefit per admission, only its sampling variability |
+| Truth | baseline logit + sum of beta x dosage + a, with a chosen so that prevalence stays at the baseline value (D5) |
+| True effects | draws from each term's pooled posterior. "Mean": the pooled mean effect mu. "Predictive": mu plus between-study heterogeneity, theta ~ N(mu, tau) |
+| Scores | baseline; ceiling (true effects in the score); realised (posterior medians in the score, recentred) |
+| Comparison | gain in net benefit over the baseline under the same truth, tested against the pre-specified MCID: +0.00458 at 5%, +0.00160 at 20% (D10) |
+
+The calculation is exact over 128 profiles by 81 dosage combinations, not a sample. The exact engine agrees with a patient-level
+simulation on a 100-fold replicated cohort (gain at 5%: 0.00040 exact, 0.00041 simulated; at 20%: 0.00078 and 0.00071).
+
+**Interpretation to confirm.** The plan said the realised value uses "published estimates in the score, a shrunk truth". I read it as
+the pooled posterior medians in the score and posterior draws as the truth. The pooled values already carry the prior's shrinkage, so the
+gap between realised and ceiling comes from posterior uncertainty alone. If "published estimates" means each study's unshrunk
+effect (with the winner's curse that implies), the realised score should use those instead, and the realised gain would be lower.
+
+### First results (2,000 draws per reading)
+
+Gain in net benefit over the baseline, median with 90% range, and the share of draws that reach the MCID:
+
+| truth | score | threshold | gain | 90% range | extra true cases per 1,000 | reaches MCID |
+|---|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00058 | 0.00015 to 0.00136 | 1.2 | 0% |
+| mean | realised | 5% | +0.00042 | -0.00008 to 0.00095 | 1.3 | 0% |
+| predictive | ceiling | 5% | +0.00078 | 0.00017 to 0.00272 | 1.4 | 1.1% |
+| predictive | realised | 5% | +0.00044 | -0.00029 to 0.00130 | 1.3 | 0% |
+| mean | ceiling | 20% | +0.00104 | 0.00041 to 0.00208 | 2.7 | 16% |
+| mean | realised | 20% | +0.00078 | -0.00002 to 0.00153 | 2.2 | 3.5% |
+| predictive | ceiling | 20% | +0.00130 | 0.00043 to 0.00371 | 3.0 | 36% |
+| predictive | realised | 20% | +0.00078 | -0.00039 to 0.00188 | 2.2 | 11% |
+
+- At the primary threshold of 5% the MCID is +0.00458, which is 4.6 extra true cases per 1,000 admissions at no extra false
+  positives. The four terms together add about 1 to 1.5 true cases per 1,000 in the median draw, so the gain is a fraction of the MCID
+  in these draws, even when the true effects are in the score.
+- At 20% the MCID is smaller (+0.00160) and the ceiling score reaches it in some draws, more often under the predictive reading.
+  The 20% threshold is secondary (D4) and does not enter the headline conclusion.
+- Expected aROC rises from 0.857 (baseline) to 0.870 (ceiling) and 0.867 (realised).
+- The result is driven by CD209 (pooled log OR 0.59) and TLR4 (0.37), which are rare risk classes with wide intervals. CLEC7A is
+  near zero (-0.02) and PTX3 is 0.30 on a common class.
+- Not yet carried through: the correlation ensemble for the clinical profile distribution, donor genotype in the allo-HSCT stratum,
+  Aim 3b, the CLEC7A second parameter (held at zero), the 4,127-row and published-equation sensitivity cohorts, and the sampling
+  variability of a study of this size (the layer is evaluated as an expectation). The posterior draws of the effects, not the point
+  estimates, set the width of the ranges above.
+
+Code and outputs: `R/genetic_layer.R`, `scripts/16_genetic_layer.R`, `tests/testthat/test-genetic-layer.R`,
+`output/genetic_layer_effects.csv`, `output/genetic_layer_draws.csv`, `output/genetic_layer_summary.csv`, `output/genetic_layer_engine_check.csv`.
+
+---
+
+## Addendum 12, 19 October 2026: sampling variability, the correlation ensemble and per-term attribution (D16)
+
+Written after the tag. Provisional, like addendum 11: the effects come from the provisional evidence mapping, and the design below is my
+proposal. Nothing in D1 to D15 changes. The addendum 11 results reproduce unchanged after the code was extended.
+
+### D16. Design (proposed)
+
+- **Correlation ensemble (sensitivity analysis, D8 and D9).** Each simulated world draws one of the 150 near-optimal copula matrices
+  (script 02) and uses its exact profile distribution (cached in `output/correlation_ensemble_profile_probs.csv`; total-variation distance to
+  the empirical distribution 0.08 to 0.19, median 0.12). The refit baseline and the published marginals are unchanged. The MCID is the one of
+  the baseline in that member's own distribution (+0.00488 at 5% and +0.00188 at 20% at the ensemble median, against +0.00458 and +0.00160
+  on the empirical cohort). 3,000 worlds per reading, 20 per member.
+- **Attribution.** Shapley decomposition of the gain into the four terms. The value of a subset of terms is the gain of a score that carries
+  only those effects (recentred), under the full true model. The four contributions sum to the gain of the full score. Net benefit is a
+  threshold rule on a sum of effects, so it is not additive in the terms, and the Shapley split is a fair division of the total, not a
+  separable effect. Run on the empirical cohort for 1,000 draws per reading, for the ceiling and the realised score.
+- **Sampling variability.** Each simulated study resamples patients with their admissions (so the clinical mix varies: about 4,078
+  admissions, 1,945 patients, 133 events), gives each patient a genotype, draws outcomes from the true risk, and measures the observed gain
+  in net benefit of a fixed score over the baseline in that sample. Scores are not refitted in the sample. Four runs of 2,000 studies: effects
+  fixed at the pooled medians, effects fixed at the 95th percentile of each term's pooled effect (a favourable truth), and effects drawn
+  from the posteriors under the two readings. The ensemble and the sampling variability are not combined: the studies resample the real cohort.
+
+- **Sensitivity cohorts (added later on 19 October).** The same three analyses on three further settings, with the same effects, seeds and pooled
+  estimates, so the settings differ only in the cohort and the baseline model: the **published equation on the 4,078-admission base cohort**,
+  the **published equation on the 4,127 rows** of the paper (twin rows kept; the D8 baseline), and a **refit on the 4,127 rows**. The last is my
+  addition, to separate the effect of the cohort from the effect of the equation. Each setting uses its own MCID, which reproduces the values in
+  D8 and D9: +0.00404 and +0.00113 (published, 4,078), +0.00445 and +0.00142 (published, 4,127), +0.00440 and +0.00141 (refit, 4,127), against
+  +0.00458 and +0.00160 for the primary setting (refit, 4,078). The ensemble is not repeated on these settings.
+
+### Results
+
+**Sampling variability.** Expected gain from the exact engine against what one study of this size observes:
+
+| truth | score | threshold | expected gain | observed gain, mean (90% range) | SD | observed gain > 0 | reaches MCID |
+|---|---|---|---|---|---|---|---|
+| medians | either | 5% | +0.00040 | +0.00039 (-0.00057 to 0.00150) | 0.00063 | 72% | 0% |
+| medians | either | 20% | +0.00078 | +0.00080 (-0.00062 to 0.00239) | 0.00093 | 80% | 20% |
+| 95th percentile | ceiling | 5% | +0.00196 | +0.00195 (0.00006 to 0.00384) | 0.00114 | 96% | 1.1% |
+| 95th percentile | realised | 5% | +0.00124 | +0.00124 (0.00004 to 0.00258) | 0.00078 | 95% | 0% |
+| 95th percentile | ceiling | 20% | +0.00280 | +0.00278 (0.00066 to 0.00518) | 0.00140 | 98% | 79% |
+| 95th percentile | realised | 20% | +0.00193 | +0.00191 (0.00031 to 0.00370) | 0.00105 | 97% | 60% |
+| drawn, mean | ceiling | 5% | | +0.00062 (-0.00067 to 0.00217) | 0.00088 | 76% | 0% |
+| drawn, predictive | ceiling | 5% | | +0.00106 (-0.00050 to 0.00333) | 0.00132 | 83% | 2.0% |
+| drawn, mean | realised | 5% | | +0.00041 (-0.00075 to 0.00168) | 0.00075 | 69% | 0% |
+| drawn, predictive | realised | 5% | | +0.00046 (-0.00077 to 0.00201) | 0.00084 | 69% | 0% |
+
+Across the cohorts, at the 5% threshold (observed gain of one study: mean, SD, share of studies with a gain above zero, share reaching that setting's MCID):
+
+| truth, score | refit, 4,078 (primary) | published, 4,078 | published, 4,127 | refit, 4,127 |
+|---|---|---|---|---|
+| pooled medians, either score | +0.00039 (SD 0.00063), >0 72%, 0% | +0.00043 (SD 0.00071), >0 72%, 0% | +0.00043 (SD 0.00072), >0 72%, 0% | +0.00042 (SD 0.00071), >0 72%, 0% |
+| 95th percentile, ceiling | +0.00195 (SD 0.00114), >0 96%, 1% | +0.00208 (SD 0.00113), >0 97%, 5% | +0.00214 (SD 0.00112), >0 98%, 2% | +0.00212 (SD 0.00110), >0 98%, 2% |
+| 95th percentile, realised | +0.00124 (SD 0.00078), >0 95%, 0% | +0.00147 (SD 0.00083), >0 97%, 0.3% | +0.00150 (SD 0.00080), >0 98%, 0% | +0.00147 (SD 0.00079), >0 98%, 0% |
+| drawn (mean), ceiling | +0.00062 (SD 0.00088), >0 76%, 0% | +0.00066 (SD 0.00092), >0 76%, 0.2% | +0.00071 (SD 0.00091), >0 78%, 0% | +0.00069 (SD 0.00091), >0 77%, 0% |
+| drawn (mean), realised | +0.00041 (SD 0.00075), >0 69%, 0% | +0.00043 (SD 0.00084), >0 69%, 0.1% | +0.00047 (SD 0.00084), >0 70%, 0% | +0.00046 (SD 0.00083), >0 70%, 0% |
+| drawn (predictive), ceiling | +0.00106 (SD 0.00132), >0 83%, 2% | +0.00113 (SD 0.00137), >0 84%, 4% | +0.00112 (SD 0.00139), >0 83%, 3% | +0.00111 (SD 0.00138), >0 82%, 2% |
+| drawn (predictive), realised | +0.00046 (SD 0.00084), >0 69%, 0% | +0.00050 (SD 0.00097), >0 68%, 0.1% | +0.00052 (SD 0.00098), >0 69%, 0.1% | +0.00051 (SD 0.00097), >0 69%, 0.1% |
+
+At 20% (the MCID is +0.00160, +0.00113, +0.00142 and +0.00141 in the four settings), the share of studies reaching it, with the mean observed gain:
+
+| truth, score | refit, 4,078 (primary) | published, 4,078 | published, 4,127 | refit, 4,127 |
+|---|---|---|---|---|
+| pooled medians, either score | +0.00080, 20% | +0.00069, 30% | +0.00073, 21% | +0.00070, 20% |
+| 95th percentile, ceiling | +0.00278, 79% | +0.00257, 84% | +0.00279, 85% | +0.00273, 83% |
+| 95th percentile, realised | +0.00191, 60% | +0.00160, 67% | +0.00176, 61% | +0.00173, 61% |
+| drawn (mean), ceiling | +0.00112, 31% | +0.00097, 39% | +0.00107, 36% | +0.00103, 35% |
+| drawn (mean), realised | +0.00077, 21% | +0.00064, 30% | +0.00072, 24% | +0.00069, 23% |
+| drawn (predictive), ceiling | +0.00162, 44% | +0.00149, 54% | +0.00153, 45% | +0.00149, 44% |
+| drawn (predictive), realised | +0.00078, 23% | +0.00063, 29% | +0.00071, 25% | +0.00069, 24% |
+
+The mean observed gain matches the exact value in every fixed run in every setting (for example +0.00043 against +0.00044 for the published equation on 4,078 at the medians), which checks the simulation. The conclusions do not depend on the cohort or the equation: at 5% the observed gain reaches the MCID in at most 5% of studies in any run, and the SD is again of the same size as the gain. The published-equation settings have lower MCIDs at 20% (+0.00113 on 4,078), so the share of studies reaching it is a little higher there.
+
+Two things follow from the primary setting:
+
+- The sampling standard deviation of the observed gain (0.0006 to 0.0013 at 5%) is of the same size as the expected gain, or larger. At the
+  pooled medians a study of this size would show a gain above zero in about 72% of repetitions at 5%, and in 69% to 83% across the runs
+  that draw the effects, even though the true gain is positive for the ceiling score by construction.
+- Reaching the 5% MCID of +0.00458 in an observed study is rare: 0% at the medians, 1.1% (ceiling) and 0% (realised) at the 95th-percentile truth, and at most
+  2% when the effects are drawn. At 20% the MCID of +0.00160 is reached in 20% of studies at the medians and in 60% to 79% at the 95th-percentile truth.
+
+**Correlation ensemble.** The clinical correlation structure moves the result little. Median gain over the baseline and the share of worlds
+reaching the member's own MCID:
+
+| truth | score | threshold | gain (90% range) | reaches MCID | empirical cohort (addendum 11) |
+|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00062 (0.00017 to 0.00144) | 0% | +0.00058, 0% |
+| mean | realised | 5% | +0.00046 (-0.00005 to 0.00102) | 0% | +0.00042, 0% |
+| predictive | ceiling | 5% | +0.00083 (0.00020 to 0.00272) | 1.0% | +0.00078, 1.1% |
+| predictive | realised | 5% | +0.00047 (-0.00024 to 0.00139) | 0% | +0.00044, 0% |
+| mean | ceiling | 20% | +0.00119 (0.00049 to 0.00233) | 16% | +0.00104, 16% |
+| mean | realised | 20% | +0.00090 (0.00003 to 0.00172) | 4.1% | +0.00078, 3.5% |
+| predictive | ceiling | 20% | +0.00145 (0.00050 to 0.00377) | 34% | +0.00130, 36% |
+| predictive | realised | 20% | +0.00090 (-0.00038 to 0.00207) | 10% | +0.00078, 11% |
+
+The standard deviation of the mean gain across members is 0.00007 to 0.00029, small against the width of the 90% ranges, which come mostly from
+the effect draws. The empirical-cohort values lie inside the ensemble ranges. The ensemble median gain is a little higher than the empirical one
+(by 0.00003 to 0.00015), and the ensemble MCID is higher too, so the two shifts offset in the share of worlds that reach it.
+
+**The exact layer on the sensitivity cohorts.** Median gain over the baseline and the share of worlds reaching that setting's MCID (the primary column is addendum 11):
+
+| truth | score | threshold | refit, 4,078 (primary) | published, 4,078 | published, 4,127 | refit, 4,127 |
+|---|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00058, 0% | +0.00062, 0.1% | +0.00063, 0% | +0.00062, 0% |
+| mean | realised | 5% | +0.00042, 0% | +0.00045, 0% | +0.00046, 0% | +0.00045, 0% |
+| predictive | ceiling | 5% | +0.00078, 1% | +0.00083, 2% | +0.00084, 2% | +0.00083, 2% |
+| predictive | realised | 5% | +0.00044, 0% | +0.00048, 0.1% | +0.00048, 0% | +0.00047, 0% |
+| mean | ceiling | 20% | +0.00104, 16% | +0.00090, 32% | +0.00096, 22% | +0.00093, 20% |
+| mean | realised | 20% | +0.00078, 3% | +0.00066, 11% | +0.00071, 5% | +0.00068, 5% |
+| predictive | ceiling | 20% | +0.00130, 36% | +0.00115, 51% | +0.00124, 41% | +0.00120, 40% |
+| predictive | realised | 20% | +0.00078, 11% | +0.00066, 19% | +0.00071, 12% | +0.00069, 11% |
+
+The gain hardly moves across the four settings (at 5%, +0.00058 to +0.00063 for the ceiling score with the mean effect). What moves is the share
+that reaches the MCID at 20%, because the published equation's baseline finds fewer cases and so sets a lower bar (+0.00113 against +0.00160). At 5%
+the MCID is out of reach in every setting.
+
+**Attribution** (ceiling score, 5% threshold, effects as the pooled mean). Median contribution to the gain, and each term's share of the
+total gain across draws:
+
+| term | risk class frequency | median contribution | share, ceiling | share, realised |
+|---|---|---|---|---|
+| CD209 | 12.5% | +0.00027 | 51% | 67% |
+| PTX3 | 48.2% | +0.00009 | 23% | 18% |
+| TLR4 | 6.1% | +0.00005 | 19% | 14% |
+| CLEC7A | 7.7% | +0.00001 | 7% | -0.2% |
+
+Shares across the cohorts (effects as the pooled mean, 5% threshold):
+
+| term | score | refit, 4,078 (primary) | published, 4,078 | published, 4,127 | refit, 4,127 |
+|---|---|---|---|---|---|
+| CD209 | ceiling | 51% | 51% | 51% | 50% |
+| CD209 | realised | 67% | 65% | 65% | 66% |
+| PTX3 | ceiling | 23% | 24% | 24% | 24% |
+| PTX3 | realised | 18% | 19% | 19% | 19% |
+| TLR4 | ceiling | 19% | 19% | 19% | 19% |
+| TLR4 | realised | 14% | 16% | 16% | 15% |
+| CLEC7A | ceiling | 7% | 7% | 7% | 7% |
+| CLEC7A | realised | about 0 | about 0 | about 0 | about 0 |
+
+The ranking and the shares are the same in every setting (CD209 43% to 52% for the ceiling score and 60% to 67% for the realised score, over both readings
+and both thresholds).
+
+- CD209 carries about half of the gain or more, at both thresholds and in both readings of the truth (44% to 51% for the ceiling, 60% to 67% for
+  the realised score). It has the largest pooled effect (log OR 0.59) from three studies with a wide interval, so this ranking is the
+  least secure part of the evidence.
+- PTX3 contributes 17% to 26% on a common class with a modest effect. TLR4 contributes 14% to 21%.
+- CLEC7A contributes next to nothing: 6% to 10% for the ceiling (a draw can put a real effect there) and about 0 for the realised score,
+  whose pooled estimate is -0.02. Its negative realised share (-0.3% to 0) means the score sometimes slightly hurts.
+- The same ordering holds at 20%. The per-term "alone" and "leave-one-out" values are in `output/genetic_attribution_summary.csv`.
+
+### Not yet done
+
+The ensemble is not repeated on the sensitivity cohorts. The ensemble combined with the sampling variability and donor genotype in the allo-HSCT stratum are in
+addendum 13. Aim 3b and the CLEC7A second parameter are still outside the layer. The interpretation of "realised" from addendum 11 is still to be confirmed.
+
+Code and outputs: `R/genetic_layer.R`, `R/genetic_helpers.R`, `scripts/17_genetic_layer_extensions.R`, `scripts/19_genetic_sensitivity_cohorts.R`,
+`tests/testthat/test-genetic-layer.R`, `output/genetic_sensitivity_{layer,attribution,sampling}_summary.csv`, `output/correlation_ensemble_profile_probs.csv`, `output/genetic_ensemble_{draws,summary}.csv`, `output/genetic_attribution_{draws,summary}.csv`,
+`output/genetic_sampling_{draws,summary}.csv`.
+
+---
+
+## Addendum 13, 19 October 2026: the ensemble with the sampling variability, and donor genotype in the allo-HSCT stratum (D17)
+
+Written after the tag. Provisional, like addenda 11 and 12. Nothing in D1 to D16 changes, and the primary results of addenda 11 and 12 reproduce unchanged.
+
+### D17. Design (proposed)
+
+**Ensemble with sampling variability.** Each simulated study draws one of the 150 copula members and builds its clinical mix from it. The patients are
+resampled from the real admissions-per-patient counts (so the genotype clustering is kept), and each admission's profile is drawn independently from
+the member's distribution. This ignores any covariate correlation within a patient. The truth, the recentring and the MCID are the member's own (+0.00488 at 5%,
++0.00188 at 20%). Two controls: the same simulation with the empirical profile distribution in place of a member, and the real-row resampling of addendum 12.
+2,000 studies per run.
+
+**Donor genotype in the allo-HSCT stratum (D1, secondary analysis).**
+
+- *The stratum.* The base cohort has no admission-level allo-HSCT flag (the column names of `boscore.xlsx` hold only a transplant date, `DTMO`, and
+  the pseudonymised full BOSCORE file that has `allogeneic_hsct` cannot be linked to it). I did not read any value from the identified file. The stratum is
+  built from the published Table 1 margins (allo is the reason for admission in 44 of 133 cases and 248 of 3,994 non-cases) under the assumption that
+  allo status depends on the outcome only, given the clinical profile. That gives a stratum of 7.1% of admissions (289 of 4,078, 44 expected events), an event rate of 15.2%
+  (Table 1: 15.1%), a profile mix tilted to higher-risk profiles, and a true risk whose odds are the baseline score's times 5.3 at every profile.
+- *The scores.* The Stanzani score has no allo item, so the baseline decides as before and under-predicts in the stratum. In the stratum it flags 22% of
+  admissions at 5%, and finds 107 true cases and 118 false positives per 1,000 allo admissions. The genetic scores add donor genotype, with the
+  donor effects, to the baseline logit and are recentred to the baseline score's mean risk (D5), so they carry no information about allo status itself.
+- *The truth.* Baseline logit plus the allo offset plus donor effects, recentred to hold the stratum's event rate. Donor dosage is Hardy-Weinberg with the
+  same class frequencies (unrelated donors, independent of the recipient's profile). The recipient effects are not used in the stratum.
+- *The gain* is per allo admission. The whole-cohort equivalent is the gain times 7.1%, with decisions elsewhere left to the baseline. The stratum MCID is 20% more
+  true cases among its admissions at no extra false positives, from its own baseline: **+0.02137 at 5%** (21 extra cases per 1,000 allo admissions) and
+  **+0.00747 at 20%**. The whole-cohort MCID of D10 is also shown.
+
+### Donor evidence
+
+| term | donor studies | pooled donor OR per copy (90% interval) | recipient OR (addendum 8 and 9) |
+|---|---|---|---|
+| PTX3 h2 | 1 (Fisher 2017, hazard ratio) | 1.22 (0.60 to 2.25) | 1.35 |
+| CLEC7A Y238X | 1 (Ceesay 2016) | 0.70 (0.19 to 2.53) | 0.98 |
+| TLR4 G-T | 2 | 1.24 (0.46 to 3.00) | 1.44 |
+| CD209 | none | not estimable, held at zero | 1.80 |
+
+With one study the random-effects model cannot separate between-study spread from sampling error, so the pooled interval is much wider than the study's own
+(Fisher's PTX3 estimate is 1.24 with a standard error of 0.08 on the log scale, and the pooled 90% interval runs from 0.60 to 2.25). The donor evidence is
+thinner than the recipient evidence in every term, and CD209, the term that carries most of the recipient gain, has none.
+
+### Results: the ensemble with the sampling variability
+
+Observed gain of one study (mean, SD, share with a gain above zero, share reaching the MCID):
+
+| truth, score | 5%: copula member | 5%: empirical profiles, drawn independently | 5%: real rows resampled |
+|---|---|---|---|
+| pooled medians, either score | +0.00042 (SD 0.00067), >0 72%, 0% | +0.00042 (SD 0.00066), >0 72%, 0% | +0.00039 (SD 0.00063), 0% |
+| 95th percentile, ceiling | +0.00211 (SD 0.00113), >0 97%, 0.9% | +0.00199 (SD 0.00111), >0 97%, 1% | +0.00195 (SD 0.00114), 1% |
+| 95th percentile, realised | +0.00138 (SD 0.00079), >0 97%, 0% | +0.00127 (SD 0.00078), >0 96%, 0% | +0.00124 (SD 0.00078), 0% |
+| drawn (mean), ceiling | +0.00070 (SD 0.00089), >0 78%, 0.1% | | +0.00062 (SD 0.00088), 0% |
+| drawn (mean), realised | +0.00045 (SD 0.00074), >0 71%, 0% | | +0.00041 (SD 0.00075), 0% |
+| drawn (predictive), ceiling | +0.00106 (SD 0.00134), >0 82%, 2% | | +0.00106 (SD 0.00132), 2% |
+| drawn (predictive), realised | +0.00047 (SD 0.00085), >0 70%, 0.1% | | +0.00046 (SD 0.00084), 0% |
+
+At 20% the same pattern holds (MCID +0.00188 for a member): at the pooled medians the mean observed gain is +0.00092 (SD 0.00109) with 20% of studies reaching the MCID,
+against +0.00080 and 20% for the real rows; with the effects drawn, 29% (mean) and 39% (predictive) of studies reach it for the ceiling score, and 20% and 22% for the realised score.
+
+- The clinical correlation structure adds little to the sampling variability. The independent-profile approximation is harmless (control against real rows: mean gain +0.00042
+  against +0.00039, SD 0.00066 against 0.00063). A copula member raises the mean observed gain a little (by +0.00003 to +0.00016 at 5%) and the SD by up to 6%,
+  and its MCID is also higher, so the share of studies that reach the MCID is about the same (0% to 2% at 5%).
+- The refit baseline applied to a copula member predicts a higher event rate than on the real cohort, so the simulated studies have about 140 events (median) against 133.
+
+### Results: donor genotype in the allo-HSCT stratum
+
+Gain per allo admission, and the whole-cohort equivalent:
+
+| truth | score | threshold | stratum gain (90% range) | extra cases per 1,000 allo | reaches stratum MCID | whole-cohort gain | reaches whole-cohort MCID |
+|---|---|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00334 (0.00010 to 0.00744) | 3.6 | 0% (MCID 0.02137) | +0.00024 | 0% (MCID 0.00458) |
+| mean | realised | 5% | +0.00236 (0.00059 to 0.00420) | 2.9 | 0% (MCID 0.02137) | +0.00017 | 0% (MCID 0.00458) |
+| predictive | ceiling | 5% | +0.00398 (0.00030 to 0.01159) | 4.1 | 0.4% (MCID 0.02137) | +0.00028 | 0% (MCID 0.00458) |
+| predictive | realised | 5% | +0.00240 (-0.00009 to 0.00508) | 2.9 | 0% (MCID 0.02137) | +0.00017 | 0% (MCID 0.00458) |
+| mean | ceiling | 20% | +0.00795 (0.00423 to 0.01428) | 8.8 | 55% (MCID 0.00747) | +0.00056 | 0.4% (MCID 0.00160) |
+| mean | realised | 20% | +0.00533 (0.00277 to 0.00719) | 6.3 | 3% (MCID 0.00747) | +0.00038 | 0% (MCID 0.00160) |
+| predictive | ceiling | 20% | +0.00951 (0.00476 to 0.02025) | 10.3 | 66% (MCID 0.00747) | +0.00067 | 4% (MCID 0.00160) |
+| predictive | realised | 20% | +0.00530 (0.00133 to 0.00770) | 6.3 | 7% (MCID 0.00747) | +0.00038 | 0% (MCID 0.00160) |
+
+Sampling variability of a study with a stratum's worth of admissions (289 admissions, 44 events, each with its own donor):
+
+| truth, score | threshold | expected gain | observed gain, mean (90% range) | SD | gain > 0 | reaches stratum MCID |
+|---|---|---|---|---|---|---|
+| pooled medians, either score | 5% | +0.00247 | +0.00243 (-0.00146 to 0.00983) | 0.00377 | 57% | 0% |
+| pooled medians, either score | 20% | +0.00549 | +0.00546 (-0.00173 to 0.01471) | 0.00535 | 81% | 31% |
+| 95th percentile, ceiling | 5% | +0.01093 | +0.01080 (-0.00182 to 0.02459) | 0.00812 | 91% | 9% |
+| 95th percentile, ceiling | 20% | +0.01361 | +0.01362 (-0.00087 to 0.02941) | 0.00948 | 93% | 74% |
+| 95th percentile, realised | 5% | +0.00366 | +0.00369 (-0.00346 to 0.01021) | 0.00427 | 70% | 0.1% |
+| 95th percentile, realised | 20% | +0.00655 | +0.00648 (-0.00173 to 0.01730) | 0.00563 | 85% | 38% |
+| drawn (mean), ceiling | 5% | | +0.00332 (-0.00420 to 0.01384) | 0.00591 | 64% | 1% |
+| drawn (mean), ceiling | 20% | | +0.00875 (-0.00173 to 0.02336) | 0.00801 | 86% | 51% |
+| drawn (predictive), ceiling | 5% | | +0.00489 (-0.00474 to 0.01821) | 0.00758 | 71% | 3% |
+| drawn (predictive), ceiling | 20% | | +0.01066 (-0.00173 to 0.02768) | 0.00944 | 88% | 59% |
+
+- At the 5% threshold, donor genotype adds about 3 to 4 true cases per 1,000 allo admissions in the median world, against the 21 needed. The gain does not reach the stratum MCID
+  in any scenario (0% to 0.4% of worlds, and at most 9% of simulated studies even when every effect is at its 95th percentile).
+- At 20% the stratum MCID is smaller (+0.00747, about 7.5 extra cases per 1,000) and the ceiling score reaches it in 55% to 66% of worlds. A score that uses the pooled
+  estimates reaches it in 3% to 7%. The gain per allo admission is larger than the recipient gain per admission (+0.0033 against +0.0006 at 5%) because the stratum has a much higher event rate (15%).
+- Spread over the whole cohort the donor gain is small: +0.0002 to +0.0003 at 5% and +0.0004 to +0.0007 at 20%, at most 4% of worlds reach the whole-cohort MCID.
+- A study of 289 admissions and 44 events is very noisy. The SD of the observed gain at 5% (0.0038 at the pooled medians) exceeds the expected gain (+0.0025), and only 57% of studies
+  show a positive gain.
+
+### Limits and what would change them
+
+- **The allo flag.** The stratum's profile mix and its constant odds multiplier of 5.3 rest on one assumption: that allo status is independent of the clinical profile once the outcome
+  is known. If allo recipients' excess risk comes mostly through the predictors (more steroids, neutropenia, CMV), the true multiplier would be smaller and the stratum would sit at higher-risk profiles, which changes
+  both the baseline's performance and the MCID. An admission-level allo flag in the analysis file would replace this assumption. I do not know whether `boscore.xlsx` carries one (its
+  column names show only `DTMO`, a transplant date, which would not separate allogeneic from autologous), and I did not read values from it. If you add the flag to the pseudonymised base cohort
+  (script 08) the stratum can be built from the data.
+- The donor evidence is one study each for PTX3 and CLEC7A, two for TLR4, none for CD209, and one of them is a hazard ratio. The pooled donor intervals are wide, and the CLEC7A value (OR 0.70) rests on one study with a wide interval.
+- Donors are taken as unrelated (independent of the recipient's genotype) and each admission as having its own donor. A matched sibling donor shares half of the recipient's alleles.
+- Donor and recipient effects are not combined: in the stratum the score uses donor effects only. The Shapley attribution is not repeated for the donor analysis.
+
+Code and outputs: `R/genetic_layer.R`, `R/genetic_helpers.R`, `scripts/18_genetic_ensemble_sampling.R`, `scripts/20_genetic_donor_stratum.R`,
+`tests/testthat/test-genetic-layer.R`, `output/genetic_ensemble_sampling_{draws,summary}.csv`, `output/genetic_donor_{evidence,stratum_summary,baseline_stratum,sampling_summary}.csv`,
+and the donor posterior draws `output/{ptx3_h2,clec7a,tlr4}_donor_posterior_draws.csv` (written by scripts 12 and 14).

@@ -1,6 +1,6 @@
 ---
 title: "Evidence mapping"
-subtitle: "From extracted studies to model parameters: the PTX3 pilot"
+subtitle: "From extracted studies to model parameters: PTX3, CLEC7A, TLR4, CD209, IL10 and IFNG"
 date: today
 ---
 
@@ -17,14 +17,19 @@ s035    <- read.csv("output/s035_direction_check.csv")
 s029    <- read.csv("output/s029_genotype_frequency_check.csv")
 clec    <- list(study = read.csv("output/clec7a_study_effects.csv"), pooled = read.csv("output/clec7a_pooled.csv"), rows = read.csv("output/clec7a_row_effects.csv"))
 tlr4    <- list(study = read.csv("output/tlr4_study_effects.csv"), pooled = read.csv("output/tlr4_pooled.csv"), cross = read.csv("output/tlr4_snp_crosscheck.csv"))
+cd209   <- list(study = read.csv("output/cd209_study_effects.csv"), pooled = read.csv("output/cd209_pooled.csv"), cross = read.csv("output/cd209_snp_crosscheck.csv"), rows = read.csv("output/cd209_row_effects.csv"))
+il10    <- list(study = read.csv("output/il10_study_effects.csv"), pooled = read.csv("output/il10_pooled.csv"))
+ifng    <- list(study = read.csv("output/ifng_study_effects.csv"), pooled = read.csv("output/ifng_pooled.csv"))
+study_label <- function(d) paste0(sub(",.*", "", d$first_author), " ", d$year)
 ```
 
 ::: {.callout-warning}
 ## Provisional
 
-The extraction rows are round 1. Two papers (Herrero-Sanchez 2018 and Brunel 2018) have been read against the extraction by the
-assistant, which is not the human round-2 check, and the rest have not been checked. Most mapping rules and the priors are
-proposals, set out in addenda 7 and 8 of the decision record. Treat every number on this page as provisional.
+The extraction rows are round 1 plus the recorded corrections. Two papers (Herrero-Sanchez 2018 and Brunel 2018) were read against the
+extraction by the assistant. The human round-2 check is reported to have confirmed the extraction against the source PDFs, but its record
+is not in the repository. Most mapping rules and the priors are proposals, set out in addenda 7 to 9 of the decision record. Treat every
+number on this page as provisional.
 :::
 
 ## What "h2" means
@@ -243,12 +248,77 @@ small. de Boer 2011 analysed donors and recipients and the extraction does not s
 of the primary analysis; treating it as a recipient study raises the estimate. Tanpaibule's allele is carried by none of its 33 cases
 against 11 of 295 controls, so its estimate rests on the continuity correction.
 
+## CD209: G at rs4804800
+
+The two CD209 SNPs (rs4804800 and rs7248637, r² = 0.41) give four haplotypes in gnomAD NFE: G-A 7.8%, A-A 2.6%, G-G 4.7% and A-G 84.9%.
+The term is the per-copy effect of the chromosome class that carries G at rs4804800 (G-A and G-G, 12.5%). rs4804800 rows map to it
+directly. rs7248637 rows (the A allele) map through the haplotype structure and are used where a study has no rs4804800 row.
+A second CD209 parameter is not estimated.
+
+```{r}
+#| label: tbl-cd209
+#| tbl-cap: "CD209, primary analysis: one effect per study, per copy of the rs4804800 G class. Hazard-ratio studies are a sensitivity analysis because three odds-ratio studies meet the threshold."
+cd209$study |>
+  transmute(Study = study_label(cd209$study), SNP = rsid, `Evidence used` = paste(tier, model, sep = ", "), `Log OR as reported` = y,
+            `Per-copy effect` = beta, SE = se_beta, `OR per copy` = or_per_copy) |>
+  gt() |>
+  fmt_number(c(`Log OR as reported`, `Per-copy effect`, SE, `OR per copy`), decimals = 2)
+```
+
+```{r}
+#| label: tbl-cd209-pooled
+#| tbl-cap: "CD209 pooled effect."
+cd209$pooled |>
+  transmute(Analysis = scenario, Studies = k, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi, tau = tau) |>
+  gt() |>
+  fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
+```
+
+The effect is positive in all three studies. The two studies that also report rs7248637 agree with their rs4804800 effect
+(differences of `r paste(sprintf("%.2f", cd209$cross$difference), collapse = " and ")` on the log scale), which supports mapping the
+rs7248637 evidence to the same class. Adding Fisher 2017 (hazard ratios, rs7248637) lowers the pooled odds ratio to
+`r sprintf("%.2f", cd209$pooled$or[cd209$pooled$scenario == "with hazard-ratio studies"])`, with an interval that includes 1.
+Sainz 2011's two rows cannot be mapped: an allele is missing and the comparison has more than two groups.
+
+## IL10 and IFNG: dropped from the panel
+
+IL10 rs1800896 and IFNG rs2069705 are single SNPs. The risk allele is the forward-strand allele that most studies report as their effect
+allele (IL10 C, reported as G; IFNG G, reported as C), and a study that reports the other allele is mapped to the same class with the sign
+reversed. Both were mapped as optional terms, then **dropped from the panel on 19 October 2026 (addendum 10)** because the evidence is too thin
+to estimate an effect.
+
+```{r}
+#| label: tbl-optional
+#| tbl-cap: "IL10 and IFNG: odds-ratio evidence has fewer than three studies, so hazard-ratio studies were added (the fallback rule); the pooled value is mostly the prior."
+bind_rows(
+  il10$study |> mutate(Term = "IL10 rs1800896 C", Study = study_label(il10$study)),
+  ifng$study |> mutate(Term = "IFNG rs2069705 G", Study = study_label(ifng$study))
+) |>
+  transmute(Term, Study, `Evidence used` = paste(tier, model, measure, sep = ", "), `Per-copy effect` = beta, SE = se_beta, `OR per copy` = or_per_copy) |>
+  gt() |>
+  fmt_number(c(`Per-copy effect`, SE, `OR per copy`), decimals = 2)
+```
+
+```{r}
+#| label: tbl-optional-pooled
+#| tbl-cap: "IL10 and IFNG pooled effect, first row of each term is the primary (fallback) analysis."
+bind_rows(il10$pooled |> mutate(Term = "IL10"), ifng$pooled |> mutate(Term = "IFNG")) |>
+  transmute(Term, Analysis = scenario, Studies = k, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi, tau = tau) |>
+  gt() |>
+  fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
+```
+
+IL10 rests on one study (Tanpaibule 2020, a dominant odds ratio of about 5), so its pooled value is that study shrunk by the prior; adding
+de Boer 2011, whose genotype source is unstated, gives two studies. The two IFNG studies disagree in direction, and the hazard-ratio
+fallback adds nothing because Fisher's IFNG rows are donor genotype only. Putting either term back would be a sensitivity analysis.
+
 ## Limits
 
 - The rows are unverified except where stated above, and the checks so far are the assistant's, not the human round-2 check.
 - Brunel 2018 states "the minor allele", so its effect allele is inferred from European frequencies, and the frequency check above
   casts doubt on it.
 - The Chinese and Thai cohorts use European haplotype frequencies.
-- Four or five studies per term is few. The priors on the pooled effect and on tau are proposals.
-- Open questions are listed at the end of addendum 8: whether to use Herrero-Sanchez's invasive aspergillosis rows, whether to keep
-  Brunel in the primary analysis, whether hazard-ratio studies join the primary analysis, and how to resolve the rs7309123 strand.
+- Three to five studies per term is few. The priors on the pooled effect and on tau are proposals.
+- Open questions from addendum 8 that the human checks did not settle: whether to use Herrero-Sanchez's invasive aspergillosis rows,
+  whether to keep Brunel in the primary analysis, and how to resolve the rs7309123 strand. Hazard-ratio studies join a term's primary
+  analysis only when it has fewer than three odds-ratio studies (addendum 9).

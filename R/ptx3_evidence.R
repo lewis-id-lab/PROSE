@@ -17,9 +17,10 @@ non_european_study <- function(ancestry) {
 }
 
 # Subgroups that are whole-cohort analyses (not outcome, exposure or site strata). "donor genotype; whole cohort" counts, as do
-# Ceesay 2016's "patients tested for SNP" and "HSCT donors" and Fisher 2017's "recipient (patient) genotype" (whole cohort, at
-# different time horizons).
-WHOLE_COHORT_PATTERN <- "whole cohort|^all episodes|stratification cohort|validation cohort|patients tested|HSCT donors|recipient \\(patient\\) genotype"
+# Ceesay 2016's "patients tested for SNP" and "HSCT donors" and Fisher 2017's "recipient (patient) genotype" and "recipient (PT)
+# genotype" (whole cohort, at different time horizons), and Lupianez 2015's "patient (recipient) genotype" for its phase 1 and
+# overall combined cohorts (addendum 9).
+WHOLE_COHORT_PATTERN <- "whole cohort|^all episodes|stratification cohort|validation cohort|patients tested|HSCT donors|recipient \\(patient\\) genotype|patient \\(recipient\\) genotype|recipient \\(PT\\) genotype"
 
 # Minor allele at a locus in the European haplotype frequencies (used only where a study says "the minor allele")
 minor_allele <- function(hap, locus) {
@@ -151,6 +152,7 @@ ptx3_row_effects <- function(vr, st, hap, loci = PTX3_LOCI, counts_model = "tren
   out$whole_cohort <- grepl(WHOLE_COHORT_PATTERN, out$subgroup, ignore.case = TRUE)
   out$cohort <- ifelse(grepl("stratification", out$subgroup, ignore.case = TRUE), "stratification",
                 ifelse(grepl("validation", out$subgroup, ignore.case = TRUE), "validation", "whole"))
+  out$combined <- grepl("overall combined", out$subgroup, ignore.case = TRUE)
   out$non_european <- non_european_study(out$ancestry_as_reported)
   out$odds_ratio_scale <- !(out$measure %in% c("HR", "RR", "subdistribution_HR"))
   out$priority <- model_priority(out$tier, out$model)
@@ -188,7 +190,9 @@ ptx3_study_effects <- function(re, snp_order = c("rs2305619", "rs1840680"), excl
     snp <- snp_order[snp_order %in% s$rsid][1]
     s <- s[s$rsid == snp, ]
     per_cohort <- lapply(split(s, s$cohort), function(cc) {
-      cc <- cc[order(cc$priority, cc$primary_flag != "yes", cc$variant_row_id), ]
+      # An overall combined analysis contains the phase analyses it combines, so it is preferred to them
+      combined <- if (is.null(cc$combined)) rep(FALSE, nrow(cc)) else cc$combined
+      cc <- cc[order(!combined, cc$priority, cc$primary_flag != "yes", cc$variant_row_id), ]
       cc[1, ]
     })
     pc <- do.call(rbind, per_cohort)

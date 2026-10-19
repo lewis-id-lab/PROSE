@@ -1,0 +1,2 @@
+"study_id","first_author","year","rsid","cohort","tier","model","measure","method","y","se","beta","se_beta","flag","ancestry_as_reported","or_per_copy"
+"S077","Tanpaibule, Tananun",2020,"rs1800896","whole","estimate","dominant","OR","estimate, text",1.66714062256239,0.488861029820575,1.14380503718898,0.305924854183055,"","Thai",3.1386884989913

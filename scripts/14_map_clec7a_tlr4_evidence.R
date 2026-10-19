@@ -21,57 +21,19 @@ corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("dat
 applied <- apply_corrections(vr, corrections)
 vr <- applied$data
 
-run_term <- function(prefix, block, risk_alleles, loci, snp_order, alt_snp, scenarios_extra = list(), seed) {
-  hap <- block_haplotypes(block, risk_alleles = risk_alleles, source = "gnomAD_NFE")
-  re <- ptx3_row_effects(vr, st, hap, loci = loci, counts_model = "carrier", corrected_ids = applied$applied)
-  scenarios <- c(list(
-    "primary: recipient, OR scale, whole cohort, without Herrero-Sanchez" = ptx3_study_effects(re, snp_order = snp_order),
-    "with Herrero-Sanchez 2018 (S035)" = ptx3_study_effects(re, snp_order = snp_order, exclude_studies = character()),
-    "with hazard-ratio studies" = ptx3_study_effects(re, snp_order = snp_order, allow_hr = TRUE),
-    "European-ancestry cohorts only" = ptx3_study_effects(re, snp_order = snp_order, allow_non_european = FALSE)),
-    if (!is.null(alt_snp)) list("second SNP as the tag, mapped to the risk class" = ptx3_study_effects(re, snp_order = alt_snp)),
-    list("donor genotype (secondary analysis)" = ptx3_study_effects(re, snp_order = snp_order, genotype = "donor", allow_hr = TRUE, exclude_studies = character())),
-    lapply(scenarios_extra, function(f) f(re)))
-  pooled <- Map(pool_study_effects, scenarios, seq_along(scenarios) + seed)
-  keep <- !vapply(pooled, is.null, logical(1))
-  tab <- do.call(rbind, Map(function(p, nm) cbind(scenario = nm, p$summary), pooled[keep], names(scenarios)[keep]))
-  primary <- scenarios[[1]]
-  study_tab <- if (nrow(primary)) {
-    x <- primary[, c("study_id", "first_author", "year", "rsid", "cohort", "tier", "model", "measure", "method", "y", "se", "beta", "se_beta", "flag", "ancestry_as_reported")]
-    x$or_per_copy <- exp(x$beta); x$ancestry_as_reported <- substr(x$ancestry_as_reported, 1, 40); x
-  } else data.frame()
-  cross <- data.frame()
-  if (!is.null(alt_snp)) {
-    tag <- ptx3_study_effects(re, snp_order = snp_order, exclude_studies = character())
-    alt <- ptx3_study_effects(re, snp_order = alt_snp, exclude_studies = character())
-    cross <- merge(tag[, c("study_id", "rsid", "beta", "se_beta")], alt[, c("study_id", "rsid", "beta", "se_beta")], by = "study_id", suffixes = c("_first", "_second"))
-    if (nrow(cross)) cross$difference <- cross$beta_second - cross$beta_first
-  }
-  dir.create("output", showWarnings = FALSE)
-  write.csv(re[, setdiff(names(re), "ancestry_as_reported")], paste0("output/", prefix, "_row_effects.csv"), row.names = FALSE)
-  write.csv(study_tab, paste0("output/", prefix, "_study_effects.csv"), row.names = FALSE)
-  write.csv(tab, paste0("output/", prefix, "_pooled.csv"), row.names = FALSE)
-  if (nrow(cross)) write.csv(cross, paste0("output/", prefix, "_snp_crosscheck.csv"), row.names = FALSE)
-  if (!is.null(pooled[[1]])) write.csv(pooled[[1]]$draws, paste0("output/", prefix, "_posterior_draws.csv"), row.names = FALSE)
-  list(hap = hap, re = re, study = study_tab, pooled = tab, cross = cross, scenarios = scenarios)
-}
+source("R/term_mapping.R")
 
-clec <- run_term("clec7a", "CLEC7A", c("C", NA), c("rs16910526", "rs7309123"), snp_order = "rs16910526", alt_snp = NULL, seed = 7241L)
-tlr4 <- run_term("tlr4", "TLR4", c("G", "T"), c("rs4986790", "rs4986791"), snp_order = c("rs4986790", "rs4986791"), alt_snp = "rs4986791", seed = 3086L,
+clec <- run_term("clec7a", block_haplotypes("CLEC7A", c("C", NA)), c("rs16910526", "rs7309123"), snp_order = "rs16910526",
+                 seed = 7241L, vr = vr, st = st, applied_ids = applied$applied)
+tlr4 <- run_term("tlr4", block_haplotypes("TLR4", c("G", "T")), c("rs4986790", "rs4986791"), snp_order = c("rs4986790", "rs4986791"),
+                 alt_snp = "rs4986791", seed = 3086L, vr = vr, st = st, applied_ids = applied$applied,
                  scenarios_extra = list("with de Boer 2011 (S061, genotype source unstated, treated as recipient)" = function(re) {
                    re$genotype[re$study_id == "S061"] <- "recipient"
                    ptx3_study_effects(re, snp_order = c("rs4986790", "rs4986791"))
                  }))
 
-show <- function(x, label) {
-  message("\n=====", label, "=====")
-  message("risk class frequency (gnomAD NFE): ", sprintf("%.3f", sum(x$hap$freq[x$hap$risk == 1])), " | usable rows: ", nrow(x$re), " | mapped: ", sum(!is.na(x$re$beta)))
-  if (nrow(x$study)) print(cbind(x$study[, c("study_id", "rsid", "tier", "model")], round(x$study[, c("y", "se", "beta", "se_beta", "or_per_copy")], 3)), row.names = FALSE)
-  print(cbind(x$pooled[, c("scenario", "k")], round(x$pooled[, c("mu_lo", "mu", "mu_hi", "or", "or_lo", "or_hi", "tau", "prob_below_zero")], 3)), row.names = FALSE)
-  if (nrow(x$cross)) { message("cross-check against the second SNP:"); print(cbind(x$cross[, c("study_id")], round(x$cross[, c("beta_first", "beta_second", "difference")], 3)), row.names = FALSE) }
-}
-show(clec, "CLEC7A (risk class: Y238X, haplotype C-G)")
-show(tlr4, "TLR4 (risk class: G-T haplotype)")
+show_term(clec, "CLEC7A (risk class: Y238X, haplotype C-G)")
+show_term(tlr4, "TLR4 (risk class: G-T haplotype)")
 
 r73 <- clec$re[clec$re$rsid == "rs7309123", ]
 message("\nCLEC7A rs7309123: ", nrow(r73), " usable rows from ", length(unique(r73$study_id)), " studies are not used (strand unresolved, no control allele frequency).")

@@ -70,6 +70,9 @@ if (nrow(donor)) {
             "output/ptx3_donor_effects.csv", row.names = FALSE)
 }
 write.csv(pooled[[1]]$draws, "output/ptx3_h2_posterior_draws.csv", row.names = FALSE)
+# Donor draws for the allo-HSCT stratum analysis (one study: its estimate with the prior's shrinkage)
+donor_pooled <- pool(donor, 5617L)
+if (!is.null(donor_pooled)) write.csv(donor_pooled$draws, "output/ptx3_h2_donor_posterior_draws.csv", row.names = FALSE)
 
 message("haplotype frequencies used (gnomAD NFE): h2 = ", sprintf("%.3f", sum(hap$freq[hap$risk == 1])), " | rows corrected: ", length(applied$applied))
 message("usable PTX3 rows: ", nrow(re), " | mapped to a per-copy h2 effect: ", sum(!is.na(re$beta)))

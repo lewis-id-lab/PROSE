@@ -1,0 +1,4 @@
+"study_id","first_author","year","rsid","cohort","tier","model","measure","method","y","se","beta","se_beta","flag","ancestry_as_reported","or_per_copy"
+"S045","Schnetzke, Ulf",2024,"rs4804800","stratification","estimate","dominant","OR","estimate, model_label",0.657520002916794,0.368159117819989,0.60369088646745,0.33000025615109,"contrast taken from the model label","Caucasian (explicitly stated for the str",1.82885646033318
+"S071","Sainz, Juan",2012,"rs4804800","whole","estimate","additive_per_allele","OR","estimate, model_label",0.828551817566148,0.326423213789874,0.828551817566148,0.32642321378991,"contrast taken from the model label","Caucasian",2.29
+"S077","Tanpaibule, Tananun",2020,"rs4804800","whole","estimate","dominant","OR","estimate, text",0.41607528722018,0.427212730749123,0.385202585588394,0.390114374486372,"","Thai",1.46991207428237

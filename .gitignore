@@ -20,3 +20,10 @@ data/restricted/
 
 # Quarto intermediates
 *.knit.md
+
+# Per-draw simulation outputs of the genetic layer: 2 to 9 MB each, regenerated exactly by scripts 16 to 18 (seeded); the summaries are committed
+output/genetic_layer_draws.csv
+output/genetic_attribution_draws.csv
+output/genetic_ensemble_draws.csv
+output/genetic_sampling_draws.csv
+output/genetic_ensemble_sampling_draws.csv
