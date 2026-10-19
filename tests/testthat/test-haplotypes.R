@@ -113,3 +113,22 @@ test_that("phased LD agrees with the earlier derived LD, and the PTX3 trio has t
   # The cells that are absent in 1000G stay absent after rescaling
   expect_true(all(trio$freq_gnomAD_NFE_rescaled[trio$n_chromosomes == 0] == 0))
 })
+
+test_that("the East Asian CLEC7A haplotype table is a proper frequency table with the expected structure", {
+  path <- file.path(proj_root, "data", "haplotype_frequencies_eas.csv")
+  skip_if_not(file.exists(path), "the East Asian haplotype table is not present")
+  eas <- read.csv(path, stringsAsFactors = FALSE)
+  expect_setequal(unique(eas$haplotype), c("C-G", "A-G", "C-C", "A-C"))
+  expect_true(all(c("Chinese Han (CHB+CHS)", "Thai proxy (CDX)", "East Asian (all five)") %in% eas$population))
+  for (g in unique(eas$population)) {
+    x <- eas[eas$population == g, ]
+    expect_equal(sum(x$freq), 1, tolerance = 1e-9)
+    expect_equal(sum(x$n_chromosomes), x$chromosomes_total[1])
+    expect_equal(x$freq, x$n_chromosomes / x$chromosomes_total, tolerance = 1e-9)
+    # Y238X (C at rs16910526) is nearly absent and never found with the C allele of rs7309123
+    expect_lt(sum(x$freq[x$allele_1 == "C"]), 0.02)
+    expect_equal(x$n_chromosomes[x$haplotype == "C-C"], 0)
+    # rs7309123 G is the common allele (0.77 to 0.88), the opposite of the European 0.43
+    expect_gt(sum(x$freq[x$allele_2 == "G"]), 0.7)
+  }
+})

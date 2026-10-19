@@ -1,0 +1,29 @@
+"population","pops","haplotype","allele_1","allele_2","n_chromosomes","freq","chromosomes_total"
+"Chinese Han (CHB+CHS)","CHB+CHS","C-G","C","G",1,0.00240384615384615,416
+"Chinese Han (CHB+CHS)","CHB+CHS","A-G","A","G",332,0.798076923076923,416
+"Chinese Han (CHB+CHS)","CHB+CHS","C-C","C","C",0,0,416
+"Chinese Han (CHB+CHS)","CHB+CHS","A-C","A","C",83,0.199519230769231,416
+"Thai proxy (CDX)","CDX","C-G","C","G",1,0.00537634408602151,186
+"Thai proxy (CDX)","CDX","A-G","A","G",143,0.768817204301075,186
+"Thai proxy (CDX)","CDX","C-C","C","C",0,0,186
+"Thai proxy (CDX)","CDX","A-C","A","C",42,0.225806451612903,186
+"Kinh (KHV)","KHV","C-G","C","G",2,0.0101010101010101,198
+"Kinh (KHV)","KHV","A-G","A","G",171,0.863636363636364,198
+"Kinh (KHV)","KHV","C-C","C","C",0,0,198
+"Kinh (KHV)","KHV","A-C","A","C",25,0.126262626262626,198
+"Japanese (JPT)","JPT","C-G","C","G",0,0,208
+"Japanese (JPT)","JPT","A-G","A","G",182,0.875,208
+"Japanese (JPT)","JPT","C-C","C","C",0,0,208
+"Japanese (JPT)","JPT","A-C","A","C",26,0.125,208
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","C-G","C","G",4,0.00396825396825397,1008
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","A-G","A","G",828,0.821428571428571,1008
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","C-C","C","C",0,0,1008
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","A-C","A","C",176,0.174603174603175,1008
+"CHB","CHB","C-G","C","G",0,0,206
+"CHB","CHB","A-G","A","G",163,0.79126213592233,206
+"CHB","CHB","C-C","C","C",0,0,206
+"CHB","CHB","A-C","A","C",43,0.20873786407767,206
+"CHS","CHS","C-G","C","G",1,0.00476190476190476,210
+"CHS","CHS","A-G","A","G",169,0.804761904761905,210
+"CHS","CHS","C-C","C","C",0,0,210
+"CHS","CHS","A-C","A","C",40,0.19047619047619,210

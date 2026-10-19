@@ -3,9 +3,11 @@
 "all studies, unresolved ones taken as forward","S056","Turkish population","genotypic_3level","none_reported",0.887303195000903,0.516348464899405,0.778567242030743,0.395139560812884
 "all studies, unresolved ones taken as forward","S071","Caucasian","additive_per_allele","OR",0.559615787935423,0.278573932103113,0.667891015440358,0.305181524517285
 "all studies, unresolved ones taken as forward","S073","Caucasian","dominant","OR",0.8754687373539,0.415175082494869,0.769501100751532,0.318399542723528
-"all studies, unresolved ones taken as forward","S074","Chinese Han","dominant","OR",0.61302113608066,0.341631143947725,-0.486859692863172,0.295530443391582
+"all studies, unresolved ones taken as forward","S074","Chinese Han","dominant","OR",0.61302113608066,0.341631143947725,-0.538503345335903,0.291824899947086
+"all studies, unresolved ones taken as forward","S077","Thai","dominant","OR",-0.906340401020987,0.909552833266904,-0.584002480026841,0.617045534732415
 "unresolved studies taken as the opposite strand","S045","Caucasian (explicitly stated for the stratification cohort: '186 Caucasian patients'; ancestry not explicitly re-stated for the validation cohort)","dominant","OR",1.03318448334565,0.455978318468579,0.594630275881161,0.213503770715557
 "unresolved studies taken as the opposite strand","S056","Turkish population","genotypic_3level","none_reported",0.887303195000903,0.516348464899405,0.778567242030743,0.395139560812884
 "unresolved studies taken as the opposite strand","S071","Caucasian","additive_per_allele","OR",0.559615787935423,0.278573932103113,0.667891015440358,0.305181524517285
 "unresolved studies taken as the opposite strand","S073","Caucasian","dominant","OR",0.8754687373539,0.415175082494869,0.769501100751532,0.318399542723528
-"unresolved studies taken as the opposite strand","S074","Chinese Han","dominant","OR",0.61302113608066,0.341631143947725,-0.486859692863172,0.295530443391582
+"unresolved studies taken as the opposite strand","S074","Chinese Han","dominant","OR",0.61302113608066,0.341631143947725,-0.538503345335903,0.291824899947086
+"unresolved studies taken as the opposite strand","S077","Thai","dominant","OR",-0.906340401020987,0.909552833266904,-0.584002480026841,0.617045534732415
