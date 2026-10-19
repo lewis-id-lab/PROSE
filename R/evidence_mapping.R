@@ -42,29 +42,38 @@ ptx3_haplotypes <- function(path = "data/haplotype_frequencies_phased.csv", sour
   h
 }
 
-# All ordered pairs of haplotypes (Hardy-Weinberg): probability, genotype at one locus (alleles sorted), h2 copies
+# Fixed log-odds effects carried by a haplotype that is not the class being estimated (the second CLEC7A parameter, addendum 16): a column named
+# `offset` in the haplotype table, zero when absent
+offset_of <- function(hap) if ("offset" %in% names(hap)) hap$offset else rep(0, nrow(hap))
+
+# All ordered pairs of haplotypes (Hardy-Weinberg): probability, genotype at one locus (alleles sorted), risk-class copies, fixed offset of the pair
 genotype_pairs <- function(hap, locus) {
   al <- hap[[paste0("a", locus)]]
   ij <- expand.grid(i = seq_len(nrow(hap)), j = seq_len(nrow(hap)))
+  off <- offset_of(hap)
   data.frame(prob = hap$freq[ij$i] * hap$freq[ij$j],
              genotype = vapply(seq_len(nrow(ij)), function(r) paste(sort(c(al[ij$i[r]], al[ij$j[r]])), collapse = ""), ""),
-             k = risk_of(hap)[ij$i] + risk_of(hap)[ij$j], stringsAsFactors = FALSE)
+             k = risk_of(hap)[ij$i] + risk_of(hap)[ij$j], o = off[ij$i] + off[ij$j], stringsAsFactors = FALSE)
 }
 
-# Log OR of one genotype group against another, under h2 effect beta. Cases are weighted by exp(beta * h2 copies).
+# Log OR of one genotype group against another, under risk-class effect beta (and any fixed offsets). Cases are weighted by exp(effect of the
+# pair); the null is no effect at all.
 implied_log_or_genotype <- function(beta, pairs, numerator, reference) {
-  f <- function(b) {
+  o <- if ("o" %in% names(pairs)) pairs$o else rep(0, nrow(pairs))
+  f <- function(b, offsets = TRUE) {
     n <- pairs$genotype %in% numerator; r <- pairs$genotype %in% reference
-    log(sum(pairs$prob[n] * exp(b * pairs$k[n])) / sum(pairs$prob[r] * exp(b * pairs$k[r])))
+    oo <- if (offsets) o else rep(0, length(o))
+    log(sum(pairs$prob[n] * exp(b * pairs$k[n] + oo[n])) / sum(pairs$prob[r] * exp(b * pairs$k[r] + oo[r])))
   }
-  f(beta) - f(0)
+  f(beta) - f(0, offsets = FALSE)
 }
 
 # Log OR per copy of an allele, chromosome level (exact for an allelic test under multiplicative risk)
 implied_log_or_allele <- function(beta, hap, locus, allele) {
   has <- hap[[paste0("a", locus)]] == allele
-  f <- function(b) { w <- hap$freq * exp(b * risk_of(hap)); log(sum(w[has]) / sum(w[!has])) }
-  f(beta) - f(0)
+  off <- offset_of(hap)
+  f <- function(b, offsets = TRUE) { w <- hap$freq * exp(b * risk_of(hap) + if (offsets) off else 0); log(sum(w[has]) / sum(w[!has])) }
+  f(beta) - f(0, offsets = FALSE)
 }
 
 # Solve implied(beta) = observed for beta, if implied() is strictly monotone over the search range

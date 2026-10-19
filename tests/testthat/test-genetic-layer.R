@@ -308,3 +308,41 @@ test_that("the data-based allo stratum is the flagged admissions' own distributi
   expect_equal(cells$prevalence, sum(allo) / sum(allo) * sum(case[allo]) / sum(allo), tolerance = 1e-9)
   expect_gt(baseline_mcid(st$q, lp0, 0.05, offset = st$offset), 0)
 })
+
+test_that("a gene with several haplotype classes has multinomial genotypes, and the joint grid is a product", {
+  hap <- data.frame(haplotype = c("C-G", "A-G", "A-C"), freq = c(0.08, 0.35, 0.57), stringsAsFactors = FALSE)
+  part <- haplotype_gene_part(hap, c(CLEC7A = "C-G", CLEC7A_AG = "A-G"))
+  expect_equal(nrow(part$G), 6L); expect_equal(sum(part$prob), 1)
+  expect_equal(sum(part$G[, "CLEC7A"] * part$prob), 2 * 0.08); expect_equal(sum(part$G[, "CLEC7A_AG"] * part$prob), 2 * 0.35)
+  expect_true(all(rowSums(part$G) <= 2))
+  expect_equal(sum(part$prob[part$G[, "CLEC7A"] == 2]), 0.08^2)
+  expect_equal(sum(part$prob[part$G[, "CLEC7A"] == 1 & part$G[, "CLEC7A_AG"] == 1]), 2 * 0.08 * 0.35)
+  jg <- joint_grid(list(dosage_grid(c(PTX3 = 0.48)), part, dosage_grid(c(TLR4 = 0.06))))
+  expect_equal(dim(jg$G), c(3L * 6L * 3L, 4L)); expect_equal(colnames(jg$G), c("PTX3", "CLEC7A", "CLEC7A_AG", "TLR4"))
+  expect_equal(sum(jg$prob), 1)
+  expect_equal(sum(jg$prob[jg$G[, "TLR4"] == 2]), 0.06^2)
+  # with the second parameter at zero the joint grid gives the same layer as independent binomials for the other terms
+  q <- q0; p3 <- c(PTX3 = 0.48, CLEC7A = 0.08, TLR4 = 0.06)
+  indep <- genetic_nb(genetic_cells(q, lp0, dosage_grid(p3)), c(PTX3 = 0.3, CLEC7A = 0.1, TLR4 = 0.4), c(PTX3 = 0.3, CLEC7A = 0.1, TLR4 = 0.4), c(0.05, 0.2))
+  jg2 <- joint_grid(list(dosage_grid(c(PTX3 = 0.48)), haplotype_gene_part(hap[c(1, 2, 3), ] |> transform(freq = c(0.08, 0.35, 0.57)), c(CLEC7A = "C-G", CLEC7A_AG = "A-G")), dosage_grid(c(TLR4 = 0.06))))
+  b <- c(PTX3 = 0.3, CLEC7A = 0.1, CLEC7A_AG = 0, TLR4 = 0.4)
+  joint <- genetic_nb(genetic_cells(q, lp0, jg2), b, b, c(0.05, 0.2))
+  expect_equal(joint$nb[joint$scenario == "ceiling"], indep$nb[indep$scenario == "ceiling"], tolerance = 1e-10)
+})
+
+test_that("the smoothed allo stratum keeps the observed share and event rate and spreads over more profiles than the data", {
+  set.seed(3394)
+  n <- 3000
+  X <- matrix(rbinom(n * 7, 1, rep(pars$marginal, each = n)), n, 7, dimnames = list(NULL, PREDICTORS))
+  allo <- rbinom(n, 1, plogis(-3.5 + 3 * X[, "high_risk_chemo"] + 1.2 * X[, "severe_lymphopenia"] + 0.6 * X[, "prolonged_neutropenia"])) == 1
+  case <- rbinom(n, 1, ifelse(allo, 0.2, 0.03))
+  co <- list(rows = data.frame(case = case, allo_hsct = allo), X = X)
+  sm <- allo_stratum_smooth(co, lp0); dt <- allo_stratum_data(co, lp0)
+  expect_equal(sum(sm$q), 1); expect_equal(sm$share, mean(allo), tolerance = 1e-9)
+  expect_equal(sum(sm$q * plogis(lp0 + sm$offset)), sum(case[allo]) / sum(allo), tolerance = 1e-9)
+  expect_gte(sm$profiles_present, dt$profiles_present)
+  expect_lt(0.5 * sum(abs(sm$q - dt$q)), 0.25)              # smoothing, not a different distribution
+  expect_length(sm$coefficients, 8L)
+  co$rows$allo_hsct <- NA
+  expect_error(allo_stratum_smooth(co, lp0), "no allo-HSCT flag")
+})

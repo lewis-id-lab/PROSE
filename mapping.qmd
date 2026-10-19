@@ -20,6 +20,8 @@ tlr4    <- list(study = read.csv("output/tlr4_study_effects.csv"), pooled = read
 cd209   <- list(study = read.csv("output/cd209_study_effects.csv"), pooled = read.csv("output/cd209_pooled.csv"), cross = read.csv("output/cd209_snp_crosscheck.csv"), rows = read.csv("output/cd209_row_effects.csv"))
 il10    <- list(study = read.csv("output/il10_study_effects.csv"), pooled = read.csv("output/il10_pooled.csv"))
 ifng    <- list(study = read.csv("output/ifng_study_effects.csv"), pooled = read.csv("output/ifng_pooled.csv"))
+strand  <- read.csv("data/rs7309123_strand_resolution.csv")
+clec2   <- read.csv("output/clec7a_second_pooled.csv")
 study_label <- function(d) paste0(sub(",.*", "", d$first_author), " ", d$year)
 ```
 
@@ -213,11 +215,34 @@ clec$pooled |>
 ```
 
 Among the small odds-ratio studies Y238X is null. The largest study (Fisher 2017, 483 cases) reports hazard ratios above 1, and
-including it moves the pooled effect up. **The second CLEC7A effect is not estimated.** rs7309123 is a C/G palindrome, so its
-strand cannot be settled from the allele letters, and none of its `r sum(clec$rows$rsid == "rs7309123")` usable rows from
-`r length(unique(clec$rows$study_id[clec$rows$rsid == "rs7309123"]))` studies records a control allele frequency to settle it. Used
-anyway, its signal is forced onto the Y238X haplotype, which carries only 18% of the G alleles, and it produced an odds ratio
-of 4.5. Those rows are left out until the strand of each study is resolved.
+including it moves the pooled effect up. **The second CLEC7A effect** is the per-copy effect of the A-G haplotype, the G allele of rs7309123 on the non-Y238X background (A-C is the reference). rs7309123 is a C/G
+palindrome, so the strand each study used had to be determined from its control frequencies and the papers themselves; the evidence for each study is in
+`data/rs7309123_strand_resolution.csv` and in addendum 16 of the decision record. Studies are graded A to D, and only grades A and B (resolved with at least low-to-medium confidence)
+enter the primary estimate.
+
+```{r}
+#| label: tbl-strand
+#| tbl-cap: "Strand of rs7309123 in each study that reports it. The likelihood ratio compares the study's control frequency of the labelled allele with the forward-strand and opposite-strand reference frequencies."
+strand |>
+  transmute(Study = paste0(first_author, " ", year), Ancestry = ancestry, `Labelled allele frequency` = observed_frequency_of_labelled_allele,
+            `log10 LR, forward vs opposite` = log10_likelihood_ratio_forward_vs_opposite, Conclusion = strand_conclusion, Grade = grade) |>
+  gt() |>
+  fmt_number(c(`Labelled allele frequency`, `log10 LR, forward vs opposite`), decimals = 2) |>
+  sub_missing(missing_text = "")
+```
+
+```{r}
+#| label: tbl-clec2
+#| tbl-cap: "The second CLEC7A parameter (OR per A-G copy), with Y238X held at its pooled effect. Non-European studies are left out of the primary analysis because the European haplotype frequencies do not describe them."
+clec2 |>
+  transmute(Analysis = scenario, Studies = k, OR = or, `OR 5%` = or_lo, `OR 95%` = or_hi, tau = tau) |>
+  gt() |>
+  fmt_number(c(OR, `OR 5%`, `OR 95%`, tau), decimals = 2)
+```
+
+The primary estimate rests on two studies (Schnetzke 2024 and Sainz 2012) and is an odds ratio of `r sprintf("%.2f", clec2$or[1])` per A-G copy, with a 90% interval from `r sprintf("%.2f", clec2$or_lo[1])`
+to `r sprintf("%.2f", clec2$or_hi[1])`. It is fragile: adding the Jena cohort, whose strand is only weakly resolved, brings it to `r sprintf("%.2f", clec2$or[clec2$scenario == "adding the Jena cohort (grade C)"])`
+with an interval that includes 1, and taking every study as forward strand gives `r sprintf("%.2f", clec2$or[clec2$scenario == "all studies, unresolved ones taken as forward"])`.
 
 ## TLR4: the G-T haplotype
 
@@ -319,6 +344,6 @@ fallback adds nothing because Fisher's IFNG rows are donor genotype only. Puttin
   casts doubt on it.
 - The Chinese and Thai cohorts use European haplotype frequencies.
 - Three to five studies per term is few. The priors on the pooled effect and on tau are proposals.
-- Open questions from addendum 8 that the human checks did not settle: whether to use Herrero-Sanchez's invasive aspergillosis rows,
-  whether to keep Brunel in the primary analysis, and how to resolve the rs7309123 strand. Hazard-ratio studies join a term's primary
+- Open questions from addendum 8 that the human checks did not settle: whether to use Herrero-Sanchez's invasive aspergillosis rows
+  and whether to keep Brunel in the primary analysis. The rs7309123 strand is resolved with some confidence for four of the ten studies and weakly for three more (addendum 16). Hazard-ratio studies join a term's primary
   analysis only when it has fewer than three odds-ratio studies (addendum 9).

@@ -441,3 +441,23 @@ test_that("CLEC7A and TLR4 on the real extraction give the documented study sets
   expect_lt(pt$beta[pt$study_id == "S077"], 0)                                            # no case carried the allele
   expect_equal(bayes_meta_grid(pt$beta, pt$se_beta, seed = 3087)$mu[2], 0.37, tolerance = 0.1)
 })
+
+test_that("a fixed offset haplotype shifts the implied effect and the solver recovers the estimated one", {
+  hap3 <- data.frame(haplotype = c("C-G", "A-G", "A-C"), a1 = c("C", "A", "A"), a2 = c("G", "G", "C"), freq = c(0.08, 0.35, 0.57), stringsAsFactors = FALSE)
+  hap3$risk <- c(0L, 1L, 0L); hap3$offset <- c(0.3, 0, 0)
+  # no offset reproduces the earlier definition: with zero offset the implied allelic effect is the plain formula
+  h0 <- hap3; h0$offset <- 0
+  w <- h0$freq * exp(0.5 * h0$risk); has <- h0$a2 == "G"
+  expect_equal(implied_log_or_allele(0.5, h0, 2, "G"), log(sum(w[has]) / sum(w[!has])) - log(sum(h0$freq[has]) / sum(h0$freq[!has])))
+  # the offset haplotype carries part of the G allele's effect, so a given beta2 implies a larger effect with it than without
+  expect_gt(implied_log_or_allele(0.5, hap3, 2, "G"), implied_log_or_allele(0.5, h0, 2, "G"))
+  expect_equal(implied_log_or_allele(0, hap3, 2, "G") > 0, TRUE)
+  pairs <- genotype_pairs(hap3, 2)
+  expect_equal(sort(unique(round(pairs$o, 10))), c(0, 0.3, 0.6))
+  obs <- implied_log_or_allele(0.5, hap3, 2, "G")
+  s <- solve_beta(obs, function(b) implied_log_or_allele(b, hap3, 2, "G"))
+  expect_equal(s$beta, 0.5, tolerance = 1e-6)
+  obs_g <- implied_log_or_genotype(0.5, pairs, c("CG", "GG"), "CC")
+  s2 <- solve_beta(obs_g, function(b) implied_log_or_genotype(b, pairs, c("CG", "GG"), "CC"))
+  expect_equal(s2$beta, 0.5, tolerance = 1e-6)
+})

@@ -1,4 +1,5 @@
 source(file.path(proj_root, "R", "evidence_mapping.R"))
+source(file.path(proj_root, "R", "ptx3_evidence.R"))
 source(file.path(proj_root, "R", "source_verification.R"))
 
 test_that("crude_or follows the formula and adds 0.5 only when a cell is zero", {
@@ -52,6 +53,7 @@ test_that("the reversed comparison text is cleaned to a plain genotype contrast 
 })
 
 bundle <- file.path(proj_root, "IMD_genetics_analysis_bundle (1).zip")
+hap_path <- file.path(proj_root, "data", "haplotype_frequencies_phased.csv")
 checks_path <- file.path(proj_root, "data", "source_checks_S035.csv")
 corr_path <- file.path(proj_root, "data", "extraction_corrections.csv")
 
@@ -76,7 +78,8 @@ test_that("every recorded correction matches the real extraction and carries its
   skip_if_not(file.exists(bundle) && file.exists(corr_path), "the evidence bundle or the corrections file is not present")
   vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
   cr <- read.csv(corr_path, stringsAsFactors = FALSE)
-  expect_equal(nrow(cr), 30L); expect_true(all(cr$study_id == "S035"))
+  expect_equal(nrow(cr), 42L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L)
+  expect_setequal(cr$study_id, c("S035", "S073"))
   expect_true(all(nzchar(cr$evidence)) && all(nzchar(cr$checked_by)) && all(nzchar(cr$checked_on)))
   expect_false(anyDuplicated(paste(cr$variant_row_id, cr$field)) > 0)
   out <- apply_corrections(vr, cr)                                                       # stops if any original value has changed
@@ -84,4 +87,21 @@ test_that("every recorded correction matches the real extraction and carries its
   expect_false(any(grepl("\\(ref\\)", out$data$comparison_as_reported[out$data$variant_row_id %in% cr$variant_row_id])))
   # genotypic three-level rows are not corrected: they cannot be mapped to one contrast
   expect_false(any(vr$genetic_model[vr$variant_row_id %in% cr$variant_row_id] == "genotypic_3level"))
+  # Fischer 2016 (S073): the corrected rows put the compared group first, so the risk genotype is the numerator
+  s73 <- out$data[out$data$variant_row_id %in% cr$variant_row_id[cr$study_id == "S073"], ]
+  expect_true(all(s73$comparison_as_reported %in% c("A/C vs A/A", "G/G vs C/C + C/G", "G/G + C/G vs C/C")))
+  expect_equal(sort(unique(s73$rsid)), c("rs16910526", "rs7309123"))
+})
+
+test_that("after the S073 correction Fischer 2016 reads as risk for rs7309123 G and as no excess for Y238X carriers", {
+  skip_if_not(file.exists(bundle) && file.exists(corr_path) && file.exists(hap_path), "the evidence bundle, corrections or haplotype table is not present")
+  vr <- apply_corrections(read_bundle_table("extraction_variants_round1.csv", bundle), read.csv(corr_path, stringsAsFactors = FALSE))$data
+  st <- read_bundle_table("extraction_studies_round1.csv", bundle)
+  hc <- block_haplotypes("CLEC7A", c("C", NA), hap_path)
+  rc <- ptx3_row_effects(vr, st, hc, loci = c("rs16910526", "rs7309123"), counts_model = "carrier")
+  y238x <- ptx3_study_effects(rc, snp_order = "rs16910526")
+  expect_lt(y238x$beta[y238x$study_id == "S073"], 0)                                     # carriers OR 0.7
+  expect_equal(exp(y238x$beta[y238x$study_id == "S073"]), 0.7, tolerance = 0.01)
+  g <- rc[rc$study_id == "S073" & rc$rsid == "rs7309123" & !is.na(rc$beta), ]
+  expect_true(all(g$y > 0))                                                              # G/G, or G carriers, against the rest: OR above 1
 })

@@ -368,3 +368,44 @@ allo_stratum_data <- function(cohort, lp_profile) {
   list(share = length(a) / nrow(cohort$X), q = q, offset = offset, event_rate = rate, n = length(a), events = events,
        profiles_present = sum(q > 0), predicted_rate_baseline = sum(q * stats::plogis(lp_profile)))
 }
+
+# ---- Terms whose genotypes are not independent binomials (the two CLEC7A parameters, addendum 16) --------------------------------------
+
+# Genotype distribution of one gene with several haplotype classes: the two chromosomes are drawn from the haplotype frequencies
+# (Hardy-Weinberg) and each term is the number of copies of its haplotype. `classes` is a named character vector, term -> haplotype name.
+haplotype_gene_part <- function(hap, classes) {
+  ij <- expand.grid(i = seq_len(nrow(hap)), j = seq_len(nrow(hap)))
+  G <- vapply(classes, function(h) as.numeric(hap$haplotype[ij$i] == h) + as.numeric(hap$haplotype[ij$j] == h), numeric(nrow(ij)))
+  G <- matrix(G, nrow = nrow(ij), dimnames = list(NULL, names(classes)))
+  prob <- hap$freq[ij$i] * hap$freq[ij$j]
+  key <- apply(G, 1, paste, collapse = "_")
+  u <- !duplicated(key)
+  list(G = G[u, , drop = FALSE], prob = as.numeric(tapply(prob, factor(key, levels = key[u]), sum)))
+}
+
+# Product of independent genes, each a list(G, prob): the joint dosage grid in the form dosage_grid() returns
+joint_grid <- function(parts) {
+  idx <- expand.grid(lapply(parts, function(p) seq_along(p$prob)), KEEP.OUT.ATTRS = FALSE)
+  list(G = do.call(cbind, Map(function(p, i) p$G[i, , drop = FALSE], parts, idx)),
+       prob = Reduce(`*`, Map(function(p, i) p$prob[i], parts, idx)))
+}
+
+# The allo-HSCT stratum with a smoothed profile distribution (addendum 16): a logistic model of allo status on the seven predictors (main effects) gives each
+# of the 128 profiles a probability of being an allo admission, and the stratum's distribution is the cohort's profile distribution times that probability.
+# Profiles that no allo admission happens to show get weight if the model says they are plausible. The offset recalibrates the baseline as in allo_stratum_data().
+# The share equals the observed share (the model has an intercept). Allo status is almost a part of the high-risk chemotherapy item, so the fit is close to separated
+# for profiles without it; the fitted probabilities there are tiny, which is the intended behaviour.
+allo_stratum_smooth <- function(cohort, lp_profile, profiles = all_profiles()) {
+  a <- cohort$rows$allo_hsct
+  if (all(is.na(a))) stop("the cohort carries no allo-HSCT flag", call. = FALSE)
+  fit <- suppressWarnings(stats::glm(as.integer(a) ~ cohort$X, family = stats::binomial))
+  cf <- stats::setNames(stats::coef(fit), c("(Intercept)", colnames(cohort$X)))
+  p_allo <- as.numeric(stats::plogis(cf[["(Intercept)"]] + profiles %*% cf[colnames(profiles)]))
+  q_all <- tabulate(profile_index(cohort$X), nrow(profiles)) / nrow(cohort$X)
+  w <- q_all * p_allo
+  q <- w / sum(w)
+  events <- sum(cohort$rows$case[which(a)]); n <- sum(a); rate <- events / n
+  offset <- stats::uniroot(function(o) sum(q * stats::plogis(lp_profile + o)) - rate, c(-6, 8), tol = 1e-12)$root
+  list(share = sum(w), q = q, offset = offset, event_rate = rate, n = n, events = events, profiles_present = sum(q > 1e-6),
+       predicted_rate_baseline = sum(q * stats::plogis(lp_profile)), coefficients = cf, converged = fit$converged)
+}

@@ -600,6 +600,8 @@ Code and outputs: `R/evidence_mapping.R`, `R/ptx3_evidence.R`, `scripts/12_map_p
 ---
 
 ## Addendum 8, 18 October 2026: PTX3 rows checked against sources, and the mapping extended to CLEC7A and TLR4 (D12)
+> **Erratum (addendum 16, section 0):** the CLEC7A figures below (Y238X OR 0.98, 1.36 with hazard ratios) used Fischer 2016 with its direction reversed; corrected they are 0.84 (0.48 to 1.48) and 1.23 (0.70 to 1.77).
+
 
 Written after the tag. No genetic-layer result exists. Nothing in D1 to D11 changes, but one statement in addendum 7 is
 retracted (below). The source checks are read-throughs by the assistant. They are not the human round-2 check, which is
@@ -803,6 +805,9 @@ using a prior-dominated draw would add a term whose size is set by the prior rat
 
 ## Addendum 11, 19 October 2026: the genetic layer started (D15)
 
+> **Erratum (19 October 2026, addendum 16, section 0):** the CLEC7A evidence behind this addendum used one study (Fischer 2016) with its direction reversed. The tables below show the values before the correction; the regenerated files in `output/` hold the corrected ones, and the differences are small (gains by at most 0.00006, shares reaching the MCID by at most 3 points, Shapley shares by at most 1.6 points). The conclusions do not change.
+
+
 Written after the tag. This is the first genetic-layer result. It is provisional, because every effect comes from the provisional
 evidence mapping (addenda 7 to 9), and the design below is my proposal, open to change before the layer is extended.
 
@@ -862,6 +867,9 @@ Code and outputs: `R/genetic_layer.R`, `scripts/16_genetic_layer.R`, `tests/test
 ---
 
 ## Addendum 12, 19 October 2026: sampling variability, the correlation ensemble and per-term attribution (D16)
+
+> **Erratum (19 October 2026, addendum 16, section 0):** the CLEC7A evidence behind this addendum used one study (Fischer 2016) with its direction reversed. The tables below show the values before the correction; the regenerated files in `output/` hold the corrected ones, and the differences are small (gains by at most 0.00006, shares reaching the MCID by at most 3 points, Shapley shares by at most 1.6 points). The conclusions do not change.
+
 
 Written after the tag. Provisional, like addendum 11: the effects come from the provisional evidence mapping, and the design below is my
 proposal. Nothing in D1 to D15 changes. The addendum 11 results reproduce unchanged after the code was extended.
@@ -1023,6 +1031,9 @@ Code and outputs: `R/genetic_layer.R`, `R/genetic_helpers.R`, `scripts/17_geneti
 
 ## Addendum 13, 19 October 2026: the ensemble with the sampling variability, and donor genotype in the allo-HSCT stratum (D17)
 
+> **Erratum (19 October 2026, addendum 16, section 0):** the CLEC7A evidence behind this addendum used one study (Fischer 2016) with its direction reversed. The tables below show the values before the correction; the regenerated files in `output/` hold the corrected ones, and the differences are small (gains by at most 0.00006, shares reaching the MCID by at most 3 points, Shapley shares by at most 1.6 points). The conclusions do not change.
+
+
 Written after the tag. Provisional, like addenda 11 and 12. Nothing in D1 to D16 changes, and the primary results of addenda 11 and 12 reproduce unchanged.
 
 ### D17. Design (proposed)
@@ -1140,6 +1151,9 @@ and the donor posterior draws `output/{ptx3_h2,clec7a,tlr4}_donor_posterior_draw
 ---
 
 ## Addendum 14, 19 October 2026: an admission-level allo-HSCT flag, and the donor-genotype stratum rebuilt from the data (D18)
+
+> **Erratum (19 October 2026, addendum 16, section 0):** the CLEC7A evidence behind this addendum used one study (Fischer 2016) with its direction reversed. The tables below show the values before the correction; the regenerated files in `output/` hold the corrected ones, and the differences are small (gains by at most 0.00006, shares reaching the MCID by at most 3 points, Shapley shares by at most 1.6 points). The conclusions do not change.
+
 
 Written after the tag. Provisional, like addenda 11 to 13. Nothing in D1 to D17 changes, and the addendum 11 and 12 results reproduce unchanged.
 It supersedes the stratum construction of addendum 13, which is kept as a sensitivity analysis.
@@ -1310,33 +1324,33 @@ estimates to everyone, and the assumed scores split the pooled estimates between
 
 | truth | threshold | ceiling | common | assumed H_F | assumed Brunel | ceiling reaches the whole-cohort MCID |
 |---|---|---|---|---|---|---|
-| all in neutropenic (ratio infinity) | 5% | +0.00080 | +0.00047 | +0.00059 | -0.00023 | 0% |
-| ratio 4 | 5% | +0.00070 | +0.00045 | +0.00052 | -0.00017 | 0% |
-| homogeneous | 5% | +0.00058 | +0.00043 | +0.00037 | +0.00005 | 0% |
-| ratio 1/4 | 5% | +0.00118 | +0.00044 | +0.00005 | +0.00086 | 0.4% |
-| all in non-neutropenic (ratio 0) | 5% | +0.00362 | +0.00033 | -0.00047 | +0.00222 | 19% |
-| Brunel's stratum effects | 5% | +0.00050 | -0.00011 | -0.00072 | +0.00009 | 0% |
-| all in neutropenic | 20% | +0.00151 | +0.00105 | +0.00112 | +0.00063 | 45% |
-| ratio 4 | 20% | +0.00136 | +0.00098 | +0.00101 | +0.00061 | 36% |
-| homogeneous | 20% | +0.00106 | +0.00080 | +0.00076 | +0.00058 | 17% |
-| ratio 1/4 | 20% | +0.00084 | +0.00040 | +0.00022 | +0.00058 | 12% |
-| all in non-neutropenic | 20% | +0.00198 | -0.00034 | -0.00063 | +0.00035 | 64% |
-| Brunel's stratum effects | 20% | +0.00023 | -0.00058 | -0.00089 | -0.00026 | 0% |
+| all in neutropenic (ratio infinity) | 5% | +0.00081 | +0.00047 | +0.00060 | -0.00019 | 0% |
+| ratio 4 | 5% | +0.00072 | +0.00045 | +0.00053 | -0.00014 | 0% |
+| homogeneous | 5% | +0.00059 | +0.00043 | +0.00038 | +0.00008 | 0% |
+| ratio 1/4 | 5% | +0.00117 | +0.00045 | +0.00007 | +0.00088 | 0.4% |
+| all in non-neutropenic (ratio 0) | 5% | +0.00356 | +0.00033 | -0.00045 | +0.00219 | 18% |
+| Brunel's stratum effects | 5% | +0.00049 | -0.00016 | -0.00070 | +0.00011 | 0% |
+| all in neutropenic | 20% | +0.00151 | +0.00106 | +0.00115 | +0.00066 | 45% |
+| ratio 4 | 20% | +0.00135 | +0.00099 | +0.00104 | +0.00064 | 37% |
+| homogeneous | 20% | +0.00106 | +0.00082 | +0.00078 | +0.00062 | 17% |
+| ratio 1/4 | 20% | +0.00083 | +0.00043 | +0.00023 | +0.00061 | 11% |
+| all in non-neutropenic | 20% | +0.00195 | -0.00030 | -0.00066 | +0.00033 | 62% |
+| Brunel's stratum effects | 20% | +0.00023 | -0.00055 | -0.00092 | -0.00029 | 0% |
 
-With homogeneous effects the gain per admission is 11 times larger in the neutropenic stratum (+0.00168 against +0.00015 at 5%, 4.0 extra true cases per 1,000 neutropenic admissions), and that stratum supplies **81% of the whole-cohort gain at 5% and 96% at 20%**.
+With homogeneous effects the gain per admission is 11 times larger in the neutropenic stratum (+0.00170 against +0.00015 at 5%, 4.0 extra true cases per 1,000 neutropenic admissions), and that stratum supplies **81% of the whole-cohort gain at 5% and 96% at 20%**.
 
 **The falsification test in simulated studies of the cohort's size** (1,000 studies per row; patients resampled, genotype per patient, outcomes from the truth; the interaction estimate is the extra effect per unit of the pooled-estimate score in neutropenic admissions; effects at the pooled medians):
 
 | truth | true interaction | median estimate (SD) | estimate has the true sign | P < 0.05 in the true direction |
 |---|---|---|---|---|
-| all in neutropenic | +1.25 | +1.28 (0.64) | 98% | 57% |
-| ratio 4 | +0.88 | +0.91 (0.62) | 94% | 33% |
-| homogeneous | 0 | +0.02 (0.57) | | 2.2% positive, 2.8% negative |
-| ratio 1/4 | -1.86 | -1.87 (0.52) | 100% | 94% |
-| all in non-neutropenic | -4.93 | -5.00 (0.67) | 100% | 100% |
+| all in neutropenic | +1.25 | +1.29 (0.63) | 98% | 59% |
+| ratio 4 | +0.88 | +0.89 (0.61) | 94% | 34% |
+| homogeneous | 0 | +0.01 (0.57) | | 2.9% positive, 2.7% negative |
+| ratio 1/4 | -1.86 | -1.88 (0.52) | 100% | 95% |
+| all in non-neutropenic | -4.93 | -5.00 (0.66) | 100% | 100% |
 | Brunel's stratum effects | -2.08 | -2.08 (0.55) | 100% | 96% |
 
-At the 95th-percentile effects the power rises (98% for all-in-neutropenic, 84% for ratio 4). The interaction fit is unbiased and its false-positive rate is about 5%, as it should be. The modifications are not symmetric in size, because holding the pooled effect fixed with 80% of events in the
+At the 95th-percentile effects the power rises (97% for all-in-neutropenic, 82% for ratio 4). The interaction fit is unbiased and its false-positive rate is about 5%, as it should be. The modifications are not symmetric in size, because holding the pooled effect fixed with 80% of events in the
 neutropenic stratum means a ratio of 1/4 needs an effect 2.5 times the pooled one in the small non-neutropenic stratum: the true difference for "ratio 1/4" (-1.86) is twice that for "ratio 4" (+0.88), and power differs accordingly.
 
 ### The predictions against the results
@@ -1345,15 +1359,15 @@ neutropenic stratum means a ratio of 1/4 needs an effect 2.5 times the pooled on
 |---|---|
 | E1 | **Mostly held.** Point estimate opposite to H_F for both SNPs; the interval includes no difference for rs2305619 (P = 0.07) but not quite for rs3816527 (P = 0.049) |
 | E2 | **Held, more strongly than predicted.** The neutropenic stratum has 11 times the gain per admission and supplies 81% to 96% of the whole-cohort gain under homogeneous effects |
-| E3 | **Not borne out in general.** At 20% an H_F truth beats a Brunel truth at the moderate setting (ratio 4 against 1/4: +0.00136 against +0.00084) but not at the extreme (all in neutropenic against all in non-neutropenic: +0.00151 against +0.00198). At 5% the Brunel direction wins at both settings. Placing the effect in the low-risk stratum, where it must be large to keep the pooled effect, moves many admissions across the threshold |
-| E4 | **Held.** Under a Brunel-direction truth the assumed-H_F score does worse than the common score (+0.00005 against +0.00044 at ratio 1/4, 5%), and under an H_F truth the assumed-Brunel score does worse (-0.00017 against +0.00045 at ratio 4) |
-| E5 | **Wrong.** I predicted an underpowered test (at most 75% correct sign and 15% significant at a moderate modification). The estimate has the right sign in 94% to 100% of studies and is significant in 33% (ratio 4) to 94% (ratio 1/4) |
+| E3 | **Not borne out in general.** At 20% an H_F truth beats a Brunel truth at the moderate setting (ratio 4 against 1/4: +0.00135 against +0.00083) but not at the extreme (all in neutropenic against all in non-neutropenic: +0.00151 against +0.00195). At 5% the Brunel direction wins at both settings. Placing the effect in the low-risk stratum, where it must be large to keep the pooled effect, moves many admissions across the threshold |
+| E4 | **Held.** Under a Brunel-direction truth the assumed-H_F score does worse than the common score (+0.00007 against +0.00045 at ratio 1/4, 5%), and under an H_F truth the assumed-Brunel score does worse (-0.00014 against +0.00045 at ratio 4) |
+| E5 | **Wrong.** I predicted an underpowered test (at most 75% correct sign and 15% significant at a moderate modification). The estimate has the right sign in 94% to 100% of studies and is significant in 34% (ratio 4) to 95% (ratio 1/4) |
 
 ### What this does and does not show
 
 - The neutropenia split matters for where the decisions are: whichever way the effect modification runs, most of the gain comes from neutropenic admissions unless the effect is placed entirely in non-neutropenic ones.
-- A single score with pooled estimates is the safer choice. It never loses much under an H_F truth (+0.00047 against an oracle +0.00080 at 5%) but loses nearly all of the achievable gain under a Brunel-direction truth (+0.00033 against +0.00362), and it is harmful if Brunel's stratum effects held here
-  (-0.00011 at 5%, -0.00058 at 20%). A score built on H_F is the most harmful when wrong.
+- A single score with pooled estimates is the safer choice. It never loses much under an H_F truth (+0.00047 against an oracle +0.00081 at 5%) but loses nearly all of the achievable gain under a Brunel-direction truth (+0.00033 against +0.00356), and it is harmful if Brunel's stratum effects held here
+  (-0.00016 at 5%, -0.00055 at 20%). A score built on H_F is the most harmful when wrong.
 - The falsification test is feasible in a cohort of this size and is better powered than I predicted, at least for modifications as large as Brunel's. This is a design result: it assumes genotype is measured, the weights of the score are right, and there is no misspecification, so the real power would be lower.
   A genotyped Bologna cohort would not be needed to learn that H_F and Brunel's reading differ by amounts a study of this size can resolve, but it is needed to resolve them.
 - Brunel's direction (effect larger in non-neutropenic patients) is the opposite of H_F and is borderline significant (P = 0.07 and 0.049). It is one small study with unverified counts and a different neutropenia definition, so it does not settle the question.
@@ -1366,3 +1380,127 @@ neutropenic stratum means a ratio of 1/4 needs an effect 2.5 times the pooled on
 - One threshold decision per admission, strata combined by their shares, no correlation ensemble, no donor genotype, no Shapley attribution.
 
 Code and outputs: `R/aim3b.R`, `scripts/21_aim3b_neutropenia.R`, `tests/testthat/test-aim3b.R`, `output/aim3b_{strata,brunel_modification,layer_summary,interaction_summary}.csv`.
+
+---
+
+## Addendum 16, 19 October 2026: an error in one study's direction, the second CLEC7A parameter, the Aim 4 sweep, and a smoothed allo stratum (D20)
+
+Written after the tag. Provisional, like addenda 11 to 15. Nothing in D1 to D19 changes. One data error found on the way (below) changes the CLEC7A evidence and was propagated through every result that uses it.
+
+### 0. Erratum: the direction of Fischer 2016 (S073) was reversed
+
+While resolving the strand of rs7309123 I read Table 3 of Fischer 2016 (PLoS One, Europe PMC PMC4786091). Its comparisons are laid out **reference group first, then the compared group**, and the Results text confirms the direction for rs7309123 (the G/G genotype is an independent risk factor
+for pulmonary IFD, OR 2.6; G-allele carriers are at increased risk). The extraction kept the row label as written ("Dectin-1 C/C + C/G vs Dectin-1 rs7309123 G/G genotype"), and the pipeline's rule for a comparison with no reference marker, **first group as the numerator**, read it backwards. The same layout holds for the Y238X rows
+("Dectin-1 wild type (A/A) vs Dectin-1 Y238X carrier"), whose odds ratios (pneumonia 0.8, atypical pneumonia 1.1, pulmonary IFD 0.7) therefore belong to the carriers. For rs7309123 the direction is stated in the text; for Y238X it rests on the table layout, which the text confirms for the other SNP of the same table.
+
+12 rows are corrected in `data/extraction_corrections.csv` (V1681 to V1684 and V1690 to V1697), each with its evidence. The correction changes one study in the primary CLEC7A analysis:
+
+| | before | after |
+|---|---|---|
+| Fischer 2016, Y238X carriers, per copy | OR 1.43 | **OR 0.70** |
+| CLEC7A Y238X, primary pooled OR (90% interval) | 0.98 (0.56 to 1.72) | **0.84 (0.48 to 1.48)** |
+| with hazard-ratio studies | 1.36 (0.81 to 1.88) | 1.23 (0.70 to 1.77) |
+| European-ancestry cohorts only | 0.97 (0.57 to 1.72) | 0.83 (0.49 to 1.47) |
+
+PTX3, TLR4 and CD209 are unchanged (the mapping files are identical byte for byte except the four CLEC7A files), and so is the donor evidence.
+
+**What it did to the results of addenda 11 to 15.** Every script that uses the CLEC7A posterior was rerun and the output files regenerated. The conclusions do not change. Compared with the values before the correction: the gain over the baseline moves by at most 0.00006 (for example +0.00058 to +0.00059 at 5% and +0.00104 to +0.00105 at 20%, ceiling, pooled-mean reading),
+the share of worlds reaching the MCID by at most 3 points for the whole cohort, the extra true cases per 1,000 by at most 0.7, and the Shapley shares by at most 1.6 points (CD209 51.4% to 51.7%, CLEC7A 6.9% to 6.7%). The sampling-variability summaries move by at most 0.0002 in the mean gain (the most at the 95th-percentile truth, because CLEC7A's upper percentile fell) and 8 points in the share reaching the MCID.
+**The tables in addenda 11 to 14 still show the values before the correction; the regenerated files in `output/` hold the corrected ones. The Aim 3b tables of addendum 15 were rewritten with the corrected values.** The donor results do not use CLEC7A's recipient posterior and are unchanged.
+
+**The wider question.** In the four terms' analyses, 139 rows were read from a comparison text that carries no reference marker, so the first group was taken as the numerator (Tang S026, Herrero-Sanchez S035 (corrected in addendum 8), Sainz S071, Fischer S073, Chen S074, Tanpaibule S077, Fisher S080). In the primary analyses five rows are of this kind: Tang (PTX3), Tanpaibule (PTX3 and CD209), Sainz (CLEC7A, "A/C vs A/A") and Fischer (CLEC7A, now corrected).
+The four others read variant carriers against wild type, the usual convention, but were not checked against their papers. **A direction check of those studies' tables is the next job for the round-2 verification.**
+
+### 1. The second CLEC7A parameter: the strand of rs7309123 in each study
+
+**Method.** The strand of a C/G SNP cannot be read from the letters. For each of the ten studies that report rs7309123, the control frequency of the labelled allele (from printed genotype counts or minor-allele frequencies) was compared with the
+forward-strand frequency in the matching ancestry (European G 0.426, C 0.574; East Asian G 0.81, C 0.19). The papers were read through five subagents (full text where it is open access; abstracts only for two closed-access papers). The evidence is in `data/rs7309123_strand_resolution.csv`.
+
+| study | population | labelled G frequency | log10 likelihood ratio, forward vs opposite | strand | grade |
+|---|---|---|---|---|---|
+| Fisher 2017 (S080) | European | 0.43 (labelled the minor allele) | not computed (pooled frequency only) | forward | A |
+| Schnetzke 2024 (S045) | European | 0.46 | +6.7 | forward | A |
+| Tanpaibule 2020 (S077) | Thai | 0.83 | +250 | forward | A |
+| Sainz 2012 (S071) | Spanish | 0.34 | +10.1 | forward, below both references | B |
+| Fischer 2016 (S073), Fischer 2015 (S023, same Jena cohort) | European AML patients (no controls) | 0.48 | +1.6 | forward, weakly | C |
+| White 2018 (S042) | Welsh | no letters printed; non-carriers 35% | | forward by inference only | C |
+| Kalkanci 2020 (S056) | Turkish | 0.27 | | undetermined: counts far from Hardy-Weinberg (7 GG observed, 2.4 expected), full text not accessible | D |
+| Chen 2019 (S074) | Chinese Han | none seen; C is the risk allele | | undetermined (abstract only) | D |
+| Zhao 2022 (S081) | Chinese Han | no letters or frequencies | | undetermined | D |
+
+Grades: A resolved with medium-high or high confidence; B low to medium; C low or an inference only; D undetermined. Where the study is Thai or Chinese the European haplotype frequencies do not describe it
+(rs7309123 G is 0.43 in Europeans and 0.81 in East Asians), so rule 7 of addendum 7 is untenable for this SNP and **non-European studies are left out of the primary analysis**. The Thai study's dominant contrast (G carriers against C/C, OR 0.40) cannot even be produced under the European frequencies.
+
+**Model.** The three CLEC7A haplotypes (gnomAD NFE: A-C 57.4%, A-G 34.9%, C-G 7.7%) have two effects: Y238X (C-G, beta1, from the rs16910526 rows) and the second parameter, **beta2, the effect of A-G per copy**,
+with A-C as the reference. Each rs7309123 row is mapped to beta2 by solving the three-haplotype model with beta1 held at its pooled median (now -0.17; C-G carries only 18% of the G alleles, so the plug-in matters little).
+Primary: strand-resolved (grades A and B), European, odds-ratio, recipient, whole-cohort studies.
+
+| analysis | studies | OR per A-G copy (90% interval) | tau |
+|---|---|---|---|
+| **primary** (Schnetzke 2024, Sainz 2012) | 2 | **1.78** (1.07 to 2.71) | 0.22 |
+| adding the Thai study | 2 | 1.80 (1.13 to 2.72) | 0.22 |
+| adding hazard ratios (Fisher 2017) | 2 | 1.78 (1.08 to 2.76) | 0.22 |
+| adding the Jena cohort (Fischer 2016, grade C) | 3 | 1.88 (1.31 to 2.62) | 0.17 |
+| all studies, unresolved taken as forward | 5 | 1.54 (1.03 to 2.25) | 0.41 |
+| unresolved studies taken as the opposite strand | 5 | 1.60 (1.07 to 2.15) | 0.27 |
+
+(The Thai and Fisher scenarios add no study: the Thai contrast cannot be mapped under European frequencies, and the only usable Fisher row is for donor genotype.) The second parameter is **estimated at OR 1.8 per A-G copy**, from two studies in the primary analysis. Unlike before the correction of Fischer 2016, it is consistent: the Jena cohort, which has the same direction, raises it
+to 1.9 with a narrower interval, and the interval excludes 1 in every analysis, including the ones that take all five studies as forward or unresolved ones as the opposite strand (1.5 to 1.6). Its weak points are the number of studies and that one primary study (Sainz) has only a low-to-medium strand grade.
+
+**The layer with two CLEC7A parameters** (2,000 draws; beta2 from its posterior; the grid has the haplotype-pair structure of CLEC7A; the "held at zero" rows are the four-term panel after the correction):
+
+| truth | score | threshold | gain with beta2 | gain, beta2 held at zero | reaches MCID with beta2 | without |
+|---|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00116 (0.00042 to 0.00251) | +0.00059 | 0.2% | 0% |
+| mean | realised | 5% | +0.00092 | +0.00042 | 0% | 0% |
+| predictive | ceiling | 5% | +0.00145 | +0.00079 | 3.9% | 1.3% |
+| mean | ceiling | 20% | +0.00174 (0.00082 to 0.00336) | +0.00105 | 57% | 16% |
+| mean | realised | 20% | +0.00141 | +0.00080 | 40% | 2.8% |
+| predictive | ceiling | 20% | +0.00210 | +0.00129 | 70% | 36% |
+
+The second parameter roughly **doubles the gain** (CLEC7A becomes an active term, because the A-G haplotype is common, 35%), and at 20% moves the MCID from out of reach in most worlds to reached in more than half. At 5% the gain is still a quarter of the MCID (+0.00458). The Aim 3b analysis and the attribution have not been repeated with the second parameter.
+
+### 2. Aim 4: the genetic-architecture requirements sweep
+
+**Design.** k independent loci with the same risk-allele frequency and the same per-allele odds ratio (log-additive, Hardy-Weinberg, unlinked); k from 1 to 20, OR from 1.1 to 3.0 by 0.1, frequency from 0.05 to 0.50 by 0.05: 4,000 architectures. The score is the number of risk alleles, whose distribution is the exact convolution of the
+per-locus genotype distributions (a binomial for identical loci; the code does general loci and the test checks it against enumeration). The truth is the baseline logit plus log(OR) times the score, recentred to hold prevalence (D5), and the score is the **ceiling** one (true weights, no estimation error): the best an architecture could do.
+Base cohort, refit baseline, 5% (primary) and 20% (secondary), MCID +0.00458 and +0.00160.
+
+![Gain of the ceiling score over the MCID, 5% threshold (white line: gain = MCID)](output/figures/aim4_sweep_5pct.png)
+
+![The same at the 20% threshold](output/figures/aim4_sweep_20pct.png)
+
+**Results** (`output/aim4_sweep.csv`, `output/aim4_frontier.csv`):
+
+- **46% of the 4,000 architectures reach the 5% MCID** and 77% reach the 20% MCID.
+- **Smallest number of loci that reaches the 5% MCID** (none within 20 where blank): at OR 3.0, 10 loci at frequency 0.05, 6 at 0.1, 4 at 0.2, and 3 at 0.3 and 0.5; at OR 2.0, 16 loci at 0.1, 9 at 0.2, 8 at 0.3 and 7 at 0.5; at OR 1.8, 13, 11 and 10 loci at 0.2, 0.3 and 0.5; at **OR 1.5 or below no number of loci up to 20 reaches it** (20 loci at OR 1.5 and frequency 0.5 gives 99.5% of the MCID, and reaches it only at 0.45).
+- **Smallest OR that reaches the 5% MCID**: one locus never (OR 3.0 and frequency 0.5 gives +0.0018, 39% of it); 4 loci need OR 2.6; 10 loci OR 1.8 to 1.9 at frequencies 0.3 to 0.5 and 2.4 at 0.1; 20 loci OR 1.6 at frequencies 0.3 to 0.5 and 1.9 at 0.1.
+- **At 20% the bar is lower**: one locus needs OR 2.4 to 2.5 (frequencies 0.3 to 0.5); 4 loci OR 1.6 to 1.9; 10 loci OR 1.4 to 1.6; 20 loci OR 1.3 to 1.4.
+- **The panel of addendum 11** (+0.00058 at 5%) is equivalent to about 7 loci of OR 1.3 at frequency 0.3, or 3 loci of OR 1.5. To reach the MCID at 5% it would need to be roughly eight times stronger.
+- For orientation, per-allele odds ratios of 1.1 to 1.3 are the range usually seen for common variants in complex traits (not a result of this project). In that range no architecture of up to 20 loci reaches the 5% MCID, and at 20% only 20 loci of OR 1.3 at common frequencies do so.
+- **Robustness.** With the published equation as the baseline (MCID +0.00404 and +0.00113) 51% and 80% of architectures reach it (against 46% and 77%). Across the 150 correlation-ensemble members (coarse grid, `output/aim4_sweep_ensemble.csv`) gain over MCID varies by about 15% around its median: 20 loci of OR 1.5 at frequency 0.3 give 0.77 to 1.03 (median 0.88), 1.3% of members reaching the MCID, while 10 loci of OR 2.0 give 1.13 to 1.49 and every member reaches it. Architectures close to the frontier depend on the unpublished correlation structure; those well inside or outside do not.
+
+**Limits.** Identical independent loci; the ceiling score (no estimation error, no mis-weighting, no linkage); causal per-allele odds ratios; the baseline's profile distribution is the empirical one. The Aspergillus-specific pathogen-specificity scenario planned for the Aim 4 surface (scope decision 1) is not run. A realised-score version, with estimated weights of a given precision, would move the frontier outwards.
+
+### 3. The allo stratum with a smoothed profile distribution
+
+A logistic model of allo status on the seven predictors (main effects) gives each profile a probability of being an allo admission, and the stratum's distribution is the cohort's times that probability (`allo_stratum_smooth()`), recalibrated to the observed stratum event rate as in addendum 14. The model is nearly separated on the high-risk chemotherapy item (coefficient 7.0; allo is part of that item),
+with lymphopenia (3.0), CMV (1.2) and malignancy (-1.2). Smoothing spreads the stratum over **71 profiles instead of 23**, moves the total-variation distance to the cohort from 0.83 to 0.80, and the odds multiplier from 1.15 to 1.19. The baseline flags 76% of the stratum at 5% (77% empirically), and the stratum MCID is +0.02994 and +0.01148.
+
+| truth | score | threshold | empirical stratum: gain (extra cases per 1,000 allo), reaches MCID | smoothed stratum |
+|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00070 (0.5), 0% | +0.00098 (1.0), 0% |
+| mean | realised | 5% | +0.00021 (1.3), 0% | +0.00036 (1.9), 0% |
+| predictive | ceiling | 5% | +0.00114 (0.4), 0% | +0.00151 (1.0), 0% |
+| mean | ceiling | 20% | +0.00866 (23.0), 27% | +0.00884 (22.0), 29% |
+| mean | realised | 20% | +0.00363 (14.3), 3% | +0.00381 (13.6), 3% |
+| predictive | ceiling | 20% | +0.01094 (27.7), 44% | +0.01095 (26.7), 46% |
+
+**The conclusions of addendum 14 do not depend on the sparsity of the empirical stratum.** At 5% donor genotype adds 1 to 2 true cases per 1,000 allo admissions against 30 needed; at 20% it adds 14 to 27 against about 11 needed for the stratum MCID. Whole-cohort equivalents are +0.00007 to +0.00010 at 5% and +0.0003 to +0.0007 at 20%.
+
+### Not done
+
+The realised-score version of the Aim 4 sweep and the pathogen-specificity scenario; a repeat of the Aim 3b analysis and the attribution with the second CLEC7A parameter; a **direction check of the text-parsed rows of Tang, Tanpaibule, Sainz and the other studies against their tables** (section 0); the strand of the three D-grade studies (it needs the full texts of Kalkanci 2020 and Chen 2019, or the authors); and East Asian haplotype frequencies (which would let the Thai and Chinese studies enter the second parameter).
+
+Code and outputs: `R/aim4_sweep.R`, `scripts/23_aim4_sweep.R`, `scripts/22_clec7a_second_parameter.R`, `scripts/20_genetic_donor_stratum.R`, `data/extraction_corrections.csv` (12 new rows for S073), `R/genetic_layer.R` (`haplotype_gene_part`, `joint_grid`, `allo_stratum_smooth`), `R/evidence_mapping.R` (offset haplotypes),
+`data/rs7309123_strand_resolution.csv`, `output/clec7a_second_*.csv`, `output/aim4_*.csv`, `output/figures/aim4_sweep_*.png`, `output/genetic_donor_*.csv` (a `smoothed` stratum), and the tests.

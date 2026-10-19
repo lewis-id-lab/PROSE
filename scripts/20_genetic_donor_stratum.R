@@ -1,7 +1,8 @@
 # Donor genotype in the allogeneic HSCT stratum: the D1 secondary analysis (addendum 12, extension). Run from the project root, after
 # scripts 12, 14, 15 and 16 (they write the donor posterior draws).
 #
-# Two strata. "data" (primary, addendum 14): the base cohort's admission-level allo-HSCT flag (script 08) gives the stratum's own profile
+# Three strata. "smoothed" (addendum 16): the same recalibration, with the profile distribution smoothed by a logistic model of allo status on the seven predictors
+# (allo_stratum_smooth()). "data" (primary, addendum 14): the base cohort's admission-level allo-HSCT flag (script 08) gives the stratum's own profile
 # distribution, and a recalibration offset on the baseline logit sets its predicted event rate to the observed one (allo_stratum_data()).
 # "margins" (addendum 13, kept as a sensitivity analysis): built from the published Table 1 margins alone, under the assumption that allo
 # status depends on the outcome only, given the clinical profile (allo_stratum()). In both the baseline score has no allo item, so its
@@ -32,11 +33,11 @@ mcid_whole <- setNames(mcid_tab$mcid_b[match(at, mcid_tab$threshold)], as.charac
 p <- genetic_term_frequencies(); grid <- dosage_grid(p); terms <- names(GENETIC_TERMS)
 strata <- list(margins = allo_stratum(q, lp))
 strata$margins$n <- round(strata$margins$share * nrow(base$X))
-if (!all(is.na(base$rows$allo_hsct))) strata <- c(list(data = allo_stratum_data(base, lp)), strata) else message("no allo-HSCT flag in the cohort: only the Table 1 construction is run")
+if (!all(is.na(base$rows$allo_hsct))) strata <- c(list(data = allo_stratum_data(base, lp), smoothed = allo_stratum_smooth(base, lp)), strata) else message("no allo-HSCT flag in the cohort: only the Table 1 construction is run")
 
 strata_tab <- do.call(rbind, lapply(names(strata), function(n) { s <- strata[[n]]
   data.frame(stratum = n, share = s$share, admissions = s$n, event_rate = s$event_rate, odds_multiplier = exp(s$offset),
-             profiles_present = sum(s$q > 0), baseline_predicted_rate = sum(s$q * plogis(lp)),
+             profiles_present = sum(s$q > 1e-6), baseline_predicted_rate = sum(s$q * plogis(lp)),
              tv_distance_to_cohort = 0.5 * sum(abs(s$q - q))) }))
 message("strata:"); show_df(strata_tab)
 
