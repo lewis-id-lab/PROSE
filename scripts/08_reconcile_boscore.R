@@ -5,6 +5,7 @@
 #          output/boscore_predictor_mapping.csv                      BOSCORE column behind each predictor
 #          output/boscore_cohort_summary.csv                         rows (4,127) against unique admissions (4,078)
 #          output/admissions_per_patient.csv                         top-coded at 8+
+#          output/allo_hsct_summary.csv                              allo-HSCT admissions and events (counts only)
 #          data/restricted/base_cohort_pseudonymised.csv             (gitignored) the cohort with codes, no identifiers
 #
 # The script stops if any check fails, so a changed file cannot slip through.
@@ -38,11 +39,11 @@ E <- BOSCORE_EXPECTED
 checks <- data.frame(
   check = c("rows in boscore.xlsx", "ids run 1 to the number of rows", "rows complete on the seven BOSCORE items",
             "admission numbers on two rows", "unique admissions after removing twins", "IMD events in the base cohort",
-            "patients in the base cohort",
+            "patients in the base cohort", "allo-HSCT admissions among the 4,127 rows", "events among them",
             names(rec), paste0("twin_pairs_", names(twins))),
   value = c(nrow(bc$rows), all(sort(bc$rows$id) == seq_len(nrow(bc$rows))), sum(inc), nrow(pairs), s_base$admissions, s_base$events,
-            s_base$patients, unlist(rec), unlist(twins)),
-  expected = c(E$rows, TRUE, E$included, E$twin_pairs, E$unique_admissions, E$events, E$patients, rep(TRUE, length(rec) + length(twins))),
+            s_base$patients, allo_summary(rows_cohort)$allo_admissions, allo_summary(rows_cohort)$allo_events, unlist(rec), unlist(twins)),
+  expected = c(E$rows, TRUE, E$included, E$twin_pairs, E$unique_admissions, E$events, E$patients, E$allo_rows, E$allo_events, rep(TRUE, length(rec) + length(twins))),
   stringsAsFactors = FALSE
 )
 checks$pass <- as.numeric(checks$value) == as.numeric(checks$expected)
@@ -56,6 +57,8 @@ summary_tab <- rbind(
 )
 write.csv(summary_tab, "output/boscore_cohort_summary.csv", row.names = FALSE)
 write.csv(admissions_per_patient(base_cohort), "output/admissions_per_patient.csv", row.names = FALSE)
+allo_tab <- rbind(data.frame(cohort = "4,127 rows", as.data.frame(allo_summary(rows_cohort))), data.frame(cohort = "4,078 unique admissions (base cohort)", as.data.frame(allo_summary(base_cohort))))
+write.csv(allo_tab, "output/allo_hsct_summary.csv", row.names = FALSE)
 
 if (!all(checks$pass)) {
   print(checks[!checks$pass, ], row.names = FALSE)

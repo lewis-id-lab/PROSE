@@ -249,6 +249,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#results-donor-genotype-in-the-allo-hsct-stratum" id="toc-results-donor-genotype-in-the-allo-hsct-stratum" class="nav-link" data-scroll-target="#results-donor-genotype-in-the-allo-hsct-stratum">Results: donor genotype in the allo-HSCT stratum</a></li>
   <li><a href="#limits-and-what-would-change-them" id="toc-limits-and-what-would-change-them" class="nav-link" data-scroll-target="#limits-and-what-would-change-them">Limits and what would change them</a></li>
   </ul></li>
+  <li><a href="#addendum-14-19-october-2026-an-admission-level-allo-hsct-flag-and-the-donor-genotype-stratum-rebuilt-from-the-data-d18" id="toc-addendum-14-19-october-2026-an-admission-level-allo-hsct-flag-and-the-donor-genotype-stratum-rebuilt-from-the-data-d18" class="nav-link" data-scroll-target="#addendum-14-19-october-2026-an-admission-level-allo-hsct-flag-and-the-donor-genotype-stratum-rebuilt-from-the-data-d18">Addendum 14, 19 October 2026: an admission-level allo-HSCT flag, and the donor-genotype stratum rebuilt from the data (D18)</a>
+  <ul class="collapse">
+  <li><a href="#the-flag" id="toc-the-flag" class="nav-link" data-scroll-target="#the-flag">The flag</a></li>
+  <li><a href="#what-the-data-show-and-what-that-does-to-addendum-13" id="toc-what-the-data-show-and-what-that-does-to-addendum-13" class="nav-link" data-scroll-target="#what-the-data-show-and-what-that-does-to-addendum-13">What the data show, and what that does to addendum 13</a></li>
+  <li><a href="#d18.-the-stratum-from-the-data-primary" id="toc-d18.-the-stratum-from-the-data-primary" class="nav-link" data-scroll-target="#d18.-the-stratum-from-the-data-primary">D18. The stratum from the data (primary)</a></li>
+  <li><a href="#results-data-stratum" id="toc-results-data-stratum" class="nav-link" data-scroll-target="#results-data-stratum">Results (data stratum)</a></li>
+  <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -2722,12 +2730,331 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="limits-and-what-would-change-them" class="level3">
 <h3 class="anchored" data-anchor-id="limits-and-what-would-change-them">Limits and what would change them</h3>
 <ul>
-<li><strong>The allo flag.</strong> The stratum’s profile mix and its constant odds multiplier of 5.3 rest on one assumption: that allo status is independent of the clinical profile once the outcome is known. If allo recipients’ excess risk comes mostly through the predictors (more steroids, neutropenia, CMV), the true multiplier would be smaller and the stratum would sit at higher-risk profiles, which changes both the baseline’s performance and the MCID. An admission-level allo flag in the analysis file would replace this assumption. I do not know whether <code>boscore.xlsx</code> carries one (its column names show only <code>DTMO</code>, a transplant date, which would not separate allogeneic from autologous), and I did not read values from it. If you add the flag to the pseudonymised base cohort (script 08) the stratum can be built from the data.</li>
+<li><strong>The allo flag (superseded by addendum 14, which builds the stratum from the data and finds this assumption does not hold).</strong> The stratum’s profile mix and its constant odds multiplier of 5.3 rest on one assumption: that allo status is independent of the clinical profile once the outcome is known. If allo recipients’ excess risk comes mostly through the predictors (more steroids, neutropenia, CMV), the true multiplier would be smaller and the stratum would sit at higher-risk profiles, which changes both the baseline’s performance and the MCID. An admission-level allo flag in the analysis file would replace this assumption. I do not know whether <code>boscore.xlsx</code> carries one (its column names show only <code>DTMO</code>, a transplant date, which would not separate allogeneic from autologous), and I did not read values from it. If you add the flag to the pseudonymised base cohort (script 08) the stratum can be built from the data.</li>
 <li>The donor evidence is one study each for PTX3 and CLEC7A, two for TLR4, none for CD209, and one of them is a hazard ratio. The pooled donor intervals are wide, and the CLEC7A value (OR 0.70) rests on one study with a wide interval.</li>
 <li>Donors are taken as unrelated (independent of the recipient’s genotype) and each admission as having its own donor. A matched sibling donor shares half of the recipient’s alleles.</li>
 <li>Donor and recipient effects are not combined: in the stratum the score uses donor effects only. The Shapley attribution is not repeated for the donor analysis.</li>
 </ul>
 <p>Code and outputs: <code>R/genetic_layer.R</code>, <code>R/genetic_helpers.R</code>, <code>scripts/18_genetic_ensemble_sampling.R</code>, <code>scripts/20_genetic_donor_stratum.R</code>, <code>tests/testthat/test-genetic-layer.R</code>, <code>output/genetic_ensemble_sampling_{draws,summary}.csv</code>, <code>output/genetic_donor_{evidence,stratum_summary,baseline_stratum,sampling_summary}.csv</code>, and the donor posterior draws <code>output/{ptx3_h2,clec7a,tlr4}_donor_posterior_draws.csv</code> (written by scripts 12 and 14).</p>
+<hr>
+</section>
+</section>
+<section id="addendum-14-19-october-2026-an-admission-level-allo-hsct-flag-and-the-donor-genotype-stratum-rebuilt-from-the-data-d18" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-14-19-october-2026-an-admission-level-allo-hsct-flag-and-the-donor-genotype-stratum-rebuilt-from-the-data-d18">Addendum 14, 19 October 2026: an admission-level allo-HSCT flag, and the donor-genotype stratum rebuilt from the data (D18)</h2>
+<p>Written after the tag. Provisional, like addenda 11 to 13. Nothing in D1 to D17 changes, and the addendum 11 and 12 results reproduce unchanged. It supersedes the stratum construction of addendum 13, which is kept as a sensitivity analysis.</p>
+<section id="the-flag" class="level3">
+<h3 class="anchored" data-anchor-id="the-flag">The flag</h3>
+<p><code>boscore.xlsx</code> has no allo-HSCT column. What it has, and what was used (script 08, the identified file read locally; only counts were printed and no date or identifier is kept):</p>
+<ul>
+<li><strong>SCORE9</strong> (<code>recode2SCORE9</code>, coded 2) is the older item “allo-HSCT, or high-dose cytarabine, FLAI-E or ICE chemotherapy”. The item named <code>allogeneic_hsct</code> in the 2019 file is the same column (862 of the 863 admissions coded 2 are flagged in the 2019 file, and none of the 3,264 coded 0 is). The 2017 high-risk chemotherapy item (BOSCORE_9) is this item: they differ on 2 of 4,127 rows.</li>
+<li><strong>DTMO</strong> is a transplant date, present on 1,124 of the 4,127 rows and always 0 to 365 days after the admission date (mostly 1 to 30). Autologous transplants sit in the other category of SCORE9, so a transplant date on a row of the composite category marks an allo-HSCT admission.</li>
+<li><strong>The flag</strong> is therefore SCORE9 = 2 and a transplant date present (<code>allo_hsct_flag()</code> in <code>R/boscore_data.R</code>). Only whether the date is present is used.</li>
+</ul>
+<p>Validation against Table 1 (allo-HSCT as the reason for admission: 292 admissions, 44 events, 248 non-events): the flag gives <strong>292 admissions</strong>, exactly, with <strong>43 events and 249 non-events</strong>, one admission classed the other way. That is the same size of discrepancy as the two Table 2 counts that are one lower than published (D8), and is recorded as a known difference (<code>BOSCORE_EXPECTED</code>). The flag is added to the pseudonymised base cohort (<code>data/restricted/base_cohort_pseudonymised.csv</code>, column <code>allo_hsct</code>; a file without it still loads, with the flag missing) and the counts are in <code>output/allo_hsct_summary.csv</code>.</p>
+<p>In the base cohort of 4,078 unique admissions there are <strong>272 allo-HSCT admissions with 43 events</strong> (6.7% of admissions, event rate 15.8%). <strong>20 of the 49 non-event twin rows are allo admissions</strong> (41%, against 7% overall), so the duplicate-pair artefact (addendum 5) is concentrated in transplant admissions.</p>
+</section>
+<section id="what-the-data-show-and-what-that-does-to-addendum-13" class="level3">
+<h3 class="anchored" data-anchor-id="what-the-data-show-and-what-that-does-to-addendum-13">What the data show, and what that does to addendum 13</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>allo-HSCT admissions</th>
+<th>all others</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>high-risk chemotherapy item</td>
+<td>99.6%</td>
+<td>14.5%</td>
+</tr>
+<tr class="even">
+<td>severe lymphopenia</td>
+<td>74%</td>
+<td>8%</td>
+</tr>
+<tr class="odd">
+<td>prolonged neutropenia</td>
+<td>85%</td>
+<td>24%</td>
+</tr>
+<tr class="even">
+<td>uncontrolled malignancy</td>
+<td>26%</td>
+<td>42%</td>
+</tr>
+<tr class="odd">
+<td>CMV</td>
+<td>10%</td>
+<td>2%</td>
+</tr>
+</tbody>
+</table>
+<p>Allo admissions are the high-risk chemotherapy item (that item contains them), and only <strong>23 of the 128 clinical profiles occur</strong> among them (total-variation distance to the whole cohort 0.83). The baseline score predicts a 14.3% event rate in the stratum against 15.8% observed, an <strong>odds multiplier of 1.15</strong>, not the 5.3 that addendum 13 derived from the Table 1 margins. The assumption of addendum 13 (allo status depends on the outcome only, given the profile) does not hold: allo admissions are riskier almost entirely through their predictors, and the baseline is nearly calibrated in the stratum.</p>
+</section>
+<section id="d18.-the-stratum-from-the-data-primary" class="level3">
+<h3 class="anchored" data-anchor-id="d18.-the-stratum-from-the-data-primary">D18. The stratum from the data (primary)</h3>
+<p>The stratum is the flagged admissions’ own profile distribution (272 admissions, so a sparse one), with a constant recalibration offset on the baseline logit chosen so that the predicted event rate equals the observed one (<code>allo_stratum_data()</code>). Everything else is as in D17: donor effects, donor dosage Hardy-Weinberg and independent of the recipient’s profile, the scores carry no allo information, the stratum MCID is 20% more true cases among its admissions at no extra false positives. The Table 1 construction is kept as the “margins” sensitivity analysis (<code>output/genetic_donor_*</code> files have a <code>stratum</code> column; the margins rows reproduce addendum 13 exactly).</p>
+</section>
+<section id="results-data-stratum" class="level3">
+<h3 class="anchored" data-anchor-id="results-data-stratum">Results (data stratum)</h3>
+<p>The baseline score flags <strong>77% of allo admissions at 5%</strong>, finding 152 true cases and 617 false positives per 1,000, with an aROC of 0.74 in the stratum. The stratum MCID is <strong>+0.03032 at 5%</strong> (30 extra cases per 1,000 allo admissions) and <strong>+0.01189 at 20%</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>truth</th>
+<th>score</th>
+<th>threshold</th>
+<th>stratum gain (90% range)</th>
+<th>extra cases per 1,000 allo</th>
+<th>reaches stratum MCID</th>
+<th>whole-cohort gain</th>
+<th>reaches whole-cohort MCID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mean</td>
+<td>ceiling</td>
+<td>5%</td>
+<td>+0.00070 (0.00006 to 0.00342)</td>
+<td>0.5</td>
+<td>0% (MCID 0.03032)</td>
+<td>+0.00005</td>
+<td>0% (MCID 0.00458)</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>realised</td>
+<td>5%</td>
+<td>+0.00021 (-0.00055 to 0.00108)</td>
+<td>1.3</td>
+<td>0% (MCID 0.03032)</td>
+<td>+0.00001</td>
+<td>0% (MCID 0.00458)</td>
+</tr>
+<tr class="odd">
+<td>predictive</td>
+<td>ceiling</td>
+<td>5%</td>
+<td>+0.00114 (0.00013 to 0.00688)</td>
+<td>0.4</td>
+<td>0% (MCID 0.03032)</td>
+<td>+0.00008</td>
+<td>0% (MCID 0.00458)</td>
+</tr>
+<tr class="even">
+<td>predictive</td>
+<td>realised</td>
+<td>5%</td>
+<td>+0.00024 (-0.00080 to 0.00159)</td>
+<td>1.4</td>
+<td>0% (MCID 0.03032)</td>
+<td>+0.00002</td>
+<td>0% (MCID 0.00458)</td>
+</tr>
+<tr class="odd">
+<td>mean</td>
+<td>ceiling</td>
+<td>20%</td>
+<td>+0.00866 (0.00338 to 0.02176)</td>
+<td>23.0</td>
+<td>27% (MCID 0.01189)</td>
+<td>+0.00058</td>
+<td>4% (MCID 0.00160)</td>
+</tr>
+<tr class="even">
+<td>mean</td>
+<td>realised</td>
+<td>20%</td>
+<td>+0.00363 (-0.00329 to 0.01042)</td>
+<td>14.3</td>
+<td>3% (MCID 0.01189)</td>
+<td>+0.00024</td>
+<td>0% (MCID 0.00160)</td>
+</tr>
+<tr class="odd">
+<td>predictive</td>
+<td>ceiling</td>
+<td>20%</td>
+<td>+0.01094 (0.00388 to 0.03971)</td>
+<td>27.7</td>
+<td>44% (MCID 0.01189)</td>
+<td>+0.00073</td>
+<td>14% (MCID 0.00160)</td>
+</tr>
+<tr class="even">
+<td>predictive</td>
+<td>realised</td>
+<td>20%</td>
+<td>+0.00382 (-0.00634 to 0.01374)</td>
+<td>14.4</td>
+<td>8% (MCID 0.01189)</td>
+<td>+0.00026</td>
+<td>0.4% (MCID 0.00160)</td>
+</tr>
+</tbody>
+</table>
+<p>Sampling variability of a study with the stratum’s size (272 admissions, 43 events):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>truth, score</th>
+<th>threshold</th>
+<th>expected gain</th>
+<th>observed gain, mean (90% range)</th>
+<th>SD</th>
+<th>gain &gt; 0</th>
+<th>reaches stratum MCID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pooled medians, either score</td>
+<td>5%</td>
+<td>+0.00024</td>
+<td>+0.00034 (-0.00193 to 0.00580)</td>
+<td>0.00244</td>
+<td>33%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>pooled medians, either score</td>
+<td>20%</td>
+<td>+0.00399</td>
+<td>+0.00402 (-0.00827 to 0.01838)</td>
+<td>0.00784</td>
+<td>68%</td>
+<td>17%</td>
+</tr>
+<tr class="odd">
+<td>95th percentile, ceiling</td>
+<td>5%</td>
+<td>+0.00320</td>
+<td>+0.00321 (-0.00522 to 0.01162)</td>
+<td>0.00516</td>
+<td>74%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>95th percentile, ceiling</td>
+<td>20%</td>
+<td>+0.02367</td>
+<td>+0.02392 (0.00276 to 0.04688)</td>
+<td>0.01334</td>
+<td>97%</td>
+<td>82%</td>
+</tr>
+<tr class="odd">
+<td>95th percentile, realised</td>
+<td>5%</td>
+<td>+0.00081</td>
+<td>+0.00075 (-0.00175 to 0.00639)</td>
+<td>0.00276</td>
+<td>41%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>95th percentile, realised</td>
+<td>20%</td>
+<td>+0.00932</td>
+<td>+0.00978 (-0.00368 to 0.02574)</td>
+<td>0.00912</td>
+<td>85%</td>
+<td>40%</td>
+</tr>
+<tr class="odd">
+<td>drawn (mean), ceiling</td>
+<td>5%</td>
+<td></td>
+<td>+0.00116 (-0.00387 to 0.00755)</td>
+<td>0.00367</td>
+<td>50%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>drawn (mean), ceiling</td>
+<td>20%</td>
+<td></td>
+<td>+0.01019 (-0.00648 to 0.03309)</td>
+<td>0.01249</td>
+<td>79%</td>
+<td>41%</td>
+</tr>
+<tr class="odd">
+<td>drawn (predictive), ceiling</td>
+<td>5%</td>
+<td></td>
+<td>+0.00204 (-0.00445 to 0.01064)</td>
+<td>0.00472</td>
+<td>57%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>drawn (predictive), ceiling</td>
+<td>20%</td>
+<td></td>
+<td>+0.01418 (-0.00643 to 0.04412)</td>
+<td>0.01637</td>
+<td>84%</td>
+<td>50%</td>
+</tr>
+<tr class="odd">
+<td>drawn (predictive), realised</td>
+<td>5%</td>
+<td></td>
+<td>+0.00031 (-0.00193 to 0.00619)</td>
+<td>0.00259</td>
+<td>31%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>drawn (predictive), realised</td>
+<td>20%</td>
+<td></td>
+<td>+0.00382 (-0.01103 to 0.02114)</td>
+<td>0.00996</td>
+<td>62%</td>
+<td>21%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>At 5% there is almost no room.</strong> The baseline already flags 77% of the stratum, so donor genotype can only move a few admissions out of the flagged group. The gain is 0.4 to 1.4 extra true cases per 1,000 allo admissions against the 30 needed, and it never reaches the stratum MCID. This is smaller than addendum 13’s +3 to +4 per 1,000, which assumed a stratum where the baseline flagged 22%.</li>
+<li><strong>At 20% the gain is larger than in addendum 13</strong> (23 to 28 extra cases per 1,000 for the ceiling score, against 9 to 10), because the stratum’s profiles are concentrated at the top of the baseline’s range and the baseline flags only 14% there. The ceiling score reaches the stratum MCID in 27% to 44% of worlds, a score using the pooled estimates in 3% to 8%.</li>
+<li>Spread over the whole cohort the donor gain is +0.00001 to +0.00008 at 5% and +0.0002 to +0.0007 at 20%, and reaches the whole-cohort MCID in at most 14% of worlds (ceiling, predictive, 20%) and never at 5%.</li>
+<li>A study of 272 admissions and 43 events is very noisy. At the pooled medians the SD of the observed gain at 5% (0.0024) is ten times the expected gain, and only a third of studies show a positive gain.</li>
+</ul>
+</section>
+<section id="limits" class="level3">
+<h3 class="anchored" data-anchor-id="limits">Limits</h3>
+<ul>
+<li>The flag is derived, not recorded as an allo indicator. It reproduces Table 1’s 292 exactly but not the event split (43 against 44). Anyone with the source database can replace it with the recorded transplant type.</li>
+<li>The profile distribution of the stratum rests on 272 admissions and 23 profiles, and a constant offset recalibrates the baseline; the baseline’s predictions within the stratum are otherwise taken as correct.</li>
+<li>The donor evidence is unchanged and thin (one study each for PTX3 and CLEC7A, two for TLR4, none for CD209), with donors treated as unrelated.</li>
+<li>The identified file was read to derive the flag. If your data-sharing agreement or ethics approval does not cover use with an AI tool, say so and I will not run script 08 again; the pseudonymised cohort carries only the binary flag, with no date or identifier.</li>
+</ul>
+<p>Code and outputs: <code>R/boscore_data.R</code> (<code>allo_hsct_flag</code>, <code>allo_summary</code>), <code>scripts/08_reconcile_boscore.R</code>, <code>R/genetic_layer.R</code> (<code>allo_stratum_data</code>), <code>scripts/20_genetic_donor_stratum.R</code>, <code>tests/testthat/test-boscore-data.R</code>, <code>tests/testthat/test-genetic-layer.R</code>, <code>output/allo_hsct_summary.csv</code>, <code>output/genetic_donor_{strata,stratum_summary,baseline_stratum,sampling_summary}.csv</code>.</p>
 
 
 <!-- -->

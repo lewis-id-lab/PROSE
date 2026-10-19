@@ -237,3 +237,33 @@ test_that("the pseudonymised base cohort matches the identified file", {
   expect_equal(nrow(from_xlsx$X), nrow(from_csv$X))
   expect_equal(as.vector(table(table(select_cohort(from_xlsx)$rows$patient))), as.vector(table(table(select_cohort(from_csv)$rows$patient))))
 })
+
+test_that("the allo-HSCT flag is the composite item with a transplant date present, and NA without the columns", {
+  raw <- data.frame(recode2SCORE9 = c("2", "2", "0", "2", NA, "0"), DTMO = c("44500", NA, "44501", "", "44502", NA), stringsAsFactors = FALSE)
+  expect_equal(allo_hsct_flag(raw), c(TRUE, FALSE, FALSE, FALSE, NA, FALSE))
+  expect_true(all(is.na(allo_hsct_flag(data.frame(x = 1:3)))))
+  expect_true(all(is.na(bc$rows$allo_hsct)))                    # the fixture has neither column
+  expect_true(all(c("DTMO", "recode2SCORE9") %in% BOSCORE_KEEP))
+})
+
+test_that("the flag travels through the cohort and the pseudonymised file, without a date, and an older file without it still loads", {
+  f <- fake
+  f$recode2SCORE9 <- ifelse(seq_len(nrow(f)) %% 5 == 0, "2", "0")
+  f$DTMO <- ifelse(seq_len(nrow(f)) %% 10 == 0, NA_character_, "44500")
+  b <- parse_boscore(f)
+  expect_equal(sum(b$rows$allo_hsct), sum(f$recode2SCORE9 == "2" & !is.na(f$DTMO)))
+  cohort <- boscore_cohort(b)
+  ps <- pseudonymise_cohort(cohort, seed = 11)
+  expect_true("allo_hsct" %in% names(ps)); expect_false(any(c("DTMO", "recode2SCORE9") %in% names(ps)))
+  # adding the flag does not change the codes
+  expect_identical(ps[setdiff(names(ps), "allo_hsct")], pseudonymise_cohort(boscore_cohort(bc), seed = 11)[setdiff(names(ps), "allo_hsct")])
+  path <- tempfile(fileext = ".csv"); utils::write.csv(ps, path, row.names = FALSE)
+  back <- cohort_from_pseudonymised(path)
+  expect_equal(back$rows$allo_hsct, cohort$rows$allo_hsct)
+  expect_equal(allo_summary(select_cohort(back)), allo_summary(select_cohort(cohort)))
+  s <- allo_summary(select_cohort(cohort))
+  expect_equal(s$allo_admissions, sum(select_cohort(cohort)$rows$allo_hsct)); expect_lte(s$allo_events, s$allo_admissions)
+  ps$allo_hsct <- NULL; old <- tempfile(fileext = ".csv"); utils::write.csv(ps, old, row.names = FALSE)
+  expect_true(all(is.na(cohort_from_pseudonymised(old)$rows$allo_hsct)))
+  expect_true(is.na(allo_summary(cohort_from_pseudonymised(old))$allo_admissions))
+})

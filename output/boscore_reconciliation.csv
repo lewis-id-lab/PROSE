@@ -6,6 +6,8 @@
 "unique admissions after removing twins",4078,4078,TRUE
 "IMD events in the base cohort",133,133,TRUE
 "patients in the base cohort",1945,1945,TRUE
+"allo-HSCT admissions among the 4,127 rows",292,292,TRUE
+"events among them",43,43,TRUE
 "bs_ids_all_in_boscore",1,1,TRUE
 "included_rows_are_the_bs_rows",1,1,TRUE
 "predictors_identical",1,1,TRUE

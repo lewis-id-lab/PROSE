@@ -16,11 +16,13 @@
 BOSCORE_PREDICTORS <- c(BOSCORE_8 = "uncontrolled_malignancy", BOSCORE_9 = "high_risk_chemo",
                         BOSCORE_6 = "high_dose_steroids", BOSCORE_11 = "severe_lymphopenia", BOSCORE_15 = "cmv",
                         BOSCORE_10 = "prolonged_neutropenia", BOSCORE_4 = "prior_mould_disease")
-BOSCORE_KEEP <- c("id", "IDRICO", "IDIND", "DRICEM", "yearDRICEM", "EORTC_PROV_PROB", names(BOSCORE_PREDICTORS), "pred")
+# DTMO (a transplant date) and recode2SCORE9 are read only to derive the allo-HSCT flag; no date is kept (see allo_hsct_flag)
+BOSCORE_KEEP <- c("id", "IDRICO", "IDIND", "DRICEM", "yearDRICEM", "EORTC_PROV_PROB", names(BOSCORE_PREDICTORS), "pred", "DTMO", "recode2SCORE9")
 
 # What the review of 17 to 18 October 2026 found; the reconciliation script checks the file against these.
 BOSCORE_EXPECTED <- list(rows = 4694L, included = 4127L, twin_pairs = 49L, unique_admissions = 4078L,
-                         events = 133L, patients = 1945L)
+                         events = 133L, patients = 1945L, allo_rows = 292L, allo_events = 43L)
+# Table 1 gives 44 events and 248 non-events among the 292 allo admissions; the file has 43 and 249, one admission classed the other way (addendum 14)
 
 # Admission dates are Excel serial numbers or m/d/Y text
 parse_admission_date <- function(x) {
@@ -44,6 +46,19 @@ read_boscore <- function(path = "boscore.xlsx") {
   parse_boscore(raw)
 }
 
+# Allogeneic HSCT as the reason for admission (addendum 14). boscore.xlsx has no allo column. Its older item SCORE9 (coded 2 by
+# recode2SCORE9) is "allo-HSCT or high-dose cytarabine, FLAI-E or ICE chemotherapy", which is what the 2017 high-risk chemotherapy item
+# (BOSCORE_9) is made from, and the item named allogeneic_hsct in the 2019 file is the same column. The autologous transplants sit in the other
+# category, so a transplant date (DTMO) on a row of the composite category marks an allo-HSCT admission. Only whether a transplant date is
+# present is used. Among the 4,127 analysis rows this gives 292 admissions, the count of Table 1, with 43 events (Table 1: 44) and 249 without (Table 1: 248).
+# NA when either column is absent or the item is missing.
+allo_hsct_flag <- function(raw) {
+  if (is.null(raw$recode2SCORE9) || is.null(raw$DTMO)) return(rep(NA, nrow(raw)))
+  item <- suppressWarnings(as.numeric(raw$recode2SCORE9))
+  has_date <- !is.na(raw$DTMO) & nzchar(trimws(as.character(raw$DTMO)))
+  ifelse(is.na(item), NA, item == 2 & has_date)
+}
+
 parse_boscore <- function(raw) {
   num <- function(x) suppressWarnings(as.numeric(x))
   X <- vapply(names(BOSCORE_PREDICTORS), function(cn) num(raw[[cn]]), numeric(nrow(raw)))
@@ -53,7 +68,7 @@ parse_boscore <- function(raw) {
   year[is.na(year)] <- as.integer(format(date, "%Y"))[is.na(year)]
   list(rows = data.frame(id = num(raw$id), admission = as.character(raw$IDRICO), patient = as.character(raw$IDIND),
                          date = date, year = year, case = num(raw$EORTC_PROV_PROB), pred = num(raw$pred),
-                         stringsAsFactors = FALSE),
+                         allo_hsct = as.logical(allo_hsct_flag(raw)), stringsAsFactors = FALSE),
        X = X)
 }
 
@@ -109,6 +124,13 @@ cohort_summary <- function(cohort, pars) {
   list(admissions = nrow(cohort$X), patients = length(unique(cohort$rows$patient)),
        events = sum(cohort$rows$case), prevalence = mean(cohort$rows$case),
        mean_predicted_risk = mean(stats::plogis(lp)), apparent_auc = auc_rank(lp, cohort$rows$case))
+}
+
+# Allo-HSCT admissions and their events in a cohort (counts only)
+allo_summary <- function(cohort) {
+  a <- cohort$rows$allo_hsct
+  if (is.null(a) || all(is.na(a))) return(list(allo_admissions = NA_integer_, allo_events = NA_integer_, share = NA_real_))
+  list(allo_admissions = sum(a, na.rm = TRUE), allo_events = sum(cohort$rows$case[which(a)]), share = mean(a, na.rm = TRUE))
 }
 
 # Patients by number of admissions, with the top category pooled so no cell is tiny
@@ -175,7 +197,7 @@ pseudonymise_cohort <- function(cohort, seed) {
   }
   d <- cohort$rows
   data.frame(patient_code = code(d$patient, "P"), admission_code = code(admission_key(d), "A"),
-             admission_year = d$year, cohort$X, case = d$case, twin_duplicate = d$twin_duplicate,
+             admission_year = d$year, cohort$X, case = d$case, twin_duplicate = d$twin_duplicate, allo_hsct = d$allo_hsct,
              check.names = FALSE, row.names = NULL)
 }
 
@@ -183,7 +205,8 @@ cohort_from_pseudonymised <- function(path) {
   d <- utils::read.csv(path, stringsAsFactors = FALSE)
   list(rows = data.frame(id = NA_real_, admission = d$admission_code, patient = d$patient_code,
                          date = as.Date(NA), year = d$admission_year, case = d$case, pred = NA_real_,
-                         twin_duplicate = as.logical(d$twin_duplicate), stringsAsFactors = FALSE),
+                         twin_duplicate = as.logical(d$twin_duplicate),
+                         allo_hsct = if ("allo_hsct" %in% names(d)) as.logical(d$allo_hsct) else NA, stringsAsFactors = FALSE),
        X = as.matrix(d[, PREDICTORS]))
 }
 

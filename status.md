@@ -70,7 +70,7 @@ scripts, run them from the project root, in this order:
 | `scripts/17_genetic_layer_extensions.R` | genetic layer extensions: the 150-member correlation ensemble, Shapley attribution to the four terms, sampling variability of a 4,078-admission study; run after 16 (builds the cached ensemble profile distributions on first run) | about 2.5 min on 15 cores |
 | `scripts/18_genetic_ensemble_sampling.R` | sampling variability of a study with the clinical mix drawn from a copula member, plus controls; run after 17 | about 35 s |
 | `scripts/19_genetic_sensitivity_cohorts.R` | the genetic layer (exact, attribution, sampling) on the published equation (4,078 and 4,127 rows) and the refit on 4,127 rows; set `SENS_ONLY` to run one setting at a time | about 1.5 min each |
-| `scripts/20_genetic_donor_stratum.R` | donor genotype in the allo-HSCT stratum (D1 secondary analysis): stratum built from Table 1 margins, donor effects, gain against the stratum and whole-cohort MCIDs, sampling variability; needs the donor draws from scripts 12 and 14 | about 1 min |
+| `scripts/20_genetic_donor_stratum.R` | donor genotype in the allo-HSCT stratum (D1 secondary analysis): the stratum from the cohort's allo flag (and, as a sensitivity analysis, from Table 1 margins), donor effects, gain against the stratum and whole-cohort MCIDs, sampling variability; needs the donor draws from scripts 12 and 14 | about 1 min |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
@@ -88,7 +88,7 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | 2 Screening and extraction | round 1 complete; **round 2 (human verification) not started** |
 | 3 Parameter derivation | design decisions settled and locked; parameter derivation not started, gated on round 2 |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **in progress** (addenda 11 to 13): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum; Aim 3b and the CLEC7A second parameter remain |
+| 5 Genetic layer simulation | **in progress** (addenda 11 to 14): exact layer on the base cohort with the four-term panel, correlation ensemble, per-term attribution, sampling variability, sensitivity cohorts and donor genotype in the allo-HSCT stratum; Aim 3b and the CLEC7A second parameter remain |
 | 6 Sensitivity and architecture sweep | not started |
 | 7 Write-up | not started |
 
@@ -309,10 +309,9 @@ A class (A-C-A plus A-A-A), with the three-haplotype split as a sensitivity anal
    ensemble nor the sensitivity cohorts (published equation on 4,078 or 4,127 rows, refit on 4,127) change this materially. A study of this size has a
    sampling SD of the observed gain of 0.0006 to 0.0013 at 5%, the same size as the expected gain or larger, and it reaches the 5% MCID in at most
    5% of repetitions in any run. CD209 supplies half or more of the gain (Shapley), PTX3 and TLR4 most of the rest, CLEC7A almost none. Donor genotype
-   in the allo-HSCT stratum (7.1% of admissions) adds 3 to 4 cases per 1,000 allo admissions at 5% against 21 needed (secondary analysis; the stratum
-   is built from Table 1 margins because the base cohort has no allo flag, and donor evidence is one to two studies per term, none for CD209).
-   To do: confirm the reading of "realised" (addendum 11); add an admission-level allo flag to the pseudonymised base cohort if the analysis file has one;
-   the CLEC7A second parameter; Aim 3b.
+   in the allo-HSCT stratum (6.7% of admissions; the base cohort now carries an admission-level allo flag, addendum 14) adds 0.4 to 1.4 cases per 1,000 allo admissions at 5%
+   against 30 needed, because the baseline already flags 77% of that stratum (secondary analysis; donor evidence is one to two studies per term, none for CD209).
+   To do: confirm the reading of "realised" (addendum 11); the CLEC7A second parameter; Aim 3b.
 6. **Aim 3b:** note the design tension. The Feys logic predicts a genotype effect in neutropenic patients, but the
    only direct stratified evidence (Brunel 2018, derived by subtraction and flagged ambiguous) shows it in
    non-neutropenic patients. State the expected direction before running it.

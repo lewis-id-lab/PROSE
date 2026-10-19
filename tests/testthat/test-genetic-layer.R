@@ -286,3 +286,25 @@ test_that("a study drawn from a profile distribution is reproducible and average
   fixed <- simulate_study_q(counts, q0, lp0, p4, sh, beta, beta, th, mc, offset = 1.5, resample_counts = FALSE)
   expect_equal(unique(fixed$admissions), sum(counts))
 })
+
+test_that("the data-based allo stratum is the flagged admissions' own distribution, recalibrated to their observed event rate", {
+  set.seed(8821)
+  n <- 3000
+  X <- matrix(rbinom(n * 7, 1, rep(pars$marginal, each = n)), n, 7, dimnames = list(NULL, PREDICTORS))
+  allo <- rbinom(n, 1, 0.1) == 1
+  case <- rbinom(n, 1, ifelse(allo, 0.2, 0.03))
+  co <- list(rows = data.frame(case = case, allo_hsct = allo), X = X)
+  st <- allo_stratum_data(co, lp0)
+  expect_equal(sum(st$q), 1)
+  expect_equal(st$n, sum(allo)); expect_equal(st$events, sum(case[allo])); expect_equal(st$share, mean(allo))
+  expect_equal(st$q, tabulate(profile_index(X[allo, ]), 128) / sum(allo))
+  expect_equal(sum(st$q * plogis(lp0 + st$offset)), sum(case[allo]) / sum(allo), tolerance = 1e-9)
+  expect_equal(st$predicted_rate_baseline, sum(st$q * plogis(lp0)))
+  expect_gt(st$offset, 0)                                                # the baseline under-predicts in a stratum that is really riskier
+  co$rows$allo_hsct <- NA
+  expect_error(allo_stratum_data(co, lp0), "no allo-HSCT flag")
+  # a stratum built this way works with the cells and the MCID like the others
+  cells <- genetic_cells(st$q, lp0, dosage_grid(p4), offset = st$offset)
+  expect_equal(cells$prevalence, sum(allo) / sum(allo) * sum(case[allo]) / sum(allo), tolerance = 1e-9)
+  expect_gt(baseline_mcid(st$q, lp0, 0.05, offset = st$offset), 0)
+})

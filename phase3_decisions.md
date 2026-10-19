@@ -1124,7 +1124,7 @@ Sampling variability of a study with a stratum's worth of admissions (289 admiss
 
 ### Limits and what would change them
 
-- **The allo flag.** The stratum's profile mix and its constant odds multiplier of 5.3 rest on one assumption: that allo status is independent of the clinical profile once the outcome
+- **The allo flag (superseded by addendum 14, which builds the stratum from the data and finds this assumption does not hold).** The stratum's profile mix and its constant odds multiplier of 5.3 rest on one assumption: that allo status is independent of the clinical profile once the outcome
   is known. If allo recipients' excess risk comes mostly through the predictors (more steroids, neutropenia, CMV), the true multiplier would be smaller and the stratum would sit at higher-risk profiles, which changes
   both the baseline's performance and the MCID. An admission-level allo flag in the analysis file would replace this assumption. I do not know whether `boscore.xlsx` carries one (its
   column names show only `DTMO`, a transplant date, which would not separate allogeneic from autologous), and I did not read values from it. If you add the flag to the pseudonymised base cohort
@@ -1136,3 +1136,102 @@ Sampling variability of a study with a stratum's worth of admissions (289 admiss
 Code and outputs: `R/genetic_layer.R`, `R/genetic_helpers.R`, `scripts/18_genetic_ensemble_sampling.R`, `scripts/20_genetic_donor_stratum.R`,
 `tests/testthat/test-genetic-layer.R`, `output/genetic_ensemble_sampling_{draws,summary}.csv`, `output/genetic_donor_{evidence,stratum_summary,baseline_stratum,sampling_summary}.csv`,
 and the donor posterior draws `output/{ptx3_h2,clec7a,tlr4}_donor_posterior_draws.csv` (written by scripts 12 and 14).
+
+---
+
+## Addendum 14, 19 October 2026: an admission-level allo-HSCT flag, and the donor-genotype stratum rebuilt from the data (D18)
+
+Written after the tag. Provisional, like addenda 11 to 13. Nothing in D1 to D17 changes, and the addendum 11 and 12 results reproduce unchanged.
+It supersedes the stratum construction of addendum 13, which is kept as a sensitivity analysis.
+
+### The flag
+
+`boscore.xlsx` has no allo-HSCT column. What it has, and what was used (script 08, the identified file read locally; only counts were printed and no
+date or identifier is kept):
+
+- **SCORE9** (`recode2SCORE9`, coded 2) is the older item "allo-HSCT, or high-dose cytarabine, FLAI-E or ICE chemotherapy". The item named `allogeneic_hsct` in
+  the 2019 file is the same column (862 of the 863 admissions coded 2 are flagged in the 2019 file, and none of the 3,264 coded 0 is). The 2017 high-risk chemotherapy item (BOSCORE_9) is this item: they differ on 2 of 4,127 rows.
+- **DTMO** is a transplant date, present on 1,124 of the 4,127 rows and always 0 to 365 days after the admission date (mostly 1 to 30). Autologous transplants sit in the other
+  category of SCORE9, so a transplant date on a row of the composite category marks an allo-HSCT admission.
+- **The flag** is therefore SCORE9 = 2 and a transplant date present (`allo_hsct_flag()` in `R/boscore_data.R`). Only whether the date is present is used.
+
+Validation against Table 1 (allo-HSCT as the reason for admission: 292 admissions, 44 events, 248 non-events): the flag gives **292 admissions**, exactly, with **43 events and 249
+non-events**, one admission classed the other way. That is the same size of discrepancy as the two Table 2 counts that are one lower than published (D8), and is recorded as
+a known difference (`BOSCORE_EXPECTED`). The flag is added to the pseudonymised base cohort (`data/restricted/base_cohort_pseudonymised.csv`, column `allo_hsct`; a file without it
+still loads, with the flag missing) and the counts are in `output/allo_hsct_summary.csv`.
+
+In the base cohort of 4,078 unique admissions there are **272 allo-HSCT admissions with 43 events** (6.7% of admissions, event rate 15.8%). **20 of the 49 non-event twin rows are
+allo admissions** (41%, against 7% overall), so the duplicate-pair artefact (addendum 5) is concentrated in transplant admissions.
+
+### What the data show, and what that does to addendum 13
+
+| | allo-HSCT admissions | all others |
+|---|---|---|
+| high-risk chemotherapy item | 99.6% | 14.5% |
+| severe lymphopenia | 74% | 8% |
+| prolonged neutropenia | 85% | 24% |
+| uncontrolled malignancy | 26% | 42% |
+| CMV | 10% | 2% |
+
+Allo admissions are the high-risk chemotherapy item (that item contains them), and only **23 of the 128 clinical profiles occur** among them (total-variation distance to the
+whole cohort 0.83). The baseline score predicts a 14.3% event rate in the stratum against 15.8% observed, an **odds multiplier of 1.15**, not the 5.3 that addendum 13 derived from
+the Table 1 margins. The assumption of addendum 13 (allo status depends on the outcome only, given the profile) does not hold: allo admissions are riskier almost entirely
+through their predictors, and the baseline is nearly calibrated in the stratum.
+
+### D18. The stratum from the data (primary)
+
+The stratum is the flagged admissions' own profile distribution (272 admissions, so a sparse one), with a constant recalibration offset on the baseline logit chosen so that the
+predicted event rate equals the observed one (`allo_stratum_data()`). Everything else is as in D17: donor effects, donor dosage Hardy-Weinberg and independent of the recipient's
+profile, the scores carry no allo information, the stratum MCID is 20% more true cases among its admissions at no extra false positives. The Table 1 construction is kept as the
+"margins" sensitivity analysis (`output/genetic_donor_*` files have a `stratum` column; the margins rows reproduce addendum 13 exactly).
+
+### Results (data stratum)
+
+The baseline score flags **77% of allo admissions at 5%**, finding 152 true cases and 617 false positives per 1,000, with an aROC of 0.74 in the stratum. The stratum MCID is
+**+0.03032 at 5%** (30 extra cases per 1,000 allo admissions) and **+0.01189 at 20%**.
+
+| truth | score | threshold | stratum gain (90% range) | extra cases per 1,000 allo | reaches stratum MCID | whole-cohort gain | reaches whole-cohort MCID |
+|---|---|---|---|---|---|---|---|
+| mean | ceiling | 5% | +0.00070 (0.00006 to 0.00342) | 0.5 | 0% (MCID 0.03032) | +0.00005 | 0% (MCID 0.00458) |
+| mean | realised | 5% | +0.00021 (-0.00055 to 0.00108) | 1.3 | 0% (MCID 0.03032) | +0.00001 | 0% (MCID 0.00458) |
+| predictive | ceiling | 5% | +0.00114 (0.00013 to 0.00688) | 0.4 | 0% (MCID 0.03032) | +0.00008 | 0% (MCID 0.00458) |
+| predictive | realised | 5% | +0.00024 (-0.00080 to 0.00159) | 1.4 | 0% (MCID 0.03032) | +0.00002 | 0% (MCID 0.00458) |
+| mean | ceiling | 20% | +0.00866 (0.00338 to 0.02176) | 23.0 | 27% (MCID 0.01189) | +0.00058 | 4% (MCID 0.00160) |
+| mean | realised | 20% | +0.00363 (-0.00329 to 0.01042) | 14.3 | 3% (MCID 0.01189) | +0.00024 | 0% (MCID 0.00160) |
+| predictive | ceiling | 20% | +0.01094 (0.00388 to 0.03971) | 27.7 | 44% (MCID 0.01189) | +0.00073 | 14% (MCID 0.00160) |
+| predictive | realised | 20% | +0.00382 (-0.00634 to 0.01374) | 14.4 | 8% (MCID 0.01189) | +0.00026 | 0.4% (MCID 0.00160) |
+
+Sampling variability of a study with the stratum's size (272 admissions, 43 events):
+
+| truth, score | threshold | expected gain | observed gain, mean (90% range) | SD | gain > 0 | reaches stratum MCID |
+|---|---|---|---|---|---|---|
+| pooled medians, either score | 5% | +0.00024 | +0.00034 (-0.00193 to 0.00580) | 0.00244 | 33% | 0% |
+| pooled medians, either score | 20% | +0.00399 | +0.00402 (-0.00827 to 0.01838) | 0.00784 | 68% | 17% |
+| 95th percentile, ceiling | 5% | +0.00320 | +0.00321 (-0.00522 to 0.01162) | 0.00516 | 74% | 0% |
+| 95th percentile, ceiling | 20% | +0.02367 | +0.02392 (0.00276 to 0.04688) | 0.01334 | 97% | 82% |
+| 95th percentile, realised | 5% | +0.00081 | +0.00075 (-0.00175 to 0.00639) | 0.00276 | 41% | 0% |
+| 95th percentile, realised | 20% | +0.00932 | +0.00978 (-0.00368 to 0.02574) | 0.00912 | 85% | 40% |
+| drawn (mean), ceiling | 5% | | +0.00116 (-0.00387 to 0.00755) | 0.00367 | 50% | 0% |
+| drawn (mean), ceiling | 20% | | +0.01019 (-0.00648 to 0.03309) | 0.01249 | 79% | 41% |
+| drawn (predictive), ceiling | 5% | | +0.00204 (-0.00445 to 0.01064) | 0.00472 | 57% | 0% |
+| drawn (predictive), ceiling | 20% | | +0.01418 (-0.00643 to 0.04412) | 0.01637 | 84% | 50% |
+| drawn (predictive), realised | 5% | | +0.00031 (-0.00193 to 0.00619) | 0.00259 | 31% | 0% |
+| drawn (predictive), realised | 20% | | +0.00382 (-0.01103 to 0.02114) | 0.00996 | 62% | 21% |
+
+- **At 5% there is almost no room.** The baseline already flags 77% of the stratum, so donor genotype can only move a few admissions out of the flagged group. The gain is 0.4 to 1.4 extra true
+  cases per 1,000 allo admissions against the 30 needed, and it never reaches the stratum MCID. This is smaller than addendum 13's +3 to +4 per 1,000, which assumed a stratum where the baseline flagged 22%.
+- **At 20% the gain is larger than in addendum 13** (23 to 28 extra cases per 1,000 for the ceiling score, against 9 to 10), because the stratum's profiles are concentrated at the top of the baseline's range
+  and the baseline flags only 14% there. The ceiling score reaches the stratum MCID in 27% to 44% of worlds, a score using the pooled estimates in 3% to 8%.
+- Spread over the whole cohort the donor gain is +0.00001 to +0.00008 at 5% and +0.0002 to +0.0007 at 20%, and reaches the whole-cohort MCID in at most 14% of worlds (ceiling, predictive, 20%) and never at 5%.
+- A study of 272 admissions and 43 events is very noisy. At the pooled medians the SD of the observed gain at 5% (0.0024) is ten times the expected gain, and only a third of studies show a positive gain.
+
+### Limits
+
+- The flag is derived, not recorded as an allo indicator. It reproduces Table 1's 292 exactly but not the event split (43 against 44). Anyone with the source database can replace it with the recorded transplant type.
+- The profile distribution of the stratum rests on 272 admissions and 23 profiles, and a constant offset recalibrates the baseline; the baseline's predictions within the stratum are otherwise taken as correct.
+- The donor evidence is unchanged and thin (one study each for PTX3 and CLEC7A, two for TLR4, none for CD209), with donors treated as unrelated.
+- The identified file was read to derive the flag. If your data-sharing agreement or ethics approval does not cover use with an AI tool, say so and I will not run script 08 again; the pseudonymised cohort carries only the binary flag, with
+  no date or identifier.
+
+Code and outputs: `R/boscore_data.R` (`allo_hsct_flag`, `allo_summary`), `scripts/08_reconcile_boscore.R`, `R/genetic_layer.R` (`allo_stratum_data`), `scripts/20_genetic_donor_stratum.R`,
+`tests/testthat/test-boscore-data.R`, `tests/testthat/test-genetic-layer.R`, `output/allo_hsct_summary.csv`, `output/genetic_donor_{strata,stratum_summary,baseline_stratum,sampling_summary}.csv`.

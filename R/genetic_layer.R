@@ -353,3 +353,17 @@ draw_donor_effects <- function(donor_draws, n_draw, heterogeneity = c("mean", "p
 }
 
 donor_pooled_estimates <- function(donor_draws) vapply(donor_draws, function(d) if (is.null(d)) 0 else stats::median(d$mu), numeric(1))
+
+# The allo-HSCT stratum from the cohort's own flag (addendum 14): the empirical profile distribution of the flagged admissions, and a
+# recalibration offset on the baseline logit chosen so that the stratum's predicted event rate equals its observed rate (the baseline
+# score has no allo item). The profile distribution rests on a few hundred admissions, so many profiles are empty.
+allo_stratum_data <- function(cohort, lp_profile) {
+  a <- which(cohort$rows$allo_hsct)
+  if (!length(a)) stop("the cohort carries no allo-HSCT flag", call. = FALSE)
+  q <- tabulate(profile_index(cohort$X[a, , drop = FALSE]), length(lp_profile)) / length(a)
+  events <- sum(cohort$rows$case[a])
+  rate <- events / length(a)
+  offset <- stats::uniroot(function(o) sum(q * stats::plogis(lp_profile + o)) - rate, c(-6, 8), tol = 1e-12)$root
+  list(share = length(a) / nrow(cohort$X), q = q, offset = offset, event_rate = rate, n = length(a), events = events,
+       profiles_present = sum(q > 0), predicted_rate_baseline = sum(q * stats::plogis(lp_profile)))
+}
