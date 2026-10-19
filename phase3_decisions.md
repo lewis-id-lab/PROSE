@@ -1823,8 +1823,36 @@ Chen 2019 was read again from the supplied PDF (Curr Med Sci 39:906). Tanpaibule
 
 This is a change in how the evidence is used, not in the primary analysis; the primary numbers of addenda 16 to 20 are unchanged. If the primary analysis ever moves to a non-European cohort, the East Asian estimate becomes the relevant one and its imprecision (90% interval 0.35 to 1.15 for the two studies alone) must be carried in full.
 
+### 4. The linkage check: rs3901533 and rs7309123 in the phased 1000 Genomes chromosomes
+
+`scripts/28_east_asian_haplotypes.R` now also fetches rs3901533 (the second intronic SNP of Sainz 2012 and Chen 2019) and crosses its allele with the CLEC7A haplotypes on the phased chromosomes, East Asian from the script's cache and European from script 04's cache (`data/rs3901533_linkage_eas.csv`). Sainz labels the SNP G/T on the opposite strand: his risk allele T is the forward-strand A (Ensembl labels it A/C, forward).
+
+| population | haplotype | chromosomes | rs3901533 C | rs3901533 A |
+|---|---|---|---|---|
+| Chinese Han (CHB + CHS) | A-G | 664 | 77 | 587 (88%) |
+| Chinese Han (CHB + CHS) | A-C | 166 | 97 (58%) | 69 |
+| Thai proxy (CDX) | A-G | 286 | 31 | 255 (89%) |
+| Thai proxy (CDX) | A-C | 84 | 57 (68%) | 27 |
+| East Asian (all five) | A-G | 1,656 | 154 | 1,502 (91%) |
+| East Asian (all five) | A-C | 352 | 215 (61%) | 137 |
+| European (EUR) | A-G | 708 | 451 (64%) | 257 |
+| European (EUR) | A-C | 1,162 | 1,011 (87%) | 151 |
+
+(East Asian chromosomes in the table: 1,008 genotyped at rs7309123, all of them genotyped at rs3901533 in this cache; European: 1,006 genotyped at both.)
+| European (EUR) | C-G | 142 | 62 | 80 |
+
+The three observations:
+
+1. **The two SNPs sit on different chromosomes in East Asians, in a pattern that reverses the tags.** Forward A at rs3901533 sits on the rs7309123 G chromosome in 91% of the East Asian A-G chromosomes (88% in the Chinese Han, 89% in CDX); the LD of the two SNPs is r-squared 0.26, D' -0.52 in East Asians (and r-squared 0.09, D' -0.46 in Europeans), moderate, negative in D'. Chen typed both: his rs7309123 per-C-allele odds ratio is 1.919 and his rs3901533 per-G-allele odds ratio 2.201. Because the risk allele of each is the background allele of the other in this ancestry, the two contrasts are nearly independent (the shared-haplotype correlation of their log odds ratios is about 0.03, against 0.52 for two markers of one causal allele), and each is about what the other predicts. **Chen's two results therefore say the same thing: an effect on the rs3901533-A-carrying background, which in East Asians is the rs7309123 G chromosome, so the risk reads on C.** Sainz's own rs3901533 result (T/T against G/G 5.59, the risk on the forward A) is consistent in direction with an effect tagged by A; in Europeans the forward A sits on the A-G chromosome only 36% of the time, so the rs3901533 tag reads the risk more weakly there, as his per-allele odds ratio shows (1.39 against 1.75 for rs7309123).
+2. **The European A-C reference haplotype carries the rs3901533 complement** (87% C). So the European A-G against A-C comparison, which the second parameter estimates, is confounded by rs3901533 in the opposite direction from the East Asian one: in Europe the A-G chromosome tends to lack Sainz's risk allele, in East Asia it tends to carry it.
+3. **This is the flip-flop the addendum listed, and the two tag SNPs now show its mechanism.** If the causal variant is nearer rs3901533 (an A/C SNP in intron 3, 12:10,124,484; rs7309123 is at 12:10,119,964, 4.5 kb away) and sits mainly on the A-bearing background, then the rs7309123 G allele tags it in East Asians (risk on G, against the reading above) and the rs7309123 C tags the reference; in Europeans the linkage is weaker and partly reversed. The observed signs match this: East Asian risk on C (the A-C chromosome, 61 to 68% rs3901533 C, is the background against which A-G carries the A), European risk on G.
+
+The verdict of section 3 stands: the data cannot separate this from the small-cells explanation, and nothing in the table fixes the sign of the true effect. What the table adds is that the opposite directions are a coherent pattern expected from the linkage, not an error; it also warns that the pooled East Asian estimate is not a replication of the European one at the same variant.
+
+Test: `tests/testthat/test-haplotypes.R`.
+
 ### Not done
 
-Zhao 2022's strand (rs7309123 appears only in a donor-genotype screening table with no allele letters; it is a Chinese Han study and would enter the East Asian analysis if resolved); the supplementary table of Tanpaibule 2020 (assay details); an independent East Asian cohort to tell noise from a true reversal; the linkage of rs7309123 with rs3901533 in the East Asian samples, which Chen reports in near-identical counts (108, 60, 4 against 108, 59, 4) and which could say whether the flip is a linkage effect.
+Zhao 2022's strand (rs7309123 appears only in a donor-genotype screening table with no allele letters; it is a Chinese Han study and would enter the East Asian analysis if resolved); the supplementary table of Tanpaibule 2020 (assay details); an independent East Asian cohort to tell noise from a true reversal; a direct genotyping or imputation of the candidate causal variant near rs3901533.
 
-Code and outputs: `scripts/28_east_asian_haplotypes.R`, `scripts/22_clec7a_second_parameter.R`, `data/haplotype_frequencies_eas.csv`, `data/phased_1000G_EAS_genotypes.csv`, `output/clec7a_second_*.csv` (including the ancestry files), `tests/testthat/test-haplotypes.R`.
+Code and outputs: `scripts/28_east_asian_haplotypes.R`, `scripts/22_clec7a_second_parameter.R`, `data/haplotype_frequencies_eas.csv`, `data/phased_1000G_EAS_genotypes.csv`, `data/rs3901533_phased_genotypes.csv`, `data/rs3901533_linkage_eas.csv`, `output/clec7a_second_*.csv` (including the ancestry files), `tests/testthat/test-haplotypes.R`.

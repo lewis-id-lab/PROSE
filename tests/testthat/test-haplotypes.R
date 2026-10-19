@@ -132,3 +132,22 @@ test_that("the East Asian CLEC7A haplotype table is a proper frequency table wit
     expect_gt(sum(x$freq[x$allele_2 == "G"]), 0.7)
   }
 })
+
+test_that("the rs3901533 linkage table shows the East Asian and European risk haplotypes on opposite rs3901533 backgrounds", {
+  path <- file.path(proj_root, "data", "rs3901533_linkage_eas.csv")
+  skip_if_not(file.exists(path), "the rs3901533 linkage table is not present")
+  lk <- read.csv(path, stringsAsFactors = FALSE)
+  expect_equal(lk$rs3901533_C + lk$rs3901533_A, lk$chromosomes)
+  # Sainz's risk allele is the forward A: it sits on the A-G haplotype in Europeans and on the A-C haplotype in East Asians
+  eas <- lk[lk$population == "East Asian (all five)" & lk$clec7a_haplotype == "A-G", ]
+  eur <- lk[lk$population == "European (EUR)" & lk$clec7a_haplotype == "A-G", ]
+  expect_gt(eas$rs3901533_A / eas$chromosomes, 0.8); expect_lt(eur$rs3901533_A / eur$chromosomes, 0.45)
+  ac_eas <- lk[lk$population == "East Asian (all five)" & lk$clec7a_haplotype == "A-C", ]
+  ac_eur <- lk[lk$population == "European (EUR)" & lk$clec7a_haplotype == "A-C", ]
+  expect_gt(ac_eur$rs3901533_C / ac_eur$chromosomes, 0.8)
+  # In East Asians rs3901533 A tags rs7309123 G almost perfectly
+  cg <- lk[lk$population == "East Asian (all five)" & lk$clec7a_haplotype == "C-G", ]
+  t2 <- as.table(matrix(c(ac_eas$rs3901533_C, eas$rs3901533_C + cg$rs3901533_C, ac_eas$rs3901533_A, eas$rs3901533_A + cg$rs3901533_A), 2, byrow = TRUE,
+                        dimnames = list(c("C", "A"), c("C", "G"))))
+  s <- ld_stats(t2); expect_gt(s[["dprime"]], 0.4); expect_gt(s[["r2"]], 0.15)  # D > 0 for C-C: rs3901533 C tags rs7309123 C, so A tags G
+})

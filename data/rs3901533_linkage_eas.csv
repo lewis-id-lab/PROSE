@@ -1,0 +1,13 @@
+"population","pops","clec7a_haplotype","rs3901533_C","rs3901533_A","chromosomes"
+"Chinese Han (CHB+CHS)","CHB+CHS","A-G",77,587,664
+"Chinese Han (CHB+CHS)","CHB+CHS","A-C",97,69,166
+"Chinese Han (CHB+CHS)","CHB+CHS","C-G",0,2,2
+"Thai proxy (CDX)","CDX","A-G",31,255,286
+"Thai proxy (CDX)","CDX","A-C",57,27,84
+"Thai proxy (CDX)","CDX","C-G",0,2,2
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","A-G",154,1502,1656
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","A-C",215,137,352
+"East Asian (all five)","CHB+CHS+CDX+KHV+JPT","C-G",1,7,8
+"European (EUR)","EUR","A-G",451,257,708
+"European (EUR)","EUR","A-C",1011,151,1162
+"European (EUR)","EUR","C-G",62,80,142

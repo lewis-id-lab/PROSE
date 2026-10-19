@@ -70,3 +70,51 @@ write.csv(out, "data/haplotype_frequencies_eas.csv", row.names = FALSE)
 message("CLEC7A haplotype frequencies (rs16910526 - rs7309123):")
 print(reshape(out[, c("population", "haplotype", "freq")], idvar = "population", timevar = "haplotype", direction = "wide"), digits = 3, row.names = FALSE)
 message("chromosomes per group: ", paste(unique(paste0(out$population, " ", out$chromosomes_total)), collapse = "; "))
+
+# ---- The rs3901533 linkage (addendum 21): which CLEC7A haplotype carries Sainz's risk allele in East Asians and in Europeans? ----
+# rs3901533 is the intronic SNP Sainz 2012 and Chen 2019 also typed. Ensembl labels it A/C on the forward strand; Sainz's G/T is the same SNP on
+# the opposite strand (his G is the forward C, his risk allele T is the forward A). The phased genotypes are the Ensembl ones (cached); the European
+# chromosomes are read from the per-haplotype rows of data/haplotype_ld_phased.csv, which come from the same source (script 04).
+rs33_path <- "data/rs3901533_phased_genotypes.csv"
+if (REFRESH || !file.exists(rs33_path)) {
+  Sys.sleep(0.5)
+  g33 <- fetch_json("https://rest.ensembl.org/variation/human/rs3901533?genotypes=1")$genotypes
+  g33 <- g33[grepl("^1000GENOMES:phase_3:", g33$sample), ]
+  g33$sample <- sub("^1000GENOMES:phase_3:", "", g33$sample)
+  write.csv(g33[, c("sample", "genotype")], rs33_path, row.names = FALSE)
+}
+g33 <- read.csv(rs33_path, stringsAsFactors = FALSE)
+g33 <- g33[grepl("^[AC]\\|[AC]$", g33$genotype), ]
+sp33 <- strsplit(g33$genotype, "|", fixed = TRUE)
+g33$a1 <- vapply(sp33, `[`, "", 1); g33$a2 <- vapply(sp33, `[`, "", 2)
+alle <- rbind(data.frame(sample = g33$sample, allele = g33$a1), data.frame(sample = g33$sample, allele = g33$a2))
+geno33 <- merge(alle, chrom[, c("sample", "pop", "rs16910526", "rs7309123")], by = "sample")
+geno33 <- geno33[geno33$rs16910526 %in% c("A", "C") & geno33$rs7309123 %in% c("C", "G"), ]
+geno33$clec7a_haplotype <- paste(geno33$rs16910526, geno33$rs7309123, sep = "-")
+
+panel <- read.delim(sample_url, stringsAsFactors = FALSE)
+eur <- panel$sample[panel$super_pop == "EUR"]
+eur_g <- read.csv("data/phased_1000G_EUR_genotypes.csv", stringsAsFactors = FALSE)
+eur_g <- eur_g[eur_g$rsid %in% c("rs16910526", "rs7309123") & grepl("^[ACGT]\\|[ACGT]$", eur_g$genotype), ]
+sp_eur <- strsplit(eur_g$genotype, "|", fixed = TRUE)
+eur_a <- do.call(rbind, lapply(1:2, function(k) { d <- data.frame(sample = eur_g$sample, allele = vapply(sp_eur, `[`, "", k), rsid = eur_g$rsid)
+  reshape(d, idvar = "sample", timevar = "rsid", direction = "wide") }))
+eur_x <- merge(alle[alle$sample %in% eur, ], eur_a, by = "sample")
+eur_x <- eur_x[eur_x$allele.rs16910526 %in% c("A", "C") & eur_x$allele.rs7309123 %in% c("C", "G"), ]
+eur_x$clec7a_haplotype <- paste(eur_x$allele.rs16910526, eur_x$allele.rs7309123, sep = "-")
+ld_rows <- table(clec7a_haplotype = factor(eur_x$clec7a_haplotype, c("A-G", "A-C", "C-G")), allele = factor(eur_x$allele, c("C", "A")))
+eur_h <- as.data.frame.matrix(ld_rows); eur_h$clec7a_haplotype <- rownames(eur_h)
+eur_h <- cbind(data.frame(population = "European (EUR)", pops = "EUR"), transform(eur_h, chromosomes = C + A))
+names(eur_h) <- sub("^(C|A)$", "rs3901533_\\1", names(eur_h))
+
+groups33 <- list(`Chinese Han (CHB+CHS)` = c("CHB", "CHS"), `Thai proxy (CDX)` = "CDX", `East Asian (all five)` = pops)
+hap33 <- do.call(rbind, Map(function(nm, pp) { x <- geno33[geno33$pop %in% pp, ]
+  tb <- table(clec7a_haplotype = factor(x$clec7a_haplotype, c("A-G", "A-C", "C-G")), allele = factor(x$allele, c("C", "A")))
+  d <- as.data.frame.matrix(tb); d$clec7a_haplotype <- rownames(d)
+  cbind(data.frame(population = nm, pops = paste(pp, collapse = "+")), transform(d, chromosomes = C + A)) }, names(groups33), groups33))
+names(hap33) <- sub("^(C|A)$", "rs3901533_\\1", names(hap33))
+out33 <- rbind(hap33[, c("population", "pops", "clec7a_haplotype", "rs3901533_C", "rs3901533_A", "chromosomes")], eur_h[, c("population", "pops", "clec7a_haplotype", "rs3901533_C", "rs3901533_A", "chromosomes")])
+rownames(out33) <- NULL
+write.csv(out33, "data/rs3901533_linkage_eas.csv", row.names = FALSE)
+message("\nrs3901533 alleles on each CLEC7A haplotype (Sainz's risk allele is the forward A):")
+print(out33, row.names = FALSE)

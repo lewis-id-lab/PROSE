@@ -75,6 +75,8 @@ scripts, run them from the project root, in this order:
 | `scripts/24_attribution_second_clec7a.R` | Shapley attribution of the layer's gain to five terms (the two CLEC7A parameters separately); run after 16 and 22 | about 3 min |
 | `scripts/25_aim4_realised_sweep.R` | Aim 4 sweep with a realised score: estimated weights with per-locus error sigma 0.05 to 0.40, 12 replicate discovery studies per architecture, frontiers and a figure; run after 23 | about 13 min |
 | `scripts/26_five_term_robustness.R` | the five-term Aim 3b layer and Shapley attribution on the sensitivity cohorts and the correlation ensemble (set `ROBUST_ONLY` to run one setting at a time); run after 16, 22 and 24 | about 5 min per setting |
+| `scripts/27_writeup_figures.R` | figures for the write-up: the headline gain against the MCID, the Aim 3b gain and power, and the attribution; run after 16, 21, 22 and 24 | seconds |
+| `scripts/28_east_asian_haplotypes.R` | phased 1000 Genomes East Asian CLEC7A haplotype frequencies and the rs3901533 linkage cross-tab (genotypes cached; set `REFRESH <- TRUE` to refetch, needs network) | seconds |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
