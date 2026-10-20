@@ -18,6 +18,9 @@
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R")
 source("R/refit_baseline.R"); source("R/evidence_mapping.R"); source("R/ptx3_evidence.R"); source("R/source_verification.R")
 source("R/genetic_layer.R"); source("R/genetic_helpers.R")
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run the layer under the profile-preserving truth (addenda 24 and 26). The
+# evidence files do not depend on the truth, so only the layer summary is written then, to a file ending in _profile.
+sfx <- scheme_suffix()
 
 vr <- read_bundle_table("extraction_variants_round1.csv"); st <- read_bundle_table("extraction_studies_round1.csv")
 vr <- apply_corrections(vr, read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE))$data
@@ -78,20 +81,21 @@ message("\nPrimary study effects (per copy of A-G, beta1 held):"); show_df(study
 message("\nPooled:"); show_df(cbind(tab[, c("scenario", "k", "studies")], tab[, c("mu_lo", "mu", "mu_hi", "or", "or_lo", "or_hi", "tau", "prob_below_zero")]))
 
 dir.create("output", showWarnings = FALSE)
-write.csv(study_tab, "output/clec7a_second_study_effects.csv", row.names = FALSE)
-write.csv(tab, "output/clec7a_second_pooled.csv", row.names = FALSE)
-write.csv(pooled[[1]]$draws, "output/clec7a_second_posterior_draws.csv", row.names = FALSE)
-write.csv(unres, "output/clec7a_second_unresolved_scenarios.csv", row.names = FALSE)
-write.csv(pooled[[2]]$draws, "output/clec7a_second_posterior_draws_all_ancestries.csv", row.names = FALSE)
+wr <- function(x, f) if (sfx == "") write.csv(x, f, row.names = FALSE)
+wr(study_tab, "output/clec7a_second_study_effects.csv")
+wr(tab, "output/clec7a_second_pooled.csv")
+wr(pooled[[1]]$draws, "output/clec7a_second_posterior_draws.csv")
+wr(unres, "output/clec7a_second_unresolved_scenarios.csv")
+wr(pooled[[2]]$draws, "output/clec7a_second_posterior_draws_all_ancestries.csv")
 ancestry_effects <- do.call(rbind, lapply(c(2L, 7L), function(i) { x <- scenarios[[i]]; if (nrow(x)) cbind(scenario = names(scenarios)[i], x[, c("study_id", "ancestry_as_reported", "tier", "model", "measure", "y", "se", "beta", "se_beta", "flag")]) }))
-write.csv(ancestry_effects, "output/clec7a_second_ancestry_study_effects.csv", row.names = FALSE)
+wr(ancestry_effects, "output/clec7a_second_ancestry_study_effects.csv")
 # Do the two ancestries agree? Fixed-effect combination within each ancestry, then the difference
 fx <- function(x) combine_fixed(x$beta, x$se_beta)
 a_eu <- fx(scenarios[[1]]); a_ea <- fx(scenarios[[7]])
 d_ea <- a_ea$y - a_eu$y; se_d <- sqrt(a_eu$se^2 + a_ea$se^2)
 heterogeneity <- data.frame(group = c("European (S045, S056, S071)", "East Asian (S074, S077)"), studies = c(a_eu$k, a_ea$k), beta_per_copy = c(a_eu$y, a_ea$y), se = c(a_eu$se, a_ea$se),
                             q_within_group = c(a_eu$q, a_ea$q), difference_east_asian_minus_european = d_ea, se_difference = se_d, z = d_ea / se_d, p_two_sided = 2 * pnorm(-abs(d_ea / se_d)))
-write.csv(heterogeneity, "output/clec7a_second_ancestry_heterogeneity.csv", row.names = FALSE)
+wr(heterogeneity, "output/clec7a_second_ancestry_heterogeneity.csv")
 message("\nAncestry heterogeneity of beta2:"); show_df(heterogeneity)
 message("\nStudy effects with ancestry-specific haplotypes (all strand-resolved studies, and the East Asian ones):"); show_df(ancestry_effects[, c("scenario", "study_id", "model", "y", "se", "beta", "se_beta")] |> transform(scenario = substr(scenario, 1, 30)))
 
@@ -135,6 +139,13 @@ run_alt <- function(b2a) {
 }
 lay <- rbind(lay, cbind(second_parameter = "estimated from all ancestries", run_alt(pooled[[2]]$draws)))
 parallel::stopCluster(cl)
-write.csv(lay, "output/clec7a_second_layer_summary.csv", row.names = FALSE)
+# Under the profile scheme the "estimated" rows use the same draws as script 31's five-term panel, so they must equal its profile rows
+if (sfx != "") {
+  ref <- read.csv("output/calibration_check_layer.csv"); ref <- ref[ref$comparison == "profile" & ref$panel == "five terms", ]
+  e <- lay[lay$second_parameter == "estimated", ]
+  j <- match(paste(e$truth, e$scenario, e$threshold), paste(ref$truth, ref$score, ref$threshold))
+  stopifnot(!anyNA(j), max(abs(e$gain - ref$gain[j])) < 1e-9)
+}
+write.csv(lay, paste0("output/clec7a_second_layer_summary", sfx, ".csv"), row.names = FALSE)
 message("\nGenetic layer with and without the second CLEC7A parameter (gain over the baseline):")
 show_df(lay[, c("second_parameter", "truth", "scenario", "threshold", "gain", "lo", "hi", "extra_cases_per_1000", "p_meets_mcid")])

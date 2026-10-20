@@ -11,11 +11,11 @@ link-citations: true
 ## Working draft
 
 This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 20 October 2026, after
-the corrections recorded in addenda 16 to 22 and 24 to 25 of the [decision record](decisions.qmd). Addendum 24 made the
-profile-preserving construction of the genetic truth primary, and addendum 25 reran the sampling, ensemble, attribution,
-effect-modification, donor and robustness analyses under it; only the all-ancestry variant of the second CLEC7A parameter is still
-on the earlier construction (see Limitations). Addendum 23, the polygenic score benchmark, is written up in
-the decision record and is not part of this draft. The evidence is still provisional:
+the corrections recorded in addenda 16 to 22 and 24 to 26 of the [decision record](decisions.qmd). Addendum 24 made the
+profile-preserving construction of the genetic truth primary, addendum 25 reran the sampling, ensemble, attribution,
+effect-modification, donor and robustness analyses under it, and addendum 26 did the same for the all-ancestry variant of the
+second CLEC7A parameter, so every result in this draft is on that construction. Addendum 23, the polygenic score benchmark, is
+written up in the decision record and is not part of this draft. The evidence is still provisional:
 
 - The record of the human round-2 verification is not yet in the repository.
 - The priors on the pooled effects and the reading of the "realised" score are proposals.
@@ -426,7 +426,7 @@ rd("calibration_check_layer.csv") |>
              p = "Draws reaching MCID", auc = "aROC")
 ```
 
-![Net-benefit gain over the clinical score against the MCID (dashed line) under the profile-preserving truth, for the four-term panel and the five-term panel with the European estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.](output/figures/fig_headline_profile.png){#fig-headline}
+![Net-benefit gain over the clinical score against the MCID (dashed line) under the profile-preserving truth, for the four-term panel and the five-term panel with the European or the all-ancestry estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.](output/figures/fig_headline_profile.png){#fig-headline}
 
 ### Does the construction of the truth favour the genetic score?
 
@@ -462,7 +462,7 @@ Adding the A-G haplotype made CLEC7A an active term and roughly doubled the gain
 ceiling score, and +0.00094 with the realised score. The 5% MCID stayed out of reach, reached in no draw under the
 pooled-mean reading and 1.5% under the predictive reading. At 20% the ceiling score reached the MCID in 64% of draws (73%
 under the predictive reading) and the realised score in 47%. With the all-ancestry estimate of the second parameter the gain at
-5% was +0.00077, and 28% of draws reached the 20% MCID (global-intercept truth; this variant was not repeated).
+5% was +0.00073, and 30% of draws reached the 20% MCID.
 
 ### Sampling variability and robustness
 
@@ -767,11 +767,16 @@ profile and compensates with an intercept per profile. Other forms of interactio
 examined. The primary truth was adopted after the global-intercept results were known (addendum 24), though it was not tuned to
 them. Every analysis in this paper, including the sampling-variability, correlation-ensemble, attribution, effect-modification,
 donor-stratum and robustness analyses, was run under it, and the first version's global intercept was kept as a sensitivity
-analysis (addenda 24 and 25). Compared with that sensitivity analysis, the global intercept overstated gains at 5% by 5% to 6%
+analysis (addenda 24 to 26). Compared with that sensitivity analysis, the global intercept overstated gains at 5% by 5% to 6%
 in the panels, let 241 of 4,000 architectures reach the MCID that did not under the profile-preserving truth, and made the
 scenario with all of the effect in non-neutropenic admissions look more favourable (the oracle score reached the 5% MCID in 18%
 of draws against 2%). It changed little at 20% and did not change the neutropenia pattern, the attribution or the donor result.
-The one analysis still on the first construction is the all-ancestry variant of the second CLEC7A parameter.
+The non-neutropenic scenario is the one most sensitive to the construction because it puts a per-copy effect about five times
+the pooled one into a low-risk stratum. There the single intercept flattens the clinical gradient: the lowest-risk profiles,
+which hold most of the stratum, get a true risk 14% to 29% above the clinical score's, and the highest-risk ones a much lower
+one. This is a different simulated population, not a correction of the comparator: against the best clinical-only rule the
+gain under the global intercept was almost the same (3.01 against 3.05, per 1,000 admissions at 5%). The gain was 11% lower under
+the profile-preserving truth, which is enough to move the MCID from the 82nd to above the 95th percentile of the draws (addendum 26).
 
 **The second CLEC7A parameter is the least mature part of the evidence.** It comes from three studies. The opposite direction
 in East Asian studies fits a tag SNP whose linkage to a causal variant differs between ancestries, but the causal variant has

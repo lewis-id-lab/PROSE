@@ -8,10 +8,16 @@ dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 thr_lab <- function(x) factor(paste0(round(100 * x), "% threshold"), levels = c("5% threshold", "20% threshold"))
 
 mcid <- read.csv("output/dca_baseline_refit_summary.csv") |> filter(threshold %in% c(0.05, 0.20)) |> transmute(threshold = thr_lab(threshold), mcid = mcid_b)
+# The all-ancestry estimate of the second CLEC7A parameter under the profile truth comes from script 22 (PROSE_SCHEME = "profile")
+all_anc <- read.csv("output/clec7a_second_layer_summary_profile.csv") |>
+  filter(second_parameter == "estimated from all ancestries", truth == "mean", threshold %in% c(0.05, 0.20)) |>
+  transmute(panel = "five terms, all ancestries", comparison = "profile", truth, threshold, score = scenario, gain, lo, hi)
 lay <- read.csv("output/calibration_check_layer.csv") |>
   filter(comparison == "profile", truth == "mean", threshold %in% c(0.05, 0.20)) |>
-  mutate(panel = factor(recode(panel, "four terms" = "four terms", "five terms" = "five terms,\nEuropean A-G effect"),
-                        levels = c("four terms", "five terms,\nEuropean A-G effect")),
+  select(panel, comparison, truth, threshold, score, gain, lo, hi) |>
+  bind_rows(all_anc) |>
+  mutate(panel = factor(recode(panel, "four terms" = "four terms", "five terms" = "five terms,\nEuropean A-G effect", "five terms, all ancestries" = "five terms,\nall-ancestry A-G effect"),
+                        levels = c("four terms", "five terms,\nEuropean A-G effect", "five terms,\nall-ancestry A-G effect")),
          score = recode(score, ceiling = "true effects in the score", realised = "pooled estimates in the score"), threshold = thr_lab(threshold))
 ggsave("output/figures/fig_headline_profile.png",
   ggplot(lay, aes(panel, gain, colour = score)) +

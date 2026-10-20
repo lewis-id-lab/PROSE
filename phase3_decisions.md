@@ -2051,8 +2051,8 @@ Genetic scores are built the same way under each (a global shift to the clinical
 profile under profile, over the simulated sample for scores with estimated weights). Applied to: the four- and five-term panels
 (2,000 draws, both readings), the Aim 4 exact sweep (4,000 architectures), the Aim 4 realised-score sweep (2,400 architectures ×
 precisions, 12 replicates, the seeds of script 25), the NRI comparison (script 29's scenarios and effect grid) and the polygenic score
-benchmark. **Not repeated here** (they were still on the global-intercept truth when this addendum was written; addendum 25 reran
-them, all but the last): the sampling-variability study, the correlation ensemble, the Shapley attribution, Aim 3b, the donor
+benchmark. **Not repeated here** (they were still on the global-intercept truth when this addendum was written; addenda 25 and 26 reran
+them): the sampling-variability study, the correlation ensemble, the Shapley attribution, Aim 3b, the donor
 stratum, the sensitivity cohorts, the five-term robustness analyses, and the all-ancestry variant of the second CLEC7A parameter.
 
 **Which comparison estimates the clinical question.** The question is whether adding genotype to a clinical score that is already
@@ -2146,7 +2146,7 @@ Gains at 5% and 20% are medians over the 2,000 draws (pooled-mean reading, ceili
 
 ### Not done
 
-- The analyses listed under D27 as not repeated: done in addendum 25, except the all-ancestry variant of the second CLEC7A parameter.
+- The analyses listed under D27 as not repeated: done in addenda 25 and 26.
 - Other forms of interaction between genotype and clinical profile than a constant logit-scale effect.
 - The realised-score frontier under the all-ancestry second parameter.
 
@@ -2230,7 +2230,7 @@ global-intercept truth). Nothing was tuned: the same seeds, posterior draws, coh
 - **The one real difference is a scenario, not the conclusion.** With all of the effect in non-neutropenic admissions the oracle score's gain
   falls by 12% (four terms) to 14% (five), and the share of draws reaching the 5% MCID falls from 18% to 2% (four terms) and from 42% to 6%
   (five). The manuscript's earlier statement that the MCID "came within reach" in that scenario is softened to "came nearest". Why the
-  global truth flatters that scenario was not examined.
+  global truth flatters that scenario is explained in addendum 26.
 - **Donor stratum:** in the predictive reading the median change in true cases at 5% is slightly negative (−0.15 per 1,000) while net benefit
   is positive: the score trades some true positives for fewer false positives. It is a median over draws; its spread was not examined.
 - **A typo in the manuscript is corrected.** It said CLEC7A was the largest contributor "in 64% to 69% of draws"; the data (global and profile)
@@ -2238,9 +2238,9 @@ global-intercept truth). Nothing was tuned: the same seeds, posterior draws, coh
 
 ### Not done
 
-The all-ancestry variant of the second CLEC7A parameter (script 22) is still on the global-intercept truth, and the manuscript says so.
-The patient-level engine check of script 16 was not repeated under the profile scheme (a unit test covers it). Why the global truth flatters
-the "all in non-neutropenic" scenario.
+The patient-level engine check of script 16 was not repeated under the profile scheme (a unit test covers it). The all-ancestry variant of
+the second CLEC7A parameter (script 22) and the reason the global truth flatters the "all in non-neutropenic" scenario were left open here
+and are done in addendum 26.
 
 Code and outputs: `R/genetic_layer.R`, `R/aim3b.R`, `R/aim4_sweep.R`, scripts 17 to 21, 24, 26 and 27, `tests/testthat/test-profile-scheme.R`; `output/`
 `{genetic_ensemble,genetic_attribution,genetic_sampling,genetic_ensemble_sampling}_summary_profile.csv`,
@@ -2248,3 +2248,82 @@ Code and outputs: `R/genetic_layer.R`, `R/aim3b.R`, `R/aim4_sweep.R`, scripts 17
 `genetic_donor_{stratum_summary,baseline_stratum,sampling_summary}_profile.csv`,
 `aim3b_{layer,interaction}_summary{,_second_clec7a}_profile.csv`, `genetic_attribution_second_clec7a_summary_profile.csv`,
 `robust5_{aim3b,attribution}_{summary,published_4078,published_4127,refit_4127,ensemble}_profile.csv`, `output/figures/fig_{aim3b_gain,aim3b_power,attribution}_profile.png`.
+
+---
+
+## Addendum 26, 20 October 2026: why the global intercept flatters one Aim 3b scenario, and the all-ancestry CLEC7A variant under the profile truth
+
+Written after addendum 25. No decision changes; D27 stands. Two loose ends of addendum 25: the reason the global truth made the scenario with all of
+the effect in non-neutropenic admissions look so much better, and the one analysis (script 22's all-ancestry variant) still on the global truth.
+
+### 1. Why the global intercept flatters "all of the effect in non-neutropenic admissions"
+
+**What the scenario is.** The modification ratio r = 0 puts the whole pooled effect into the non-neutropenic stratum (NN), scaled so that the
+event-weighted average stays at the pooled effect: the per-copy effect there is β / (1 − w) with w = 0.797, about 4.9 times the pooled one
+(log OR per copy PTX3 1.48, CLEC7A −0.84, TLR4 1.81, CD209 2.90, against 0.30, −0.17, 0.37, 0.59). The NN stratum is the low-risk one (72% of
+admissions, 20% of the events).
+
+**Hypothesis tested and refuted: the gain is the correction of the clinical score's induced miscalibration.** Under the global truth the clinical score
+is badly miscalibrated inside NN (calibration slope 0.77, a profile out by 0.22 in risk), so the genetic score might be credited for fixing it. The
+test is the one of addendum 24: the same truth against the best clinical-only rule m(X). Whole-cohort ceiling gain at 5%, per 1,000 admissions, at
+the pooled estimates:
+
+| | global truth, against the clinical score | global truth, against m(X) | profile truth |
+|---|---|---|---|
+| all in non-neutropenic | 3.05 | 3.01 | 2.73 |
+| homogeneous | 0.423 | 0.423 | 0.400 |
+| all in neutropenic | 0.585 | 0.585 | 0.548 |
+
+The comparator accounts for 0.05 of the 0.32 difference (1.5%). Only 0.8% of the stratum's weight is where the clinical score and m(X) fall on
+different sides of 5%: the miscalibration is large in size but mostly in profiles far from the threshold.
+
+**What does explain it: the truth is a different population.** Per 1,000 non-neutropenic admissions at 5% (net benefit; true positives):
+
+| | clinical score | m(X) | genetic score (truth) |
+|---|---|---|---|
+| global truth | 0.205 (1.19) | 0.269 (0.84) | 4.465 (5.92) |
+| profile truth | 0.989 (1.93) | 0.989 (1.93) | 4.794 (6.19) |
+
+The genetic score does slightly *worse* under the global truth. The gain is larger because the clinical rules do far worse in that world: even the best
+clinical-only rule reaches 0.27 against 0.99. One intercept for the stratum (−4.17 logits, to offset a very large effect) cannot hold each profile's
+risk. Because the effect is so large, the convexity of the logistic function raises the true mean risk of the lowest-risk profiles above the clinical
+score's (profiles 1 and 2, clinical risk 0.37% and 0.79%, 78% of the stratum: true mean risk 29% and 14% higher, and a larger share of carriers above
+5%, for example 3.0% against 1.9% in profile 2), and the concavity lowers it in the highest-risk profiles (for example 0.39 clinical against 0.17 true).
+The clinical gradient across profiles is flattened, so the clinical score loses value and the genetic score, which sorts carriers, gains relative to it.
+Those two profiles carry 0.43 of the 0.455 per 1,000 difference in gain (94%); all profiles with a clinical risk below 5% together carry 71%, the profiles
+between 2% and 5% offsetting part of it.
+
+**Why an 11% to 12% difference in the median became 18% against 2% of draws.** The MCID sits in the upper tail of the draws. Four terms: it is at 0.87 of the
+95th percentile of the draws under the global truth (18% reach it) and at 1.03 of it under the profile truth (2%); five terms: 1.03 of the median
+against 1.20 (42% against 6%). A homogeneous effect, with far smaller effects and a median gain an eighth of the MCID, is unaffected (0% in both).
+The 12% fall in the median (four terms) is 5% to 8% for the other scenarios.
+
+**Reading.** The profile truth is the construction that keeps the observed clinical gradient; the global one distorts it, and the larger the effect
+put into a low-risk stratum the larger the distortion. That is the reason to prefer the profile truth for this scenario, and it also says that the
+scenario's earlier "came within reach" was a product of the construction. Not examined: whether other scenarios would show the same at effects of this
+size; the analysis used the pooled point estimates and the committed draw summaries, not new draws.
+
+### 2. The all-ancestry variant of the second CLEC7A parameter under the profile truth
+
+Script 22 now takes `PROSE_SCHEME=profile`; it then reruns the layer only (the evidence files do not depend on the truth and were verified
+unchanged, all seven byte for byte) and writes `output/clec7a_second_layer_summary_profile.csv`. Its "estimated" rows use the draws of script 31's five-term
+panel and equal its profile rows (largest difference 1e-17); the script stops if they do not.
+
+| ceiling score, pooled-mean reading | global | profile |
+|---|---|---|
+| all-ancestry estimate: gain at 5% | +0.00077 | +0.00073 |
+| all-ancestry estimate: share of draws reaching the 20% MCID | 28% | 30% |
+| all-ancestry estimate, predictive reading: share reaching the 5% MCID | 4.0% | 2.1% |
+| ratio of the all-ancestry to the European gain at 5% | 0.63 | 0.64 |
+
+No conclusion changes. The headline figure under the profile truth (`fig_headline_profile.png`) now has the all-ancestry panel as the global one did.
+**Every analysis in the manuscript is now on the profile-preserving truth.**
+
+### Not done
+
+The patient-level engine check of script 16 under the profile scheme (a unit test covers it); other scenarios at effects as large as the one that
+exposed the construction; new draws for the investigation in part 1.
+
+Code and outputs: `scripts/22_clec7a_second_parameter.R` (the scheme switch and gate), `scripts/34_calibration_check_figures.R` (the all-ancestry panel),
+`output/clec7a_second_layer_summary_profile.csv`, `output/figures/fig_headline_profile.png`. The investigation in part 1 is not a script: it is the
+cell-level engine (`R/genetic_layer.R`, `R/aim3b.R`) applied to the NN stratum's cells, and can be repeated from the numbers above.
