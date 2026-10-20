@@ -190,7 +190,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#d3.-final-panel-settled-with-the-within-gene-structure-corrected" id="toc-d3.-final-panel-settled-with-the-within-gene-structure-corrected" class="nav-link" data-scroll-target="#d3.-final-panel-settled-with-the-within-gene-structure-corrected">D3. Final panel — <strong>settled, with the within-gene structure corrected</strong></a></li>
   <li><a href="#d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives" id="toc-d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives" class="nav-link" data-scroll-target="#d4.-minimum-clinically-important-difference-settled-20-more-true-cases-no-extra-false-positives">D4. Minimum clinically important difference — <strong>settled: 20% more true cases, no extra false positives</strong></a></li>
   <li><a href="#d7.-predictor-correlation-structure-settled-version-2-nine-parameters" id="toc-d7.-predictor-correlation-structure-settled-version-2-nine-parameters" class="nav-link" data-scroll-target="#d7.-predictor-correlation-structure-settled-version-2-nine-parameters">D7. Predictor correlation structure — <strong>settled: version 2, nine parameters</strong></a></li>
-  <li><a href="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" id="toc-d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" class="nav-link" data-scroll-target="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred">D5. How the genetic term enters the baseline model — <strong>settled: recentred</strong></a></li>
+  <li><a href="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred-superseded-for-the-primary-analysis-by-d27-addendum-24" id="toc-d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred-superseded-for-the-primary-analysis-by-d27-addendum-24" class="nav-link" data-scroll-target="#d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred-superseded-for-the-primary-analysis-by-d27-addendum-24">D5. How the genetic term enters the baseline model — <strong>settled: recentred; superseded for the primary analysis by D27 (addendum 24)</strong></a></li>
   <li><a href="#d6.-baseline-aroc-calibration-target-settled-0.85" id="toc-d6.-baseline-aroc-calibration-target-settled-0.85" class="nav-link" data-scroll-target="#d6.-baseline-aroc-calibration-target-settled-0.85">D6. Baseline aROC calibration target — <strong>settled: 0.85</strong></a></li>
   <li><a href="#record-of-what-is-now-fixed" id="toc-record-of-what-is-now-fixed" class="nav-link" data-scroll-target="#record-of-what-is-now-fixed">Record of what is now fixed</a></li>
   <li><a href="#addendum-17-october-2026" id="toc-addendum-17-october-2026" class="nav-link" data-scroll-target="#addendum-17-october-2026">Addendum, 17 October 2026</a></li>
@@ -315,6 +315,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#design-proposed" id="toc-design-proposed" class="nav-link" data-scroll-target="#design-proposed">Design (proposed)</a></li>
   <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1">Results</a></li>
   <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  </ul></li>
+  <li><a href="#addendum-23-19-october-2026-written-up-20-october-a-polygenic-score-benchmark" id="toc-addendum-23-19-october-2026-written-up-20-october-a-polygenic-score-benchmark" class="nav-link" data-scroll-target="#addendum-23-19-october-2026-written-up-20-october-a-polygenic-score-benchmark">Addendum 23, 19 October 2026 (written up 20 October): a polygenic score benchmark</a>
+  <ul class="collapse">
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">Question</a></li>
+  <li><a href="#model-rprs_benchmark.r" id="toc-model-rprs_benchmark.r" class="nav-link" data-scroll-target="#model-rprs_benchmark.r">Model (<code>R/prs_benchmark.R</code>)</a></li>
+  <li><a href="#results-script-30-global-intercept-truth-as-committed" id="toc-results-script-30-global-intercept-truth-as-committed" class="nav-link" data-scroll-target="#results-script-30-global-intercept-truth-as-committed">Results (script 30; global-intercept truth, as committed)</a></li>
+  <li><a href="#under-the-profile-preserving-truth-addendum-24-script-31" id="toc-under-the-profile-preserving-truth-addendum-24-script-31" class="nav-link" data-scroll-target="#under-the-profile-preserving-truth-addendum-24-script-31">Under the profile-preserving truth (addendum 24, script 31)</a></li>
+  <li><a href="#reading-1" id="toc-reading-1" class="nav-link" data-scroll-target="#reading-1">Reading</a></li>
+  <li><a href="#a-defect-in-script-30s-truth-found-while-writing-this-up" id="toc-a-defect-in-script-30s-truth-found-while-writing-this-up" class="nav-link" data-scroll-target="#a-defect-in-script-30s-truth-found-while-writing-this-up">A defect in script 30’s truth, found while writing this up</a></li>
+  <li><a href="#not-done-5" id="toc-not-done-5" class="nav-link" data-scroll-target="#not-done-5">Not done</a></li>
+  </ul></li>
+  <li><a href="#addendum-24-20-october-2026-the-calibration-check-of-the-genetic-layer-the-profile-preserving-truth-becomes-primary-d27" id="toc-addendum-24-20-october-2026-the-calibration-check-of-the-genetic-layer-the-profile-preserving-truth-becomes-primary-d27" class="nav-link" data-scroll-target="#addendum-24-20-october-2026-the-calibration-check-of-the-genetic-layer-the-profile-preserving-truth-becomes-primary-d27">Addendum 24, 20 October 2026: the calibration check of the genetic layer; the profile-preserving truth becomes primary (D27)</a>
+  <ul class="collapse">
+  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem">The problem</a></li>
+  <li><a href="#d27.-design-fixed-before-the-results-below-were-read-run-order-31-32-33-34" id="toc-d27.-design-fixed-before-the-results-below-were-read-run-order-31-32-33-34" class="nav-link" data-scroll-target="#d27.-design-fixed-before-the-results-below-were-read-run-order-31-32-33-34">D27. Design (fixed before the results below were read; run order: 31, 32, 33, 34)</a></li>
+  <li><a href="#checks" id="toc-checks" class="nav-link" data-scroll-target="#checks">Checks</a></li>
+  <li><a href="#results-2" id="toc-results-2" class="nav-link" data-scroll-target="#results-2">Results</a></li>
+  <li><a href="#reading-2" id="toc-reading-2" class="nav-link" data-scroll-target="#reading-2">Reading</a></li>
+  <li><a href="#defects-found-and-fixed-along-the-way" id="toc-defects-found-and-fixed-along-the-way" class="nav-link" data-scroll-target="#defects-found-and-fixed-along-the-way">Defects found and fixed along the way</a></li>
+  <li><a href="#not-done-6" id="toc-not-done-6" class="nav-link" data-scroll-target="#not-done-6">Not done</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -598,9 +618,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The fit is saturated: about nine independent constraints for nine parameters, so a near-zero chi-square is expected and does not validate the structure. In the fitted matrix, malignancy is almost uncorrelated with the rest of the block (0.04), which is what the published figures imply under this structure and should be checked against the Bologna cross-tabulation of malignancy by chemotherapy. The decisions that depend on it are carried through an ensemble of 150 near-optimal matrices, not one point estimate.</p>
 <hr>
 </section>
-<section id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred" class="level2">
-<h2 class="anchored" data-anchor-id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred">D5. How the genetic term enters the baseline model — <strong>settled: recentred</strong></h2>
+<section id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred-superseded-for-the-primary-analysis-by-d27-addendum-24" class="level2">
+<h2 class="anchored" data-anchor-id="d5.-how-the-genetic-term-enters-the-baseline-model-settled-recentred-superseded-for-the-primary-analysis-by-d27-addendum-24">D5. How the genetic term enters the baseline model — <strong>settled: recentred; superseded for the primary analysis by D27 (addendum 24)</strong></h2>
 <p>Settled 16 October 2026. The genetic linear predictor is recentred (equivalently, the intercept is adjusted) so that marginal IMD prevalence stays at the calibrated baseline value of 3.3%. Any change in net benefit therefore reflects discrimination and risk redistribution, not a shift in overall event rate.</p>
+<p><em>Addendum 24 (20 October 2026):</em> a single global intercept holds the overall prevalence but not the risk within each clinical profile, so the claim in the last sentence is not guaranteed. D27 makes an intercept per profile primary and keeps this construction as a sensitivity analysis (“global-intercept truth”).</p>
 </section>
 <section id="d6.-baseline-aroc-calibration-target-settled-0.85" class="level2">
 <h2 class="anchored" data-anchor-id="d6.-baseline-aroc-calibration-target-settled-0.85">D6. Baseline aROC calibration target — <strong>settled: 0.85</strong></h2>
@@ -667,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td>D5 genetic term recentred to hold prevalence</td>
-<td><strong>fixed</strong></td>
+<td><strong>fixed</strong>; superseded for the primary analysis by D27 (profile-preserving truth), kept as sensitivity</td>
 </tr>
 <tr class="odd">
 <td>D6 baseline aROC target</td>
@@ -4785,6 +4806,383 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Continuous NRI is unstable.</strong> For the correctly specified h2 term the event component is -41% and the non-event component +54%, because heterozygotes’ risk moves by a hair after recentring and any move counts; across draws the event component runs from -45% to +53%.</li>
 </ul>
 <p>Code and outputs: <code>R/nri.R</code>, <code>scripts/29_nri_comparison.R</code>, <code>tests/testthat/test-nri.R</code>, <code>output/nri_comparison.csv</code>, <code>output/nri_effect_grid.csv</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-23-19-october-2026-written-up-20-october-a-polygenic-score-benchmark" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-23-19-october-2026-written-up-20-october-a-polygenic-score-benchmark">Addendum 23, 19 October 2026 (written up 20 October): a polygenic score benchmark</h2>
+<p>Written after the tag. No decision changes. The code, outputs and tests were committed on 19 October (<code>afad68c</code>); this entry was written on 20 October from them, and adds the profile-preserving results of addendum 24. It is a benchmark, not an estimate: no polygenic score for invasive mould disease exists, and to our knowledge no genome-wide association study of invasive aspergillosis has been published (the manuscript’s Discussion). The question is what such a score would have to achieve.</p>
+<section id="question" class="level3">
+<h3 class="anchored" data-anchor-id="question">Question</h3>
+<p>The four- and five-term panels fall well short of the 5% MCID, and the Aim 4 sweep says a panel of identical loci would need 9 to 12 loci of odds ratio 2.0. A polygenic score summarises many small effects. How strong would it have to be to reach the MCID on the refit baseline, how accurate would its weights have to be, and how large a discovery study would give that accuracy?</p>
+</section>
+<section id="model-rprs_benchmark.r" class="level3">
+<h3 class="anchored" data-anchor-id="model-rprs_benchmark.r">Model (<code>R/prs_benchmark.R</code>)</h3>
+<ul>
+<li><strong>Score and truth.</strong> A polygenic score G ~ N(0, 1), independent of the clinical profile (an assumption, as for the panel), with true effect β on the log-odds scale per standard deviation (odds ratio per SD = exp β). True logit = baseline logit + β G + a, with a holding the prevalence (the global intercept of D5).</li>
+<li><strong>Ceiling.</strong> The score knows G and β.</li>
+<li><strong>Realised.</strong> The score is an estimate S ~ N(0, 1) with correlation ρ with G, so G = ρ S + √(1 − ρ²) U. It carries the weight β ρ (the regression of G on S), recentred to the baseline mean risk: the best linear use of an imperfect score, recalibrated in the target cohort, which is optimistic.</li>
+<li><strong>Computation.</strong> Exact over the 128 clinical profiles, by equal-probability normal quantile nodes (400 for S and 64 for the part of G that S does not capture).</li>
+<li><strong>Discovery size.</strong> For M_e independent causal loci of equal small effect, each estimated by logistic regression in n subjects with case fraction π, ρ² = n π (1 − π) β² / (n π (1 − π) β² + M_e) (Daetwyler et al.&nbsp;2008, written on the log-odds scale). Loci are taken as known in advance, so there is no selection and no winner’s curse (optimistic). M_e = 1,000, 10,000 and 60,000. The cases for a balanced design are 2 n π (1 − π). For comparison, a discovery study the size of Fisher 2017 (2,609 recipients, 483 cases) gives the accuracy in the last column of the table below.</li>
+</ul>
+</section>
+<section id="results-script-30-global-intercept-truth-as-committed" class="level3">
+<h3 class="anchored" data-anchor-id="results-script-30-global-intercept-truth-as-committed">Results (script 30; global-intercept truth, as committed)</h3>
+<p><strong>Ceiling (true weights).</strong> The odds ratio per SD that reaches the MCID is <strong>3.61 at 5%</strong> and <strong>1.84 at 20%</strong>. At the first, the score alone has an aROC of 0.77 (the combined score 0.905); at the second, 0.64 (0.875). Gain as a share of the MCID, by odds ratio per SD:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>OR per SD</th>
+<th>1.5</th>
+<th>2.0</th>
+<th>3.0</th>
+<th>4.0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gain at 5%, share of the MCID</td>
+<td>10%</td>
+<td>31%</td>
+<td>75%</td>
+<td>115%</td>
+</tr>
+<tr class="even">
+<td>gain at 20%, share of the MCID</td>
+<td>51%</td>
+<td>126%</td>
+<td>276%</td>
+<td>396%</td>
+</tr>
+<tr class="odd">
+<td>aROC of the score alone</td>
+<td>0.60</td>
+<td>0.66</td>
+<td>0.74</td>
+<td>0.79</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Accuracy and discovery size with estimated weights.</strong> Below an odds ratio of 3.6 per SD the 5% MCID cannot be reached at any accuracy. Cases needed for a balanced discovery study, by the number of effective independent loci (accuracy ρ needed in the third column; the last column is the accuracy a Fisher-sized study would give):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>threshold</th>
+<th>OR per SD</th>
+<th>ρ needed</th>
+<th>cases, M_e = 1,000</th>
+<th>10,000</th>
+<th>60,000</th>
+<th>ρ of a Fisher-sized study (1,000 / 10,000 / 60,000)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5%</td>
+<td>4</td>
+<td>0.93</td>
+<td>6,578</td>
+<td>65,776</td>
+<td>394,657</td>
+<td>0.66 / 0.27 / 0.11</td>
+</tr>
+<tr class="even">
+<td>5%</td>
+<td>6</td>
+<td>0.74</td>
+<td>742</td>
+<td>7,422</td>
+<td>44,530</td>
+<td>0.75 / 0.33 / 0.14</td>
+</tr>
+<tr class="odd">
+<td>20%</td>
+<td>2</td>
+<td>0.89</td>
+<td>16,276</td>
+<td>162,760</td>
+<td>976,563</td>
+<td>0.40 / 0.14 / 0.06</td>
+</tr>
+<tr class="even">
+<td>20%</td>
+<td>3</td>
+<td>0.63</td>
+<td>1,073</td>
+<td>10,728</td>
+<td>64,370</td>
+<td>0.57 / 0.21 / 0.09</td>
+</tr>
+<tr class="odd">
+<td>20%</td>
+<td>4</td>
+<td>0.55</td>
+<td>442</td>
+<td>4,415</td>
+<td>26,492</td>
+<td>0.66 / 0.27 / 0.11</td>
+</tr>
+<tr class="even">
+<td>20%</td>
+<td>6</td>
+<td>0.49</td>
+<td>196</td>
+<td>1,956</td>
+<td>11,736</td>
+<td>0.75 / 0.33 / 0.14</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="under-the-profile-preserving-truth-addendum-24-script-31" class="level3">
+<h3 class="anchored" data-anchor-id="under-the-profile-preserving-truth-addendum-24-script-31">Under the profile-preserving truth (addendum 24, script 31)</h3>
+<p>The same quantities under the three comparisons (marginal equals current throughout, so only current and profile are shown):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>current</th>
+<th>profile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OR per SD needed with true weights, 5% / 20%</td>
+<td>3.61 / 1.84</td>
+<td>4.16 / 1.83</td>
+</tr>
+<tr class="even">
+<td>5%, OR 4: accuracy needed; cases at M_e = 10,000</td>
+<td>0.93; 65,289</td>
+<td>not reachable (needs 4.16)</td>
+</tr>
+<tr class="odd">
+<td>5%, OR 5</td>
+<td>0.81; 14,524</td>
+<td>0.91; 39,011</td>
+</tr>
+<tr class="even">
+<td>5%, OR 6</td>
+<td>0.74; 7,340</td>
+<td>0.85; 16,255</td>
+</tr>
+<tr class="odd">
+<td>20%, OR 3</td>
+<td>0.62; 10,600</td>
+<td>0.61; 9,988</td>
+</tr>
+<tr class="even">
+<td>20%, OR 6</td>
+<td>0.48; 1,914</td>
+<td>0.47; 1,740</td>
+</tr>
+</tbody>
+</table>
+<p>At 5% the profile-preserving truth makes the score harder: the odds ratio per SD needed with true weights rises from 3.61 to 4.16, and with estimated weights the discovery cases needed rise by about 120% (OR 6) to 170% (OR 5). At 20% it is slightly easier (5% to 9% fewer cases). Script 31’s “current” column is not script 30’s: the accuracy needed differs by up to 0.004 (2% to 5% in cases), for the reason below.</p>
+</section>
+<section id="reading-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-1">Reading</h3>
+<ul>
+<li><strong>At the 5% threshold a polygenic score would need to be strong:</strong> an odds ratio of 3.6 per SD (4.2 under the profile-preserving truth), a score-alone aROC of about 0.77, and a large discovery study. With 10,000 effective loci a balanced study needs about 7,400 cases at OR 6 and about 66,000 at OR 4 (which the profile-preserving truth makes unreachable), against 483 cases in Fisher 2017’s study.</li>
+<li><strong>At 20% the bar is much lower</strong> (OR 1.8 per SD with true weights), and a Fisher-sized study gives enough accuracy only if the trait is very polygenic in the sense of 1,000 effective loci and the odds ratio is 4 or more. This is secondary, as elsewhere.</li>
+<li><strong>Every assumption is optimistic or untested:</strong> independence from the clinical profile, loci known in advance with no winner’s curse, a Gaussian score, recalibration in the target cohort, and accuracy measured in the population in which the weights were estimated (it does not transfer across ancestries). Whether a score of this strength could exist for IMD is not assessed.</li>
+<li><strong>No score is in the manuscript.</strong> The benchmark is not in the Draft manuscript; it would sit with Aim 4.</li>
+</ul>
+</section>
+<section id="a-defect-in-script-30s-truth-found-while-writing-this-up" class="level3">
+<h3 class="anchored" data-anchor-id="a-defect-in-script-30s-truth-found-while-writing-this-up">A defect in script 30’s truth, found while writing this up</h3>
+<p>Script 30 takes the shift that holds the prevalence from 400 nodes of the score (<code>prs_shift</code>) but evaluates the true risk on 400 × 64 nodes. The 64-node part has variance 0.980, not 1, so the truth it uses holds the prevalence short of the target: the achieved prevalence is 0.043% to 1.0% below 3.261% (for example 1.0% below at OR 6 per SD and ρ = 0.5, 0.18% below at OR 2 and ρ = 0.5). The error grows with the effect and shrinks with ρ. It changes the accuracy needed by up to 0.004 (2% to 5% in cases needed) and the committed ceiling not at all (that has no 64-node part). Script 31 recentres exactly on the grid it uses. <strong>The committed outputs of script 30 are left as they were</strong>; read the comparison between truths from script 31, and treat script 30’s cases-needed as accurate to a few per cent. Script 31 now checks that its current comparison agrees with script 30 (the ceiling exactly, the accuracy needed to 0.01).</p>
+</section>
+<section id="not-done-5" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-5">Not done</h3>
+<p>A polygenic score with a clinical-profile interaction, or with accuracy that varies with ancestry; locus selection and the winner’s curse; the polygenic benchmark under the sampling variability of a study of this size; a figure (<code>output/prs_gain_by_accuracy.csv</code> holds the data for one); and correcting script 30’s quadrature.</p>
+<p>Code and outputs: <code>R/prs_benchmark.R</code>, <code>scripts/30_prs_benchmark.R</code> (and its tests, <code>tests/testthat/test-prs.R</code>), <code>output/prs_ceiling.csv</code>, <code>output/prs_benchmark_summary.csv</code>, <code>output/prs_gain_by_accuracy.csv</code>, <code>output/prs_discovery_size.csv</code>; under the three comparisons, <code>scripts/31_baseline_calibration_check.R</code> and <code>output/calibration_check_prs.csv</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-24-20-october-2026-the-calibration-check-of-the-genetic-layer-the-profile-preserving-truth-becomes-primary-d27" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-24-20-october-2026-the-calibration-check-of-the-genetic-layer-the-profile-preserving-truth-becomes-primary-d27">Addendum 24, 20 October 2026: the calibration check of the genetic layer; the profile-preserving truth becomes primary (D27)</h2>
+<p>Written after the tag, and <strong>after the genetic results of addenda 11 to 22 were known</strong>. It changes D5 for the primary analysis. No other decision changes, and the MCID is unchanged. Addendum 23 (the polygenic score benchmark, <code>R/prs_benchmark.R</code>, script 30) is written up above, including its results under the three comparisons below (<code>output/calibration_check_prs.csv</code>).</p>
+<section id="the-problem" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem">The problem</h3>
+<p>D5 added the genetic effect to the clinical logit and moved one global intercept to hold the overall prevalence: true logit = η_X + β·g + a. Within a clinical profile X the risk averaged over genotype, m(X) = Σ_g π_g expit(η_X + β·g + a), is not expit(η_X) (Jensen’s inequality). The clinical score is therefore miscalibrated within profiles under the simulated truth even though prevalence is right, and some of the gain from adding genetics could be the correction of that induced miscalibration, not genetic information. The check was written (<code>R/calibration_check.R</code>, script 31) but had not been run, and nothing in the manuscript used it. It was raised in external review before submission.</p>
+</section>
+<section id="d27.-design-fixed-before-the-results-below-were-read-run-order-31-32-33-34" class="level3">
+<h3 class="anchored" data-anchor-id="d27.-design-fixed-before-the-results-below-were-read-run-order-31-32-33-34">D27. Design (fixed before the results below were read; run order: 31, 32, 33, 34)</h3>
+<p>Three comparisons, each on profile × genotype cells (exact):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>comparison</th>
+<th>truth</th>
+<th>clinical comparator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>current</td>
+<td>global intercept (D5)</td>
+<td>expit(η_X)</td>
+</tr>
+<tr class="even">
+<td>marginal</td>
+<td>global intercept</td>
+<td>m(X), the best clinical-only rule under that truth</td>
+</tr>
+<tr class="odd">
+<td>profile</td>
+<td>an intercept a_X per profile so that Σ_g π_g expit(η_X + β·g + a_X) = expit(η_X); conditional effects unchanged</td>
+<td>expit(η_X), now exactly calibrated</td>
+</tr>
+</tbody>
+</table>
+<p>Genetic scores are built the same way under each (a global shift to the clinical mean risk under current and marginal; a shift per profile under profile, over the simulated sample for scores with estimated weights). Applied to: the four- and five-term panels (2,000 draws, both readings), the Aim 4 exact sweep (4,000 architectures), the Aim 4 realised-score sweep (2,400 architectures × precisions, 12 replicates, the seeds of script 25), the NRI comparison (script 29’s scenarios and effect grid) and the polygenic score benchmark. <strong>Not repeated</strong> (they remain on the global-intercept truth): the sampling-variability study, the correlation ensemble, the Shapley attribution, Aim 3b, the donor stratum, the sensitivity cohorts, the five-term robustness analyses, and the all-ancestry variant of the second CLEC7A parameter.</p>
+<p><strong>Which comparison estimates the clinical question.</strong> The question is whether adding genotype to a clinical score that is already calibrated changes decisions for patients stratified by it. That is profile. Current handicaps the clinical score by construction. Marginal removes the handicap but keeps the truth, so current − marginal is the part of the gain that corrects induced miscalibration, and marginal − profile is the effect of the truth being a different simulated population.</p>
+<p><strong>Decision (D27).</strong> The profile-preserving truth, with comparator expit(η_X), is the primary analysis and the source of the manuscript’s headline numbers. The global-intercept truth is a sensitivity analysis. This was decided after the global-intercept results were known; it was not tuned to them (the construction was fixed by the requirement that the clinical score stay calibrated in every profile), and every number below is reported under both. The change is disclosed in the manuscript’s Methods.</p>
+</section>
+<section id="checks" class="level3">
+<h3 class="anchored" data-anchor-id="checks">Checks</h3>
+<ul>
+<li>The current comparison reproduces the committed outputs: <code>genetic_layer_summary.csv</code> and <code>clec7a_second_layer_summary.csv</code> (gain, extra true cases, flagged share and aROC; largest difference 6e-18 in gain), <code>aim4_sweep.csv</code>, <code>aim4_realised_sweep.csv</code> (median gain and share reaching the MCID), <code>nri_comparison.csv</code> and <code>nri_effect_grid.csv</code>. Each script stops if it does not.</li>
+<li>The polygenic score benchmark agrees with script 30 for the ceiling (odds ratio per SD needed, exactly) but not for the accuracy needed with estimated weights (up to 0.004 apart), because script 30’s truth holds prevalence only to 0.2% to 1.0% (addendum 23).</li>
+<li>Under the profile truth the clinical score’s calibration slope is 1 and its largest error in a profile is 1e-16; under the global truth the slope is 0.98 and the largest error 0.023 (four terms, pooled-mean reading), and as low as 0.55 in the most extreme architectures.</li>
+<li>Under the profile truth the clinical score’s true positives are the same in every draw (0.022884 at 5%), and 0.2 times them is exactly the MCID in use (+0.0045768 at 5%, +0.0015993 at 20%). Under the global truth they vary by draw (0.0182 to 0.0229 at 5%), so the fixed MCID matches the clinical true positives only under the profile truth.</li>
+</ul>
+</section>
+<section id="results-2" class="level3">
+<h3 class="anchored" data-anchor-id="results-2">Results</h3>
+<p>Gains at 5% and 20% are medians over the 2,000 draws (pooled-mean reading, ceiling score; × 1,000 net benefit).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>current</th>
+<th>marginal</th>
+<th>profile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>four terms: gain at 5% (90% range)</td>
+<td>0.587 (0.153 to 1.367)</td>
+<td>0.587</td>
+<td>0.561 (0.147 to 1.269)</td>
+</tr>
+<tr class="even">
+<td>four terms: draws reaching the MCID, 5% / 20%</td>
+<td>0% / 16.0%</td>
+<td>0% / 16.0%</td>
+<td>0% / 16.7%</td>
+</tr>
+<tr class="odd">
+<td>five terms: gain at 5%</td>
+<td>1.22</td>
+<td>1.22</td>
+<td>1.15</td>
+</tr>
+<tr class="even">
+<td>five terms: draws reaching the MCID, 5% / 20%</td>
+<td>0.1% / 63.3%</td>
+<td>0.1% / 63.3%</td>
+<td>0% / 64.1%</td>
+</tr>
+<tr class="odd">
+<td>Aim 4 exact: architectures reaching the MCID, 5% / 20%</td>
+<td>45.7% / 77.0%</td>
+<td>45.7% / 77.0%</td>
+<td>39.7% / 77.2%</td>
+</tr>
+<tr class="even">
+<td>Aim 4 exact: verdicts changed against current, 5% / 20%</td>
+<td>0 / 0</td>
+<td>0 / 0</td>
+<td>241 lost / 6 gained</td>
+</tr>
+<tr class="odd">
+<td>frontier, 5%, frequency 0.3: fewest loci at OR 1.8 / 2.0 / 3.0</td>
+<td>11 / 8 / 3</td>
+<td>11 / 8 / 3</td>
+<td>13 / 10 / 4</td>
+</tr>
+<tr class="even">
+<td>realised weights, error 0.10: architectures reaching the MCID at 5%</td>
+<td>28.7%</td>
+<td>28.7%</td>
+<td>23.3%</td>
+</tr>
+<tr class="odd">
+<td>realised weights, error 0.40: fewest loci at OR 1.8, 5%, frequency 0.3</td>
+<td>20</td>
+<td>20</td>
+<td>none within 20</td>
+</tr>
+<tr class="even">
+<td>polygenic score: OR per SD needed, 5% / 20%</td>
+<td>3.61 / 1.84</td>
+<td>3.61 / 1.84</td>
+<td>4.16 / 1.83</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Induced miscalibration did not produce the gains.</strong> Marginal equals current in every analysis except continuous NRI. In the panels the marginal rule beat expit(η_X) in 0.05% to 34% of draws, by at most +0.00027 in net benefit in any draw (95th percentile of its share of the ceiling gain at most 0.1%). In the architecture sweeps it changed no verdict.</li>
+<li><strong>The truth itself matters at 5%.</strong> Profile lowers the panels’ gains by 4.6% (four terms) and 5.9% (five terms) at 5% and leaves them within 2% at 20%. In the exact sweep 241 architectures lose the 5% verdict (none gain), and the frontier moves out by two to three loci at OR 2.0 (for example 9 to 12 at frequency 0.2). The realised sweep behaves the same way: at 5%, verdicts lost by weight error 0.05 / 0.10 / 0.20 / 0.40 are 29 / 32 / 34 / 26 of 600; at 20% none are lost and 0 / 2 / 1 / 14 are gained.</li>
+<li><strong>Retained gain with estimated weights is unchanged</strong> (median 99% / 96% / 89% / 58% of the ceiling gain at weight error 0.05 / 0.10 / 0.20 / 0.40 at 5%, over architectures with a ceiling gain above +0.001; 100% / 96% / 89% / 58% under current). The share of architectures that met the MCID with exact weights and no longer do is 12% to 36% at weight errors 0.20 and 0.40.</li>
+<li><strong>No architecture with OR 1.5 or less reaches the 5% MCID under profile.</strong> Under current one did (OR 1.5, frequency 0.45, 20 loci, gain +0.004584 against +0.004577), so the earlier statement that none did was off by one cell.</li>
+<li><strong>NRI</strong> (median over draws; four-term panel, ceiling): categorical NRI at 5% 2.4% (current 2.6%), three-category 10.2% (10.0%), continuous 34.2% (31.4%), net-benefit gain +0.00056 (+0.00059), aROC +0.012 (+0.012). For the PTX3 h2 term the continuous NRI is 34.2% under profile, 33.9% under marginal and 13.3% under current, with the same net-benefit gain (+0.00008). Crossing points of the per-copy OR under profile: continuous NRI of 22.5%, 1.32 (independent SNPs) and 1.17 (h2); three-category NRI of 22.5%, 2.32 and 3.67; the 5% MCID, 3.32 and not reached by OR 4.95.</li>
+</ul>
+</section>
+<section id="reading-2" class="level3">
+<h3 class="anchored" data-anchor-id="reading-2">Reading</h3>
+<ul>
+<li>The primary conclusion is unchanged: at 5% the four- and five-term panels gain about an eighth (four terms) to a quarter (five terms) of the MCID under either truth, and no draw reaches it in the pooled-mean reading.</li>
+<li>The 5% architecture frontier in addenda 16 and 17 was optimistic. The numbers in the manuscript’s architecture section are now the profile ones; the earlier ones are kept as the sensitivity analysis.</li>
+<li><strong>Continuous NRI is not a reliable measure here.</strong> Its value for a single-term score depends on the construction of the truth in a way net benefit does not. For h2 the mean dosage is 0.96, so a heterozygote sits almost exactly at its profile’s mean risk and the direction of its shift is decided by curvature. Between current and marginal only 0.9% of the cohort changes direction (23.2% up against 24.1%) but the continuous NRI goes from 0.13 to 0.33, so those cells carry a large share of the events. Which profiles they belong to was not examined. The earlier statement that linkage “doubles” the continuous NRI at the same per-copy effect (25% against 13%) does not hold under profile (25% against 34%); the net-benefit statement does (+0.00033 against +0.00008).</li>
+</ul>
+</section>
+<section id="defects-found-and-fixed-along-the-way" class="level3">
+<h3 class="anchored" data-anchor-id="defects-found-and-fixed-along-the-way">Defects found and fixed along the way</h3>
+<ul>
+<li><code>calibration_fit()</code> returned an error for risks that round to exactly 1 (a genetic logit above about 37 in the largest architectures: 26 of 4,000 sweep cells). It now clamps probabilities at 1e-12. Only the calibration diagnostics were affected, not the gains.</li>
+<li>The reproduction check in script 31 used an invalid idiom and had never run; it is rewritten and extended.</li>
+<li><code>profile_shifts()</code> could return NaN when every risk in a profile saturates; the derivative is now floored.</li>
+<li><code>start_workers()</code> now sets one BLAS/OpenMP thread per worker. Workers had started one thread per core, which oversubscribed the machine (load average above 200 on 16 cores) and stalled the first runs.</li>
+<li>The Aim 4 frontier is slightly non-monotone in risk-allele frequency near 0.5, under every comparison. The gain itself peaks at a frequency of about 0.45 (median over architectures with a gain above +0.001; the peak is below 0.5 in 95% to 97% of them) and is lower at 0.5, so the fewest loci that reach the MCID can rise by one at 0.5 (current, 5%: OR 2.9 needs 3 loci at 0.4 and 0.45 and 4 at 0.5; profile, 20%: OR 2.4 needs 1 locus at 0.2 to 0.3 and 2 from 0.35). The cause was not established; an untested possibility is that the allele-count distribution is right-skewed below 0.5, which puts more weight in the upper tail that the threshold selects. (An earlier version of this addendum described a jump from 4 to 13 loci at frequency 0.5. That was an error in a pivot table I built, which labelled one odds ratio’s values with another’s frequencies; the frontier file is correct.)</li>
+</ul>
+</section>
+<section id="not-done-6" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-6">Not done</h3>
+<ul>
+<li>The analyses listed under D27 as not repeated. The calibration check bounds their error (panel gains 5% to 6% high at 5%, within 2% at 20%) but does not replace them.</li>
+<li>Other forms of interaction between genotype and clinical profile than a constant logit-scale effect.</li>
+<li>The realised-score frontier under the all-ancestry second parameter.</li>
+</ul>
+<p>Code and outputs: <code>R/calibration_check.R</code>, <code>scripts/31_baseline_calibration_check.R</code> (panels, artefact, Aim 4 exact sweep, PRS), <code>scripts/32_calibration_check_realised.R</code>, <code>scripts/33_calibration_check_nri.R</code>, <code>scripts/34_calibration_check_figures.R</code>, <code>tests/testthat/test-calibration-check.R</code>; <code>output/calibration_check_{layer,artefact,aim4,aim4_sweep,aim4_frontier,prs, realised_sweep,realised_frontier,realised_summary,realised_check,nri,nri_grid,headline}.csv</code>; <code>output/figures/fig_headline_profile.png</code>, <code>aim4_sweep_5pct_profile.png</code>, <code>aim4_sweep_20pct_profile.png</code>.</p>
 
 
 <!-- -->
