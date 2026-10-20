@@ -27,3 +27,4 @@ output/genetic_attribution_draws.csv
 output/genetic_ensemble_draws.csv
 output/genetic_sampling_draws.csv
 output/genetic_ensemble_sampling_draws.csv
+.Rproj.user
