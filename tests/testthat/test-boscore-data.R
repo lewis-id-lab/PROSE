@@ -178,7 +178,7 @@ test_that("the pseudonymised cohort carries no identifier, preserves structure a
   ps <- pseudonymise_cohort(cohort, seed = 11)
   expect_false(any(c("id", "IDRICO", "IDIND", "patient", "admission", "date") %in% names(ps)))
   everything <- unlist(lapply(ps, as.character))
-  expect_false(any(grepl("^A[0-9]{5}$|^P[0-9]{3}$", unique(everything)) & everything %in% c(fake$IDRICO, fake$IDIND)))
+  expect_false(any(grepl("^A[0-9]{5}$|^P[0-9]{3}$", everything) & everything %in% c(fake$IDRICO, fake$IDIND)))
   expect_true(all(grepl("^P[0-9]+$", ps$patient_code)) && all(grepl("^A[0-9]+$", ps$admission_code)))
   one_to_one <- function(a, b) length(unique(a)) == length(unique(b)) && length(unique(a)) == nrow(unique(data.frame(a, b)))
   expect_true(one_to_one(cohort$rows$patient, ps$patient_code))

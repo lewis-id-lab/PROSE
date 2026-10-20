@@ -10,8 +10,11 @@ link-citations: true
 ::: {.callout-warning}
 ## Working draft
 
-This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 19 October 2026, after
-the corrections recorded in addenda 16 to 22 of the [decision record](decisions.qmd). The evidence is still provisional:
+This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 20 October 2026, after
+the corrections recorded in addenda 16 to 22 and 24 of the [decision record](decisions.qmd). Addendum 24 made the
+profile-preserving construction of the genetic truth primary; the sampling, ensemble, attribution, effect-modification, donor and
+robustness analyses were not repeated under it (see Limitations). Addendum 23, the polygenic score benchmark, is written up in
+the decision record and is not part of this draft. The evidence is still provisional:
 
 - The record of the human round-2 verification is not yet in the repository.
 - The priors on the pooled effects and the reading of the "realised" score are proposals.
@@ -43,16 +46,19 @@ has not been tested.
 **Methods.** In a pre-specified simulation study, we added host genotype to a seven-predictor score for proven or probable
 invasive mould disease (IMD) within 60 days. The score was refit on 4,078 haematology admissions in 1,945 patients (Bologna,
 2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (63 studies extracted) and were pooled
-with Bayesian random-effects models. Net-benefit gains were computed exactly for 2,000 posterior draws. The primary endpoint
-was the gain at a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of
-20% more true cases at no extra false positives (+0.00458).
+with Bayesian random-effects models. Genetic effects were added to the clinical logit with an intercept for each clinical
+profile, so that the clinical score stayed calibrated and any gain reflected the genetic information. Net-benefit gains were
+computed exactly for 2,000 posterior draws. The primary endpoint was the gain at a 5% risk threshold. It was judged against a
+pre-specified minimum clinically important difference (MCID) of 20% more true cases at no extra false positives (+0.00458).
 
 **Results.** Pooled odds ratios per copy of the risk haplotype ranged from 0.84 (CLEC7A Y238X) to 1.80 (CD209). With the true
-effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00059 (90% range 0.00015 to 0.00137).
-That is 1.2 extra true cases per 1,000 admissions, against 4.6 required. At most 1.3% of draws reached the MCID, although the
-area under the ROC curve rose from 0.857 to 0.870 and the continuous net reclassification improvement was 31%. A second
-CLEC7A haplotype doubled the gain to +0.00122, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied
-about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID.
+effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00056 (90% range 0.00015 to 0.00127).
+That is 1.1 extra true cases per 1,000 admissions, against 4.6 required. At most 0.6% of draws reached the MCID, although the
+area under the ROC curve rose from 0.861 to 0.873 and the continuous net reclassification improvement was 34%. A second
+CLEC7A haplotype doubled the gain to +0.00115, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied
+about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID. A
+single global intercept, used in an earlier version of the simulation, gave gains 5% to 6% larger at 5%, and comparison with
+the correctly marginalised clinical risk showed that this was not a correction of miscalibration.
 
 **Conclusions.** On the published evidence, genotype at these genes is unlikely to change decisions at the 5% threshold in
 haematological inpatients. Doing so would need much larger effects, or many more loci, than candidate-gene studies report. A
@@ -107,12 +113,19 @@ both, no genetic result had yet been computed:
 - The baseline model became a refit on those data (D10). This raised the MCID by 13% at the 5% threshold, which made the
   primary test harder.
 
+A third change was made after the genetic results were known. The lock specified a single global intercept to hold prevalence
+(D5). A review of the genetic layer showed that this leaves the clinical score miscalibrated within clinical profiles under the
+simulated truth, so that part of a genetic score's gain could be the correction of that miscalibration. Addendum 24 (D27) made
+a profile-preserving truth primary and kept the global-intercept truth as a sensitivity analysis. The change lowered the primary
+net-benefit gains slightly (by 5% to 6% at the 5% threshold) and did not change any conclusion, but it was not blind to the
+earlier results.
+
 | ADEMP element | This study |
 |---|---|
 | Aims | Decision value of host genotype added to a clinical IMD score; the architectures that would be needed |
-| Data-generating mechanisms | Clinical profiles from the observed cohort; genotypes in Hardy–Weinberg equilibrium at gnomAD non-Finnish European frequencies; true genetic effects drawn from the pooled posteriors under two readings; architecture sweep on a grid |
+| Data-generating mechanisms | Clinical profiles from the observed cohort; genotypes in Hardy–Weinberg equilibrium at gnomAD non-Finnish European frequencies; true genetic effects drawn from the pooled posteriors under two readings and added with an intercept per clinical profile (profile-preserving; a single global intercept as sensitivity analysis); architecture sweep on a grid |
 | Estimand | Gain in decision-curve net benefit over the clinical score, at thresholds of 5% (primary) and 20% (secondary) |
-| Methods compared | Clinical score alone; clinical score plus a genetic score with the true effects (ceiling) or the pooled estimates (realised) |
+| Methods compared | Clinical score alone, which is calibrated under the primary truth; clinical score plus a genetic score with the true effects (ceiling) or the pooled estimates (realised) |
 | Performance measures | Median gain and 90% range over draws; share of draws reaching the MCID; extra true cases per 1,000 admissions; aROC |
 
 ### Clinical cohort and baseline model
@@ -200,12 +213,43 @@ follows Hardy–Weinberg equilibrium at the gnomAD frequencies. Genotype is inde
 profile. The true risk of an admission is
 
 $$
-\operatorname{logit} p = \eta_{\text{clin}} + \sum_j \beta_j g_j + a,
+\operatorname{logit} p = \eta_X + \sum_j \beta_j g_j + a_X,
 $$
 
-where $$\eta_{\text{clin}}$$ is the baseline linear predictor and $$g_j$$ the dosage of term $$j$$. The constant $$a$$
-recentres the genetic contribution so that the prevalence stays at 3.26%. A change in net benefit therefore reflects
-discrimination, not a shift in the event rate.
+where $$\eta_X$$ is the baseline linear predictor of clinical profile $$X$$ (one of 128) and $$g_j$$ the dosage of term
+$$j$$. The intercept $$a_X$$ is chosen separately for each profile so that the risk averaged over genotypes equals the
+clinical score's risk,
+
+$$
+\sum_g \pi_g \operatorname{expit}\!\left(\eta_X + \beta^\top g + a_X\right) = \operatorname{expit}(\eta_X),
+$$
+
+where $$\pi_g$$ is the Hardy–Weinberg probability of genotype $$g$$. The conditional effect of genotype is the same in every
+profile; what is held fixed is that the clinical score is exactly calibrated within every clinical profile. A change in net
+benefit therefore cannot come from correcting miscalibration of the clinical score, and reflects the information in genotype.
+We call this the **profile-preserving truth**. Each genetic score is built in the same way, with an intercept per profile that
+holds its mean risk at $$\operatorname{expit}(\eta_X)$$ (for a score with estimated weights simulated on a sample of genotypes,
+the mean over that sample).
+
+The first version of the layer (D5) used one intercept $$a$$ for all profiles, which holds the overall prevalence at 3.26% but
+not the risk within each profile. Because $$\operatorname{E}_g\{\operatorname{expit}(\eta_X + \beta^\top g + a)\} \neq
+\operatorname{expit}(\eta_X)$$ (Jensen's inequality), the clinical score is then miscalibrated within profiles under the
+simulated truth, and some of a genetic score's gain could be the correction of that miscalibration. We keep this
+**global-intercept truth** as a sensitivity analysis and compare three things (addendum 24):
+
+- **current:** the global-intercept truth, with the clinical score $$\operatorname{expit}(\eta_X)$$ as the comparator (the
+  construction of the first version);
+- **marginal:** the same truth, with the best clinical-only rule under it as the comparator, the marginal risk
+  $$m(X) = \sum_g \pi_g \operatorname{expit}(\eta_X + \beta^\top g + a)$$;
+- **profile:** the profile-preserving truth, with $$\operatorname{expit}(\eta_X)$$ as the comparator, which is then exactly
+  calibrated.
+
+**Which comparison answers the clinical question.** The question is whether adding genotype to a clinical score that is
+already calibrated would change decisions for patients stratified by that score. The profile comparison estimates this. The
+current comparison handicaps the clinical score by construction. The marginal comparison removes that handicap while keeping
+the truth, so the difference between current and marginal measures the part of the gain that is a correction of induced
+miscalibration, and the difference between marginal and profile measures the effect of the truth itself being a different
+simulated population.
 
 True effects $$\beta_j$$ were drawn 2,000 times from each term's pooled posterior under two readings:
 
@@ -225,12 +269,13 @@ $$
 $$
 
 The gain is the net benefit of a genetic score minus that of the clinical score. It was computed exactly over the 128 clinical
-profiles and all genotype combinations (81 for four terms), with no patient-level sampling. A patient-level simulation on a
-100-fold replicated cohort reproduced the exact gain (0.00041 against 0.00040 at 5%).
+profiles and all genotype combinations (81 for four terms), with no patient-level sampling. Under the global-intercept truth, a
+patient-level simulation on a 100-fold replicated cohort reproduced the exact gain (0.00041 against 0.00040 at 5%).
 
 **MCID.** Before any genetic result, the minimum clinically important difference was defined as 20% more true cases at no
-increase in false positives. That is $$0.2 \times \text{TP}_{\text{clin}}/n$$. The 5% threshold, the high-risk cut-off of the
-original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three
+increase in false positives. That is $$0.2 \times \text{TP}_{\text{clin}}/n$$. Under the profile-preserving truth the clinical
+score's true positives are exactly those of the refit baseline, so the MCID is unchanged (+0.00458 at 5%, +0.00160 at 20%). The
+5% threshold, the high-risk cut-off of the original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three
 quantities:
 
 - the median gain over draws, with its 90% range;
@@ -341,28 +386,24 @@ bind_rows(
 
 ### Primary result: the four-term panel
 
-@tbl-headline and @fig-headline show the main results. With the true effects in the score, the four terms raised net benefit
-at the 5% threshold by a median of +0.00059 (90% range 0.00015 to 0.00137). That is 1.2 extra true cases per 1,000
-admissions, against the 4.6 the MCID requires. The gain came with extra false positives: the share flagged rose from 15.7% to
-16.9%. No draw reached the MCID under the pooled-mean reading, and 1.3% did under the predictive reading. With the pooled
-estimates in the score the gain was +0.00042 (−0.00009 to 0.00098), and no draw reached the MCID. The expected aROC rose from
-0.857 to 0.870 with the ceiling score and to 0.867 with the realised score.
+@tbl-headline and @fig-headline show the main results, under the profile-preserving truth. With the true effects in the
+score, the four terms raised net benefit at the 5% threshold by a median of +0.00056 (90% range 0.00015 to 0.00127). That is
+1.1 extra true cases per 1,000 admissions, against the 4.6 the MCID requires. The gain came with extra false positives: the
+share flagged rose from 15.7% to 16.8%. No draw reached the MCID under the pooled-mean reading, and 0.6% did under the
+predictive reading. With the pooled estimates in the score the gain was +0.00040 (−0.00010 to 0.00091), and no draw reached the
+MCID. The expected aROC rose from 0.861 to 0.873 with the ceiling score and to 0.870 with the realised score.
 
-At the secondary 20% threshold the ceiling score gained +0.00105 and reached the MCID of +0.00160 in 16% of draws (36% under
-the predictive reading). The realised score reached it in 3% of draws (9% under the predictive reading).
+At the secondary 20% threshold the ceiling score gained +0.00107 and reached the MCID of +0.00160 in 17% of draws (36% under
+the predictive reading). The realised score reached it in 4% of draws (12% under the predictive reading).
 
 ```{r}
 #| label: tbl-headline
-#| tbl-cap: "Net-benefit gain over the clinical score: median and 90% range over 2,000 draws of the true effects, and the share of draws reaching the MCID (+0.00458 at 5%, +0.00160 at 20%). Mean: true effect is the pooled mean; predictive: a new-study effect including between-study heterogeneity."
-four <- rd("genetic_layer_summary.csv") |>
-  filter(scenario != "baseline") |>
-  transmute(panel = "Four terms (primary)", truth, scenario, threshold,
-            gain = delta_nb, lo = delta_lo, hi = delta_hi, extra = extra_cases_per_1000, p = p_meets_mcid, auc)
-five <- rd("clec7a_second_layer_summary.csv") |>
-  filter(second_parameter == "estimated") |>
-  transmute(panel = "Five terms, CLEC7A A-G added (secondary)", truth, scenario, threshold,
-            gain, lo, hi, extra = extra_cases_per_1000, p = p_meets_mcid, auc)
-bind_rows(four, five) |>
+#| tbl-cap: "Net-benefit gain over the clinical score under the profile-preserving truth: median and 90% range over 2,000 draws of the true effects, and the share of draws reaching the MCID (+0.00458 at 5%, +0.00160 at 20%). Mean: true effect is the pooled mean; predictive: a new-study effect including between-study heterogeneity. The global-intercept results are in @tbl-calibration and in `output/genetic_layer_summary.csv`."
+rd("calibration_check_layer.csv") |>
+  filter(comparison == "profile") |>
+  transmute(panel = recode(panel, "four terms" = "Four terms (primary)", "five terms" = "Five terms, CLEC7A A-G added (secondary)"),
+            truth, scenario = score, threshold,
+            gain, lo, hi, extra = extra_cases_per_1000, p = p_meets_mcid, auc) |>
   mutate(panel = factor(panel, unique(panel)),
          Threshold = paste0(threshold * 100, "%"),
          Truth = truth,
@@ -379,17 +420,50 @@ bind_rows(four, five) |>
              p = "Draws reaching MCID", auc = "aROC")
 ```
 
-![Net-benefit gain over the clinical score against the MCID (dashed line), for the four-term panel and the five-term panel with the European or all-ancestry estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.](output/figures/fig_headline.png){#fig-headline}
+![Net-benefit gain over the clinical score against the MCID (dashed line) under the profile-preserving truth, for the four-term panel and the five-term panel with the European estimate of the second CLEC7A parameter. Points: median over draws of the true effects (pooled-mean reading); bars: 90% range.](output/figures/fig_headline_profile.png){#fig-headline}
+
+### Does the construction of the truth favour the genetic score?
+
+The clinical score is exactly calibrated within every profile under the profile-preserving truth, by construction. Under the
+global-intercept truth it was not: for the four-term panel (pooled-mean reading) the median calibration slope of the clinical
+score was 0.98, and its largest error within a profile was 0.023 in risk (0.029 under the predictive reading). The best
+clinical-only rule under that truth, the marginal risk, did better than the clinical score in 0.05% to 34% of draws,
+depending on panel, reading and threshold. The margin was at most +0.00027 in net benefit in any draw, and the 95th percentile
+of its share of the ceiling gain was at most 0.1%. The median gain was therefore the same with the marginal risk as the
+comparator as with the clinical score (@tbl-calibration). Correcting induced miscalibration did not produce the reported gains.
+
+Moving from the global-intercept to the profile-preserving truth did change the results, because it is a different simulated
+population. For the panels the gain at 5% was 4.6% lower for four terms (+0.00056 against +0.00059) and 5.9% lower for five
+terms, and at 20% it was within 2% of the original. The architecture sweep was more sensitive (@tbl-calibration): at 5%, 39.7%
+of 4,000 architectures reached the MCID, against 45.7%. 241 verdicts changed, all of them losses. At 20% the share was 77.2%
+against 77.0%, with six verdicts changed, all gains. The panels' conclusions did not change.
+
+```{r}
+#| label: tbl-calibration
+#| tbl-cap: "The same analyses under three comparisons. Current: global-intercept truth, comparator is the clinical score. Marginal: the same truth, comparator is the best clinical-only rule (the marginal risk). Profile: profile-preserving truth, comparator is the (calibrated) clinical score, primary. Gains are net-benefit gains over the comparator multiplied by 1,000; panels use the ceiling score and the pooled-mean reading (medians over 2,000 draws); the frontier is for risk-allele frequency 0.3 at the 5% threshold."
+rd("calibration_check_headline.csv") |>
+  filter(analysis != "PRS benchmark, ceiling") |>
+  mutate(analysis = factor(analysis, unique(analysis))) |>
+  gt(groupname_col = "analysis", rowname_col = "metric") |>
+  fmt_number(c(current, marginal, profile), decimals = 3, drop_trailing_zeros = TRUE) |>
+  sub_missing(missing_text = "none") |>
+  cols_label(current = "Current", marginal = "Marginal", profile = "Profile (primary)")
+```
 
 ### The second CLEC7A parameter
 
-Adding the A-G haplotype made CLEC7A an active term and roughly doubled the gain: +0.00122 (0.00048 to 0.00242) at 5% with the
-ceiling score, and +0.00100 with the realised score. The 5% MCID stayed out of reach, reached in 0.1% of draws under the
-pooled-mean reading and 3.3% under the predictive reading. At 20% the ceiling score reached the MCID in 63% of draws (72%
-under the predictive reading) and the realised score in 45%. With the all-ancestry estimate of the second parameter the gain at
-5% was +0.00077, and 28% of draws reached the 20% MCID.
+Adding the A-G haplotype made CLEC7A an active term and roughly doubled the gain: +0.00115 (0.00046 to 0.00220) at 5% with the
+ceiling score, and +0.00094 with the realised score. The 5% MCID stayed out of reach, reached in no draw under the
+pooled-mean reading and 1.5% under the predictive reading. At 20% the ceiling score reached the MCID in 64% of draws (73%
+under the predictive reading) and the realised score in 47%. With the all-ancestry estimate of the second parameter the gain at
+5% was +0.00077, and 28% of draws reached the 20% MCID (global-intercept truth; this variant was not repeated).
 
 ### Sampling variability and robustness
+
+The next four sections (sampling and robustness, attribution, effect modification, donor genotype) use the global-intercept
+truth and were not repeated under the profile-preserving one. The comparisons above bound the consequence: the panels' gains at
+5% were 5% to 6% lower under the profile-preserving truth and nearly unchanged at 20%, so the figures here are slightly
+optimistic at 5%.
 
 A study of the cohort's size would observe the gain with a standard deviation as large as the expected gain or larger: 0.00064
 to 0.00131 at 5%. With the effects fixed at the pooled medians, the observed gain at 5% averaged +0.00039 (SD 0.00064). It was
@@ -455,52 +529,67 @@ distribution gave the same conclusions.
 
 ### Genetic architectures that would reach the MCID
 
-Of the 4,000 architectures, 46% reached the 5% MCID and 77% reached the 20% MCID (@fig-aim4). The pattern was:
+Under the profile-preserving truth, of the 4,000 architectures 40% reached the 5% MCID and 77% reached the 20% MCID
+(@fig-aim4). The pattern was:
 
-- **One locus:** never enough. At an odds ratio of 3.0 and frequency 0.5 it reached 39% of the MCID.
-- **Odds ratio 1.5 or less:** no number of loci up to 20 reached it.
-- **Odds ratio 2.0:** 7 to 9 loci were needed at frequencies of 0.2 to 0.5, and 16 at 0.1.
-- **Odds ratio 3.0:** 3 to 4 common loci were enough.
+- **One locus:** never enough. At an odds ratio of 3.0 and frequency 0.5 it reached 37% of the MCID.
+- **Odds ratio 1.5 or less:** no number of loci up to 20 reached it at 5%.
+- **Odds ratio 2.0:** 9 to 12 loci were needed at frequencies of 0.2 to 0.5, and 19 at 0.1.
+- **Odds ratio 3.0:** 4 to 5 loci were enough at frequencies of 0.15 to 0.5.
+
+The gain peaks at a frequency of about 0.45 and is slightly lower at 0.5, so the frontier is not strictly monotone in frequency
+near 0.5 (under the global-intercept truth, for example, an odds ratio of 2.9 needs 3 loci at frequencies of 0.4 and 0.45 and 4
+at 0.5).
+
+The global-intercept truth needed 7 to 9 loci at odds ratio 2.0 and 3 to 4 at odds ratio 3.0, so the 5% frontier moved out by
+two to three loci at an odds ratio of 2.0, and by two at 1.8 (frequency 0.3; @tbl-calibration). Under that truth one architecture with an odds ratio of 1.5 (20 loci
+at frequency 0.45) reached the 5% MCID, by +0.000007. The profile-preserving truth removes it.
 
 The four-term panel corresponds to about 7 loci of odds ratio 1.3 at frequency 0.3, and would need to be roughly eight times
 stronger to reach the 5% MCID. Architectures near the frontier depended on the unpublished correlation structure (gain over
-MCID varied by about 15% across ensemble members). Those well inside or outside it did not.
+MCID varied by about 15% across ensemble members, computed under the global-intercept truth). Those well inside or outside it
+did not.
 
 With estimated weights, a score kept a median of 96% of the ceiling gain at a per-locus precision of σ = 0.10. It kept 89% at
 σ = 0.20 and 58% at σ = 0.40, which is the range of precision of the present pooled estimates (0.18 to 0.38). At those
-precisions, between 12% and a third of the architectures that reached the MCID with exact weights no longer did. The loci
-needed for a given odds ratio rose by one to several.
+precisions, between 12% and 36% of the architectures that reached the MCID with exact weights no longer did. The loci
+needed for a given odds ratio rose by one to several. At σ = 0.40 and an odds ratio of 1.8 (frequency 0.3), no number of loci up
+to 20 reached the 5% MCID under the profile-preserving truth, against 20 under the global-intercept truth.
 
-![Gain of the ceiling score relative to the MCID at the 5% threshold, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct.png){#fig-aim4}
+![Gain of the ceiling score relative to the MCID at the 5% threshold under the profile-preserving truth, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct_profile.png){#fig-aim4}
 
 ### Net reclassification improvement (tertiary)
 
-Continuous NRI was large even where net benefit barely moved (@tbl-nri). For the four-term panel with true effects, the
-continuous NRI was 31% (90% range 17% to 47%), yet the net-benefit gain at 5% was +0.0006, about an eighth of the MCID. The
-categorical NRI at the 5% decision threshold was 2.6%.
+All NRI results use the profile-preserving truth, with the clinical score as the comparator. Continuous NRI was large even
+where net benefit barely moved (@tbl-nri). For the four-term panel with true effects, the continuous NRI was 34% (90% range
+19% to 53%), yet the net-benefit gain at 5% was +0.0006, about an eighth of the MCID. The categorical NRI at the 5% decision
+threshold was 2.4%.
 
 **The earlier analysis's structure.** Simulating the three PTX3 SNPs independently, at the pooled per-copy effect, gave a
-continuous NRI of 25% (4% to 47%). That is consistent with the 22.5% the earlier analysis reported, but does not reproduce it
+continuous NRI of 25% (4% to 63%). That is consistent with the 22.5% the earlier analysis reported, but does not reproduce it
 (see Limitations).
 
-**Linkage at the same per-copy effect.** The correct h2 structure gave about half the independent model's continuous NRI (13%)
-and less than a quarter of its net-benefit gain (+0.00008 against +0.00035). That is because the independent model triples the
-true genetic variance. @fig-nri-grid traces both structures across per-copy effects, and the table below gives the crossing points:
+**Linkage at the same per-copy effect.** The correct h2 structure gave less than a quarter of the independent model's
+net-benefit gain (+0.00008 against +0.00033). That is because the independent model triples the true genetic variance.
+Continuous NRI did not follow this: it was higher for the h2 haplotype (34%) than for the independent structure (25%), for the
+reason given below; under the global-intercept truth the h2 value was 13%. @fig-nri-grid traces both structures across per-copy
+effects, and the table below gives the crossing points:
 
 | target | three SNPs, independent | PTX3 h2 haplotype |
 |---|---|---|
-| continuous NRI of 22.5% | OR 1.32 per copy | OR 1.65 per copy |
-| three-category NRI of 22.5% | OR 2.27 | OR 3.46 |
-| the 5% MCID | OR 2.89 | not reached by OR 4.95, the end of the grid |
+| continuous NRI of 22.5% | OR 1.32 per copy | OR 1.17 per copy |
+| three-category NRI of 22.5% | OR 2.32 | OR 3.67 |
+| the 5% MCID | OR 3.32 | not reached by OR 4.95, the end of the grid |
 
 ```{r}
 #| label: fig-nri-grid
-#| fig-cap: "NRI and net-benefit gain at 5% against the per-copy PTX3 effect, for the correct h2 haplotype structure and the earlier analysis's structure (three SNPs simulated independently). Dashed lines: an NRI of 22.5% (the earlier analysis's figure) and the 5% MCID. Grey line: the pooled per-copy odds ratio (1.35)."
+#| fig-cap: "NRI and net-benefit gain at 5% against the per-copy PTX3 effect, for the correct h2 haplotype structure and the earlier analysis's structure (three SNPs simulated independently), under the profile-preserving truth. Dashed lines: an NRI of 22.5% (the earlier analysis's figure) and the 5% MCID. Grey line: the pooled per-copy odds ratio (1.35)."
 #| fig-height: 5.5
 mcid5 <- rd("dca_baseline_refit_summary.csv") |> filter(threshold == 0.05) |> pull(mcid_b)
 panels <- c(nri_cont = "Continuous NRI", nri_cat3 = "NRI, cuts at 5% and 20%",
             nri_cat5 = "NRI at 5%", dnb_05 = "Net-benefit gain at 5%")
-rd("nri_effect_grid.csv") |>
+rd("calibration_check_nri_grid.csv") |>
+  filter(comparison == "profile") |>
   pivot_longer(all_of(names(panels)), names_to = "metric") |>
   mutate(metric = factor(panels[metric], panels), or = exp(log_or),
          structure = recode(structure, "PTX3 h2 haplotype" = "h2 haplotype (correct)",
@@ -517,16 +606,22 @@ rd("nri_effect_grid.csv") |>
 ```
 
 **Applying the three-SNP score to real chromosomes.** Here the haplotype is counted up to three times. The score lowered net
-benefit (−0.0004 at 5%) and the aROC (−0.005), and its categorical NRI at 5% was negative (−1.3%). Its continuous NRI was
-unchanged at 13%, so the continuous measure did not register the miscalibration.
+benefit (−0.0004 at 5%) and the aROC (−0.005), and its categorical NRI at 5% was negative (−1.4%). Its continuous NRI was
+positive (29%), so the continuous measure did not register the miscalibration.
 
 **Instability of continuous NRI.** Even for the correctly specified h2 term, its components were unstable. The event component
-was −41% and the non-event component +54%. Heterozygotes' predicted risk shifts by a very small amount after recentring, and
-the continuous NRI counts any shift as a reclassification. Across draws the event component ranged from −45% to +53%.
+was −18% and the non-event component +53%. Heterozygotes' predicted risk shifts by a very small amount after recentring, and
+the continuous NRI counts any shift as a reclassification. Across draws the event component ranged from −36% to +51%. The value
+depends on the construction of the truth in a way that net benefit does not: for the h2 term the continuous NRI was 13% under
+the global-intercept truth and 34% under the profile-preserving one, while its net-benefit gain was +0.00008 under both. Mean
+h2 dosage is 0.96, so a heterozygote sits almost exactly at its profile's mean risk, and which way its predicted risk moves is
+decided by a small curvature effect. Between the global-intercept comparison and the marginal one, only 0.9% of the cohort
+changed direction (23.2% moved up, against 24.1%), yet the continuous NRI went from 0.13 to 0.33, so those cells must carry a
+large share of the events. We did not examine which profiles they belong to.
 
 ```{r}
 #| label: tbl-nri
-#| tbl-cap: "Net reclassification improvement, net-benefit gain and aROC change against the clinical score, under the same truth: median and 90% range over 2,000 draws of the true effects (pooled-mean reading). Every PTX3 structure carries the pooled per-copy h2 effect."
+#| tbl-cap: "Net reclassification improvement, net-benefit gain and aROC change against the clinical score, under the same profile-preserving truth: median and 90% range over 2,000 draws of the true effects (pooled-mean reading). Every PTX3 structure carries the pooled per-copy h2 effect."
 labs_nri <- c(
   "four-term panel, ceiling"     = "Four-term haplotype panel, true effects",
   "four-term panel, realised"    = "Four-term haplotype panel, pooled estimates",
@@ -535,8 +630,8 @@ labs_nri <- c(
   "PTX3 three SNPs, independent" = "PTX3 three SNPs simulated independently (earlier analysis)"
 )
 pct <- function(m, lo, hi) sprintf("%.1f (%.1f to %.1f)", 100 * m, 100 * lo, 100 * hi)
-rd("nri_comparison.csv") |>
-  filter(metric %in% c("nri_cat5", "nri_cat3", "nri_cont", "dnb_05", "dauc")) |>
+rd("calibration_check_nri.csv") |>
+  filter(comparison == "profile", metric %in% c("nri_cat5", "nri_cat3", "nri_cont", "dnb_05", "dauc")) |>
   mutate(value = case_when(
     metric == "dnb_05" ~ sprintf("%.5f (%.5f to %.5f)", median, lo, hi),
     metric == "dauc" ~ sprintf("%.3f (%.3f to %.3f)", median, lo, hi),
@@ -559,6 +654,14 @@ case per 1,000 admissions, against a pre-specified bar of 4.6. Every combination
 and correlation structure we examined gave the same conclusion. The most favourable addition the evidence allows, a second
 CLEC7A parameter, still left the gain at about a quarter of the MCID.
 
+The conclusion does not depend on how the genetic truth was added to the clinical model. The first version of the simulation
+held only the overall prevalence, which left the clinical score slightly miscalibrated within profiles. That raised the gains
+at 5% by 5% to 6% and made the architecture frontier two to three loci easier to reach, but none of the gain was a correction of the
+miscalibration: the best clinical-only rule under that truth did as well as the clinical score to within 0.00027 in net benefit
+in every draw. We therefore report the profile-preserving truth, under which the clinical score is calibrated by construction
+and a gain can only come from the information in genotype. That is the comparison that corresponds to the clinical question,
+which is whether genotype adds to a score that is already well calibrated.
+
 A real gain of this size would also be hard to observe: it would show as no gain, or a loss, in a fifth to a third of cohorts
 the size of the derivation cohort. Taken together, the panel behaves like about seven loci of odds ratio 1.3, far from the
 architectures the sweep shows would be needed.
@@ -572,21 +675,23 @@ PTX3 variants to the same clinical score. Our results differ from it for two rea
 European haplotypes they tag one haplotype class (r² 0.79 to 0.996, D′ = 1). Its homozygote odds ratio of 15.2 for rs1840680
 came from that triple counting. It also used the global dbSNP frequency of rs2305619 (0.36) rather than the non-Finnish
 European one (0.48), which shrinks the homozygote class from 21% to 13% of the cohort. At the same per-copy effect, the
-independent structure doubled the continuous NRI and more than quadrupled the net-benefit gain (@fig-nri-grid). Treated
+independent structure quadrupled the net-benefit gain (+0.00033 against +0.00008; @fig-nri-grid). Treated
 correctly as one haplotype, PTX3 adds +0.00008 in net benefit at 5%, about 2% of the MCID. It does not reach the MCID at any per-copy odds ratio
 up to 5.
 
 **The metric.** NRI counts movements across risk categories without weighing the consequences of the decisions they imply. It
 can be positive for uninformative markers, and it can reward miscalibration [@kerr2014; @pepe2014; @hilden2013]. Our own
-four-term haplotype panel had a continuous NRI of 31%, above the earlier 22.5%, with a net-benefit gain an eighth of the MCID.
+four-term haplotype panel had a continuous NRI of 34%, above the earlier 22.5%, with a net-benefit gain an eighth of the MCID.
 An NRI of this size is therefore no evidence that decisions would change.
 
-Genotype does improve the ranking (aROC +0.013), but few admissions cross the threshold. The extra admissions flagged at 5%
-included about nine false positives for every extra true case. At this threshold a true case is worth up to 19 false
+Genotype does improve the ranking (aROC +0.012), but few admissions cross the threshold. The extra admissions flagged at 5%
+included about nine false positives for every extra true case (8.9 under the profile-preserving truth). At this threshold a true case is worth up to 19 false
 positives, so these moves are beneficial on balance, but there are too few of them to matter.
 
 Continuous NRI also failed to register harm. The three-SNP score applied to real, linked chromosomes lowered net benefit yet
-kept its continuous NRI, and the measure's components swung with tiny shifts in heterozygotes' predicted risk. Net benefit at
+had a positive continuous NRI (29%), and the measure's value and components swung with tiny shifts in heterozygotes' predicted
+risk: for the correct h2 term it was 13% under one construction of the truth and 34% under the other, with the same net-benefit
+gain. Net benefit at
 a clinically chosen threshold, judged against a difference fixed in advance, asks the question a clinician would ask: does the
 score find more patients who will develop disease without treating more who will not [@vickers2006]?
 
@@ -595,7 +700,7 @@ score find more patients who will develop disease without treating more who will
 The analyses point to four settings where genotype could carry more value. Each comes with qualifications.
 
 **At a higher threshold.** At the secondary 20% threshold, fewer admissions are flagged and each extra true case is worth
-fewer false positives. There the five-term ceiling score reached the MCID in 63% of draws. This result is secondary, rests on a
+fewer false positives. There the five-term ceiling score reached the MCID in 64% of draws. This result is secondary, rests on a
 parameter estimated from three studies, and should be read as a hypothesis.
 
 **In neutropenic admissions.** Neutropenic admissions hold 80% of the events. They supplied about four-fifths of the gain
@@ -649,6 +754,16 @@ shrunk, and it ignores the winner's curse. Real-world realised gains would there
 
 **Other simulation assumptions could cut either way.** Genotype is assumed independent across genes and independent of the
 clinical profile. The analysis considers one threshold decision per admission. Only candidate genes are modelled.
+
+**The construction of the genetic truth, and the analyses that did not use the primary one.** The profile-preserving truth
+adds the same logit-scale effect in every clinical profile and compensates with an intercept per profile. Other forms of
+interaction between genotype and clinical risk were not examined. The primary truth was adopted after the global-intercept
+results were known (addendum 24), though it was not tuned to them. The sampling-variability, correlation-ensemble, attribution,
+effect-modification, donor-stratum and robustness analyses were run under the global-intercept truth and not repeated. In the
+analyses that were repeated (the panels, the exact and realised-score architecture sweeps and the NRI), that truth overstated
+gains at 5% by 5% to 6% in the panels and let 241 of 4,000 architectures reach the MCID that did not under the
+profile-preserving truth, and it changed little at 20%. Those secondary figures are therefore probably slightly optimistic at
+5%.
 
 **The second CLEC7A parameter is the least mature part of the evidence.** It comes from three studies. The opposite direction
 in East Asian studies fits a tag SNP whose linkage to a causal variant differs between ancestries, but the causal variant has

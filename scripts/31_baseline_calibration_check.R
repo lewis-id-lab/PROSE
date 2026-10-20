@@ -14,6 +14,7 @@
 # Writes   output/calibration_check_layer.csv         four- and five-term panels: gain, MCID test and calibration by comparison
 #          output/calibration_check_artefact.csv      per panel, reading and threshold: NB(m) - NB(expit(eta)) over draws
 #          output/calibration_check_aim4.csv          Aim 4 sweep: share reaching the MCID and verdicts changed, by comparison
+#          output/calibration_check_aim4_sweep.csv    Aim 4 sweep, per architecture, comparison and threshold: gain and MCID test
 #          output/calibration_check_aim4_frontier.csv fewest loci reaching the MCID, by comparison
 #          output/calibration_check_prs.csv           polygenic score: OR per SD needed (ceiling), accuracy and cases needed
 
@@ -28,7 +29,7 @@ q <- tabulate(profile_index(base$X), 2L^length(PREDICTORS)) / nrow(base$X)
 mcid_tab <- read.csv("output/dca_baseline_refit_summary.csv")
 mcid <- setNames(mcid_tab$mcid_b[match(at, mcid_tab$threshold)], as.character(at))
 
-cl <- start_workers(files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim4_sweep.R", "R/prs_benchmark.R",
+cl <- start_workers(cores = 10, files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim4_sweep.R", "R/prs_benchmark.R",
                               "R/calibration_check.R"))
 
 # ---- 1 and 2. The four- and five-term panels over the draws of the true effects ----------------------------------------------------
@@ -39,7 +40,7 @@ run_draws <- function(grid, effects, beta_score) {
     do.call(rbind, lapply(ix, function(i) {
       j <- ctx$jobs[i, ]
       cbind(truth = j$truth, draw = j$draw,
-            calibration_gains(ctx$q, ctx$lp, ctx$grid, ctx$effects[[j$truth]][j$draw, ], ctx$beta_score, ctx$at, calibration = TRUE))
+            calibration_gains(ctx$q, ctx$lp, ctx$grid, ctx$effects[[j$truth]][j$draw, ], ctx$beta_score, ctx$at, calibration = TRUE, detail = TRUE))
     }))
   }, ctx)
 }
@@ -53,9 +54,12 @@ s5 <- clec7a_second_setup()
 d5 <- run_draws(s5$grid, s5$effects, s5$beta_hat)
 
 summarise_panel <- function(d, panel) {
-  long <- rbind(cbind(d, score = "ceiling", gain = d$gain_oracle), cbind(d, score = "realised", gain = d$gain_score))
+  long <- rbind(cbind(d, score = "ceiling", gain = d$gain_oracle, extra_tp = d$extra_tp_oracle, flagged = d$flagged_oracle, auc = d$auc_oracle),
+                cbind(d, score = "realised", gain = d$gain_score, extra_tp = d$extra_tp_score, flagged = d$flagged_score, auc = d$auc_score))
   out <- by_key(long, c("truth", "comparison", "threshold", "score"), function(x) data.frame(
     gain = median(x$gain), lo = quantile(x$gain, 0.05, names = FALSE), hi = quantile(x$gain, 0.95, names = FALSE),
+    extra_cases_per_1000 = 1000 * median(x$extra_tp), flagged = median(x$flagged), flagged_clinical = median(x$flagged_clinical),
+    auc = median(x$auc), auc_clinical = median(x$auc_clinical),
     p_meets_mcid = mean(x$gain >= mcid[[as.character(x$threshold[1])]]),
     nb_clinical = median(x$nb_clinical), flag_disagree = median(x$flag_disagree), flag_disagree_max = max(x$flag_disagree),
     clin_slope = median(x$clin_slope), clin_citl = median(x$clin_citl),
@@ -69,13 +73,24 @@ layer <- rbind(summarise_panel(d4, "four terms"), summarise_panel(d5, "five term
 # The current comparison must reproduce the reported layers
 ref4 <- read.csv("output/genetic_layer_summary.csv")
 ref5 <- subset(read.csv("output/clec7a_second_layer_summary.csv"), second_parameter == "estimated")
-chk <- function(ref, panel, gain_col) {
-  cur <- subset(layer, panel == !!panel & comparison == "current")
+chk <- function(ref, panel_name, gain_col) {
+  cur <- layer[layer$panel == panel_name & layer$comparison == "current", c("truth", "score", "threshold", "gain")]
+  names(cur)[4] <- "gain_chk"
   m <- merge(cur, ref, by.x = c("truth", "score", "threshold"), by.y = c("truth", "scenario", "threshold"))
-  max(abs(m$gain - m[[gain_col]]))
+  stopifnot(nrow(m) == nrow(cur), nrow(m) > 0)
+  max(abs(m$gain_chk - m[[gain_col]]))
 }
-`!!` <- function(x) x
-stopifnot(chk(ref4, "four terms", "delta_nb") < 1e-9, chk(ref5, "five terms", "gain.y") < 1e-9)
+stopifnot(chk(ref4, "four terms", "delta_nb") < 1e-9, chk(ref5, "five terms", "gain") < 1e-9)
+
+# ... and so must the extra true cases, the flagged share and the aROC
+chk_cols <- function(ref, panel_name) {
+  cur <- layer[layer$panel == panel_name & layer$comparison == "current", c("truth", "score", "threshold", "extra_cases_per_1000", "flagged", "auc")]
+  names(cur)[4:6] <- paste0(names(cur)[4:6], "_chk")
+  m <- merge(cur, ref, by.x = c("truth", "score", "threshold"), by.y = c("truth", "scenario", "threshold"))
+  stopifnot(nrow(m) == nrow(cur), nrow(m) > 0)
+  max(abs(m$extra_cases_per_1000_chk - m$extra_cases_per_1000), abs(m$flagged_chk - m$flagged), abs(m$auc_chk - m$auc))
+}
+stopifnot(chk_cols(ref4, "four terms") < 1e-8, chk_cols(ref5, "five terms") < 1e-8)
 
 # The artefact: how much better the best clinical-only rule does than expit(eta) under the global truth
 artefact <- do.call(rbind, lapply(list(`four terms` = d4, `five terms` = d5), function(d) {
@@ -133,7 +148,9 @@ prs_ceiling <- do.call(rbind, lapply(comparisons, function(cmp) do.call(rbind, l
              clin_max_abs_err = cal$clin_max_abs_err, flag_disagree = cal$flag_disagree)
 }))))
 
-s_nodes <- prs_nodes(200); u_nodes <- prs_nodes(32)
+# The quadrature of script 30 (400 x 64 nodes): cases needed scale with rho^2 / (1 - rho^2), which is steep near rho = 0.9, so a coarser
+# grid moved them by up to 5%
+s_nodes <- prs_nodes(400); u_nodes <- prs_nodes(64)
 grid_su <- list(G = cbind(S = rep(s_nodes, times = length(u_nodes)), U = rep(u_nodes, each = length(s_nodes))),
                 prob = rep(1 / (length(s_nodes) * length(u_nodes)), length(s_nodes) * length(u_nodes)))
 tasks <- expand.grid(or_sd = c(2, 2.5, 3, 4, 5, 6), threshold = at, comparison = comparisons, stringsAsFactors = FALSE)
@@ -145,6 +162,19 @@ prs_rho <- parallel_rows(cl, as.list(seq_len(nrow(tasks))), function(i, ctx) {
   rho <- if (f(1) < 0) NA_real_ else stats::uniroot(f, c(0, 1), tol = 1e-4)$root
   data.frame(tk, rho_needed = rho)
 }, ctx)
+# The current comparison must agree with script 30: the OR per SD needed with true weights (exactly), and the accuracy needed with estimated
+# weights (to 0.01, a sanity bound). They do not agree exactly: script 30 takes the shift that holds prevalence from 400 nodes of the score
+# but evaluates the truth on 400 x 64 nodes, and the 64-node part has variance 0.980, so its truth holds prevalence only to 0.2% to 1.0%
+# (addendum 23). Here the shift is exact on the grid used. The accuracy needed differs by up to 0.004 (2% to 5% in cases needed).
+ref_sum <- read.csv("output/prs_benchmark_summary.csv")
+cur_ceil <- prs_ceiling[prs_ceiling$comparison == "current", ]
+stopifnot(max(abs(cur_ceil$or_sd_needed - ref_sum$or_sd_needed[match(cur_ceil$threshold, ref_sum$threshold)])) < 1e-3)
+ref_dz <- read.csv("output/prs_discovery_size.csv"); ref_dz <- ref_dz[ref_dz$m_eff == 1e3, ]
+cur_rho <- prs_rho[prs_rho$comparison == "current", ]
+j <- match(paste(cur_rho$or_sd, cur_rho$threshold), paste(round(ref_dz$or_sd, 1), ref_dz$threshold))
+stopifnot(!anyNA(j), identical(is.na(cur_rho$rho_needed), is.na(ref_dz$rho_needed[j])),
+          max(abs(cur_rho$rho_needed - ref_dz$rho_needed[j]), na.rm = TRUE) < 1e-2)
+
 m_eff <- c(1e3, 1e4, 6e4)
 prs <- merge(prs_rho, prs_ceiling[, c("comparison", "threshold", "or_sd_needed")], by = c("comparison", "threshold"))
 prs <- do.call(rbind, lapply(m_eff, function(m) transform(prs, m_eff = m, cases_balanced = 2 * prs_n_effective(rho_needed, log(or_sd), m))))
@@ -155,6 +185,8 @@ dir.create("output", showWarnings = FALSE)
 write.csv(layer, "output/calibration_check_layer.csv", row.names = FALSE)
 write.csv(artefact, "output/calibration_check_artefact.csv", row.names = FALSE)
 write.csv(aim_summary, "output/calibration_check_aim4.csv", row.names = FALSE)
+write.csv(aim[, c("comparison", "n_loci", "odds_ratio", "raf", "threshold", "gain_oracle", "extra_tp_oracle", "mcid", "meets")],
+          "output/calibration_check_aim4_sweep.csv", row.names = FALSE)
 write.csv(frontier, "output/calibration_check_aim4_frontier.csv", row.names = FALSE)
 write.csv(rbind(cbind(part = "ceiling", prs_ceiling[, 1:3], rho_needed = NA, or_sd = NA, m_eff = NA, cases_balanced = NA),
                 cbind(part = "estimated weights", prs[, c("comparison", "threshold", "or_sd_needed", "rho_needed", "or_sd", "m_eff", "cases_balanced")])),

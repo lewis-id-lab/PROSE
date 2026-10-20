@@ -184,11 +184,15 @@ are carried through an ensemble of 150 near-optimal matrices, not one point esti
 
 ---
 
-## D5. How the genetic term enters the baseline model — **settled: recentred**
+## D5. How the genetic term enters the baseline model — **settled: recentred; superseded for the primary analysis by D27 (addendum 24)**
 
 Settled 16 October 2026. The genetic linear predictor is recentred (equivalently, the intercept is adjusted)
 so that marginal IMD prevalence stays at the calibrated baseline value of 3.3%. Any change in net benefit
 therefore reflects discrimination and risk redistribution, not a shift in overall event rate.
+
+*Addendum 24 (20 October 2026):* a single global intercept holds the overall prevalence but not the risk within each clinical
+profile, so the claim in the last sentence is not guaranteed. D27 makes an intercept per profile primary and keeps this
+construction as a sensitivity analysis ("global-intercept truth").
 
 ## D6. Baseline aROC calibration target — **settled: 0.85**
 
@@ -213,7 +217,7 @@ bootstrap-validated 0.83 is recorded in `baseline_validation_targets.csv` but is
 | MCID values | **re-derived** 17 October 2026 on the calibrated cohort: +0.00428 at 5%, +0.00140 at 20% |
 | D7 correlation structure | **fixed** — version 2, nine parameters |
 | D3a drop TLR9 rs352140 | **fixed** — dropped |
-| D5 genetic term recentred to hold prevalence | **fixed** |
+| D5 genetic term recentred to hold prevalence | **fixed**; superseded for the primary analysis by D27 (profile-preserving truth), kept as sensitivity |
 | D6 baseline aROC target | **fixed** — 0.85 |
 | D3b Herrero-Sanchez | **fixed** — excluded from primary; sensitivity analysis only |
 | D3c TLR4 pooling model | **fixed** — carrier model with continuity correction |
@@ -1910,3 +1914,245 @@ NRI of 22.5%, 2.27 and 3.46; the 5% MCID, 2.89 for the independent structure and
   because heterozygotes' risk moves by a hair after recentring and any move counts; across draws the event component runs from -45% to +53%.
 
 Code and outputs: `R/nri.R`, `scripts/29_nri_comparison.R`, `tests/testthat/test-nri.R`, `output/nri_comparison.csv`, `output/nri_effect_grid.csv`.
+
+---
+
+## Addendum 23, 19 October 2026 (written up 20 October): a polygenic score benchmark
+
+Written after the tag. No decision changes. The code, outputs and tests were committed on 19 October (`afad68c`); this entry was written
+on 20 October from them, and adds the profile-preserving results of addendum 24. It is a benchmark, not an estimate: no polygenic score
+for invasive mould disease exists, and to our knowledge no genome-wide association study of invasive aspergillosis has been published
+(the manuscript's Discussion). The question is what such a score would have to achieve.
+
+### Question
+
+The four- and five-term panels fall well short of the 5% MCID, and the Aim 4 sweep says a panel of identical loci would need 9 to 12
+loci of odds ratio 2.0. A polygenic score summarises many small effects. How strong would it have to be to reach the MCID on the refit
+baseline, how accurate would its weights have to be, and how large a discovery study would give that accuracy?
+
+### Model (`R/prs_benchmark.R`)
+
+- **Score and truth.** A polygenic score G ~ N(0, 1), independent of the clinical profile (an assumption, as for the panel), with true
+  effect β on the log-odds scale per standard deviation (odds ratio per SD = exp β). True logit = baseline logit + β G + a, with a
+  holding the prevalence (the global intercept of D5).
+- **Ceiling.** The score knows G and β.
+- **Realised.** The score is an estimate S ~ N(0, 1) with correlation ρ with G, so G = ρ S + √(1 − ρ²) U. It carries the weight β ρ
+  (the regression of G on S), recentred to the baseline mean risk: the best linear use of an imperfect score, recalibrated in the target
+  cohort, which is optimistic.
+- **Computation.** Exact over the 128 clinical profiles, by equal-probability normal quantile nodes (400 for S and 64 for the part of G
+  that S does not capture).
+- **Discovery size.** For M_e independent causal loci of equal small effect, each estimated by logistic regression in n subjects with case
+  fraction π, ρ² = n π (1 − π) β² / (n π (1 − π) β² + M_e) (Daetwyler et al. 2008, written on the log-odds scale). Loci are taken as known in
+  advance, so there is no selection and no winner's curse (optimistic). M_e = 1,000, 10,000 and 60,000. The cases for a balanced design
+  are 2 n π (1 − π). For comparison, a discovery study the size of Fisher 2017 (2,609 recipients, 483 cases) gives the accuracy in the last column of the table below.
+
+### Results (script 30; global-intercept truth, as committed)
+
+**Ceiling (true weights).** The odds ratio per SD that reaches the MCID is **3.61 at 5%** and **1.84 at 20%**. At the first, the score alone has
+an aROC of 0.77 (the combined score 0.905); at the second, 0.64 (0.875). Gain as a share of the MCID, by odds ratio per SD:
+
+| OR per SD | 1.5 | 2.0 | 3.0 | 4.0 |
+|---|---|---|---|---|
+| gain at 5%, share of the MCID | 10% | 31% | 75% | 115% |
+| gain at 20%, share of the MCID | 51% | 126% | 276% | 396% |
+| aROC of the score alone | 0.60 | 0.66 | 0.74 | 0.79 |
+
+**Accuracy and discovery size with estimated weights.** Below an odds ratio of 3.6 per SD the 5% MCID cannot be reached at any accuracy.
+Cases needed for a balanced discovery study, by the number of effective independent loci (accuracy ρ needed in the third column; the last
+column is the accuracy a Fisher-sized study would give):
+
+| threshold | OR per SD | ρ needed | cases, M_e = 1,000 | 10,000 | 60,000 | ρ of a Fisher-sized study (1,000 / 10,000 / 60,000) |
+|---|---|---|---|---|---|---|
+| 5% | 4 | 0.93 | 6,578 | 65,776 | 394,657 | 0.66 / 0.27 / 0.11 |
+| 5% | 6 | 0.74 | 742 | 7,422 | 44,530 | 0.75 / 0.33 / 0.14 |
+| 20% | 2 | 0.89 | 16,276 | 162,760 | 976,563 | 0.40 / 0.14 / 0.06 |
+| 20% | 3 | 0.63 | 1,073 | 10,728 | 64,370 | 0.57 / 0.21 / 0.09 |
+| 20% | 4 | 0.55 | 442 | 4,415 | 26,492 | 0.66 / 0.27 / 0.11 |
+| 20% | 6 | 0.49 | 196 | 1,956 | 11,736 | 0.75 / 0.33 / 0.14 |
+
+### Under the profile-preserving truth (addendum 24, script 31)
+
+The same quantities under the three comparisons (marginal equals current throughout, so only current and profile are shown):
+
+| | current | profile |
+|---|---|---|
+| OR per SD needed with true weights, 5% / 20% | 3.61 / 1.84 | 4.16 / 1.83 |
+| 5%, OR 4: accuracy needed; cases at M_e = 10,000 | 0.93; 65,289 | not reachable (needs 4.16) |
+| 5%, OR 5 | 0.81; 14,524 | 0.91; 39,011 |
+| 5%, OR 6 | 0.74; 7,340 | 0.85; 16,255 |
+| 20%, OR 3 | 0.62; 10,600 | 0.61; 9,988 |
+| 20%, OR 6 | 0.48; 1,914 | 0.47; 1,740 |
+
+At 5% the profile-preserving truth makes the score harder: the odds ratio per SD needed with true weights rises from 3.61 to 4.16, and
+with estimated weights the discovery cases needed rise by about 120% (OR 6) to 170% (OR 5). At 20% it is slightly easier (5% to 9% fewer
+cases). Script 31's "current" column is not script 30's: the accuracy needed differs by up to 0.004 (2% to 5% in cases), for the reason
+below.
+
+### Reading
+
+- **At the 5% threshold a polygenic score would need to be strong:** an odds ratio of 3.6 per SD (4.2 under the profile-preserving truth),
+  a score-alone aROC of about 0.77, and a large discovery study. With 10,000 effective loci a balanced study needs about 7,400 cases at
+  OR 6 and about 66,000 at OR 4 (which the profile-preserving truth makes unreachable), against 483 cases in Fisher 2017's study.
+- **At 20% the bar is much lower** (OR 1.8 per SD with true weights), and a Fisher-sized study gives enough accuracy only if the trait is
+  very polygenic in the sense of 1,000 effective loci and the odds ratio is 4 or more. This is secondary, as elsewhere.
+- **Every assumption is optimistic or untested:** independence from the clinical profile, loci known in advance with no winner's curse,
+  a Gaussian score, recalibration in the target cohort, and accuracy measured in the population in which the weights were estimated
+  (it does not transfer across ancestries). Whether a score of this strength could exist for IMD is not assessed.
+- **No score is in the manuscript.** The benchmark is not in the Draft manuscript; it would sit with Aim 4.
+
+### A defect in script 30's truth, found while writing this up
+
+Script 30 takes the shift that holds the prevalence from 400 nodes of the score (`prs_shift`) but evaluates the true risk on 400 × 64
+nodes. The 64-node part has variance 0.980, not 1, so the truth it uses holds the prevalence short of the target: the achieved
+prevalence is 0.043% to 1.0% below 3.261% (for example 1.0% below at OR 6 per SD and ρ = 0.5, 0.18% below at OR 2 and ρ = 0.5).
+The error grows with the effect and shrinks with ρ. It changes the accuracy needed by up to 0.004 (2% to 5% in cases needed) and the
+committed ceiling not at all (that has no 64-node part). Script 31 recentres exactly on the grid it uses. **The committed outputs of
+script 30 are left as they were**; read the comparison between truths from script 31, and treat script 30's cases-needed as accurate
+to a few per cent. Script 31 now checks that its current comparison agrees with script 30 (the ceiling exactly, the accuracy needed to 0.01).
+
+### Not done
+
+A polygenic score with a clinical-profile interaction, or with accuracy that varies with ancestry; locus selection and the winner's
+curse; the polygenic benchmark under the sampling variability of a study of this size; a figure (`output/prs_gain_by_accuracy.csv` holds
+the data for one); and correcting script 30's quadrature.
+
+Code and outputs: `R/prs_benchmark.R`, `scripts/30_prs_benchmark.R` (and its tests, `tests/testthat/test-prs.R`),
+`output/prs_ceiling.csv`, `output/prs_benchmark_summary.csv`, `output/prs_gain_by_accuracy.csv`, `output/prs_discovery_size.csv`; under the
+three comparisons, `scripts/31_baseline_calibration_check.R` and `output/calibration_check_prs.csv`.
+
+---
+
+## Addendum 24, 20 October 2026: the calibration check of the genetic layer; the profile-preserving truth becomes primary (D27)
+
+Written after the tag, and **after the genetic results of addenda 11 to 22 were known**. It changes D5 for the primary analysis.
+No other decision changes, and the MCID is unchanged. Addendum 23 (the polygenic score benchmark, `R/prs_benchmark.R`, script 30)
+is written up above, including its results under the three comparisons below (`output/calibration_check_prs.csv`).
+
+### The problem
+
+D5 added the genetic effect to the clinical logit and moved one global intercept to hold the overall prevalence:
+true logit = η_X + β·g + a. Within a clinical profile X the risk averaged over genotype, m(X) = Σ_g π_g expit(η_X + β·g + a), is
+not expit(η_X) (Jensen's inequality). The clinical score is therefore miscalibrated within profiles under the simulated truth even
+though prevalence is right, and some of the gain from adding genetics could be the correction of that induced miscalibration, not
+genetic information. The check was written (`R/calibration_check.R`, script 31) but had not been run, and nothing in the
+manuscript used it. It was raised in external review before submission.
+
+### D27. Design (fixed before the results below were read; run order: 31, 32, 33, 34)
+
+Three comparisons, each on profile × genotype cells (exact):
+
+| comparison | truth | clinical comparator |
+|---|---|---|
+| current | global intercept (D5) | expit(η_X) |
+| marginal | global intercept | m(X), the best clinical-only rule under that truth |
+| profile | an intercept a_X per profile so that Σ_g π_g expit(η_X + β·g + a_X) = expit(η_X); conditional effects unchanged | expit(η_X), now exactly calibrated |
+
+Genetic scores are built the same way under each (a global shift to the clinical mean risk under current and marginal; a shift per
+profile under profile, over the simulated sample for scores with estimated weights). Applied to: the four- and five-term panels
+(2,000 draws, both readings), the Aim 4 exact sweep (4,000 architectures), the Aim 4 realised-score sweep (2,400 architectures ×
+precisions, 12 replicates, the seeds of script 25), the NRI comparison (script 29's scenarios and effect grid) and the polygenic score
+benchmark. **Not repeated** (they remain on the global-intercept truth): the sampling-variability study, the correlation ensemble,
+the Shapley attribution, Aim 3b, the donor stratum, the sensitivity cohorts, the five-term robustness analyses, and the
+all-ancestry variant of the second CLEC7A parameter.
+
+**Which comparison estimates the clinical question.** The question is whether adding genotype to a clinical score that is already
+calibrated changes decisions for patients stratified by it. That is profile. Current handicaps the clinical score by construction.
+Marginal removes the handicap but keeps the truth, so current − marginal is the part of the gain that corrects induced
+miscalibration, and marginal − profile is the effect of the truth being a different simulated population.
+
+**Decision (D27).** The profile-preserving truth, with comparator expit(η_X), is the primary analysis and the source of the
+manuscript's headline numbers. The global-intercept truth is a sensitivity analysis. This was decided after the global-intercept
+results were known; it was not tuned to them (the construction was fixed by the requirement that the clinical score stay calibrated
+in every profile), and every number below is reported under both. The change is disclosed in the manuscript's Methods.
+
+### Checks
+
+- The current comparison reproduces the committed outputs: `genetic_layer_summary.csv` and `clec7a_second_layer_summary.csv`
+  (gain, extra true cases, flagged share and aROC; largest difference 6e-18 in gain), `aim4_sweep.csv`, `aim4_realised_sweep.csv`
+  (median gain and share reaching the MCID), `nri_comparison.csv` and `nri_effect_grid.csv`. Each script stops if it does not.
+- The polygenic score benchmark agrees with script 30 for the ceiling (odds ratio per SD needed, exactly) but not for the accuracy
+  needed with estimated weights (up to 0.004 apart), because script 30's truth holds prevalence only to 0.2% to 1.0% (addendum 23).
+- Under the profile truth the clinical score's calibration slope is 1 and its largest error in a profile is 1e-16; under the global
+  truth the slope is 0.98 and the largest error 0.023 (four terms, pooled-mean reading), and as low as 0.55 in the most extreme
+  architectures.
+- Under the profile truth the clinical score's true positives are the same in every draw (0.022884 at 5%), and 0.2 times them is
+  exactly the MCID in use (+0.0045768 at 5%, +0.0015993 at 20%). Under the global truth they vary by draw (0.0182 to 0.0229 at 5%),
+  so the fixed MCID matches the clinical true positives only under the profile truth.
+
+### Results
+
+Gains at 5% and 20% are medians over the 2,000 draws (pooled-mean reading, ceiling score; × 1,000 net benefit).
+
+| | current | marginal | profile |
+|---|---|---|---|
+| four terms: gain at 5% (90% range) | 0.587 (0.153 to 1.367) | 0.587 | 0.561 (0.147 to 1.269) |
+| four terms: draws reaching the MCID, 5% / 20% | 0% / 16.0% | 0% / 16.0% | 0% / 16.7% |
+| five terms: gain at 5% | 1.22 | 1.22 | 1.15 |
+| five terms: draws reaching the MCID, 5% / 20% | 0.1% / 63.3% | 0.1% / 63.3% | 0% / 64.1% |
+| Aim 4 exact: architectures reaching the MCID, 5% / 20% | 45.7% / 77.0% | 45.7% / 77.0% | 39.7% / 77.2% |
+| Aim 4 exact: verdicts changed against current, 5% / 20% | 0 / 0 | 0 / 0 | 241 lost / 6 gained |
+| frontier, 5%, frequency 0.3: fewest loci at OR 1.8 / 2.0 / 3.0 | 11 / 8 / 3 | 11 / 8 / 3 | 13 / 10 / 4 |
+| realised weights, error 0.10: architectures reaching the MCID at 5% | 28.7% | 28.7% | 23.3% |
+| realised weights, error 0.40: fewest loci at OR 1.8, 5%, frequency 0.3 | 20 | 20 | none within 20 |
+| polygenic score: OR per SD needed, 5% / 20% | 3.61 / 1.84 | 3.61 / 1.84 | 4.16 / 1.83 |
+
+- **Induced miscalibration did not produce the gains.** Marginal equals current in every analysis except continuous NRI. In the
+  panels the marginal rule beat expit(η_X) in 0.05% to 34% of draws, by at most +0.00027 in net benefit in any draw (95th percentile
+  of its share of the ceiling gain at most 0.1%). In the architecture sweeps it changed no verdict.
+- **The truth itself matters at 5%.** Profile lowers the panels' gains by 4.6% (four terms) and 5.9% (five terms) at 5% and leaves
+  them within 2% at 20%. In the exact sweep 241 architectures lose the 5% verdict (none gain), and the frontier moves out by two to
+  three loci at OR 2.0 (for example 9 to 12 at frequency 0.2). The realised sweep behaves the same way: at 5%, verdicts lost by
+  weight error 0.05 / 0.10 / 0.20 / 0.40 are 29 / 32 / 34 / 26 of 600; at 20% none are lost and 0 / 2 / 1 / 14 are gained.
+- **Retained gain with estimated weights is unchanged** (median 99% / 96% / 89% / 58% of the ceiling gain at weight error 0.05 /
+  0.10 / 0.20 / 0.40 at 5%, over architectures with a ceiling gain above +0.001; 100% / 96% / 89% / 58% under current). The share of
+  architectures that met the MCID with exact weights and no longer do is 12% to 36% at weight errors 0.20 and 0.40.
+- **No architecture with OR 1.5 or less reaches the 5% MCID under profile.** Under current one did (OR 1.5, frequency 0.45,
+  20 loci, gain +0.004584 against +0.004577), so the earlier statement that none did was off by one cell.
+- **NRI** (median over draws; four-term panel, ceiling): categorical NRI at 5% 2.4% (current 2.6%), three-category 10.2% (10.0%),
+  continuous 34.2% (31.4%), net-benefit gain +0.00056 (+0.00059), aROC +0.012 (+0.012). For the PTX3 h2 term the continuous NRI is
+  34.2% under profile, 33.9% under marginal and 13.3% under current, with the same net-benefit gain (+0.00008). Crossing points of the
+  per-copy OR under profile: continuous NRI of 22.5%, 1.32 (independent SNPs) and 1.17 (h2); three-category NRI of 22.5%, 2.32 and
+  3.67; the 5% MCID, 3.32 and not reached by OR 4.95.
+
+### Reading
+
+- The primary conclusion is unchanged: at 5% the four- and five-term panels gain about an eighth (four terms) to a quarter (five
+  terms) of the MCID under either truth, and no draw reaches it in the pooled-mean reading.
+- The 5% architecture frontier in addenda 16 and 17 was optimistic. The numbers in the manuscript's architecture section are now
+  the profile ones; the earlier ones are kept as the sensitivity analysis.
+- **Continuous NRI is not a reliable measure here.** Its value for a single-term score depends on the construction of the truth in
+  a way net benefit does not. For h2 the mean dosage is 0.96, so a heterozygote sits almost exactly at its profile's mean risk and
+  the direction of its shift is decided by curvature. Between current and marginal only 0.9% of the cohort changes direction
+  (23.2% up against 24.1%) but the continuous NRI goes from 0.13 to 0.33, so those cells carry a large share of the events. Which
+  profiles they belong to was not examined. The earlier statement that linkage "doubles" the continuous NRI at the same per-copy
+  effect (25% against 13%) does not hold under profile (25% against 34%); the net-benefit statement does (+0.00033 against +0.00008).
+
+### Defects found and fixed along the way
+
+- `calibration_fit()` returned an error for risks that round to exactly 1 (a genetic logit above about 37 in the largest
+  architectures: 26 of 4,000 sweep cells). It now clamps probabilities at 1e-12. Only the calibration diagnostics were affected, not
+  the gains.
+- The reproduction check in script 31 used an invalid idiom and had never run; it is rewritten and extended.
+- `profile_shifts()` could return NaN when every risk in a profile saturates; the derivative is now floored.
+- `start_workers()` now sets one BLAS/OpenMP thread per worker. Workers had started one thread per core, which oversubscribed the
+  machine (load average above 200 on 16 cores) and stalled the first runs.
+- The Aim 4 frontier is slightly non-monotone in risk-allele frequency near 0.5, under every comparison. The gain itself peaks at a
+  frequency of about 0.45 (median over architectures with a gain above +0.001; the peak is below 0.5 in 95% to 97% of them) and is
+  lower at 0.5, so the fewest loci that reach the MCID can rise by one at 0.5 (current, 5%: OR 2.9 needs 3 loci at 0.4 and 0.45 and 4
+  at 0.5; profile, 20%: OR 2.4 needs 1 locus at 0.2 to 0.3 and 2 from 0.35). The cause was not established; an untested possibility is
+  that the allele-count distribution is right-skewed below 0.5, which puts more weight in the upper tail that the threshold selects.
+  (An earlier version of this addendum described a jump from 4 to 13 loci at frequency 0.5. That was an error in a pivot table I
+  built, which labelled one odds ratio's values with another's frequencies; the frontier file is correct.)
+
+### Not done
+
+- The analyses listed under D27 as not repeated. The calibration check bounds their error (panel gains 5% to 6% high at 5%, within
+  2% at 20%) but does not replace them.
+- Other forms of interaction between genotype and clinical profile than a constant logit-scale effect.
+- The realised-score frontier under the all-ancestry second parameter.
+
+Code and outputs: `R/calibration_check.R`, `scripts/31_baseline_calibration_check.R` (panels, artefact, Aim 4 exact sweep, PRS),
+`scripts/32_calibration_check_realised.R`, `scripts/33_calibration_check_nri.R`, `scripts/34_calibration_check_figures.R`,
+`tests/testthat/test-calibration-check.R`; `output/calibration_check_{layer,artefact,aim4,aim4_sweep,aim4_frontier,prs,
+realised_sweep,realised_frontier,realised_summary,realised_check,nri,nri_grid,headline}.csv`; `output/figures/fig_headline_profile.png`,
+`aim4_sweep_5pct_profile.png`, `aim4_sweep_20pct_profile.png`.

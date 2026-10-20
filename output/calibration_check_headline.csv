@@ -1,0 +1,31 @@
+"analysis","metric","current","marginal","profile"
+"four terms (ceiling, pooled mean)","gain in NB at 5% (x1000)",0.587332339314467,0.587332339314467,0.560558017900952
+"four terms (ceiling, pooled mean)","P(gain >= MCID) at 5%",0,0,0
+"four terms (ceiling, pooled mean)","gain in NB at 20% (x1000)",1.04829028054033,1.04829028054033,1.06556653568651
+"four terms (ceiling, pooled mean)","P(gain >= MCID) at 20%",0.16,0.16,0.167
+"five terms (ceiling, pooled mean)","gain in NB at 5% (x1000)",1.2214791264845,1.2214791264845,1.14973098351101
+"five terms (ceiling, pooled mean)","P(gain >= MCID) at 5%",0.001,0.001,0
+"five terms (ceiling, pooled mean)","gain in NB at 20% (x1000)",1.82056537597629,1.82056537597629,1.83097574167532
+"five terms (ceiling, pooled mean)","P(gain >= MCID) at 20%",0.6325,0.6325,0.6405
+"Aim 4 sweep, exact weights","share of 4,000 architectures reaching MCID at 5%",0.45725,0.45725,0.397
+"Aim 4 sweep, exact weights","share of 4,000 architectures reaching MCID at 20%",0.77025,0.77025,0.77175
+"Aim 4 sweep, exact weights","verdicts changed vs current at 5%",0,0,241
+"Frontier, exact weights, 5%, freq 0.3","fewest loci at OR 1.5 (NA = none within 20)",NA,NA,NA
+"Frontier, exact weights, 5%, freq 0.3","fewest loci at OR 1.8 (NA = none within 20)",11,11,13
+"Frontier, exact weights, 5%, freq 0.3","fewest loci at OR 2 (NA = none within 20)",8,8,10
+"Realised score, weight error 0.1","share of architectures reaching MCID at 5% (median replicate)",0.286666666666667,0.286666666666667,0.233333333333333
+"Realised score, weight error 0.1","fewest loci at OR 1.8, freq 0.3, 5% (NA = none within 20)",11,11,12
+"Realised score, weight error 0.4","share of architectures reaching MCID at 5% (median replicate)",0.196666666666667,0.196666666666667,0.153333333333333
+"Realised score, weight error 0.4","fewest loci at OR 1.8, freq 0.3, 5% (NA = none within 20)",20,20,NA
+"NRI, four-term panel, ceiling","nri_cat5",0.0255064045200931,0.0255064045200931,0.0236537379687543
+"NRI, four-term panel, ceiling","nri_cat3",0.0996133925038061,0.0996133925038061,0.101718450201219
+"NRI, four-term panel, ceiling","nri_cont",0.314372792907589,0.343339310293453,0.342042445276337
+"NRI, four-term panel, ceiling","gain in NB at 5% (x1000)",0.587332339314467,0.587332339314467,0.560558017900952
+"NRI, four-term panel, realised","nri_cat5",0.0216765193996786,0.0216765193996786,0.0201156274783969
+"NRI, four-term panel, realised","nri_cat3",0.100444163529066,0.100444163529066,0.0995794023416396
+"NRI, four-term panel, realised","nri_cont",0.275768983734293,0.282965302334216,0.277921957503216
+"NRI, four-term panel, realised","gain in NB at 5% (x1000)",0.423204619022785,0.423204619022785,0.397009290314311
+"NRI, PTX3 h2 haplotype","nri_cat5",0.00882575517190484,0.00882575517190484,0.00855729567432601
+"NRI, PTX3 h2 haplotype","nri_cont",0.132750439631383,0.33911953757277,0.341659938810929
+"PRS benchmark, ceiling","OR per SD needed to reach MCID at 5%",3.61131449464555,3.61235498066557,4.15940803757704
+"PRS benchmark, ceiling","OR per SD needed to reach MCID at 20%",1.83656096487386,1.83656096598629,1.83002437141018

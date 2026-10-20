@@ -1,0 +1,9 @@
+"panel","truth","threshold","draws_with_artefact","artefact_median","artefact_p95","artefact_max","share_of_ceiling_gain_median","share_of_ceiling_gain_p95"
+"four terms","mean",0.05,0.0125,0,0,8.62043843764468e-07,0,0
+"four terms","mean",0.2,5e-04,0,0,6.91048855194602e-06,0,0
+"four terms","predictive",0.05,0.1215,0,2.42974144287495e-07,2.01599488995272e-05,0,8.86849039562737e-05
+"four terms","predictive",0.2,0.0315,0,0,0.000242579936346112,0,0
+"five terms","mean",0.05,0.146,0,1.47390192678856e-07,2.30227988497894e-06,0,6.09388503182142e-05
+"five terms","mean",0.2,0.0085,0,0,1.37075548584113e-05,0,0
+"five terms","predictive",0.05,0.34,0,1.12727104493414e-06,0.000152556032002014,0,0.000278285046591974
+"five terms","predictive",0.2,0.0775,0,5.25519977001365e-06,0.000268239066328537,0,0.00102668183965614

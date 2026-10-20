@@ -7,6 +7,11 @@ chunk_ids <- function(n, k = 30L) split(seq_len(n), rep_len(seq_len(k), n))
 # Fresh worker processes (forking is unavailable in Positron) that source the model code
 start_workers <- function(cores = max(1L, min(15L, parallel::detectCores() - 1L)), root = getwd(),
                           files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R")) {
+  # One BLAS/OpenMP thread per worker: otherwise each worker starts one thread per core and the machine is oversubscribed
+  threads <- c(OMP_NUM_THREADS = "1", OPENBLAS_NUM_THREADS = "1", MKL_NUM_THREADS = "1")
+  old <- Sys.getenv(names(threads), unset = NA)
+  do.call(Sys.setenv, as.list(threads))
+  on.exit(for (v in names(old)) if (is.na(old[[v]])) Sys.unsetenv(v) else do.call(Sys.setenv, setNames(list(old[[v]]), v)), add = TRUE)
   cl <- parallel::makeCluster(cores)
   parallel::clusterCall(cl, function(root, files) { setwd(root); for (f in files) source(f); invisible(NULL) }, root, files)
   cl
