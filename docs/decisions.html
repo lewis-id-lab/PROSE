@@ -336,6 +336,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#defects-found-and-fixed-along-the-way" id="toc-defects-found-and-fixed-along-the-way" class="nav-link" data-scroll-target="#defects-found-and-fixed-along-the-way">Defects found and fixed along the way</a></li>
   <li><a href="#not-done-6" id="toc-not-done-6" class="nav-link" data-scroll-target="#not-done-6">Not done</a></li>
   </ul></li>
+  <li><a href="#addendum-25-20-october-2026-the-secondary-analyses-rerun-under-the-profile-preserving-truth" id="toc-addendum-25-20-october-2026-the-secondary-analyses-rerun-under-the-profile-preserving-truth" class="nav-link" data-scroll-target="#addendum-25-20-october-2026-the-secondary-analyses-rerun-under-the-profile-preserving-truth">Addendum 25, 20 October 2026: the secondary analyses rerun under the profile-preserving truth</a>
+  <ul class="collapse">
+  <li><a href="#what-was-done" id="toc-what-was-done" class="nav-link" data-scroll-target="#what-was-done">What was done</a></li>
+  <li><a href="#checks-1" id="toc-checks-1" class="nav-link" data-scroll-target="#checks-1">Checks</a></li>
+  <li><a href="#results-3" id="toc-results-3" class="nav-link" data-scroll-target="#results-3">Results</a></li>
+  <li><a href="#reading-3" id="toc-reading-3" class="nav-link" data-scroll-target="#reading-3">Reading</a></li>
+  <li><a href="#not-done-7" id="toc-not-done-7" class="nav-link" data-scroll-target="#not-done-7">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -5055,7 +5063,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Genetic scores are built the same way under each (a global shift to the clinical mean risk under current and marginal; a shift per profile under profile, over the simulated sample for scores with estimated weights). Applied to: the four- and five-term panels (2,000 draws, both readings), the Aim 4 exact sweep (4,000 architectures), the Aim 4 realised-score sweep (2,400 architectures × precisions, 12 replicates, the seeds of script 25), the NRI comparison (script 29’s scenarios and effect grid) and the polygenic score benchmark. <strong>Not repeated</strong> (they remain on the global-intercept truth): the sampling-variability study, the correlation ensemble, the Shapley attribution, Aim 3b, the donor stratum, the sensitivity cohorts, the five-term robustness analyses, and the all-ancestry variant of the second CLEC7A parameter.</p>
+<p>Genetic scores are built the same way under each (a global shift to the clinical mean risk under current and marginal; a shift per profile under profile, over the simulated sample for scores with estimated weights). Applied to: the four- and five-term panels (2,000 draws, both readings), the Aim 4 exact sweep (4,000 architectures), the Aim 4 realised-score sweep (2,400 architectures × precisions, 12 replicates, the seeds of script 25), the NRI comparison (script 29’s scenarios and effect grid) and the polygenic score benchmark. <strong>Not repeated here</strong> (they were still on the global-intercept truth when this addendum was written; addendum 25 reran them, all but the last): the sampling-variability study, the correlation ensemble, the Shapley attribution, Aim 3b, the donor stratum, the sensitivity cohorts, the five-term robustness analyses, and the all-ancestry variant of the second CLEC7A parameter.</p>
 <p><strong>Which comparison estimates the clinical question.</strong> The question is whether adding genotype to a clinical score that is already calibrated changes decisions for patients stratified by it. That is profile. Current handicaps the clinical score by construction. Marginal removes the handicap but keeps the truth, so current − marginal is the part of the gain that corrects induced miscalibration, and marginal − profile is the effect of the truth being a different simulated population.</p>
 <p><strong>Decision (D27).</strong> The profile-preserving truth, with comparator expit(η_X), is the primary analysis and the source of the manuscript’s headline numbers. The global-intercept truth is a sensitivity analysis. This was decided after the global-intercept results were known; it was not tuned to them (the construction was fixed by the requirement that the clinical score stay calibrated in every profile), and every number below is reported under both. The change is disclosed in the manuscript’s Methods.</p>
 </section>
@@ -5178,11 +5186,188 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="not-done-6" class="level3">
 <h3 class="anchored" data-anchor-id="not-done-6">Not done</h3>
 <ul>
-<li>The analyses listed under D27 as not repeated. The calibration check bounds their error (panel gains 5% to 6% high at 5%, within 2% at 20%) but does not replace them.</li>
+<li>The analyses listed under D27 as not repeated: done in addendum 25, except the all-ancestry variant of the second CLEC7A parameter.</li>
 <li>Other forms of interaction between genotype and clinical profile than a constant logit-scale effect.</li>
 <li>The realised-score frontier under the all-ancestry second parameter.</li>
 </ul>
 <p>Code and outputs: <code>R/calibration_check.R</code>, <code>scripts/31_baseline_calibration_check.R</code> (panels, artefact, Aim 4 exact sweep, PRS), <code>scripts/32_calibration_check_realised.R</code>, <code>scripts/33_calibration_check_nri.R</code>, <code>scripts/34_calibration_check_figures.R</code>, <code>tests/testthat/test-calibration-check.R</code>; <code>output/calibration_check_{layer,artefact,aim4,aim4_sweep,aim4_frontier,prs, realised_sweep,realised_frontier,realised_summary,realised_check,nri,nri_grid,headline}.csv</code>; <code>output/figures/fig_headline_profile.png</code>, <code>aim4_sweep_5pct_profile.png</code>, <code>aim4_sweep_20pct_profile.png</code>.</p>
+<hr>
+</section>
+</section>
+<section id="addendum-25-20-october-2026-the-secondary-analyses-rerun-under-the-profile-preserving-truth" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-25-20-october-2026-the-secondary-analyses-rerun-under-the-profile-preserving-truth">Addendum 25, 20 October 2026: the secondary analyses rerun under the profile-preserving truth</h2>
+<p>Written after addendum 24, with the profile and global results of the panels already known. D27 stands and no decision changes; this removes the exception in addendum 24 (the sampling, ensemble, attribution, Aim 3b, donor and robustness analyses were still on the global-intercept truth). Nothing was tuned: the same seeds, posterior draws, cohorts and scores as the global runs.</p>
+<section id="what-was-done" class="level3">
+<h3 class="anchored" data-anchor-id="what-was-done">What was done</h3>
+<ul>
+<li><strong>A scheme switch</strong> (<code>R/genetic_layer.R</code>, <code>R/aim3b.R</code>). <code>genetic_scheme()</code> reads the environment variable <code>PROSE_SCHEME</code> (<code>"global"</code> by default, or <code>"profile"</code>), so worker processes inherit it; every function that builds a truth or a score takes it as its default. Under <code>"profile"</code> the shift is one per clinical profile (<code>profile_cell_shift()</code>, vectorised Newton steps on cells, which also works on the trimmed stratum cells of Aim 3b), and patient-level simulators apply it by each individual’s profile (<code>sh_at()</code>). Under <code>"global"</code> the code path is the old one.</li>
+<li><strong>What the profile truth holds, by analysis.</strong> Panels, sampling, ensemble, attribution and robustness: within each profile the truth and each score hold the clinical score’s risk. Aim 3b: the same inside each neutropenia stratum, with the stratum’s own effects. Donor stratum: the truth holds the risk <em>including</em> the stratum’s recalibration offset (the baseline score has no allogeneic item and under-predicts there, which is a fact about the stratum, not an artefact of the genetic layer), and the scores hold the baseline’s risk.</li>
+<li><strong>Scripts</strong> 17 (ensemble, attribution, sampling), 18 (ensemble with sampling), 19 (sensitivity cohorts), 20 (donor stratum), 21 (Aim 3b, four and five terms), 24 (five-term attribution) and 26 (five-term robustness) write files ending in <code>_profile</code> when the scheme is set (<code>scheme_suffix()</code>); script 27 draws the Aim 3b and attribution figures from them. Script 17 now uses <code>start_workers()</code> (one BLAS thread per worker). <code>sweep_cell_realised()</code> stops under the profile scheme (use <code>calibration_gains_realised()</code>). Run with <code>Sys.setenv(PROSE_SCHEME = "profile")</code> or <code>withr::with_envvar()</code>. The global files are unchanged and are the sensitivity analysis. The per-draw <code>_profile</code> files are gitignored like the global ones.</li>
+</ul>
+</section>
+<section id="checks-1" class="level3">
+<h3 class="anchored" data-anchor-id="checks-1">Checks</h3>
+<ul>
+<li><strong>The default is unchanged.</strong> The existing tests for the genetic layer (169 expectations), Aim 3b (67), Aim 4, the calibration check, NRI and the PRS benchmark pass without edits. New tests (<code>tests/testthat/test-profile-scheme.R</code>, 38 expectations): the profile truth and both scores hold each profile’s risk, including on trimmed cells, with empty profiles and with an offset; no effect gives the baseline under both schemes; Shapley contributions sum to the gain of the full score under both schemes; <code>multi_score_nb()</code> agrees with the engine under both; a simulated study under the profile scheme averages to the exact gain; the scheme is read from the environment and rejects anything else.</li>
+<li><strong>Two independent implementations agree.</strong> The cell-level code agrees with the matrix implementation of <code>calibration_check.R</code> on the cell risks (tests), and on 40 real posterior draws of the four-term panel, under both schemes, both thresholds, the ceiling and the realised score, the net-benefit gains agree to 1e-17.</li>
+<li><strong>The reruns agree with script 31 where they overlap.</strong> Script 17’s Shapley totals under the profile scheme (+0.00056 and +0.00040 at 5%, pooled-mean reading) are script 31’s panel gains. The global columns in the table below are the committed global files and reproduce the numbers the manuscript carried before this addendum.</li>
+<li><strong>Cost.</strong> The profile scheme costs 0.7 to 1.3 times the global one per call. Runs (15 workers, one BLAS thread each): script 17 2.8 min, 18 1.5, 19 6.4, 20 3.1, 21 2.5 (four terms) and 3.1 (five), 24 4.8, 26 6.3 per setting.</li>
+</ul>
+</section>
+<section id="results-3" class="level3">
+<h3 class="anchored" data-anchor-id="results-3">Results</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>analysis</th>
+<th>quantity</th>
+<th>global</th>
+<th>profile</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sampling variability</td>
+<td>SD of the observed gain at 5%, range over runs</td>
+<td>0.00064 to 0.00131</td>
+<td>0.00064 to 0.00116</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>fixed medians: mean gain at 5% (SD); share above zero</td>
+<td>+0.00039 (0.00064); 72%</td>
+<td>+0.00038 (0.00064); 71%</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>drawn effects: share above zero; share reaching the MCID, at most</td>
+<td>69% to 82%; 1.6%</td>
+<td>67% to 82%; 1.1%</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>effects at the 95th percentile, ceiling: reaching the 5% MCID</td>
+<td>0.95%</td>
+<td>0.45%</td>
+</tr>
+<tr class="odd">
+<td>correlation ensemble</td>
+<td>largest difference in median gain; between-member SD</td>
+<td>0.00016; 0.00007 to 0.00028</td>
+<td>0.00016; 0.00007 to 0.00028</td>
+</tr>
+<tr class="even">
+<td>sensitivity cohorts</td>
+<td>ceiling gain at 5%, pooled mean; most draws reaching the MCID</td>
+<td>+0.00063 to +0.00064; 1.8%</td>
+<td>+0.00060 to +0.00062; 1.3%</td>
+</tr>
+<tr class="odd">
+<td>attribution, four terms</td>
+<td>CD209 / PTX3 / TLR4 / CLEC7A</td>
+<td>51.7 / 22.6 / 19.0 / 6.7%</td>
+<td>51.4 / 22.6 / 19.0 / 7.0%</td>
+</tr>
+<tr class="even">
+<td>attribution, five terms</td>
+<td>CLEC7A (of it A-G) / CD209 / PTX3 / TLR4</td>
+<td>49.7 (45.9) / 27.5 / 12.8 / 10.0%</td>
+<td>50.9 (47.0) / 26.9 / 12.4 / 9.8%</td>
+</tr>
+<tr class="odd">
+<td>robustness</td>
+<td>CLEC7A share, range; largest contributor in</td>
+<td>44.8% to 52.8%; 54% to 69% of draws</td>
+<td>44.8% to 53.3%; 54% to 70%</td>
+</tr>
+<tr class="even">
+<td>Aim 3b, homogeneous</td>
+<td>gain per admission at 5%, neutropenic against not</td>
+<td>+0.00170 against +0.00015</td>
+<td>+0.00160 against +0.00015</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>neutropenic share of the whole-cohort gain, 5% / 20%</td>
+<td>81% / 96% (five terms 83% / 95%)</td>
+<td>80% / 95% (five terms 82% / 95%)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>sensitivity settings, five terms, 5%</td>
+<td>78% to 84%</td>
+<td>77% to 83%</td>
+</tr>
+<tr class="odd">
+<td>Aim 3b, all of the effect in non-neutropenic</td>
+<td>oracle gain at 5%; share of draws reaching the MCID, four terms</td>
+<td>+0.00356; 18%</td>
+<td>+0.00314; 2%</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>the same, five terms</td>
+<td>+0.00443; 42%</td>
+<td>+0.00383; 6%</td>
+</tr>
+<tr class="odd">
+<td>Aim 3b, H_F truth</td>
+<td>common score against oracle at 5%</td>
+<td>+0.00047 against +0.00081</td>
+<td>+0.00041 against +0.00075</td>
+</tr>
+<tr class="even">
+<td>Aim 3b, Brunel’s stratum effects</td>
+<td>common score at 5%, four / five terms</td>
+<td>−0.00016 / −0.00090</td>
+<td>−0.00016 / −0.00086</td>
+</tr>
+<tr class="odd">
+<td>interaction test, five terms</td>
+<td>power: all in neutropenic / ratio 4 / Brunel-sized; false positives</td>
+<td>90% / 62% / ≥ 99.9%; 5.1%</td>
+<td>89% / 60% / ≥ 99.7%; 5.0%</td>
+</tr>
+<tr class="even">
+<td>interaction test, four terms</td>
+<td>power: all in neutropenic / ratio 4 / Brunel-sized</td>
+<td>59% / 34% / 95% to 96%</td>
+<td>58% / 32% / 94% to 96%</td>
+</tr>
+<tr class="odd">
+<td>donor stratum (data)</td>
+<td>change in true cases per 1,000 allo admissions at 5%</td>
+<td>+0.4 to +1.4</td>
+<td>−0.1 to +1.3</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>at 20%; whole-cohort gain at 5%, at most</td>
+<td>+14 to +28; +0.00008</td>
+<td>+14 to +27; +0.00007</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reading-3" class="level3">
+<h3 class="anchored" data-anchor-id="reading-3">Reading</h3>
+<ul>
+<li><strong>No conclusion changes.</strong> The attribution, the neutropenia pattern, the power of the interaction test, the sampling variability and the donor result are within a few per cent of the global-intercept values.</li>
+<li><strong>The one real difference is a scenario, not the conclusion.</strong> With all of the effect in non-neutropenic admissions the oracle score’s gain falls by 12% (four terms) to 14% (five), and the share of draws reaching the 5% MCID falls from 18% to 2% (four terms) and from 42% to 6% (five). The manuscript’s earlier statement that the MCID “came within reach” in that scenario is softened to “came nearest”. Why the global truth flatters that scenario was not examined.</li>
+<li><strong>Donor stratum:</strong> in the predictive reading the median change in true cases at 5% is slightly negative (−0.15 per 1,000) while net benefit is positive: the score trades some true positives for fewer false positives. It is a median over draws; its spread was not examined.</li>
+<li><strong>A typo in the manuscript is corrected.</strong> It said CLEC7A was the largest contributor “in 64% to 69% of draws”; the data (global and profile) give 54% to 69% and 54% to 70%.</li>
+</ul>
+</section>
+<section id="not-done-7" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-7">Not done</h3>
+<p>The all-ancestry variant of the second CLEC7A parameter (script 22) is still on the global-intercept truth, and the manuscript says so. The patient-level engine check of script 16 was not repeated under the profile scheme (a unit test covers it). Why the global truth flatters the “all in non-neutropenic” scenario.</p>
+<p>Code and outputs: <code>R/genetic_layer.R</code>, <code>R/aim3b.R</code>, <code>R/aim4_sweep.R</code>, scripts 17 to 21, 24, 26 and 27, <code>tests/testthat/test-profile-scheme.R</code>; <code>output/</code> <code>{genetic_ensemble,genetic_attribution,genetic_sampling,genetic_ensemble_sampling}_summary_profile.csv</code>, <code>genetic_sensitivity_{layer,attribution,sampling}_{summary,published_4078,published_4127,refit_4127}_profile.csv</code>, <code>genetic_donor_{stratum_summary,baseline_stratum,sampling_summary}_profile.csv</code>, <code>aim3b_{layer,interaction}_summary{,_second_clec7a}_profile.csv</code>, <code>genetic_attribution_second_clec7a_summary_profile.csv</code>, <code>robust5_{aim3b,attribution}_{summary,published_4078,published_4127,refit_4127,ensemble}_profile.csv</code>, <code>output/figures/fig_{aim3b_gain,aim3b_power,attribution}_profile.png</code>.</p>
 
 
 <!-- -->
