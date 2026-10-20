@@ -12,6 +12,8 @@ source("R/baseline.R"); source("R/bs_data.R"); source("R/copula.R"); source("R/d
 source("R/evidence_mapping.R"); source("R/ptx3_evidence.R"); source("R/source_verification.R")
 source("R/genetic_layer.R"); source("R/genetic_helpers.R"); source("R/aim3b.R"); source("R/robustness.R")
 
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25); files then end in _profile
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 all_settings <- c("published_4078", "published_4127", "refit_4127", "ensemble")
 run_these <- if (exists("ROBUST_ONLY")) ROBUST_ONLY else all_settings
@@ -59,13 +61,13 @@ for (s in run_these) {
     ctx <- list(q = qs, lp = sp$lp, grid = setup$grid, eff = setup$effects[[h]], bh = setup$beta_hat, at = at)
     cbind(truth = h, parallel_rows(cl, tasks, function(tk, ctx) { r <- attribution_member_rows(ctx$q[tk$member, ], ctx$lp, ctx$grid, ctx$eff, tk$idx, ctx$bh, ctx$at); r$member <- tk$member; r }, ctx))
   }))
-  write.csv(cbind(setting = s, summarise_aim3b_rows(lay)), sprintf("output/robust5_aim3b_%s.csv", s), row.names = FALSE)
-  write.csv(cbind(setting = s, summarise_attribution_rows(att, terms)), sprintf("output/robust5_attribution_%s.csv", s), row.names = FALSE)
-  a <- read.csv(sprintf("output/robust5_attribution_%s.csv", s))
+  write.csv(cbind(setting = s, summarise_aim3b_rows(lay)), sprintf("output/robust5_aim3b_%s%s.csv", s, sfx), row.names = FALSE)
+  write.csv(cbind(setting = s, summarise_attribution_rows(att, terms)), sprintf("output/robust5_attribution_%s%s.csv", s, sfx), row.names = FALSE)
+  a <- read.csv(sprintf("output/robust5_attribution_%s%s.csv", s, sfx))
   message("\n", s, ": Shapley shares (CLEC7A combined, CD209, PTX3, TLR4) and the share of draws in which CLEC7A is the largest contributor")
   show_df(a[, c("truth", "score", "threshold", "total", "share_CLEC7A_combined", "share_CD209", "share_PTX3", "share_TLR4", "p_clec7a_combined_largest")])
 }
 parallel::stopCluster(cl)
 
-have <- all_settings[file.exists(sprintf("output/robust5_attribution_%s.csv", all_settings))]
-for (n in c("aim3b", "attribution")) write.csv(do.call(rbind, lapply(have, function(s) read.csv(sprintf("output/robust5_%s_%s.csv", n, s)))), sprintf("output/robust5_%s_summary.csv", n), row.names = FALSE)
+have <- all_settings[file.exists(sprintf("output/robust5_attribution_%s%s.csv", all_settings, sfx))]
+for (n in c("aim3b", "attribution")) write.csv(do.call(rbind, lapply(have, function(s) read.csv(sprintf("output/robust5_%s_%s%s.csv", n, s, sfx)))), sprintf("output/robust5_%s_summary%s.csv", n, sfx), row.names = FALSE)

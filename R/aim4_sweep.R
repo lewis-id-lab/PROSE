@@ -49,6 +49,8 @@ sample_for_sigma <- function(sigma, case_fraction, raf) 1 / (sigma^2 * case_frac
 
 # Gain of the realised score in each of R replicates (rows: replicate x threshold)
 sweep_cell_realised <- function(q, lp_profile, n_loci, odds_ratio, raf, sigma, thresholds, R = 12L, N = 2000L, seed = 1L) {
+  # The global-intercept construction only; calibration_gains_realised() (R/calibration_check.R) does all three comparisons
+  if (genetic_scheme() != "global") stop("sweep_cell_realised() builds the global-intercept truth; use calibration_gains_realised()", call. = FALSE)
   set.seed(seed)
   beta <- log(odds_ratio)
   pmf <- dosage_pmf(n_loci, raf)

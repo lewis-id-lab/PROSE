@@ -14,6 +14,8 @@
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R")
 source("R/refit_baseline.R"); source("R/evidence_mapping.R"); source("R/genetic_layer.R"); source("R/genetic_helpers.R")
 
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25); files then end in _profile
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 all_settings <- c("published_4078", "published_4127", "refit_4127")
 run_these <- if (exists("SENS_ONLY")) SENS_ONLY else all_settings
@@ -58,12 +60,12 @@ for (s in run_these) {
   }))
   out$sampling$exact_gain <- exact_fixed$exact_gain[match(paste(out$sampling$analysis, out$sampling$scenario, out$sampling$threshold),
                                                            paste(exact_fixed$analysis, exact_fixed$scenario, exact_fixed$threshold))]
-  for (n in names(out)) write.csv(out[[n]], sprintf("output/genetic_sensitivity_%s_%s.csv", n, s), row.names = FALSE)
+  for (n in names(out)) write.csv(out[[n]], sprintf("output/genetic_sensitivity_%s_%s%s.csv", n, s, sfx), row.names = FALSE)
   message("\n", s, ": exact layer"); show_df(out$layer)
 }
 parallel::stopCluster(cl)
 
-have <- all_settings[file.exists(sprintf("output/genetic_sensitivity_layer_%s.csv", all_settings))]
+have <- all_settings[file.exists(sprintf("output/genetic_sensitivity_layer_%s%s.csv", all_settings, sfx))]
 for (n in c("layer", "attribution", "sampling"))
-  write.csv(do.call(rbind, lapply(have, function(s) read.csv(sprintf("output/genetic_sensitivity_%s_%s.csv", n, s)))),
-            sprintf("output/genetic_sensitivity_%s_summary.csv", n), row.names = FALSE)
+  write.csv(do.call(rbind, lapply(have, function(s) read.csv(sprintf("output/genetic_sensitivity_%s_%s%s.csv", n, s, sfx)))),
+            sprintf("output/genetic_sensitivity_%s_summary%s.csv", n, sfx), row.names = FALSE)

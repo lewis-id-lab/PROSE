@@ -7,6 +7,8 @@
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R"); source("R/refit_baseline.R")
 source("R/evidence_mapping.R"); source("R/genetic_layer.R"); source("R/genetic_helpers.R")
 
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25); it then reads and writes _profile files
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
 lp <- profile_logit(load_refit_params())
@@ -21,9 +23,9 @@ summ <- summarise_attribution(a, setup$terms)
 summ$share_CLEC7A_combined <- summ$share_CLEC7A + summ$share_CLEC7A_AG
 summ$phi_CLEC7A_combined <- summ$phi_CLEC7A + summ$phi_CLEC7A_AG
 
-old <- read.csv("output/genetic_attribution_summary.csv")
+old <- read.csv(paste0("output/genetic_attribution_summary", sfx, ".csv"))
 key <- c("truth", "score", "threshold")
 summ <- merge(summ, old[c(key, "total", paste0("share_", c("PTX3", "CLEC7A", "TLR4", "CD209")))], by = key, suffixes = c("", "_four_terms"))
-write.csv(summ, "output/genetic_attribution_second_clec7a_summary.csv", row.names = FALSE)
+write.csv(summ, paste0("output/genetic_attribution_second_clec7a_summary", sfx, ".csv"), row.names = FALSE)
 message("Shapley shares with the second CLEC7A parameter (four-term shares in brackets via the _four_terms columns of the file):")
 show_df(summ[, c(key, "total", paste0("share_", setup$terms), "share_CLEC7A_combined")])

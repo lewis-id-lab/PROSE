@@ -23,6 +23,9 @@
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R")
 source("R/refit_baseline.R"); source("R/evidence_mapping.R"); source("R/genetic_layer.R"); source("R/genetic_helpers.R")
 
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25): within each profile the
+# truth then holds the risk including the stratum's offset, and the scores hold the baseline risk; files end in _profile
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
 lp <- profile_logit(load_refit_params())
@@ -102,11 +105,13 @@ parallel::stopCluster(cl)
 collect <- function(n) do.call(rbind, lapply(out, `[[`, n))
 
 dir.create("output", showWarnings = FALSE)
-write.csv(evidence, "output/genetic_donor_evidence.csv", row.names = FALSE)
-write.csv(strata_tab, "output/genetic_donor_strata.csv", row.names = FALSE)
-write.csv(collect("summ"), "output/genetic_donor_stratum_summary.csv", row.names = FALSE)
-write.csv(collect("baseline"), "output/genetic_donor_baseline_stratum.csv", row.names = FALSE)
-write.csv(collect("sampling"), "output/genetic_donor_sampling_summary.csv", row.names = FALSE)
+if (sfx == "") {   # the evidence and the strata do not depend on the truth
+  write.csv(evidence, "output/genetic_donor_evidence.csv", row.names = FALSE)
+  write.csv(strata_tab, "output/genetic_donor_strata.csv", row.names = FALSE)
+}
+write.csv(collect("summ"), paste0("output/genetic_donor_stratum_summary", sfx, ".csv"), row.names = FALSE)
+write.csv(collect("baseline"), paste0("output/genetic_donor_baseline_stratum", sfx, ".csv"), row.names = FALSE)
+write.csv(collect("sampling"), paste0("output/genetic_donor_sampling_summary", sfx, ".csv"), row.names = FALSE)
 message("\nDonor evidence:"); show_df(evidence)
 message("\nBaseline in the strata:"); show_df(collect("baseline"))
 message("\nDonor-genotype gain per allo admission and whole-cohort equivalent:"); show_df(collect("summ"))

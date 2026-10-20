@@ -46,13 +46,12 @@ beta_hi <- vapply(draws, function(d) unname(stats::quantile(d$mu, 0.95)), numeri
 effects_file <- read.csv("output/genetic_layer_effects.csv")
 term_names <- names(GENETIC_TERMS)
 
-# Fresh worker processes (forking is unavailable in Positron) that source the model code
-cl <- parallel::makeCluster(cores)
-parallel::clusterCall(cl, function(root) {
-  setwd(root)
-  for (f in c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R")) source(f)
-  invisible(NULL)
-}, getwd())
+# Fresh worker processes (forking is unavailable in Positron) that source the model code, one BLAS thread each. They inherit PROSE_SCHEME:
+# set Sys.setenv(PROSE_SCHEME = "profile") before sourcing this script to run it under the profile-preserving truth (addendum 25); the
+# files it writes then end in _profile (scheme_suffix()). The truth-agnostic cache of the 150 member distributions is shared.
+sfx <- scheme_suffix()
+source("R/genetic_helpers.R")
+cl <- start_workers(cores = cores, files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R"))
 pl <- function(chunks, FUN, ctx) do.call(rbind, parallel::parLapply(cl, chunks, FUN, ctx))
 
 # ---- A. Correlation ensemble ------------------------------------------------------------------------------------------------
@@ -100,7 +99,11 @@ ens_sum <- by_key(ens[ens$scenario != "baseline", ], c("truth", "scenario", "thr
 # How much of the spread comes from the matrices: spread of each member's mean gain across members
 member_gain <- aggregate(delta_nb ~ truth + scenario + threshold + member, data = ens[ens$scenario != "baseline", ], FUN = mean)
 ens_sum$between_member_sd <- by_key(member_gain, c("truth", "scenario", "threshold"), function(d) data.frame(sd = stats::sd(d$delta_nb)))$sd
-emp <- read.csv("output/genetic_layer_summary.csv")
+# The reference for the empirical cohort: script 16's summary under the global truth, the profile rows of script 31 under the profile one
+emp <- if (sfx == "") read.csv("output/genetic_layer_summary.csv") else {
+  l <- read.csv("output/calibration_check_layer.csv"); l <- l[l$comparison == "profile" & l$panel == "four terms", ]
+  data.frame(truth = l$truth, scenario = l$score, threshold = l$threshold, delta_nb = l$gain, p_meets_mcid = l$p_meets_mcid)
+}
 ens_sum$empirical_gain <- emp$delta_nb[match(paste(ens_sum$truth, ens_sum$scenario, ens_sum$threshold), paste(emp$truth, emp$scenario, emp$threshold))]
 ens_sum$empirical_p_meets_mcid <- emp$p_meets_mcid[match(paste(ens_sum$truth, ens_sum$scenario, ens_sum$threshold), paste(emp$truth, emp$scenario, emp$threshold))]
 
@@ -171,12 +174,12 @@ parallel::stopCluster(cl)
 # ---- Write and report -----------------------------------------------------------------------------------------------------------
 
 dir.create("output", showWarnings = FALSE)
-write.csv(ens[ens$scenario != "baseline", c("truth", "draw", "member", "scenario", "threshold", "nb", "delta_nb", "delta_tp", "mcid", "meets_mcid", "auc")], "output/genetic_ensemble_draws.csv", row.names = FALSE)
-write.csv(ens_sum, "output/genetic_ensemble_summary.csv", row.names = FALSE)
-write.csv(attr_all, "output/genetic_attribution_draws.csv", row.names = FALSE)
-write.csv(attr_sum, "output/genetic_attribution_summary.csv", row.names = FALSE)
-write.csv(samp[, c("analysis", "draw", "scenario", "threshold", "tp", "fp", "nb", "delta_nb", "delta_tp", "mcid_sample", "mcid", "events")], "output/genetic_sampling_draws.csv", row.names = FALSE)
-write.csv(samp_sum, "output/genetic_sampling_summary.csv", row.names = FALSE)
+write.csv(ens[ens$scenario != "baseline", c("truth", "draw", "member", "scenario", "threshold", "nb", "delta_nb", "delta_tp", "mcid", "meets_mcid", "auc")], paste0("output/genetic_ensemble_draws", sfx, ".csv"), row.names = FALSE)
+write.csv(ens_sum, paste0("output/genetic_ensemble_summary", sfx, ".csv"), row.names = FALSE)
+write.csv(attr_all, paste0("output/genetic_attribution_draws", sfx, ".csv"), row.names = FALSE)
+write.csv(attr_sum, paste0("output/genetic_attribution_summary", sfx, ".csv"), row.names = FALSE)
+write.csv(samp[, c("analysis", "draw", "scenario", "threshold", "tp", "fp", "nb", "delta_nb", "delta_tp", "mcid_sample", "mcid", "events")], paste0("output/genetic_sampling_draws", sfx, ".csv"), row.names = FALSE)
+write.csv(samp_sum, paste0("output/genetic_sampling_summary", sfx, ".csv"), row.names = FALSE)
 
 show <- function(x) print(cbind(x[sapply(x, is.character)], round(x[sapply(x, is.numeric)], 5)), row.names = FALSE)
 message("\nA. Correlation ensemble (gain over the baseline, median and 90% range; MCID in each member's own distribution):")

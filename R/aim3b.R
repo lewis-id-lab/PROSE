@@ -52,14 +52,15 @@ trim_cells <- function(cells) {
 # True positives, false positives and net benefit of several fixed scores under one true model, in one stratum's cells. The truth and
 # each score carry their own per-copy effects and are recentred to the stratum's baseline event rate (D5); an all-zero score is the baseline.
 #   score_betas: named list of effect vectors (named by term)
-multi_score_nb <- function(cells, beta_true, score_betas, thresholds) {
+multi_score_nb <- function(cells, beta_true, score_betas, thresholds, scheme = genetic_scheme()) {
   w <- cells$w; terms <- colnames(cells$G)
+  clin <- stats::plogis(cells$lp_base)
   lp_t <- cells$lp_base + drop(cells$G %*% beta_true[terms])
-  r_true <- stats::plogis(lp_t + recentre_shift(lp_t, w, cells$prevalence))
+  r_true <- stats::plogis(lp_t + cell_shift(lp_t, w, cells$profile, clin, cells$prevalence, scheme))
   do.call(rbind, lapply(names(score_betas), function(s) {
     b <- score_betas[[s]][terms]
     lp <- cells$lp_base
-    if (any(b != 0)) { lp <- lp + drop(cells$G %*% b); lp <- lp + recentre_shift(lp, w, cells$pred_mean) }
+    if (any(b != 0)) { lp <- lp + drop(cells$G %*% b); lp <- lp + cell_shift(lp, w, cells$profile, clin, cells$pred_mean, scheme) }
     x <- tp_fp(w, r_true, stats::plogis(lp), thresholds)
     data.frame(score = s, threshold = thresholds, tp = x[, "tp"], fp = x[, "fp"], nb = nb_from(x, thresholds), stringsAsFactors = FALSE)
   }))
@@ -115,9 +116,10 @@ simulate_interaction_study <- function(cg, neut, lp_profile, p, shifts, beta_tru
   g <- if (is.null(sampler)) matrix(vapply(p, function(pj) stats::rbinom(length(idx), 2, pj), numeric(length(idx))), nrow = length(idx), dimnames = list(NULL, names(p))) else sampler(length(idx))
   G <- g[pat, , drop = FALSE]
   n <- neut[rows]
-  lp_b <- lp_profile[cg$prof[rows]]
+  prof <- cg$prof[rows]
+  lp_b <- lp_profile[prof]
   gl <- ifelse(n, drop(G %*% beta_true_N[colnames(g)]), drop(G %*% beta_true_NN[colnames(g)]))
-  y <- stats::rbinom(length(rows), 1, stats::plogis(lp_b + gl + ifelse(n, shifts$N, shifts$NN)))
+  y <- stats::rbinom(length(rows), 1, stats::plogis(lp_b + gl + ifelse(n, sh_at(shifts$N, prof), sh_at(shifts$NN, prof))))
   S <- drop(G %*% beta_hat[colnames(g)])
   # The neutropenia main effect is in the model: the truth is recentred within each stratum, so the strata differ in intercept
   nn <- as.numeric(n); SN <- S * nn

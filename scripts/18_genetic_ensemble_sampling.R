@@ -12,6 +12,8 @@
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R")
 source("R/refit_baseline.R"); source("R/evidence_mapping.R"); source("R/genetic_layer.R"); source("R/genetic_helpers.R")
 
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25); files then end in _profile
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
 lp_profile <- profile_logit(load_refit_params())
@@ -59,7 +61,7 @@ samp <- do.call(rbind, lapply(names(runs), function(r) {
 parallel::stopCluster(cl)
 
 summ <- by_key(samp, c("analysis", "scenario", "threshold"), summarise_sampling)
-ref <- read.csv("output/genetic_sampling_summary.csv")
+ref <- read.csv(paste0("output/genetic_sampling_summary", sfx, ".csv"))
 rk <- function(d) paste(d$analysis, d$scenario, d$threshold)
 ref_map <- c(fixed_medians = "fixed_medians", fixed_upper = "fixed_upper", draws_mean = "draws_mean", draws_predictive = "draws_predictive",
              empirical_iid_fixed_medians = "fixed_medians", empirical_iid_fixed_upper = "fixed_upper")
@@ -68,7 +70,7 @@ summ$real_rows_mean_gain <- ref$mean_gain[j]; summ$real_rows_sd_gain <- ref$sd_g
 
 dir.create("output", showWarnings = FALSE)
 write.csv(samp[, c("analysis", "draw", "member", "scenario", "threshold", "tp", "fp", "nb", "delta_nb", "delta_tp", "mcid_sample", "mcid", "events", "admissions")],
-          "output/genetic_ensemble_sampling_draws.csv", row.names = FALSE)
-write.csv(summ, "output/genetic_ensemble_sampling_summary.csv", row.names = FALSE)
+          paste0("output/genetic_ensemble_sampling_draws", sfx, ".csv"), row.names = FALSE)
+write.csv(summ, paste0("output/genetic_ensemble_sampling_summary", sfx, ".csv"), row.names = FALSE)
 message("Sampling variability with the clinical mix drawn from a copula member (observed gain of fixed scores):")
 show_df(summ)

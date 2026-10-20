@@ -18,7 +18,9 @@ strata <- neutropenia_strata(q, lp)
 # Set AIM3B_SECOND_CLEC7A <- TRUE before sourcing to run the analysis with the second CLEC7A parameter (addendum 17): five terms, joint CLEC7A genotypes,
 # outputs with the suffix _second_clec7a.
 second <- exists("AIM3B_SECOND_CLEC7A") && isTRUE(AIM3B_SECOND_CLEC7A)
-suffix <- if (second) "_second_clec7a" else ""
+# Set Sys.setenv(PROSE_SCHEME = "profile") before sourcing to run under the profile-preserving truth (addendum 25); files then end in _profile
+sfx <- scheme_suffix()
+suffix <- paste0(if (second) "_second_clec7a" else "", sfx)
 p <- genetic_term_frequencies(); grid <- dosage_grid(p); terms <- names(GENETIC_TERMS)
 if (second) { setup <- clec7a_second_setup(n_draw = 1000L); grid <- setup$grid; terms <- setup$terms }
 cells <- lapply(list(N = strata$N, NN = strata$NN), function(s) trim_cells(genetic_cells(s$q, lp, grid)))
@@ -112,7 +114,7 @@ inter <- do.call(rbind, lapply(names(levels_tab), function(lv) do.call(rbind, la
 parallel::stopCluster(cl)
 
 dir.create("output", showWarnings = FALSE)
-if (!second) {
+if (!second && sfx == "") {   # the strata and Brunel's effects do not depend on the truth
   write.csv(strata_tab, "output/aim3b_strata.csv", row.names = FALSE)
   write.csv(brunel, "output/aim3b_brunel_modification.csv", row.names = FALSE)
 }

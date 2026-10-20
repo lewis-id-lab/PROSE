@@ -27,4 +27,9 @@ output/genetic_attribution_draws.csv
 output/genetic_ensemble_draws.csv
 output/genetic_sampling_draws.csv
 output/genetic_ensemble_sampling_draws.csv
+output/genetic_layer_draws_profile.csv
+output/genetic_attribution_draws_profile.csv
+output/genetic_ensemble_draws_profile.csv
+output/genetic_sampling_draws_profile.csv
+output/genetic_ensemble_sampling_draws_profile.csv
 .Rproj.user

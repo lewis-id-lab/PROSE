@@ -11,9 +11,10 @@ link-citations: true
 ## Working draft
 
 This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 20 October 2026, after
-the corrections recorded in addenda 16 to 22 and 24 of the [decision record](decisions.qmd). Addendum 24 made the
-profile-preserving construction of the genetic truth primary; the sampling, ensemble, attribution, effect-modification, donor and
-robustness analyses were not repeated under it (see Limitations). Addendum 23, the polygenic score benchmark, is written up in
+the corrections recorded in addenda 16 to 22 and 24 to 25 of the [decision record](decisions.qmd). Addendum 24 made the
+profile-preserving construction of the genetic truth primary, and addendum 25 reran the sampling, ensemble, attribution,
+effect-modification, donor and robustness analyses under it; only the all-ancestry variant of the second CLEC7A parameter is still
+on the earlier construction (see Limitations). Addendum 23, the polygenic score benchmark, is written up in
 the decision record and is not part of this draft. The evidence is still provisional:
 
 - The record of the human round-2 verification is not yet in the repository.
@@ -118,7 +119,8 @@ A third change was made after the genetic results were known. The lock specified
 simulated truth, so that part of a genetic score's gain could be the correction of that miscalibration. Addendum 24 (D27) made
 a profile-preserving truth primary and kept the global-intercept truth as a sensitivity analysis. The change lowered the primary
 net-benefit gains slightly (by 5% to 6% at the 5% threshold) and did not change any conclusion, but it was not blind to the
-earlier results.
+earlier results. The sampling, ensemble, attribution, effect-modification, donor and robustness analyses were then rerun under
+it (addendum 25), with the same seeds and the same posterior draws.
 
 | ADEMP element | This study |
 |---|---|
@@ -284,6 +286,8 @@ quantities:
 
 ### Secondary and sensitivity analyses
 
+All of these were run under the profile-preserving truth. The global-intercept versions are kept as sensitivity analyses (addendum 25).
+
 - **Sampling variability.** We simulated 2,000 studies of the cohort's size per scenario. Each study resampled patients with
   their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.
 - **Robustness.** The layer was repeated in four further settings, each with its own MCID:
@@ -305,7 +309,9 @@ quantities:
   - **Interaction test:** in 1,000 simulated studies per scenario, a logistic model with the baseline logit as an offset
     estimated the interaction between the genetic score and neutropenia.
 - **Donor genotype.** In the allogeneic transplant stratum (272 admissions, 43 events, from an admission-level flag), donor
-  effects from the donor-genotype studies were tested against the stratum's own MCID.
+  effects from the donor-genotype studies were tested against the stratum's own MCID. The baseline score has no allogeneic item
+  and under-predicts in the stratum, so the truth holds, within each profile, the risk that includes the stratum's
+  recalibration offset, and the scores hold the baseline's risk.
 - **Architecture sweep.** The sweep covered k independent loci with the same risk-allele frequency and the same per-allele
   odds ratio:
   - k from 1 to 20;
@@ -460,48 +466,48 @@ under the predictive reading) and the realised score in 47%. With the all-ancest
 
 ### Sampling variability and robustness
 
-The next four sections (sampling and robustness, attribution, effect modification, donor genotype) use the global-intercept
-truth and were not repeated under the profile-preserving one. The comparisons above bound the consequence: the panels' gains at
-5% were 5% to 6% lower under the profile-preserving truth and nearly unchanged at 20%, so the figures here are slightly
-optimistic at 5%.
+The next four sections (sampling and robustness, attribution, effect modification, donor genotype) use the profile-preserving
+truth. Rerunning them under the global-intercept truth gave the same conclusions. Most gains and shares differed by a few per
+cent. The largest difference was in the scenario that puts the whole effect in non-neutropenic admissions, where the oracle
+score's gain and its chance of reaching the MCID were lower under the profile-preserving truth (addendum 25).
 
 A study of the cohort's size would observe the gain with a standard deviation as large as the expected gain or larger: 0.00064
-to 0.00131 at 5%. With the effects fixed at the pooled medians, the observed gain at 5% averaged +0.00039 (SD 0.00064). It was
-above zero in 72% of studies and never reached the MCID. With the effects drawn from the posteriors, the observed gain was
-positive in 69% to 82% of studies and reached the MCID in at most 1.6%. Even with every effect at the 95th percentile of its
-posterior, the ceiling score's observed gain reached the 5% MCID in 1.0% of studies (78% at 20%).
+to 0.00116 at 5%. With the effects fixed at the pooled medians, the observed gain at 5% averaged +0.00038 (SD 0.00064). It was
+above zero in 71% of studies and never reached the MCID. With the effects drawn from the posteriors, the observed gain was
+positive in 67% to 82% of studies and reached the MCID in at most 1.1%. Even with every effect at the 95th percentile of its
+posterior, the ceiling score's observed gain reached the 5% MCID in 0.5% of studies (78% at 20%).
 
 The clinical correlation structure moved the median gain by at most 0.00016 (between-member SD 0.00007 to 0.00028). The
-published-equation and 4,127-row cohorts gave gains at 5% of +0.00059 to +0.00064 (ceiling, pooled mean). In those settings at
-most 1.8% of draws reached that setting's MCID. The settings differed mainly at 20%, where the published equation sets a lower
+published-equation and 4,127-row cohorts gave gains at 5% of +0.00060 to +0.00062 (ceiling, pooled mean). In those settings at
+most 1.3% of draws reached that setting's MCID. The settings differed mainly at 20%, where the published equation sets a lower
 bar (+0.00113).
 
 ### Which terms carry the gain
 
-In the four-term panel, CD209 supplied 51.7% of the Shapley gain at 5% (ceiling, pooled mean). PTX3 supplied 22.6%, TLR4
-19.0% and CLEC7A 6.7% (@fig-attribution). CD209 has the largest pooled effect but rests on three studies. With the second
-CLEC7A parameter the ranking changed. CLEC7A supplied 49.7%, almost all of it through the common A-G haplotype (45.9%), and
-CD209 fell to 27.5%, PTX3 to 12.8% and TLR4 to 10.0%. CLEC7A's share stayed between 44.8% and 52.8% in every combination of
-cohort, correlation structure, reading, score and threshold. It was the largest single contributor in 64% to 69% of draws.
+In the four-term panel, CD209 supplied 51.4% of the Shapley gain at 5% (ceiling, pooled mean). PTX3 supplied 22.6%, TLR4
+19.0% and CLEC7A 7.0% (@fig-attribution). CD209 has the largest pooled effect but rests on three studies. With the second
+CLEC7A parameter the ranking changed. CLEC7A supplied 50.9%, almost all of it through the common A-G haplotype (47.0%), and
+CD209 fell to 26.9%, PTX3 to 12.4% and TLR4 to 9.8%. CLEC7A's share stayed between 44.8% and 53.3% in every combination of
+cohort, correlation structure, reading, score and threshold. It was the largest single contributor in 54% to 70% of draws.
 
-![Shapley shares of the net-benefit gain at the 5% threshold, four- and five-term panels, with pooled estimates or true effects in the score (pooled-mean reading).](output/figures/fig_attribution.png){#fig-attribution}
+![Shapley shares of the net-benefit gain at the 5% threshold under the profile-preserving truth, four- and five-term panels, with pooled estimates or true effects in the score (pooled-mean reading).](output/figures/fig_attribution_profile.png){#fig-attribution}
 
 ### Effect modification by neutropenia
 
 Neutropenic admissions were 28% of the cohort (1,157), with an event rate of 9.2% and 106 of the 133 events (80%). With
-homogeneous effects, the gain per admission was 11 times larger in neutropenic admissions (+0.00170 against +0.00015 at 5%).
-That stratum supplied 81% of the whole-cohort gain at 5% and 96% at 20%. With five terms it supplied 83% and 95%, and 78% to
-84% at 5% across every sensitivity setting.
+homogeneous effects, the gain per admission was 11 times larger in neutropenic admissions (+0.00160 against +0.00015 at 5%).
+That stratum supplied 80% of the whole-cohort gain at 5% and 95% at 20%. With five terms it supplied 82% and 95%, and 77% to
+83% at 5% across every sensitivity setting.
 
 The only stratified evidence [@brunel2018] points against H_F. Mapped to the per-copy PTX3 h2 scale, its effect was +1.17 in
 non-neutropenic and −0.13 in neutropenic courses for rs2305619 (difference −1.30, SE 0.72, P = 0.07). For rs3816527 the
 difference was −1.99 (SE 1.01, P = 0.049). These estimates come from 212 courses and 26 events, with neutropenia defined at
 presentation.
 
-Across scenarios (@fig-aim3b), the 5% MCID came within reach only when the whole effect was placed in non-neutropenic
-admissions. There the oracle score gained +0.00356, reaching the MCID in 18% of draws. With five terms it gained +0.00443 and
-reached the MCID in 42% of draws. The common score with pooled estimates lost little under an H_F truth (+0.00047 against an
-oracle +0.00081 at 5%). It was harmful if Brunel's stratum effects held (−0.00016 with four terms, −0.00090 with five). A score built on H_F was the most harmful
+Across scenarios (@fig-aim3b), the 5% MCID came nearest only when the whole effect was placed in non-neutropenic
+admissions. There the oracle score gained +0.00314, reaching the MCID in 2% of draws. With five terms it gained +0.00383 and
+reached the MCID in 6% of draws. The common score with pooled estimates lost little under an H_F truth (+0.00041 against an
+oracle +0.00075 at 5%). It was harmful if Brunel's stratum effects held (−0.00016 with four terms, −0.00086 with five). A score built on H_F was the most harmful
 when the truth ran the other way.
 
 In simulated studies of the cohort's size, the interaction test detected the effect modification more often than we had
@@ -509,21 +515,22 @@ predicted. With five terms and pooled-median effects, it reached P < 0.05 in the
 
 | scenario | power |
 |---|---|
-| all of the effect in neutropenic admissions | 90% |
-| ratio of 4 | 62% |
-| Brunel-sized modifications | ≥ 99.9% |
+| all of the effect in neutropenic admissions | 89% |
+| ratio of 4 | 60% |
+| Brunel-sized modifications | ≥ 99.7% |
 
-The false-positive rate was 5.1%. The corresponding four-term figures were 59%, 34% and 95% to 96%. Of the five predictions
+The false-positive rate was 5.0%. The corresponding four-term figures were 58%, 32% and 94% to 96%. Of the five predictions
 recorded before the run, two held, one mostly held, one was not borne out, and one was wrong: we had predicted that the test
 would be underpowered.
 
-![Whole-cohort net-benefit gain under six effect-modification scenarios, for four scores, at 5% and 20%, four- and five-term panels. Dashed line: MCID. Points: median; bars: 90% range over draws of the true effects.](output/figures/fig_aim3b_gain.png){#fig-aim3b}
+![Whole-cohort net-benefit gain under six effect-modification scenarios, for four scores, at 5% and 20%, four- and five-term panels, under the profile-preserving truth. Dashed line: MCID. Points: median; bars: 90% range over draws of the true effects.](output/figures/fig_aim3b_gain_profile.png){#fig-aim3b}
 
 ### Donor genotype in allogeneic transplant recipients
 
 The allogeneic stratum held 272 admissions and 43 events (32% of events). The baseline already flagged 77% of these admissions
-at 5%. Donor genotype added 0.4 to 1.4 extra true cases per 1,000 transplant admissions at 5%, against about 30 needed for the
-stratum's MCID, and 14 to 28 at 20%, against about 12 needed. Whole-cohort, the gain at 5% was at most +0.0001. The donor
+at 5%. Donor genotype changed the number of true cases by −0.1 to +1.3 per 1,000 transplant admissions at 5% (a net loss of true
+cases in one reading, with a gain in net benefit), against about 30 needed for the stratum's MCID, and added 14 to 27 at 20%,
+against about 12 needed. Whole-cohort, the gain at 5% was at most +0.0001. The donor
 evidence is one study each for PTX3 and CLEC7A, two for TLR4 and none for CD209. A smoothed version of the stratum's profile
 distribution gave the same conclusions.
 
@@ -710,7 +717,7 @@ with a different definition of neutropenia, so they do not settle the question.
 
 The design analysis shows what a genotyped cohort of this size could do, provided genotype is measured and the weights are
 right. With the five-term score, it would detect a modification of the size the inflammatory-levelling argument implies in 60% to
-90% of studies, and a modification of Brunel's size almost always. Of the follow-up studies these results suggest, this one would be the most
+89% of studies, and a modification of Brunel's size almost always. Of the follow-up studies these results suggest, this one would be the most
 informative. It would test the biology directly. It would also show whether a single pooled score is safe to use: under
 Brunel's pattern, such a score would do harm.
 
@@ -755,15 +762,16 @@ shrunk, and it ignores the winner's curse. Real-world realised gains would there
 **Other simulation assumptions could cut either way.** Genotype is assumed independent across genes and independent of the
 clinical profile. The analysis considers one threshold decision per admission. Only candidate genes are modelled.
 
-**The construction of the genetic truth, and the analyses that did not use the primary one.** The profile-preserving truth
-adds the same logit-scale effect in every clinical profile and compensates with an intercept per profile. Other forms of
-interaction between genotype and clinical risk were not examined. The primary truth was adopted after the global-intercept
-results were known (addendum 24), though it was not tuned to them. The sampling-variability, correlation-ensemble, attribution,
-effect-modification, donor-stratum and robustness analyses were run under the global-intercept truth and not repeated. In the
-analyses that were repeated (the panels, the exact and realised-score architecture sweeps and the NRI), that truth overstated
-gains at 5% by 5% to 6% in the panels and let 241 of 4,000 architectures reach the MCID that did not under the
-profile-preserving truth, and it changed little at 20%. Those secondary figures are therefore probably slightly optimistic at
-5%.
+**The construction of the genetic truth.** The profile-preserving truth adds the same logit-scale effect in every clinical
+profile and compensates with an intercept per profile. Other forms of interaction between genotype and clinical risk were not
+examined. The primary truth was adopted after the global-intercept results were known (addendum 24), though it was not tuned to
+them. Every analysis in this paper, including the sampling-variability, correlation-ensemble, attribution, effect-modification,
+donor-stratum and robustness analyses, was run under it, and the first version's global intercept was kept as a sensitivity
+analysis (addenda 24 and 25). Compared with that sensitivity analysis, the global intercept overstated gains at 5% by 5% to 6%
+in the panels, let 241 of 4,000 architectures reach the MCID that did not under the profile-preserving truth, and made the
+scenario with all of the effect in non-neutropenic admissions look more favourable (the oracle score reached the 5% MCID in 18%
+of draws against 2%). It changed little at 20% and did not change the neutropenia pattern, the attribution or the donor result.
+The one analysis still on the first construction is the all-ancestry variant of the second CLEC7A parameter.
 
 **The second CLEC7A parameter is the least mature part of the evidence.** It comes from three studies. The opposite direction
 in East Asian studies fits a tag SNP whose linkage to a causal variant differs between ancestries, but the causal variant has

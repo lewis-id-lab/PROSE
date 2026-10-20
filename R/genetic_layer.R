@@ -70,7 +70,7 @@ genetic_cells <- function(q, lp_profile, grid, offset = 0) {
   np <- length(q); ng <- nrow(grid$G)
   prof <- rep(seq_len(np), times = ng); geno <- rep(seq_len(ng), each = np)
   list(w = as.numeric(outer(q, grid$prob)), lp_base = lp_profile[prof], G = grid$G[geno, , drop = FALSE],
-       profile = prof, offset = offset, prevalence = sum(q * stats::plogis(lp_profile + offset)),
+       profile = prof, np = np, offset = offset, prevalence = sum(q * stats::plogis(lp_profile + offset)),
        pred_mean = sum(q * stats::plogis(lp_profile)))
 }
 
@@ -80,28 +80,80 @@ recentre_shift <- function(lp, w, target) {
   stats::uniroot(function(a) sum(w * stats::plogis(lp + a)) - target, c(-8, 8), tol = 1e-12, extendInt = "yes")$root
 }
 
-# Cell-level logits of the true risk, of the ceiling score (true effects, no allo offset) and of the realised score, each recentred
-# (the truth to the true prevalence, the scores to the baseline score's mean risk, D5), and the shifts used.
-genetic_scores <- function(cells, beta_true, beta_score) {
+# ---- Which truth: one global intercept (D5) or an intercept per clinical profile (D27, addendum 24) ------------------------------
+#
+# "global": one shift holds the overall prevalence (D5). Within a clinical profile the true risk averaged over genotype is then not the
+# clinical score's risk, so the clinical score is miscalibrated under the simulated truth.
+# "profile": a shift per clinical profile holds, within every profile, the risk averaged over genotype at the clinical score's risk
+# (at the risk including the true-risk offset, for the truth in a stratum with an offset), so the clinical score is exactly calibrated.
+# The scheme is read from the environment variable PROSE_SCHEME (default "global") so that worker processes inherit it, and every
+# function that builds a truth or a score takes it as its default. Scripts append scheme_suffix() to the files they write.
+genetic_scheme <- function() match.arg(Sys.getenv("PROSE_SCHEME", "global"), c("global", "profile"))
+scheme_suffix <- function() if (genetic_scheme() == "profile") "_profile" else ""
+
+# Per-profile shifts on cells: for each profile (a group of cells with weights proportional to the genotype probabilities), the shift a_X
+# with sum_g w_g expit(lp_g + a_X) / sum_g w_g = target_X, by vectorised Newton steps. `target` is per cell and constant within a profile.
+# Profiles with no weight get no shift. Works on trimmed cells (profiles outside a stratum removed).
+profile_cell_shift <- function(lp, w, profile, target, tol = 1e-12, max_iter = 200L) {
+  gi <- match(profile, sort(unique(profile)))
+  wsum <- as.numeric(rowsum(w, gi))
+  ok <- wsum > 0
+  den <- pmax(wsum, 1e-300)
+  tgt <- target[match(seq_along(wsum), gi)]
+  a <- stats::qlogis(tgt) - as.numeric(rowsum(w * lp, gi)) / den
+  a[!ok] <- 0
+  for (it in seq_len(max_iter)) {
+    r <- stats::plogis(lp + a[gi])
+    f <- as.numeric(rowsum(w * r, gi)) / den - tgt
+    d <- pmax(as.numeric(rowsum(w * r * (1 - r), gi)) / den, 1e-300)
+    step <- pmax(pmin(f / d, 2), -2)
+    step[!ok] <- 0
+    a <- a - step
+    if (max(abs(step)) < tol) break
+  }
+  a[gi]
+}
+
+# The shift(s) that hold mean risk: one scalar under "global" (the weighted mean risk at `global_target`), one per cell under "profile"
+# (the weighted mean risk within each profile at `target_cell`)
+cell_shift <- function(lp, w, profile, target_cell, global_target, scheme = genetic_scheme()) {
+  if (scheme == "global") recentre_shift(lp, w, global_target) else profile_cell_shift(lp, w, profile, target_cell)
+}
+
+# A shift as returned to patient-level simulators: a scalar under "global", a vector indexed by profile under "profile"
+shift_by_profile <- function(a, cells) {
+  if (length(a) == 1L) return(a)
+  v <- numeric(if (is.null(cells$np)) max(cells$profile) else cells$np)
+  v[cells$profile] <- a
+  v
+}
+# The shift of each individual, given the profile index of each
+sh_at <- function(a, prof) if (length(a) == 1L) a else a[prof]
+
+# Cell-level logits of the true risk, of the ceiling score (true effects, no allo offset) and of the realised score, each shifted
+# (under "global" the truth to the true prevalence and the scores to the baseline score's mean risk, D5; under "profile" within each
+# clinical profile to the risk it has in the truth, or in the baseline score), and the shifts used.
+genetic_scores <- function(cells, beta_true, beta_score, scheme = genetic_scheme()) {
   w <- cells$w
   off <- if (is.null(cells$offset)) 0 else cells$offset
   pm <- if (is.null(cells$pred_mean)) cells$prevalence else cells$pred_mean
+  clin <- stats::plogis(cells$lp_base)
   gl_true <- drop(cells$G %*% beta_true[colnames(cells$G)])
   lp_true <- cells$lp_base + off + gl_true
-  a_true <- recentre_shift(lp_true, w, cells$prevalence)
+  a_true <- cell_shift(lp_true, w, cells$profile, stats::plogis(cells$lp_base + off), cells$prevalence, scheme)
   lp_ceil <- cells$lp_base + gl_true
-  a_ceil <- recentre_shift(lp_ceil, w, pm)
+  a_ceil <- cell_shift(lp_ceil, w, cells$profile, clin, pm, scheme)
   lp_real <- cells$lp_base + drop(cells$G %*% beta_score[colnames(cells$G)])
-  a_real <- recentre_shift(lp_real, w, pm)
+  a_real <- cell_shift(lp_real, w, cells$profile, clin, pm, scheme)
   list(lp_true = lp_true + a_true, lp_ceiling = lp_ceil + a_ceil, lp_real = lp_real + a_real,
-       a_true = a_true, a_ceil = a_ceil, a_real = a_real)
+       a_true = shift_by_profile(a_true, cells), a_ceil = shift_by_profile(a_ceil, cells), a_real = shift_by_profile(a_real, cells))
 }
 
 # Net benefit, true positives, false positives, flagged share and expected aROC of the three scores under one set of true effects.
 #   beta_true   true per-copy effects (named by term); beta_score the effects carried by the "realised" score
-genetic_nb <- function(cells, beta_true, beta_score, thresholds) {
+genetic_nb <- function(cells, beta_true, beta_score, thresholds, scheme = genetic_scheme()) {
   w <- cells$w
-  s <- genetic_scores(cells, beta_true, beta_score)
+  s <- genetic_scores(cells, beta_true, beta_score, scheme)
   r_true <- stats::plogis(s$lp_true)
   scores <- list(baseline = cells$lp_base, ceiling = s$lp_ceiling, realised = s$lp_real)
   do.call(rbind, lapply(names(scores), function(sc) {
@@ -154,8 +206,8 @@ simulate_nb <- function(cohort, lp_profile, p, beta_true, prevalence, thresholds
   grid <- dosage_grid(p)
   q <- tabulate(profile_index(cohort$X), length(lp_profile)) / nrow(cohort$X)
   cells <- genetic_cells(q, lp_profile, grid)
-  lp_cell <- cells$lp_base + drop(cells$G %*% beta_true[colnames(cells$G)])
-  lp_t <- lp_t + recentre_shift(lp_cell, cells$w, cells$prevalence)
+  a_true <- genetic_scores(cells, beta_true, beta_true)$a_true
+  lp_t <- lp_t + sh_at(a_true, profile_index(cohort$X))
   set.seed(seed + 1L)
   y <- stats::rbinom(length(lp_t), 1, stats::plogis(lp_t))
   nb <- function(score) vapply(thresholds, function(t) { f <- stats::plogis(score) >= t
@@ -177,17 +229,18 @@ nb_from <- function(x, thresholds) x[, "tp"] - x[, "fp"] * thresholds / (1 - thr
 # threshold on the sum), so this is a fair division of the total rather than a separable effect. `beta_effects` is what the score
 # carries: the true effects for the ceiling, the pooled estimates for the realised score.
 # Also returns each term alone and the loss from leaving it out of the full score.
-shapley_gain <- function(cells, beta_true, beta_effects, thresholds) {
+shapley_gain <- function(cells, beta_true, beta_effects, thresholds, scheme = genetic_scheme()) {
   terms <- colnames(cells$G); k <- length(terms); w <- cells$w
   off <- if (is.null(cells$offset)) 0 else cells$offset
   pm <- if (is.null(cells$pred_mean)) cells$prevalence else cells$pred_mean
+  clin <- stats::plogis(cells$lp_base)
   lp_t <- cells$lp_base + off + drop(cells$G %*% beta_true[terms])
-  r_true <- stats::plogis(lp_t + recentre_shift(lp_t, w, cells$prevalence))
+  r_true <- stats::plogis(lp_t + cell_shift(lp_t, w, cells$profile, stats::plogis(cells$lp_base + off), cells$prevalence, scheme))
   gl <- sweep(cells$G, 2, beta_effects[terms], "*")
   subsets <- as.matrix(expand.grid(rep(list(0:1), k), KEEP.OUT.ATTRS = FALSE))
   v <- vapply(seq_len(nrow(subsets)), function(i) {
     lp <- cells$lp_base
-    if (any(subsets[i, ] == 1)) { lp <- lp + drop(gl %*% subsets[i, ]); lp <- lp + recentre_shift(lp, w, pm) }
+    if (any(subsets[i, ] == 1)) { lp <- lp + drop(gl %*% subsets[i, ]); lp <- lp + cell_shift(lp, w, cells$profile, clin, pm, scheme) }
     nb_from(tp_fp(w, r_true, stats::plogis(lp), thresholds), thresholds)
   }, numeric(length(thresholds)))
   v <- matrix(v, nrow = length(thresholds)); v <- v - v[, 1]                 # gain over the empty set
@@ -258,8 +311,9 @@ simulate_study <- function(cg, lp_profile, p, shifts, beta_true, beta_score, thr
   g <- matrix(vapply(p, function(pj) stats::rbinom(length(idx), 2, pj), numeric(length(idx))), nrow = length(idx), dimnames = list(NULL, names(p)))
   G <- g[pat, , drop = FALSE]
   lp_b <- lp_profile[cg$prof[rows]]
-  lp_t <- lp_b + drop(G %*% beta_true[names(p)]) + shifts$a_true
-  lp_r <- lp_b + drop(G %*% beta_score[names(p)]) + shifts$a_real
+  prof <- cg$prof[rows]
+  lp_t <- lp_b + drop(G %*% beta_true[names(p)]) + sh_at(shifts$a_true, prof)
+  lp_r <- lp_b + drop(G %*% beta_score[names(p)]) + sh_at(shifts$a_real, prof)
   y <- stats::rbinom(length(lp_t), 1, stats::plogis(lp_t))
   n <- length(y)
   one <- function(lp, name) {
@@ -293,9 +347,9 @@ simulate_study_q <- function(counts, q, lp_profile, p, shifts, beta_true, beta_s
   g <- matrix(vapply(p, function(pj) stats::rbinom(length(cnt), 2, pj), numeric(length(cnt))), nrow = length(cnt), dimnames = list(NULL, names(p)))
   G <- g[pat, , drop = FALSE]
   lp_b <- lp_profile[prof]
-  lp_t <- lp_b + offset + drop(G %*% beta_true[names(p)]) + shifts$a_true
-  lp_c <- lp_b + drop(G %*% beta_true[names(p)]) + shifts$a_ceil
-  lp_r <- lp_b + drop(G %*% beta_score[names(p)]) + shifts$a_real
+  lp_t <- lp_b + offset + drop(G %*% beta_true[names(p)]) + sh_at(shifts$a_true, prof)
+  lp_c <- lp_b + drop(G %*% beta_true[names(p)]) + sh_at(shifts$a_ceil, prof)
+  lp_r <- lp_b + drop(G %*% beta_score[names(p)]) + sh_at(shifts$a_real, prof)
   y <- stats::rbinom(n, 1, stats::plogis(lp_t))
   one <- function(lp, name) {
     r <- stats::plogis(lp)
