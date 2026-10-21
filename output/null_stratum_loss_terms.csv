@@ -1,0 +1,9 @@
+"panel","score","gain","sd_of_genetic_shift"
+"four terms","all four terms",-1.06803965009161,0.374682559445904
+"five terms","all five terms",-3.61148209965784,0.570458327879003
+"five terms","without the A-G term",-1.06803965009161,NA
+"five terms","PTX3 alone",-0.359937354916948,NA
+"five terms","CLEC7A alone",0,NA
+"five terms","CLEC7A_AG alone",-0.445903094148312,NA
+"five terms","TLR4 alone",-0.430963441864787,NA
+"five terms","CD209 alone",-0.857684249259583,NA

@@ -32,7 +32,7 @@ clinically important difference fixed before any genetic result exists.
 | 2 Screening and extraction | round 1 complete, including targeted recovery and supplementary files. Human round-2 checks are reported complete, but the record is not yet in the repository. Direction check of the text-parsed rows closed: 43 rows corrected in all, each with its evidence |
 | 3 Parameter derivation | done provisionally for PTX3, CLEC7A (two parameters), TLR4 and CD209; IL10 and IFNG dropped (D14) |
 | 4 Baseline | done: refit on the base cohort of 4,078 unique admissions in 1,945 patients (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20%; the published equation, the 4,127 rows and the copula are sensitivity analyses |
-| 5 Genetic layer simulation | first results in (addenda 11 to 22 and 24 to 28): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison |
+| 5 Genetic layer simulation | first results in (addenda 11 to 22 and 24 to 34): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison |
 | 6 Sensitivity and architecture sweep | Aim 4 sweep done (exact, and with estimated weights) and sensitivity analyses done. Still to do: the pathogen-specificity scenario, and the Aim 3b interaction test on the sensitivity cohorts |
 | 7 Write-up | full first draft ([Draft manuscript](manuscript.qmd)); author list, ethics, data-availability statement and two references still to add |
 

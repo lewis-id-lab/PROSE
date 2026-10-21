@@ -2448,7 +2448,7 @@ No realised-score scenario as in the paper reaches the MCID in any draw under ei
   4.9 times; −9% to −13% as in the paper, for "all in neutropenic" and "ratio 4"), because its pooled weights then apply the effect in a stratum where the truth has little.
 - **One sign reverses.** When all of the effect is in non-neutropenic admissions the realised score applies the pooled weights in both strata but the truth has the effect in one, so its gain is
   negligible under both truths (0.3 to 0.4 per 1,000 for four terms, 0.03 to 0.26 for five, against an MCID of 4.58), and the profile truth gives the larger gain. The percentage change for five terms
-  is large only because the global value is near zero. Why the global truth is worse for that mis-specification was not examined. The verdict is the same under both truths.
+  is large only because the global value is near zero. Why the global truth is worse for that mis-specification is explained in addendum 30. The verdict is the same under both truths.
 - **Verdicts.** As in the paper no realised-score scenario reaches the MCID under either truth. Scaled up, the realised score's share of draws reaching the MCID falls more than the ceiling's
   (for example 69% to 38% against 92% to 85% for four terms, all in neutropenic), as expected from its larger percentage change near the MCID. The harm of Brunel's stratum effects (negative gain
   of the realised score) is smaller under the profile truth (1.71 to 1.32 for four terms scaled; 0.16 to 0.16 as in the paper).
@@ -2457,7 +2457,374 @@ No realised-score scenario as in the paper reaches the MCID in any draw under ei
 
 ### Not done
 
-Effect sizes between 3 and 4.9 times; scaling one term at a time; the realised score with estimation error in its weights (here the pooled medians exactly); the 20% threshold
-(in the CSVs, not discussed); a cause for the sign reversal.
+The realised score with estimation error in its weights (here the pooled medians exactly); the 20% threshold (in the CSVs, not discussed; addendum 29 reports it for the ceiling score); (a cause for the sign reversal is given in addendum 30).
+Effect sizes between 3 and 4.9 times and scaling one term at a time are done in addendum 29.
 
 Code and outputs: `R/scheme_comparison.R`, `scripts/37_aim3b_scheme_comparison_extended.R`, `tests/testthat/test-scheme-comparison.R`, `output/aim3b_scheme_comparison_ext_{placement,scenarios,draws}.csv`.
+Effect sizes between 3 and 4.9 times, and scaling one term at a time, are in addendum 29.
+
+---
+
+## Addendum 29, 21 October 2026: where the distortion starts to matter
+
+Written after addendum 28. No decision changes. Addenda 27 and 28 showed the global-intercept truth distorts the gain at effects 4.9 times the pooled ones but left open where it starts to
+matter. `scripts/38_aim3b_scheme_comparison_grid.R` scales the pooled effect by 1 to 6 in steps of 0.25 (and 4.9), either all terms together or one term at a time (the others stay at their
+pooled estimates), with the effect in the non-neutropenic stratum, the neutropenic stratum or both, for the four- and five-term panels and both scores; pooled point estimates, whole-cohort gain
+over the clinical score. The all-terms rows at 1, 2, 3 and 4.9 reproduce script 37 and the script stops if they do not.
+
+**"Starts to matter" was defined before the results were seen:** the smallest multiplier (linear interpolation on the grid) at which (a) the profile gain differs from the global one by at least 10%;
+(b) the clinical score's induced miscalibration is worth at least 5% of the global gain (the gain against the clinical score exceeds the gain against m(X) by 5%); (c) the point-estimate verdict against
+the 5% MCID differs: the global gain reaches it and the profile gain does not.
+
+### Results (ceiling score, 5%; multiples of the pooled effect)
+
+**All terms scaled together.** The difference at the pooled effect (1×) is already 5% to 7% when the effect is in both strata or the neutropenic one, and 1% when it is in the non-neutropenic one.
+
+| panel | effect in | difference at 1× | (a) reaches 10% | (b) comparator reaches 5% | (c) global reaches the MCID | profile reaches it |
+|---|---|---|---|---|---|---|
+| four terms | both strata | −5.5% | 2.66× | 4.34× | 2.96× | 3.18× |
+| | neutropenic | −6.6% | 2.35× | 4.09× | 3.51× | 4.13× |
+| | non-neutropenic | −0.8% | 4.50× | not within 6× | not within 6× | not within 6× |
+| five terms | both strata | −5.7% | 1.77× | 3.20× | 2.11× | 2.30× |
+| | neutropenic | −6.7% | 1.56× | 3.01× | 2.49× | 2.91× |
+| | non-neutropenic | −1.1% | 3.79× | not within 6× | 5.62× | not within 6× |
+
+**One term at a time.** The multiplier at which (a) is reached, and the per-copy odds ratio of the scaled term there (pooled odds ratio and the posterior's 95th percentile in brackets), for an effect in both
+strata and in the neutropenic stratum; the range over the two panels:
+
+| term | pooled OR (95th percentile) | odds ratio at which the difference reaches 10% |
+|---|---|---|
+| PTX3 | 1.35 (1.81) | 3.1 to 4.1 (multiplier 3.75× to 4.72×) |
+| CD209 | 1.80 (2.73) | 3.5 to 5.5 (2.13× to 2.90×) |
+| CLEC7A A-G (five terms) | 1.86 (2.63) | 3.5 to 4.0 (2.01× to 2.25×) |
+| TLR4 | 1.44 (2.69) | 4.6 to 8.0 (4.13× to 5.66×) |
+| CLEC7A Y238X | 0.84 (1.48, on the other side of 1) | never within 6× |
+
+With the effect only in the non-neutropenic stratum a single term reaches 10% only at CD209 (5.1× to 5.2×, OR 20 to 21) and A-G (5.0×, OR 22). Criterion (b) is reached by a single term only for CD209 (4.7× to 5.2×) and A-G (4.0× to
+4.2×), and (c) only for CD209 (3.3× to 4.8×) and A-G (2.8× to 3.9×).
+
+**The realised score.** With the effect in both strata it equals the ceiling. With the effect concentrated in the neutropenic stratum the difference is already above 10% at the pooled effect (−12% for four terms; 10%
+at 1.25× for five), because its pooled weights then apply the effect in a stratum where the truth has little (addendum 28). With the effect only in the non-neutropenic stratum the profile gain is the larger one.
+
+**The 20% threshold, ceiling.** The difference at 1× is under 1.2% for the effect in both strata or the neutropenic one, and reaches 10% at 2.6× to 3.5×. With the effect only in the non-neutropenic stratum the profile gain is
+the larger (+8% to +10%).
+
+**At the evidence's own upper end** (every term at the 95th percentile of its pooled posterior at once, whole cohort, per 1,000 admissions; MCID 4.58 at 5%, 1.60 at 20%):
+
+| panel | 5%: global, profile | difference | 20%: global, profile | difference |
+|---|---|---|---|---|
+| four terms | 1.89, 1.72 | −8.8% | 2.71, 2.70 | −0.5% |
+| five terms | 3.09, 2.74 | −11.5% | 4.08, 3.99 | −2.0% |
+
+The comparator share is nil (the gain against the best clinical-only rule equals the gain against the clinical score) and the verdict is the same under both truths (below the 5% MCID, above the 20% one).
+
+### Reading
+
+- **There is no threshold below which the construction is harmless at 5%:** it costs 5% to 7% at the pooled effect (the panel result of addendum 24) and grows with the effect. It passes 10% when the panel's effects are about
+  2.4 to 2.7 times the pooled ones (1.6 to 1.8 for five terms) or when one dominant term (PTX3, CD209, A-G) has a per-copy odds ratio of 3 to 5.5. Both are above what the evidence supports: the 95th percentiles are 1.8 to 2.7.
+- **At the evidence's upper end it is about the 10% line** (9% and 12% at 5%; 0.5% and 2% at 20%) and changes neither the comparator's relevance nor the verdict.
+- **The clinical score's induced miscalibration matters only at much larger effects** (4.1× to 4.3× for four terms, 3.0× to 3.2× for five, all terms; a single term needs 4.0× to 5.2×). In between, the difference is the truth being a
+  different population, as in addendum 26.
+- **The verdict differs only in narrow windows** (all terms, effect in both strata: 2.96× to 3.18× for four terms, 2.11× to 2.30× for five; in the neutropenic stratum 3.51× to 4.13× and 2.49× to 2.91×). The odds ratio of CD209
+  at 3× is 5.9. No window lies inside the evidence's range.
+- **Where the effect sits matters more than which term:** the non-neutropenic placement is the least affected until effects are very large; it is the one scenario of the paper with such an effect (addendum 27).
+
+### Not done
+
+Two or more terms scaled together but not all; thresholds between 5% and 20%; draws (this is point estimates); the realised score with estimation error in its weights; why the 5% difference at the pooled effect is
+what it is (the panel result of addendum 24 is not decomposed here).
+
+Code and outputs: `scripts/38_aim3b_scheme_comparison_grid.R`, `output/aim3b_scheme_comparison_grid.csv`, `output/aim3b_scheme_comparison_grid_crossings.csv`. The 95th-percentile comparison was run interactively with
+`calibration_gains()` (`R/calibration_check.R`) on the whole cohort.
+
+---
+
+## Addendum 30, 21 October 2026: why the profile truth gives the realised score a larger gain in "all of the effect in non-neutropenic admissions"
+
+Written after addendum 29. No decision changes. Addenda 27 and 28 found that in this scenario the global intercept makes the ceiling score look better (addendum 26) but the realised score worse, and
+left the reason open. `scripts/39_realised_score_sign_reversal.R` investigates it (the interactive run it reproduces exactly was done first). The scenario: the truth has no effect in the neutropenic
+stratum (N) and an effect 4.93 times the pooled one in the non-neutropenic stratum (NN); the realised score carries the pooled estimates (1 times) in both strata. Pooled point estimates, 5%, per 1,000
+admissions of the stratum unless stated.
+
+### Results
+
+**1. The truth, not the score's recentring.** The realised score's whole-cohort gain, with the truth built under one scheme and the score recentred under the same or the other:
+
+| truth built | score recentred globally | score recentred per profile |
+|---|---|---|
+| global | 0.418 | 0.413 |
+| profile | 0.506 | 0.501 |
+
+How the score is recentred changes the gain by about 1%; how the truth is built by 21%. The N stratum is identical under both truths (the truth has no effect there, so it equals the clinical risk, gain −1.068); the whole
+difference is in NN (stratum gain 1.007 under the global truth, 1.129 under the profile truth).
+
+**2. The flows in NN.** Against the clinical score the realised score adds 4.11 flags and removes 4.68 per 1,000 NN admissions (and leaves 15.2 flagged by both):
+
+| | global truth | profile truth |
+|---|---|---|
+| flags added: mean true risk of the patients | 0.229 | 0.259 |
+| flags added: net-benefit contribution | +0.772 | +0.902 |
+| flags removed: mean true risk | 0.0024 | 0.0039 |
+| flags removed: net-benefit contribution | +0.234 | +0.227 |
+| stratum gain (sum) | 1.006 | 1.129 |
+
+The removed flags are essentially zero-risk under both truths, so the gap is entirely the patients the score adds.
+
+**3. What the global intercept does to true risk, by the clinical-risk band of the profile** (NN stratum; the profile truth equals the clinical risk by construction):
+
+| clinical-risk band | share of the stratum | mean clinical risk | true risk under the global truth, over clinical |
+|---|---|---|---|
+| < 1% | 86.9% | 0.56% | × 1.20 |
+| 1–3% | 9.4% | 1.9% | × 0.96 |
+| 3–5% | 1.7% | 4.0% | × 0.80 |
+| 5–10% | 1.3% | 6.8% | × 0.69 |
+| > 10% | 0.7% | 15.7% | × 0.55 |
+
+**4. Where each score's added flags come from.** The ceiling score adds 19.6 flags per 1,000 from profiles under 1% clinical risk under the global truth, against 16.2 under the profile truth (net benefit 2.38 against 1.90), and
+its stratum gain is 4.26 against 3.81. The realised score adds 4.11 flags, almost none (0.004) from profiles under 1%: 1.09 from the 1–3% band and 3.01 from the 3–5% band. Its net-benefit gap between the truths (profile minus
+global, +0.130 in total) is 0.111 (85%) from the 3–5% band, 0.019 (15%) from the 1–3% band and nothing from below 1%.
+
+### Reading
+
+- **The global intercept moves true risk towards the lowest-risk profiles and away from the higher-risk ones.** With one intercept for a stratum and an effect this large, the true risk of the 87% of patients in profiles under 1%
+  is raised by a fifth, and that of profiles above 3% is lowered, by 20% at 3–5% and 45% above 10% (the convexity and concavity of the logistic function; addendum 26).
+- **The ceiling score and the realised score are on opposite sides of this because they reach different patients.** The ceiling score carries the full effect and lifts carriers in the lowest-risk profiles over 5%, where
+  the global truth has raised their risk: it gains. The realised score carries the pooled effect, about a fifth of the truth's in NN, and reaches only carriers in 1–5% profiles, where the global truth has lowered their risk
+  (to 0.96 and 0.80 of the clinical value): it gains less. The same redistribution, a different reach.
+- **For the paper this is immaterial:** the realised score's gain is 0.4 to 0.5 per 1,000 under either truth against an MCID of 4.58, and the scenario is the one already identified. It explains the sign reversal of addendum 28; it
+  does not change a verdict.
+- **What was and was not shown.** The 2×2 isolates the truth from the score's recentring. The flows and the bands show where the gap sits and are descriptive: they are consistent with the explanation and with the ceiling
+  score's opposite behaviour, and the intervention that tests them (a truth equal to the global one except in chosen bands) is addendum 31.
+
+### Not done
+
+The five-term panel is addendum 32 (the reversal's larger relative size there is arithmetic: a small difference of two large terms); other scenarios with a mis-specified realised score at effects this large.
+
+Code and outputs: `scripts/39_realised_score_sign_reversal.R`, `output/aim3b_sign_reversal_{factorial,flows,bands}.csv`. The intervention test left open here is addendum 31.
+
+---
+
+## Addendum 31, 21 October 2026: the intervention test of the explanation in addendum 30
+
+Written after addendum 30. No decision changes. Addendum 30's explanation was descriptive. `scripts/40_sign_reversal_intervention.R` tests it by changing the truth in chosen clinical-risk bands of the non-neutropenic stratum
+(NN) and asking whether that alone reproduces the realised score's gap. Same scenario and conventions as addendum 30 (pooled point estimates, 5%, per 1,000 NN admissions; the realised score carries the pooled estimates,
+recentred globally; the comparator is the clinical score; the ceiling score is the oracle for whichever truth is used). The truth in a band is the global truth's risk, the profile truth's, or the global truth's risk rescaled to the
+clinical score's mean in each profile (which keeps the global truth's pattern across genotypes and removes only its shift of the profile's mean). The interventions with no band and with every band reproduce script 39 and the script
+stops if they do not.
+
+**What the design can and cannot show.** Every patient in the 3–5% band is below the clinical flag line, so the band can only enter the realised score's gain through the flags it adds. Swapping the truth there to the profile values must
+therefore move the gain by that band's share of the flows (0.111, addendum 30), which is bookkeeping and not evidence for a mechanism. The informative rows are the necessity and reverse tests, the other bands, and the rescaled-mean version,
+which keeps everything about the global truth except the level of the profile's mean.
+
+### Results
+
+Gain against the clinical score per 1,000 NN admissions, and the share of the gap between the global and the profile truth that the intervention recovers:
+
+| truth used | realised score | gap recovered | ceiling score (oracle) | gap recovered |
+|---|---|---|---|---|
+| global in every band | 1.006 | 0% | 4.26 | 0% |
+| profile in every band | 1.129 | 100% | 3.80 | 100% |
+| profile in the 3–5% band only | 1.118 | 91% | 4.37 | −24% |
+| profile in every band except 3–5% | 1.018 | 9% | 3.70 | 124% |
+| profile in the < 1% band only | 1.006 | 0% | 3.78 | 105% |
+| profile in the 1–3% band only | 1.025 | 15% | 4.31 | −10% |
+| profile in the 5–10% band only | 0.999 | −6% | 4.19 | 15% |
+| profile in the > 10% band only | 1.006 | 0% | 4.20 | 14% |
+| profile in 1–3% and 3–5% | 1.137 | 106% | 4.42 | −34% |
+| mean rescaled to the clinical risk, 3–5% only | 1.124 | 96% | 4.38 | −25% |
+| mean rescaled, < 1% only | 1.006 | 0% | 3.71 | 120% |
+| mean rescaled, every band | 1.147 | 114% | 3.80 | 101% |
+| the profile truth with the global values back in 3–5% | 1.018 | 91% of the gap lost | 3.70 | |
+
+### Reading
+
+- **The realised score's gap is the 3–5% band.** Changing that band alone recovers 91% of it; changing every other band together recovers 9%; putting the global values back in that band alone in the profile truth loses 91%. The bands
+  add up: 3–5% (91%) and 1–3% (15%) and 5–10% (−6%) give 100%, and nothing comes from below 1% or above 10%.
+- **What matters in the band is the level of the profile's mean risk, not the pattern across genotypes.** Rescaling the global truth's risk to the clinical mean in each 3–5% profile, and nothing else, recovers 96% of the gap. The global
+  truth's genotype-specific pattern is kept; only its lowering of the mean is removed.
+- **The ceiling score's gap is the opposite band.** Changing the < 1% band alone recovers 105% of its gap (120% rescaled), and the 3–5% band moves it the other way (−24%), the opposite signs addendum 30 described.
+- **Rescaling beyond the profile truth overshoots** (114% in every band): the proportional rescale puts more risk on carriers than the logit shift does, so it is not the profile truth. It supports the level and not the exact shape.
+- **Not shown:** that the effect operates through anything other than the bands' risk levels, in the other Aim 3b scenarios, or in the five-term panel. The hybrid truths are risk arrays, not generative models (they do not hold prevalence or each
+  profile's mean outside the swapped bands), which is acceptable for an intervention on the net-benefit calculation but not as a simulated population.
+
+### Not done
+
+The five-term panel is addendum 32; other scenarios with a mis-specified realised score; a band definition other than the one of addendum 30 (the bands are fixed by the clinical risk of the profile and were
+chosen before this test).
+
+Code and outputs: `scripts/40_sign_reversal_intervention.R`, `output/aim3b_sign_reversal_intervention.csv`. The five-term panel, left open here, is addendum 32.
+
+---
+
+## Addendum 32, 21 October 2026: the band-by-band intervention on the five-term panel
+
+Written after addendum 31. No decision changes. `scripts/40_sign_reversal_intervention.R` now runs both panels; the five-term panel (PTX3, CLEC7A, CLEC7A_AG, TLR4, CD209, with the joint CLEC7A genotypes of script 22) is
+the one where addendum 28 found the sign reversal larger in relative terms. The questions were fixed before the run: does the 3–5% band alone recover most of the realised score's gap, as it did for four terms (91%); does rescaling
+only the band's mean risk suffice; does the ceiling score's gap sit in the below-1% band; and, if another band dominates, does the flags decomposition of addendum 30 predict which. Same scenario, bands and conventions as addendum 31.
+Gates: the four-term rows are unchanged from addendum 31 (difference 0) and, for both panels, the no-band case reproduces `stratum_gains()` (`R/scheme_comparison.R`) for the realised and the ceiling score, and the every-band case its
+ceiling gain under the profile truth.
+
+### Results
+
+Share of the gap between the global and the profile truth that each intervention recovers, in the non-neutropenic stratum (5%, per 1,000 NN admissions):
+
+| truth used | four terms: realised | five terms: realised | four terms: ceiling | five terms: ceiling |
+|---|---|---|---|---|
+| global in every band (the gain, in brackets) | 0% (1.006) | 0% (1.66) | 0% (4.26) | 0% (5.72) |
+| profile in every band | 100% (1.129) | 100% (1.93) | 100% (3.80) | 100% (5.02) |
+| profile in 3–5% only | 91% | 74% | −24% | −23% |
+| profile in every band except 3–5% | 9% | 26% | 124% | 123% |
+| profile in < 1% only | 0% | −2% | 105% | 122% |
+| profile in 1–3% only | 15% | 29% | −10% | −18% |
+| profile in 5–10% only | −6% | −1% | 15% | 9% |
+| profile in > 10% only | 0% | 0% | 14% | 11% |
+| profile in 1–3% and 3–5% | 106% | 103% | −34% | −41% |
+| mean rescaled, 3–5% only | 96% | 68% | −25% | −23% |
+| mean rescaled, 1–3% and 3–5% | 118% | 105% | −37% | −42% |
+| mean rescaled, < 1% only | 0% | −12% | 120% | 138% |
+| mean rescaled, every band | 114% | 93% | 101% | 106% |
+| the profile truth with the global values back in 3–5% | 91% lost | 74% lost | | |
+
+**The flags decomposition predicts the bands.** For five terms the realised score adds 2.55 flags per 1,000 from 1–3% profiles (1.09 for four terms) and 4.49 from 3–5% (3.01), and its net-benefit gap between the truths is
+0.202 (74%) from 3–5%, 0.081 (29%) from 1–3%, and nothing material elsewhere (−0.005 below 1%, −0.004 at 5–10%): the same shares as the single-band interventions, and the bands add to 100%. (For a band with no flags already
+flagged by the clinical score this agreement is bookkeeping, as addendum 31 noted.)
+
+**The relative size of the reversal.** In the whole cohort the five-term realised gain is 0.164 under the global truth and 0.377 under the profile truth per 1,000 (+129%), against +16% in NN. In the neutropenic stratum, where
+the truth has no effect, the realised score loses 3.6 per 1,000 neutropenic admissions under either truth, and the NN gain (1.66, 1.92) nearly cancels it: the whole-cohort figure is a small difference of two large terms.
+
+### Reading
+
+- **The mechanism is the same.** The realised score's gap is the 3–5% band (74%) and the 1–3% band (29%); every other band together contributes nothing (−3%). Putting the global values back in 3–5% alone loses 74% of the gap.
+- **For five terms the 1–3% band carries more** (29%, against 15%): the A-G haplotype is common and heavily weighted, so more carriers are lifted over 5% from 1–3% profiles. The band that matters is where the score's added flags
+  come from, which depends on the panel.
+- **The level of the mean risk explains the gap across the two bands, less in the 3–5% band alone.** Rescaling only the profile means recovers 68% in 3–5% (96% for four terms), 105% in 1–3% and 3–5% together and 93% in every band.
+  The proportional rescale moves carriers' risks differently from the logit shift, which matters more when a second band contributes.
+- **The ceiling score's gap is the below-1% band again** (122%, 138% rescaled), with the 3–5% and 1–3% bands moving it the other way.
+- **The large relative reversal is arithmetic, not a larger distortion:** the mechanism acts in NN, where the gain changes by 16%; the whole-cohort figure is a small difference of two large numbers, and 0.16 to 0.38 per 1,000 is far below the MCID of 4.58.
+
+### Not done
+
+Other scenarios with a mis-specified realised score; the neutropenic stratum's loss (3.6 per 1,000 for five terms) is explained in addendum 33; the bands were not varied.
+
+Code and outputs: `scripts/40_sign_reversal_intervention.R`, `output/aim3b_sign_reversal_intervention.csv` (both panels) and `output/aim3b_sign_reversal_intervention_flows.csv`.
+
+---
+
+## Addendum 33, 21 October 2026: why the five-term realised score loses 3.6 per 1,000 neutropenic admissions when the truth has no effect there
+
+Written after addendum 32. No decision changes. In the scenario with all of the effect in non-neutropenic admissions the truth has no genetic effect in the neutropenic stratum (N), so the clinical score is exactly calibrated
+there and anything the genetic score changes can only cost. The realised score (pooled estimates, recentred globally to the stratum's mean risk) loses 1.07 per 1,000 N admissions with four terms and 3.61 with five.
+`scripts/41_null_stratum_loss.R` breaks the loss down (pooled point estimates, 5%; it reproduces the interactive run to 5e-15 and stops unless the identity below reproduces the stratum gain). The truth in N is identical under the
+global and the profile construction, so this loss is a property of the score, not of the construction (it is 3.61 under the global truth's recentring and 3.52 under the profile one).
+
+**An exact identity.** With no effect in the truth, the net-benefit change of any score is the sum over profiles of (clinical risk − 5%) / 0.95 times the change in that profile's flagged share. Unflagging a patient in a profile above the
+threshold, or flagging one below it, costs in proportion to the profile's distance from the threshold.
+
+### Results
+
+**By term** (gain per 1,000 N admissions): all four terms −1.068; all five terms −3.611; all five without the A-G term −1.068 (the same as four terms: CLEC7A Y238X alone changes nothing); the A-G term alone −0.446; PTX3 alone −0.360,
+TLR4 −0.431, CD209 −0.858. The loss is **super-additive**: the four-term score and A-G alone sum to −1.51, together they lose −3.61. The SD of the score's genetic shift in N is 0.375 log-odds for four terms and 0.570 for five.
+
+**By the scale of the weights** (multiplier k; gain per 1,000 N admissions; the share of profile 36's patients the score unflags):
+
+| k | four terms | five terms |
+|---|---|---|
+| 0.5 | −0.322 (0%) | −0.647 (2%) |
+| 0.75 | −0.545 (0.1%) | −2.170 (11%) |
+| 1 | −1.068 (3%) | −3.611 (25%) |
+| 1.25 | −2.360 (18%) | −4.904 (26%) |
+| 1.5 | −3.585 (23%) | −7.446 (42%) |
+| 2 | −4.620 (24%) | −11.600 (45%) |
+
+The loss is not quadratic in the weights (gain/k² for four terms runs −0.72, −1.29, −1.07, −1.59, −1.16 from k = 0.25 to 2) but steps with the share of profile 36 that is unflagged.
+
+**By profile** (five terms; per 1,000 N admissions; distance from the 5% threshold in log-odds, positive = above, so flagged by the clinical score):
+
+| profile | share of N | clinical risk | distance | flagged by the score (four terms) | contribution | share of the loss |
+|---|---|---|---|---|---|---|
+| 36 | 15.6% | 8.4% | +0.55 | 75% (97%) | −1.388 | 38% |
+| 43 | 10.3% | 9.8% | +0.72 | 89% (100%) | −0.581 | 16% |
+| 34 | 15.7% | 3.7% | −0.31 | 20% (19%) | −0.424 | 12% |
+| 35 | 14.2% | 4.1% | −0.21 | 31% (21%) | −0.416 | 12% |
+| 42 | 3.0% | 9.0% | +0.63 | 77% (97%) | −0.291 | 8% |
+| 33 | 17.3% | 1.8% | −1.07 | 3% (1%) | −0.193 | 5% |
+| 38 | 2.2% | 8.0% | +0.50 | 74% (82%) | −0.184 | 5% |
+
+The top three profiles carry 66% of the loss and the top eight 98%; 14 of the stratum's 34 profiles lose anything. Half of N's weight (50.2%) is in profiles at 7% clinical risk or more, a third (32.5%) at 3% to 5%, and none between 5% and 7%.
+
+### Reading
+
+- **N sits on the decision line.** Its weight is in a few profiles 0.2 to 0.7 log-odds from the 5% threshold, above it (8% to 10% clinical risk) and below it (3.7% to 4.1%). With no true effect, every reclassification there is a pure loss.
+- **The recentred score moves each patient by their genotype's effect minus the mean.** With five terms 25% of the patients in profile 36 get a shift below −0.55 (the profile's distance) and drop under the threshold, against 3% with four terms; the A-G term has a frequency of 0.35 and a
+  weight of 0.62, so many patients are non-carriers of the heavily weighted alleles and are pushed down.
+- **Why 3.4 times and not 2.2 times.** The spread of the shift is 1.5 times larger (0.57 against 0.375, a variance ratio of 2.3), but the tail mass at a distance of 0.55 (1.5 SDs for four terms, 1.0 SD for five) is nine times larger. A four-term score reaches the five-term tail mass only when its weights are
+  scaled by about 1.5 (23% of profile 36 unflagged). The loss is a threshold effect on a few large profiles, not a smooth variance penalty, which is why it steps with k and is super-additive across terms.
+- **For the paper this is immaterial.** The N loss is a feature of the stress scenario (the same pooled weights applied in a stratum where the truth has no effect); weighted by N's share (28%) it is about −1.0 per 1,000 admissions, against a whole-cohort gain of 0.16 to 0.38
+  and an MCID of 4.58. It is also why the whole-cohort reversal of addendum 32 is large in relative terms: it is a small difference between two large terms.
+
+### Not done
+
+Thresholds other than 5%; the realised score's loss in the strata where the truth does have an effect (the scenarios as in the paper), where it is a gain; a score that is not recentred globally (the profile recentring gives −3.52, not decomposed); draws.
+
+Code and outputs: `scripts/41_null_stratum_loss.R`, `output/null_stratum_loss_{terms,scaling,profiles}.csv`.
+
+---
+
+## Addendum 34, 21 October 2026: the same mechanism in the strata where the truth does have an effect
+
+Written after addendum 33. No decision changes. Addendum 33 explained the realised score's loss in a stratum with no true effect as the cost of reclassifying a few large profiles close to the 5% line. Which patients a score reclassifies depends only on the score
+(its weights and the clinical profile), not on the truth, and for any truth the net-benefit change is the sum over cells of weight × (true risk − 5%) / 0.95 × (flag by the score − flag by the clinical score). So the prediction is that the reclassified patients are
+the same few profiles in every scenario, and that the truth only values them: the gain is the **null cost** of that reclassification plus a **value of the truth effect**, which is the excess of the added patients' true risk over their clinical risk (and the removed
+patients' deficit), divided by 0.95. `scripts/42_reclassification_in_effect_strata.R` tests this on the six scenarios as the paper uses them, for both panels, under the profile truth with the score recentred globally (as addenda 39 to 41), per 1,000 stratum admissions at 5%.
+Gates: the null gains of the neutropenic stratum reproduce script 41 and the non-neutropenic gain in "all in non-neutropenic" reproduces script 40.
+
+### Results
+
+**The reclassified patients are the same in every scenario of a stratum.**
+
+| panel, stratum | flags added | flags removed | profiles reclassified | top three profiles' share of the reclassified weight |
+|---|---|---|---|---|
+| four terms, neutropenic (N) | 65.3 | 9.4 | 11 | 85% |
+| four terms, non-neutropenic (NN) | 4.1 | 4.7 | 30 | 49% |
+| five terms, N | 89.3 | 64.7 | 14 | 74% |
+| five terms, NN | 7.3 | 6.1 | 38 | 44% |
+
+**The realised score's gain by scenario** (the effect in the truth, as a multiple of the pooled one in N and NN; null cost: four terms N −1.068, NN −0.114; five terms N −3.611, NN −0.239):
+
+| scenario (effect in N, NN) | four terms, N | four terms, NN | five terms, N | five terms, NN |
+|---|---|---|---|---|
+| all in neutropenic (1.25×, 0) | +1.756 | −0.114 | +4.231 | −0.239 |
+| ratio 4 (1.18×, 0.30×) | +1.570 | −0.054 | +3.813 | −0.109 |
+| homogeneous (1×, 1×) | +1.130 | +0.110 | +2.777 | +0.242 |
+| Brunel direction, ratio 1/4 (0.62×, 2.49×) | +0.244 | +0.534 | +0.451 | +1.065 |
+| all in non-neutropenic (0×, 4.93×) | −1.068 | +1.129 | −3.611 | +1.934 |
+| Brunel estimate (−0.21×, 1.87×) | −1.467 | +0.350 | −4.998 | +0.727 |
+
+The gain minus the null cost is the value of the truth effect: in N with the pooled effect (homogeneous) it is +2.20 for four terms and +6.39 for five, against null costs of 1.07 and 3.61. At that effect 97% (four terms) and 85% (five terms) of the added patients have a true risk of 5% or more,
+and all the removed ones are below it. At 0.62× (Brunel direction) the gain is +0.24 and +0.45, close to break-even; with no effect it is the null cost; with the effect reversed (−0.21×) it is worse than the null cost.
+
+**By the scale k of the score's weights** (the homogeneous truth fixed; per 1,000 admissions of N):
+
+| k | four terms: gain, null cost, value | five terms: gain, null cost, value |
+|---|---|---|
+| 0.5 | +0.898, −0.322, +1.22 | +1.907, −0.647, +2.55 |
+| 1 | +1.130, −1.068, +2.20 | +2.777, −3.611, +6.39 |
+| 1.5 | +0.740, −3.585, +4.32 | +2.087, −7.446, +9.53 |
+| 2 | +0.294, −4.620, +4.91 | +0.547, −11.600, +12.15 |
+
+The share of the added patients that are right falls as k rises (four terms, N: 100% at k = 0.5, 97% at 1, 75% at 2). The largest single step carries 30% to 62% of the null cost's movement over k, against 25% to 44% of the value's.
+
+### Reading
+
+- **The mechanism extends.** The patients the realised score reclassifies are fixed by the score and concentrated in a few profiles near the threshold, in the strata with an effect as in the null stratum. What the truth does is value them.
+- **The gain is the null cost plus a smoother value.** The null cost is lumpy (a threshold effect on large profiles, addendum 33). The value of the truth effect is the excess risk of the added patients and grows with k more evenly, so the gain rises, peaks near the pooled weights (k ≈ 1) and falls beyond them as the null cost outgrows the value.
+- **Where the gain turns negative:** with a true effect of about half the pooled one in N (linear interpolation between 0 and 0.62×) the value equals the null cost; below that the realised score loses in that stratum. The scenarios as the paper uses them are at or above 0.6× in N except "all in non-neutropenic" and
+  "Brunel estimate", where N has little or the opposite effect and the realised score loses there.
+- **The non-neutropenic stratum is the mirror image:** few patients are reclassified (4 to 13 per 1,000), the null cost is small (−0.11, −0.24) and the value is positive wherever the stratum has an effect (+0.2 to +2.2), so the gain is small and positive; it turns negative only at k ≈ 2.
+- **Not shown:** this is a decomposition and a scaling, not an intervention; one truth construction (profile) and point estimates; 5% only; the strata are combined into the whole-cohort gain elsewhere (addendum 32).
+
+### Not done
+
+The global-truth version; the 20% threshold; draws; an intervention that changes which profiles are reclassified.
+
+Code and outputs: `scripts/42_reclassification_in_effect_strata.R`, `output/reclassification_effect_strata_{flows,scaling}.csv`.

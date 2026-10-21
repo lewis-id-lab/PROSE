@@ -7,7 +7,7 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 
 ## Where things are
 
-- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 28. Append a dated addendum for every change after the
+- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 34. Append a dated addendum for every change after the
   pre-specification lock (tag `prespec-lock`) and say what had been seen when the change was made. Do not rewrite earlier addenda; add a pointer.
 - `status.md` (hand-off, script run-order table), `02_current_status.md` (working record), `index.qmd` (overview table): keep their phase tables and
   numbers in step with the addenda. `manuscript.qmd` carries its numbers as prose, not inline code, so a rerun means editing the prose.
@@ -18,7 +18,7 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 The genetic truth is built with an intercept **per clinical profile** (D27, profile-preserving): the clinical score stays calibrated within every
 profile, so a gain cannot be the correction of induced miscalibration. The first version used one global intercept (D5); it is kept as the
 sensitivity analysis. `PROSE_SCHEME=profile` selects the primary construction in the genetic-layer code (`genetic_scheme()`); scripts 17 to 22, 24, 26
-and 27 then write files ending in `_profile`, and the global files are left alone. Scripts 31 to 37 compare the two. Every analysis reported in the
+and 27 then write files ending in `_profile`, and the global files are left alone. Scripts 31 to 42 compare the two. Every analysis reported in the
 manuscript is on the profile-preserving truth.
 
 ## Running things
