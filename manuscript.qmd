@@ -11,7 +11,7 @@ link-citations: true
 ## Working draft
 
 This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 20 October 2026, after
-the corrections recorded in addenda 16 to 22 and 24 to 26 of the [decision record](decisions.qmd). Addendum 24 made the
+the corrections recorded in addenda 16 to 22 and 24 to 27 of the [decision record](decisions.qmd). Addendum 24 made the
 profile-preserving construction of the genetic truth primary, addendum 25 reran the sampling, ensemble, attribution,
 effect-modification, donor and robustness analyses under it, and addendum 26 did the same for the all-ancestry variant of the
 second CLEC7A parameter, so every result in this draft is on that construction. Addendum 23, the polygenic score benchmark, is
@@ -767,7 +767,7 @@ profile and compensates with an intercept per profile. Other forms of interactio
 examined. The primary truth was adopted after the global-intercept results were known (addendum 24), though it was not tuned to
 them. Every analysis in this paper, including the sampling-variability, correlation-ensemble, attribution, effect-modification,
 donor-stratum and robustness analyses, was run under it, and the first version's global intercept was kept as a sensitivity
-analysis (addenda 24 to 26). Compared with that sensitivity analysis, the global intercept overstated gains at 5% by 5% to 6%
+analysis (addenda 24 to 27). Compared with that sensitivity analysis, the global intercept overstated gains at 5% by 5% to 6%
 in the panels, let 241 of 4,000 architectures reach the MCID that did not under the profile-preserving truth, and made the
 scenario with all of the effect in non-neutropenic admissions look more favourable (the oracle score reached the 5% MCID in 18%
 of draws against 2%). It changed little at 20% and did not change the neutropenia pattern, the attribution or the donor result.
@@ -775,8 +775,11 @@ The non-neutropenic scenario is the one most sensitive to the construction becau
 the pooled one into a low-risk stratum. There the single intercept flattens the clinical gradient: the lowest-risk profiles,
 which hold most of the stratum, get a true risk 14% to 29% above the clinical score's, and the highest-risk ones a much lower
 one. This is a different simulated population, not a correction of the comparator: against the best clinical-only rule the
-gain under the global intercept was almost the same (3.01 against 3.05, per 1,000 admissions at 5%). The gain was 11% lower under
-the profile-preserving truth, which is enough to move the MCID from the 82nd to above the 95th percentile of the draws (addendum 26).
+gain under the global intercept was almost the same (3.01 against 3.05, per 1,000 admissions at 5% and the pooled estimates). The gain was 11% lower under
+the profile-preserving truth, which is enough to move the MCID from the 82nd to above the 95th percentile of the draws (addendum 26). The other
+scenarios would be distorted too at effects that large, by 11% to 28% in the median gain and more where the large effect is in the
+neutropenic stratum, but none of them has one: their stratum effects are at most 2.5 times the pooled one, and they differ by
+3% to 8% (addendum 27).
 
 **The second CLEC7A parameter is the least mature part of the evidence.** It comes from three studies. The opposite direction
 in East Asian studies fits a tag SNP whose linkage to a causal variant differs between ancestries, but the causal variant has

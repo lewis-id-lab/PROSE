@@ -2321,9 +2321,76 @@ No conclusion changes. The headline figure under the profile truth (`fig_headlin
 
 ### Not done
 
-The patient-level engine check of script 16 under the profile scheme (a unit test covers it); other scenarios at effects as large as the one that
-exposed the construction; new draws for the investigation in part 1.
+The patient-level engine check of script 16 under the profile scheme (a unit test covers it); new draws for the investigation in part 1. Other
+scenarios at effects as large as the one that exposed the construction: done in addendum 27.
 
 Code and outputs: `scripts/22_clec7a_second_parameter.R` (the scheme switch and gate), `scripts/34_calibration_check_figures.R` (the all-ancestry panel),
-`output/clec7a_second_layer_summary_profile.csv`, `output/figures/fig_headline_profile.png`. The investigation in part 1 is not a script: it is the
-cell-level engine (`R/genetic_layer.R`, `R/aim3b.R`) applied to the NN stratum's cells, and can be repeated from the numbers above.
+`output/clec7a_second_layer_summary_profile.csv`, `output/figures/fig_headline_profile.png`. The investigation in part 1 was run interactively with the
+cell-level engine (`R/genetic_layer.R`, `R/aim3b.R`) on the NN stratum's cells; `scripts/36_aim3b_scheme_comparison.R` (addendum 27) reproduces its
+headline numbers and extends them to the other scenarios.
+
+---
+
+## Addendum 27, 20 October 2026: does the global intercept distort the other Aim 3b scenarios at effects as large?
+
+Written after addendum 26. No decision changes. Addendum 26 showed that the global intercept flatters the scenario with all of the effect in non-neutropenic admissions
+because that scenario puts a per-copy effect about 4.9 times the pooled one into the low-risk stratum. This asks whether the other scenarios would be distorted
+too at effects of that size (`scripts/36_aim3b_scheme_comparison.R`, which reproduces the interactive run exactly). It is a stress test: a log odds ratio of 2.9 per copy
+for CD209 is not credible, and the realised score was not examined.
+
+### Design
+
+For each scenario, the whole-cohort ceiling gain at 5% under the global truth against the clinical score and against the best clinical-only rule m(X), and under the
+profile truth. A: the pooled effect times 1, 2, 3 or 4.9 in the non-neutropenic stratum, the neutropenic stratum, or both (pooled point estimates). B: the six
+scenarios of script 21 as in the paper and scaled so the largest stratum effect is 4.9 times the pooled one (the Brunel-estimate stratum fractions are those script 21
+prints, N −0.21 and NN 1.87). C: the same with 200 posterior draws (pooled-mean reading): median gain and the share of draws reaching the 5% MCID.
+
+### Results
+
+**A. Placement and size** (gain at 5%, per 1,000 admissions, pooled estimates; the profile column's difference from the global one in brackets):
+
+| effect in | × pooled | global, against the clinical score | global, against m(X) | profile |
+|---|---|---|---|---|
+| non-neutropenic | 1 | 0.079 | 0.079 | 0.079 (−1%) |
+| | 2 | 0.420 | 0.420 | 0.407 (−3%) |
+| | 3 | 1.188 | 1.188 | 1.123 (−5%) |
+| | 4.9 | 3.029 | 2.984 | 2.706 (−11%) |
+| neutropenic | 1 | 0.344 | 0.344 | 0.321 (−7%) |
+| | 2 | 1.595 | 1.595 | 1.439 (−10%) |
+| | 3 | 3.508 | 3.496 | 3.028 (−14%) |
+| | 4.9 | 7.265 | 6.585 | 5.364 (−26%) |
+| both | 1 | 0.423 | 0.423 | 0.400 (−5%) |
+| | 2 | 2.014 | 2.014 | 1.846 (−8%) |
+| | 3 | 4.696 | 4.684 | 4.151 (−12%) |
+| | 4.9 | 10.293 | 9.569 | 8.070 (−22%) |
+
+**B and C. The six scenarios** (200 draws, median gain per 1,000 and the share of draws reaching the MCID of 4.58 per 1,000; global, then profile):
+
+| scenario | as in the paper: median gain, change | share reaching the MCID | scaled to 4.9×: median gain, change | share reaching the MCID |
+|---|---|---|---|---|
+| all in neutropenic (H_F only) | 0.81, 0.74 (−8%) | 0%, 0% | 8.44, 6.07 (−28%) | 92%, 85% |
+| ratio 4 | 0.71, 0.66 (−8%) | 0%, 0% | 8.59, 6.24 (−27%) | 93%, 87% |
+| homogeneous | 0.59, 0.56 (−5%) | 0%, 0% | 12.03, 9.20 (−24%) | 97%, 95% |
+| ratio 1/4 (Brunel direction) | 1.16, 1.10 (−5%) | 0.5%, 0% | 4.30, 3.84 (−11%) | 45%, 31% |
+| all in non-neutropenic | 3.58, 3.15 (−12%) | 21%, 2% | 3.56, 3.13 (−12%) | 20%, 2% |
+| Brunel's stratum effects | 0.49, 0.47 (−3%) | 0%, 0% | 3.63, 3.20 (−12%) | 23%, 5% |
+
+The largest stratum effect, as a multiple of the pooled one, in the scenarios as in the paper: 1.25 (H_F only), 1.18 (ratio 4), 1.00 (homogeneous), 2.49 (Brunel direction),
+4.93 (all in non-neutropenic), 1.87 (Brunel's estimate).
+
+### Reading
+
+- **Yes: the distortion grows with the size of the effect in every placement.** At the pooled effect the profile truth lowers the gain by 1% to 7%; at 4.9 times it, by 11% to 28%.
+- **It is larger when the large effect is in the neutropenic (high-risk) stratum.** There the global intercept flattens the clinical gradient more (the clinical score's
+  calibration slope in the stratum is 0.65 against 0.77 in the other), and the comparator is no longer irrelevant: against m(X) the global gain is 6.58 and not 7.26 (9% of it is correction
+  of induced miscalibration; 1.5% in the non-neutropenic case). At 4.9 times the pooled effect the profile gain is 26% to 28% lower there.
+- **Whether the verdict changes depends on where the gain sits relative to the MCID.** Scaled up in the neutropenic stratum or homogeneously, the gain is far above the MCID and
+  the share of draws reaching it moves little (92% to 85%). The Brunel-type scenarios scaled up sit near the MCID and the share moves a lot (23% to 5%, 45% to 31%).
+- **For the paper this means the global intercept mattered through one scenario.** Only "all in non-neutropenic" has an effect that large (4.93 times the pooled one); the others have
+  stratum effects of at most 2.5 times it and differ by 3% to 8% (the 2,000-draw summaries of addendum 25 give the same: 3% to 8%).
+
+### Not done
+
+The realised score; other effect sizes between 3 and 4.9 for the named scenarios; the five-term panel (the 4.9 times scaling is not interpretable for the A-G term); new draws beyond 200.
+
+Code and outputs: `scripts/36_aim3b_scheme_comparison.R`, `output/aim3b_scheme_comparison_{placement,scenarios,draws}.csv`.
