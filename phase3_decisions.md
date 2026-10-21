@@ -2393,4 +2393,71 @@ The largest stratum effect, as a multiple of the pooled one, in the scenarios as
 
 The realised score; other effect sizes between 3 and 4.9 for the named scenarios; the five-term panel (the 4.9 times scaling is not interpretable for the A-G term); new draws beyond 200.
 
-Code and outputs: `scripts/36_aim3b_scheme_comparison.R`, `output/aim3b_scheme_comparison_{placement,scenarios,draws}.csv`.
+Code and outputs: `scripts/36_aim3b_scheme_comparison.R`, `output/aim3b_scheme_comparison_{placement,scenarios,draws}.csv`. The realised score and the five-term
+panel, left open here, are in addendum 28.
+
+---
+
+## Addendum 28, 21 October 2026: the stress test extended to the realised score and the five-term panel
+
+Written after addendum 27. No decision changes. `scripts/37_aim3b_scheme_comparison_extended.R` repeats addendum 27 for both scores (ceiling, and the realised score
+that carries the pooled estimates) and both panels (four terms, and five with the joint CLEC7A genotypes of script 22); the shared gain functions are in
+`R/scheme_comparison.R` (tests in `test-scheme-comparison.R`). The four-term ceiling rows reproduce script 36 exactly and the script stops if they do not. The realised
+score's weights are, in the placement grid, the event-weighted average of the truth's stratum effects (what a pooled estimate would be) and, in the six scenarios,
+the pooled estimates (times the scaling, in the scaled version), as in script 21. The scaling multiplies all five effects, so the A-G term gets a log odds ratio near 3
+per copy: a stress test, not a plausible effect. Pooled point estimates for the placement grid and 200 draws for the scenarios.
+
+### Results
+
+**Placement and size, effect 4.9 times the pooled one, 5%, per 1,000 admissions** (global truth against the clinical score and against m(X); profile truth, with its difference from the global gain):
+
+| panel, score | effect in | global, clinical | global, m(X) | profile |
+|---|---|---|---|---|
+| five terms, ceiling | non-neutropenic | 4.080 | 3.972 | 3.580 (−12%) |
+| | neutropenic | 10.035 | 8.685 | 6.935 (−31%) |
+| | both | 14.114 | 12.657 | 10.515 (−26%) |
+| four terms, realised | non-neutropenic | 0.387 | 0.342 | 0.475 (+23%) |
+| | neutropenic | 5.892 | 5.212 | 4.413 (−25%) |
+| five terms, realised | non-neutropenic | 0.161 | 0.054 | 0.386 (+139%) |
+| | neutropenic | 8.492 | 7.142 | 5.632 (−34%) |
+
+(Four terms, ceiling: addendum 27. With the effect in both strata the realised score carries the truth, so it equals the ceiling.) At the pooled effect the profile truth lowers
+these gains by 1% to 12%, except the realised score with the effect in the non-neutropenic stratum, where it is higher (+1% to +8%).
+
+**The six scenarios, 200 draws, median gain per 1,000 and the share of draws reaching the MCID of 4.58** (global, then profile):
+
+| panel, score | all in neutropenic | ratio 4 | homogeneous | Brunel direction | all in non-neutropenic | Brunel estimate |
+|---|---|---|---|---|---|---|
+| four terms, ceiling, as in the paper | −8% | −8% | −5% | −5% | −12% (21% to 2%) | −3% |
+| five terms, ceiling, as in the paper | −8% | −8% | −6% | −8% | −14% (45% to 5%) | −6% |
+| four terms, realised, as in the paper | −13% | −11% | −7% | −2% | +32% (0.34 to 0.44) | −0.4% |
+| five terms, realised, as in the paper | −11% | −9% | −7% | −0.4% | 0.03 to 0.25 | −4% |
+| five terms, ceiling, scaled to 4.9× | −32% (99.5% to 98.5%) | −31% | −27% | −12% (80% to 71%) | −14% (44% to 5%) | −13% (57% to 21%) |
+| four terms, realised, scaled to 4.9× | −29% (69% to 38%) | −29% (76% to 53%) | −26% (86% to 81%) | −0.1% (0.5%) | +38% (0.30 to 0.42) | harm 1.71 to 1.32 |
+| five terms, realised, scaled to 4.9× | −36% (86% to 70%) | −32% (90% to 79%) | −28% (94% to 90%) | −5% (33% to 25%) | 0.03 to 0.26 | harm 3.36 to 2.98 |
+
+No realised-score scenario as in the paper reaches the MCID in any draw under either truth.
+
+### Reading
+
+- **The five-term panel behaves like the four-term one, slightly more.** The profile truth lowers the ceiling gain by 6% (pooled effect, both strata) to 26% (4.9 times) against 6% to 22%
+  for four terms, and by 31% against 26% when the large effect is in the neutropenic stratum, where the clinical score's calibration slope under the global truth is 0.53 (0.65 for four
+  terms) and 13.5% of the global gain is correction of induced miscalibration (9.4%). As in the paper the five-term ceiling differs by 6% to 8% except "all in non-neutropenic" (−14%,
+  45% of draws reaching the MCID against 5%: script 21's five-term result, 42% against 6%, on 1,000 draws).
+- **The realised score is distorted by the same amount where its weights match the truth, and by more where the effect is concentrated in the neutropenic stratum** (−25% to −36% at
+  4.9 times; −9% to −13% as in the paper, for "all in neutropenic" and "ratio 4"), because its pooled weights then apply the effect in a stratum where the truth has little.
+- **One sign reverses.** When all of the effect is in non-neutropenic admissions the realised score applies the pooled weights in both strata but the truth has the effect in one, so its gain is
+  negligible under both truths (0.3 to 0.4 per 1,000 for four terms, 0.03 to 0.26 for five, against an MCID of 4.58), and the profile truth gives the larger gain. The percentage change for five terms
+  is large only because the global value is near zero. Why the global truth is worse for that mis-specification was not examined. The verdict is the same under both truths.
+- **Verdicts.** As in the paper no realised-score scenario reaches the MCID under either truth. Scaled up, the realised score's share of draws reaching the MCID falls more than the ceiling's
+  (for example 69% to 38% against 92% to 85% for four terms, all in neutropenic), as expected from its larger percentage change near the MCID. The harm of Brunel's stratum effects (negative gain
+  of the realised score) is smaller under the profile truth (1.71 to 1.32 for four terms scaled; 0.16 to 0.16 as in the paper).
+- **For the paper nothing changes.** The scenarios as used differ by 0.4% to 14% in median gain between the truths, the largest in the one scenario already identified; the exception is the
+  realised score in that scenario, whose gain is negligible under both.
+
+### Not done
+
+Effect sizes between 3 and 4.9 times; scaling one term at a time; the realised score with estimation error in its weights (here the pooled medians exactly); the 20% threshold
+(in the CSVs, not discussed); a cause for the sign reversal.
+
+Code and outputs: `R/scheme_comparison.R`, `scripts/37_aim3b_scheme_comparison_extended.R`, `tests/testthat/test-scheme-comparison.R`, `output/aim3b_scheme_comparison_ext_{placement,scenarios,draws}.csv`.

@@ -1,0 +1,49 @@
+"model","score","scenario","version","median_global","median_profile","profile_vs_global","share_reaching_mcid_global","share_reaching_mcid_profile"
+"four terms","ceiling","H_F only","as in the paper",0.809786311573461,0.743597303351738,-0.0817363880763979,0,0
+"four terms","realised","H_F only","as in the paper",0.489634200203932,0.428206391617967,-0.125456531754482,0,0
+"four terms","ceiling","H_F only","scaled to 4.9x",8.43721745189115,6.07200534187901,-0.280330822750336,0.92,0.85
+"four terms","realised","H_F only","scaled to 4.9x",5.84202464237295,4.1341612230182,-0.292341015983979,0.69,0.375
+"four terms","ceiling","H_F, ratio 4","as in the paper",0.713772451097059,0.658514631048613,-0.0774165771787843,0,0
+"four terms","realised","H_F, ratio 4","as in the paper",0.467687737154047,0.417435238919307,-0.107448825878,0,0
+"four terms","ceiling","H_F, ratio 4","scaled to 4.9x",8.58906395078507,6.23581603616273,-0.273981883020821,0.925,0.865
+"four terms","realised","H_F, ratio 4","scaled to 4.9x",6.53691193355231,4.67054870025366,-0.285511454379412,0.76,0.525
+"four terms","ceiling","homogeneous","as in the paper",0.588707353976797,0.55911904317934,-0.0502597947818787,0,0
+"four terms","realised","homogeneous","as in the paper",0.444474424602715,0.411404748437422,-0.0744017525751938,0,0
+"four terms","ceiling","homogeneous","scaled to 4.9x",12.0324400196814,9.20413167456231,-0.235056924488537,0.965,0.95
+"four terms","realised","homogeneous","scaled to 4.9x",10.0755106523088,7.49756061654746,-0.255862965632478,0.855,0.81
+"four terms","ceiling","Brunel direction, ratio 1/4","as in the paper",1.16006777520047,1.09973306417255,-0.0520096431585617,0.005,0
+"four terms","realised","Brunel direction, ratio 1/4","as in the paper",0.464536534626907,0.457586039606521,-0.0149622139536744,0,0
+"four terms","ceiling","Brunel direction, ratio 1/4","scaled to 4.9x",4.29826900171319,3.8363677791953,-0.107462148677478,0.45,0.31
+"four terms","realised","Brunel direction, ratio 1/4","scaled to 4.9x",2.17690022086985,2.17536299380352,-0.00070615412300179,0.005,0.005
+"four terms","ceiling","Brunel only","as in the paper",3.57963997604247,3.1526235490649,-0.119290328031724,0.205,0.02
+"four terms","realised","Brunel only","as in the paper",0.334754027515381,0.443372647819443,0.324472930498415,0,0
+"four terms","ceiling","Brunel only","scaled to 4.9x",3.55694130308193,3.13420993704735,-0.118846877138036,0.195,0.02
+"four terms","realised","Brunel only","scaled to 4.9x",0.302745362010326,0.41682787950215,0.376826639834478,0,0
+"four terms","ceiling","Brunel estimate","as in the paper",0.488377416189392,0.473057681163277,-0.0313686393315421,0,0
+"four terms","realised","Brunel estimate","as in the paper",-0.156327266003306,-0.155712933308332,-0.00392978595916249,0,0
+"four terms","ceiling","Brunel estimate","scaled to 4.9x",3.62997116132728,3.19981548779321,-0.118501126983274,0.23,0.045
+"four terms","realised","Brunel estimate","scaled to 4.9x",-1.70712256745878,-1.32044275837784,-0.226509693241628,0,0
+"five terms","ceiling","H_F only","as in the paper",1.66975420987003,1.53175569399934,-0.0826460056545856,0,0
+"five terms","realised","H_F only","as in the paper",1.20652423907034,1.07891499541697,-0.105766000815448,0,0
+"five terms","ceiling","H_F only","scaled to 4.9x",10.8425842792346,7.38622207428016,-0.318776604907184,0.995,0.985
+"five terms","realised","H_F only","scaled to 4.9x",8.21020644406687,5.24536050299252,-0.361117099950259,0.855,0.7
+"five terms","ceiling","H_F, ratio 4","as in the paper",1.50118542582888,1.38452193460677,-0.0777142444996093,0,0
+"five terms","realised","H_F, ratio 4","as in the paper",1.15397875843734,1.04968674745797,-0.0903760231432634,0,0
+"five terms","ceiling","H_F, ratio 4","scaled to 4.9x",11.1729248164248,7.72206346777169,-0.308859265174696,0.995,0.99
+"five terms","realised","H_F, ratio 4","scaled to 4.9x",9.29457832688558,6.30586901168055,-0.32155405119992,0.895,0.79
+"five terms","ceiling","homogeneous","as in the paper",1.27433706207786,1.19871855630017,-0.0593394856258745,0,0
+"five terms","realised","homogeneous","as in the paper",1.07147038403973,1.00048914283377,-0.0662465731795043,0,0
+"five terms","ceiling","homogeneous","scaled to 4.9x",15.3958282136883,11.2920367790268,-0.26655217099739,1,1
+"five terms","realised","homogeneous","scaled to 4.9x",13.2663350781423,9.58157311285253,-0.277752818965112,0.935,0.895
+"five terms","ceiling","Brunel direction, ratio 1/4","as in the paper",2.16394964326303,1.99744744075915,-0.0769436585653668,0.01,0
+"five terms","realised","Brunel direction, ratio 1/4","as in the paper",0.879253292236768,0.876031000868531,-0.00366480443882145,0,0
+"five terms","ceiling","Brunel direction, ratio 1/4","scaled to 4.9x",6.04014961289321,5.31096300914538,-0.120723268541447,0.795,0.71
+"five terms","realised","Brunel direction, ratio 1/4","scaled to 4.9x",3.82042871657293,3.62656955611979,-0.0507427764879312,0.325,0.25
+"five terms","ceiling","Brunel only","as in the paper",4.46522879721757,3.86296756843236,-0.134878022187912,0.445,0.05
+"five terms","realised","Brunel only","as in the paper",0.0293737235939936,0.249956031865898,7.50951126662776,0,0
+"five terms","ceiling","Brunel only","scaled to 4.9x",4.44757305629001,3.84788289486536,-0.134835370624557,0.435,0.05
+"five terms","realised","Brunel only","scaled to 4.9x",0.0271501828224507,0.259015789911373,8.54011218286126,0,0
+"five terms","ceiling","Brunel estimate","as in the paper",0.98586060232377,0.931777258467743,-0.0548590173180135,0,0
+"five terms","realised","Brunel estimate","as in the paper",-0.903738490952862,-0.86756431780902,-0.0400272573382393,0,0
+"five terms","ceiling","Brunel estimate","scaled to 4.9x",4.69846799693852,4.07473431429358,-0.132752565953702,0.57,0.21
+"five terms","realised","Brunel estimate","scaled to 4.9x",-3.35855531927709,-2.97821086205131,-0.113246447078812,0,0
