@@ -24,6 +24,7 @@ sfx <- scheme_suffix()
 
 vr <- read_bundle_table("extraction_variants_round1.csv"); st <- read_bundle_table("extraction_studies_round1.csv")
 vr <- apply_corrections(vr, read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE))$data
+vr <- drop_duplicate_reports(vr)
 strand <- read.csv("data/rs7309123_strand_resolution.csv", stringsAsFactors = FALSE)
 beta1 <- median(read.csv("output/clec7a_posterior_draws.csv")$mu)
 

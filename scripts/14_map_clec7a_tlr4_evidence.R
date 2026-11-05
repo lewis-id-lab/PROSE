@@ -20,6 +20,7 @@ st <- read_bundle_table("extraction_studies_round1.csv")
 corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE) else NULL
 applied <- apply_corrections(vr, corrections)
 vr <- applied$data
+vr <- drop_duplicate_reports(vr)
 
 source("R/term_mapping.R")
 

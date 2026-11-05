@@ -77,7 +77,13 @@ test_that("the transcribed S035 counts add up and every printed odds ratio belon
 test_that("every recorded correction matches the real extraction and carries its evidence", {
   skip_if_not(file.exists(bundle) && file.exists(corr_path), "the evidence bundle or the corrections file is not present")
   vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
-  cr <- read.csv(corr_path, stringsAsFactors = FALSE)
+  cr_all <- read.csv(corr_path, stringsAsFactors = FALSE)
+  # S002 rows are duplicate-group markers (all 17 point to S079); the rest are comparison-text corrections
+  s2 <- cr_all[cr_all$study_id == "S002", ]
+  expect_equal(nrow(s2), 17L); expect_true(all(s2$field == "duplicate_group" & s2$corrected_value == "dup_of_S079"))
+  expect_equal(nrow(apply_corrections(vr, s2)$data), nrow(vr))
+  expect_equal(sum(apply_corrections(vr, s2)$data$duplicate_group == "dup_of_S079", na.rm = TRUE), 17L)
+  cr <- cr_all[cr_all$study_id != "S002", ]
   expect_equal(nrow(cr), 44L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S071"), 1L); expect_equal(sum(cr$study_id == "S077"), 1L)
   expect_setequal(cr$study_id, c("S035", "S073", "S071", "S077"))
   expect_equal(cr$corrected_value[cr$variant_row_id == "V0391"], "C/G+G/G vs C/C")

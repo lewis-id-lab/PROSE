@@ -38,6 +38,7 @@ message("strata:"); show_df(strata_tab)
 # Brunel 2018: stratified per-copy effects (rows for the whole cohort, no neutropenia at presentation, neutropenia at presentation)
 vr <- read_bundle_table("extraction_variants_round1.csv"); st <- read_bundle_table("extraction_studies_round1.csv")
 vr <- apply_corrections(vr, read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE))$data
+vr <- drop_duplicate_reports(vr)
 hap <- block_haplotypes("PTX3_trio", risk_alleles = c("A", NA, NA), source = "gnomAD_NFE")
 brow <- vr[vr$study_id == "S029" & vr$rsid %in% c("rs2305619", "rs3816527") & grepl("^All episodes \\(N=212\\)|^No neutropenia at presentation \\(N=133\\)|^Neutropenia at presentation \\(N=79\\)", vr$subgroup), ]
 bm <- do.call(rbind, lapply(seq_len(nrow(brow)), function(i) {

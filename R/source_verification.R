@@ -55,3 +55,37 @@ clean_reversed_comparison <- function(text) {
   x <- sub(",.*$", "", text)
   trimws(gsub("\\s*\\(ref\\)", "", x))
 }
+
+# Apply study-level corrections (data/study_corrections.csv) to the study table. Each correction names a study and a field, the value expected
+# there and the new value. Only rows with status "corrected" are applied; "needs_decision" rows are returned untouched in `pending`. An
+# expected value that is blank in the correction must be blank in the table, and numbers are compared as numbers.
+apply_study_corrections <- function(st, corrections) {
+  if (is.null(corrections) || !nrow(corrections)) return(list(data = st, applied = data.frame(), pending = data.frame()))
+  same <- function(a, b) {
+    blank <- function(x) is.na(x) || !nzchar(trimws(as.character(x)))
+    if (blank(a) || blank(b)) return(blank(a) && blank(b))
+    na <- suppressWarnings(as.numeric(a)); nb <- suppressWarnings(as.numeric(b))
+    if (!is.na(na) && !is.na(nb)) na == nb else identical(trimws(as.character(a)), trimws(as.character(b)))
+  }
+  todo <- corrections[corrections$status == "corrected", , drop = FALSE]
+  for (i in seq_len(nrow(todo))) {
+    cr <- todo[i, ]
+    j <- which(st$study_id == cr$study_id)
+    if (length(j) != 1) stop("correction for ", cr$study_id, ": study not found or not unique", call. = FALSE)
+    if (!(cr$field %in% names(st))) stop("correction for ", cr$study_id, ": no field ", cr$field, call. = FALSE)
+    if (!same(st[[cr$field]][j], cr$original_value)) {
+      stop("correction for ", cr$study_id, " expected '", cr$original_value, "' in ", cr$field, " but found '", st[[cr$field]][j], "'", call. = FALSE)
+    }
+    st[[cr$field]] <- as.character(st[[cr$field]])
+    st[[cr$field]][j] <- as.character(cr$corrected_value)
+  }
+  list(data = st, applied = todo[c("study_id", "field", "original_value", "corrected_value")],
+       pending = corrections[corrections$status != "corrected", c("study_id", "field", "status"), drop = FALSE])
+}
+
+# Drop rows that duplicate another study's rows (duplicate_group "dup_of_<study>", set in data/extraction_corrections.csv), so the same
+# result is not pooled twice. Run after apply_corrections(). Rows with other duplicate_group values (D001 and so on) are kept.
+drop_duplicate_reports <- function(vr) {
+  if (!("duplicate_group" %in% names(vr))) stop("no duplicate_group column", call. = FALSE)
+  vr[is.na(vr$duplicate_group) | !grepl("^dup_of_", vr$duplicate_group), , drop = FALSE]
+}
