@@ -82,3 +82,26 @@ test_that("the stress version reproduces the exact gain without error, and each 
   Sys.setenv(PROSE_SCHEME = "global")
   expect_error(pathogen_cell_stress(q_t, lp_t, 8, 2.5, 0.3, 0.8, 0.3, at), "profile")
 })
+
+test_that("the linked dosage distribution is exact: it sums to 1, reduces to the binomial without linkage and has the variance of a correlated block", {
+  pm <- dosage_pmf_linked(10, 0.3, 4, 0.5); d <- seq_along(pm) - 1
+  expect_equal(sum(pm), 1, tolerance = 1e-12)
+  expect_equal(sum(pm * (d - sum(pm * d))^2), 2 * 0.3 * 0.7 * (2 * 4 * (1 + 3 * 0.5) + 2 * (1 + 0.5)), tolerance = 1e-10)
+  expect_equal(dosage_pmf_linked(7, 0.2, 3, 0), dosage_pmf(7, 0.2), tolerance = 1e-12)
+  expect_equal(sum(pm * d), 2 * 10 * 0.3, tolerance = 1e-12)
+})
+
+test_that("with linkage the ceiling gain is higher, a joint estimate keeps it and a marginal one double counts; without linkage they agree", {
+  old <- Sys.getenv("PROSE_SCHEME", NA); on.exit(if (is.na(old)) Sys.unsetenv("PROSE_SCHEME") else Sys.setenv(PROSE_SCHEME = old))
+  Sys.setenv(PROSE_SCHEME = "profile")
+  a <- pathogen_cell_linked(q_t, lp_t, 8, 2, 0.3, 1, 0, at, 4L, 0.5, R = 8L, seed = 2L)
+  m <- function(x, est) median(x$gain[x$estimation == est & x$score == "specific" & x$threshold == 0.05])
+  ex <- a$gain_exact[a$score == "specific" & a$threshold == 0.05][1]
+  expect_equal(m(a, "joint"), ex, tolerance = 0.15)
+  expect_lt(m(a, "marginal"), m(a, "joint"))
+  z <- pathogen_cell_linked(q_t, lp_t, 8, 2, 0.3, 1, 0, at, 4L, 0, R = 8L, seed = 2L)
+  expect_equal(m(z, "joint"), m(z, "marginal"), tolerance = 1e-8)
+  expect_gt(ex, z$gain_exact[z$score == "specific" & z$threshold == 0.05][1])
+  Sys.setenv(PROSE_SCHEME = "global")
+  expect_error(pathogen_cell_linked(q_t, lp_t, 8, 2, 0.3, 1, 0, at), "profile")
+})

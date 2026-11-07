@@ -144,3 +144,63 @@ pathogen_cell_stress <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigm
   })
   cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, do.call(rbind, out))
 }
+
+# ---- Linkage among the causal loci (addendum 43) ------------------------------------------------------------------------------------------------
+# The k causal loci are grouped into blocks of block_size adjacent loci. Within a block, on each chromosome, the alleles are correlated rho (identical frequency raf):
+# a shared draw u ~ Bernoulli(raf) is copied to a locus with probability sqrt(rho) and otherwise the locus draws independently, so the pairwise allele correlation is
+# exactly rho. Blocks are independent, the two chromosomes are independent, and the dosage distribution of the true genetic score is exact: per chromosome and block,
+# X ~ raf * Binomial(m, w + (1 - w) raf) + (1 - raf) * Binomial(m, (1 - w) raf) with w = sqrt(rho), and the dosage is the convolution of two such chromosomes and then of
+# the blocks. The variance of the dosage is 2 k raf (1 - raf) (1 + (m - 1) rho) for blocks of m.
+dosage_pmf_linked <- function(n_loci, p, block_size, rho) {
+  w <- sqrt(rho)
+  blocks <- split(seq_len(n_loci), ceiling(seq_len(n_loci) / block_size))
+  one <- function(m) { ch <- p * stats::dbinom(0:m, m, w + (1 - w) * p) + (1 - p) * stats::dbinom(0:m, m, (1 - w) * p); convolve_pmf(ch, ch) }
+  Reduce(convolve_pmf, lapply(blocks, function(ix) one(length(ix))))
+}
+
+# The realised score when the causal loci are linked. The true effect of each locus is the causal (conditional) one. Two ways of estimating the weights:
+#   marginal  each locus estimated on its own, as in a single-SNP discovery study: the estimate carries the effect of its linked neighbours, centred on
+#             (1 + (m - 1) rho) times the causal effect, with errors correlated rho within a block (covariance sigma^2 times the genotype correlation matrix)
+#   joint     all loci of a block estimated together: centred on the causal effect, with error covariance sigma^2 times the inverse of that matrix (the variance of
+#             each weight is inflated by its variance inflation factor)
+# sigma is the standard error of a single locus's marginal estimate. gain_exact is the gain with the causal weights known (the ceiling under this linkage).
+# Profile-preserving truth only. Returns one row per replicate, estimation, score and threshold.
+pathogen_cell_linked <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigma, thresholds, block_size = 4L, rho = 0.3, R = 12L, N = 2000L, seed = 1L) {
+  if (genetic_scheme() != "profile") stop("pathogen_cell_linked() builds the profile-preserving truth; set PROSE_SCHEME = \"profile\"", call. = FALSE)
+  set.seed(seed)
+  k <- n_loci; beta <- log(odds_ratio); np <- length(q)
+  pmf <- dosage_pmf_linked(k, raf, block_size, rho); ng <- length(pmf); d <- seq_len(ng) - 1
+  w <- as.numeric(outer(q, pmf)); lp_cell <- rep(lp_profile, ng); D0 <- rep(d, each = np)
+  clin <- stats::plogis(lp_cell)
+  comp <- stats::plogis(outer(lp_profile + profile_shifts(lp_profile, beta * d, pmf), beta * d, "+"))
+  r_cells <- (1 - f) * clin + f * as.numeric(comp)
+  r_mat <- matrix(r_cells, np, ng)
+  centres <- c(specific = beta, all_mould = diluted_beta(lp_cell, D0, w, r_cells))
+  base_nb <- nb_from(tp_fp(w, r_cells, clin, thresholds), thresholds)
+  exact_gain <- lapply(centres, function(b) { pr <- as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, b * d, pmf), b * d, "+"))); nb_from(tp_fp(w, r_cells, pr, thresholds), thresholds) - base_nb })
+  blocks <- split(seq_len(k), ceiling(seq_len(k) / block_size)); wsh <- sqrt(rho)
+  sig <- lapply(blocks, function(ix) { m <- length(ix); (1 - rho) * diag(m) + rho * matrix(1, m, m) })
+  chol_marg <- lapply(sig, chol); chol_joint <- lapply(sig, function(s) chol(solve(s)))
+  mult <- unlist(lapply(blocks, function(ix) rep(1 + (length(ix) - 1) * rho, length(ix))))
+  wt <- rep(q, times = N) / N
+  out <- lapply(seq_len(R), function(r) {
+    G <- matrix(0L, N, k)
+    for (ix in blocks) for (ch in 1:2) {
+      u <- stats::rbinom(N, 1L, raf)
+      copy <- matrix(stats::runif(N * length(ix)) < wsh, N, length(ix))
+      G[, ix] <- G[, ix] + ifelse(copy, u, matrix(stats::rbinom(N * length(ix), 1L, raf), N, length(ix)))
+    }
+    rt <- as.numeric(r_mat[, rowSums(G) + 1L])
+    z <- stats::rnorm(k)
+    err <- list(marginal = unlist(Map(function(R_, ix) sigma * drop(t(R_) %*% z[ix]), chol_marg, blocks)),
+                joint = unlist(Map(function(R_, ix) sigma * drop(t(R_) %*% z[ix]), chol_joint, blocks)))
+    do.call(rbind, lapply(names(err), function(est) do.call(rbind, lapply(names(centres), function(sc) {
+      wv <- (if (est == "marginal") centres[[sc]] * mult else centres[[sc]]) + err[[est]]
+      S <- drop(G %*% wv)
+      pr <- as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, S, rep(1 / N, N)), S, "+")))
+      data.frame(replicate = r, estimation = est, score = sc, threshold = thresholds, gain = nb_from(tp_fp(wt, rt, pr, thresholds), thresholds) - base_nb,
+                 gain_exact = exact_gain[[sc]])
+    }))))
+  })
+  cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, block_size = block_size, rho = rho, do.call(rbind, out))
+}

@@ -3215,3 +3215,58 @@ At the 20% threshold the loss is smaller: at f = 1 the share reaching the MCID i
 **Where the loss starts.** At once, and in proportion to r squared: a tag at r = 0.9 already loses a fifth of the gain and needs one to five more loci (one to two at f = 1, three to five at f = 0.8). Between 0.9 and 0.7 the frontier leaves reach for most architectures near it, because the gain falls through the MCID; at 0.5 nothing in the grid reaches it at 5%. A causal variant that is typed or well imputed (r above about 0.95) is therefore what the earlier frontiers assume. Not shown: other seeds of the candidate pool, locus-specific r, and r for the all-ancestry case.
 
 Code and outputs: `scripts/49_aim4_pathogen_tagging.R`, `output/aim4_pathogen_tagging_{sweep,frontier}_profile.csv`, `output/figures/aim4_pathogen_tagging_frontier_profile.png`.
+
+
+## Addendum 43, 7 November 2026: linkage among the causal loci in the pathogen-specificity scenario
+
+**What had been seen.** Addendum 42 left linkage among the causal loci unmodelled. This is the last of the three departures planned for the architecture sweep, again inside the pathogen-specificity grid and under the profile-preserving truth only. The results below were seen when they were written; I expected linkage to make the requirements harder, and it did not.
+
+### Design (`scripts/50_aim4_pathogen_linkage.R`; `dosage_pmf_linked()` and `pathogen_cell_linked()` in `R/aim4_pathogen.R`)
+
+The k causal loci form blocks of four adjacent loci whose alleles are correlated rho = 0, 0.3 or 0.6 on each chromosome (a shared draw is copied to a locus with probability sqrt(rho), so the pairwise correlation is exactly rho); blocks and chromosomes are independent. The true dosage distribution is exact (a mixture of binomials convolved over two chromosomes and the blocks), with variance 2 k p (1 - p) (1 + (m - 1) rho) for blocks of m; the effect of each locus stays the stated causal (conditional) per-allele odds ratio. Two ways of estimating the weights, with sigma the standard error of one locus's marginal estimate:
+
+- **marginal:** each locus estimated on its own, as in a single-SNP discovery study. The estimate carries the effect of its linked neighbours (centred on 1 + (m - 1) rho times the causal effect) and the errors are correlated within a block.
+- **joint:** the block estimated together (centred on the causal effect, with the inverse of the genotype correlation matrix as the error covariance, so each weight's variance is inflated).
+
+Grid and checks as script 48 (f = 1 and 0.8, sigma = 0.10 and 0.20, odds ratios 2.0, 2.5, 3.0, frequencies 0.1, 0.3, 0.5, 1 to 20 loci; 12 replicate studies). Tests: the dosage distribution sums to 1, reduces to the binomial at rho = 0 and has the stated variance; a simulation reproduces the block variance and allele correlation (rho = 0.5: 4.20 against 4.20 and 0.499); at rho = 0 the two estimations agree and at sigma = 0 the joint estimate matches the exact gain.
+
+### Results
+
+Share of the 180 architectures reaching the 5% MCID (target-pathogen weights; the exact row is the gain with the causal weights known):
+
+| f | | rho = 0 | rho = 0.3 | rho = 0.6 |
+|---|---|---|---|---|
+| 1.0 | exact | 63% | 83% | 87% |
+| 1.0 | joint, sigma 0.10 / 0.20 | 63% / 59% | 82% / 82% | 86% / 88% |
+| 1.0 | marginal, sigma 0.10 / 0.20 | 63% / 59% | 76% / 78% | 81% / 80% |
+| 0.8 | exact | 31% | 64% | 76% |
+| 0.8 | joint, sigma 0.10 / 0.20 | 33% / 26% | 63% / 63% | 74% / 73% |
+| 0.8 | marginal, sigma 0.10 / 0.20 | 33% / 26% | 45% / 44% | 48% / 46% |
+
+The all-mould weights give the same picture (marginal 58% to 64% at f = 0.8, joint 60% to 76%, at rho of 0.3 and 0.6). At the 20% threshold the share barely moves (91% to 97% at sigma 0.10).
+
+Fewest loci at the 5% MCID, frequency 0.3, sigma 0.10, target-pathogen weights ("none" = none within 20):
+
+| f | odds ratio | exact: rho 0 / 0.3 / 0.6 | joint | marginal |
+|---|---|---|---|---|
+| 1.0 | 2.0 | 10 / 5 / 4 | 9 / 4 / 4 | 9 / 7 / 7 |
+| 1.0 | 2.5 | 6 / 3 / 3 | 6 / 4 / 3 | 6 / 4 / 4 |
+| 1.0 | 3.0 | 4 / 3 / 3 | 4 / 3 / 3 | 4 / 3 / 3 |
+| 0.8 | 2.0 | 20 / 10 / 7 | none / 11 / 8 | none / 15 / 13 |
+| 0.8 | 2.5 | 11 / 6 / 4 | 10 / 6 / 4 | 10 / 9 / 8 |
+| 0.8 | 3.0 | 8 / 4 / 4 | 7 / 4 / 4 | 7 / 7 / 7 |
+
+The median share of the exact gain that the realised score keeps (cells whose exact gain is at least half the MCID) is 0.93 to 0.99 for the joint estimate at every rho, and 0.76 to 0.86 for the marginal estimate with target-pathogen weights at rho of 0.3 and 0.6 (0.89 to 0.95 with all-mould weights).
+
+### Reading
+
+- **Linkage among distinct causal loci does not make the architectures harder; it makes them easier.** Positively correlated risk alleles raise the variance of the true genetic score for the same per-locus effect, so with the causal weights known the loci needed at an odds ratio of 2.0 fall from 10 to 5 and 4 (f = 1). This is a property of the model, not a finding about biology: it holds the conditional effect of every locus fixed, so it describes several truly distinct causal variants that happen to be correlated.
+- **The cost of linkage is in the estimation.** Estimating each locus on its own double counts the linked neighbours (the weights sum to more than the true effect) and loses up to a quarter of the gain, three to five more loci at an odds ratio of 2.0 (f = 0.8: 15 and 13 loci against 11 and 8 with a joint estimate). A joint estimate keeps nearly all of it.
+- **What linkage in the usual sense mostly is** (one causal signal seen through several correlated variants) is the incomplete tagging of addendum 42, which does hurt. The two should not be added: the favourable result here needs separate causal effects.
+- **Not shown:** blocks of other sizes, unequal correlations within a block, linkage between blocks, non-additive effects; the global truth; the main sweep of scripts 23 and 25.
+
+### Not done
+
+Other block sizes and correlation structures; the stress tests in the exact sweep.
+
+Code and outputs: `R/aim4_pathogen.R` (`dosage_pmf_linked()`, `pathogen_cell_linked()`), `scripts/50_aim4_pathogen_linkage.R`, `output/aim4_pathogen_linkage_{sweep,frontier}_profile.csv`, `output/figures/aim4_pathogen_linkage_frontier_profile.png`; tests in `tests/testthat/test-aim4-pathogen.R`.

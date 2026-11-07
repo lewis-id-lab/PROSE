@@ -344,8 +344,9 @@ All of these were run under the profile-preserving truth. The global-intercept v
   added three departures from the idealised score, each alone and all together: loci with different frequencies and so
   different precision; the winner's curse, with the k loci picked by their z-scores from five times as many candidates, the
   rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one (a separate sweep used
-  0.5, 0.7, 0.9 and 1.0). Linkage among the causal
-  loci was not modelled.
+  0.5, 0.7, 0.9 and 1.0). The causal loci themselves were also linked in a further sweep: blocks of four adjacent loci with
+  allele correlations of 0.3 and 0.6, with the weights estimated for each locus on its own, as in a single-SNP discovery study, or
+  jointly for the block.
 - **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
   computed exactly in three forms:
   - categorical at 5%;
@@ -616,6 +617,15 @@ against 6 with the causal variants. With all three departures, 0% to 9% of archi
 gain that the tag kept followed the square of the correlation (0.23, 0.49 and 0.82 at f = 1), so a tag at 0.9 already lost about a fifth
 of the gain and needed one to five more loci, and at 0.5 no architecture reached the 5% MCID.
 
+Linkage among the causal loci did not make the requirements harder. With the effect of each locus unchanged, correlated risk alleles
+raise the variance of the true genetic score, so with the causal weights known the share of architectures reaching the 5% MCID rose
+from 63% (independent loci) to 83% and 87% (allele correlations of 0.3 and 0.6) at f = 1, and from 31% to 64% and 76% at f = 0.8; the
+loci needed for an odds ratio of 2.0 at frequency 0.3 fell from 10 to 5 and 4 at f = 1. A joint estimate of the weights kept 0.93 to
+0.99 of that gain. Estimating each locus on its own, as a single-SNP discovery study would, double counted the linked neighbours,
+kept 0.76 to 0.86 of the gain with the target-pathogen weights, and needed three to five more loci for an odds ratio of 2.0 (at f = 0.8,
+15 and 13 loci against 11 and 8). This result holds for distinct causal variants that happen to be correlated; one causal signal seen
+through several correlated variants is the incomplete tagging above.
+
 ### Net reclassification improvement (tertiary)
 
 All NRI results use the profile-preserving truth, with the clinical score as the comparator. Continuous NRI was large even
@@ -851,8 +861,8 @@ Prophylaxis practice has changed since 2016, and the score's calibration today i
 true cases is a judgement, though the strictest of the three readings we considered. Other uses of genotype, such as choosing
 an antifungal agent or enriching a trial, were not evaluated.
 
-The stress tests of locus-specific precision, the winner's curse and incomplete tagging were run only within the pathogen-specificity
-grid, one setting each, and linkage among the causal loci was not modelled; the main architecture sweep was not repeated with them.
+The stress tests of locus-specific precision, the winner's curse, incomplete tagging and linkage among the causal loci were run only within the
+pathogen-specificity grid, one setting each (blocks of four loci for linkage), and the main architecture sweep was not repeated with them.
 The pathogen-specificity scenario rests on an assumed share f of cases due to the target pathogen, because the cohort has no
 pathogen-level outcome.
 
