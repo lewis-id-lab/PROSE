@@ -3052,3 +3052,32 @@ At f = 0.6 only odds ratios of 2.5 and above reach the MCID at all: odds ratio 3
 A check of Fisher 2017's tables against the PDF; the same allele-order check of the other studies that list alleles minor/major; script 25-style winner's curse and locus-specific error in the pathogen scenario.
 
 Code and outputs: `data/extraction_corrections.csv` (S080, ten rows), `R/aim4_pathogen.R` (`pathogen_cell_realised()`), `scripts/46_donor_ptx3_s079_sensitivity.R` and `scripts/20_genetic_donor_stratum.R` rerun, `scripts/47_aim4_pathogen_realised.R`; `output/ptx3_donor_effects.csv`, `ptx3_h2_donor_posterior_draws.csv`, `ptx3_row_effects.csv`, `ptx3_donor_s079_*.csv`, `genetic_donor_*.csv`, `aim4_pathogen_realised_{sweep,frontier,check}.csv`, `output/figures/aim4_pathogen_realised_frontier.png`; tests in `tests/testthat/test-source-verification.R`.
+
+
+## Addendum 40, 7 November 2026: Fisher 2017's tables read in the PDF; the recessive correction is neither confirmed nor reversed
+
+**What had been seen.** Addendum 39's correction of Fisher 2017's recessive rows, made from the footnote as read in the open full text. The PDF (the Zotero copy, text extracted with Ghostscript) was read for Tables 1, 3 and 4, their footnotes, the Methods and the Figure 1 legend.
+
+### What the PDF says
+
+- **Table 1** (the original studies): PTX3 rs2305619 alleles A/G, MAF 0.44, aHR 2.9 (1.7 to 5.0), and rs3816527 A/C, MAF 0.29, aHR 2.6 (1.5 to 4.5) (both from the discovery study); the column is footnoted "Major/minor", and the MAFs are from 1000 Genomes.
+- **Table 3** (strict replication, n = 439): rs2305619, donor genome, alleles "A/G*", MAF 0.47, Recessive, HR 1.33 (1.09 to 1.64), P = .005. The footnote: "Minor/major for PTX3 and TLR4 to keep our model consistent with the original articles, given that the opposite alleles were more frequent in our study."
+- **Table 4** (exploratory), allele column footnoted "Major/minor allele": rs2305619 A/G, MAF 0.47; rs3816527 C/A, MAF 0.42; recessive hazard ratios 2.44 and 1.54 (rs2305619) and 3.29 and 1.82 (rs3816527), allelic 1.20 to 1.42.
+- **Methods and Figure 1.** An SNP counts as strictly replicated when the genotype source and the genetic model are the same as in the original; the Figure 1 legend defines AA as homozygous for the major allele, aa as homozygous for the minor allele and *a as dominant for the minor allele.
+- Neither the text nor the tables name the genotype of the recessive PTX3 model, or the risk allele.
+
+### What it settles
+
+The MAFs show which allele is listed first. In the project's haplotype frequencies A at rs2305619 is 0.46 to 0.48 and C at rs3816527 about 0.40, so Fisher's 0.47 and 0.42 are the frequencies of A and C, the first-listed alleles: the listing is minor/major for PTX3, as the Table 3 footnote says, although the Table 4 header still says major/minor.
+
+That leaves two readings that the PDF does not choose between. Under the paper's own convention (recessive means aa, homozygous for the minor allele) the rows are AA for rs2305619 and CC for rs3816527, as extracted; under the footnote's wording (the model was kept consistent with the original articles, whose risk genotypes are GG and AA) they are GG and AA, as corrected in addendum 39. The word "validation" and the strict-replication rule favour the second reading (an odds ratio above 1 for the opposite genotype would not replicate Cunha); the Figure 1 legend and the minor/major listing favour the first. The recomputed effect of an additive-style check does not separate them (an allelic hazard ratio of 1.20 is expected under either).
+
+### Decision
+
+The correction of addendum 39 **stays**, with a lower confidence than addendum 39 stated: about two in three, not four in five. It rests on the footnote's explicit statement that the model is consistent with the original articles, which is the only sentence that speaks to the question. It is not confirmed by the tables. The donor PTX3 effect under both readings is in addendum 39 (as extracted: 1.25, 0.80 to 1.99; reversed: 0.89, 0.59 to 1.69), and both leave the donor layer far below its MCID (a difference of 1 to 2 cases per 1,000 allo admissions in the realised score, against about 30 needed), so the choice does not change a conclusion.
+
+To settle it: the genotype counts behind Table 3 (not in the paper or its supplement as extracted), or a question to the authors (Hansen, Fred Hutchinson). Fisher 2017's rs3816527 recessive rows (V1095, V1097) are in the same position.
+
+### Not done
+
+The question to the authors; the allele-order check of the other studies listing minor/major.
