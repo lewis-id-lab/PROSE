@@ -28,7 +28,7 @@ clinically important difference fixed before any genetic result exists.
 | Phase | State |
 |---|---|
 | 0 Set-up | complete |
-| 1 Literature search | complete: 831 unique records screened (the PubMed search date is still to be recorded) |
+| 1 Literature search | complete: 831 unique records screened (PubMed searched 7 July 2026, Embase 8 October 2026) |
 | 2 Screening and extraction | round 1 complete, including targeted recovery and supplementary files. Human round-2 checks are reported complete, but the record is not yet in the repository. Direction check of the text-parsed rows closed: 43 rows corrected in all, each with its evidence |
 | 3 Parameter derivation | done provisionally for PTX3, CLEC7A (two parameters), TLR4 and CD209; IL10 and IFNG dropped (D14) |
 | 4 Baseline | done: refit on the base cohort of 4,078 unique admissions in 1,945 patients (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20%; the published equation, the 4,127 rows and the copula are sensitivity analyses |

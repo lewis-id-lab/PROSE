@@ -24,7 +24,7 @@ written up in the decision record and is not part of this draft. The evidence is
 Still to do:
 
 - the author list, ethics statement, data-availability statement and funding;
-- the PubMed search date and a description of the extraction and round-2 verification;
+- a description of the extraction and round-2 verification;
 - two missing references, marked `[ref]`: one on the burden of IMD, and Feys et al. (*J Infect Dis* 2026), which is not yet
   indexed in Crossref.
 
@@ -167,7 +167,7 @@ possible predictor profiles, 75 of which occur. Three alternatives were kept as 
 
 ### Evidence synthesis
 
-**Search and extraction.** We searched PubMed (267 records; search date [to confirm]) and Embase (785 records; 8 October 2026)
+**Search and extraction.** We searched PubMed (267 records; 7 July 2026) and Embase (785 records; 8 October 2026)
 for studies of host genetic variants and invasive fungal disease. After 221 duplicates were removed, 831 records were screened
 on title and abstract and 750 were excluded. Eighty-one reports were sought for retrieval. Eighteen could not be retrieved
 (twelve had no full text available, and for six the link pointed to the wrong document), and 63 were assessed in full. Three were

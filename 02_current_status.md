@@ -15,7 +15,7 @@ Last updated 7 November 2026. Sections 1, 6c, 7 and 8 describe the current posit
 | 4 Baseline | **done**: the refit baseline on the 4,078-admission base cohort (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20% |
 | 5 Genetic layer simulation | **first results in** (addenda 11 to 22 and 24 to 34): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison. Addendum 24 (20 October) made a profile-preserving truth primary, with the panels, the Aim 4 sweeps and the NRI rerun under it, and addenda 25 and 26 reran the sampling, ensemble, attribution, Aim 3b, donor and robustness analyses and the all-ancestry CLEC7A variant under it too, so every analysis is on it; donor PTX3 evidence is now two studies (the Leiden letter added, script 20 rerun, addendum 37: the donor results move by at most 0.3 cases per 1,000 allo admissions); Fisher 2017's recessive PTX3 rows reversed (addendum 39), which lowers the realised donor gain to 0.5 to 0.9 cases per 1,000 allo admissions at 5% |
 | 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17, exact and with estimated weights); sensitivity analyses done for the cohort, the baseline equation, the correlation structure and the sampling variability |
-| 7 Write-up | **full first draft** (19 October 2026, revised 20 October for the profile-preserving truth) on the Draft manuscript page (`manuscript.qmd`, references in `references.bib`, Vancouver style); authors, ethics, data availability, funding and two references still to add. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026); the PRISMA 2020 flow diagram is built (script 44, counts from prisma_summary.xlsx: 60 included of 831 screened, the spreadsheet's 61 less S010, excluded in addendum 37; the figure is in the manuscript methods; the PubMed search date is unrecorded) |
+| 7 Write-up | **full first draft** (19 October 2026, revised 20 October for the profile-preserving truth) on the Draft manuscript page (`manuscript.qmd`, references in `references.bib`, Vancouver style); authors, ethics, data availability, funding and two references still to add. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026); the PRISMA 2020 flow diagram is built (script 44, counts from prisma_summary.xlsx: 60 included of 831 screened, the spreadsheet's 61 less S010, excluded in addendum 37; the figure is in the manuscript methods) |
 
 ## 2. Search and screening
 
@@ -25,9 +25,9 @@ PubMed and 568 from Embase, of which 57 have no abstract and 175 are conference 
 exports were uploaded to Covidence rather than pre-deduplicated files, so Covidence's own duplicate count
 stays meaningful.
 
-Two audit-trail items remain open: the date the PubMed searches were run is still unrecorded (Embase was
-8 October 2026), and the complete automated screening decision file for all 831 records has not been
-assembled.
+One audit-trail item remains open: the complete automated screening decision file for all 831 records has not been
+assembled. The PubMed searches were run on 7 July 2026 and the Embase search on 8 October 2026 (the PubMed date was recorded on
+7 November 2026).
 
 ## 3. Extraction — round 1, with the Job A full-text pass applied
 

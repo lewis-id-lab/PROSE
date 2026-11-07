@@ -7,7 +7,7 @@
 #   3 excluded with reasons (an eQTL study with no clinical outcome; a paediatric AML study with no SNP analysis of the fungal endpoint; S010, Ozdemir
 #   2011, excluded on 6 November 2026, addendum 37: leukaemia patients compared with healthy controls, no infection-by-genotype analysis, abstract only,
 #   which the spreadsheet still counts as included); 60 included.
-# Still open: the PubMed search date is unrecorded (Embase was 8 October 2026); the diagram has no box for it.
+# Search dates (not on the diagram, which has no box for them): PubMed 7 July 2026, Embase 8 October 2026.
 #
 # Writes   output/figures/prisma_flow.html, output/figures/prisma_flow.png, output/prisma_counts.csv
 
