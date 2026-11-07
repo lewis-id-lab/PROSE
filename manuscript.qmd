@@ -46,7 +46,7 @@ has not been tested.
 
 **Methods.** In a pre-specified simulation study, we added host genotype to a seven-predictor score for proven or probable
 invasive mould disease (IMD) within 60 days. The score was refit on 4,078 haematology admissions in 1,945 patients (Bologna,
-2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (63 studies extracted) and were pooled
+2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (60 studies included) and were pooled
 with Bayesian random-effects models. Genetic effects were added to the clinical logit with an intercept for each clinical
 profile, so that the clinical score stayed calibrated and any gain reflected the genetic information. Net-benefit gains were
 computed exactly for 2,000 posterior draws. The primary endpoint was the gain at a 5% risk threshold. It was judged against a
@@ -167,10 +167,17 @@ possible predictor profiles, 75 of which occur. Three alternatives were kept as 
 
 ### Evidence synthesis
 
-**Search and extraction.** We searched PubMed (263 records; search date [to confirm]) and Embase (568 records; 8 October 2026)
-for studies of host genetic variants and invasive fungal disease. The searches gave 831 unique records. Of the 81 studies
-included, 63 had a usable source document. Twelve had no full text available, and six links pointed to the wrong document. The
-extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an
+**Search and extraction.** We searched PubMed (267 records; search date [to confirm]) and Embase (785 records; 8 October 2026)
+for studies of host genetic variants and invasive fungal disease. After 221 duplicates were removed, 831 records were screened
+on title and abstract and 750 were excluded. Eighty-one reports were sought for retrieval. Eighteen could not be retrieved
+(twelve had no full text available, and for six the link pointed to the wrong document), and 63 were assessed in full. Three were
+excluded: a functional genomics study with no clinical outcome, a paediatric acute myeloid leukaemia study that did not analyse
+genotype against the fungal endpoint, and a study that compared patients with leukaemia against healthy controls without
+analysing infection by genotype. Sixty studies were included (@fig-prisma).
+
+![PRISMA 2020 flow diagram of the literature search and study selection (databases only). The 750 records excluded at title and abstract were not recorded with reasons.](output/figures/prisma_flow.png){#fig-prisma}
+
+The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an
 orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables. [Describe the extraction process and
 the round-2 human verification.]
 

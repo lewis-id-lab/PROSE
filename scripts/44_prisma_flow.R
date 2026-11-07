@@ -4,9 +4,10 @@
 #   PubMed 267 and Embase 785 records (1,052); 221 duplicates removed (264 and 586 unique within database, 850 to 831 on title matching);
 #   831 screened, 750 excluded at title and abstract (reasons not recorded: the automated screening decision file was never assembled);
 #   81 reports sought; 18 not retrieved (12 with no full text, 6 whose link pointed to the wrong document); 63 assessed (56 verified, 7 re-extracted);
-#   2 excluded with reasons (an eQTL study with no clinical outcome; a paediatric AML study with no SNP analysis of the fungal endpoint); 61 included.
-# Still open: the PubMed search date is unrecorded (Embase was 8 October 2026), and S010 is counted as included here although addendum 37 excludes it
-# from the evidence base (it would be 60 included and 3 excluded at full text). The diagram has no box for either.
+#   3 excluded with reasons (an eQTL study with no clinical outcome; a paediatric AML study with no SNP analysis of the fungal endpoint; S010, Ozdemir
+#   2011, excluded on 6 November 2026, addendum 37: leukaemia patients compared with healthy controls, no infection-by-genotype analysis, abstract only,
+#   which the spreadsheet still counts as included); 60 included.
+# Still open: the PubMed search date is unrecorded (Embase was 8 October 2026); the diagram has no box for it.
 #
 # Writes   output/figures/prisma_flow.html, output/figures/prisma_flow.png, output/prisma_counts.csv
 
@@ -24,14 +25,14 @@ counts <- list(
   dbr_sought_reports        = 81,
   dbr_notretrieved_reports  = 18,
   dbr_assessed              = 63,
-  dbr_excluded              = "No invasive mould disease outcome (eQTL study), 1; No SNP analysis for the fungal endpoint (paediatric AML), 1",
-  new_studies               = 61,
-  new_reports               = 61
+  dbr_excluded              = "No invasive mould disease outcome (eQTL study), 1; No SNP analysis for the fungal endpoint (paediatric AML), 1; No infection-by-genotype analysis (leukaemia patients against healthy controls), 1",
+  new_studies               = 60,
+  new_reports               = 60
 )
 stopifnot(counts$database_results - counts$duplicates == counts$records_screened,
           counts$records_screened - counts$records_excluded == counts$dbr_sought_reports,
           counts$dbr_sought_reports - counts$dbr_notretrieved_reports == counts$dbr_assessed,
-          counts$dbr_assessed - 2 == counts$new_studies)
+          counts$dbr_assessed - 3 == counts$new_studies)
 
 tpl <- read.csv(system.file("extdata", "PRISMA.csv", package = "PRISMA2020"))
 for (k in names(counts)) tpl$n[tpl$data == k] <- counts[[k]]
