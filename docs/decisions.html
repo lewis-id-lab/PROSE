@@ -456,6 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#results-11" id="toc-results-11" class="nav-link" data-scroll-target="#results-11">Results</a></li>
   <li><a href="#reading-15" id="toc-reading-15" class="nav-link" data-scroll-target="#reading-15">Reading</a></li>
   <li><a href="#not-done-24" id="toc-not-done-24" class="nav-link" data-scroll-target="#not-done-24">Not done</a></li>
+  <li><a href="#addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r" id="toc-addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r" class="nav-link" data-scroll-target="#addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r">Addition, 7 November 2026 (later the same day): the tagging stress test over r (<code>scripts/49_aim4_pathogen_tagging.R</code>)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -7662,6 +7663,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="not-done-24">Not done</h3>
 <p>Linkage among the causal loci; a sweep over r, the pool size and the frequency spread; the same stress tests in the exact sweep.</p>
 <p>Code and outputs: <code>R/aim4_pathogen.R</code> (<code>pathogen_cell_stress()</code>), <code>scripts/48_aim4_pathogen_stress.R</code>, <code>output/aim4_pathogen_stress_{sweep,frontier,check}_profile.csv</code>, <code>output/figures/aim4_pathogen_stress_frontier_profile.png</code>; test in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
+</section>
+<section id="addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r" class="level3">
+<h3 class="anchored" data-anchor-id="addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r">Addition, 7 November 2026 (later the same day): the tagging stress test over r (<code>scripts/49_aim4_pathogen_tagging.R</code>)</h3>
+<p>Incomplete tagging was the only departure that mattered, and it was run at one correlation. Script 49 repeats it at r = 0.5, 0.7, 0.9 and 1.0 (r = 1 is the causal variant itself; r squared 0.25, 0.49, 0.81 and 1), alone, at f = 1 and 0.8, sigma = 0.10, on the same 180 architectures per f (12 replicate studies each), under the profile-preserving truth.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>f</th>
+<th>weights</th>
+<th>r = 1.0</th>
+<th>r = 0.9</th>
+<th>r = 0.7</th>
+<th>r = 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>specific</td>
+<td>61%</td>
+<td>52%</td>
+<td>8%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>all-mould</td>
+<td>61%</td>
+<td>52%</td>
+<td>10%</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>specific</td>
+<td>32%</td>
+<td>12%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>all-mould</td>
+<td>33%</td>
+<td>16%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<p>(Share of the 180 architectures whose median replicate reaches the 5% MCID.) The share of the gain that the tag keeps, against the causal variant (median over cells whose causal gain is at least half the MCID), is 0.77 to 0.82 at r = 0.9, 0.40 to 0.49 at 0.7 and 0.15 to 0.24 at 0.5: it follows r squared (0.81, 0.49, 0.25), as expected when the tag carries a fraction r of the effect and r of the signal. For 10 loci of odds ratio 2.5 at frequency 0.3 (f = 1, 5%), the gain over the MCID is 1.53 at r = 1, 1.17 at 0.9, 0.79 at 0.7 and 0.34 at 0.5.</p>
+<p>Fewest loci at the 5% MCID, frequency 0.3, target-pathogen weights (“none” = none within 20):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>f</th>
+<th>odds ratio</th>
+<th>r = 1.0</th>
+<th>r = 0.9</th>
+<th>r = 0.7</th>
+<th>r = 0.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>2.0</td>
+<td>10</td>
+<td>12</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>2.5</td>
+<td>6</td>
+<td>7</td>
+<td>20</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>3.0</td>
+<td>4</td>
+<td>5</td>
+<td>13</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>2.0</td>
+<td>20</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>2.5</td>
+<td>11</td>
+<td>14</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>3.0</td>
+<td>7</td>
+<td>12</td>
+<td>none</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>At the 20% threshold the loss is smaller: at f = 1 the share reaching the MCID is 96% at r = 1, 94% at 0.9, 86% at 0.7 and 53% to 56% at 0.5; at f = 0.8, 91% to 92%, 88%, 71% to 75% and 0% to 8%.</p>
+<p><strong>Where the loss starts.</strong> At once, and in proportion to r squared: a tag at r = 0.9 already loses a fifth of the gain and needs one to five more loci (one to two at f = 1, three to five at f = 0.8). Between 0.9 and 0.7 the frontier leaves reach for most architectures near it, because the gain falls through the MCID; at 0.5 nothing in the grid reaches it at 5%. A causal variant that is typed or well imputed (r above about 0.95) is therefore what the earlier frontiers assume. Not shown: other seeds of the candidate pool, locus-specific r, and r for the all-ancestry case.</p>
+<p>Code and outputs: <code>scripts/49_aim4_pathogen_tagging.R</code>, <code>output/aim4_pathogen_tagging_{sweep,frontier}_profile.csv</code>, <code>output/figures/aim4_pathogen_tagging_frontier_profile.png</code>.</p>
 
 
 <!-- -->
