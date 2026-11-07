@@ -59,7 +59,8 @@ effects in the score, the four-term panel raised net benefit at 5% by a median o
 That is 1.1 extra true cases per 1,000 admissions, against 4.6 required. At most 0.6% of draws reached the MCID, although the
 area under the ROC curve rose from 0.861 to 0.873 and the continuous net reclassification improvement was 34%. A second
 CLEC7A haplotype doubled the gain to +0.00115, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied
-about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID. A
+about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID. If only 80% of cases were due to
+the pathogen the loci act on, the loci needed roughly doubled, and at 60% or less no architecture in the grid reached it. A
 single global intercept, used in an earlier version of the simulation, gave gains 5% to 6% larger at 5%, and comparison with
 the correctly marginalised clinical risk showed that this was not a correction of miscalibration.
 
@@ -330,6 +331,15 @@ All of these were run under the profile-preserving truth. The global-intercept v
   That gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus
   weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per
   architecture.
+- **Pathogen specificity.** The sweep treats every case as genotype-sensitive. In a further scenario only a fraction f of
+  cases (the target pathogen, for example *Aspergillus* among all invasive mould disease) arises through the pathway the loci
+  act on and the rest are independent of genotype. The true risk is (1 − f) times the clinical risk plus f times the risk with
+  the genetic effect, with an intercept per clinical profile on the genetic part, so that the clinical score stays calibrated in
+  every profile. We assumed f = 1, 0.8, 0.6 and 0.4, because the cohort has no pathogen-level outcome. Two ceiling scores were
+  compared: weights equal to the target-pathogen effect (what a pathogen-specific discovery study would estimate) and weights
+  fitted to the all-mould outcome (what a study of any mould disease would estimate). For f = 0.8 and 0.6 the weights also
+  carried independent error with σ = 0.10, 0.20 and 0.40, with 12 replicate discovery studies per architecture. The grid had
+  odds ratios from 1.2 to 3.0 (10 values), frequencies of 0.1, 0.3 and 0.5, and 1 to 20 loci.
 - **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
   computed exactly in three forms:
   - categorical at 5%;
@@ -537,10 +547,11 @@ would be underpowered.
 ### Donor genotype in allogeneic transplant recipients
 
 The allogeneic stratum held 272 admissions and 43 events (32% of events). The baseline already flagged 77% of these admissions
-at 5%. Donor genotype changed the number of true cases by −0.1 to +1.3 per 1,000 transplant admissions at 5% (a net loss of true
-cases in one reading, with a gain in net benefit), against about 30 needed for the stratum's MCID, and added 14 to 27 at 20%,
+at 5%. Donor genotype changed the number of true cases by 0.0 to +0.5 per 1,000 transplant admissions at 5% (a net loss of true
+cases in one reading, with a gain in net benefit), against about 30 needed for the stratum's MCID, and added 15 to 25 at 20%,
 against about 12 needed. Whole-cohort, the gain at 5% was at most +0.0001. The donor
-evidence is one study each for PTX3 and CLEC7A, two for TLR4 and none for CD209. A smoothed version of the stratum's profile
+evidence is two studies for PTX3 (one of them a Leiden letter added after the first extraction), one for CLEC7A, two for TLR4 and none
+for CD209. The pooled donor PTX3 effect is 0.89 per h2 copy (90% interval 0.59 to 1.69). A smoothed version of the stratum's profile
 distribution gave the same conclusions.
 
 ### Genetic architectures that would reach the MCID
@@ -573,6 +584,21 @@ needed for a given odds ratio rose by one to several. At σ = 0.40 and an odds r
 to 20 reached the 5% MCID under the profile-preserving truth, against 20 under the global-intercept truth.
 
 ![Gain of the ceiling score relative to the MCID at the 5% threshold under the profile-preserving truth, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct_profile.png){#fig-aim4}
+
+**Pathogen specificity.** Treating every case as genotype-sensitive is optimistic if only some of the moulds respond to the
+genes tested. Under the profile-preserving truth and with exact weights, the share of the 600 architectures of the grid that
+reached the 5% MCID fell from 24% when every case responds (f = 1) to 9% to 10% at f = 0.8, and none reached it at f = 0.6 or
+0.4. At 20% the shares were 69%, 57% to 58%, 35% to 41% and 4% to 15%. At frequency 0.3, the loci needed for an odds ratio of
+2.0 rose from 10 at f = 1 to 19 or 20 at f = 0.8, and for an odds ratio of 3.0 from 4 to 7 or 8. For 10 loci of odds ratio
+2.0, the gain went from 1.07 times the MCID at f = 1 to 0.65 (0.68 with all-mould weights) at f = 0.8 and 0.22 (0.37) at
+f = 0.6. With the target-pathogen weights the gain became negative at f = 0.4 (2.0 fewer true cases per 1,000 admissions), against
++0.9 with all-mould weights. Weights fitted to the all-mould outcome gave the higher gain in 95% of the architectures with
+f < 1. With error in the weights at f = 0.8, a precision of σ = 0.10 to 0.20 kept 0.87 to 0.97 of the exact gain. At σ = 0.40
+the all-mould weights kept 0.53 and the target-pathogen weights 0.72, because the all-mould weights are smaller for the same
+error. At frequency 0.3, an odds ratio of 2.5 needed 10 to 11 loci at σ = 0.10 to 0.20 (11 with exact weights), and at σ = 0.40
+no number up to 20 with all-mould weights (18 with target-pathogen weights). An odds ratio of 2.0 did not reach the MCID within 20
+loci at any σ, and at f = 0.6 nothing did, even with exact weights. The global-intercept truth was more favourable (29% of
+architectures at f = 1, 16% to 17% at f = 0.8 and 2% to 5% at f = 0.6; addendum 38).
 
 ### Net reclassification improvement (tertiary)
 
@@ -734,7 +760,10 @@ Brunel's pattern, such a score would do harm.
 precise weights. A per-locus precision of 0.1 on the log scale needs a discovery sample of about 1,000 balanced subjects per
 locus at a common frequency. A cohort the size of the Bologna one gives 0.14 to 0.22. To our knowledge no genome-wide
 association study of invasive aspergillosis has been published. The candidate-gene literature cannot supply the number of
-precisely estimated loci the sweep shows would be needed.
+precisely estimated loci the sweep shows would be needed. These requirements also assume that every case responds to the loci.
+If only some of the moulds do, they rise sharply: at 80% the loci needed roughly doubled, and at 60% or less no architecture in the
+grid reached the 5% MCID. Variants specific to one pathogen are therefore a weak basis for a score that decides for all moulds, and
+better suited to a pathogen-specific decision.
 
 **In allogeneic transplant recipients.** Here the biological case for donor genotype is strongest [@cunha2014]. But the
 baseline already flags 77% of these admissions at 5%, which leaves little room for genotype to add. At 20% donor genotype could
@@ -757,7 +786,8 @@ The limitations fall into seven groups.
 
 **The evidence is thin.** Each term rests on three to five studies. Some cohorts overlap, notably the Spanish registry series
 and the Jena AML cohorts, and that overlap has only partly been adjudicated. The record of the human round-2 verification is
-not yet in the repository. Small candidate-gene studies are prone to publication bias and inflated effects. If so, our pooled
+not yet in the repository. The direction of one donor study's recessive PTX3 rows (Fisher 2017) is inferred from an allele-order
+footnote (addenda 39 and 40). Small candidate-gene studies are prone to publication bias and inflated effects. If so, our pooled
 effects are optimistic, which would strengthen the negative conclusion at 5% rather than weaken it.
 
 **The mapping rests on assumptions.** Converting heterogeneous contrasts to one per-copy scale assumes additive effects and
@@ -803,10 +833,9 @@ Prophylaxis practice has changed since 2016, and the score's calibration today i
 true cases is a judgement, though the strictest of the three readings we considered. Other uses of genotype, such as choosing
 an antifungal agent or enriching a trial, were not evaluated.
 
-Two planned analyses are not yet done:
-
-- the pathogen-specificity scenario;
-- locus-specific error, winner's curse and linkage in the architecture sweep.
+One planned analysis is not yet done: locus-specific error, winner's curse and linkage in the architecture sweep. The
+pathogen-specificity scenario rests on an assumed share f of cases due to the target pathogen, because the cohort has no
+pathogen-level outcome.
 
 The NRI comparison rests on the pooled PTX3 effect, because the earlier analysis's per-SNP inputs are not on record, and we
 do not know which form of NRI it reported.

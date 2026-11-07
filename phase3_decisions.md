@@ -3081,3 +3081,59 @@ To settle it: the genotype counts behind Table 3 (not in the paper or its supple
 ### Not done
 
 The question to the authors; the allele-order check of the other studies listing minor/major.
+
+
+## Addendum 41, 7 November 2026: the pathogen-specificity scenario under the profile-preserving truth; the manuscript text
+
+**What had been seen.** The global-intercept results of addenda 38 and 39. They are not the ones the paper reports: the pathogen-specificity scripts 43 and 47 recentred the genetic part with one intercept (D5), while every analysis in the paper is on the profile-preserving truth (D27). The mistake was mine and the addenda did not say which truth they used ("the exact sweep's, as in script 23" is the global one). The profile-truth results below were seen when they were written.
+
+### 1. What changed in the code
+
+`R/aim4_pathogen.R` takes a `scheme` (default `genetic_scheme()`, so `PROSE_SCHEME`). Under the profile truth the target-pathogen component has an intercept per clinical profile (`profile_shifts()`, `R/calibration_check.R`), so the clinical score is calibrated in every profile and the mixture (the genotype-insensitive part is the baseline risk) is too; scores get a per-profile intercept as in script 31. Scripts 43 and 47 write files ending in `_profile` under that scheme and leave the global files as they were (the global rerun of script 43 reproduced the committed file exactly). Checks: at f = 1 the 1,200 cells of script 43 reproduce script 31's profile comparison (largest gain difference 1.5e-16); script 47 at sigma = 0 matches script 43 (288 cells, mean absolute difference 0.00009, largest 0.0007; the MCID is 0.00458). Tests in `tests/testthat/test-aim4-pathogen.R` cover both truths.
+
+### 2. Results under the profile-preserving truth (exact weights; the primary)
+
+| f | 5%: specific weights | 5%: all-mould weights | 20%: specific | 20%: all-mould |
+|---|---|---|---|---|
+| 1.0 | 23.8% | 23.8% | 69.3% | 69.3% |
+| 0.8 | 9.3% | 10.2% | 57.2% | 58.0% |
+| 0.6 | 0% | 0% | 34.7% | 41.2% |
+| 0.4 | 0% | 0% | 4.2% | 14.8% |
+
+(Share of the 600 architectures that reach the MCID. Under the global truth the 5% shares were 29%, 16% to 17%, 2% to 5% and 0%, so the construction matters here too.)
+
+Fewest loci at the 5% MCID, frequency 0.3 (none = none within 20):
+
+| odds ratio | f = 1 | f = 0.8 (specific / all-mould) | f = 0.6 and 0.4 |
+|---|---|---|---|
+| 1.8 | 13 | none | none |
+| 2.0 | 10 | 20 / 19 | none |
+| 2.5 | 6 | 11 / 11 | none |
+| 3.0 | 4 | 8 / 7 | none |
+
+For 10 loci of odds ratio 2.0 at frequency 0.3 (5%) the gain over the MCID is 1.07 at f = 1, 0.65 (specific) or 0.68 (all-mould) at f = 0.8, 0.22 or 0.37 at f = 0.6 and -0.20 or 0.15 at f = 0.4; in extra true cases per 1,000 admissions 3.5, 1.7 or 2.4, -0.2 or 1.3, and -2.0 or 0.9. The odds ratio an all-mould analysis would see is 1.64, 1.44 and 1.28 at f = 0.8, 0.6 and 0.4. The all-mould weights have the higher gain in 95% of the cells with f < 1. At f = 1 the best single weight under this truth is 1.90 for a true 2.0 (the profile intercepts bend the logistic relation), with no difference in gain.
+
+### 3. With error in the weights (script 47, profile truth, f = 0.8 and 0.6)
+
+At f = 0.6 nothing reaches the 5% MCID even with exact weights, so nothing does with error. At f = 0.8 the share whose median replicate reaches it is 18% (all-mould) and 18% (specific) at sigma = 0.10, 16% and 17% at 0.20, and 4% and 9% at 0.40 (exact weights on the same grid: 20% and 19%). The median share of the exact gain that the realised score keeps (cells whose exact gain is at least half the MCID) is 0.96 and 0.97 at 0.10, 0.87 and 0.91 at 0.20, and 0.53 (all-mould) and 0.72 (specific) at 0.40. Fewest loci at f = 0.8, frequency 0.3, 5% (specific / all-mould; exact 11 / 11 and 8 / 7):
+
+| odds ratio | sigma 0.10 | sigma 0.20 | sigma 0.40 |
+|---|---|---|---|
+| 2.0 | none | none | none |
+| 2.5 | 11 / 10 | 10 / 10 | 18 / none |
+| 3.0 | 7 / 7 | 9 / 9 | 10 / 13 |
+
+### Reading
+
+- **Dilution is the larger effect, and the profile truth makes it larger than the global truth did.** At 80% the loci needed roughly double; at 60% or less nothing in the grid reaches the 5% MCID. The qualitative reading of addenda 38 and 39 stands (all-mould weights are better with exact weights; they lose their advantage when noisy, because their centre is smaller for the same error), but the numbers there are the global-truth ones and should not be quoted.
+- **Not shown:** f is assumed; independent identical loci; unbiased error with the same sigma for both centres; thresholds 5% and 20%; one common f.
+
+### 4. The manuscript
+
+`manuscript.qmd` now describes the scenario in the methods (a bullet after the architecture sweep) and the results (a paragraph after the architecture figure), adds a sentence to the abstract and to "With larger effects or more loci", and replaces "Two planned analyses are not yet done" by one (locus-specific error, winner's curse and linkage). The donor-genotype results paragraph, stale after addenda 37 and 39, now reads from the profile-truth rerun of script 20: 0.0 to +0.5 extra true cases per 1,000 allo admissions at 5% (about 30 needed) and 15 to 25 at 20% (about 12 needed), with the pooled donor PTX3 effect 0.89 (0.59 to 1.69), two PTX3 donor studies; the limitation on the thin evidence cites the inferred Fisher 2017 direction.
+
+### Not done
+
+Locus-specific error, winner's curse and linkage in the pathogen scenario; a different f for different loci.
+
+Code and outputs: `R/aim4_pathogen.R`, `scripts/43_aim4_pathogen_specificity.R`, `scripts/47_aim4_pathogen_realised.R`, `output/aim4_pathogen_{sweep,frontier,check}_profile.csv`, `output/aim4_pathogen_realised_{sweep,frontier,check}_profile.csv`, `output/figures/aim4_pathogen_frontier_profile.png`, `output/figures/aim4_pathogen_realised_frontier_profile.png`; tests in `tests/testthat/test-aim4-pathogen.R`.

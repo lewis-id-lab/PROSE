@@ -6,23 +6,28 @@
 # all-mould outcome); see R/aim4_pathogen.R. f = 1 is checked against the exact sweep of script 23. The odds ratio is the effect on the target-pathogen pathway.
 # f is an assumption: the cohort has no pathogen-level outcome, so it is not estimated here.
 #
+# Truth: set Sys.setenv(PROSE_SCHEME = "profile") before sourcing for the primary (profile-preserving) truth, D27; the default is the global-intercept truth (D5,
+# addendum 38). Files then end in _profile. The f = 1 check is against script 23 (global) or the profile sweep of script 31 (profile).
+#
 # Writes   output/aim4_pathogen_sweep.csv, output/aim4_pathogen_frontier.csv, output/aim4_pathogen_check.csv, output/figures/aim4_pathogen_frontier.png
+#          (each with the suffix _profile under the profile truth)
 
 source("R/baseline.R"); source("R/bs_data.R"); source("R/decision_curve.R"); source("R/boscore_data.R"); source("R/refit_baseline.R")
-source("R/genetic_layer.R"); source("R/genetic_helpers.R"); source("R/aim4_sweep.R"); source("R/aim4_pathogen.R")
+source("R/genetic_layer.R"); source("R/genetic_helpers.R"); source("R/aim4_sweep.R"); source("R/calibration_check.R"); source("R/aim4_pathogen.R")
 suppressPackageStartupMessages(library(ggplot2))
 
+sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
 q <- tabulate(profile_index(base$X), 2L^length(PREDICTORS)) / nrow(base$X)
 lp <- profile_logit(load_refit_params())
 mcid <- setNames(baseline_mcid(q, lp, at), as.character(at))
-exact <- read.csv("output/aim4_sweep.csv")
+exact <- if (sfx == "") read.csv("output/aim4_sweep.csv") else { x <- read.csv("output/calibration_check_aim4_sweep.csv"); x <- x[x$comparison == "profile", ]; x$gain <- x$gain_oracle; x }
 
 grid <- expand.grid(n_loci = 1:20, odds_ratio = c(1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2.0, 2.5, 3.0), raf = c(0.1, 0.3, 0.5), case_fraction = c(1, 0.8, 0.6, 0.4))
 message("grid: ", nrow(grid), " architectures")
 
-cl <- start_workers(files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim4_sweep.R", "R/aim4_pathogen.R"))
+cl <- start_workers(files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim4_sweep.R", "R/calibration_check.R", "R/aim4_pathogen.R"))
 sw <- parallel_rows(cl, split(seq_len(nrow(grid)), rep_len(seq_len(60), nrow(grid))), function(ch, ctx)
   do.call(rbind, lapply(ch, function(i) pathogen_cell(ctx$q, ctx$lp, ctx$g$n_loci[i], ctx$g$odds_ratio[i], ctx$g$raf[i], ctx$g$case_fraction[i], ctx$at))),
   list(g = grid, q = q, lp = lp, at = at))
@@ -49,9 +54,9 @@ frontier <- do.call(rbind, lapply(split(sw, list(sw$odds_ratio, sw$raf, sw$case_
              min_loci_specific = first_reaching(x$n_loci, x$gain_specific, x$mcid[1]), min_loci_diluted = first_reaching(x$n_loci, x$gain_diluted, x$mcid[1])) }))
 rownames(frontier) <- NULL
 
-write.csv(sw, "output/aim4_pathogen_sweep.csv", row.names = FALSE)
-write.csv(frontier, "output/aim4_pathogen_frontier.csv", row.names = FALSE)
-write.csv(check, "output/aim4_pathogen_check.csv", row.names = FALSE)
+write.csv(sw, paste0("output/aim4_pathogen_sweep", sfx, ".csv"), row.names = FALSE)
+write.csv(frontier, paste0("output/aim4_pathogen_frontier", sfx, ".csv"), row.names = FALSE)
+write.csv(check, paste0("output/aim4_pathogen_check", sfx, ".csv"), row.names = FALSE)
 
 pl <- frontier[frontier$odds_ratio >= 1.4, ]
 pl <- rbind(transform(pl, score = "specific weights", loci = ifelse(is.na(min_loci_specific), 21, min_loci_specific)),
@@ -59,7 +64,7 @@ pl <- rbind(transform(pl, score = "specific weights", loci = ifelse(is.na(min_lo
 pl$panel <- paste0("threshold ", round(pl$threshold * 100), "%, frequency ", pl$raf)
 pl$fraction <- factor(pl$case_fraction)
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
-ggsave("output/figures/aim4_pathogen_frontier.png", ggplot(pl, aes(odds_ratio, loci, colour = fraction, linetype = score)) + geom_line() + geom_point() +
+ggsave(paste0("output/figures/aim4_pathogen_frontier", sfx, ".png"), ggplot(pl, aes(odds_ratio, loci, colour = fraction, linetype = score)) + geom_line() + geom_point() +
          facet_wrap(~ panel, nrow = 2) + scale_y_continuous(breaks = c(1, 5, 10, 15, 20, 21), labels = c(1, 5, 10, 15, 20, ">20")) +
          labs(x = "Odds ratio per risk allele (target-pathogen pathway)", y = "Fewest loci that reach the MCID", colour = "Target-pathogen share of cases", linetype = NULL),
        width = 12, height = 6, dpi = 150)

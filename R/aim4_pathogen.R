@@ -1,4 +1,9 @@
-# Aim 4: the pathogen-specificity scenario (scope decision 1; not in addenda 16 and 17). Requires R/baseline.R, R/decision_curve.R, R/genetic_layer.R and R/aim4_sweep.R.
+# Aim 4: the pathogen-specificity scenario (scope decision 1; not in addenda 16 and 17). Requires R/baseline.R, R/decision_curve.R, R/genetic_layer.R, R/aim4_sweep.R
+# and R/calibration_check.R (profile_shifts).
+#
+# Two constructions of the truth, as everywhere (genetic_scheme(), environment variable PROSE_SCHEME): "global" holds the event rate with one intercept (D5, the
+# first version, addenda 35 to 39), "profile" (the primary, D27) gives the target-pathogen component an intercept per clinical profile so that the clinical
+# score stays calibrated in every profile. The mixture below is then calibrated in every profile as well, because the genotype-insensitive part is the baseline risk.
 #
 # The sweep of script 23 treats every case of invasive mould disease as genotype-sensitive. Here only a fraction f of cases (the target pathogen, for example
 # Aspergillus) arises through the pathway the loci act on; the other 1 - f arise independently of the genotype. The outcome is still "any proven or probable IMD".
@@ -24,15 +29,22 @@ diluted_beta <- function(lp_base, D, w, r_true) {
   unname(stats::coef(fit)["D"])
 }
 
-pathogen_cell <- function(q, lp_profile, n_loci, odds_ratio, raf, f, thresholds) {
-  pmf <- dosage_pmf(n_loci, raf)
-  cells <- genetic_cells(q, lp_profile, list(G = matrix(seq_along(pmf) - 1, ncol = 1, dimnames = list(NULL, "D")), prob = pmf))
-  D <- cells$G[, 1]; beta <- log(odds_ratio)
-  r_true <- pathogen_risk(cells$lp_base, D * beta, cells$w, cells$prevalence, f)
-  b_dil <- diluted_beta(cells$lp_base, D, cells$w, r_true)
-  score <- function(b) { lp <- cells$lp_base + b * D; lp + recentre_shift(lp, cells$w, cells$pred_mean) }
-  one <- function(lp) { r <- tp_fp(cells$w, r_true, stats::plogis(lp), thresholds); list(r = r, nb = nb_from(r, thresholds)) }
-  base <- one(cells$lp_base); spec <- one(score(beta)); dil <- one(score(b_dil))
+pathogen_cell <- function(q, lp_profile, n_loci, odds_ratio, raf, f, thresholds, scheme = genetic_scheme()) {
+  pmf <- dosage_pmf(n_loci, raf); ng <- length(pmf); np <- length(q)
+  d <- seq_len(ng) - 1; beta <- log(odds_ratio)
+  w <- as.numeric(outer(q, pmf)); lp_cell <- rep(lp_profile, ng); D <- rep(d, each = np)
+  pred_mean <- sum(q * stats::plogis(lp_profile))
+  clin <- stats::plogis(lp_cell)
+  comp <- if (scheme == "global") stats::plogis(lp_cell + beta * D + recentre_shift(lp_cell + beta * D, w, pred_mean))
+          else as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, beta * d, pmf), beta * d, "+")))
+  r_true <- (1 - f) * clin + f * comp
+  b_dil <- diluted_beta(lp_cell, D, w, r_true)
+  pred <- function(b) {
+    if (scheme == "global") { lp <- lp_cell + b * D; stats::plogis(lp + recentre_shift(lp, w, pred_mean)) }
+    else as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, b * d, pmf), b * d, "+")))
+  }
+  one <- function(pr) { r <- tp_fp(w, r_true, pr, thresholds); list(r = r, nb = nb_from(r, thresholds)) }
+  base <- one(clin); spec <- one(pred(beta)); dil <- one(pred(b_dil))
   data.frame(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, threshold = thresholds,
              beta_diluted = b_dil, or_diluted = exp(b_dil), baseline_nb = base$nb,
              gain_specific = spec$nb - base$nb, gain_diluted = dil$nb - base$nb,
@@ -46,28 +58,33 @@ pathogen_cell <- function(q, lp_profile, n_loci, odds_ratio, raf, f, thresholds)
 #   all-mould the effect fitted to the all-mould outcome (a discovery study on any proven or probable mould disease)
 # The truth is the pathogen mixture of pathogen_risk(); genotypes are simulated (N individuals crossed with the exact profile distribution), R replicate
 # discovery studies, the same simulated genotypes and errors for both centres. Returns one row per replicate, score and threshold.
-pathogen_cell_realised <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigma, thresholds, R = 12L, N = 2000L, seed = 1L) {
+pathogen_cell_realised <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigma, thresholds, R = 12L, N = 2000L, seed = 1L, scheme = genetic_scheme()) {
   set.seed(seed)
   beta <- log(odds_ratio)
-  pmf <- dosage_pmf(n_loci, raf)
-  cells <- genetic_cells(q, lp_profile, list(G = matrix(seq_along(pmf) - 1, ncol = 1, dimnames = list(NULL, "D")), prob = pmf))
-  D0 <- cells$G[, 1]
-  a <- recentre_shift(cells$lp_base + beta * D0, cells$w, cells$prevalence)
-  r_cells <- (1 - f) * stats::plogis(cells$lp_base) + f * stats::plogis(cells$lp_base + beta * D0 + a)
-  centres <- c(specific = beta, all_mould = diluted_beta(cells$lp_base, D0, cells$w, r_cells))
-  base_nb <- nb_from(tp_fp(cells$w, r_cells, stats::plogis(cells$lp_base), thresholds), thresholds)
-  npro <- length(q)
+  pmf <- dosage_pmf(n_loci, raf); ng <- length(pmf); np <- length(q)
+  d <- seq_len(ng) - 1
+  w <- as.numeric(outer(q, pmf)); lp_cell <- rep(lp_profile, ng); D0 <- rep(d, each = np)
+  pred_mean <- sum(q * stats::plogis(lp_profile))
+  clin <- stats::plogis(lp_cell)
+  comp <- if (scheme == "global") { a <- recentre_shift(lp_cell + beta * D0, w, pred_mean); stats::plogis(lp_cell + beta * D0 + a) }
+          else { a <- profile_shifts(lp_profile, beta * d, pmf); stats::plogis(outer(lp_profile + a, beta * d, "+")) }
+  r_cells <- (1 - f) * clin + f * as.numeric(comp)
+  r_mat <- matrix(r_cells, np, ng)
+  centres <- c(specific = beta, all_mould = diluted_beta(lp_cell, D0, w, r_cells))
+  base_nb <- nb_from(tp_fp(w, r_cells, clin, thresholds), thresholds)
   wt <- rep(q, times = N) / N
   lpb <- rep(lp_profile, times = N)
   out <- lapply(seq_len(R), function(r) {
     G <- matrix(stats::rbinom(N * n_loci, 2, raf), N, n_loci)
     D <- rowSums(G)
     eps <- stats::rnorm(n_loci, 0, sigma)
-    rt <- (1 - f) * stats::plogis(lpb) + f * stats::plogis(lpb + beta * rep(D, each = npro) + a)
+    rt <- if (scheme == "global") (1 - f) * stats::plogis(lpb) + f * stats::plogis(lpb + beta * rep(D, each = np) + a)
+          else as.numeric(r_mat[, D + 1L])
     do.call(rbind, lapply(names(centres), function(sc) {
-      lps <- lpb + rep(drop(G %*% (centres[[sc]] + eps)), each = npro)
-      lps <- lps + recentre_shift(lps, wt, cells$pred_mean)
-      data.frame(replicate = r, score = sc, threshold = thresholds, gain = nb_from(tp_fp(wt, rt, stats::plogis(lps), thresholds), thresholds) - base_nb)
+      S <- drop(G %*% (centres[[sc]] + eps))
+      pr <- if (scheme == "global") { lps <- lpb + rep(S, each = np); stats::plogis(lps + recentre_shift(lps, wt, pred_mean)) }
+            else as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, S, rep(1 / N, N)), S, "+")))
+      data.frame(replicate = r, score = sc, threshold = thresholds, gain = nb_from(tp_fp(wt, rt, pr, thresholds), thresholds) - base_nb)
     }))
   })
   cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, do.call(rbind, out))
