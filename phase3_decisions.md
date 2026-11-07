@@ -2932,3 +2932,65 @@ S079's own per-copy effects are 0.42 (discovery) and 0.55 (confirmation), the op
 The Fisher 2017 direction check; the decision on S079; the unexplained fourth-decimal shift of the baseline stratum; a rerun of the secondary analyses under R 4.6.1, the version of `renv.lock`.
 
 Code and outputs: `R/source_verification.R` (`add_extraction_rows()`), `data/extraction_added_rows.csv`, `scripts/12`, `14`, `15`, `20` (study count and header), `21`, `22`, `26`, `scripts/46_donor_ptx3_s079_sensitivity.R`; `output/ptx3_donor_effects.csv`, `ptx3_h2_donor_posterior_draws.csv`, `ptx3_row_effects.csv`, `genetic_donor_*.csv`, `ptx3_donor_s079_sensitivity.csv`, `ptx3_donor_s079_effects.csv`; tests in `tests/testthat/test-study-corrections.R`.
+
+
+## Addendum 38, 7 November 2026: the pathogen-specificity scenario of Aim 4, and the direction of Fisher 2017's PTX3 recessive row
+
+**What had been seen.** Script 43 had not been run (addendum 35, section 3); its model was checked only on synthetic profiles. The direction of Fisher 2017 (S080) was open since addendum 37, where its rs2305619 row (contrast "taken from the model label") disagreed in sign with Cunha 2014 (S079). Both sets of results below were seen when they were written.
+
+### 1. The pathogen-specificity scenario (`scripts/43_aim4_pathogen_specificity.R`, run on the base cohort and the refit baseline)
+
+**Design, as in addendum 35.** Only a fraction f of cases arises through the pathway the loci act on and the rest are genotype-independent: true risk = (1 - f) x baseline risk + f x risk with the genotype effect, recentred to the baseline event rate. Two ceiling scores: one with the target-pathogen weights (the odds ratio of the grid) and one with weights fitted to the all-mould outcome (the best single weight, with no estimation error). The MCID is the baseline's (+0.00458 at 5%, +0.00160 at 20%). Grid: odds ratio 1.2 to 3.0, frequency 0.1, 0.3 and 0.5, 1 to 20 independent loci, f = 1, 0.8, 0.6, 0.4 (600 architectures for each f and threshold). f is assumed: the cohort has no pathogen-level outcome. The odds ratio is the effect on the target pathogen's pathway, not the observed one.
+
+**Check.** At f = 1 the 1,200 cells reproduce script 23's exact sweep (largest difference in gain 3.3e-15; in the fitted weight 1.7e-8).
+
+**Share of architectures that reach the MCID**
+
+| f | 5%: specific weights | 5%: all-mould weights | 20%: specific | 20%: all-mould |
+|---|---|---|---|---|
+| 1.0 | 29.3% | 29.3% | 69.2% | 69.2% |
+| 0.8 | 16.0% | 17.2% | 56.7% | 57.5% |
+| 0.6 | 2.3% | 5.3% | 30.8% | 39.7% |
+| 0.4 | 0% | 0% | 0% | 8.2% |
+
+**Fewest loci that reach the 5% MCID (frequency 0.3; "none" = none within 20)**
+
+| odds ratio | f = 1 | f = 0.8 (specific / all-mould) | f = 0.6 (specific / all-mould) | f = 0.4 |
+|---|---|---|---|---|
+| 2.0 | 8 | 14 / 13 | none | none |
+| 2.5 | 5 | 7 / 7 | 20 / 15 | none |
+| 3.0 | 3 | 5 / 5 | 15 / 11 | none |
+
+At f = 0.4 no architecture up to odds ratio 3.0 and 20 loci reaches the 5% MCID. For 10 loci of odds ratio 2.0 at frequency 0.3 (5%), the gain over the MCID is 1.32 at f = 1, 0.81 at f = 0.8, 0.29 (specific) or 0.46 (all-mould) at f = 0.6, and -0.22 (specific) or 0.19 (all-mould) at f = 0.4; in extra true cases per 1,000 admissions 5.2, 2.9, 0.7 or 1.7, and -1.5 or 1.2. The odds ratio that an all-mould analysis would see for that architecture is 1.71, 1.48 and 1.30 at f = 0.8, 0.6 and 0.4.
+
+### Reading
+
+- **Dilution costs a lot, and quickly.** With 80% of cases genotype-sensitive the loci needed rise by 1.5 to 2 times at an odds ratio of 2; with 60% an odds ratio of 2.0 no longer reaches the 5% MCID with 20 loci; with 40% nothing in the grid does. The four-term panel (equivalent to about 7 loci of odds ratio 1.3 for the 5% threshold in addendum 16) sits well below the line at every f.
+- **Weights from the target pathogen overshoot when f < 1.** The score with the all-mould weights has the higher gain in 96% of the architectures with f < 1, and the specific-weight score turns harmful at f = 0.4 (negative gain). A score should be weighted for the outcome it is used for, not for the pathway's own effect.
+- **Pathogen-specific variants are the weaker case for a clinical score of any mould disease**, because the score has to decide for all moulds; a score aimed at the target pathogen only (for example Aspergillus in an Aspergillus-specific decision) would be the f = 1 case.
+- **Not shown.** f is an assumption (no pathogen-level outcome in the cohort); independent identical loci, one truth construction (the exact sweep's, as in script 23); ceiling scores without estimation error (script 25 would add sampling error); the 5% and 20% thresholds only; a single common f for all loci (loci acting on different pathogens are not modelled).
+
+### 2. Fisher 2017 (S080): the recessive row is probably reversed
+
+Read from the open full text (PMC5428460), because the supplied PDF text was not re-read here. Facts: Table 3 reports PTX3 rs2305619, alleles "A/G", MAF 0.47, model "Recessive", HR 1.33 (1.09 to 1.64), and does not say which genotype the model refers to; the footnote reads "Minor/major for PTX3 and TLR4 to keep our model consistent with the original articles, given that the opposite alleles were more frequent in our study"; Table 1 lists the original PTX3 result alongside, with the same allele order (A/G, MAF 0.44) and aHR 2.9 (1.7 to 5.0). Neither Methods nor Results says which allele is the risk allele or that Cunha's model was repeated. The paper presents the result as a validation.
+
+The extraction took the first-listed allele (A) as the effect allele with the recessive model, which reads AA against the rest. Cunha's recessive model is GG (risk GG, reference AA+AG). The footnote says the model was kept consistent with the original, and an HR above 1 for the opposite genotype would contradict Cunha, not validate it. So the recessive row is most probably GG against AG+AA, the same contrast as Cunha's, and the extracted sign is reversed. The paper does not state it, so this is an inference, not a reading.
+
+**Effect if reversed** (not applied): S080's per-h2-copy odds ratio is 0.81, not 1.24, and the pooled donor PTX3 effect becomes
+
+| donor PTX3 set | OR per h2 copy (90% interval) | tau |
+|---|---|---|
+| as extracted: S080 and the letter | 1.25 (0.80 to 1.99) | 0.23 |
+| S080 reversed and the letter | 0.89 (0.59 to 1.69) | 0.31 |
+| plus S079 confirmation OR | 0.80 (0.55 to 1.27) | 0.29 |
+| plus S079 discovery HR | 0.75 (0.47 to 1.30) | 0.43 |
+
+The three studies that test Cunha's contrast then agree (the G-A class carries the risk), and the Leiden letter is the one that does not. The other S080 rows (the allelic rows, the SGM1 rows, and the rs3816527 rows, whose recessive effect allele C is also the opposite of Cunha's AA) share the allele-order footnote and would need the same check. S080 donor rows feed only the donor PTX3 effect, so recipient results are not affected.
+
+**Not applied.** A correction to V1087 and its neighbours would change the donor PTX3 effect from a modest positive to a modest negative and so the donor layer of script 20 (which moved by at most 0.3 cases per 1,000 allo admissions when the letter was added, addendum 37). It needs your decision, and ideally a look at the PDF's tables, which the supplied text does not settle.
+
+### Not done
+
+The S080 correction decision and the check of its other rows; script 43 with estimation error in the weights; a version with different f for different loci.
+
+Code and outputs: `R/aim4_pathogen.R`, `scripts/43_aim4_pathogen_specificity.R`, `output/aim4_pathogen_sweep.csv`, `output/aim4_pathogen_frontier.csv`, `output/aim4_pathogen_check.csv`, `output/figures/aim4_pathogen_frontier.png`.
