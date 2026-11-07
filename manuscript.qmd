@@ -1,5 +1,7 @@
 ---
 title: "Draft manuscript"
+author:
+  - name: "[Author list to be completed: see Authors and contributions]"
 subtitle: "Abstract, introduction, methods, results and discussion: working draft"
 date: today
 bibliography: references.bib
@@ -23,10 +25,10 @@ written up in the decision record and is not part of this draft. The evidence is
 
 Still to do:
 
-- the author list, ethics statement, data-availability statement and funding;
+- the placeholders in square brackets in the Authors and contributions, Ethics, Data availability and Funding sections
+  (names, approvals, access terms and funding are known only to the authors);
 - a description of the extraction and round-2 verification;
-- two missing references, marked `[ref]`: one on the burden of IMD, and Feys et al. (*J Infect Dis* 2026), which is not yet
-  indexed in Crossref.
+- competing interests, which no section covers yet.
 
 References are in `references.bib`. They were fetched from doi.org and should be checked against the journals before
 submission.
@@ -69,7 +71,7 @@ the host.
 ## Introduction
 
 Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with
-haematological malignancies [ref]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend
+haematological malignancies [@pagano2017]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend
 on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived
 a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019].
 It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted
@@ -148,7 +150,7 @@ The published analysis file has 4,127 rows. These are exactly the rows of the pa
 seven items. Forty-nine admission numbers appeared twice, each time as an event row plus a non-event row with the same patient
 and predictor profile. We confirmed these pairs as a recording artefact and removed the duplicate row. The base cohort is
 therefore 4,078 unique admissions in 1,945 patients, with 133 events (3.26%). Only counts and pseudonymised fields were used,
-and no patient-level data are in the repository. [Ethics approval and data-access statement to add.]
+and no patient-level data are in the repository (see Ethics and Data availability).
 
 The baseline is a maximum-likelihood logistic regression of the outcome on the seven predictors in the base cohort. Its
 uncertainty was handled as follows:
@@ -306,7 +308,7 @@ All of these were run under the profile-preserving truth. The global-intercept v
   carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in
   the terms, so the split is a fair division of the gain and not a set of separable effects.
 - **Effect modification by neutropenia.** This tests the hypothesis that per-copy effects are larger in neutropenic
-  admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues [ref]). The direction we expected was
+  admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues [@feys2026]). The direction we expected was
   recorded before the run.
   - **Strata:** admissions were split by the prolonged-neutropenia predictor.
   - **Truth:** stratum-specific effects were constrained to average, weighted by events, to the pooled effect. The ratio of
@@ -816,6 +818,35 @@ for invasive mould disease in haematological inpatients. A study the size of the
 the gain it would give. Genotyping would become worth doing only with variants of larger effect, or many more of them, than
 candidate-gene studies have found. A more immediate use for a genotyped cohort of this size would be to test whether genetic
 effects depend on neutropenia, which would also show whether a single pooled score is safe.
+
+## Authors and contributions {.unnumbered}
+
+[Author names, affiliations and ORCID iDs to be added, with the corresponding author's name, address and e-mail.]
+
+[Author contributions in CRediT form, for example: conceptualisation; methodology; software; formal analysis; investigation (literature
+search, screening and extraction); data curation; writing, original draft; writing, review and editing; supervision.]
+
+## Ethics {.unnumbered}
+
+The clinical data are the retrospective admission-level derivation data of the Stanzani score [@stanzani2019], from the BOSCORE
+registry of the haematology unit in Bologna. [Ethics committee approval or waiver for the registry and for this secondary
+analysis: committee, reference number and date; statement on consent or its waiver.] For this study the registry file was read
+without names or birth dates, and the analysis used a pseudonymised extract in which patient and admission identifiers are
+random codes. No patient was genotyped: genotypes are simulated, and the genetic effects come from published studies. The
+systematic review used published data only and needed no ethics approval.
+
+## Data availability {.unnumbered}
+
+The code, the dated decision record (the pre-specification is locked at the git tag `prespec-lock`), the extraction tables of the
+systematic review with their corrections, the allele and haplotype frequency tables, all fitted results and this site are public at
+<https://github.com/lewis-id-lab/PROSE>. Package versions are pinned with `renv`, and every result can be regenerated from the
+numbered scripts. [Archive DOI, for example from Zenodo, to add at submission.] The 1000 Genomes [@genomes2015] and gnomAD
+[@gnomad] data are public. The patient-level BOSCORE data are personal data and are not in the repository; [conditions of
+access and the contact for requests to add, as allowed by the data-sharing agreement].
+
+## Funding {.unnumbered}
+
+[Funding sources, grant numbers and the role of the funders, or a statement that the study received no specific funding.]
 
 ## References {.unnumbered}
 
