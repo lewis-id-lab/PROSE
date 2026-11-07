@@ -89,3 +89,15 @@ drop_duplicate_reports <- function(vr) {
   if (!("duplicate_group" %in% names(vr))) stop("no duplicate_group column", call. = FALSE)
   vr[is.na(vr$duplicate_group) | !grepl("^dup_of_", vr$duplicate_group), , drop = FALSE]
 }
+
+# Add extraction rows that are not in the round-1 bundle (data/extraction_added_rows.csv: rows read from a source PDF by hand, with their own
+# variant_row_id, here L0001 and so on). The file must have exactly the bundle's columns, and its ids must be new. Numeric columns of the extraction
+# stay numeric. Called after drop_duplicate_reports() in scripts 12, 14, 15, 21, 22 and 26 (addendum 37).
+add_extraction_rows <- function(vr, path = "data/extraction_added_rows.csv") {
+  add <- utils::read.csv(path, stringsAsFactors = FALSE, na.strings = c("", "NA"), colClasses = "character")
+  if (!setequal(names(add), names(vr))) stop("the added rows must have the extraction's columns: ", paste(setdiff(union(names(add), names(vr)), intersect(names(add), names(vr))), collapse = ", "), call. = FALSE)
+  if (anyDuplicated(add$variant_row_id) || any(add$variant_row_id %in% vr$variant_row_id)) stop("added variant_row_id values must be new and unique", call. = FALSE)
+  add <- add[names(vr)]
+  for (n in names(vr)) add[[n]] <- if (is.numeric(vr[[n]])) suppressWarnings(as.numeric(add[[n]])) else if (is.logical(vr[[n]])) as.logical(add[[n]]) else as.character(add[[n]])
+  rbind(vr, add)
+}

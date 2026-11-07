@@ -2828,3 +2828,107 @@ The share of the added patients that are right falls as k rises (four terms, N: 
 The global-truth version; the 20% threshold; draws; an intervention that changes which profiles are reclassified.
 
 Code and outputs: `scripts/42_reclassification_in_effect_strata.R`, `output/reclassification_effect_strata_{flows,scaling}.csv`.
+
+
+## Addendum 35, 5 November 2026: the student's study-level corrections, the S002 duplicate exclusion, and the pathogen-specificity scenario (written, not yet run)
+
+**What had been seen.** The student's round-2 sheet (`student_correction.xlsx`, 61 studies, gitignored with the other spreadsheets) and the extraction in the evidence bundle. No result of the pathogen-specificity scenario has been seen: the script has not been run on the cohort (the patient-level files are not on the machine used).
+
+### 1. Study-level corrections (`data/study_corrections.csv`, `scripts/45_apply_study_corrections.R`)
+
+The sheet records the checks as free-text notes against the study-level fields (total, cases, controls, source PDF); its `fields_changed`, `checked_by` and `checked_on` columns are empty. The notes were transcribed into `data/study_corrections.csv`, in the layout of `extraction_corrections.csv` plus a `status` column (28 rows).
+
+- **24 rows are `corrected`** (16 studies: S021, S033, S035, S038, S040, S041, S045, S051, S052, S053, S064, S065, S067, S069, S070, S074), and `apply_study_corrections()` (`R/source_verification.R`) applies them to the bundle's study table, writing `data/extraction_studies_corrected.csv`. It stops if an expected original value is not found. All 24 applied cleanly.
+- **4 rows are `needs_decision`**: S039 (two rows; the text says 78 cases, Table 2 says 50), S010 (96 is all children with ALL, only 8 had an invasive fungal infection) and S002 (see section 2). They are left as they were.
+- **S074 (Chen 2019) checked against the student's Table 4 counts.** The five rs3901533 rows (V1063 to V1067) match (cases 26+23+3 = 52, controls 82+37+1 = 120) and their stored odds ratios recompute. The four rs7309123 rows (V1074 to V1077) sum to 51 cases and 120 controls, one case short of 52, and two of the four stored odds ratios differ from the recomputation by about 2% (1.622 against 1.658; 7.532 against 7.44). Not changed; to check against the paper.
+- **S021 (Sainz 2011 abstract)** may share patients with S071. It is already in `data/cohort_independence.csv` for rs4804800 and rs7248637, counted with S071 as one Spanish/aspBIOmics cohort (3 independent cohorts from 4 studies), so no change was needed.
+- **Effect on results: none.** The corrections are to study totals and source files; the pooling uses per-row counts and estimates, and no pooling script reads the corrected study table.
+
+### 2. S002 rows are duplicates of S079 (`data/extraction_corrections.csv`, `drop_duplicate_reports()`)
+
+S002 (`nejmc1402787`, the NEJM correspondence) and S079 (`nejmoa1211161`, Cunha 2014, the original article) share one PDF. The 17 S002 variant rows (V1204 to V1220) were extracted from the original article: all nine numeric estimate and interval sets in them also appear in S079's rows (V1698 to V1707), and their notes describe the 268-patient discovery and 330-patient confirmation studies. The student reports that the PDF is the correspondence (44 cases, 68 controls); that content has not been extracted.
+
+Decision: no re-extraction from S079 (already extracted). The 17 rows carry `duplicate_group = dup_of_S079` through `extraction_corrections.csv`, and `drop_duplicate_reports()` removes them after `apply_corrections()` in scripts 12, 14, 15, 21, 22 and 26. The check is an assistant comparison of the two sets of rows, not a human check against the PDF. **No result changes:** the S002 rows were in no pooled output, and scripts 12, 14 and 15 rerun with the drop step reproduced all 32 committed output files to within 1e-8 (floating-point noise only).
+
+### 3. The pathogen-specificity scenario for Aim 4 (`R/aim4_pathogen.R`, `scripts/43_aim4_pathogen_specificity.R`)
+
+This is the scenario planned in scope decision 1 and left undone in addendum 16. The record does not specify it further, so this is a design choice: only a fraction f of cases (the target pathogen) arises through the pathway the loci act on, and the rest are genotype-independent, with the outcome still any proven or probable invasive mould disease.
+
+true risk = (1 - f) x plogis(baseline logit) + f x plogis(baseline logit + log(OR) x D + a), where a holds the event rate at its baseline value (D5).
+
+Two scores, both recentred to the baseline score's mean risk: one with the target-pathogen weights (what a pathogen-specific discovery study would estimate) and one with weights fitted to the all-mould outcome. The MCID is the baseline's, as in script 23. Grid: odds ratio 1.2 to 3.0 (10 values), frequency 0.1, 0.3 and 0.5, 1 to 20 loci, f = 1, 0.8, 0.6 and 0.4. f is an assumption: the cohort has no pathogen-level outcome.
+
+Checks so far: on synthetic profile distributions, f = 1 reproduces the ceiling of `sweep_cell` to 1e-17 (gain) and 1e-15 (weight); at f = 0.6 the all-mould score gained more than the specific-weight score, as expected when the specific weights overshoot. The script also checks f = 1 against `output/aim4_sweep.csv` when it runs. **Results: none yet.** It writes `output/aim4_pathogen_sweep.csv`, `aim4_pathogen_frontier.csv`, `aim4_pathogen_check.csv` and `output/figures/aim4_pathogen_frontier.png`; a further addendum will report them.
+
+### 4. PRISMA 2020 flow diagram (`scripts/44_prisma_flow.R`)
+
+Drafted with the PRISMA2020 package (1.1.5) from the counts in the status log: 267 PubMed and 785 Embase records, 221 duplicates removed, 831 screened, 81 included. The Covidence counts for exclusion at title and abstract, reports sought, not retrieved, assessed and excluded with reasons are not in the repository and show as NA. Embase was searched on 8 October 2026; the PubMed date is unrecorded.
+
+### Not done
+
+The S039, S010 and S002 decisions; the row-level human round-2 record; running script 43; the Covidence counts; checking the S074 rs7309123 counts against the paper.
+
+Code and outputs: `R/aim4_pathogen.R`, `R/source_verification.R` (`apply_study_corrections()`, `drop_duplicate_reports()`), `scripts/43_aim4_pathogen_specificity.R`, `scripts/44_prisma_flow.R`, `scripts/45_apply_study_corrections.R`, `data/study_corrections.csv`, `data/extraction_studies_corrected.csv`, `output/prisma_counts.csv`, `output/figures/prisma_flow.png`; tests in `tests/testthat/test-study-corrections.R` and `test-source-verification.R`.
+
+
+## Addendum 36, 6 November 2026: the student's follow-up on S039, S010, S002 and S074 (settles most of addendum 35, section 1)
+
+**What had been seen.** The student's written answers to the four open items of addendum 35, and the two PDFs for S002 and S079 (`NEJMc1402787.pdf`, the correspondence; `NEJMoa1211161.pdf`, the original article), which were read here. The student's readings of the S039, S010 and S074 papers were not re-checked against those papers; where arithmetic could be redone it was.
+
+- **S002 and S079: confirmed and settled.** `NEJMc1402787.pdf` is the NEJM correspondence (letters by de Boer, Halkes and van de Vosse; by Vehreschild et al.; and the reply by Cunha et al.), and only the Leiden letter carries data. The 17 S002 variant rows (V1204 to V1220) are the original article's results: the discovery hazard ratios 2.92, 2.62 and 3.08, the confirmation odds ratios 2.14, 1.92 and 2.78, and the HLA-stratified 3.96 and 6.02 are in its Tables 2 and text. So the duplicate marking and the drop of addendum 35, section 2, stand, now checked against the PDFs. `data/study_corrections.csv` now gives S002 the letter's file name and its own totals (112, 44 cases, 68 controls); the sheet's 268, 51 and 217 are S079's, which keeps its file.
+- **The letter's data are not extracted yet, and they are new.** The Leiden letter gives donor PTX3 genotype counts (+281A>G GG, GA, AA: cases 7, 26, 9, controls 10, 31, 13; +734A>C AA, AC, CC: cases 9, 27, 5, controls 14, 34, 11) and adjusted odds ratios 0.61, 0.70 and 0.65, all null. The printed crude odds ratios (0.88 and 0.90) recompute from the counts. Its cohort is the Leiden cohort of de Boer 2011 (S061: 44 cases, 64 controls; the letter says 68 controls), and S061 has no PTX3 rows, so these are donor PTX3 evidence not otherwise in the extraction. They would enter only the secondary donor analysis (script 20; PTX3 donor evidence is one to two studies). Not extracted: it is a decision (it changes a secondary result), and S061 would be the cohort to count it with.
+- **S039: settled, no change.** Table 2 compares 50 with 302, and the Results say the logistic models use the Table 2 covariates, so 50 and 302 are the numbers analysed (their sum is the 352 enrolled). The Methods text says 78 probable or proven cases and the paper does not explain the other 28. The transplant results are relative risks, not odds ratios, and Table 5 gives no case and control counts. S039 feeds no pooled output.
+- **S010: not settled, and the finding is larger than a number.** The comparison tested is ALL patients (96) against healthy controls (103), not infection against no infection; the only TLR2 Arg753Gln carrier had no infection. Eight IFIs in initial treatment (4 proven, 2 probable, 2 possible) and four in relapse were reported. The linked PDF is the EHA 2011 abstract book, so the genotype table was not seen. The recorded 96 is the ALL group. **Open: whether S010 belongs in the IMD evidence at all.** It feeds no pooled output, so nothing changes now.
+- **S074 (Chen 2019): settled.** The rs7309123 genotype counts in Table 4 are 27, 21 and 3 cases and 81, 38 and 1 controls, so 51 cases and 120 controls; Table 3 lists one missing genotype for rs7309123 and the rs3901533 counts total 52 cases, so the missing sample is a case and the study total of 52 stands. This corrects the statement in addendum 35 that the rs7309123 rows were "one case short, to check". The printed odds ratios 1.622 and 7.532 do not follow from the printed cells (21 and 38 give 1.658 and 7.438) but follow exactly from 20 and 37 for the heterozygotes (also the 47 and 118 printed for the G/G plus C/G row), while 9.000 and 1.846 follow from 21 and 38: the paper is internally inconsistent, apparently a transcription error in the heterozygote cells. The stored estimates are the printed ones and are unchanged; the odds ratios are not stated to be adjusted. C is the effect allele (Table 4 gives the odds ratio per C allele, G/G reference), as in the extraction.
+
+### Effect on results
+
+None. S002's rows were dropped before pooling already, S039 and S010 feed no pooled output, and the S074 estimates are as printed. `data/study_corrections.csv` now has 31 rows: 30 `corrected`, 1 `needs_decision` (S010). Script 45 applies all 30 cleanly.
+
+### Not done
+
+The S010 eligibility decision; extraction of the letter's donor PTX3 counts and their addition to the donor analysis (script 20); the S074 odds ratios against the paper's supplement, if any.
+
+
+## Addendum 37, 7 November 2026: the Leiden letter in the donor evidence, the S010 exclusion, and the S079 gap
+
+**What had been seen.** The letter (`NEJMc1402787.pdf`) and the original article (`NEJMoa1211161.pdf`); the donor PTX3 evidence of addendum 12 (one study, Fisher 2017) and script 20's stratum results before this change. The results below were seen when they were written; the S079 sensitivity was run after the pipeline change and is not part of it.
+
+### 1. The letter's rows are in the donor evidence (`data/extraction_added_rows.csv`, `add_extraction_rows()`)
+
+Three rows read from the letter (study S002, donor genotype, the Leiden cohort of de Boer 2011): L0001 (rs2305619, +281A>G, GG against AG+AA, adjusted OR 0.61, 0.20 to 1.92), L0002 (rs3816527, +734A>C, AA against AC+CC, 0.70, 0.25 to 1.94) and L0003 (haplotype h2/h2, 0.65, 0.21 to 2.06; no rsid, so not mappable and not analysed). The genotype counts of the footnote (+281A>G cases 7, 26, 9, controls 10, 31, 13; +734A>C cases 9, 27, 5, controls 14, 34, 11) are stored on L0001 and L0002, but the pipeline uses the adjusted odds ratios. `add_extraction_rows()` (`R/source_verification.R`) appends them after `drop_duplicate_reports()` in scripts 12, 14, 15, 21, 22 and 26; it requires the bundle's columns and new row ids. No recipient pooling changes (the rows are donor rows).
+
+L0001 maps to a per-copy effect of the h2 class (A at rs2305619) of OR 1.44 (log 0.364, se 0.412): the letter's GG genotype is h1/h1 in the project's coding, so an odds ratio of 0.61 for it is a positive h2 effect. L0002 is not used (rs2305619 comes first in the SNP order).
+
+### 2. Donor pooling and script 20
+
+| donor PTX3 evidence | studies | OR per h2 copy (90% interval) | tau |
+|---|---|---|---|
+| before (Fisher 2017) | 1 | 1.22 (0.60 to 2.25) | 0.32 |
+| with the letter (S002) | 2 | 1.25 (0.80 to 1.99) | 0.23 |
+
+The median hardly moves and the interval is about 30% narrower. Script 20 was rerun under both truths (the donor draws come from script 12). At 5%, in extra true cases per 1,000 allo-HSCT admissions, the profile-truth results change by at most 0.3 (with the mean-effect draws: ceiling score data stratum 0.23 to 0.34, smoothed 0.63 to 0.77, margins 2.87 to 2.81; realised score data 1.30 to 1.31, smoothed 1.85 to 1.81, margins 2.79 to 2.49), against about 30 needed to reach the stratum MCID; the upper 95% bound of the stratum gain falls (smoothed, ceiling, mean: 0.00370 to 0.00306). The conclusion of addendum 14 stands. The evidence file's PTX3 donor study count, hard-coded in script 20, is now 2.
+
+The baseline stratum file (`genetic_donor_baseline_stratum*.csv`) also differs from the committed one in the fourth to fifth decimal (for example true positives per 1,000 allo admissions 151.572 to 151.566). It does not involve the donor evidence; the difference was not investigated (a different R version from the one that wrote the committed files is the likely cause).
+
+### 3. S010 is excluded from the evidence base (`data/study_corrections.csv`)
+
+S010 (Ozdemir 2011) tests ALL patients against healthy controls and reports no infection-by-genotype comparison (addendum 36); only an EHA abstract book was available. `eligible_confirmed` is changed from yes to no, with the reason recorded. It fed no pooled output, so no result changes. In the PRISMA diagram the included records would go from 81 to 80 and the extracted studies from 63 to 62 once the exclusion is entered in Covidence; `scripts/44_prisma_flow.R` still says 81. The decision is reversible if the full article turns out to report an infection-by-genotype comparison.
+
+### 4. The S079 gap
+
+S079 (Cunha 2014) has the best-known donor PTX3 results, but its extraction rows carry no rsid and are flagged `rsid_unresolved`, so the pipeline leaves them out of the donor pooling. A sensitivity analysis (`scripts/46_donor_ptx3_s079_sensitivity.R`, in memory only, the extraction is not changed) gives its rows the rsids of the SNPs they report and a donor label:
+
+| donor PTX3 set | studies | OR per h2 copy (90% interval) | tau |
+|---|---|---|---|
+| Fisher 2017 and the letter (the pipeline) | 2 | 1.25 (0.80 to 1.99) | 0.23 |
+| plus S079 discovery hazard ratio (V1698) | 3 | 0.91 (0.51 to 1.63) | 0.54 |
+| plus S079 confirmation odds ratio (V1703) | 3 | 1.00 (0.59 to 1.64) | 0.43 |
+
+S079's own per-copy effects are 0.42 (discovery) and 0.55 (confirmation), the opposite sign to Fisher (1.24) and the letter (1.44). The reason is the coding: Cunha's risk genotype GG and risk haplotype G-A (their h2/h2) are the project's h1 class, so their risk is protection for the project's h2 per copy. Adding S079 moves the donor estimate from a modest positive effect to about null, with strong heterogeneity. It is **not** adopted: the discovery hazard ratio is optimistic (SNPs picked from 22 candidates), the confirmation odds ratio is the cleaner contribution, and the direction of Fisher 2017's row, whose contrast is "taken from the model label", has not been checked against that paper. Open: which S079 result should enter the donor evidence, and the Fisher 2017 direction check. The error reported earlier while testing this was in the test harness (calling functions through the script's environment), not in the pipeline.
+
+### Not done
+
+The Fisher 2017 direction check; the decision on S079; the unexplained fourth-decimal shift of the baseline stratum; a rerun of the secondary analyses under R 4.6.1, the version of `renv.lock`.
+
+Code and outputs: `R/source_verification.R` (`add_extraction_rows()`), `data/extraction_added_rows.csv`, `scripts/12`, `14`, `15`, `20` (study count and header), `21`, `22`, `26`, `scripts/46_donor_ptx3_s079_sensitivity.R`; `output/ptx3_donor_effects.csv`, `ptx3_h2_donor_posterior_draws.csv`, `ptx3_row_effects.csv`, `genetic_donor_*.csv`, `ptx3_donor_s079_sensitivity.csv`, `ptx3_donor_s079_effects.csv`; tests in `tests/testthat/test-study-corrections.R`.

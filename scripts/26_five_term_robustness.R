@@ -37,6 +37,7 @@ terms <- setup$terms
 vr <- read_bundle_table("extraction_variants_round1.csv"); st <- read_bundle_table("extraction_studies_round1.csv")
 vr <- apply_corrections(vr, read.csv("data/extraction_corrections.csv", stringsAsFactors = FALSE))$data
 vr <- drop_duplicate_reports(vr)
+vr <- add_extraction_rows(vr)
 hap <- block_haplotypes("PTX3_trio", risk_alleles = c("A", NA, NA), source = "gnomAD_NFE")
 brow <- vr[which(vr$study_id == "S029" & vr$rsid %in% "rs2305619" & grepl("^All episodes \\(N=212\\)|^No neutropenia at presentation \\(N=133\\)|^Neutropenia at presentation \\(N=79\\)", vr$subgroup)), ]
 bb <- vapply(seq_len(nrow(brow)), function(i) map_extraction_row(brow[i, ], hap, PTX3_LOCI, "trend")$beta, numeric(1))

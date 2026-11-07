@@ -24,6 +24,7 @@ corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("dat
 applied <- apply_corrections(vr, corrections)
 vr <- applied$data
 vr <- drop_duplicate_reports(vr)
+vr <- add_extraction_rows(vr)
 
 cd209 <- run_term("cd209", block_haplotypes("CD209", c("G", NA)), c("rs4804800", "rs7248637"), snp_order = c("rs4804800", "rs7248637"),
                   alt_snp = "rs7248637", seed = 5918L, vr = vr, st = st, applied_ids = applied$applied, hr_fallback_min = 3)

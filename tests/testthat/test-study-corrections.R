@@ -59,3 +59,31 @@ test_that("on the real extraction the 17 S002 rows are dropped after the correct
   expect_false("S002" %in% after$study_id)
   expect_true(all(vr$variant_row_id[vr$study_id == "S079"] %in% after$variant_row_id))
 })
+
+test_that("add_extraction_rows appends new rows, keeps numeric columns numeric and refuses clashes", {
+  vr <- data.frame(variant_row_id = c("V1", "V2"), n = c(1, 2), note = c("a", "b"), stringsAsFactors = FALSE)
+  f <- tempfile(fileext = ".csv")
+  write.csv(data.frame(variant_row_id = "L1", n = 5, note = "c"), f, row.names = FALSE)
+  out <- add_extraction_rows(vr, f)
+  expect_equal(out$variant_row_id, c("V1", "V2", "L1")); expect_true(is.numeric(out$n)); expect_equal(out$n[3], 5)
+  write.csv(data.frame(variant_row_id = "V2", n = 5, note = "c"), f, row.names = FALSE)
+  expect_error(add_extraction_rows(vr, f), "new and unique")
+  write.csv(data.frame(variant_row_id = "L1", n = 5, other = "c"), f, row.names = FALSE)
+  expect_error(add_extraction_rows(vr, f), "columns")
+})
+
+test_that("the Leiden letter's rows are entered correctly: counts total as printed and reproduce the printed crude odds ratios", {
+  bundle <- file.path(proj_root, "IMD_genetics_analysis_bundle (1).zip")
+  skip_if_not(file.exists(bundle))
+  source(file.path(proj_root, "R", "evidence_mapping.R"))
+  vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
+  out <- add_extraction_rows(vr, file.path(proj_root, "data", "extraction_added_rows.csv"))
+  expect_equal(nrow(out) - nrow(vr), 3L)
+  l <- out[out$variant_row_id %in% c("L0001", "L0002"), ]
+  cases <- as.matrix(l[c("n_cases_hom_effect", "n_cases_het", "n_cases_hom_other")]); ctrls <- as.matrix(l[c("n_ctrl_hom_effect", "n_ctrl_het", "n_ctrl_hom_other")])
+  expect_equal(unname(rowSums(cases)), c(42, 41)); expect_equal(unname(rowSums(ctrls)), c(54, 59))
+  # the letter prints crude odds ratios of 0.88 (+281A>G GG) and 0.90 (+734A>C AA)
+  crude <- vapply(1:2, function(i) crude_or(cases[i, 1], sum(cases[i, 2:3]), ctrls[i, 1], sum(ctrls[i, 2:3])), numeric(1))
+  expect_equal(round(crude, 2), c(0.88, 0.90))
+  expect_true(all(out$study_id[out$variant_row_id %in% c("L0001", "L0002", "L0003")] == "S002"))
+})

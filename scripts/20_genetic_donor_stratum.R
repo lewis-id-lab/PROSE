@@ -10,8 +10,8 @@
 #
 # In the stratum the genetic score uses donor genotype and the donor effects (D1: after allo-HSCT the innate immune system is donor-derived).
 # Donor dosages are Hardy-Weinberg with the same class frequencies, independent of the recipient's profile. CD209 has no donor-genotype
-# study, so its donor effect is not estimable and is held at zero. Donor evidence is one study each for PTX3 (Fisher 2017, hazard ratio)
-# and CLEC7A (Ceesay 2016), two for TLR4, and so is weaker than the recipient evidence.
+# study, so its donor effect is not estimable and is held at zero. Donor evidence is two studies for PTX3 (Fisher 2017, hazard ratio, and the
+# Leiden letter, S002, added in addendum 37), one for CLEC7A (Ceesay 2016) and two for TLR4, and so is weaker than the recipient evidence.
 #
 # Gains are per allo admission. The whole-cohort equivalent is the gain times the stratum's share (decisions elsewhere stay with the
 # baseline score). The stratum MCID is 20% more true cases among its admissions at no extra false positives, from its own baseline; the
@@ -54,7 +54,7 @@ evidence <- data.frame(term = terms, donor_studies = vapply(donor, function(d) i
                        or_lo = vapply(donor, function(d) if (is.null(d)) NA_real_ else exp(unname(stats::quantile(d$mu, 0.05))), numeric(1)),
                        or_hi = vapply(donor, function(d) if (is.null(d)) NA_real_ else exp(unname(stats::quantile(d$mu, 0.95))), numeric(1)),
                        recipient_or_median = exp(unname(pooled_estimates(load_term_draws()))), row.names = NULL)
-evidence$donor_studies <- c(PTX3 = 1L, CLEC7A = 1L, TLR4 = 2L, CD209 = 0L)[terms]
+evidence$donor_studies <- c(PTX3 = 2L, CLEC7A = 1L, TLR4 = 2L, CD209 = 0L)[terms]
 
 fixed <- function(b) matrix(b, n_draw, length(b), byrow = TRUE, dimnames = list(NULL, terms))
 runs <- list(fixed_medians = list(eff = fixed(beta_hat), seed = 4630L), fixed_upper = list(eff = fixed(beta_hi), seed = 9082L),

@@ -21,6 +21,7 @@ corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("dat
 applied <- apply_corrections(vr, corrections)
 vr <- applied$data
 vr <- drop_duplicate_reports(vr)
+vr <- add_extraction_rows(vr)
 
 source("R/term_mapping.R")
 

@@ -20,6 +20,7 @@ corrections <- if (file.exists("data/extraction_corrections.csv")) read.csv("dat
 applied <- apply_corrections(vr, corrections)
 vr <- applied$data
 vr <- drop_duplicate_reports(vr)
+vr <- add_extraction_rows(vr)
 hap <- block_haplotypes("PTX3_trio", risk_alleles = c("A", NA, NA), source = "gnomAD_NFE")
 re <- ptx3_row_effects(vr, st, hap, loci = PTX3_LOCI, counts_model = "trend", corrected_ids = applied$applied)
 

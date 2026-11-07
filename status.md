@@ -1,6 +1,6 @@
 # Where we are, and how to pick this up
 
-First written 17 October 2026, last updated 20 October 2026. This is the short hand-off. The long working record is `02_current_status.md`
+First written 17 October 2026, last updated 7 November 2026. This is the short hand-off. The long working record is `02_current_status.md`
 (evidence base, extraction detail), and the design decisions are in `phase3_decisions.md`.
 
 The project asks whether adding host genetic variants to a validated clinical score (Stanzani 2019) for invasive
@@ -92,6 +92,10 @@ scripts, run them from the project root, in this order:
 | `scripts/37_aim3b_scheme_comparison_extended.R` | script 36 for the realised score and the five-term panel, with the shared gain functions in `R/scheme_comparison.R`; stops unless the four-term ceiling rows reproduce script 36 (addendum 28); run after 22 and 36 | under 1 min |
 | `scripts/36_aim3b_scheme_comparison.R` | Aim 3b under the global and the profile-preserving truth at effects up to 4.9 times the pooled one, by where the effect sits and for the six scenarios (addendum 27); reads the pooled estimates and the committed draws | under 1 min |
 | `scripts/35_calibration_check_headline.R` | the compact comparison table (current, marginal, profile) that the manuscript's `tbl-calibration` reads; run after 31, 32 and 33 | seconds |
+| `scripts/43_aim4_pathogen_specificity.R` | the pathogen-specificity scenario of Aim 4 (addendum 35): only a fraction f of cases arises through the pathway of the loci, specific and all-mould weights, 1 to 20 loci x OR 1.2 to 3.0 x frequency x f = 1 to 0.4; checks f = 1 against script 23; run after 11 and 23; **written, not yet run on the cohort** | not yet timed |
+| `scripts/44_prisma_flow.R` | the PRISMA 2020 flow diagram from the counts in the status log; the Covidence counts are placeholders (NA) until filled in | seconds |
+| `scripts/45_apply_study_corrections.R` | applies `data/study_corrections.csv` (the study-level corrections by the student) to the bundle study table and writes `data/extraction_studies_corrected.csv` (addendum 35) | seconds |
+| `scripts/46_donor_ptx3_s079_sensitivity.R` | sensitivity of the pooled donor PTX3 effect to Cunha 2014 (S079), whose rows carry no rsid and are left out of the donor pooling; in memory only (addendum 37); run after 12 | seconds |
 | `scripts/14_map_clec7a_tlr4_evidence.R` | CLEC7A (Y238X haplotype) and TLR4 (G-T haplotype, carrier model) mapping and pooling; run after 13 | seconds |
 | `scripts/13_verify_ptx3_rows.R` | checks rows against their sources (Herrero-Sanchez, Brunel), writes the corrections file and the verification log; run before 12 and 14 | seconds |
 | `scripts/12_map_ptx3_evidence.R` | PTX3 pilot of the evidence-to-parameter mapping: rows to per-copy h2 effects, one effect per study, Bayesian pooling | seconds |
@@ -106,12 +110,12 @@ Script 01 scales with core count and would take hours on 4 cores. Cut `n_starts`
 | Phase | State |
 |---|---|
 | 0 Set-up, 1 Literature search | complete (831 unique records screened) |
-| 2 Screening and extraction | round 1 complete; the user reports the human round-2 checks confirmed the extraction (record not in the repo); a direction check of the text-parsed rows is still to do |
+| 2 Screening and extraction | round 1 complete; the user reports the human round-2 checks confirmed the extraction (record not in the repo); a direction check of the text-parsed rows is still to do; the study-level round-2 check by the student (sample sizes, source PDFs) is recorded in `data/study_corrections.csv` and applied by script 45 (addendum 35), and the 17 S002 rows are marked as duplicates of S079 and dropped before pooling; the row-level human check is still not in the repo |
 | 3 Parameter derivation | **done provisionally** for PTX3, CLEC7A (two parameters), TLR4 and CD209 (addenda 7 to 9 and 16); IL10 and IFNG dropped (D14) |
 | 4 Baseline | **done**; the base dataset is `boscore.xlsx` with the 49 twin admissions removed (D9), and the baseline model is a refit on it (D10, addendum 6): 4,078 admissions in 1,945 patients |
-| 5 Genetic layer simulation | **first results in** (addenda 11 to 22 and 24 to 34): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check (addendum 21), the tertiary NRI comparison (addendum 22) and the calibration check (addendum 24, which made a profile-preserving truth primary) and the secondary analyses and the all-ancestry CLEC7A variant rerun under it (addenda 25 and 26), so every analysis is on it |
-| 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done. Not done: the pathogen-specificity scenario, and the Aim 3b interaction test on the sensitivity cohorts |
-| 7 Write-up | **full first draft** in `manuscript.qmd` (the Draft manuscript page): abstract, introduction, methods, results, discussion; references in `references.bib`, Vancouver style (`vancouver.csl`). Still to add: authors, ethics, data availability, funding, and two references (IMD burden; Feys et al. 2026, not yet in Crossref) |
+| 5 Genetic layer simulation | **first results in** (addenda 11 to 22 and 24 to 34): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check (addendum 21), the tertiary NRI comparison (addendum 22) and the calibration check (addendum 24, which made a profile-preserving truth primary) and the secondary analyses and the all-ancestry CLEC7A variant rerun under it (addenda 25 and 26), so every analysis is on it; donor PTX3 evidence is now two studies (the Leiden letter added, script 20 rerun, addendum 37: the donor results move by at most 0.3 cases per 1,000 allo admissions) |
+| 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17); sensitivity analyses done. The pathogen-specificity scenario is written (script 43, addendum 35) but not yet run on the cohort. Not done: the Aim 3b interaction test on the sensitivity cohorts |
+| 7 Write-up | **full first draft** in `manuscript.qmd` (the Draft manuscript page): abstract, introduction, methods, results, discussion; references in `references.bib`, Vancouver style (`vancouver.csl`). Still to add: authors, ethics, data availability, funding, and two references (IMD burden; Feys et al. 2026, not yet in Crossref); a PRISMA 2020 flow diagram is drafted (script 44), with the Covidence counts still placeholders |
 
 ### Evidence base (provisional: the human round-2 checks are reported complete but not recorded here; one study's direction was corrected from its paper on 19 October)
 
@@ -320,7 +324,7 @@ three-haplotype split is an unrun sensitivity analysis. East Asian CLEC7A haplot
    off-by-one Table 2 counts and the question of whether the published equation was fitted with the twins are set
    aside by decision.
 2. ~~Decide on the empirical joint.~~ Done: adopted as D8 (addendum 2).
-3. **Round-2 verification:** add the record of the human checks to `data/`. The **direction check of the text-parsed rows is closed** (addenda 18 to 20, `data/direction_check_log.csv`): Tang, Tanpaibule, Chen and Fisher are correct, one Sainz row (V0261) and all of Fischer 2016 and Herrero-Sanchez 2018's reversed rows are corrected;
+3. **Round-2 verification:** add the record of the human checks to `data/` (the study-level corrections by the student are now in `data/study_corrections.csv`, addendum 35; addendum 36 settled S039, S002 and S074; S010 was excluded in addendum 37; the row-level record is still missing). The **direction check of the text-parsed rows is closed** (addenda 18 to 20, `data/direction_check_log.csv`): Tang, Tanpaibule, Chen and Fisher are correct, one Sainz row (V0261) and all of Fischer 2016 and Herrero-Sanchez 2018's reversed rows are corrected;
    only Lupianez's two IFNG rows (a term no longer in the panel) were not checked.
 4. **Evidence-to-parameter mapping (all terms done provisionally, addenda 7 to 9 and 16):** the user reports (19 October) that the human round-2
    checks confirmed the extraction against the PDFs and changed none of the flagged items; the verification record is not in the repo, so

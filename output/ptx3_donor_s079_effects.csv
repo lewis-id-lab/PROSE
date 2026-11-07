@@ -1,0 +1,9 @@
+"set","study_id","rsid","model","measure","beta","se_beta","or_per_h2_copy"
+"S080 and the Leiden letter (the pipeline)","S002","rs2305619","recessive","OR",0.363843190099602,0.411844712234248,1.43884857076588
+"S080 and the Leiden letter (the pipeline)","S080","rs2305619","recessive","HR",0.21512674513871,0.0800228014622121,1.24001905339337
+"plus S079 discovery hazard ratio (V1698)","S002","rs2305619","recessive","OR",0.363843190099602,0.411844712234248,1.43884857076588
+"plus S079 discovery hazard ratio (V1698)","S079","rs2305619","recessive","HR",-0.867966338669421,0.240033566250163,0.419804421745699
+"plus S079 discovery hazard ratio (V1698)","S080","rs2305619","recessive","HR",0.21512674513871,0.0800228014622121,1.24001905339337
+"plus S079 confirmation odds ratio (V1703)","S002","rs2305619","recessive","OR",0.363843190099602,0.411844712234248,1.43884857076588
+"plus S079 confirmation odds ratio (V1703)","S079","rs2305619","recessive","OR",-0.605138785734196,0.244523508991492,0.54599864455834
+"plus S079 confirmation odds ratio (V1703)","S080","rs2305619","recessive","HR",0.21512674513871,0.0800228014622121,1.24001905339337
