@@ -2994,3 +2994,61 @@ The three studies that test Cunha's contrast then agree (the G-A class carries t
 The S080 correction decision and the check of its other rows; script 43 with estimation error in the weights; a version with different f for different loci.
 
 Code and outputs: `R/aim4_pathogen.R`, `scripts/43_aim4_pathogen_specificity.R`, `output/aim4_pathogen_sweep.csv`, `output/aim4_pathogen_frontier.csv`, `output/aim4_pathogen_check.csv`, `output/figures/aim4_pathogen_frontier.png`.
+
+
+## Addendum 39, 7 November 2026: Fisher 2017's recessive rows reversed, and the pathogen-specificity scenario with estimation error in the weights
+
+**What had been seen.** Addendum 38's reading of Fisher 2017 (the Table 3 footnote and Table 1, from the open full text, PMC5428460; not the supplied PDF) and its effect on the donor PTX3 pooling. The results below were seen when they were written.
+
+### 1. The Fisher 2017 correction (decision: applied)
+
+**Decision.** The recessive rows of Fisher 2017 (S080) are reversed: the recessive contrast is the risk genotype of the original articles (GG for +281A>G, rs2305619; AA for +734A>C, rs3816527) against the other two genotypes, not the opposite one. The grounds are those of addendum 38: the footnote ("Minor/major for PTX3 and TLR4 to keep our model consistent with the original articles, given that the opposite alleles were more frequent in our study"), the original result listed beside it with the same allele order, and the paper's own description of the result as a validation (an odds ratio above 1 for the opposite genotype would contradict Cunha, not validate it). It remains an inference: the paper never names the genotype. My confidence is about four in five. It is reversible, and it was weighed against the cost of the alternative, leaving a probably reversed sign in the donor evidence. A check of Fisher's tables against the PDF would settle it.
+
+**Rows.** Ten corrections in `data/extraction_corrections.csv` swap the effect and other allele on V1087 (the Table 3 whole-cohort row), V1090 and V1092 (rs2305619, Table 4) and V1095 and V1097 (rs3816527, Table 4), and are recorded as an assistant inference, not a human check. The allelic rows (V1088, V1089, V1091, V1094, V1096) are not changed: the allelic model has no counterpart in the original articles, so the footnote does not settle their allele. Only the donor PTX3 pooling uses these rows (S080 reports donor genotype), so recipient results are unchanged.
+
+**Effect.** S080's per-h2-copy odds ratio goes from 1.24 to 0.80 (the mapped value is 0.802, not the reciprocal of 1.24, because the haplotype model is not symmetric). Pooled donor PTX3 effect per h2 copy, with script 46 for the S079 variants (this replaces the S079 table of addendum 37, which used the extracted sign):
+
+| donor PTX3 set | OR per h2 copy (90% interval) | tau |
+|---|---|---|
+| S080 and the Leiden letter (the pipeline) | 0.89 (0.59 to 1.69) | 0.31 |
+| plus S079 discovery hazard ratio | 0.75 (0.47 to 1.29) | 0.43 |
+| plus S079 confirmation odds ratio | 0.80 (0.55 to 1.26) | 0.29 |
+
+The donor evidence now points the same way in Fisher 2017 and Cunha 2014, with the Leiden letter the one study that does not. S079 is still not in the pipeline's donor pooling (rows without rsid), so the pipeline's value is 0.89.
+
+**Script 20 rerun** under both truths. At 5% with the profile truth and the mean-effect draws, in extra true cases per 1,000 allo-HSCT admissions: the realised score falls (data stratum 1.31 to 0.47, smoothed 1.81 to 0.70, margins 2.49 to 0.93), the ceiling score barely moves (0.34 to 0.30, 0.77 to 0.68, 2.81 to 2.73), and no stratum or scenario reaches its MCID in any draw (as before). The realised score loses most because the pooled donor estimate for the PTX3 term is now near 1 against a truth drawn from the same posterior. The conclusion of addendum 14 stands: donor genotype adds no more than about 3 cases per 1,000 allo admissions against about 30 needed. The baseline stratum files match the committed ones.
+
+### 2. The pathogen-specificity scenario with estimation error in the weights (`scripts/47_aim4_pathogen_realised.R`)
+
+**Design.** As script 25 on script 43's scenario: each locus's weight is an estimate with an independent error of sd sigma (0.10, 0.20, 0.40) around either the target-pathogen effect (specific) or the all-mould fit; 12 replicate discovery studies of 2,000 simulated genotypes; odds ratio 1.5, 1.8, 2.0, 2.5, 3.0; frequency 0.1, 0.3, 0.5; 1 to 20 loci; f = 0.8 and 0.6 (1,800 architectures; f = 1 is script 25, and at f = 0.4 nothing reaches the MCID with exact weights). Check at sigma = 0 against script 43's exact gains: 288 cells, mean absolute difference 0.0001, largest 0.0008 (MCID 0.00458), simulation noise as in script 25.
+
+**Share of architectures whose median replicate reaches the 5% MCID**
+
+| f | weights | exact | SE 0.1 | SE 0.2 | SE 0.4 |
+|---|---|---|---|---|---|
+| 0.8 | specific | 32% | 31% | 28% | 21% |
+| 0.8 | all-mould | 34% | 33% | 29% | 20% |
+| 0.6 | specific | 4.7% | 4.0% | 4.0% | 1.0% |
+| 0.6 | all-mould | 10.7% | 9.7% | 5.3% | 0% |
+
+**Fewest loci (median replicate, 5%, frequency 0.3, f = 0.8; "none" = none within 20)**
+
+| odds ratio | exact (specific / all-mould) | SE 0.1 | SE 0.2 | SE 0.4 |
+|---|---|---|---|---|
+| 2.0 | 14 / 13 | 14 / 12 | 15 / 15 | none |
+| 2.5 | 7 / 7 | 9 / 8 | 7 / 8 | 10 / 10 |
+| 3.0 | 5 / 5 | 6 / 6 | 6 / 6 | 7 / 7 |
+
+At f = 0.6 only odds ratios of 2.5 and above reach the MCID at all: odds ratio 3.0 needs 14 (specific) or 10 (all-mould) loci at SE 0.1, 15 or 14 at SE 0.2, and 20 or none at SE 0.4 (exact: 15 or 11). The median share of the exact gain that the realised score keeps (cells whose exact gain is at least half the MCID) is 0.96 to 0.97 at SE 0.1, 0.89 to 0.92 at 0.2 and 0.57 (all-mould) to 0.70 (specific) at 0.4. An example, 10 loci of odds ratio 2.5, frequency 0.3, f = 0.8 at 5%: gain over the MCID 1.40 and 1.44 (specific, all-mould) at SE 0.1, 1.36 and 1.42 at 0.2, and 1.04 and 1.09 at 0.4, with 100%, 100% and 75% of replicates reaching it.
+
+### Reading
+
+- **Dilution and estimation error add up, but dilution dominates.** At SE 0.1 to 0.2 the scenario behaves like the exact one (the loci needed rise by at most one or two); at SE 0.4, the precision of the present evidence in addendum 17, the 5% MCID is out of reach for an odds ratio of 2.0 at f = 0.8 and for every odds ratio below 2.5 at f = 0.6.
+- **The advantage of the all-mould weights disappears when the weights are noisy.** With exact weights they gain more (96% of cells, addendum 38); at SE 0.4 the all-mould weights keep a smaller share of their gain (0.57 against 0.70), because their centre is smaller while the error is the same, so they are the more affected by the same error. The comparison assumes the same sigma for both centres (the same absolute error on the log odds ratio); a discovery study of the all-mould outcome would have more events and so a smaller error.
+- **Not shown.** f assumed; independent identical loci; the error is unbiased (no winner's curse, no locus-specific error, no linkage); thresholds 5% and 20% only (the 20% results are in the files); one common f for all loci.
+
+### Not done
+
+A check of Fisher 2017's tables against the PDF; the same allele-order check of the other studies that list alleles minor/major; script 25-style winner's curse and locus-specific error in the pathogen scenario.
+
+Code and outputs: `data/extraction_corrections.csv` (S080, ten rows), `R/aim4_pathogen.R` (`pathogen_cell_realised()`), `scripts/46_donor_ptx3_s079_sensitivity.R` and `scripts/20_genetic_donor_stratum.R` rerun, `scripts/47_aim4_pathogen_realised.R`; `output/ptx3_donor_effects.csv`, `ptx3_h2_donor_posterior_draws.csv`, `ptx3_row_effects.csv`, `ptx3_donor_s079_*.csv`, `genetic_donor_*.csv`, `aim4_pathogen_realised_{sweep,frontier,check}.csv`, `output/figures/aim4_pathogen_realised_frontier.png`; tests in `tests/testthat/test-source-verification.R`.

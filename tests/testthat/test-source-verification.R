@@ -83,7 +83,14 @@ test_that("every recorded correction matches the real extraction and carries its
   expect_equal(nrow(s2), 17L); expect_true(all(s2$field == "duplicate_group" & s2$corrected_value == "dup_of_S079"))
   expect_equal(nrow(apply_corrections(vr, s2)$data), nrow(vr))
   expect_equal(sum(apply_corrections(vr, s2)$data$duplicate_group == "dup_of_S079", na.rm = TRUE), 17L)
-  cr <- cr_all[cr_all$study_id != "S002", ]
+  # S080 rows reverse the effect allele of Fisher 2017's recessive rows (allele order footnote, addendum 39): 5 rows, 2 fields each
+  s80 <- cr_all[cr_all$study_id == "S080", ]
+  expect_equal(nrow(s80), 10L); expect_setequal(s80$variant_row_id, c("V1087", "V1090", "V1092", "V1095", "V1097"))
+  expect_setequal(s80$field, c("effect_allele", "other_allele"))
+  out80 <- apply_corrections(vr, s80)$data
+  expect_equal(out80[out80$variant_row_id == "V1087", c("effect_allele", "other_allele")], data.frame(effect_allele = "G", other_allele = "A", row.names = which(out80$variant_row_id == "V1087")))
+  expect_equal(out80$effect_allele[out80$variant_row_id == "V1095"], "A")
+  cr <- cr_all[!(cr_all$study_id %in% c("S002", "S080")), ]
   expect_equal(nrow(cr), 44L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S071"), 1L); expect_equal(sum(cr$study_id == "S077"), 1L)
   expect_setequal(cr$study_id, c("S035", "S073", "S071", "S077"))
   expect_equal(cr$corrected_value[cr$variant_row_id == "V0391"], "C/G+G/G vs C/C")

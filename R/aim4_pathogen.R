@@ -39,3 +39,36 @@ pathogen_cell <- function(q, lp_profile, n_loci, odds_ratio, raf, f, thresholds)
              extra_cases_per_1000_specific = 1000 * (spec$r[, "tp"] - base$r[, "tp"]),
              extra_cases_per_1000_diluted = 1000 * (dil$r[, "tp"] - base$r[, "tp"]))
 }
+
+# ---- With estimation error in the weights (addendum 39; the counterpart of sweep_cell_realised in R/aim4_sweep.R) -------------------------------
+# The score's weights are estimates with an independent error of standard deviation sigma on each locus (no winner's curse), around one of two centres:
+#   specific  the target-pathogen effect log(OR)         (a discovery study that knows each case's pathogen)
+#   all-mould the effect fitted to the all-mould outcome (a discovery study on any proven or probable mould disease)
+# The truth is the pathogen mixture of pathogen_risk(); genotypes are simulated (N individuals crossed with the exact profile distribution), R replicate
+# discovery studies, the same simulated genotypes and errors for both centres. Returns one row per replicate, score and threshold.
+pathogen_cell_realised <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigma, thresholds, R = 12L, N = 2000L, seed = 1L) {
+  set.seed(seed)
+  beta <- log(odds_ratio)
+  pmf <- dosage_pmf(n_loci, raf)
+  cells <- genetic_cells(q, lp_profile, list(G = matrix(seq_along(pmf) - 1, ncol = 1, dimnames = list(NULL, "D")), prob = pmf))
+  D0 <- cells$G[, 1]
+  a <- recentre_shift(cells$lp_base + beta * D0, cells$w, cells$prevalence)
+  r_cells <- (1 - f) * stats::plogis(cells$lp_base) + f * stats::plogis(cells$lp_base + beta * D0 + a)
+  centres <- c(specific = beta, all_mould = diluted_beta(cells$lp_base, D0, cells$w, r_cells))
+  base_nb <- nb_from(tp_fp(cells$w, r_cells, stats::plogis(cells$lp_base), thresholds), thresholds)
+  npro <- length(q)
+  wt <- rep(q, times = N) / N
+  lpb <- rep(lp_profile, times = N)
+  out <- lapply(seq_len(R), function(r) {
+    G <- matrix(stats::rbinom(N * n_loci, 2, raf), N, n_loci)
+    D <- rowSums(G)
+    eps <- stats::rnorm(n_loci, 0, sigma)
+    rt <- (1 - f) * stats::plogis(lpb) + f * stats::plogis(lpb + beta * rep(D, each = npro) + a)
+    do.call(rbind, lapply(names(centres), function(sc) {
+      lps <- lpb + rep(drop(G %*% (centres[[sc]] + eps)), each = npro)
+      lps <- lps + recentre_shift(lps, wt, cells$pred_mean)
+      data.frame(replicate = r, score = sc, threshold = thresholds, gain = nb_from(tp_fp(wt, rt, stats::plogis(lps), thresholds), thresholds) - base_nb)
+    }))
+  })
+  cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, do.call(rbind, out))
+}
