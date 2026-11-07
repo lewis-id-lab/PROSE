@@ -458,6 +458,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#not-done-24" id="toc-not-done-24" class="nav-link" data-scroll-target="#not-done-24">Not done</a></li>
   <li><a href="#addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r" id="toc-addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r" class="nav-link" data-scroll-target="#addition-7-november-2026-later-the-same-day-the-tagging-stress-test-over-r-scripts49_aim4_pathogen_tagging.r">Addition, 7 November 2026 (later the same day): the tagging stress test over r (<code>scripts/49_aim4_pathogen_tagging.R</code>)</a></li>
   </ul></li>
+  <li><a href="#addendum-43-7-november-2026-linkage-among-the-causal-loci-in-the-pathogen-specificity-scenario" id="toc-addendum-43-7-november-2026-linkage-among-the-causal-loci-in-the-pathogen-specificity-scenario" class="nav-link" data-scroll-target="#addendum-43-7-november-2026-linkage-among-the-causal-loci-in-the-pathogen-specificity-scenario">Addendum 43, 7 November 2026: linkage among the causal loci in the pathogen-specificity scenario</a>
+  <ul class="collapse">
+  <li><a href="#design-scripts50_aim4_pathogen_linkage.r-dosage_pmf_linked-and-pathogen_cell_linked-in-raim4_pathogen.r" id="toc-design-scripts50_aim4_pathogen_linkage.r-dosage_pmf_linked-and-pathogen_cell_linked-in-raim4_pathogen.r" class="nav-link" data-scroll-target="#design-scripts50_aim4_pathogen_linkage.r-dosage_pmf_linked-and-pathogen_cell_linked-in-raim4_pathogen.r">Design (<code>scripts/50_aim4_pathogen_linkage.R</code>; <code>dosage_pmf_linked()</code> and <code>pathogen_cell_linked()</code> in <code>R/aim4_pathogen.R</code>)</a></li>
+  <li><a href="#results-12" id="toc-results-12" class="nav-link" data-scroll-target="#results-12">Results</a></li>
+  <li><a href="#reading-16" id="toc-reading-16" class="nav-link" data-scroll-target="#reading-16">Reading</a></li>
+  <li><a href="#not-done-25" id="toc-not-done-25" class="nav-link" data-scroll-target="#not-done-25">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -7780,6 +7787,157 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>At the 20% threshold the loss is smaller: at f = 1 the share reaching the MCID is 96% at r = 1, 94% at 0.9, 86% at 0.7 and 53% to 56% at 0.5; at f = 0.8, 91% to 92%, 88%, 71% to 75% and 0% to 8%.</p>
 <p><strong>Where the loss starts.</strong> At once, and in proportion to r squared: a tag at r = 0.9 already loses a fifth of the gain and needs one to five more loci (one to two at f = 1, three to five at f = 0.8). Between 0.9 and 0.7 the frontier leaves reach for most architectures near it, because the gain falls through the MCID; at 0.5 nothing in the grid reaches it at 5%. A causal variant that is typed or well imputed (r above about 0.95) is therefore what the earlier frontiers assume. Not shown: other seeds of the candidate pool, locus-specific r, and r for the all-ancestry case.</p>
 <p>Code and outputs: <code>scripts/49_aim4_pathogen_tagging.R</code>, <code>output/aim4_pathogen_tagging_{sweep,frontier}_profile.csv</code>, <code>output/figures/aim4_pathogen_tagging_frontier_profile.png</code>.</p>
+</section>
+</section>
+<section id="addendum-43-7-november-2026-linkage-among-the-causal-loci-in-the-pathogen-specificity-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-43-7-november-2026-linkage-among-the-causal-loci-in-the-pathogen-specificity-scenario">Addendum 43, 7 November 2026: linkage among the causal loci in the pathogen-specificity scenario</h2>
+<p><strong>What had been seen.</strong> Addendum 42 left linkage among the causal loci unmodelled. This is the last of the three departures planned for the architecture sweep, again inside the pathogen-specificity grid and under the profile-preserving truth only. The results below were seen when they were written; I expected linkage to make the requirements harder, and it did not.</p>
+<section id="design-scripts50_aim4_pathogen_linkage.r-dosage_pmf_linked-and-pathogen_cell_linked-in-raim4_pathogen.r" class="level3">
+<h3 class="anchored" data-anchor-id="design-scripts50_aim4_pathogen_linkage.r-dosage_pmf_linked-and-pathogen_cell_linked-in-raim4_pathogen.r">Design (<code>scripts/50_aim4_pathogen_linkage.R</code>; <code>dosage_pmf_linked()</code> and <code>pathogen_cell_linked()</code> in <code>R/aim4_pathogen.R</code>)</h3>
+<p>The k causal loci form blocks of four adjacent loci whose alleles are correlated rho = 0, 0.3 or 0.6 on each chromosome (a shared draw is copied to a locus with probability sqrt(rho), so the pairwise correlation is exactly rho); blocks and chromosomes are independent. The true dosage distribution is exact (a mixture of binomials convolved over two chromosomes and the blocks), with variance 2 k p (1 - p) (1 + (m - 1) rho) for blocks of m; the effect of each locus stays the stated causal (conditional) per-allele odds ratio. Two ways of estimating the weights, with sigma the standard error of one locus’s marginal estimate:</p>
+<ul>
+<li><strong>marginal:</strong> each locus estimated on its own, as in a single-SNP discovery study. The estimate carries the effect of its linked neighbours (centred on 1 + (m - 1) rho times the causal effect) and the errors are correlated within a block.</li>
+<li><strong>joint:</strong> the block estimated together (centred on the causal effect, with the inverse of the genotype correlation matrix as the error covariance, so each weight’s variance is inflated).</li>
+</ul>
+<p>Grid and checks as script 48 (f = 1 and 0.8, sigma = 0.10 and 0.20, odds ratios 2.0, 2.5, 3.0, frequencies 0.1, 0.3, 0.5, 1 to 20 loci; 12 replicate studies). Tests: the dosage distribution sums to 1, reduces to the binomial at rho = 0 and has the stated variance; a simulation reproduces the block variance and allele correlation (rho = 0.5: 4.20 against 4.20 and 0.499); at rho = 0 the two estimations agree and at sigma = 0 the joint estimate matches the exact gain.</p>
+</section>
+<section id="results-12" class="level3">
+<h3 class="anchored" data-anchor-id="results-12">Results</h3>
+<p>Share of the 180 architectures reaching the 5% MCID (target-pathogen weights; the exact row is the gain with the causal weights known):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>f</th>
+<th></th>
+<th>rho = 0</th>
+<th>rho = 0.3</th>
+<th>rho = 0.6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>exact</td>
+<td>63%</td>
+<td>83%</td>
+<td>87%</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>joint, sigma 0.10 / 0.20</td>
+<td>63% / 59%</td>
+<td>82% / 82%</td>
+<td>86% / 88%</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>marginal, sigma 0.10 / 0.20</td>
+<td>63% / 59%</td>
+<td>76% / 78%</td>
+<td>81% / 80%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>exact</td>
+<td>31%</td>
+<td>64%</td>
+<td>76%</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>joint, sigma 0.10 / 0.20</td>
+<td>33% / 26%</td>
+<td>63% / 63%</td>
+<td>74% / 73%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>marginal, sigma 0.10 / 0.20</td>
+<td>33% / 26%</td>
+<td>45% / 44%</td>
+<td>48% / 46%</td>
+</tr>
+</tbody>
+</table>
+<p>The all-mould weights give the same picture (marginal 58% to 64% at f = 0.8, joint 60% to 76%, at rho of 0.3 and 0.6). At the 20% threshold the share barely moves (91% to 97% at sigma 0.10).</p>
+<p>Fewest loci at the 5% MCID, frequency 0.3, sigma 0.10, target-pathogen weights (“none” = none within 20):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>f</th>
+<th>odds ratio</th>
+<th>exact: rho 0 / 0.3 / 0.6</th>
+<th>joint</th>
+<th>marginal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>2.0</td>
+<td>10 / 5 / 4</td>
+<td>9 / 4 / 4</td>
+<td>9 / 7 / 7</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>2.5</td>
+<td>6 / 3 / 3</td>
+<td>6 / 4 / 3</td>
+<td>6 / 4 / 4</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>3.0</td>
+<td>4 / 3 / 3</td>
+<td>4 / 3 / 3</td>
+<td>4 / 3 / 3</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>2.0</td>
+<td>20 / 10 / 7</td>
+<td>none / 11 / 8</td>
+<td>none / 15 / 13</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>2.5</td>
+<td>11 / 6 / 4</td>
+<td>10 / 6 / 4</td>
+<td>10 / 9 / 8</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>3.0</td>
+<td>8 / 4 / 4</td>
+<td>7 / 4 / 4</td>
+<td>7 / 7 / 7</td>
+</tr>
+</tbody>
+</table>
+<p>The median share of the exact gain that the realised score keeps (cells whose exact gain is at least half the MCID) is 0.93 to 0.99 for the joint estimate at every rho, and 0.76 to 0.86 for the marginal estimate with target-pathogen weights at rho of 0.3 and 0.6 (0.89 to 0.95 with all-mould weights).</p>
+</section>
+<section id="reading-16" class="level3">
+<h3 class="anchored" data-anchor-id="reading-16">Reading</h3>
+<ul>
+<li><strong>Linkage among distinct causal loci does not make the architectures harder; it makes them easier.</strong> Positively correlated risk alleles raise the variance of the true genetic score for the same per-locus effect, so with the causal weights known the loci needed at an odds ratio of 2.0 fall from 10 to 5 and 4 (f = 1). This is a property of the model, not a finding about biology: it holds the conditional effect of every locus fixed, so it describes several truly distinct causal variants that happen to be correlated.</li>
+<li><strong>The cost of linkage is in the estimation.</strong> Estimating each locus on its own double counts the linked neighbours (the weights sum to more than the true effect) and loses up to a quarter of the gain, three to five more loci at an odds ratio of 2.0 (f = 0.8: 15 and 13 loci against 11 and 8 with a joint estimate). A joint estimate keeps nearly all of it.</li>
+<li><strong>What linkage in the usual sense mostly is</strong> (one causal signal seen through several correlated variants) is the incomplete tagging of addendum 42, which does hurt. The two should not be added: the favourable result here needs separate causal effects.</li>
+<li><strong>Not shown:</strong> blocks of other sizes, unequal correlations within a block, linkage between blocks, non-additive effects; the global truth; the main sweep of scripts 23 and 25.</li>
+</ul>
+</section>
+<section id="not-done-25" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-25">Not done</h3>
+<p>Other block sizes and correlation structures; the stress tests in the exact sweep.</p>
+<p>Code and outputs: <code>R/aim4_pathogen.R</code> (<code>dosage_pmf_linked()</code>, <code>pathogen_cell_linked()</code>), <code>scripts/50_aim4_pathogen_linkage.R</code>, <code>output/aim4_pathogen_linkage_{sweep,frontier}_profile.csv</code>, <code>output/figures/aim4_pathogen_linkage_frontier_profile.png</code>; tests in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
 
 
 <!-- -->
