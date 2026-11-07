@@ -7,11 +7,20 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 
 ## Where things are
 
-- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 34. Append a dated addendum for every change after the
+- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 40 (read the last one before adding the next). Append a dated addendum for every change after the
   pre-specification lock (tag `prespec-lock`) and say what had been seen when the change was made. Do not rewrite earlier addenda; add a pointer.
 - `status.md` (hand-off, script run-order table), `02_current_status.md` (working record), `index.qmd` (overview table): keep their phase tables and
   numbers in step with the addenda. `manuscript.qmd` carries its numbers as prose, not inline code, so a rerun means editing the prose.
 - `_quarto.yml` lists the pages that are rendered; `AGENTS.md` and `README.md` are not on the site.
+
+## The evidence pipeline
+
+The extraction is the zip bundle in the project root (`read_bundle_table()`, `R/evidence_mapping.R`), never edited. Everything after it is a dated file in `data/`,
+applied in this order by scripts 12, 14, 15, 21, 22 and 26: `apply_corrections()` (`extraction_corrections.csv`, row level; stops if an expected original value
+has changed), `drop_duplicate_reports()` (rows marked `duplicate_group = dup_of_<study>`), `add_extraction_rows()` (`extraction_added_rows.csv`, rows read by hand
+from a PDF). Study-level corrections are `study_corrections.csv`, applied to the study table by script 45. Record who or what made each correction in
+`checked_by` (an assistant inference is not a human check) and say when a direction is an inference. PRISMA counts are typed into script 44 (they come from
+`prisma_summary.xlsx`, which is gitignored); S010 is counted as excluded.
 
 ## The one modelling choice to know
 
@@ -19,7 +28,8 @@ The genetic truth is built with an intercept **per clinical profile** (D27, prof
 profile, so a gain cannot be the correction of induced miscalibration. The first version used one global intercept (D5); it is kept as the
 sensitivity analysis. `PROSE_SCHEME=profile` selects the primary construction in the genetic-layer code (`genetic_scheme()`); scripts 17 to 22, 24, 26
 and 27 then write files ending in `_profile`, and the global files are left alone. Scripts 31 to 42 compare the two. Every analysis reported in the
-manuscript is on the profile-preserving truth.
+manuscript is on the profile-preserving truth. **Check the scheme of any new script that builds a truth:** the Aim 4 pathogen-specificity scripts (43 and 47)
+and addenda 38 and 39 were first run on the global truth. Both scripts honour `PROSE_SCHEME` and write `_profile` files; the manuscript needs those.
 
 ## Running things
 
@@ -28,6 +38,10 @@ manuscript is on the profile-preserving truth.
 - Parallel work goes through `start_workers()` (`R/genetic_helpers.R`), which sets one BLAS thread per worker. Without that, workers oversubscribe the
   machine. After cancelling a run, check for orphaned workers (`pgrep -f workRSOCK`) and stop them.
 - Do not leave helper functions in the global environment with the names of base functions: a `sub()` defined in a session made seven tests fail.
+- `source()` inside a script that is itself run with `sys.source(file, env)` defines functions in the global environment, not in `env`: call them without `env$`.
+- Do not `source("renv/activate.R")` in a live session (it replaces the library paths). If `testthat` will not load, run `renv::repair()`.
+- Reruns on R 4.5.1 differ from the committed outputs by about 1e-13 (the lockfile is for R 4.6.1). Compare with a tolerance and `git checkout` the files that
+  changed only by noise, so a commit holds only real changes.
 
 ## Data (never commit)
 
@@ -41,9 +55,13 @@ need them. `data/restricted/` is rebuilt by script 08 (needs `boscore.xlsx` and 
 - Stage by explicit path, not `git add -A` at the root. Check what is staged before committing.
 - Push only when asked. Before a push, scan the commits for spreadsheets, `data/restricted/`, per-draw files and identifier-like text.
 - Run the full test suite and `quarto render` (check for unresolved cross-references) before committing.
+- Render with Quarto 1.10.18 (here `~/.local/opt/quarto-1.10.18/bin/quarto`). Other versions change the Bootstrap CSS hash and the HTML of every page; the
+  system Quarto is 1.9.35 and Positron's is 1.11.9. Pages with `date: today` change on every render. `_freeze/` changes with `manuscript.qmd`: commit it too.
 
 ## Standing caveats
 
 The evidence is provisional (three to five studies per term; the human round-2 verification record is not in the repository). Continuous NRI is
 unstable for single-term scores and depends on how the truth is built; report net benefit and categorical NRI. Script 30's polygenic-score truth
 holds prevalence only to 0.2% to 1.0% (addendum 23); read the comparison between truths from script 31.
+Fisher 2017's recessive PTX3 rows (S080) were reversed in addendum 39 by inference from an allele-order footnote; the PDF does not settle it (addendum 40, about
+two in three). S079 (Cunha 2014) is left out of the donor pooling because its rows carry no rsid; script 46 shows the effect of adding it.
