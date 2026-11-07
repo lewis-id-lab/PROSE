@@ -441,6 +441,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#decision" id="toc-decision" class="nav-link" data-scroll-target="#decision">Decision</a></li>
   <li><a href="#not-done-22" id="toc-not-done-22" class="nav-link" data-scroll-target="#not-done-22">Not done</a></li>
   </ul></li>
+  <li><a href="#addendum-41-7-november-2026-the-pathogen-specificity-scenario-under-the-profile-preserving-truth-the-manuscript-text" id="toc-addendum-41-7-november-2026-the-pathogen-specificity-scenario-under-the-profile-preserving-truth-the-manuscript-text" class="nav-link" data-scroll-target="#addendum-41-7-november-2026-the-pathogen-specificity-scenario-under-the-profile-preserving-truth-the-manuscript-text">Addendum 41, 7 November 2026: the pathogen-specificity scenario under the profile-preserving truth; the manuscript text</a>
+  <ul class="collapse">
+  <li><a href="#what-changed-in-the-code" id="toc-what-changed-in-the-code" class="nav-link" data-scroll-target="#what-changed-in-the-code">1. What changed in the code</a></li>
+  <li><a href="#results-under-the-profile-preserving-truth-exact-weights-the-primary" id="toc-results-under-the-profile-preserving-truth-exact-weights-the-primary" class="nav-link" data-scroll-target="#results-under-the-profile-preserving-truth-exact-weights-the-primary">2. Results under the profile-preserving truth (exact weights; the primary)</a></li>
+  <li><a href="#with-error-in-the-weights-script-47-profile-truth-f-0.8-and-0.6" id="toc-with-error-in-the-weights-script-47-profile-truth-f-0.8-and-0.6" class="nav-link" data-scroll-target="#with-error-in-the-weights-script-47-profile-truth-f-0.8-and-0.6">3. With error in the weights (script 47, profile truth, f = 0.8 and 0.6)</a></li>
+  <li><a href="#reading-14" id="toc-reading-14" class="nav-link" data-scroll-target="#reading-14">Reading</a></li>
+  <li><a href="#the-manuscript" id="toc-the-manuscript" class="nav-link" data-scroll-target="#the-manuscript">4. The manuscript</a></li>
+  <li><a href="#not-done-23" id="toc-not-done-23" class="nav-link" data-scroll-target="#not-done-23">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -7359,6 +7368,160 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="not-done-22" class="level3">
 <h3 class="anchored" data-anchor-id="not-done-22">Not done</h3>
 <p>The question to the authors; the allele-order check of the other studies listing minor/major.</p>
+</section>
+</section>
+<section id="addendum-41-7-november-2026-the-pathogen-specificity-scenario-under-the-profile-preserving-truth-the-manuscript-text" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-41-7-november-2026-the-pathogen-specificity-scenario-under-the-profile-preserving-truth-the-manuscript-text">Addendum 41, 7 November 2026: the pathogen-specificity scenario under the profile-preserving truth; the manuscript text</h2>
+<p><strong>What had been seen.</strong> The global-intercept results of addenda 38 and 39. They are not the ones the paper reports: the pathogen-specificity scripts 43 and 47 recentred the genetic part with one intercept (D5), while every analysis in the paper is on the profile-preserving truth (D27). The mistake was mine and the addenda did not say which truth they used (“the exact sweep’s, as in script 23” is the global one). The profile-truth results below were seen when they were written.</p>
+<section id="what-changed-in-the-code" class="level3">
+<h3 class="anchored" data-anchor-id="what-changed-in-the-code">1. What changed in the code</h3>
+<p><code>R/aim4_pathogen.R</code> takes a <code>scheme</code> (default <code>genetic_scheme()</code>, so <code>PROSE_SCHEME</code>). Under the profile truth the target-pathogen component has an intercept per clinical profile (<code>profile_shifts()</code>, <code>R/calibration_check.R</code>), so the clinical score is calibrated in every profile and the mixture (the genotype-insensitive part is the baseline risk) is too; scores get a per-profile intercept as in script 31. Scripts 43 and 47 write files ending in <code>_profile</code> under that scheme and leave the global files as they were (the global rerun of script 43 reproduced the committed file exactly). Checks: at f = 1 the 1,200 cells of script 43 reproduce script 31’s profile comparison (largest gain difference 1.5e-16); script 47 at sigma = 0 matches script 43 (288 cells, mean absolute difference 0.00009, largest 0.0007; the MCID is 0.00458). Tests in <code>tests/testthat/test-aim4-pathogen.R</code> cover both truths.</p>
+</section>
+<section id="results-under-the-profile-preserving-truth-exact-weights-the-primary" class="level3">
+<h3 class="anchored" data-anchor-id="results-under-the-profile-preserving-truth-exact-weights-the-primary">2. Results under the profile-preserving truth (exact weights; the primary)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>f</th>
+<th>5%: specific weights</th>
+<th>5%: all-mould weights</th>
+<th>20%: specific</th>
+<th>20%: all-mould</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>23.8%</td>
+<td>23.8%</td>
+<td>69.3%</td>
+<td>69.3%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>9.3%</td>
+<td>10.2%</td>
+<td>57.2%</td>
+<td>58.0%</td>
+</tr>
+<tr class="odd">
+<td>0.6</td>
+<td>0%</td>
+<td>0%</td>
+<td>34.7%</td>
+<td>41.2%</td>
+</tr>
+<tr class="even">
+<td>0.4</td>
+<td>0%</td>
+<td>0%</td>
+<td>4.2%</td>
+<td>14.8%</td>
+</tr>
+</tbody>
+</table>
+<p>(Share of the 600 architectures that reach the MCID. Under the global truth the 5% shares were 29%, 16% to 17%, 2% to 5% and 0%, so the construction matters here too.)</p>
+<p>Fewest loci at the 5% MCID, frequency 0.3 (none = none within 20):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>odds ratio</th>
+<th>f = 1</th>
+<th>f = 0.8 (specific / all-mould)</th>
+<th>f = 0.6 and 0.4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.8</td>
+<td>13</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>2.0</td>
+<td>10</td>
+<td>20 / 19</td>
+<td>none</td>
+</tr>
+<tr class="odd">
+<td>2.5</td>
+<td>6</td>
+<td>11 / 11</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>3.0</td>
+<td>4</td>
+<td>8 / 7</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>For 10 loci of odds ratio 2.0 at frequency 0.3 (5%) the gain over the MCID is 1.07 at f = 1, 0.65 (specific) or 0.68 (all-mould) at f = 0.8, 0.22 or 0.37 at f = 0.6 and -0.20 or 0.15 at f = 0.4; in extra true cases per 1,000 admissions 3.5, 1.7 or 2.4, -0.2 or 1.3, and -2.0 or 0.9. The odds ratio an all-mould analysis would see is 1.64, 1.44 and 1.28 at f = 0.8, 0.6 and 0.4. The all-mould weights have the higher gain in 95% of the cells with f &lt; 1. At f = 1 the best single weight under this truth is 1.90 for a true 2.0 (the profile intercepts bend the logistic relation), with no difference in gain.</p>
+</section>
+<section id="with-error-in-the-weights-script-47-profile-truth-f-0.8-and-0.6" class="level3">
+<h3 class="anchored" data-anchor-id="with-error-in-the-weights-script-47-profile-truth-f-0.8-and-0.6">3. With error in the weights (script 47, profile truth, f = 0.8 and 0.6)</h3>
+<p>At f = 0.6 nothing reaches the 5% MCID even with exact weights, so nothing does with error. At f = 0.8 the share whose median replicate reaches it is 18% (all-mould) and 18% (specific) at sigma = 0.10, 16% and 17% at 0.20, and 4% and 9% at 0.40 (exact weights on the same grid: 20% and 19%). The median share of the exact gain that the realised score keeps (cells whose exact gain is at least half the MCID) is 0.96 and 0.97 at 0.10, 0.87 and 0.91 at 0.20, and 0.53 (all-mould) and 0.72 (specific) at 0.40. Fewest loci at f = 0.8, frequency 0.3, 5% (specific / all-mould; exact 11 / 11 and 8 / 7):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>odds ratio</th>
+<th>sigma 0.10</th>
+<th>sigma 0.20</th>
+<th>sigma 0.40</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2.0</td>
+<td>none</td>
+<td>none</td>
+<td>none</td>
+</tr>
+<tr class="even">
+<td>2.5</td>
+<td>11 / 10</td>
+<td>10 / 10</td>
+<td>18 / none</td>
+</tr>
+<tr class="odd">
+<td>3.0</td>
+<td>7 / 7</td>
+<td>9 / 9</td>
+<td>10 / 13</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reading-14" class="level3">
+<h3 class="anchored" data-anchor-id="reading-14">Reading</h3>
+<ul>
+<li><strong>Dilution is the larger effect, and the profile truth makes it larger than the global truth did.</strong> At 80% the loci needed roughly double; at 60% or less nothing in the grid reaches the 5% MCID. The qualitative reading of addenda 38 and 39 stands (all-mould weights are better with exact weights; they lose their advantage when noisy, because their centre is smaller for the same error), but the numbers there are the global-truth ones and should not be quoted.</li>
+<li><strong>Not shown:</strong> f is assumed; independent identical loci; unbiased error with the same sigma for both centres; thresholds 5% and 20%; one common f.</li>
+</ul>
+</section>
+<section id="the-manuscript" class="level3">
+<h3 class="anchored" data-anchor-id="the-manuscript">4. The manuscript</h3>
+<p><code>manuscript.qmd</code> now describes the scenario in the methods (a bullet after the architecture sweep) and the results (a paragraph after the architecture figure), adds a sentence to the abstract and to “With larger effects or more loci”, and replaces “Two planned analyses are not yet done” by one (locus-specific error, winner’s curse and linkage). The donor-genotype results paragraph, stale after addenda 37 and 39, now reads from the profile-truth rerun of script 20: 0.0 to +0.5 extra true cases per 1,000 allo admissions at 5% (about 30 needed) and 15 to 25 at 20% (about 12 needed), with the pooled donor PTX3 effect 0.89 (0.59 to 1.69), two PTX3 donor studies; the limitation on the thin evidence cites the inferred Fisher 2017 direction.</p>
+</section>
+<section id="not-done-23" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-23">Not done</h3>
+<p>Locus-specific error, winner’s curse and linkage in the pathogen scenario; a different f for different loci.</p>
+<p>Code and outputs: <code>R/aim4_pathogen.R</code>, <code>scripts/43_aim4_pathogen_specificity.R</code>, <code>scripts/47_aim4_pathogen_realised.R</code>, <code>output/aim4_pathogen_{sweep,frontier,check}_profile.csv</code>, <code>output/aim4_pathogen_realised_{sweep,frontier,check}_profile.csv</code>, <code>output/figures/aim4_pathogen_frontier_profile.png</code>, <code>output/figures/aim4_pathogen_realised_frontier_profile.png</code>; tests in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
 
 
 <!-- -->
