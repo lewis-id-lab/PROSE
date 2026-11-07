@@ -343,7 +343,8 @@ All of these were run under the profile-preserving truth. The global-intercept v
 - **Stress tests of the realised score.** At f = 1 and 0.8, with σ = 0.10 and 0.20 and odds ratios of 2.0, 2.5 and 3.0, we
   added three departures from the idealised score, each alone and all together: loci with different frequencies and so
   different precision; the winner's curse, with the k loci picked by their z-scores from five times as many candidates, the
-  rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one. Linkage among the causal
+  rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one (a separate sweep used
+  0.5, 0.7, 0.9 and 1.0). Linkage among the causal
   loci was not modelled.
 - **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
   computed exactly in three forms:
@@ -611,7 +612,9 @@ no more than 3 points. The winner's curse changed it by 1 to 2 points at σ = 0.
 stand out from null ones (99% to 100% of the selected loci were true), and by up to 10 points for the all-mould weights at σ = 0.20
 and f = 0.8 (15% against 25%; 79% to 92% of the selected loci true). A tag correlated 0.7 with the causal variant kept 42% to 49% of the gain and cut the share reaching the MCID
 to 3% to 12% at f = 1 and to none at f = 0.8. At frequency 0.3 and σ = 0.10, an odds ratio of 2.5 needed 20 loci with tags
-against 6 with the causal variants. With all three departures, 0% to 9% of architectures reached the MCID.
+against 6 with the causal variants. With all three departures, 0% to 9% of architectures reached the MCID. Over correlations of 0.5, 0.7, 0.9 and 1.0, the share of the
+gain that the tag kept followed the square of the correlation (0.23, 0.49 and 0.82 at f = 1), so a tag at 0.9 already lost about a fifth
+of the gain and needed one to five more loci, and at 0.5 no architecture reached the 5% MCID.
 
 ### Net reclassification improvement (tertiary)
 

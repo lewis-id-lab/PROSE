@@ -3184,3 +3184,34 @@ Share of the 180 architectures whose median replicate reaches the 5% MCID (exact
 Linkage among the causal loci; a sweep over r, the pool size and the frequency spread; the same stress tests in the exact sweep.
 
 Code and outputs: `R/aim4_pathogen.R` (`pathogen_cell_stress()`), `scripts/48_aim4_pathogen_stress.R`, `output/aim4_pathogen_stress_{sweep,frontier,check}_profile.csv`, `output/figures/aim4_pathogen_stress_frontier_profile.png`; test in `tests/testthat/test-aim4-pathogen.R`.
+
+
+### Addition, 7 November 2026 (later the same day): the tagging stress test over r (`scripts/49_aim4_pathogen_tagging.R`)
+
+Incomplete tagging was the only departure that mattered, and it was run at one correlation. Script 49 repeats it at r = 0.5, 0.7, 0.9 and 1.0 (r = 1 is the causal variant itself; r squared 0.25, 0.49, 0.81 and 1), alone, at f = 1 and 0.8, sigma = 0.10, on the same 180 architectures per f (12 replicate studies each), under the profile-preserving truth.
+
+| f | weights | r = 1.0 | r = 0.9 | r = 0.7 | r = 0.5 |
+|---|---|---|---|---|---|
+| 1.0 | specific | 61% | 52% | 8% | 0% |
+| 1.0 | all-mould | 61% | 52% | 10% | 0% |
+| 0.8 | specific | 32% | 12% | 0% | 0% |
+| 0.8 | all-mould | 33% | 16% | 0% | 0% |
+
+(Share of the 180 architectures whose median replicate reaches the 5% MCID.) The share of the gain that the tag keeps, against the causal variant (median over cells whose causal gain is at least half the MCID), is 0.77 to 0.82 at r = 0.9, 0.40 to 0.49 at 0.7 and 0.15 to 0.24 at 0.5: it follows r squared (0.81, 0.49, 0.25), as expected when the tag carries a fraction r of the effect and r of the signal. For 10 loci of odds ratio 2.5 at frequency 0.3 (f = 1, 5%), the gain over the MCID is 1.53 at r = 1, 1.17 at 0.9, 0.79 at 0.7 and 0.34 at 0.5.
+
+Fewest loci at the 5% MCID, frequency 0.3, target-pathogen weights ("none" = none within 20):
+
+| f | odds ratio | r = 1.0 | r = 0.9 | r = 0.7 | r = 0.5 |
+|---|---|---|---|---|---|
+| 1.0 | 2.0 | 10 | 12 | none | none |
+| 1.0 | 2.5 | 6 | 7 | 20 | none |
+| 1.0 | 3.0 | 4 | 5 | 13 | none |
+| 0.8 | 2.0 | 20 | none | none | none |
+| 0.8 | 2.5 | 11 | 14 | none | none |
+| 0.8 | 3.0 | 7 | 12 | none | none |
+
+At the 20% threshold the loss is smaller: at f = 1 the share reaching the MCID is 96% at r = 1, 94% at 0.9, 86% at 0.7 and 53% to 56% at 0.5; at f = 0.8, 91% to 92%, 88%, 71% to 75% and 0% to 8%.
+
+**Where the loss starts.** At once, and in proportion to r squared: a tag at r = 0.9 already loses a fifth of the gain and needs one to five more loci (one to two at f = 1, three to five at f = 0.8). Between 0.9 and 0.7 the frontier leaves reach for most architectures near it, because the gain falls through the MCID; at 0.5 nothing in the grid reaches it at 5%. A causal variant that is typed or well imputed (r above about 0.95) is therefore what the earlier frontiers assume. Not shown: other seeds of the candidate pool, locus-specific r, and r for the all-ancestry case.
+
+Code and outputs: `scripts/49_aim4_pathogen_tagging.R`, `output/aim4_pathogen_tagging_{sweep,frontier}_profile.csv`, `output/figures/aim4_pathogen_tagging_frontier_profile.png`.
