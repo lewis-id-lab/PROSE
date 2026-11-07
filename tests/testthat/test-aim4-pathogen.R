@@ -65,3 +65,20 @@ test_that("the scheme follows PROSE_SCHEME by default", {
   Sys.setenv(PROSE_SCHEME = "global"); b <- pathogen_cell(q_t, lp_t, 6, 1.8, 0.3, 0.8, at)
   expect_equal(a, pathogen_cell(q_t, lp_t, 6, 1.8, 0.3, 0.8, at, scheme = "profile")); expect_false(isTRUE(all.equal(a$gain_specific, b$gain_specific)))
 })
+
+test_that("the stress version reproduces the exact gain without error, and each departure lowers the realised gain", {
+  old <- Sys.getenv("PROSE_SCHEME", NA); on.exit(if (is.na(old)) Sys.unsetenv("PROSE_SCHEME") else Sys.setenv(PROSE_SCHEME = old))
+  Sys.setenv(PROSE_SCHEME = "profile")
+  ex <- pathogen_cell(q_t, lp_t, 8, 2.5, 0.3, 0.8, at)
+  r0 <- pathogen_cell_stress(q_t, lp_t, 8, 2.5, 0.3, 0.8, 0, at, R = 8L, seed = 11L)
+  m0 <- aggregate(gain ~ score + threshold, r0, mean)
+  expect_equal(m0$gain[m0$score == "specific" & m0$threshold == 0.05], ex$gain_specific[1], tolerance = 0.15)
+  expect_true(all(r0$true_selected == 8))
+  g <- function(...) { x <- pathogen_cell_stress(q_t, lp_t, 8, 2.5, 0.3, 0.8, 0.3, at, R = 12L, seed = 3L, ...); median(x$gain[x$score == "specific" & x$threshold == 0.05]) }
+  base <- g()
+  expect_lt(g(tag_r = 0.5), base)
+  cu <- pathogen_cell_stress(q_t, lp_t, 8, 2.5, 0.3, 0.8, 0.3, at, R = 12L, seed = 3L, winners_curse = TRUE)
+  expect_lt(mean(cu$true_selected), 8)
+  Sys.setenv(PROSE_SCHEME = "global")
+  expect_error(pathogen_cell_stress(q_t, lp_t, 8, 2.5, 0.3, 0.8, 0.3, at), "profile")
+})

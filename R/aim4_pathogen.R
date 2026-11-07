@@ -89,3 +89,58 @@ pathogen_cell_realised <- function(q, lp_profile, n_loci, odds_ratio, raf, f, si
   })
   cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, do.call(rbind, out))
 }
+
+# ---- Stress tests of the realised score: locus-specific precision, the winner's curse, and incomplete tagging (addendum 42) -------------------------
+# Profile-preserving truth only. The k true loci each carry the target-pathogen log odds ratio; a score is built from estimated weights as in
+# pathogen_cell_realised(), with three departures that can each be switched on:
+#   locus_specific  the loci differ in frequency (log-normal spread of 0.35 around raf, bounded to 0.02 to 0.50) and the error of each weight is inversely
+#                   proportional to sqrt(2 p (1 - p)), equal to sigma at the frequency raf; the true dosage distribution is the exact convolution.
+#   winners_curse   the discovery study screens candidates_per_locus * k loci, the k true ones and the rest null (same frequencies), and the score takes the k
+#                   with the largest z, with their estimated weights: true loci come out with inflated weights, and null loci can be selected.
+#   tag_r           the scored genotype of each true locus is a tag correlated r with the causal one (each chromosome copies the causal allele with
+#                   probability r, otherwise draws independently); its marginal per-allele effect, and so the estimated weight, is about r times the causal one.
+#                   Linkage among the causal loci themselves is not modelled.
+# Returns one row per replicate, score and threshold.
+pathogen_cell_stress <- function(q, lp_profile, n_loci, odds_ratio, raf, f, sigma, thresholds, locus_specific = FALSE, winners_curse = FALSE, tag_r = 1,
+                                 candidates_per_locus = 5L, R = 12L, N = 2000L, seed = 1L) {
+  if (genetic_scheme() != "profile") stop("pathogen_cell_stress() builds the profile-preserving truth; set PROSE_SCHEME = \"profile\"", call. = FALSE)
+  set.seed(seed)
+  k <- n_loci; beta <- log(odds_ratio); np <- length(q)
+  spread <- function(n) pmin(pmax(raf * exp(stats::rnorm(n, 0, 0.35)), 0.02), 0.5)
+  pj <- if (locus_specific) spread(k) else rep(raf, k)
+  pmf <- dosage_pmf(k, pj); ng <- length(pmf); d <- seq_len(ng) - 1
+  w <- as.numeric(outer(q, pmf)); lp_cell <- rep(lp_profile, ng); D0 <- rep(d, each = np)
+  clin <- stats::plogis(lp_cell)
+  comp <- stats::plogis(outer(lp_profile + profile_shifts(lp_profile, beta * d, pmf), beta * d, "+"))
+  r_cells <- (1 - f) * clin + f * as.numeric(comp)
+  r_mat <- matrix(r_cells, np, ng)
+  centres <- c(specific = beta, all_mould = diluted_beta(lp_cell, D0, w, r_cells))
+  base_nb <- nb_from(tp_fp(w, r_cells, clin, thresholds), thresholds)
+  M <- if (winners_curse) as.integer(candidates_per_locus * k) else k
+  pM <- c(pj, if (M > k) { if (locus_specific) spread(M - k) else rep(raf, M - k) })
+  se <- sigma * sqrt(raf * (1 - raf) / (pM * (1 - pM)))
+  true_idx <- seq_len(k)
+  wt <- rep(q, times = N) / N
+  out <- lapply(seq_len(R), function(r) {
+    P <- matrix(rep(pM, each = N), N, M)
+    c1 <- matrix(stats::rbinom(N * M, 1L, P), N, M); c2 <- matrix(stats::rbinom(N * M, 1L, P), N, M)
+    if (tag_r < 1) {
+      swap <- function(cc) { cc[, true_idx] <- ifelse(matrix(stats::runif(N * k), N, k) < tag_r, cc[, true_idx], matrix(stats::rbinom(N * k, 1L, P[, true_idx]), N, k)); cc }
+      t1 <- swap(c1); t2 <- swap(c2)
+    } else { t1 <- c1; t2 <- c2 }
+    Gt <- t1 + t2
+    Dtrue <- rowSums((c1 + c2)[, true_idx, drop = FALSE])
+    rt <- as.numeric(r_mat[, Dtrue + 1L])
+    z <- stats::rnorm(M)
+    do.call(rbind, lapply(names(centres), function(sc) {
+      mu <- numeric(M); mu[true_idx] <- tag_r * centres[[sc]]
+      est <- mu + z * se
+      sel <- if (winners_curse) order(est / se, decreasing = TRUE)[seq_len(k)] else true_idx
+      S <- drop(Gt[, sel, drop = FALSE] %*% est[sel])
+      pr <- as.numeric(stats::plogis(outer(lp_profile + profile_shifts(lp_profile, S, rep(1 / N, N)), S, "+")))
+      data.frame(replicate = r, score = sc, threshold = thresholds, gain = nb_from(tp_fp(wt, rt, pr, thresholds), thresholds) - base_nb,
+                 true_selected = sum(sel <= k))
+    }))
+  })
+  cbind(n_loci = n_loci, odds_ratio = odds_ratio, raf = raf, case_fraction = f, sigma = sigma, do.call(rbind, out))
+}

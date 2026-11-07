@@ -3137,3 +3137,50 @@ At f = 0.6 nothing reaches the 5% MCID even with exact weights, so nothing does 
 Locus-specific error, winner's curse and linkage in the pathogen scenario; a different f for different loci.
 
 Code and outputs: `R/aim4_pathogen.R`, `scripts/43_aim4_pathogen_specificity.R`, `scripts/47_aim4_pathogen_realised.R`, `output/aim4_pathogen_{sweep,frontier,check}_profile.csv`, `output/aim4_pathogen_realised_{sweep,frontier,check}_profile.csv`, `output/figures/aim4_pathogen_frontier_profile.png`, `output/figures/aim4_pathogen_realised_frontier_profile.png`; tests in `tests/testthat/test-aim4-pathogen.R`.
+
+
+## Addendum 42, 7 November 2026: locus-specific precision, the winner's curse and incomplete tagging in the pathogen-specificity scenario
+
+**What had been seen.** Addendum 41's results. The planned analysis "locus-specific error, winner's curse and linkage in the architecture sweep" (addenda 16, 17 and the manuscript) was not done. This addendum does it inside the pathogen-specificity grid, not in the main sweep of scripts 23 and 25, and under the profile-preserving truth only. The results below were seen when they were written.
+
+### Design (`scripts/48_aim4_pathogen_stress.R`, `pathogen_cell_stress()` in `R/aim4_pathogen.R`)
+
+As script 47 (12 replicate discovery studies of 2,000 simulated genotypes; the mixture truth of addendum 41; both centres of the weights), at f = 1 and 0.8 and sigma = 0.10 and 0.20, on odds ratios 2.0, 2.5 and 3.0, frequencies 0.1, 0.3 and 0.5 and 1 to 20 loci (180 architectures for each f), with five scenarios, each departure alone and all three together:
+
+- **locus:** the loci differ in frequency (log-normal spread 0.35 around the nominal one, bounded to 0.02 to 0.50) and the error of each weight is inversely proportional to the square root of 2 p (1 - p), equal to sigma at the nominal frequency; the true dosage distribution stays an exact convolution.
+- **curse (winner's curse):** the discovery study screens five times as many loci as the score has (the rest null), and the score takes the k loci with the largest z, with their estimated weights.
+- **tag (incomplete tagging):** the scored genotype is a tag correlated r = 0.7 with the causal one (each chromosome copies the causal allele with probability 0.7, otherwise draws independently); the estimated weight is centred on 0.7 times the causal effect, the marginal per-allele effect to a first approximation.
+- **all:** the three together.
+
+Check at sigma = 0 (base scenario against script 43's exact profile gains): 288 cells, mean absolute difference 0.0001, largest 0.0009 (MCID 0.00458). Linkage among the causal loci themselves is not modelled, and each departure is run at one setting (r = 0.7; a spread of 0.35; a five-fold candidate pool).
+
+### Results
+
+Share of the 180 architectures whose median replicate reaches the 5% MCID (exact weights on the same grid: 63% at f = 1, 31% specific and 34% all-mould at f = 0.8):
+
+| f | weights | sigma | base | locus | curse | tag | all |
+|---|---|---|---|---|---|---|---|
+| 1.0 | specific | 0.10 | 62% | 63% | 61% | 6% | 8% |
+| 1.0 | specific | 0.20 | 61% | 60% | 59% | 3% | 0% |
+| 1.0 | all-mould | 0.10 | 62% | 63% | 61% | 12% | 9% |
+| 1.0 | all-mould | 0.20 | 59% | 60% | 58% | 6% | 0% |
+| 0.8 | specific | 0.10 | 29% | 28% | 31% | 0% | 0% |
+| 0.8 | specific | 0.20 | 25% | 26% | 28% | 0% | 0% |
+| 0.8 | all-mould | 0.10 | 29% | 30% | 31% | 0% | 0% |
+| 0.8 | all-mould | 0.20 | 25% | 25% | 15% | 0% | 0% |
+
+- **Locus-specific precision** changed nothing (the loci needed and the share are within 1 to 2 points; 99% to 100% of the base gain is kept).
+- **The winner's curse** changed almost nothing, because loci of odds ratio 2 or more stand out from null ones: 99% to 100% of the selected loci were true at sigma = 0.10 and 90% to 100% at 0.20 (79% to 92% for the all-mould weights at f = 0.8). The exception is the all-mould weights at sigma = 0.20 and f = 0.8 (15% against 25%): their smaller effect lets null loci in.
+- **Incomplete tagging** is the one that matters: a tag correlated 0.7 keeps 42% to 49% of the base gain (the median over cells whose base gain is at least half the MCID), and cuts the share reaching the MCID to 3% to 12% at f = 1 and to none at f = 0.8. At frequency 0.3, f = 1 and sigma = 0.10, an odds ratio of 2.5 needs 20 loci with tags and 6 with the causal variants, and an odds ratio of 3.0 needs 11 against 4. With all three departures the share is 0% to 9%.
+
+### Reading
+
+- **The earlier results are best cases in one respect that matters.** The architecture frontiers assume the scored variant is the causal one. At a correlation of 0.7 (r squared 0.49) the loci needed more than double for the architectures near the frontier, and those that needed 10 or more loci do not reach the MCID within 20. Real tag-causal correlations are often higher after imputation, so 0.7 is a moderate setting, not a worst case; only one value was run.
+- **The winner's curse is not the main danger for effects of this size.** It would matter more for small effects, which do not reach the MCID in any case, and for larger candidate pools (the pool here is five times the score).
+- **Not shown:** linkage among the causal loci (which would change the variance of the true genetic score and the redundancy of the weights); other values of r, the frequency spread and the pool; the 20% threshold (in the files); the global truth; the main sweep of scripts 23 and 25.
+
+### Not done
+
+Linkage among the causal loci; a sweep over r, the pool size and the frequency spread; the same stress tests in the exact sweep.
+
+Code and outputs: `R/aim4_pathogen.R` (`pathogen_cell_stress()`), `scripts/48_aim4_pathogen_stress.R`, `output/aim4_pathogen_stress_{sweep,frontier,check}_profile.csv`, `output/figures/aim4_pathogen_stress_frontier_profile.png`; test in `tests/testthat/test-aim4-pathogen.R`.

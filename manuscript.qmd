@@ -340,6 +340,11 @@ All of these were run under the profile-preserving truth. The global-intercept v
   fitted to the all-mould outcome (what a study of any mould disease would estimate). For f = 0.8 and 0.6 the weights also
   carried independent error with σ = 0.10, 0.20 and 0.40, with 12 replicate discovery studies per architecture. The grid had
   odds ratios from 1.2 to 3.0 (10 values), frequencies of 0.1, 0.3 and 0.5, and 1 to 20 loci.
+- **Stress tests of the realised score.** At f = 1 and 0.8, with σ = 0.10 and 0.20 and odds ratios of 2.0, 2.5 and 3.0, we
+  added three departures from the idealised score, each alone and all together: loci with different frequencies and so
+  different precision; the winner's curse, with the k loci picked by their z-scores from five times as many candidates, the
+  rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one. Linkage among the causal
+  loci was not modelled.
 - **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
   computed exactly in three forms:
   - categorical at 5%;
@@ -600,6 +605,14 @@ no number up to 20 with all-mould weights (18 with target-pathogen weights). An 
 loci at any σ, and at f = 0.6 nothing did, even with exact weights. The global-intercept truth was more favourable (29% of
 architectures at f = 1, 16% to 17% at f = 0.8 and 2% to 5% at f = 0.6; addendum 38).
 
+The stress tests changed little except for tagging. On the grid of odds ratios of 2.0 to 3.0, exact weights reached the 5% MCID
+in 63% of architectures at f = 1 and in 31% to 34% at f = 0.8. Unequal frequencies and locus-specific precision changed this by
+no more than 3 points. The winner's curse changed it by 1 to 2 points at σ = 0.10, because loci with odds ratios of 2 or more
+stand out from null ones (99% to 100% of the selected loci were true), and by up to 10 points for the all-mould weights at σ = 0.20
+and f = 0.8 (15% against 25%; 79% to 92% of the selected loci true). A tag correlated 0.7 with the causal variant kept 42% to 49% of the gain and cut the share reaching the MCID
+to 3% to 12% at f = 1 and to none at f = 0.8. At frequency 0.3 and σ = 0.10, an odds ratio of 2.5 needed 20 loci with tags
+against 6 with the causal variants. With all three departures, 0% to 9% of architectures reached the MCID.
+
 ### Net reclassification improvement (tertiary)
 
 All NRI results use the profile-preserving truth, with the clinical score as the comparator. Continuous NRI was large even
@@ -796,7 +809,9 @@ the CLEC7A sensitivity analysis. The priors on μ and τ, and the continuity cor
 little data to check them against.
 
 **Several simulation assumptions favour the genetic score.** The realised score uses posterior medians, which are already
-shrunk, and it ignores the winner's curse. Real-world realised gains would therefore be lower.
+shrunk, and it ignores the winner's curse and the incomplete tagging of causal variants. In stress tests on odds ratios of 2 or more,
+the winner's curse and unequal precision changed the loci needed little, but a tag correlated 0.7 with the causal variant kept under half of
+the gain (addendum 42). Real-world realised gains would therefore be lower.
 
 **Other simulation assumptions could cut either way.** Genotype is assumed independent across genes and independent of the
 clinical profile. The analysis considers one threshold decision per admission. Only candidate genes are modelled.
@@ -833,8 +848,9 @@ Prophylaxis practice has changed since 2016, and the score's calibration today i
 true cases is a judgement, though the strictest of the three readings we considered. Other uses of genotype, such as choosing
 an antifungal agent or enriching a trial, were not evaluated.
 
-One planned analysis is not yet done: locus-specific error, winner's curse and linkage in the architecture sweep. The
-pathogen-specificity scenario rests on an assumed share f of cases due to the target pathogen, because the cohort has no
+The stress tests of locus-specific precision, the winner's curse and incomplete tagging were run only within the pathogen-specificity
+grid, one setting each, and linkage among the causal loci was not modelled; the main architecture sweep was not repeated with them.
+The pathogen-specificity scenario rests on an assumed share f of cases due to the target pathogen, because the cohort has no
 pathogen-level outcome.
 
 The NRI comparison rests on the pooled PTX3 effect, because the earlier analysis's per-SNP inputs are not on record, and we
