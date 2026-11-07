@@ -450,6 +450,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-manuscript" id="toc-the-manuscript" class="nav-link" data-scroll-target="#the-manuscript">4. The manuscript</a></li>
   <li><a href="#not-done-23" id="toc-not-done-23" class="nav-link" data-scroll-target="#not-done-23">Not done</a></li>
   </ul></li>
+  <li><a href="#addendum-42-7-november-2026-locus-specific-precision-the-winners-curse-and-incomplete-tagging-in-the-pathogen-specificity-scenario" id="toc-addendum-42-7-november-2026-locus-specific-precision-the-winners-curse-and-incomplete-tagging-in-the-pathogen-specificity-scenario" class="nav-link" data-scroll-target="#addendum-42-7-november-2026-locus-specific-precision-the-winners-curse-and-incomplete-tagging-in-the-pathogen-specificity-scenario">Addendum 42, 7 November 2026: locus-specific precision, the winner’s curse and incomplete tagging in the pathogen-specificity scenario</a>
+  <ul class="collapse">
+  <li><a href="#design-scripts48_aim4_pathogen_stress.r-pathogen_cell_stress-in-raim4_pathogen.r" id="toc-design-scripts48_aim4_pathogen_stress.r-pathogen_cell_stress-in-raim4_pathogen.r" class="nav-link" data-scroll-target="#design-scripts48_aim4_pathogen_stress.r-pathogen_cell_stress-in-raim4_pathogen.r">Design (<code>scripts/48_aim4_pathogen_stress.R</code>, <code>pathogen_cell_stress()</code> in <code>R/aim4_pathogen.R</code>)</a></li>
+  <li><a href="#results-11" id="toc-results-11" class="nav-link" data-scroll-target="#results-11">Results</a></li>
+  <li><a href="#reading-15" id="toc-reading-15" class="nav-link" data-scroll-target="#reading-15">Reading</a></li>
+  <li><a href="#not-done-24" id="toc-not-done-24" class="nav-link" data-scroll-target="#not-done-24">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -7522,6 +7529,139 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="not-done-23">Not done</h3>
 <p>Locus-specific error, winner’s curse and linkage in the pathogen scenario; a different f for different loci.</p>
 <p>Code and outputs: <code>R/aim4_pathogen.R</code>, <code>scripts/43_aim4_pathogen_specificity.R</code>, <code>scripts/47_aim4_pathogen_realised.R</code>, <code>output/aim4_pathogen_{sweep,frontier,check}_profile.csv</code>, <code>output/aim4_pathogen_realised_{sweep,frontier,check}_profile.csv</code>, <code>output/figures/aim4_pathogen_frontier_profile.png</code>, <code>output/figures/aim4_pathogen_realised_frontier_profile.png</code>; tests in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
+</section>
+</section>
+<section id="addendum-42-7-november-2026-locus-specific-precision-the-winners-curse-and-incomplete-tagging-in-the-pathogen-specificity-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-42-7-november-2026-locus-specific-precision-the-winners-curse-and-incomplete-tagging-in-the-pathogen-specificity-scenario">Addendum 42, 7 November 2026: locus-specific precision, the winner’s curse and incomplete tagging in the pathogen-specificity scenario</h2>
+<p><strong>What had been seen.</strong> Addendum 41’s results. The planned analysis “locus-specific error, winner’s curse and linkage in the architecture sweep” (addenda 16, 17 and the manuscript) was not done. This addendum does it inside the pathogen-specificity grid, not in the main sweep of scripts 23 and 25, and under the profile-preserving truth only. The results below were seen when they were written.</p>
+<section id="design-scripts48_aim4_pathogen_stress.r-pathogen_cell_stress-in-raim4_pathogen.r" class="level3">
+<h3 class="anchored" data-anchor-id="design-scripts48_aim4_pathogen_stress.r-pathogen_cell_stress-in-raim4_pathogen.r">Design (<code>scripts/48_aim4_pathogen_stress.R</code>, <code>pathogen_cell_stress()</code> in <code>R/aim4_pathogen.R</code>)</h3>
+<p>As script 47 (12 replicate discovery studies of 2,000 simulated genotypes; the mixture truth of addendum 41; both centres of the weights), at f = 1 and 0.8 and sigma = 0.10 and 0.20, on odds ratios 2.0, 2.5 and 3.0, frequencies 0.1, 0.3 and 0.5 and 1 to 20 loci (180 architectures for each f), with five scenarios, each departure alone and all three together:</p>
+<ul>
+<li><strong>locus:</strong> the loci differ in frequency (log-normal spread 0.35 around the nominal one, bounded to 0.02 to 0.50) and the error of each weight is inversely proportional to the square root of 2 p (1 - p), equal to sigma at the nominal frequency; the true dosage distribution stays an exact convolution.</li>
+<li><strong>curse (winner’s curse):</strong> the discovery study screens five times as many loci as the score has (the rest null), and the score takes the k loci with the largest z, with their estimated weights.</li>
+<li><strong>tag (incomplete tagging):</strong> the scored genotype is a tag correlated r = 0.7 with the causal one (each chromosome copies the causal allele with probability 0.7, otherwise draws independently); the estimated weight is centred on 0.7 times the causal effect, the marginal per-allele effect to a first approximation.</li>
+<li><strong>all:</strong> the three together.</li>
+</ul>
+<p>Check at sigma = 0 (base scenario against script 43’s exact profile gains): 288 cells, mean absolute difference 0.0001, largest 0.0009 (MCID 0.00458). Linkage among the causal loci themselves is not modelled, and each departure is run at one setting (r = 0.7; a spread of 0.35; a five-fold candidate pool).</p>
+</section>
+<section id="results-11" class="level3">
+<h3 class="anchored" data-anchor-id="results-11">Results</h3>
+<p>Share of the 180 architectures whose median replicate reaches the 5% MCID (exact weights on the same grid: 63% at f = 1, 31% specific and 34% all-mould at f = 0.8):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>f</th>
+<th>weights</th>
+<th>sigma</th>
+<th>base</th>
+<th>locus</th>
+<th>curse</th>
+<th>tag</th>
+<th>all</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1.0</td>
+<td>specific</td>
+<td>0.10</td>
+<td>62%</td>
+<td>63%</td>
+<td>61%</td>
+<td>6%</td>
+<td>8%</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>specific</td>
+<td>0.20</td>
+<td>61%</td>
+<td>60%</td>
+<td>59%</td>
+<td>3%</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>all-mould</td>
+<td>0.10</td>
+<td>62%</td>
+<td>63%</td>
+<td>61%</td>
+<td>12%</td>
+<td>9%</td>
+</tr>
+<tr class="even">
+<td>1.0</td>
+<td>all-mould</td>
+<td>0.20</td>
+<td>59%</td>
+<td>60%</td>
+<td>58%</td>
+<td>6%</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>specific</td>
+<td>0.10</td>
+<td>29%</td>
+<td>28%</td>
+<td>31%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>specific</td>
+<td>0.20</td>
+<td>25%</td>
+<td>26%</td>
+<td>28%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>all-mould</td>
+<td>0.10</td>
+<td>29%</td>
+<td>30%</td>
+<td>31%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>0.8</td>
+<td>all-mould</td>
+<td>0.20</td>
+<td>25%</td>
+<td>25%</td>
+<td>15%</td>
+<td>0%</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Locus-specific precision</strong> changed nothing (the loci needed and the share are within 1 to 2 points; 99% to 100% of the base gain is kept).</li>
+<li><strong>The winner’s curse</strong> changed almost nothing, because loci of odds ratio 2 or more stand out from null ones: 99% to 100% of the selected loci were true at sigma = 0.10 and 90% to 100% at 0.20 (79% to 92% for the all-mould weights at f = 0.8). The exception is the all-mould weights at sigma = 0.20 and f = 0.8 (15% against 25%): their smaller effect lets null loci in.</li>
+<li><strong>Incomplete tagging</strong> is the one that matters: a tag correlated 0.7 keeps 42% to 49% of the base gain (the median over cells whose base gain is at least half the MCID), and cuts the share reaching the MCID to 3% to 12% at f = 1 and to none at f = 0.8. At frequency 0.3, f = 1 and sigma = 0.10, an odds ratio of 2.5 needs 20 loci with tags and 6 with the causal variants, and an odds ratio of 3.0 needs 11 against 4. With all three departures the share is 0% to 9%.</li>
+</ul>
+</section>
+<section id="reading-15" class="level3">
+<h3 class="anchored" data-anchor-id="reading-15">Reading</h3>
+<ul>
+<li><strong>The earlier results are best cases in one respect that matters.</strong> The architecture frontiers assume the scored variant is the causal one. At a correlation of 0.7 (r squared 0.49) the loci needed more than double for the architectures near the frontier, and those that needed 10 or more loci do not reach the MCID within 20. Real tag-causal correlations are often higher after imputation, so 0.7 is a moderate setting, not a worst case; only one value was run.</li>
+<li><strong>The winner’s curse is not the main danger for effects of this size.</strong> It would matter more for small effects, which do not reach the MCID in any case, and for larger candidate pools (the pool here is five times the score).</li>
+<li><strong>Not shown:</strong> linkage among the causal loci (which would change the variance of the true genetic score and the redundancy of the weights); other values of r, the frequency spread and the pool; the 20% threshold (in the files); the global truth; the main sweep of scripts 23 and 25.</li>
+</ul>
+</section>
+<section id="not-done-24" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-24">Not done</h3>
+<p>Linkage among the causal loci; a sweep over r, the pool size and the frequency spread; the same stress tests in the exact sweep.</p>
+<p>Code and outputs: <code>R/aim4_pathogen.R</code> (<code>pathogen_cell_stress()</code>), <code>scripts/48_aim4_pathogen_stress.R</code>, <code>output/aim4_pathogen_stress_{sweep,frontier,check}_profile.csv</code>, <code>output/figures/aim4_pathogen_stress_frontier_profile.png</code>; test in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
 
 
 <!-- -->
