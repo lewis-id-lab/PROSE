@@ -59,7 +59,8 @@ effects in the score, the four-term panel raised net benefit at 5% by a median o
 That is 1.1 extra true cases per 1,000 admissions, against 4.6 required. At most 0.6% of draws reached the MCID, although the
 area under the ROC curve rose from 0.861 to 0.873 and the continuous net reclassification improvement was 34%. A second
 CLEC7A haplotype doubled the gain to +0.00115, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied
-about four-fifths of the gain. No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID. If only 80% of cases were due to
+about four-fifths of the gain. No panel of up to 20 independent loci with per-allele odds ratios of 1.5 or less reached the MCID, and a scored variant correlated 0.7 with the causal one kept under half
+of the gain. If only 80% of cases were due to
 the pathogen the loci act on, the loci needed roughly doubled, and at 60% or less no architecture in the grid reached it. A
 single global intercept, used in an earlier version of the simulation, gave gains 5% to 6% larger at 5%, and comparison with
 the correctly marginalised clinical risk showed that this was not a correction of miscalibration.
@@ -346,7 +347,7 @@ All of these were run under the profile-preserving truth. The global-intercept v
   rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one (a separate sweep used
   0.5, 0.7, 0.9 and 1.0). The causal loci themselves were also linked in a further sweep: blocks of four adjacent loci with
   allele correlations of 0.3 and 0.6, with the weights estimated for each locus on its own, as in a single-SNP discovery study, or
-  jointly for the block.
+  jointly for the block. All these departures were then applied to the main grid at f = 1 (600 architectures, σ = 0.10 and 0.40).
 - **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was
   computed exactly in three forms:
   - categorical at 5%;
@@ -567,7 +568,7 @@ Under the profile-preserving truth, of the 4,000 architectures 40% reached the 5
 (@fig-aim4). The pattern was:
 
 - **One locus:** never enough. At an odds ratio of 3.0 and frequency 0.5 it reached 37% of the MCID.
-- **Odds ratio 1.5 or less:** no number of loci up to 20 reached it at 5%.
+- **Odds ratio 1.5 or less:** no number of independent loci up to 20 reached it at 5% (linked causal loci can; see below).
 - **Odds ratio 2.0:** 9 to 12 loci were needed at frequencies of 0.2 to 0.5, and 19 at 0.1.
 - **Odds ratio 3.0:** 4 to 5 loci were enough at frequencies of 0.15 to 0.5.
 
@@ -625,6 +626,20 @@ loci needed for an odds ratio of 2.0 at frequency 0.3 fell from 10 to 5 and 4 at
 kept 0.76 to 0.86 of the gain with the target-pathogen weights, and needed three to five more loci for an odds ratio of 2.0 (at f = 0.8,
 15 and 13 loci against 11 and 8). This result holds for distinct causal variants that happen to be correlated; one causal signal seen
 through several correlated variants is the incomplete tagging above.
+
+**The main frontier with these departures.** The same departures were applied to the main grid (every case genotype-sensitive; 600
+architectures of odds ratios 1.2 to 3.0, three frequencies and 1 to 20 loci; σ = 0.10 and 0.40). With the idealised assumptions the
+realised score reached the 5% MCID in 23% and 16% of architectures, as in the main realised sweep (23% and 15%). Unequal frequencies
+changed nothing. The winner's curse mattered only at σ = 0.40 (9% against 16%; the realised gain kept 0.16 of the exact gain against
+0.70). A tag correlated 0.9 with the causal variant cut the share to 17% and 10% and kept 0.79 and 0.48 of the gain, and a tag
+correlated 0.7 cut it to 2% and 0; with the three departures together the gain at σ = 0.40 was negative. At frequency 0.3 and
+σ = 0.10, an odds ratio of 2.5 needed 6 loci with the causal variants and with a tag at 0.9 and 19 with a tag at 0.7; an odds ratio of 2.0
+needed 11 loci, then 14, then none within 20. At 20% the ordering was the same with smaller losses (67% and 47% for the idealised
+score, 61% and 39% with a tag at 0.9, 45% and 18% with a tag at 0.7). Linkage among the causal loci raised the share (blocks of four with
+allele correlations of 0.3 and 0.6: 41% and 52% with joint estimates and 35% and 38% with marginal estimates at σ = 0.10) and let odds
+ratios of 1.4 and 1.5 reach the MCID in some architectures (joint estimates at a correlation of 0.6: 11 and 24 of 60 architectures at
+σ = 0.10), so the statement that no panel of loci with odds ratios of 1.5 or less reaches the MCID holds for independent loci only. That
+result holds every locus's conditional effect fixed within a correlated block, which is a generous assumption.
 
 ### Net reclassification improvement (tertiary)
 
@@ -789,7 +804,9 @@ association study of invasive aspergillosis has been published. The candidate-ge
 precisely estimated loci the sweep shows would be needed. These requirements also assume that every case responds to the loci.
 If only some of the moulds do, they rise sharply: at 80% the loci needed roughly doubled, and at 60% or less no architecture in the
 grid reached the 5% MCID. Variants specific to one pathogen are therefore a weak basis for a score that decides for all moulds, and
-better suited to a pathogen-specific decision.
+better suited to a pathogen-specific decision. The requirements also assume that the scored variants are the causal ones. A tag correlated 0.7
+with the causal variant kept under half of the gain, and then no number of loci up to 20 reached the 5% MCID at an odds ratio of 2.0; a
+tag correlated 0.9 cost a fifth of the gain. The frontier is a statement about independent, causal, well-measured loci.
 
 **In allogeneic transplant recipients.** Here the biological case for donor genotype is strongest [@cunha2014]. But the
 baseline already flags 77% of these admissions at 5%, which leaves little room for genotype to add. At 20% donor genotype could
@@ -861,8 +878,8 @@ Prophylaxis practice has changed since 2016, and the score's calibration today i
 true cases is a judgement, though the strictest of the three readings we considered. Other uses of genotype, such as choosing
 an antifungal agent or enriching a trial, were not evaluated.
 
-The stress tests of locus-specific precision, the winner's curse, incomplete tagging and linkage among the causal loci were run only within the
-pathogen-specificity grid, one setting each (blocks of four loci for linkage), and the main architecture sweep was not repeated with them.
+The stress tests of locus-specific precision, the winner's curse, incomplete tagging and linkage among the causal loci were run within the
+pathogen-specificity grid and on the main grid at f = 1, one setting each (blocks of four loci for linkage).
 The pathogen-specificity scenario rests on an assumed share f of cases due to the target pathogen, because the cohort has no
 pathogen-level outcome.
 

@@ -3270,3 +3270,53 @@ The median share of the exact gain that the realised score keeps (cells whose ex
 Other block sizes and correlation structures; the stress tests in the exact sweep.
 
 Code and outputs: `R/aim4_pathogen.R` (`dosage_pmf_linked()`, `pathogen_cell_linked()`), `scripts/50_aim4_pathogen_linkage.R`, `output/aim4_pathogen_linkage_{sweep,frontier}_profile.csv`, `output/figures/aim4_pathogen_linkage_frontier_profile.png`; tests in `tests/testthat/test-aim4-pathogen.R`.
+
+
+## Addendum 44, 8 November 2026: the stress tests on the main architecture grid
+
+**What had been seen.** Addenda 42 and 43 ran the stress tests inside the pathogen-specificity grid, where f < 1 was part of the design. The paper's main architecture frontier (f = 1, scripts 23, 25 and 31 to 34) had not been tested against them. This addendum applies them to the main grid, at f = 1, under the profile-preserving truth. The results were seen when they were written; one of them contradicts a sentence of the abstract (see Reading).
+
+### Design (`scripts/51_aim4_main_stress.R`)
+
+The realised score of the main grid (odds ratio 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2.0, 2.5, 3.0 x frequency 0.1, 0.3, 0.5 x 1 to 20 loci; 600 architectures), at sigma = 0.10 and 0.40 (12 replicate discovery studies of 2,000 simulated genotypes), with the scenarios of addenda 42 and 43: base, locus (unequal frequencies and precision), curse (the winner's curse, k loci from 5 k candidates), tag0.9 and tag0.7 (the scored variant a tag correlated 0.9 or 0.7 with the causal one), all (locus, curse and tag0.7 together), and linked0.3 and linked0.6 (blocks of four causal loci with allele correlation 0.3 or 0.6, weights estimated per locus, "marginal", or per block, "joint"). The target-pathogen score is used (at f = 1 it is the true-weight score). Check: the base scenario reproduces the existing main realised sweep of script 32 (the profile comparison): share reaching the 5% MCID 23.3% and 15.5% against 23.3% and 15.3%, and a correlation of 0.992 in the median gain over the 1,200 cells (different seeds). With the causal weights known, 23.8% of the 600 architectures reach the 5% MCID.
+
+### Results
+
+Share of the 600 architectures whose median replicate reaches the MCID:
+
+| scenario | 5%, sigma 0.10 | 5%, sigma 0.40 | 20%, sigma 0.10 | 20%, sigma 0.40 |
+|---|---|---|---|---|
+| base | 23.3% | 15.5% | 67.3% | 46.7% |
+| locus | 23.0% | 15.0% | 67.0% | 47.5% |
+| curse | 22.8% | 8.8% | 65.3% | 24.7% |
+| tag 0.9 | 17.0% | 10.3% | 61.3% | 39.0% |
+| tag 0.7 | 1.5% | 0% | 44.5% | 18.3% |
+| all (tag 0.7) | 1.7% | 0% | 40.0% | 2.8% |
+| linked 0.3, joint | 41.5% | 32.8% | 80.3% | 66.5% |
+| linked 0.3, marginal | 34.8% | 30.8% | 72.8% | 67.2% |
+| linked 0.6, joint | 52.0% | 43.5% | 85.3% | 74.8% |
+| linked 0.6, marginal | 38.3% | 36.0% | 73.8% | 72.5% |
+
+Median share of the independent-loci, causal-weights gain that the realised score keeps (5%, cells whose exact gain is at least half the MCID), sigma 0.10 and 0.40: base 0.98 and 0.70; locus 0.96 and 0.68; curse 0.97 and 0.16; tag 0.9 0.79 and 0.48; tag 0.7 0.46 and 0.13; all 0.43 and -0.32 (a net loss). Fewest loci at the 5% MCID, frequency 0.3 (median replicate; none = none within 20; exact weights 13, 10, 6 and 4 loci at odds ratios 1.8, 2.0, 2.5 and 3.0):
+
+| sigma | odds ratio | base | tag 0.9 | tag 0.7 | linked 0.3, marginal | linked 0.6, marginal |
+|---|---|---|---|---|---|---|
+| 0.10 | 1.8 | 13 | 18 | none | 8 | 7 |
+| 0.10 | 2.0 | 11 | 14 | none | 7 | 6 |
+| 0.10 | 2.5 | 6 | 6 | 19 | 4 | 4 |
+| 0.10 | 3.0 | 4 | 5 | 16 | 3 | 3 |
+| 0.40 | 2.0 | 13 | none | none | 8 | 7 |
+| 0.40 | 2.5 | 7 | 10 | none | 4 | 3 |
+| 0.40 | 3.0 | 5 | 7 | none | 3 | 3 |
+
+### Reading
+
+- **The main frontier survives the departures that matter less and is sensitive to tagging.** Unequal precision changes nothing; the winner's curse costs nothing at sigma 0.10 and at 0.40 lowers the share from 16% to 9% (the gain kept falls from 0.70 to 0.16, because small effects are mixed with nulls); a tag at 0.9 removes a fifth of the gain and one to five loci, and a tag at 0.7 removes more than half, so that at an odds ratio of 2.0 no number of loci up to 20 reaches the 5% MCID. At 20% the losses are smaller but the ordering is the same.
+- **Linkage among the causal loci raises the share, and this contradicts the abstract's sentence for independent loci.** With the effect of each locus unchanged, odds ratios of 1.4 and 1.5 reach the 5% MCID in some architectures (joint estimates at allele correlation 0.6: 11 and 24 of the 60 architectures at 1.4 and 1.5, at sigma 0.10; marginal estimates 0 and 9; at sigma 0.40 the joint estimates give 0 and 9; at frequency 0.3 an odds ratio of 1.6 needs 13 to 17 loci with marginal estimates). "No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID" therefore holds for independent loci only; the abstract and results now say so. This comes from holding every locus's conditional effect fixed in a correlated block (addendum 43); a block of four closely linked causal variants each with an odds ratio of 1.5 is a generous assumption, and the four-term panel of the paper is not affected.
+- **Not shown:** f < 1 (addenda 42 and 43); other values of the tag correlation and the block structure; the global truth; sigma 0.20 and 0.05 of the main realised sweep; the exact gain under linkage (the ratios for linked scenarios are against the independent-loci exact gain and can exceed 1).
+
+### Not done
+
+Nothing remains of the planned analysis of locus-specific error, the winner's curse and linkage; what is open is the choice of settings (one value of each departure).
+
+Code and outputs: `scripts/51_aim4_main_stress.R`, `output/aim4_main_stress_{sweep,frontier}_profile.csv`, `output/figures/aim4_main_stress_frontier_profile.png`.
