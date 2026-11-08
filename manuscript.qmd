@@ -891,7 +891,10 @@ do not know which form of NRI it reported.
 On the published evidence, host genotype at PTX3, CLEC7A, TLR4 and CD209 is unlikely to change decisions at the 5% threshold
 for invasive mould disease in haematological inpatients. A study the size of the derivation cohort could not reliably detect
 the gain it would give. Genotyping would become worth doing only with variants of larger effect, or many more of them, than
-candidate-gene studies have found. A more immediate use for a genotyped cohort of this size would be to test whether genetic
+candidate-gene studies have found. The architecture frontier behind that statement assumes independent, causal, well-measured loci that
+act on all the moulds in the outcome. It moves out when only some of the moulds respond or when the scored variant only tags the causal
+one (a correlation of 0.7 kept under half of the gain), and it moves in only if distinct causal loci are linked, so its numbers are
+conditional on those assumptions. A more immediate use for a genotyped cohort of this size would be to test whether genetic
 effects depend on neutropenia, which would also show whether a single pooled score is safe.
 
 ## Authors and contributions {.unnumbered}
