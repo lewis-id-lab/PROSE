@@ -465,6 +465,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#reading-16" id="toc-reading-16" class="nav-link" data-scroll-target="#reading-16">Reading</a></li>
   <li><a href="#not-done-25" id="toc-not-done-25" class="nav-link" data-scroll-target="#not-done-25">Not done</a></li>
   </ul></li>
+  <li><a href="#addendum-44-8-november-2026-the-stress-tests-on-the-main-architecture-grid" id="toc-addendum-44-8-november-2026-the-stress-tests-on-the-main-architecture-grid" class="nav-link" data-scroll-target="#addendum-44-8-november-2026-the-stress-tests-on-the-main-architecture-grid">Addendum 44, 8 November 2026: the stress tests on the main architecture grid</a>
+  <ul class="collapse">
+  <li><a href="#design-scripts51_aim4_main_stress.r" id="toc-design-scripts51_aim4_main_stress.r" class="nav-link" data-scroll-target="#design-scripts51_aim4_main_stress.r">Design (<code>scripts/51_aim4_main_stress.R</code>)</a></li>
+  <li><a href="#results-13" id="toc-results-13" class="nav-link" data-scroll-target="#results-13">Results</a></li>
+  <li><a href="#reading-17" id="toc-reading-17" class="nav-link" data-scroll-target="#reading-17">Reading</a></li>
+  <li><a href="#not-done-26" id="toc-not-done-26" class="nav-link" data-scroll-target="#not-done-26">Not done</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -7938,6 +7945,209 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="not-done-25">Not done</h3>
 <p>Other block sizes and correlation structures; the stress tests in the exact sweep.</p>
 <p>Code and outputs: <code>R/aim4_pathogen.R</code> (<code>dosage_pmf_linked()</code>, <code>pathogen_cell_linked()</code>), <code>scripts/50_aim4_pathogen_linkage.R</code>, <code>output/aim4_pathogen_linkage_{sweep,frontier}_profile.csv</code>, <code>output/figures/aim4_pathogen_linkage_frontier_profile.png</code>; tests in <code>tests/testthat/test-aim4-pathogen.R</code>.</p>
+</section>
+</section>
+<section id="addendum-44-8-november-2026-the-stress-tests-on-the-main-architecture-grid" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-44-8-november-2026-the-stress-tests-on-the-main-architecture-grid">Addendum 44, 8 November 2026: the stress tests on the main architecture grid</h2>
+<p><strong>What had been seen.</strong> Addenda 42 and 43 ran the stress tests inside the pathogen-specificity grid, where f &lt; 1 was part of the design. The paper’s main architecture frontier (f = 1, scripts 23, 25 and 31 to 34) had not been tested against them. This addendum applies them to the main grid, at f = 1, under the profile-preserving truth. The results were seen when they were written; one of them contradicts a sentence of the abstract (see Reading).</p>
+<section id="design-scripts51_aim4_main_stress.r" class="level3">
+<h3 class="anchored" data-anchor-id="design-scripts51_aim4_main_stress.r">Design (<code>scripts/51_aim4_main_stress.R</code>)</h3>
+<p>The realised score of the main grid (odds ratio 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 2.0, 2.5, 3.0 x frequency 0.1, 0.3, 0.5 x 1 to 20 loci; 600 architectures), at sigma = 0.10 and 0.40 (12 replicate discovery studies of 2,000 simulated genotypes), with the scenarios of addenda 42 and 43: base, locus (unequal frequencies and precision), curse (the winner’s curse, k loci from 5 k candidates), tag0.9 and tag0.7 (the scored variant a tag correlated 0.9 or 0.7 with the causal one), all (locus, curse and tag0.7 together), and linked0.3 and linked0.6 (blocks of four causal loci with allele correlation 0.3 or 0.6, weights estimated per locus, “marginal”, or per block, “joint”). The target-pathogen score is used (at f = 1 it is the true-weight score). Check: the base scenario reproduces the existing main realised sweep of script 32 (the profile comparison): share reaching the 5% MCID 23.3% and 15.5% against 23.3% and 15.3%, and a correlation of 0.992 in the median gain over the 1,200 cells (different seeds). With the causal weights known, 23.8% of the 600 architectures reach the 5% MCID.</p>
+</section>
+<section id="results-13" class="level3">
+<h3 class="anchored" data-anchor-id="results-13">Results</h3>
+<p>Share of the 600 architectures whose median replicate reaches the MCID:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>scenario</th>
+<th>5%, sigma 0.10</th>
+<th>5%, sigma 0.40</th>
+<th>20%, sigma 0.10</th>
+<th>20%, sigma 0.40</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>base</td>
+<td>23.3%</td>
+<td>15.5%</td>
+<td>67.3%</td>
+<td>46.7%</td>
+</tr>
+<tr class="even">
+<td>locus</td>
+<td>23.0%</td>
+<td>15.0%</td>
+<td>67.0%</td>
+<td>47.5%</td>
+</tr>
+<tr class="odd">
+<td>curse</td>
+<td>22.8%</td>
+<td>8.8%</td>
+<td>65.3%</td>
+<td>24.7%</td>
+</tr>
+<tr class="even">
+<td>tag 0.9</td>
+<td>17.0%</td>
+<td>10.3%</td>
+<td>61.3%</td>
+<td>39.0%</td>
+</tr>
+<tr class="odd">
+<td>tag 0.7</td>
+<td>1.5%</td>
+<td>0%</td>
+<td>44.5%</td>
+<td>18.3%</td>
+</tr>
+<tr class="even">
+<td>all (tag 0.7)</td>
+<td>1.7%</td>
+<td>0%</td>
+<td>40.0%</td>
+<td>2.8%</td>
+</tr>
+<tr class="odd">
+<td>linked 0.3, joint</td>
+<td>41.5%</td>
+<td>32.8%</td>
+<td>80.3%</td>
+<td>66.5%</td>
+</tr>
+<tr class="even">
+<td>linked 0.3, marginal</td>
+<td>34.8%</td>
+<td>30.8%</td>
+<td>72.8%</td>
+<td>67.2%</td>
+</tr>
+<tr class="odd">
+<td>linked 0.6, joint</td>
+<td>52.0%</td>
+<td>43.5%</td>
+<td>85.3%</td>
+<td>74.8%</td>
+</tr>
+<tr class="even">
+<td>linked 0.6, marginal</td>
+<td>38.3%</td>
+<td>36.0%</td>
+<td>73.8%</td>
+<td>72.5%</td>
+</tr>
+</tbody>
+</table>
+<p>Median share of the independent-loci, causal-weights gain that the realised score keeps (5%, cells whose exact gain is at least half the MCID), sigma 0.10 and 0.40: base 0.98 and 0.70; locus 0.96 and 0.68; curse 0.97 and 0.16; tag 0.9 0.79 and 0.48; tag 0.7 0.46 and 0.13; all 0.43 and -0.32 (a net loss). Fewest loci at the 5% MCID, frequency 0.3 (median replicate; none = none within 20; exact weights 13, 10, 6 and 4 loci at odds ratios 1.8, 2.0, 2.5 and 3.0):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>sigma</th>
+<th>odds ratio</th>
+<th>base</th>
+<th>tag 0.9</th>
+<th>tag 0.7</th>
+<th>linked 0.3, marginal</th>
+<th>linked 0.6, marginal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.10</td>
+<td>1.8</td>
+<td>13</td>
+<td>18</td>
+<td>none</td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>0.10</td>
+<td>2.0</td>
+<td>11</td>
+<td>14</td>
+<td>none</td>
+<td>7</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>0.10</td>
+<td>2.5</td>
+<td>6</td>
+<td>6</td>
+<td>19</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>0.10</td>
+<td>3.0</td>
+<td>4</td>
+<td>5</td>
+<td>16</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>0.40</td>
+<td>2.0</td>
+<td>13</td>
+<td>none</td>
+<td>none</td>
+<td>8</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>0.40</td>
+<td>2.5</td>
+<td>7</td>
+<td>10</td>
+<td>none</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>0.40</td>
+<td>3.0</td>
+<td>5</td>
+<td>7</td>
+<td>none</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reading-17" class="level3">
+<h3 class="anchored" data-anchor-id="reading-17">Reading</h3>
+<ul>
+<li><strong>The main frontier survives the departures that matter less and is sensitive to tagging.</strong> Unequal precision changes nothing; the winner’s curse costs nothing at sigma 0.10 and at 0.40 lowers the share from 16% to 9% (the gain kept falls from 0.70 to 0.16, because small effects are mixed with nulls); a tag at 0.9 removes a fifth of the gain and one to five loci, and a tag at 0.7 removes more than half, so that at an odds ratio of 2.0 no number of loci up to 20 reaches the 5% MCID. At 20% the losses are smaller but the ordering is the same.</li>
+<li><strong>Linkage among the causal loci raises the share, and this contradicts the abstract’s sentence for independent loci.</strong> With the effect of each locus unchanged, odds ratios of 1.4 and 1.5 reach the 5% MCID in some architectures (joint estimates at allele correlation 0.6: 11 and 24 of the 60 architectures at 1.4 and 1.5, at sigma 0.10; marginal estimates 0 and 9; at sigma 0.40 the joint estimates give 0 and 9; at frequency 0.3 an odds ratio of 1.6 needs 13 to 17 loci with marginal estimates). “No panel of up to 20 loci with per-allele odds ratios of 1.5 or less reached the MCID” therefore holds for independent loci only; the abstract and results now say so. This comes from holding every locus’s conditional effect fixed in a correlated block (addendum 43); a block of four closely linked causal variants each with an odds ratio of 1.5 is a generous assumption, and the four-term panel of the paper is not affected.</li>
+<li><strong>Not shown:</strong> f &lt; 1 (addenda 42 and 43); other values of the tag correlation and the block structure; the global truth; sigma 0.20 and 0.05 of the main realised sweep; the exact gain under linkage (the ratios for linked scenarios are against the independent-loci exact gain and can exceed 1).</li>
+</ul>
+</section>
+<section id="not-done-26" class="level3">
+<h3 class="anchored" data-anchor-id="not-done-26">Not done</h3>
+<p>Nothing remains of the planned analysis of locus-specific error, the winner’s curse and linkage; what is open is the choice of settings (one value of each departure).</p>
+<p>Code and outputs: <code>scripts/51_aim4_main_stress.R</code>, <code>output/aim4_main_stress_{sweep,frontier}_profile.csv</code>, <code>output/figures/aim4_main_stress_frontier_profile.png</code>.</p>
 
 
 <!-- -->
