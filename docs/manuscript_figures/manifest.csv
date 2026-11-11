@@ -1,0 +1,18 @@
+"file","source","kind","width_px","height_px","dpi_stamped","width_in","height_in"
+"manuscript/Figure_1_prisma.png","output/figures/prisma_flow.png","script figure (copied)",2100,2529,300,7,8.43
+"manuscript/Figure_2_forest.png","output/figures/fig_forest.png","script figure (copied)",2550,1680,300,8.5,5.6
+"manuscript/Figure_3_icons.png","output/figures/fig_icon_array_profile.png","script figure (copied)",2550,1080,300,8.5,3.6
+"manuscript/Figure_4_headline.png","output/figures/fig_headline_profile.png","script figure (copied)",3000,1350,300,10,4.5
+"manuscript/Figure_5_attribution.png","output/figures/fig_attribution_profile.png","script figure (copied)",2700,1260,300,9,4.2
+"manuscript/Figure_6_aim3b.png","output/figures/fig_aim3b_gain_profile.png","script figure (copied)",3300,2250,300,11,7.5
+"manuscript/Figure_7_aim4.png","output/figures/aim4_sweep_5pct_profile.png","script figure (copied)",3300,1650,300,11,5.5
+"manuscript/Figure_8_moves.png","output/figures/fig_frontier_moves_profile.png","script figure (copied)",2550,1440,300,8.5,4.8
+"manuscript/Figure_9_nri-grid.png","manuscript.qmd, chunk fig-nri-grid","page chunk (drawn here)",2100,1650,300,7,5.5
+"website/baseline_Figure_1_z.png","baseline.qmd, chunk fig-z","page chunk (drawn here)",2100,1950,300,7,6.5
+"website/baseline_Figure_2_corr.png","baseline.qmd, chunk fig-corr","page chunk (drawn here)",2100,1650,300,7,5.5
+"website/baseline_Figure_3_ensemble.png","baseline.qmd, chunk fig-ensemble","page chunk (drawn here)",2100,1200,300,7,4
+"website/decision-curves_Figure_1_dca.png","decision-curves.qmd, chunk fig-dca","page chunk (drawn here)",2100,1350,300,7,4.5
+"website/decision-curves_Figure_2_rates.png","decision-curves.qmd, chunk fig-rates","page chunk (drawn here)",2100,1050,300,7,3.5
+"website/decision-curves_Figure_3_mcid.png","decision-curves.qmd, chunk fig-mcid","page chunk (drawn here)",2100,1200,300,7,4
+"website/evidence_Figure_1_evidence.png","evidence.qmd, chunk fig-evidence","page chunk (drawn here)",2100,1500,300,7,5
+"website/mapping_Figure_1_forest.png","mapping.qmd, chunk fig-forest","page chunk (drawn here)",2100,1050,300,7,3.5

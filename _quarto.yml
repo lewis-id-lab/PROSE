@@ -13,6 +13,7 @@ project:
     - status.qmd
   resources:
     - .nojekyll
+    - manuscript_figures
 
 execute:
   freeze: auto
