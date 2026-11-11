@@ -54,7 +54,7 @@ dca_summary <- function(curve, at = c(0.05, 0.10, 0.20)) {
 }
 
 # Plots. `band` is an optional data frame with threshold, lo and hi for the model curve.
-plot_dca <- function(curve, band = NULL, ylim = c(-0.02, 0.03), marks = c(0.05, 0.20)) {
+plot_dca <- function(curve, band = NULL, ylim = c(-0.02, 0.03), marks = c(0.05, 0.20), band_fill = "grey50", line_cols = NULL, mark_col = "grey70") {
   long <- rbind(
     data.frame(threshold = curve$threshold, strategy = "Baseline model", nb = curve$nb),
     data.frame(threshold = curve$threshold, strategy = "Treat all", nb = curve$nb_all),
@@ -63,39 +63,41 @@ plot_dca <- function(curve, band = NULL, ylim = c(-0.02, 0.03), marks = c(0.05, 
   p <- ggplot2::ggplot(long, ggplot2::aes(threshold, nb))
   if (!is.null(band)) {
     p <- p + ggplot2::geom_ribbon(data = band, ggplot2::aes(threshold, ymin = lo, ymax = hi),
-                                  inherit.aes = FALSE, alpha = 0.25)
+                                  inherit.aes = FALSE, alpha = 0.25, fill = band_fill)
   }
-  p +
-    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = "grey70") +
+  p <- p +
+    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = mark_col) +
     ggplot2::geom_line(ggplot2::aes(colour = strategy)) +
     ggplot2::coord_cartesian(ylim = ylim) +
     ggplot2::scale_x_continuous(labels = scales::label_percent()) +
     ggplot2::labs(x = "Threshold probability", y = "Net benefit per admission", colour = NULL) +
     ggplot2::theme(legend.position = "bottom")
+  if (!is.null(line_cols)) p <- p + ggplot2::scale_colour_manual(values = line_cols)
+  p
 }
 
-plot_dca_rates <- function(curve, marks = c(0.05, 0.20)) {
+plot_dca_rates <- function(curve, marks = c(0.05, 0.20), line_col = "black", mark_col = "grey70") {
   long <- rbind(
     data.frame(threshold = curve$threshold, measure = "True positives per 1,000", value = 1000 * curve$tp),
     data.frame(threshold = curve$threshold, measure = "False positives per 1,000", value = 1000 * curve$fp)
   )
   ggplot2::ggplot(long, ggplot2::aes(threshold, value)) +
-    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = "grey70") +
-    ggplot2::geom_line() +
+    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = mark_col) +
+    ggplot2::geom_line(colour = line_col) +
     ggplot2::facet_wrap(~measure, scales = "free_y") +
     ggplot2::scale_x_continuous(labels = scales::label_percent()) +
     ggplot2::labs(x = "Threshold probability", y = NULL)
 }
 
-plot_mcid <- function(curve, band = NULL, marks = c(0.05, 0.20)) {
+plot_mcid <- function(curve, band = NULL, marks = c(0.05, 0.20), band_fill = "grey50", line_col = "black", mark_col = "grey70") {
   p <- ggplot2::ggplot(curve, ggplot2::aes(threshold, mcid_b))
   if (!is.null(band)) {
     p <- p + ggplot2::geom_ribbon(data = band, ggplot2::aes(threshold, ymin = lo, ymax = hi),
-                                  inherit.aes = FALSE, alpha = 0.25)
+                                  inherit.aes = FALSE, alpha = 0.25, fill = band_fill)
   }
   p +
-    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = "grey70") +
-    ggplot2::geom_line() +
+    ggplot2::geom_vline(xintercept = marks, linetype = "dashed", colour = mark_col) +
+    ggplot2::geom_line(colour = line_col) +
     ggplot2::scale_x_continuous(labels = scales::label_percent()) +
     ggplot2::labs(x = "Threshold probability",
                   y = "Net-benefit gain required (MCID, reading b)")

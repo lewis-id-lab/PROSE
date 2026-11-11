@@ -13,4 +13,4 @@ source("R/theme_jama.R")
 pars    <- load_baseline_params("data/baseline_model_parameters.csv")
 targets <- load_validation_targets("data/baseline_validation_targets.csv")
 
-theme_set(theme_minimal(base_size = 12))
+theme_set(theme_jama(base_size = 12))

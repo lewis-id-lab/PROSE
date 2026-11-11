@@ -87,8 +87,9 @@ panel_tab |>
          rsid = factor(rsid, levels = rev(panel_tab$rsid))) |>
   ggplot(aes(n, rsid, fill = measure)) +
   geom_col(position = position_dodge(width = 0.8), width = 0.75) +
+  scale_fill_manual(values = c("Reporting" = jama_cols[["pale"]], "Meta-analysable" = jama_cols[["steel"]], "Independent cohorts" = jama_cols[["navy"]])) +
   labs(x = "Studies or cohorts", y = NULL, fill = NULL) +
-  theme(legend.position = "bottom")
+  theme_jama(grid = "x")
 ```
 
 ## Allele orientation

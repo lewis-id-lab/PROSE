@@ -46,5 +46,7 @@ flow <- PRISMA_flowdiagram(data, interactive = FALSE, previous = FALSE, other = 
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 write.csv(tpl[!is.na(tpl$data), c("data", "n")], "output/prisma_counts.csv", row.names = FALSE)
 PRISMA_save(flow, filename = "output/figures/prisma_flow.html", filetype = "HTML", overwrite = TRUE)
-PRISMA_save(flow, filename = "output/figures/prisma_flow.png", filetype = "PNG", overwrite = TRUE)
+# The PNG is rendered from the SVG at 300 dpi (7 inches wide; the package's own PNG export is a screen-resolution image)
+source("R/figure_export.R")
+svg_to_png(prisma_side_labels(DiagrammeRsvg::export_svg(flow)), "output/figures/prisma_flow.png", width_in = 7, dpi = 300)
 flow

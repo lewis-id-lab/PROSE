@@ -77,11 +77,12 @@ d <- bind_rows(
 )
 d$label <- factor(d$label, levels = rev(d$label))
 ggplot(d, aes(est, label, shape = kind)) +
-  geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
-  geom_pointrange(aes(xmin = lo, xmax = hi)) +
+  geom_vline(xintercept = 0, linetype = "dashed", colour = jama_cols[["grey"]]) +
+  geom_pointrange(aes(xmin = lo, xmax = hi, colour = kind)) +
   scale_shape_manual(values = c(Study = 16, Pooled = 18)) +
+  scale_colour_manual(values = c(Study = jama_cols[["blue"]], Pooled = jama_cols[["navy"]])) +
   labs(x = "Log odds ratio per h2 copy", y = NULL, shape = NULL) +
-  theme(legend.position = "none")
+  theme_jama(grid = "x") + theme(legend.position = "none")
 ```
 
 ## Pooled effect

@@ -136,10 +136,11 @@ rep |>
   pivot_longer(-target, names_to = "model", values_to = "z") |>
   mutate(model = factor(model, c("Exchangeable rho = 0.30", "Fitted v1", "Fitted v2"))) |>
   ggplot(aes(z, target, colour = model)) +
-  geom_vline(xintercept = c(-2, 2), linetype = "dashed", colour = "grey60") +
-  geom_point(size = 2) +
+  geom_vline(xintercept = c(-2, 2), linetype = "dashed", colour = jama_cols[["grey"]]) +
+  geom_point(size = 2.2) +
+  scale_colour_manual(values = c("Exchangeable rho = 0.30" = jama_cols[["grey"]], "Fitted v1" = jama_cols[["steel"]], "Fitted v2" = jama_cols[["navy"]])) +
   labs(x = "Standard errors from the published value", y = NULL, colour = NULL) +
-  theme(legend.position = "bottom")
+  theme_jama(grid = "x")
 ```
 
 ## The fitted correlation structure
@@ -195,10 +196,10 @@ long$r <- as.vector(Rm)
 ggplot(long, aes(col, row, fill = r)) +
   geom_tile(colour = "white") +
   geom_text(aes(label = sprintf("%.2f", r)), size = 3) +
-  scale_fill_gradient(low = "white", high = "steelblue", limits = c(0, 1)) +
+  scale_fill_gradient(low = "white", high = jama_cols[["steel"]], limits = c(0, 1)) +
   scale_y_discrete(limits = rev(nm)) +
   labs(x = NULL, y = NULL, fill = "Latent\ncorrelation") +
-  theme(axis.text.x = element_text(angle = 40, hjust = 1), panel.grid = element_blank())
+  theme_jama(grid = "none") + theme(axis.text.x = element_text(angle = 40, hjust = 1), legend.position = "right")
 ```
 
 ```{r}
@@ -290,8 +291,9 @@ summ <- tibble(
   rhat = sapply(THETA_NAMES, \(p) rhat(raw[[p]], raw$chain))
 )
 ggplot(summ, aes(median, factor(parameter, rev(THETA_NAMES)))) +
-  geom_pointrange(aes(xmin = q05, xmax = q95)) +
-  labs(x = "Parameter value", y = NULL)
+  geom_pointrange(aes(xmin = q05, xmax = q95), colour = jama_cols[["navy"]]) +
+  labs(x = "Parameter value", y = NULL) +
+  theme_jama(grid = "x")
 ```
 
 ```{r}

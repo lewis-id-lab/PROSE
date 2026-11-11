@@ -46,7 +46,9 @@ adopted refit values next to the earlier ones.
 #| label: fig-dca
 #| fig-cap: "Net benefit of the fixed baseline model on the fitted cohort. The shaded band is the 90% range across 150 near-optimal correlation matrices. Dashed lines mark the 5% (primary) and 20% (secondary) thresholds."
 #| fig-height: 4.5
-plot_dca(fit, get_band("nb")) + theme_minimal(base_size = 12) + theme(legend.position = "bottom")
+plot_dca(fit, get_band("nb"), band_fill = jama_cols[["steel"]], mark_col = jama_cols[["grey"]],
+         line_cols = c("Baseline model" = jama_cols[["navy"]], "Treat all" = jama_cols[["steel"]], "Treat none" = jama_cols[["grey"]])) +
+  theme_jama(base_size = 12)
 ```
 
 ```{r}
@@ -72,7 +74,7 @@ summ |>
 #| label: fig-rates
 #| fig-cap: "True and false positives per 1,000 admissions as the threshold rises."
 #| fig-height: 3.5
-plot_dca_rates(fit) + theme_minimal(base_size = 12)
+plot_dca_rates(fit, line_col = jama_cols[["navy"]], mark_col = jama_cols[["grey"]]) + theme_jama(base_size = 12)
 ```
 
 The curves are step functions because the 128 profiles carry a limited number of distinct risks. Each
@@ -90,7 +92,7 @@ threshold is secondary.
 #| label: fig-mcid
 #| fig-cap: "Net-benefit gain the genetic layer would have to deliver, by threshold. Shaded band as in the decision-curve figure."
 #| fig-height: 4
-plot_mcid(fit, get_band("mcid_b")) + theme_minimal(base_size = 12)
+plot_mcid(fit, get_band("mcid_b"), band_fill = jama_cols[["steel"]], line_col = jama_cols[["navy"]], mark_col = jama_cols[["grey"]]) + theme_jama(base_size = 12)
 ```
 
 ```{r}
