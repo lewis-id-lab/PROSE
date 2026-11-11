@@ -29,3 +29,22 @@ theme_jama <- function(base_size = 11, base_family = "", grid = c("y", "x", "non
       plot.caption = ggplot2::element_text(colour = jama_cols[["grey"]], hjust = 0),
       plot.margin = ggplot2::margin(8, 12, 8, 8))
 }
+
+# Table style for gt tables in the same scheme: heavy navy rules above and below the table, a thin rule under the column labels on a pale blue-grey band,
+# light horizontal rules between rows, no vertical lines, sans-serif text. Requires gt.
+gt_jama_style <- function(data, font_size = 13) {
+  gt::tab_options(data,
+    table.font.names = c("Helvetica", "Arial", "sans-serif"), table.font.size = gt::px(font_size), table.font.color = jama_cols[["ink"]],
+    table.background.color = "white", table.width = NULL,
+    table.border.top.style = "solid", table.border.top.color = jama_cols[["navy"]], table.border.top.width = gt::px(2),
+    table.border.bottom.style = "solid", table.border.bottom.color = jama_cols[["navy"]], table.border.bottom.width = gt::px(2),
+    heading.align = "left", heading.border.bottom.style = "none",
+    column_labels.font.weight = "bold", column_labels.background.color = jama_cols[["light"]],
+    column_labels.border.top.style = "none", column_labels.border.bottom.style = "solid",
+    column_labels.border.bottom.color = jama_cols[["navy"]], column_labels.border.bottom.width = gt::px(1),
+    column_labels.padding = gt::px(6),
+    row_group.font.weight = "bold", row_group.background.color = "white", row_group.border.top.color = jama_cols[["pale"]], row_group.border.bottom.color = jama_cols[["pale"]],
+    table_body.hlines.style = "solid", table_body.hlines.color = jama_cols[["light"]], table_body.hlines.width = gt::px(1),
+    table_body.vlines.style = "none", table_body.border.bottom.color = jama_cols[["navy"]], table_body.border.bottom.width = gt::px(1),
+    data_row.padding = gt::px(4), source_notes.font.size = gt::px(font_size - 2))
+}

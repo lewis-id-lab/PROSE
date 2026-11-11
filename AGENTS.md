@@ -12,7 +12,7 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 - `status.md` (hand-off, script run-order table), `02_current_status.md` (working record), `index.qmd` (overview table): keep their phase tables and
   numbers in step with the addenda. `manuscript.qmd` carries its numbers as prose, not inline code, so a rerun means editing the prose.
 - `_quarto.yml` lists the pages that are rendered; `AGENTS.md` and `README.md` are not on the site.
-- Figures use `theme_jama()` and the blue-grey palette of `R/theme_jama.R` (sourced by `_setup.R` and by figure scripts 27, 34 and 52): no title or caption inside a figure.
+- Figures use `theme_jama()` and the blue-grey palette of `R/theme_jama.R` (sourced by `_setup.R` and by figure scripts 27, 34 and 52): no title or caption inside a figure. `_setup.R` makes every `gt()` on the pages a blue-grey table (`gt_jama_style()`). `scripts/53_export_figures.R` writes every figure to `manuscript_figures/` at 300 dpi.
 
 ## The evidence pipeline
 
@@ -57,7 +57,7 @@ need them. `data/restricted/` is rebuilt by script 08 (needs `boscore.xlsx` and 
 - Push only when asked. Before a push, scan the commits for spreadsheets, `data/restricted/`, per-draw files and identifier-like text.
 - Run the full test suite and `quarto render` (check for unresolved cross-references) before committing.
 - Render with Quarto 1.10.18 (here `~/.local/opt/quarto-1.10.18/bin/quarto`). Other versions change the Bootstrap CSS hash and the HTML of every page; the
-  system Quarto is 1.9.35 and Positron's is 1.11.9. Pages with `date: today` change on every render. `_freeze/` changes with `manuscript.qmd`: commit it too.
+  system Quarto is 1.9.35 and Positron's is 1.11.9. Pages with `date: today` change on every render. `_freeze/` changes with `manuscript.qmd`: commit it too. `freeze: auto` re-runs a page only when its own `.qmd` changes, so after a change to `_setup.R` or `R/` that affects a page's tables or figures, delete `_freeze/` before rendering.
 
 ## Standing caveats
 
