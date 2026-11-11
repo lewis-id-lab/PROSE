@@ -287,7 +287,9 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca</span>(fit, <span class="fu">get_band</span>(<span class="st">"nb"</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca</span>(fit, <span class="fu">get_band</span>(<span class="st">"nb"</span>), <span class="at">band_fill =</span> jama_cols[[<span class="st">"steel"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]],</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">line_cols =</span> <span class="fu">c</span>(<span class="st">"Baseline model"</span> <span class="ot">=</span> jama_cols[[<span class="st">"navy"</span>]], <span class="st">"Treat all"</span> <span class="ot">=</span> jama_cols[[<span class="st">"steel"</span>]], <span class="st">"Treat none"</span> <span class="ot">=</span> jama_cols[[<span class="st">"grey"</span>]])) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-dca" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -327,23 +329,23 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
 </figcaption>
 <div aria-describedby="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="mwdzipejtn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mwdzipejtn table {
+<div id="eikjqrmcke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eikjqrmcke table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#mwdzipejtn thead, #mwdzipejtn tbody, #mwdzipejtn tfoot, #mwdzipejtn tr, #mwdzipejtn td, #mwdzipejtn th {
+#eikjqrmcke thead, #eikjqrmcke tbody, #eikjqrmcke tfoot, #eikjqrmcke tr, #eikjqrmcke td, #eikjqrmcke th {
   border-style: none;
 }
 
-#mwdzipejtn p {
+#eikjqrmcke p {
   margin: 0;
   padding: 0;
 }
 
-#mwdzipejtn .gt_table {
+#eikjqrmcke .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -369,12 +371,12 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-left-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_caption {
+#eikjqrmcke .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#mwdzipejtn .gt_title {
+#eikjqrmcke .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -386,7 +388,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-bottom-width: 0;
 }
 
-#mwdzipejtn .gt_subtitle {
+#eikjqrmcke .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -398,7 +400,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-top-width: 0;
 }
 
-#mwdzipejtn .gt_heading {
+#eikjqrmcke .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -410,13 +412,13 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-right-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_bottom_border {
+#eikjqrmcke .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_col_headings {
+#eikjqrmcke .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -431,7 +433,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-right-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_col_heading {
+#eikjqrmcke .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -451,7 +453,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   overflow-x: hidden;
 }
 
-#mwdzipejtn .gt_column_spanner_outer {
+#eikjqrmcke .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -463,15 +465,15 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 4px;
 }
 
-#mwdzipejtn .gt_column_spanner_outer:first-child {
+#eikjqrmcke .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#mwdzipejtn .gt_column_spanner_outer:last-child {
+#eikjqrmcke .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#mwdzipejtn .gt_column_spanner {
+#eikjqrmcke .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -483,11 +485,11 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   width: 100%;
 }
 
-#mwdzipejtn .gt_spanner_row {
+#eikjqrmcke .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#mwdzipejtn .gt_group_heading {
+#eikjqrmcke .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -513,7 +515,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   text-align: left;
 }
 
-#mwdzipejtn .gt_empty_group_heading {
+#eikjqrmcke .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -528,15 +530,15 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   vertical-align: middle;
 }
 
-#mwdzipejtn .gt_from_md > :first-child {
+#eikjqrmcke .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#mwdzipejtn .gt_from_md > :last-child {
+#eikjqrmcke .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#mwdzipejtn .gt_row {
+#eikjqrmcke .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -555,7 +557,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   overflow-x: hidden;
 }
 
-#mwdzipejtn .gt_stub {
+#eikjqrmcke .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -568,7 +570,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 5px;
 }
 
-#mwdzipejtn .gt_stub_row_group {
+#eikjqrmcke .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -582,15 +584,15 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   vertical-align: top;
 }
 
-#mwdzipejtn .gt_row_group_first td {
+#eikjqrmcke .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#mwdzipejtn .gt_row_group_first th {
+#eikjqrmcke .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#mwdzipejtn .gt_summary_row {
+#eikjqrmcke .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -600,16 +602,16 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 5px;
 }
 
-#mwdzipejtn .gt_first_summary_row {
+#eikjqrmcke .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_first_summary_row.thick {
+#eikjqrmcke .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#mwdzipejtn .gt_last_summary_row {
+#eikjqrmcke .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,7 +621,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-bottom-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_grand_summary_row {
+#eikjqrmcke .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -629,7 +631,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 5px;
 }
 
-#mwdzipejtn .gt_first_grand_summary_row {
+#eikjqrmcke .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -639,7 +641,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-top-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_last_grand_summary_row_top {
+#eikjqrmcke .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -649,11 +651,11 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-bottom-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_striped {
+#eikjqrmcke .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#mwdzipejtn .gt_table_body {
+#eikjqrmcke .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -662,7 +664,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-bottom-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_footnotes {
+#eikjqrmcke .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -676,7 +678,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-right-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_footnote {
+#eikjqrmcke .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -685,7 +687,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 5px;
 }
 
-#mwdzipejtn .gt_sourcenotes {
+#eikjqrmcke .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -699,7 +701,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   border-right-color: #D3D3D3;
 }
 
-#mwdzipejtn .gt_sourcenote {
+#eikjqrmcke .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -707,72 +709,72 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
   padding-right: 5px;
 }
 
-#mwdzipejtn .gt_left {
+#eikjqrmcke .gt_left {
   text-align: left;
 }
 
-#mwdzipejtn .gt_center {
+#eikjqrmcke .gt_center {
   text-align: center;
 }
 
-#mwdzipejtn .gt_right {
+#eikjqrmcke .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#mwdzipejtn .gt_font_normal {
+#eikjqrmcke .gt_font_normal {
   font-weight: normal;
 }
 
-#mwdzipejtn .gt_font_bold {
+#eikjqrmcke .gt_font_bold {
   font-weight: bold;
 }
 
-#mwdzipejtn .gt_font_italic {
+#eikjqrmcke .gt_font_italic {
   font-style: italic;
 }
 
-#mwdzipejtn .gt_super {
+#eikjqrmcke .gt_super {
   font-size: 65%;
 }
 
-#mwdzipejtn .gt_footnote_marks {
+#eikjqrmcke .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#mwdzipejtn .gt_asterisk {
+#eikjqrmcke .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#mwdzipejtn .gt_indent_1 {
+#eikjqrmcke .gt_indent_1 {
   text-indent: 5px;
 }
 
-#mwdzipejtn .gt_indent_2 {
+#eikjqrmcke .gt_indent_2 {
   text-indent: 10px;
 }
 
-#mwdzipejtn .gt_indent_3 {
+#eikjqrmcke .gt_indent_3 {
   text-indent: 15px;
 }
 
-#mwdzipejtn .gt_indent_4 {
+#eikjqrmcke .gt_indent_4 {
   text-indent: 20px;
 }
 
-#mwdzipejtn .gt_indent_5 {
+#eikjqrmcke .gt_indent_5 {
   text-indent: 25px;
 }
 
-#mwdzipejtn .katex-display {
+#eikjqrmcke .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#mwdzipejtn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eikjqrmcke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -829,7 +831,7 @@ Table&nbsp;1: Baseline net benefit at the pre-specified thresholds. Ranges are t
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca_rates</span>(fit) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca_rates</span>(fit, <span class="at">line_col =</span> jama_cols[[<span class="st">"navy"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]]) <span class="sc">+</span> <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-rates" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -852,7 +854,7 @@ Figure&nbsp;2: True and false positives per 1,000 admissions as the threshold ri
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mcid</span>(fit, <span class="fu">get_band</span>(<span class="st">"mcid_b"</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mcid</span>(fit, <span class="fu">get_band</span>(<span class="st">"mcid_b"</span>), <span class="at">band_fill =</span> jama_cols[[<span class="st">"steel"</span>]], <span class="at">line_col =</span> jama_cols[[<span class="st">"navy"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]]) <span class="sc">+</span> <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div id="fig-mcid" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -902,23 +904,23 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
 </figcaption>
 <div aria-describedby="tbl-mcid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="dmvnhdibsz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#dmvnhdibsz table {
+<div id="ryhcrqisdi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ryhcrqisdi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#dmvnhdibsz thead, #dmvnhdibsz tbody, #dmvnhdibsz tfoot, #dmvnhdibsz tr, #dmvnhdibsz td, #dmvnhdibsz th {
+#ryhcrqisdi thead, #ryhcrqisdi tbody, #ryhcrqisdi tfoot, #ryhcrqisdi tr, #ryhcrqisdi td, #ryhcrqisdi th {
   border-style: none;
 }
 
-#dmvnhdibsz p {
+#ryhcrqisdi p {
   margin: 0;
   padding: 0;
 }
 
-#dmvnhdibsz .gt_table {
+#ryhcrqisdi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -944,12 +946,12 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-left-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_caption {
+#ryhcrqisdi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#dmvnhdibsz .gt_title {
+#ryhcrqisdi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -961,7 +963,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-bottom-width: 0;
 }
 
-#dmvnhdibsz .gt_subtitle {
+#ryhcrqisdi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -973,7 +975,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-top-width: 0;
 }
 
-#dmvnhdibsz .gt_heading {
+#ryhcrqisdi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -985,13 +987,13 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-right-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_bottom_border {
+#ryhcrqisdi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_col_headings {
+#ryhcrqisdi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1006,7 +1008,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-right-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_col_heading {
+#ryhcrqisdi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1026,7 +1028,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   overflow-x: hidden;
 }
 
-#dmvnhdibsz .gt_column_spanner_outer {
+#ryhcrqisdi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1038,15 +1040,15 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 4px;
 }
 
-#dmvnhdibsz .gt_column_spanner_outer:first-child {
+#ryhcrqisdi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dmvnhdibsz .gt_column_spanner_outer:last-child {
+#ryhcrqisdi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dmvnhdibsz .gt_column_spanner {
+#ryhcrqisdi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1058,11 +1060,11 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   width: 100%;
 }
 
-#dmvnhdibsz .gt_spanner_row {
+#ryhcrqisdi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#dmvnhdibsz .gt_group_heading {
+#ryhcrqisdi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1088,7 +1090,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   text-align: left;
 }
 
-#dmvnhdibsz .gt_empty_group_heading {
+#ryhcrqisdi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1103,15 +1105,15 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   vertical-align: middle;
 }
 
-#dmvnhdibsz .gt_from_md > :first-child {
+#ryhcrqisdi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dmvnhdibsz .gt_from_md > :last-child {
+#ryhcrqisdi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dmvnhdibsz .gt_row {
+#ryhcrqisdi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1130,7 +1132,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   overflow-x: hidden;
 }
 
-#dmvnhdibsz .gt_stub {
+#ryhcrqisdi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1143,7 +1145,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 5px;
 }
 
-#dmvnhdibsz .gt_stub_row_group {
+#ryhcrqisdi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1157,15 +1159,15 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   vertical-align: top;
 }
 
-#dmvnhdibsz .gt_row_group_first td {
+#ryhcrqisdi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dmvnhdibsz .gt_row_group_first th {
+#ryhcrqisdi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#dmvnhdibsz .gt_summary_row {
+#ryhcrqisdi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1175,16 +1177,16 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 5px;
 }
 
-#dmvnhdibsz .gt_first_summary_row {
+#ryhcrqisdi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_first_summary_row.thick {
+#ryhcrqisdi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dmvnhdibsz .gt_last_summary_row {
+#ryhcrqisdi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1194,7 +1196,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-bottom-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_grand_summary_row {
+#ryhcrqisdi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1204,7 +1206,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 5px;
 }
 
-#dmvnhdibsz .gt_first_grand_summary_row {
+#ryhcrqisdi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1214,7 +1216,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-top-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_last_grand_summary_row_top {
+#ryhcrqisdi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1224,11 +1226,11 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-bottom-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_striped {
+#ryhcrqisdi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dmvnhdibsz .gt_table_body {
+#ryhcrqisdi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1237,7 +1239,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-bottom-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_footnotes {
+#ryhcrqisdi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1251,7 +1253,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-right-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_footnote {
+#ryhcrqisdi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1260,7 +1262,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 5px;
 }
 
-#dmvnhdibsz .gt_sourcenotes {
+#ryhcrqisdi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1274,7 +1276,7 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   border-right-color: #D3D3D3;
 }
 
-#dmvnhdibsz .gt_sourcenote {
+#ryhcrqisdi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1282,72 +1284,72 @@ Table&nbsp;2: MCID (reading b) on three cohorts.
   padding-right: 5px;
 }
 
-#dmvnhdibsz .gt_left {
+#ryhcrqisdi .gt_left {
   text-align: left;
 }
 
-#dmvnhdibsz .gt_center {
+#ryhcrqisdi .gt_center {
   text-align: center;
 }
 
-#dmvnhdibsz .gt_right {
+#ryhcrqisdi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dmvnhdibsz .gt_font_normal {
+#ryhcrqisdi .gt_font_normal {
   font-weight: normal;
 }
 
-#dmvnhdibsz .gt_font_bold {
+#ryhcrqisdi .gt_font_bold {
   font-weight: bold;
 }
 
-#dmvnhdibsz .gt_font_italic {
+#ryhcrqisdi .gt_font_italic {
   font-style: italic;
 }
 
-#dmvnhdibsz .gt_super {
+#ryhcrqisdi .gt_super {
   font-size: 65%;
 }
 
-#dmvnhdibsz .gt_footnote_marks {
+#ryhcrqisdi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#dmvnhdibsz .gt_asterisk {
+#ryhcrqisdi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dmvnhdibsz .gt_indent_1 {
+#ryhcrqisdi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dmvnhdibsz .gt_indent_2 {
+#ryhcrqisdi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dmvnhdibsz .gt_indent_3 {
+#ryhcrqisdi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dmvnhdibsz .gt_indent_4 {
+#ryhcrqisdi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dmvnhdibsz .gt_indent_5 {
+#ryhcrqisdi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#dmvnhdibsz .katex-display {
+#ryhcrqisdi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#dmvnhdibsz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ryhcrqisdi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1441,23 +1443,23 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
 </figcaption>
 <div aria-describedby="tbl-outcome-risk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="aotcpnvvtb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aotcpnvvtb table {
+<div id="vbmvdukgbt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vbmvdukgbt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aotcpnvvtb thead, #aotcpnvvtb tbody, #aotcpnvvtb tfoot, #aotcpnvvtb tr, #aotcpnvvtb td, #aotcpnvvtb th {
+#vbmvdukgbt thead, #vbmvdukgbt tbody, #vbmvdukgbt tfoot, #vbmvdukgbt tr, #vbmvdukgbt td, #vbmvdukgbt th {
   border-style: none;
 }
 
-#aotcpnvvtb p {
+#vbmvdukgbt p {
   margin: 0;
   padding: 0;
 }
 
-#aotcpnvvtb .gt_table {
+#vbmvdukgbt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1483,12 +1485,12 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-left-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_caption {
+#vbmvdukgbt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aotcpnvvtb .gt_title {
+#vbmvdukgbt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1500,7 +1502,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-bottom-width: 0;
 }
 
-#aotcpnvvtb .gt_subtitle {
+#vbmvdukgbt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1512,7 +1514,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-top-width: 0;
 }
 
-#aotcpnvvtb .gt_heading {
+#vbmvdukgbt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1524,13 +1526,13 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-right-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_bottom_border {
+#vbmvdukgbt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_col_headings {
+#vbmvdukgbt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1545,7 +1547,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-right-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_col_heading {
+#vbmvdukgbt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1565,7 +1567,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   overflow-x: hidden;
 }
 
-#aotcpnvvtb .gt_column_spanner_outer {
+#vbmvdukgbt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1577,15 +1579,15 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 4px;
 }
 
-#aotcpnvvtb .gt_column_spanner_outer:first-child {
+#vbmvdukgbt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aotcpnvvtb .gt_column_spanner_outer:last-child {
+#vbmvdukgbt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aotcpnvvtb .gt_column_spanner {
+#vbmvdukgbt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1597,11 +1599,11 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   width: 100%;
 }
 
-#aotcpnvvtb .gt_spanner_row {
+#vbmvdukgbt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aotcpnvvtb .gt_group_heading {
+#vbmvdukgbt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1627,7 +1629,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   text-align: left;
 }
 
-#aotcpnvvtb .gt_empty_group_heading {
+#vbmvdukgbt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1642,15 +1644,15 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   vertical-align: middle;
 }
 
-#aotcpnvvtb .gt_from_md > :first-child {
+#vbmvdukgbt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aotcpnvvtb .gt_from_md > :last-child {
+#vbmvdukgbt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aotcpnvvtb .gt_row {
+#vbmvdukgbt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1669,7 +1671,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   overflow-x: hidden;
 }
 
-#aotcpnvvtb .gt_stub {
+#vbmvdukgbt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1682,7 +1684,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 5px;
 }
 
-#aotcpnvvtb .gt_stub_row_group {
+#vbmvdukgbt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1696,15 +1698,15 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   vertical-align: top;
 }
 
-#aotcpnvvtb .gt_row_group_first td {
+#vbmvdukgbt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aotcpnvvtb .gt_row_group_first th {
+#vbmvdukgbt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aotcpnvvtb .gt_summary_row {
+#vbmvdukgbt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1714,16 +1716,16 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 5px;
 }
 
-#aotcpnvvtb .gt_first_summary_row {
+#vbmvdukgbt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_first_summary_row.thick {
+#vbmvdukgbt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aotcpnvvtb .gt_last_summary_row {
+#vbmvdukgbt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1733,7 +1735,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-bottom-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_grand_summary_row {
+#vbmvdukgbt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1743,7 +1745,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 5px;
 }
 
-#aotcpnvvtb .gt_first_grand_summary_row {
+#vbmvdukgbt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1753,7 +1755,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-top-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_last_grand_summary_row_top {
+#vbmvdukgbt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1763,11 +1765,11 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-bottom-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_striped {
+#vbmvdukgbt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aotcpnvvtb .gt_table_body {
+#vbmvdukgbt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1776,7 +1778,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-bottom-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_footnotes {
+#vbmvdukgbt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1790,7 +1792,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-right-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_footnote {
+#vbmvdukgbt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1799,7 +1801,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 5px;
 }
 
-#aotcpnvvtb .gt_sourcenotes {
+#vbmvdukgbt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1813,7 +1815,7 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   border-right-color: #D3D3D3;
 }
 
-#aotcpnvvtb .gt_sourcenote {
+#vbmvdukgbt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1821,72 +1823,72 @@ Table&nbsp;3: MCID under four readings of the outcome risk, with 90% patient-boo
   padding-right: 5px;
 }
 
-#aotcpnvvtb .gt_left {
+#vbmvdukgbt .gt_left {
   text-align: left;
 }
 
-#aotcpnvvtb .gt_center {
+#vbmvdukgbt .gt_center {
   text-align: center;
 }
 
-#aotcpnvvtb .gt_right {
+#vbmvdukgbt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aotcpnvvtb .gt_font_normal {
+#vbmvdukgbt .gt_font_normal {
   font-weight: normal;
 }
 
-#aotcpnvvtb .gt_font_bold {
+#vbmvdukgbt .gt_font_bold {
   font-weight: bold;
 }
 
-#aotcpnvvtb .gt_font_italic {
+#vbmvdukgbt .gt_font_italic {
   font-style: italic;
 }
 
-#aotcpnvvtb .gt_super {
+#vbmvdukgbt .gt_super {
   font-size: 65%;
 }
 
-#aotcpnvvtb .gt_footnote_marks {
+#vbmvdukgbt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aotcpnvvtb .gt_asterisk {
+#vbmvdukgbt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aotcpnvvtb .gt_indent_1 {
+#vbmvdukgbt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aotcpnvvtb .gt_indent_2 {
+#vbmvdukgbt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aotcpnvvtb .gt_indent_3 {
+#vbmvdukgbt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aotcpnvvtb .gt_indent_4 {
+#vbmvdukgbt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aotcpnvvtb .gt_indent_5 {
+#vbmvdukgbt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#aotcpnvvtb .katex-display {
+#vbmvdukgbt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#aotcpnvvtb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vbmvdukgbt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2033,23 +2035,23 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
 </figcaption>
 <div aria-describedby="tbl-refit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="wjdvfedosg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wjdvfedosg table {
+<div id="xmdgibskzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xmdgibskzu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wjdvfedosg thead, #wjdvfedosg tbody, #wjdvfedosg tfoot, #wjdvfedosg tr, #wjdvfedosg td, #wjdvfedosg th {
+#xmdgibskzu thead, #xmdgibskzu tbody, #xmdgibskzu tfoot, #xmdgibskzu tr, #xmdgibskzu td, #xmdgibskzu th {
   border-style: none;
 }
 
-#wjdvfedosg p {
+#xmdgibskzu p {
   margin: 0;
   padding: 0;
 }
 
-#wjdvfedosg .gt_table {
+#xmdgibskzu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2075,12 +2077,12 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-left-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_caption {
+#xmdgibskzu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wjdvfedosg .gt_title {
+#xmdgibskzu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2092,7 +2094,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-bottom-width: 0;
 }
 
-#wjdvfedosg .gt_subtitle {
+#xmdgibskzu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2104,7 +2106,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-top-width: 0;
 }
 
-#wjdvfedosg .gt_heading {
+#xmdgibskzu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2116,13 +2118,13 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-right-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_bottom_border {
+#xmdgibskzu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_col_headings {
+#xmdgibskzu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2137,7 +2139,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-right-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_col_heading {
+#xmdgibskzu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2157,7 +2159,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   overflow-x: hidden;
 }
 
-#wjdvfedosg .gt_column_spanner_outer {
+#xmdgibskzu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2169,15 +2171,15 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 4px;
 }
 
-#wjdvfedosg .gt_column_spanner_outer:first-child {
+#xmdgibskzu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wjdvfedosg .gt_column_spanner_outer:last-child {
+#xmdgibskzu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wjdvfedosg .gt_column_spanner {
+#xmdgibskzu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2189,11 +2191,11 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   width: 100%;
 }
 
-#wjdvfedosg .gt_spanner_row {
+#xmdgibskzu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wjdvfedosg .gt_group_heading {
+#xmdgibskzu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2219,7 +2221,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   text-align: left;
 }
 
-#wjdvfedosg .gt_empty_group_heading {
+#xmdgibskzu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2234,15 +2236,15 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   vertical-align: middle;
 }
 
-#wjdvfedosg .gt_from_md > :first-child {
+#xmdgibskzu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wjdvfedosg .gt_from_md > :last-child {
+#xmdgibskzu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wjdvfedosg .gt_row {
+#xmdgibskzu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2261,7 +2263,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   overflow-x: hidden;
 }
 
-#wjdvfedosg .gt_stub {
+#xmdgibskzu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2274,7 +2276,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 5px;
 }
 
-#wjdvfedosg .gt_stub_row_group {
+#xmdgibskzu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2288,15 +2290,15 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   vertical-align: top;
 }
 
-#wjdvfedosg .gt_row_group_first td {
+#xmdgibskzu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wjdvfedosg .gt_row_group_first th {
+#xmdgibskzu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wjdvfedosg .gt_summary_row {
+#xmdgibskzu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2306,16 +2308,16 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 5px;
 }
 
-#wjdvfedosg .gt_first_summary_row {
+#xmdgibskzu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_first_summary_row.thick {
+#xmdgibskzu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wjdvfedosg .gt_last_summary_row {
+#xmdgibskzu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2325,7 +2327,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-bottom-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_grand_summary_row {
+#xmdgibskzu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2335,7 +2337,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 5px;
 }
 
-#wjdvfedosg .gt_first_grand_summary_row {
+#xmdgibskzu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2345,7 +2347,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-top-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_last_grand_summary_row_top {
+#xmdgibskzu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2355,11 +2357,11 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-bottom-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_striped {
+#xmdgibskzu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wjdvfedosg .gt_table_body {
+#xmdgibskzu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2368,7 +2370,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-bottom-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_footnotes {
+#xmdgibskzu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2382,7 +2384,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-right-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_footnote {
+#xmdgibskzu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2391,7 +2393,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 5px;
 }
 
-#wjdvfedosg .gt_sourcenotes {
+#xmdgibskzu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2405,7 +2407,7 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   border-right-color: #D3D3D3;
 }
 
-#wjdvfedosg .gt_sourcenote {
+#xmdgibskzu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2413,72 +2415,72 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
   padding-right: 5px;
 }
 
-#wjdvfedosg .gt_left {
+#xmdgibskzu .gt_left {
   text-align: left;
 }
 
-#wjdvfedosg .gt_center {
+#xmdgibskzu .gt_center {
   text-align: center;
 }
 
-#wjdvfedosg .gt_right {
+#xmdgibskzu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wjdvfedosg .gt_font_normal {
+#xmdgibskzu .gt_font_normal {
   font-weight: normal;
 }
 
-#wjdvfedosg .gt_font_bold {
+#xmdgibskzu .gt_font_bold {
   font-weight: bold;
 }
 
-#wjdvfedosg .gt_font_italic {
+#xmdgibskzu .gt_font_italic {
   font-style: italic;
 }
 
-#wjdvfedosg .gt_super {
+#xmdgibskzu .gt_super {
   font-size: 65%;
 }
 
-#wjdvfedosg .gt_footnote_marks {
+#xmdgibskzu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wjdvfedosg .gt_asterisk {
+#xmdgibskzu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wjdvfedosg .gt_indent_1 {
+#xmdgibskzu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wjdvfedosg .gt_indent_2 {
+#xmdgibskzu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wjdvfedosg .gt_indent_3 {
+#xmdgibskzu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wjdvfedosg .gt_indent_4 {
+#xmdgibskzu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wjdvfedosg .gt_indent_5 {
+#xmdgibskzu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wjdvfedosg .katex-display {
+#xmdgibskzu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wjdvfedosg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#xmdgibskzu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3083,157 +3085,159 @@ Table&nbsp;4: Published coefficients against a refit on the 4,078 unique admissi
 <span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-dca</span></span>
 <span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Net benefit of the fixed baseline model on the fitted cohort. The shaded band is the 90% range across 150 near-optimal correlation matrices. Dashed lines mark the 5% (primary) and 20% (secondary) thresholds."</span></span>
 <span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4.5</span></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca</span>(fit, <span class="fu">get_band</span>(<span class="st">"nb"</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-summary</span></span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Baseline net benefit at the pre-specified thresholds. Ranges are the 5th to 95th percentile across the correlation ensemble."</span></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>summ <span class="sc">|&gt;</span></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Threshold =</span> threshold,</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Net benefit</span><span class="st">`</span> <span class="ot">=</span> nb,</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ensemble range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.4f to %.4f"</span>, nb_lo, nb_hi),</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Treat all</span><span class="st">`</span> <span class="ot">=</span> nb_all,</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> tp_per_1000,</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">False positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> fp_per_1000,</span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="at">Flagged =</span> flagged</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="fu">c</span>(Threshold, Flagged), <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Net benefit</span><span class="st">`</span>, <span class="st">`</span><span class="at">Treat all</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span>, <span class="st">`</span><span class="at">False positives per 1,000</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">1</span>)</span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rates</span></span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "True and false positives per 1,000 admissions as the threshold rises."</span></span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3.5</span></span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca_rates</span>(fit) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a>The curves are step functions because the 128 profiles carry a limited number of distinct risks. Each</span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>step is a group of profiles dropping below the threshold. Adding genetic terms will split these groups and</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>smooth the curves.</span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="fu">## The minimum clinically important difference</span></span>
+<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca</span>(fit, <span class="fu">get_band</span>(<span class="st">"nb"</span>), <span class="at">band_fill =</span> jama_cols[[<span class="st">"steel"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]],</span>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a>         <span class="at">line_cols =</span> <span class="fu">c</span>(<span class="st">"Baseline model"</span> <span class="ot">=</span> jama_cols[[<span class="st">"navy"</span>]], <span class="st">"Treat all"</span> <span class="ot">=</span> jama_cols[[<span class="st">"steel"</span>]], <span class="st">"Treat none"</span> <span class="ot">=</span> jama_cols[[<span class="st">"grey"</span>]])) <span class="sc">+</span></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-summary</span></span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Baseline net benefit at the pre-specified thresholds. Ranges are the 5th to 95th percentile across the correlation ensemble."</span></span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>summ <span class="sc">|&gt;</span></span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">Threshold =</span> threshold,</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Net benefit</span><span class="st">`</span> <span class="ot">=</span> nb,</span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Ensemble range</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sprintf</span>(<span class="st">"%.4f to %.4f"</span>, nb_lo, nb_hi),</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Treat all</span><span class="st">`</span> <span class="ot">=</span> nb_all,</span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> tp_per_1000,</span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">False positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> fp_per_1000,</span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">Flagged =</span> flagged</span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="fu">c</span>(Threshold, Flagged), <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">Net benefit</span><span class="st">`</span>, <span class="st">`</span><span class="at">Treat all</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(<span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span>, <span class="st">`</span><span class="at">False positives per 1,000</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">1</span>)</span>
+<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rates</span></span>
+<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "True and false positives per 1,000 admissions as the threshold rises."</span></span>
+<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 3.5</span></span>
+<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_dca_rates</span>(fit, <span class="at">line_col =</span> jama_cols[[<span class="st">"navy"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]]) <span class="sc">+</span> <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a>The curves are step functions because the 128 profiles carry a limited number of distinct risks. Each</span>
+<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a>step is a group of profiles dropping below the threshold. Adding genetic terms will split these groups and</span>
+<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a>smooth the curves.</span>
 <span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a>The pre-specified MCID (reading b) is 20% more true cases of invasive mould disease at no increase in false</span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>positives, which in net-benefit terms is 0.2 times the baseline true-positive rate at the threshold. The 5%</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>threshold is primary, because it is the cut-off the Stanzani paper used to define high risk. The 20%</span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>threshold is secondary.</span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcid</span></span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Net-benefit gain the genetic layer would have to deliver, by threshold. Shaded band as in the decision-curve figure."</span></span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mcid</span>(fit, <span class="fu">get_band</span>(<span class="st">"mcid_b"</span>)) <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-mcid</span></span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "MCID (reading b) on three cohorts."</span></span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/baseline_net_benefit_reference.csv"</span>)</span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>q_v1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/v1/profile_probabilities.csv"</span>)</span>
-<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>risk <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">profile_logit</span>(pars, <span class="fu">all_profiles</span>()))</span>
-<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(q_v1<span class="sc">$</span>q, risk, <span class="at">thresholds =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>))</span>
-<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>emp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_empirical_summary.csv"</span>)</span>
-<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_baseline_summary.csv"</span>)</span>
-<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>refit <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_baseline_refit_summary.csv"</span>)</span>
-<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="cf">function</span>(d, col) d[[col]][d<span class="sc">$</span>threshold <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>)]</span>
-<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>  <span class="at">Threshold =</span> <span class="fu">c</span>(<span class="st">"5% (primary)"</span>, <span class="st">"20% (secondary)"</span>),</span>
-<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Indicative (rho = 0.30)</span><span class="st">`</span> <span class="ot">=</span> ref<span class="sc">$</span>mcid_b_20pc_more_tp[ref<span class="sc">$</span>threshold <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>)],</span>
-<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Copula v1</span><span class="st">`</span> <span class="ot">=</span> v1<span class="sc">$</span>mcid_b,</span>
-<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Copula v2 (at the lock)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_b"</span>),</span>
-<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">v2 ensemble 5%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_lo"</span>),</span>
-<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">v2 ensemble 95%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_hi"</span>),</span>
-<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">4,127 rows (D8)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(emp, <span class="st">"mcid_b"</span>),</span>
-<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Published equation, base cohort (D9)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(base, <span class="st">"mcid_b"</span>),</span>
-<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit baseline (adopted)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_b"</span>),</span>
-<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit bootstrap 5%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_lo"</span>),</span>
-<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit bootstrap 95%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_hi"</span>),</span>
-<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Observed outcomes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(base, <span class="st">"observed_mcid"</span>)</span>
-<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">where</span>(is.numeric), <span class="at">decimals =</span> <span class="dv">5</span>)</span>
-<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: plateau</span></span>
-<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>i5 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">abs</span>(fit<span class="sc">$</span>threshold <span class="sc">-</span> <span class="fl">0.05</span>) <span class="sc">&lt;</span> <span class="fl">1e-9</span>)</span>
-<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="fu">abs</span>(fit<span class="sc">$</span>mcid_b <span class="sc">/</span> fit<span class="sc">$</span>mcid_b[i5] <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.05</span></span>
-<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> i5; <span class="cf">while</span> (lo <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> ok[lo <span class="sc">-</span> <span class="dv">1</span>]) lo <span class="ot">&lt;-</span> lo <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> i5; <span class="cf">while</span> (hi <span class="sc">&lt;</span> <span class="fu">length</span>(ok) <span class="sc">&amp;&amp;</span> ok[hi <span class="sc">+</span> <span class="dv">1</span>]) hi <span class="ot">&lt;-</span> hi <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>plateau <span class="ot">&lt;-</span> fit<span class="sc">$</span>threshold[<span class="fu">c</span>(lo, hi)]</span>
-<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a>The primary value is stable across the four cohorts (within about 6% of the indicative figure), while the</span>
-<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a>secondary value falls by about a quarter. The adopted refit-baseline values are +0.00458 at 5% and +0.00160 at 20%. They are higher than the</span>
-<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>published-equation values (+0.00404 and +0.00113) because the published equation under-predicts slightly on the</span>
-<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>corrected cohort (3.06% predicted against 3.26% observed), so adopting the refit makes the primary test harder for the</span>
-<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>genetic layer. Results are also reported against the published-equation and 4,127-row values. The 5% value sits on a plateau: the MCID stays within 5% of its</span>
-<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>value at 5% for thresholds from about <span class="in">`r sprintf("%.1f%%", 100 * plateau[1])`</span> to</span>
-<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a><span class="in">`r sprintf("%.1f%%", 100 * plateau[2])`</span>. The spread across the ensemble, about plus or minus 7% at 5% and</span>
-<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>plus or minus 18% at 20%, is the part that rests on the unpublished correlation structure.</span>
-<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a><span class="fu">## How much does the MCID depend on the outcome risk?</span></span>
+<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## The minimum clinically important difference</span></span>
+<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a>The pre-specified MCID (reading b) is 20% more true cases of invasive mould disease at no increase in false</span>
+<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a>positives, which in net-benefit terms is 0.2 times the baseline true-positive rate at the threshold. The 5%</span>
+<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a>threshold is primary, because it is the cut-off the Stanzani paper used to define high risk. The 20%</span>
+<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a>threshold is secondary.</span>
+<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mcid</span></span>
+<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Net-benefit gain the genetic layer would have to deliver, by threshold. Shaded band as in the decision-curve figure."</span></span>
+<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_mcid</span>(fit, <span class="fu">get_band</span>(<span class="st">"mcid_b"</span>), <span class="at">band_fill =</span> jama_cols[[<span class="st">"steel"</span>]], <span class="at">line_col =</span> jama_cols[[<span class="st">"navy"</span>]], <span class="at">mark_col =</span> jama_cols[[<span class="st">"grey"</span>]]) <span class="sc">+</span> <span class="fu">theme_jama</span>(<span class="at">base_size =</span> <span class="dv">12</span>)</span>
+<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-mcid</span></span>
+<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "MCID (reading b) on three cohorts."</span></span>
+<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>ref <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/baseline_net_benefit_reference.csv"</span>)</span>
+<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>q_v1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/v1/profile_probabilities.csv"</span>)</span>
+<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>risk <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="fu">profile_logit</span>(pars, <span class="fu">all_profiles</span>()))</span>
+<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(q_v1<span class="sc">$</span>q, risk, <span class="at">thresholds =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>))</span>
+<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>emp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_empirical_summary.csv"</span>)</span>
+<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_baseline_summary.csv"</span>)</span>
+<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>refit <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/dca_baseline_refit_summary.csv"</span>)</span>
+<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a>sel <span class="ot">&lt;-</span> <span class="cf">function</span>(d, col) d[[col]][d<span class="sc">$</span>threshold <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>)]</span>
+<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a>  <span class="at">Threshold =</span> <span class="fu">c</span>(<span class="st">"5% (primary)"</span>, <span class="st">"20% (secondary)"</span>),</span>
+<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Indicative (rho = 0.30)</span><span class="st">`</span> <span class="ot">=</span> ref<span class="sc">$</span>mcid_b_20pc_more_tp[ref<span class="sc">$</span>threshold <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.20</span>)],</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Copula v1</span><span class="st">`</span> <span class="ot">=</span> v1<span class="sc">$</span>mcid_b,</span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Copula v2 (at the lock)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_b"</span>),</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">v2 ensemble 5%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_lo"</span>),</span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">v2 ensemble 95%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(summ, <span class="st">"mcid_hi"</span>),</span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">4,127 rows (D8)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(emp, <span class="st">"mcid_b"</span>),</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Published equation, base cohort (D9)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(base, <span class="st">"mcid_b"</span>),</span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit baseline (adopted)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_b"</span>),</span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit bootstrap 5%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_lo"</span>),</span>
+<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Refit bootstrap 95%</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(refit, <span class="st">"mcid_hi"</span>),</span>
+<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Observed outcomes</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sel</span>(base, <span class="st">"observed_mcid"</span>)</span>
+<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">where</span>(is.numeric), <span class="at">decimals =</span> <span class="dv">5</span>)</span>
+<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: plateau</span></span>
+<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a>i5 <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">abs</span>(fit<span class="sc">$</span>threshold <span class="sc">-</span> <span class="fl">0.05</span>) <span class="sc">&lt;</span> <span class="fl">1e-9</span>)</span>
+<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a>ok <span class="ot">&lt;-</span> <span class="fu">abs</span>(fit<span class="sc">$</span>mcid_b <span class="sc">/</span> fit<span class="sc">$</span>mcid_b[i5] <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> i5; <span class="cf">while</span> (lo <span class="sc">&gt;</span> <span class="dv">1</span> <span class="sc">&amp;&amp;</span> ok[lo <span class="sc">-</span> <span class="dv">1</span>]) lo <span class="ot">&lt;-</span> lo <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a>hi <span class="ot">&lt;-</span> i5; <span class="cf">while</span> (hi <span class="sc">&lt;</span> <span class="fu">length</span>(ok) <span class="sc">&amp;&amp;</span> ok[hi <span class="sc">+</span> <span class="dv">1</span>]) hi <span class="ot">&lt;-</span> hi <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>plateau <span class="ot">&lt;-</span> fit<span class="sc">$</span>threshold[<span class="fu">c</span>(lo, hi)]</span>
+<span id="cb11-148"><a href="#cb11-148" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-149"><a href="#cb11-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-150"><a href="#cb11-150" aria-hidden="true" tabindex="-1"></a>The primary value is stable across the four cohorts (within about 6% of the indicative figure), while the</span>
+<span id="cb11-151"><a href="#cb11-151" aria-hidden="true" tabindex="-1"></a>secondary value falls by about a quarter. The adopted refit-baseline values are +0.00458 at 5% and +0.00160 at 20%. They are higher than the</span>
+<span id="cb11-152"><a href="#cb11-152" aria-hidden="true" tabindex="-1"></a>published-equation values (+0.00404 and +0.00113) because the published equation under-predicts slightly on the</span>
+<span id="cb11-153"><a href="#cb11-153" aria-hidden="true" tabindex="-1"></a>corrected cohort (3.06% predicted against 3.26% observed), so adopting the refit makes the primary test harder for the</span>
+<span id="cb11-154"><a href="#cb11-154" aria-hidden="true" tabindex="-1"></a>genetic layer. Results are also reported against the published-equation and 4,127-row values. The 5% value sits on a plateau: the MCID stays within 5% of its</span>
+<span id="cb11-155"><a href="#cb11-155" aria-hidden="true" tabindex="-1"></a>value at 5% for thresholds from about <span class="in">`r sprintf("%.1f%%", 100 * plateau[1])`</span> to</span>
+<span id="cb11-156"><a href="#cb11-156" aria-hidden="true" tabindex="-1"></a><span class="in">`r sprintf("%.1f%%", 100 * plateau[2])`</span>. The spread across the ensemble, about plus or minus 7% at 5% and</span>
+<span id="cb11-157"><a href="#cb11-157" aria-hidden="true" tabindex="-1"></a>plus or minus 18% at 20%, is the part that rests on the unpublished correlation structure.</span>
 <span id="cb11-158"><a href="#cb11-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a>The published equation was fitted with the 49 twin rows in, and on the corrected cohort it under-predicts slightly</span>
-<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a>(3.06% predicted against 3.26% observed). So the MCID can be computed under different readings of the "true" outcome</span>
-<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>risk. The decision rule is the published equation's, except in scenario C. Patients are resampled, with the refit</span>
-<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>repeated inside every resample.</span>
-<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-166"><a href="#cb11-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-167"><a href="#cb11-167" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-outcome-risk</span></span>
-<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "MCID under four readings of the outcome risk, with 90% patient-bootstrap intervals."</span></span>
-<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a>sens <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/mcid_outcome_risk_sensitivity.csv"</span>)</span>
-<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a>sens <span class="sc">|&gt;</span></span>
-<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Scenario =</span> scenario, <span class="at">Threshold =</span> threshold, <span class="at">MCID =</span> mcid_b, <span class="st">`</span><span class="at">5%</span><span class="st">`</span> <span class="ot">=</span> mcid_lo, <span class="st">`</span><span class="at">95%</span><span class="st">`</span> <span class="ot">=</span> mcid_hi,</span>
-<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Relative to A</span><span class="st">`</span> <span class="ot">=</span> mcid_relative_to_A, <span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> tp_per_1000) <span class="sc">|&gt;</span></span>
-<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Threshold"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="st">`</span><span class="at">Relative to A</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(MCID, <span class="st">`</span><span class="at">5%</span><span class="st">`</span>, <span class="st">`</span><span class="at">95%</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">1</span>)</span>
-<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a>The adopted value (A, published equation as truth) is the lowest at every threshold. The alternatives raise the primary</span>
-<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a>MCID by 9 to 13% and the secondary by 21 to 41%, which makes the adopted reading the most permissive one for the primary</span>
-<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>test. The intervals overlap, so the data cannot separate the readings, and the published coefficient lies inside the</span>
-<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a>refit's interval for every term:</span>
-<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-186"><a href="#cb11-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-187"><a href="#cb11-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-refit</span></span>
-<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Published coefficients against a refit on the 4,078 unique admissions (90% patient-bootstrap interval)."</span></span>
-<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"output/refit_coefficients.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, term), <span class="at">Published =</span> published, <span class="at">Refit =</span> refit, <span class="st">`</span><span class="at">5%</span><span class="st">`</span> <span class="ot">=</span> lo, <span class="st">`</span><span class="at">95%</span><span class="st">`</span> <span class="ot">=</span> hi) <span class="sc">|&gt;</span></span>
-<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">decimals =</span> <span class="dv">2</span>)</span>
-<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a>The 4,127-row MCID (+0.00445 at 5%, +0.00142 at 20%) sits close to the refit-truth and observed-outcome readings, so</span>
-<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a>reporting against it, as decision D9 commits to, brackets them.</span>
-<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a><span class="fu">## Using the machinery for the genetic layer</span></span>
+<span id="cb11-159"><a href="#cb11-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## How much does the MCID depend on the outcome risk?</span></span>
+<span id="cb11-160"><a href="#cb11-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-161"><a href="#cb11-161" aria-hidden="true" tabindex="-1"></a>The published equation was fitted with the 49 twin rows in, and on the corrected cohort it under-predicts slightly</span>
+<span id="cb11-162"><a href="#cb11-162" aria-hidden="true" tabindex="-1"></a>(3.06% predicted against 3.26% observed). So the MCID can be computed under different readings of the "true" outcome</span>
+<span id="cb11-163"><a href="#cb11-163" aria-hidden="true" tabindex="-1"></a>risk. The decision rule is the published equation's, except in scenario C. Patients are resampled, with the refit</span>
+<span id="cb11-164"><a href="#cb11-164" aria-hidden="true" tabindex="-1"></a>repeated inside every resample.</span>
+<span id="cb11-165"><a href="#cb11-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-168"><a href="#cb11-168" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-169"><a href="#cb11-169" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-outcome-risk</span></span>
+<span id="cb11-170"><a href="#cb11-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "MCID under four readings of the outcome risk, with 90% patient-bootstrap intervals."</span></span>
+<span id="cb11-171"><a href="#cb11-171" aria-hidden="true" tabindex="-1"></a>sens <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"output/mcid_outcome_risk_sensitivity.csv"</span>)</span>
+<span id="cb11-172"><a href="#cb11-172" aria-hidden="true" tabindex="-1"></a>sens <span class="sc">|&gt;</span></span>
+<span id="cb11-173"><a href="#cb11-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Scenario =</span> scenario, <span class="at">Threshold =</span> threshold, <span class="at">MCID =</span> mcid_b, <span class="st">`</span><span class="at">5%</span><span class="st">`</span> <span class="ot">=</span> mcid_lo, <span class="st">`</span><span class="at">95%</span><span class="st">`</span> <span class="ot">=</span> mcid_hi,</span>
+<span id="cb11-174"><a href="#cb11-174" aria-hidden="true" tabindex="-1"></a>            <span class="st">`</span><span class="at">Relative to A</span><span class="st">`</span> <span class="ot">=</span> mcid_relative_to_A, <span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span> <span class="ot">=</span> tp_per_1000) <span class="sc">|&gt;</span></span>
+<span id="cb11-175"><a href="#cb11-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Threshold"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-176"><a href="#cb11-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_percent</span>(<span class="st">`</span><span class="at">Relative to A</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-177"><a href="#cb11-177" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="fu">c</span>(MCID, <span class="st">`</span><span class="at">5%</span><span class="st">`</span>, <span class="st">`</span><span class="at">95%</span><span class="st">`</span>), <span class="at">decimals =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-178"><a href="#cb11-178" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="st">`</span><span class="at">True positives per 1,000</span><span class="st">`</span>, <span class="at">decimals =</span> <span class="dv">1</span>)</span>
+<span id="cb11-179"><a href="#cb11-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-180"><a href="#cb11-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-181"><a href="#cb11-181" aria-hidden="true" tabindex="-1"></a>The adopted value (A, published equation as truth) is the lowest at every threshold. The alternatives raise the primary</span>
+<span id="cb11-182"><a href="#cb11-182" aria-hidden="true" tabindex="-1"></a>MCID by 9 to 13% and the secondary by 21 to 41%, which makes the adopted reading the most permissive one for the primary</span>
+<span id="cb11-183"><a href="#cb11-183" aria-hidden="true" tabindex="-1"></a>test. The intervals overlap, so the data cannot separate the readings, and the published coefficient lies inside the</span>
+<span id="cb11-184"><a href="#cb11-184" aria-hidden="true" tabindex="-1"></a>refit's interval for every term:</span>
+<span id="cb11-185"><a href="#cb11-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-188"><a href="#cb11-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-189"><a href="#cb11-189" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-refit</span></span>
+<span id="cb11-190"><a href="#cb11-190" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Published coefficients against a refit on the 4,078 unique admissions (90% patient-bootstrap interval)."</span></span>
+<span id="cb11-191"><a href="#cb11-191" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"output/refit_coefficients.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-192"><a href="#cb11-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">Term =</span> <span class="fu">gsub</span>(<span class="st">"_"</span>, <span class="st">" "</span>, term), <span class="at">Published =</span> published, <span class="at">Refit =</span> refit, <span class="st">`</span><span class="at">5%</span><span class="st">`</span> <span class="ot">=</span> lo, <span class="st">`</span><span class="at">95%</span><span class="st">`</span> <span class="ot">=</span> hi) <span class="sc">|&gt;</span></span>
+<span id="cb11-193"><a href="#cb11-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-194"><a href="#cb11-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">decimals =</span> <span class="dv">2</span>)</span>
+<span id="cb11-195"><a href="#cb11-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-196"><a href="#cb11-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-197"><a href="#cb11-197" aria-hidden="true" tabindex="-1"></a>The 4,127-row MCID (+0.00445 at 5%, +0.00142 at 20%) sits close to the refit-truth and observed-outcome readings, so</span>
+<span id="cb11-198"><a href="#cb11-198" aria-hidden="true" tabindex="-1"></a>reporting against it, as decision D9 commits to, brackets them.</span>
 <span id="cb11-199"><a href="#cb11-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
-<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a><span class="co"># Cells: clinical profile x genetic class. Decisions use the clinical-only risk;</span></span>
-<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomes use the true risk including genetics.</span></span>
-<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a>base  <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(w, risk_true, <span class="at">risk_pred =</span> risk_clinical)</span>
-<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a>with  <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(w, risk_true, <span class="at">risk_pred =</span> risk_with_genetics)</span>
-<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a><span class="fu">dca_compare</span>(base, with)   <span class="co"># delta_nb, the baseline MCID, and whether it is met</span></span>
-<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a><span class="in">`dca_compare()`</span> takes the MCID from the baseline curve, so the test is fixed by the baseline and cannot</span>
-<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a>drift with the candidate model.</span>
-<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations</span></span>
+<span id="cb11-200"><a href="#cb11-200" aria-hidden="true" tabindex="-1"></a><span class="fu">## Using the machinery for the genetic layer</span></span>
+<span id="cb11-201"><a href="#cb11-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-202"><a href="#cb11-202" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb11-203"><a href="#cb11-203" aria-hidden="true" tabindex="-1"></a><span class="co"># Cells: clinical profile x genetic class. Decisions use the clinical-only risk;</span></span>
+<span id="cb11-204"><a href="#cb11-204" aria-hidden="true" tabindex="-1"></a><span class="co"># outcomes use the true risk including genetics.</span></span>
+<span id="cb11-205"><a href="#cb11-205" aria-hidden="true" tabindex="-1"></a>base  <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(w, risk_true, <span class="at">risk_pred =</span> risk_clinical)</span>
+<span id="cb11-206"><a href="#cb11-206" aria-hidden="true" tabindex="-1"></a>with  <span class="ot">&lt;-</span> <span class="fu">dca_exact</span>(w, risk_true, <span class="at">risk_pred =</span> risk_with_genetics)</span>
+<span id="cb11-207"><a href="#cb11-207" aria-hidden="true" tabindex="-1"></a><span class="fu">dca_compare</span>(base, with)   <span class="co"># delta_nb, the baseline MCID, and whether it is met</span></span>
+<span id="cb11-208"><a href="#cb11-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-209"><a href="#cb11-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-210"><a href="#cb11-210" aria-hidden="true" tabindex="-1"></a><span class="in">`dca_compare()`</span> takes the MCID from the baseline curve, so the test is fixed by the baseline and cannot</span>
+<span id="cb11-211"><a href="#cb11-211" aria-hidden="true" tabindex="-1"></a>drift with the candidate model.</span>
 <span id="cb11-212"><a href="#cb11-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Results are for the baseline alone. No genetic term has been added.</span>
-<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The ensemble spread reflects only the correlation structure. It does not include uncertainty from</span>
-<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a>  admission clustering or from using the apparent aROC of 0.85.</span>
-<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Net benefit is per admission. Patients with several admissions contribute correlated events, which</span>
-<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>  matters for uncertainty but not for the exact point values here.</span>
+<span id="cb11-213"><a href="#cb11-213" aria-hidden="true" tabindex="-1"></a><span class="fu">## Limitations</span></span>
+<span id="cb11-214"><a href="#cb11-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-215"><a href="#cb11-215" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Results are for the baseline alone. No genetic term has been added.</span>
+<span id="cb11-216"><a href="#cb11-216" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The ensemble spread reflects only the correlation structure. It does not include uncertainty from</span>
+<span id="cb11-217"><a href="#cb11-217" aria-hidden="true" tabindex="-1"></a>  admission clustering or from using the apparent aROC of 0.85.</span>
+<span id="cb11-218"><a href="#cb11-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Net benefit is per admission. Patients with several admissions contribute correlated events, which</span>
+<span id="cb11-219"><a href="#cb11-219" aria-hidden="true" tabindex="-1"></a>  matters for uncertainty but not for the exact point values here.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

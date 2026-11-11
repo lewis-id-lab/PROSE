@@ -475,6 +475,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#addendum-45-11-november-2026-figures-restyled-a-forest-plot-and-an-icon-array-added-to-the-manuscript" id="toc-addendum-45-11-november-2026-figures-restyled-a-forest-plot-and-an-icon-array-added-to-the-manuscript" class="nav-link" data-scroll-target="#addendum-45-11-november-2026-figures-restyled-a-forest-plot-and-an-icon-array-added-to-the-manuscript">Addendum 45, 11 November 2026: figures restyled; a forest plot and an icon array added to the manuscript</a>
   <ul class="collapse">
   <li><a href="#addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure" id="toc-addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure" class="nav-link" data-scroll-target="#addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure">Addition, 11 November 2026 (later the same day): the “how the bar moves” figure</a></li>
+  <li><a href="#addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style" id="toc-addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style" class="nav-link" data-scroll-target="#addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style">Addition, 11 November 2026 (later the same day): the figure folder, and the website figures in the same style</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -8169,6 +8170,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure" class="level3">
 <h3 class="anchored" data-anchor-id="addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure">Addition, 11 November 2026 (later the same day): the “how the bar moves” figure</h3>
 <p>A third figure from <code>scripts/52_manuscript_figures.R</code> (<code>output/figures/fig_frontier_moves_profile.png</code>, placed at the end of the architecture results): the bands of the architecture figure at a risk-allele frequency of 0.3 and the 5% threshold, with the frontiers of three departures drawn on them, read from existing outputs and not rerun. The tag lines (r = 0.9 and 0.7) come from script 51 (estimated weights, SE 0.10, median replicate); the line for 80% of cases due to the pathogen comes from script 43 (exact all-mould weights). The lines therefore mix assumptions (estimation error in two, not in the third), and the caption says so. The stress grids have fewer odds ratios than the bands (1.8, 2.0, 2.5 and 3.0 at the upper end), so the segments between computed points are drawn for reading only. Fewest loci shown: tag 0.9, 18, 14, 6 and 5 at odds ratios 1.8, 2.0, 2.5 and 3.0; 80% pathogen share, 19, 11 and 7 at 2.0, 2.5 and 3.0; tag 0.7, 19 and 16 at 2.5 and 3.0.</p>
+</section>
+<section id="addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style" class="level3">
+<h3 class="anchored" data-anchor-id="addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style">Addition, 11 November 2026 (later the same day): the figure folder, and the website figures in the same style</h3>
+<ul>
+<li><strong>The website pages</strong> (baseline, decision curves, evidence, mapping) now use <code>theme_jama()</code> and the blue-grey palette for their eight figures; <code>_setup.R</code> sets it as the default theme, and the decision-curve helpers in <code>R/decision_curve.R</code> take optional colours (the defaults are unchanged, so the older scripts that call them give the same figures as before).</li>
+<li><strong><code>manuscript_figures/</code></strong> (<code>scripts/53_export_figures.R</code>): every figure of the manuscript (9) and of the website pages (8) as PNG at 300 dpi, with the resolution written into the file header (<code>R/figure_export.R</code>), a <code>manifest.csv</code> and a README. The manuscript files are numbered as the rendered page numbers them.</li>
+<li><strong>PRISMA diagram.</strong> The package’s PNG export is a screen-resolution image (598 pixels wide). <code>scripts/44_prisma_flow.R</code> now renders it from the SVG at 300 dpi, 7 inches wide, and writes the three rotated side labels into the SVG (the package adds them with JavaScript, so its SVG lacks them).</li>
+</ul>
 
 
 <!-- -->
