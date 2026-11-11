@@ -5,7 +5,11 @@
 # 2. Icon array of the primary result at the 5% threshold, per 10,000 admissions so that every icon is a whole case: cases the clinical score finds, cases the
 #    four-term genetic score adds (true effects in the score, profile-preserving truth), further cases needed to reach the MCID, and cases still missed.
 #
-# Writes   output/figures/fig_forest.png, output/figures/fig_icon_array_profile.png, output/fig_icon_array_counts.csv
+# 3. "How the bar moves": the banded architecture figure at frequency 0.3 (5% threshold, profile-preserving truth) with the frontiers of three departures drawn on it:
+#    a scored variant that tags the causal one at r = 0.9 and at r = 0.7 (script 51; estimated weights, SE 0.10), and only 80% of cases due to the target pathogen
+#    (script 43; exact all-mould weights). Run after scripts 31, 43 and 51.
+#
+# Writes   output/figures/fig_forest.png, output/figures/fig_icon_array_profile.png, output/fig_icon_array_counts.csv, output/figures/fig_frontier_moves_profile.png
 
 suppressPackageStartupMessages({library(ggplot2); library(dplyr)})
 source("R/theme_jama.R")
@@ -78,3 +82,30 @@ ggsave("output/figures/fig_icon_array_profile.png",
     theme_void(base_size = 11) + theme(legend.position = "top", legend.justification = "left", legend.text = element_text(colour = jama_cols[["ink"]]), plot.margin = margin(8, 8, 8, 8)),
   width = 8.5, height = 3.6, dpi = 300)
 message("icon array, per ", per, " admissions: ", paste(names(counts), counts, sep = " = ", collapse = "; "), "; extra false positives ", round(n[["extra_flagged"]] - n[["added"]]))
+
+# ---- 3. How the bar moves --------------------------------------------------------------------------------------------------------------------------
+raf0 <- 0.3
+sw <- read.csv("output/calibration_check_aim4_sweep.csv") |> filter(comparison == "profile", threshold == 0.05, abs(raf - raf0) < 1e-9) |>
+  mutate(band = cut(gain_oracle / mcid, c(-Inf, 0.25, 0.5, 1, Inf), labels = c("under a quarter of the MCID", "a quarter to half", "half to the MCID", "reaches the MCID"), right = FALSE))
+st <- read.csv("output/aim4_main_stress_frontier_profile.csv") |> filter(threshold == 0.05, abs(raf - raf0) < 1e-9, sigma == 0.10, scenario %in% c("tag0.9", "tag0.7")) |>
+  transmute(line = recode(scenario, tag0.9 = "tag of the causal variant, r = 0.9", tag0.7 = "tag of the causal variant, r = 0.7"), odds_ratio, n_loci = median_reaches)
+pa <- read.csv("output/aim4_pathogen_frontier_profile.csv") |> filter(threshold == 0.05, abs(raf - raf0) < 1e-9, case_fraction == 0.8) |>
+  transmute(line = "80% of cases due to the pathogen", odds_ratio, n_loci = min_loci_diluted)
+moves <- bind_rows(st, pa) |> filter(!is.na(n_loci)) |> arrange(line, odds_ratio)
+ends <- moves |> group_by(line) |> slice_min(odds_ratio, n = 1) |> ungroup()
+exact_end <- sw |> filter(band == "reaches the MCID") |> group_by(odds_ratio) |> summarise(n_loci = min(n_loci), .groups = "drop") |> slice_min(odds_ratio, n = 1)
+ggsave("output/figures/fig_frontier_moves_profile.png",
+  ggplot(sw, aes(n_loci, odds_ratio)) +
+    geom_tile(aes(fill = band), colour = "white", linewidth = 0.2) +
+    geom_line(data = moves, aes(group = line), colour = "white", linewidth = 0.9) +
+    geom_point(data = moves, shape = 21, size = 1.9, stroke = 0.7, fill = jama_cols[["navy"]], colour = "white") +
+    geom_text(data = ends, aes(x = 20.9, label = line), hjust = 0, size = 3.1, colour = jama_cols[["ink"]]) +
+    geom_segment(data = ends, aes(x = n_loci + 0.35, xend = 20.75, yend = odds_ratio), colour = jama_cols[["grey"]], linewidth = 0.3) +
+    annotate("text", x = 20.9, y = exact_end$odds_ratio, label = "causal variants, every case responds\n(edge of the darkest band)", hjust = 0, vjust = 0.75, size = 3.1, lineheight = 0.95, colour = jama_cols[["ink"]]) +
+    scale_fill_manual(values = unname(jama_cols[c("light", "pale", "steel", "navy")]), name = NULL, drop = FALSE) +
+    scale_x_continuous(breaks = c(1, 5, 10, 15, 20), expand = c(0, 0)) + scale_y_continuous(breaks = seq(1.5, 3, 0.5), expand = c(0, 0)) +
+    coord_cartesian(clip = "off") +
+    labs(x = "Number of independent risk loci", y = "Odds ratio per risk allele") +
+    theme_jama(grid = "none") + theme(plot.margin = margin(8, 190, 8, 8)),
+  width = 8.5, height = 4.8, dpi = 300)
+print(as.data.frame(moves))

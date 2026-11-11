@@ -601,7 +601,7 @@ to 20 reached the 5% MCID under the profile-preserving truth, against 20 under t
 genes tested. Under the profile-preserving truth and with exact weights, the share of the 600 architectures of the grid that
 reached the 5% MCID fell from 24% when every case responds (f = 1) to 9% to 10% at f = 0.8, and none reached it at f = 0.6 or
 0.4. At 20% the shares were 69%, 57% to 58%, 35% to 41% and 4% to 15%. At frequency 0.3, the loci needed for an odds ratio of
-2.0 rose from 10 at f = 1 to 19 or 20 at f = 0.8, and for an odds ratio of 3.0 from 4 to 7 or 8. For 10 loci of odds ratio
+2.0 rose from 10 at f = 1 to 19 or 20 at f = 0.8 (@fig-moves), and for an odds ratio of 3.0 from 4 to 7 or 8. For 10 loci of odds ratio
 2.0, the gain went from 1.07 times the MCID at f = 1 to 0.65 (0.68 with all-mould weights) at f = 0.8 and 0.22 (0.37) at
 f = 0.6. With the target-pathogen weights the gain became negative at f = 0.4 (2.0 fewer true cases per 1,000 admissions), against
 +0.9 with all-mould weights. Weights fitted to the all-mould outcome gave the higher gain in 95% of the architectures with
@@ -635,7 +635,7 @@ through several correlated variants is the incomplete tagging above.
 architectures of odds ratios 1.2 to 3.0, three frequencies and 1 to 20 loci; σ = 0.10 and 0.40). With the idealised assumptions the
 realised score reached the 5% MCID in 23% and 16% of architectures, as in the main realised sweep (23% and 15%). Unequal frequencies
 changed nothing. The winner's curse mattered only at σ = 0.40 (9% against 16%; the realised gain kept 0.16 of the exact gain against
-0.70). A tag correlated 0.9 with the causal variant cut the share to 17% and 10% and kept 0.79 and 0.48 of the gain, and a tag
+0.70). A tag correlated 0.9 with the causal variant cut the share to 17% and 10% and kept 0.79 and 0.48 of the gain (@fig-moves), and a tag
 correlated 0.7 cut it to 2% and 0; with the three departures together the gain at σ = 0.40 was negative. At frequency 0.3 and
 σ = 0.10, an odds ratio of 2.5 needed 6 loci with the causal variants and with a tag at 0.9 and 19 with a tag at 0.7; an odds ratio of 2.0
 needed 11 loci, then 14, then none within 20. At 20% the ordering was the same with smaller losses (67% and 47% for the idealised
@@ -644,6 +644,8 @@ allele correlations of 0.3 and 0.6: 41% and 52% with joint estimates and 35% and
 ratios of 1.4 and 1.5 reach the MCID in some architectures (joint estimates at a correlation of 0.6: 11 and 24 of 60 architectures at
 σ = 0.10), so the statement that no panel of loci with odds ratios of 1.5 or less reaches the MCID holds for independent loci only. That
 result holds every locus's conditional effect fixed within a correlated block, which is a generous assumption.
+
+![How the bar moves: the gain of the ceiling score relative to the MCID at the 5% threshold, at a risk-allele frequency of 0.3, under the profile-preserving truth, in the four bands of @fig-aim4. The edge of the darkest band is the idealised frontier: independent causal variants, every case responsive to them, weights known exactly. The white lines show the fewest loci that reach the MCID under three departures, and they do not share assumptions. For the two tag lines the scored variant is correlated 0.9 or 0.7 with the causal one and the weights are estimated with a standard error of 0.10 per locus (median of 12 replicate discovery studies). For the pathogen line only 80% of cases arise through the pathway the loci act on, and the weights are known exactly and fitted to the all-mould outcome, with no estimation error. Points are computed architectures (odds ratios of 1.8, 2.0, 2.5 and 3.0 for the tags, 2.0, 2.5 and 3.0 for the pathogen line); the segments between them are drawn for reading only. With a tag at 0.7, odds ratios below 2.5 do not reach the MCID within 20 loci.](output/figures/fig_frontier_moves_profile.png){#fig-moves}
 
 ### Net reclassification improvement (tertiary)
 
