@@ -387,10 +387,12 @@ per 1,000 admissions at no extra false positives. At 20% the MCID is +0.00160. U
 
 ### Evidence base
 
-@tbl-pooled shows the pooled effects. Each term rests on three to five studies. CD209 is the only term in the four-term panel
+@tbl-pooled shows the pooled effects, and @fig-forest the study effects behind them. Each term rests on three to five studies. CD209 is the only term in the four-term panel
 whose interval excludes an odds ratio of 1. PTX3 is borderline, with a 5.5% posterior probability that its effect is below zero.
 CLEC7A Y238X is centred below 1. The second CLEC7A parameter, A-G against A-C, is estimated at an odds ratio of 1.86 per copy.
 Its interval excludes 1 under every strand assumption (1.5 to 1.9).
+
+![Study effects and pooled effects for the four terms of the panel, per copy of each term's risk haplotype class (primary analysis: recipient genotype, odds-ratio scale, whole cohort). Squares: study estimates, sized by precision; lines: 90% intervals (estimate ± 1.645 standard errors on the log scale). Diamonds: pooled effects from the Bayesian random-effects model, with 90% credible intervals. The arrow marks an interval that extends beyond the axis.](output/figures/fig_forest.png){#fig-forest}
 
 The two East Asian studies point the other way (difference from the European estimate −1.19 on the log scale, SE 0.31,
 P = 0.0001). Adding them gives 1.28 (0.79 to 1.95). The linkage of rs7309123 with rs3901533 in phased 1000 Genomes data
@@ -422,9 +424,11 @@ bind_rows(
 @tbl-headline and @fig-headline show the main results, under the profile-preserving truth. With the true effects in the
 score, the four terms raised net benefit at the 5% threshold by a median of +0.00056 (90% range 0.00015 to 0.00127). That is
 1.1 extra true cases per 1,000 admissions, against the 4.6 the MCID requires. The gain came with extra false positives: the
-share flagged rose from 15.7% to 16.8%. No draw reached the MCID under the pooled-mean reading, and 0.6% did under the
+share flagged rose from 15.7% to 16.8% (@fig-icons). No draw reached the MCID under the pooled-mean reading, and 0.6% did under the
 predictive reading. With the pooled estimates in the score the gain was +0.00040 (−0.00010 to 0.00091), and no draw reached the
 MCID. The expected aROC rose from 0.861 to 0.873 with the ceiling score and to 0.870 with the realised score.
+
+![The primary result at the 5% threshold as cases per 10,000 admissions (326 cases of invasive mould disease), for the four-term panel with the true effects in the score under the profile-preserving truth. Each circle is one case. The clinical score finds 229; the genetic score adds 11; the MCID asks for 46 more than the clinical score at no extra false positives, so 35 further cases are needed; 51 are missed in either case. The 11 added cases come with 99 more false positives per 10,000 admissions, so the net-benefit gain is the equivalent of 5.6 cases against the 45.8 the MCID requires.](output/figures/fig_icon_array_profile.png){#fig-icons}
 
 At the secondary 20% threshold the ceiling score gained +0.00107 and reached the MCID of +0.00160 in 17% of draws (36% under
 the predictive reading). The realised score reached it in 4% of draws (12% under the predictive reading).
@@ -591,7 +595,7 @@ precisions, between 12% and 36% of the architectures that reached the MCID with 
 needed for a given odds ratio rose by one to several. At σ = 0.40 and an odds ratio of 1.8 (frequency 0.3), no number of loci up
 to 20 reached the 5% MCID under the profile-preserving truth, against 20 under the global-intercept truth.
 
-![Gain of the ceiling score relative to the MCID at the 5% threshold under the profile-preserving truth, by number of loci, per-allele odds ratio and risk-allele frequency. White line: gain equal to the MCID.](output/figures/aim4_sweep_5pct_profile.png){#fig-aim4}
+![Gain of the ceiling score relative to the MCID at the 5% threshold under the profile-preserving truth, by number of loci, per-allele odds ratio and risk-allele frequency, in four bands; the darkest band reaches the MCID. Circle: the architecture with the same gain as the four-term panel (7 loci of odds ratio 1.3 at frequency 0.3).](output/figures/aim4_sweep_5pct_profile.png){#fig-aim4}
 
 **Pathogen specificity.** Treating every case as genotype-sensitive is optimistic if only some of the moulds respond to the
 genes tested. Under the profile-preserving truth and with exact weights, the share of the 600 architectures of the grid that
@@ -679,13 +683,14 @@ rd("calibration_check_nri_grid.csv") |>
                             "PTX3 three SNPs, independent" = "three SNPs, independent (earlier analysis)")) |>
   ggplot(aes(or, value, colour = structure)) +
   geom_hline(data = data.frame(metric = factor(panels, panels), y = c(0.225, 0.225, 0.225, mcid5)),
-             aes(yintercept = y), linetype = "dashed") +
-  geom_vline(xintercept = 1.35, colour = "grey60") +
-  geom_line() +
+             aes(yintercept = y), linetype = "dashed", colour = jama_cols[["ink"]], linewidth = 0.4) +
+  geom_vline(xintercept = 1.35, colour = jama_cols[["grey"]], linewidth = 0.4) +
+  geom_line(linewidth = 0.8) +
   facet_wrap(~metric, scales = "free_y") +
   scale_x_log10(breaks = c(1, 1.5, 2, 3, 4, 5)) +
+  scale_colour_manual(values = c("h2 haplotype (correct)" = jama_cols[["navy"]], "three SNPs, independent (earlier analysis)" = jama_cols[["steel"]])) +
   labs(x = "Odds ratio per copy (log scale)", y = NULL, colour = NULL) +
-  theme(legend.position = "bottom")
+  theme_jama()
 ```
 
 **Applying the three-SNP score to real chromosomes.** Here the haplotype is counted up to three times. The score lowered net

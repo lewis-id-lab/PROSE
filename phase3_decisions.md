@@ -3320,3 +3320,17 @@ Median share of the independent-loci, causal-weights gain that the realised scor
 Nothing remains of the planned analysis of locus-specific error, the winner's curse and linkage; what is open is the choice of settings (one value of each departure).
 
 Code and outputs: `scripts/51_aim4_main_stress.R`, `output/aim4_main_stress_{sweep,frontier}_profile.csv`, `output/figures/aim4_main_stress_frontier_profile.png`.
+
+
+## Addendum 45, 11 November 2026: figures restyled; a forest plot and an icon array added to the manuscript
+
+**What had been seen.** All results up to addendum 44. This addendum changes presentation only; no analysis was rerun and no number in the text changes, except that two quantities already implied by the outputs are now stated in a caption (below).
+
+- **Style.** `R/theme_jama.R` holds a blue-grey palette and `theme_jama()` (sans-serif, thin axes, no panel background, no title or caption inside the figure); `_setup.R` sources it. The default theme of the other site pages is unchanged. Scripts 27, 34 and 44 and the manuscript's NRI chunk use it, at 300 dpi. The global-truth versions of the same figures are restyled too, because they come from the same scripts.
+- **Architecture figure.** Redrawn as four bands of the gain relative to the MCID (under a quarter, a quarter to half, half to the MCID, reaches the MCID) in place of a continuous colour scale with a contour line, with the architecture that has the four-term panel's gain marked (7 loci of odds ratio 1.3 at frequency 0.3: 0.00056, the panel's ceiling gain at 5%). The caption is changed to match.
+- **Attribution figure.** Horizontal stacked bars with the shares printed on them.
+- **PRISMA diagram.** Blue-grey boxes and arrows (named Graphviz colours; the package does not accept hex codes).
+- **New: forest plot** (`scripts/52_manuscript_figures.R`, `output/figures/fig_forest.png`, Figure 2): the study effects and the pooled effect for PTX3, CLEC7A Y238X, TLR4 and CD209, per copy of the risk haplotype class, primary analysis. Study intervals are 90% (estimate +- 1.645 standard errors) to match the pooled 90% credible intervals.
+- **New: icon array** (`output/figures/fig_icon_array_profile.png`, Figure 3; counts in `output/fig_icon_array_counts.csv`): the primary result at 5% per 10,000 admissions, so that each icon is a whole case (the text gives the same quantities per 1,000). Of 326 cases the clinical score finds 229, the four-term score with true effects adds 11, the MCID asks for 46, and 51 are missed either way. Two figures are new to the text: the 11 added cases come with 99 more false positives per 10,000 admissions (the flagged share rises from 15.67% to 16.77%), so the net-benefit gain equals 5.6 cases against the 45.8 of the MCID. The icons show the raw 11; the caption gives the net figure.
+
+Code and outputs: `R/theme_jama.R`, `_setup.R`, `scripts/27_writeup_figures.R`, `scripts/34_calibration_check_figures.R`, `scripts/44_prisma_flow.R`, `scripts/52_manuscript_figures.R`, `output/figures/`, `output/fig_icon_array_counts.csv`, `manuscript.qmd`.

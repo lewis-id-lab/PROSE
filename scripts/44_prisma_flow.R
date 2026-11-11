@@ -38,7 +38,10 @@ tpl <- read.csv(system.file("extdata", "PRISMA.csv", package = "PRISMA2020"))
 for (k in names(counts)) tpl$n[tpl$data == k] <- counts[[k]]
 
 data <- PRISMA_data(tpl)
-flow <- PRISMA_flowdiagram(data, interactive = FALSE, previous = FALSE, other = FALSE, fontsize = 12, side_boxes = TRUE)
+# Blue-grey colours to match the other figures (R/theme_jama.R). Graphviz colour names: the package does not quote hex codes, so they fail.
+# The side boxes keep the package's light steel blue
+flow <- PRISMA_flowdiagram(data, interactive = FALSE, previous = FALSE, other = FALSE, fontsize = 12, side_boxes = TRUE,
+                           title_colour = "SlateGray3", greybox_colour = "Gainsboro", main_colour = "SteelBlue4", arrow_colour = "SteelBlue4")
 
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 write.csv(tpl[!is.na(tpl$data), c("data", "n")], "output/prisma_counts.csv", row.names = FALSE)
