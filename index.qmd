@@ -30,7 +30,7 @@ The figures of the draft manuscript and of these pages can be downloaded as 300 
 | Phase | State |
 |---|---|
 | 0 Set-up | complete |
-| 1 Literature search | complete: 831 unique records screened (PubMed searched 7 July 2026, Embase 8 October 2026) |
+| 1 Literature search | complete: 831 unique records; 622 excluded by the automated screen, 209 imported into Covidence, 208 full texts, 81 included, 60 in the evidence base (PubMed searched 7 July 2026, Embase 8 October 2026) |
 | 2 Screening and extraction | round 1 complete, including targeted recovery and supplementary files. Human round-2 checks are reported complete, but the record is not yet in the repository. Direction check of the text-parsed rows closed: 43 rows corrected in all, each with its evidence |
 | 3 Parameter derivation | done provisionally for PTX3, CLEC7A (two parameters), TLR4 and CD209; IL10 and IFNG dropped (D14) |
 | 4 Baseline | done: refit on the base cohort of 4,078 unique admissions in 1,945 patients (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20%; the published equation, the 4,127 rows and the copula are sensitivity analyses |

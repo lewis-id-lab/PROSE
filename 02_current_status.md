@@ -9,13 +9,13 @@ Last updated 7 November 2026. Sections 1, 6c, 7 and 8 describe the current posit
 | Phase | State |
 |---|---|
 | 0 Set-up | complete |
-| 1 Literature search | complete — PubMed and Embase, 831 unique records screened |
+| 1 Literature search | complete — PubMed and Embase, 831 unique records; 622 excluded by the automated screen, 209 imported into Covidence, 208 full texts, 127 excluded, 81 included, 60 in the evidence base after extraction (addendum 46) |
 | 2 Screening and extraction | **round 1 complete including Jobs A and B and the supplementary-file pass.** The user reports (19 October) that the human round-2 checks confirmed the extraction against the source PDFs; the record is not in the repository. Direction errors in two studies (Fischer 2016, and one row of Sainz 2012) were found and corrected from their papers on 19 October; the direction check of the other text-parsed rows is closed (addenda 18 to 20, `data/direction_check_log.csv`): the full texts of Chen 2019 and Fisher 2017 confirmed their rows. **Study-level corrections by the student (5 November, addendum 35):** 24 corrections to totals and source files applied from `data/study_corrections.csv` (script 45); S039, S002 and S074 settled in addendum 36 (S010 excluded in addendum 37); the 17 S002 variant rows are duplicates of S079 and are dropped before pooling |
 | 3 Parameter derivation | **done provisionally** for the four-term panel (PTX3, CLEC7A with two parameters, TLR4, CD209); IL10 and IFNG dropped (D14). One to five strand-resolved or odds-ratio studies per term, so every effect is provisional |
 | 4 Baseline | **done**: the refit baseline on the 4,078-admission base cohort (D9, D10), MCID +0.00458 at 5% and +0.00160 at 20% |
 | 5 Genetic layer simulation | **first results in** (addenda 11 to 22 and 24 to 34): exact layer, sampling variability, correlation ensemble, attribution, sensitivity cohorts, donor genotype in the allo-HSCT stratum, Aim 3b, the second CLEC7A parameter, the East Asian check and the tertiary NRI comparison. Addendum 24 (20 October) made a profile-preserving truth primary, with the panels, the Aim 4 sweeps and the NRI rerun under it, and addenda 25 and 26 reran the sampling, ensemble, attribution, Aim 3b, donor and robustness analyses and the all-ancestry CLEC7A variant under it too, so every analysis is on it; donor PTX3 evidence is now two studies (the Leiden letter added, script 20 rerun, addendum 37: the donor results move by at most 0.3 cases per 1,000 allo admissions); Fisher 2017's recessive PTX3 rows reversed (addendum 39), which lowers the realised donor gain to 0.5 to 0.9 cases per 1,000 allo admissions at 5% |
 | 6 Sensitivity and architecture sweep | **Aim 4 sweep done** (addenda 16 and 17, exact and with estimated weights); sensitivity analyses done for the cohort, the baseline equation, the correlation structure and the sampling variability |
-| 7 Write-up | **full first draft** (19 October 2026, revised 20 October for the profile-preserving truth) on the Draft manuscript page (`manuscript.qmd`, references in `references.bib`, Vancouver style); authors, ethics, data availability, funding and two references still to add. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026); the PRISMA 2020 flow diagram is built (script 44, counts from prisma_summary.xlsx: 60 included of 831 screened, the spreadsheet's 61 less S010, excluded in addendum 37; the figure is in the manuscript methods) |
+| 7 Write-up | **full first draft** (19 October 2026, revised 20 October for the profile-preserving truth) on the Draft manuscript page (`manuscript.qmd`, references in `references.bib`, Vancouver style); authors, ethics, data availability, funding and two references still to add. The analysis site is live at https://lewis-id-lab.github.io/PROSE/ (repository lewis-id-lab/PROSE, public since 19 October 2026); the PRISMA 2020 flow diagram is built (script 44, counts from prisma_summary.xlsx: restaged in addendum 46: 831 records, 622 automated exclusions, 209 screened, 208 full texts, 127 excluded, 81 included, 60 in the evidence base after extraction, S010 excluded in addendum 37; the figure is in the manuscript methods) |
 
 ## 2. Search and screening
 
@@ -25,8 +25,8 @@ PubMed and 568 from Embase, of which 57 have no abstract and 175 are conference 
 exports were uploaded to Covidence rather than pre-deduplicated files, so Covidence's own duplicate count
 stays meaningful.
 
-One audit-trail item remains open: the complete automated screening decision file for all 831 records has not been
-assembled. The PubMed searches were run on 7 July 2026 and the Embase search on 8 October 2026 (the PubMed date was recorded on
+One audit-trail item remains open: the complete automated screening decision file for the 622 automated exclusions has not been
+assembled, and the 29 full-text exclusions for inadequate data for simulation are not yet checked against the Covidence export (addendum 46). The PubMed searches were run on 7 July 2026 and the Embase search on 8 October 2026 (the PubMed date was recorded on
 7 November 2026).
 
 ## 3. Extraction — round 1, with the Job A full-text pass applied
