@@ -34,3 +34,16 @@ test_that("the PRISMA side labels are inserted into each blue box of the SVG", {
   expect_match(out, "translate\\(13\\.65,-603\\.00\\) rotate\\(-90\\)")
   expect_error(prisma_side_labels("<svg></svg>"), "no identification box")
 })
+
+test_that("the extraction box is added below the included box and the band is lengthened", {
+  skip_if_not_installed("PRISMA2020"); skip_if_not_installed("DiagrammeRsvg")
+  tpl <- read.csv(system.file("extdata", "PRISMA.csv", package = "PRISMA2020"))
+  flow <- PRISMA2020::PRISMA_flowdiagram(PRISMA2020::PRISMA_data(tpl), interactive = FALSE, previous = FALSE, other = FALSE, side_boxes = TRUE)
+  svg <- DiagrammeRsvg::export_svg(flow)
+  out <- prisma_extraction_box(svg, c("Data extraction", "Studies (n = 1)"), extra = 120)
+  expect_match(out, 'xlink:title="Data extraction"', fixed = TRUE)
+  h <- function(x) as.numeric(regmatches(x, regexec('viewBox="0.00 0.00 [0-9.]+ ([0-9.]+)"', x))[[1]][2])
+  expect_equal(h(out) - h(svg), 120)
+  expect_match(prisma_side_labels(out), "Included", fixed = TRUE)
+  expect_error(prisma_extraction_box("<svg></svg>", "x"), "no 'New studies included'")
+})

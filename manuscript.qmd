@@ -172,14 +172,19 @@ possible predictor profiles, 75 of which occur. Three alternatives were kept as 
 ### Evidence synthesis
 
 **Search and extraction.** We searched PubMed (267 records; 7 July 2026) and Embase (785 records; 8 October 2026)
-for studies of host genetic variants and invasive fungal disease. After 221 duplicates were removed, 831 records were screened
-on title and abstract and 750 were excluded. Eighty-one reports were sought for retrieval. Eighteen could not be retrieved
-(twelve had no full text available, and for six the link pointed to the wrong document), and 63 were assessed in full. Three were
-excluded: a functional genomics study with no clinical outcome, a paediatric acute myeloid leukaemia study that did not analyse
-genotype against the fungal endpoint, and a study that compared patients with leukaemia against healthy controls without
-analysing infection by genotype. Sixty studies were included (@fig-prisma).
+for studies of host genetic variants and invasive fungal disease. Citation chasing from eight seed papers (6 October 2026) gave 440 further
+records; these were not screened and are not in the flow diagram. After 221 duplicates were removed, 831 unique records remained.
+An automated, AI-assisted screen of titles and abstracts against the eligibility criteria, run by one person (the supervisor), excluded 622.
+The remaining 209 records were imported into Covidence; one was excluded on title and abstract, and 208 full texts were assessed
+independently by two reviewers (the author and the supervisor), with disagreements resolved by the supervisor. The two-reviewer process therefore
+began at the full-text stage, and the agreement statistics refer to that stage only. Of the 208 full texts, 127 were excluded and 81 studies were included.
+Of the 81, 18 could not be matched to a usable source document (twelve had no full text available, and for six the link pointed to the wrong
+document), leaving 63 studies for extraction. Three of these were excluded when read in full for extraction: a functional genomics study with no clinical
+outcome, a paediatric acute myeloid leukaemia study that did not analyse genotype against the fungal endpoint, and a study that compared
+patients with leukaemia against healthy controls without analysing infection by genotype. Sixty studies form the evidence base (@fig-prisma).
 
-![PRISMA 2020 flow diagram of the literature search and study selection (databases only). The 750 records excluded at title and abstract were not recorded with reasons.](output/figures/prisma_flow.png){#fig-prisma}
+![PRISMA 2020 flow diagram of the literature search and study selection (databases only). The 622 records excluded by the automated screen were not
+reviewed by a human and were not recorded with reasons. Records from citation chasing (n = 440) did not enter screening.](output/figures/prisma_flow.png){#fig-prisma}
 
 The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an
 orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables. [Describe the extraction process and

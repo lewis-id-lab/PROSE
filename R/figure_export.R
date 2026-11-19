@@ -82,3 +82,34 @@ prisma_side_labels <- function(svg, labels = c(identification = "Identification"
   }
   svg
 }
+
+# The PRISMA2020 package stops at "New studies included in review". This adds a box below it for the extraction stage, joined by an arrow, in the package's
+# own box style, and lengthens the page and the blue "Included" band to hold it. Call it before prisma_side_labels() so that the label is centred in the longer band.
+# `lines` are the box's text lines; `extra` is the added height in points.
+prisma_extraction_box <- function(svg, lines, extra = 120) {
+  m <- regmatches(svg, regexec('<a xlink:title="New studies included in review">[[:space:]]*<polygon [^>]*points="([^"]*)"', svg))[[1]]
+  if (length(m) != 2L) stop("no 'New studies included' box in the SVG", call. = FALSE)
+  pts <- matrix(as.numeric(strsplit(m[2], "[ ,]+")[[1]]), ncol = 2, byrow = TRUE)
+  x0 <- min(pts[, 1]); x1 <- max(pts[, 1]); yb <- max(pts[, 2]); xm <- (x0 + x1) / 2
+  top <- 12; lh <- 14.4; h <- length(lines) * lh + 14
+  txt <- sprintf('<text text-anchor="middle" x="%.2f" y="%.2f" font-family="Helvetica,sans-Serif" font-size="12.00" fill="#000000">%s</text>',
+                 xm, top + 7 + lh * (seq_along(lines) - 0.3), lines)
+  node <- c('<g id="extraction" class="node"><a xlink:title="Data extraction">',
+            sprintf('<polygon fill="none" stroke="#36648b" points="%.1f,%.1f %.1f,%.1f %.1f,%.1f %.1f,%.1f %.1f,%.1f"/>',
+                    x1, top, x0, top, x0, top + h, x1, top + h, x1, top), txt, '</a></g>',
+            sprintf('<g class="edge"><path fill="none" stroke="#36648b" d="M%.1f,%.1f L%.1f,%.1f"/><polygon fill="#36648b" stroke="#36648b" points="%.1f,%.1f %.1f,%.1f %.1f,%.1f %.1f,%.1f"/></g>',
+                    xm, yb, xm, top - 4, xm - 3.5, top - 11, xm + 3.5, top - 11, xm, top - 4, xm - 3.5, top - 11))
+  if (top + h > extra - 6) stop("`extra` is too small for the box", call. = FALSE)
+  # Lengthen the page, its white background and the blue Included band
+  h0 <- as.numeric(regmatches(svg, regexec('viewBox="0.00 0.00 ([0-9.]+) ([0-9.]+)"', svg))[[1]][3])
+  svg <- sub('viewBox="0.00 0.00 ([0-9.]+) [0-9.]+"', sprintf('viewBox="0.00 0.00 \\1 %.1f"', h0 + extra), svg)
+  svg <- sub('height="[0-9]+pt"', sprintf('height="%.0fpt"', h0 + extra), svg)
+  bg <- regmatches(svg, regexec('<polygon fill="#ffffff" stroke="transparent" points="([^"]*)"', svg))[[1]]
+  svg <- sub(bg[1], sub(bg[2], gsub("(,)4( |$)", paste0("\\1", 4 + extra, "\\2"), bg[2]), bg[1], fixed = TRUE), svg, fixed = TRUE)
+  band <- regmatches(svg, regexec('(<a xlink:title="Blue included box">[[:space:]]*<path [^>]*d=")([^"]*)(")', svg))[[1]]
+  tok <- regmatches(band[3], gregexpr("-?[0-9.]+,-?[0-9.]+", band[3]))[[1]]
+  xy <- do.call(rbind, strsplit(tok, ",")); y <- as.numeric(xy[, 2]); y <- ifelse(y > -90, y + extra, y)
+  regmatches(band[3], gregexpr("-?[0-9.]+,-?[0-9.]+", band[3])) <- list(paste0(xy[, 1], ",", y))
+  svg <- sub(band[1], paste0(band[2], band[3], band[4]), svg, fixed = TRUE)
+  sub("</g>\n</svg>", paste0(paste(node, collapse = "\n"), "\n</g>\n</svg>"), svg, fixed = TRUE)
+}
