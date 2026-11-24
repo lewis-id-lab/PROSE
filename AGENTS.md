@@ -12,6 +12,7 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 - `status.md` (hand-off, script run-order table), `02_current_status.md` (working record), `index.qmd` (overview table): keep their phase tables and
   numbers in step with the addenda. `manuscript.qmd` carries its numbers as prose, not inline code, so a rerun means editing the prose.
 - `_quarto.yml` lists the pages that are rendered; `AGENTS.md` and `README.md` are not on the site.
+- `submission/`: the journal submission (JID Major Article), a separate Quarto project rendered with `quarto render submission` to `PROSE_manuscript.docx` and `PROSE_supplement.docx`. Its main text is a shortened copy of `manuscript.qmd` (3,500-word limit) and its supplement carries the long text, so a change of numbers means editing both. Figures as SVG/PDF/PNG come from `scripts/54_submission_figures.R`, which reruns the figure scripts with `ggsave()` redirected (nothing in `output/` is written). See `submission/README.md`.
 - Figures use `theme_jama()` and the blue-grey palette of `R/theme_jama.R` (sourced by `_setup.R` and by figure scripts 27, 34 and 52): no title or caption inside a figure. `_setup.R` makes every `gt()` on the pages a blue-grey table (`gt_jama_style()`). `scripts/53_export_figures.R` writes every figure to `manuscript_figures/` at 300 dpi.
 
 ## The evidence pipeline

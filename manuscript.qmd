@@ -9,23 +9,7 @@ csl: vancouver.csl
 link-citations: true
 ---
 
-::: callout-warning
-## Working draft
 
-This is a first draft of the write-up (phase 7). Every number comes from the files in `output/` as of 20 October 2026, after the corrections recorded in addenda 16 to 22 and 24 to 34 of the [decision record](decisions.qmd). Addendum 24 made the profile-preserving construction of the genetic truth primary, addendum 25 reran the sampling, ensemble, attribution, effect-modification, donor and robustness analyses under it, and addendum 26 did the same for the all-ancestry variant of the second CLEC7A parameter, so every result in this draft is on that construction. Addendum 23, the polygenic score benchmark, is written up in the decision record and is not part of this draft. The evidence is still provisional:
-
-- The record of the human round-2 verification is not yet in the repository.
-- The priors on the pooled effects and the reading of the "realised" score are proposals.
-- Cohort overlap between the Spanish registry series and the Jena AML cohorts is only partly adjudicated.
-
-Still to do:
-
-- the placeholders in square brackets in the Authors and contributions, Ethics, Data availability and Funding sections (names, approvals, access terms and funding are known only to the authors);
-- a description of the extraction and round-2 verification;
-- competing interests, which no section covers yet.
-
-References are in `references.bib`. They were fetched from doi.org and should be checked against the journals before submission.
-:::
 
 ```{r}
 #| label: setup
@@ -37,7 +21,7 @@ rd <- function(f) read.csv(file.path("output", f))
 
 **Background.** Variants in *PTX3*, *CLEC7A*, *TLR4* and *CD209* are often reported to be associated with invasive aspergillosis, and adding genotype to clinical risk scores has been proposed. Whether this would change clinical decisions has not been tested.
 
-**Methods.** In a pre-specified simulation study, we added host genotype to a seven-predictor score for proven or probable invasive mould disease (IMD) within 60 days. The score was refit on 4,078 haematology admissions in 1,945 patients (Bologna, 2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (60 studies included) and were pooled with Bayesian random-effects models. Genetic effects were added to the clinical logit with an intercept for each clinical profile, so that the clinical score stayed calibrated and any gain reflected the genetic information. Net-benefit gains were computed exactly for 2,000 posterior draws. The primary endpoint was the gain at a 5% risk threshold. It was judged against a pre-specified minimum clinically important difference (MCID) of 20% more true cases at no extra false positives (+0.00458).
+**Methods.** In a pre-specified simulation study, we added host genotype to an established seven-predictor risk score for proven or probable invasive mould disease (IMD) within 60 days of admission for patients with hematological malignancies. The score was based on a previously published study in 4,078 haematology admissions in 1,945 patients (Bologna, 2007–2016; 133 events). Effects for four haplotype terms came from a systematic review (60 studies included) and were pooled with Bayesian random-effects models. Genetic effects were added to the clinical logit with an intercept for each clinical profile, so that the clinical score stayed calibrated and any gain reflected the genetic information. Net-benefit gains were computed exactly for 2,000 posterior draws. The primary endpoint was the gain in identifying patients at a 5% risk threshold- a common threshold for routine galactomanan testingor posaconazole prophyalxis. It was judged against a pre-specified minimum clinically important difference (MCID) of 20% more true cases at no extra false positives.
 
 **Results.** Pooled odds ratios per copy of the risk haplotype ranged from 0.84 (CLEC7A Y238X) to 1.80 (CD209). With the true effects in the score, the four-term panel raised net benefit at 5% by a median of +0.00056 (90% range 0.00015 to 0.00127). That is 1.1 extra true cases per 1,000 admissions, against 4.6 required. At most 0.6% of draws reached the MCID, although the area under the ROC curve rose from 0.861 to 0.873 and the continuous net reclassification improvement was 34%. A second CLEC7A haplotype doubled the gain to +0.00115, about a quarter of the MCID. Neutropenic admissions (80% of events) supplied about four-fifths of the gain. No panel of up to 20 independent loci with per-allele odds ratios of 1.5 or less reached the MCID, and a scored variant correlated 0.7 with the causal one kept under half of the gain. If only 80% of cases were due to the pathogen the loci act on, the loci needed roughly doubled, and at 60% or less no architecture in the grid reached it. A single global intercept, used in an earlier version of the simulation, gave gains 5% to 6% larger at 5%, and comparison with the correctly marginalised clinical risk showed that this was not a correction of miscalibration.
 
@@ -45,11 +29,11 @@ rd <- function(f) read.csv(file.path("output", f))
 
 ## Introduction
 
-Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [@pagano2017]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019]. It reached an aROC of 0.85 for proven or probable IMD within 60 days and defines high risk at a predicted probability of 5%.
+Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [@pagano2017]. Decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depend on how much risk a patient is thought to carry. Clinical risk scores formalise that judgement. Stanzani and colleagues derived a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019]. It reached an aROC of 0.85 for proven or probable IMD within 60 days and differentiated high-risk populations at a predicted probability of 5%.
 
 Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*) [@cunha2014; @sainz2012; @brunel2018; @fisher2017; @kalkanci2020; @schnetzke2024]. After allogeneic transplantation the reconstituted innate immune system is donor-derived, which has led to proposals to use donor genotype to stratify transplant recipients [@cunha2014]. These findings have prompted proposals for genetically augmented risk scores.
 
-Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous. Linked variants in the same gene are often reported as separate findings, and adding them to a model as independent terms counts the same signal more than once. An earlier, unpublished analysis of this question did that and reported a net reclassification improvement of 22.5%. Second, gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis does: it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that the threshold implies [@vickers2006].
+Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous. Linked variants in the same gene are often reported as separate findings, and adding them to a model as independent terms counts the same signal more than once. Second, gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis could address this issue, as it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that the threshold implies [@vickers2006].
 
 We therefore framed the question as one of value of information, not of prediction. Under what combinations of effect size, risk-allele frequency and linkage structure would host genetic information change clinical decisions for IMD in haematological patients, and is the published evidence anywhere near those combinations? We fixed the size of a clinically important change before any genetic result existed, so that a negative answer would be a finding and not a failure. Our objectives were to:
 

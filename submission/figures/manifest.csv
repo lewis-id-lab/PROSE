@@ -1,0 +1,12 @@
+"figure","source","width_in","height_in"
+"Figure_1","scripts/34_calibration_check_figures.R (fig_headline_profile.png)",10,4.5
+"Figure_2","scripts/52_manuscript_figures.R (fig_icon_array_profile.png)",8.5,3.6
+"Figure_3","scripts/27_writeup_figures.R (fig_aim3b_gain_profile.png)",11,7.5
+"Figure_4","scripts/34_calibration_check_figures.R (aim4_sweep_5pct_profile.png)",11,5.5
+"Figure_5","scripts/52_manuscript_figures.R (fig_frontier_moves_profile.png)",8.5,4.8
+"Figure_S1","scripts/44_prisma_flow.R (prisma_flow.png)",7,9.2
+"Figure_S2","scripts/52_manuscript_figures.R (fig_forest.png)",8.5,5.6
+"Figure_S3","scripts/27_writeup_figures.R (fig_attribution_profile.png)",9,4.2
+"Figure_S4","scripts/27_writeup_figures.R (fig_aim3b_power_profile.png)",10,4.5
+"Figure_S5","scripts/34_calibration_check_figures.R (aim4_sweep_20pct_profile.png)",11,5.5
+"Figure_S6","manuscript.qmd, chunk fig-nri-grid (code repeated here)",7,5.5

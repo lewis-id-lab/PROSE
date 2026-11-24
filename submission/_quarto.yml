@@ -1,0 +1,30 @@
+# The journal submission (Journal of Infectious Diseases, Major Article): its own Quarto project, separate from the website in the project root.
+# Render from the project root with:  quarto render submission
+# Outputs: submission/PROSE_manuscript.docx, submission/PROSE_supplement.docx. The figures are made by scripts/54_submission_figures.R.
+project:
+  type: default
+  render:
+    - manuscript.qmd
+    - supplement.qmd
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: false
+
+# Code runs from the project root, so the pages read output/ exactly as the website pages do
+knitr:
+  opts_knit:
+    root.dir: ".."
+
+bibliography: ../references.bib
+csl: ../vancouver.csl
+link-citations: false
+
+format:
+  docx:
+    reference-doc: reference.docx
+    number-sections: false
+    toc: false
+    fig-dpi: 300

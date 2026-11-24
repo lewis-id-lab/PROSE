@@ -1,0 +1,259 @@
+---
+title: "Does Host Genotype Change Clinical Decisions for Invasive Mould Disease? A Prespecified Decision-Curve Simulation Study"
+output-file: PROSE_manuscript.docx
+---
+
+```{r}
+#| label: setup
+suppressPackageStartupMessages({library(dplyr); library(gt)})
+rd <- function(f) read.csv(file.path("output", f))
+
+# Words between <!-- wc:<part> --> and <!-- /wc:<part> --> in this file, without code chunks, citations, cross-reference markup or comments.
+# JID counts the abstract and all manuscript content, not the title page, references or figure legends.
+qmd <- readLines("submission/manuscript.qmd", warn = FALSE)
+word_count <- function(part) {
+  s <- grep(paste0("<!-- wc:", part, " -->"), qmd, fixed = TRUE); e <- grep(paste0("<!-- /wc:", part, " -->"), qmd, fixed = TRUE)
+  x <- qmd[(s + 1):(e - 1)]
+  fence <- cumsum(grepl("^```", x)); x <- x[fence %% 2 == 0 & !grepl("^```", x)]
+  x <- paste(x, collapse = " ")
+  x <- gsub("<!--.*?-->", " ", x, perl = TRUE)
+  x <- gsub("\\[-?@[^]]+\\]", " ", x, perl = TRUE)
+  x <- gsub("\\{\\{<[^>]*>\\}\\}", " ", x, perl = TRUE)
+  x <- gsub("[#*]", " ", x)
+  length(strsplit(trimws(x), "\\s+")[[1]])
+}
+wc_abstract <- word_count("abstract")
+wc_text <- word_count("text")
+```
+
+**Running title:** Host genotype and mould risk decisions
+
+**Authors:** \[Names, highest academic degrees and affiliations to be added, with ORCID iDs.\]
+
+**Corresponding author:** \[Name, postal address, telephone and e-mail.\]
+
+**Alternate corresponding author:** \[Name, postal address, telephone and e-mail.\]
+
+**Summary (40 words):** In a prespecified simulation combining 4,078 haematology admissions with meta-analysed candidate-gene effects, adding PTX3, CLEC7A, TLR4 and CD209 genotype to a clinical risk score found 1.1 extra invasive mould disease cases per 1,000 admissions, against 4.6 required.
+
+**Keywords:** invasive aspergillosis; invasive mould disease; host genetics; risk prediction; decision curve analysis; net benefit; haematological malignancy; simulation.
+
+**Word count:** abstract `r wc_abstract`; abstract and text `r format(wc_abstract + wc_text, big.mark = ",")` (limit 3,500). Inserts: 2 tables and 5 figures (limit 7).
+
+**Prior presentation:** \[Meetings at which these data were presented, or "None".\]
+
+{{< pagebreak >}}
+
+## Abstract
+
+<!-- wc:abstract -->
+**Background.** Variants in *PTX3*, *CLEC7A*, *TLR4* and *CD209* are associated with invasive aspergillosis, and adding genotype to clinical risk scores has been proposed. Whether this would change decisions is untested.
+
+**Methods.** In a prespecified simulation study, host genotype was added to a 7-predictor score for proven or probable invasive mould disease (IMD), refit on 4,078 haematology admissions (1,945 patients; 133 events). Per-copy haplotype effects, pooled from a systematic review (60 studies) by Bayesian random-effects models, were added so that the clinical score stayed calibrated within each clinical profile. The primary endpoint was the net-benefit gain at a 5% risk threshold, judged against a prespecified minimum clinically important difference (MCID) of 20% more true cases at no extra false positives.
+
+**Results.** Pooled odds ratios per copy ranged from 0.84 (CLEC7A Y238X) to 1.80 (CD209). With the true effects in the score, the 4-term panel raised net benefit by a median of 0.00056 (90% range, 0.00015–0.00127): 1.1 extra true cases per 1,000 admissions, against 4.6 required. At most 0.6% of draws reached the MCID, although discrimination improved (area under the curve, 0.861 to 0.873). Neutropenic admissions supplied about four-fifths of the gain. No panel of up to 20 independent loci with per-allele odds ratios of 1.5 or less reached the MCID, and the loci needed roughly doubled if only 80% of cases arose through the targeted pathway.
+
+**Conclusions.** On the published evidence, genotype at these genes is unlikely to change decisions at the 5% threshold in haematological inpatients.
+<!-- /wc:abstract -->
+
+{{< pagebreak >}}
+
+<!-- wc:text -->
+## Introduction
+
+Invasive mould disease (IMD), mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [@pagano2017]. Clinical risk scores guide decisions about antifungal prophylaxis, diagnostic work-up and pre-emptive treatment. Stanzani and colleagues derived a score from 7 routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019]. It reached an area under the receiver operating characteristic curve (aROC) of 0.85 for proven or probable IMD within 60 days and defines high risk as a predicted probability of 5%.
+
+Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*) [@cunha2014; @sainz2012; @brunel2018; @fisher2017; @kalkanci2020; @schnetzke2024]. After allogeneic transplantation the innate immune system is donor-derived, which has prompted proposals to stratify recipients by donor genotype [@cunha2014].
+
+Two problems make such proposals hard to judge. First, the evidence is small and heterogeneous, and linked variants in the same gene are often reported as separate findings; entering them as independent terms counts 1 signal several times. An earlier, unpublished analysis of this question did so and reported a net reclassification improvement (NRI) of 22.5%. Second, gains in discrimination or reclassification do not show whether anyone would be managed differently. Decision-curve analysis does: it counts true and false positives at a clinically chosen risk threshold, weighted by the harm-to-benefit ratio that the threshold implies [@vickers2006].
+
+We therefore asked under what combinations of effect size, risk-allele frequency and linkage host genotype would change decisions for IMD in haematological patients, and whether the published evidence is near them. The size of a clinically important change was fixed before any genetic result existed, so that a negative answer would be a finding.
+
+## Methods
+
+### Design and Prespecification
+
+This simulation study combines admission-level clinical data with a meta-analysis of the published genetic evidence (ADEMP structure [@morris2019], Supplementary Table S1). Design decisions were locked at a version-control tag (`prespec-lock`, 17 October 2026) before any genetic result existed; every later change is a dated public addendum stating what had been seen. Two later changes, made before any genetic result, affected the primary analysis: the baseline cohort moved from a copula reconstruction to the admission-level data, and the baseline became a refit on those data, which raised the minimum clinically important difference (MCID) by 13% and made the primary test harder. A third, to the construction of the simulated truth (below), was made after the genetic results were known; it lowered the primary gains by 5% to 6% and changed no conclusion.
+
+### Clinical Cohort and Baseline Model
+
+Clinical data are the admission-level derivation data of the Stanzani score (BOSCORE registry, Bologna, 2007–2016). The outcome is proven or probable IMD by EORTC criteria within 60 days of admission. The 7 predictors are prior mould disease, high-dose corticosteroids, uncontrolled malignancy, high-risk chemotherapy, prolonged neutropenia, severe lymphopenia and cytomegalovirus infection. After removal of 49 duplicated admission rows (a confirmed recording artefact), the base cohort has 4,078 admissions in 1,945 patients, with 133 events (3.26%).
+
+The baseline is a maximum-likelihood logistic regression of the outcome on the 7 predictors, with standard errors clustered by patient, a 2,000-resample patient bootstrap and Harrell's estimate of optimism [@harrell1996]; it was then held fixed. The joint distribution of clinical risk is the observed distribution of the 128 possible predictor profiles, 75 of which occur. The published equation, the 4,127-row cohort and a Gaussian-copula reconstruction of the predictor correlation were sensitivity analyses (Supplementary Methods).
+
+### Evidence Synthesis
+
+We searched PubMed (7 July 2026) and Embase (8 October 2026) for studies of host genetic variants and invasive fungal disease (1,052 records; 831 after removal of duplicates). An automated, artificial intelligence (AI)-assisted title-and-abstract screen run by 1 investigator excluded 622 records; of the remaining 209, 208 full texts were assessed by 2 reviewers and 81 studies were included. Eighteen had no usable source document and 3 were excluded at extraction, leaving 60 studies (Supplementary Figure S1). Ambiguous contrasts were verified against the source tables.
+
+Candidate variants needed at least 3 meta-analysable studies. Within each gene, linked single-nucleotide polymorphisms (SNPs) were collapsed into 1 additive per-copy haplotype term (Table 1), using phased 1000 Genomes European haplotypes [@genomes2015] rescaled to gnomAD v4 non-Finnish European allele frequencies [@gnomad]. Each study's contrast (allelic, dominant, recessive or genotype counts) was converted to a per-copy log odds ratio by solving a haplotype model (additive on the log-odds scale, Hardy–Weinberg equilibrium, case–control sampling), with 1 effect per study; the primary analysis used recipient genotype, odds ratios and whole-cohort analyses. Effects were pooled with a Bayesian random-effects model, μ ~ N(0, 1) and τ ~ half-normal(0.5). A second *CLEC7A* parameter (the A-G haplotype at rs7309123 against A-C), not in the prespecified panel, was estimated from 3 strand-resolved European or Turkish studies [@schnetzke2024; @kalkanci2020; @sainz2012] for a secondary 5-term analysis.
+
+### The Genetic Layer
+
+Each patient receives 1 genotype, shared by all of their admissions, with risk-class dosages (0, 1 or 2) in Hardy–Weinberg equilibrium at the gnomAD frequencies, independent across terms and of the clinical profile. The true risk of an admission is
+
+$$\operatorname{logit} p = \eta_X + \sum_j \beta_j g_j + a_X,$$
+
+where $$\eta_X$$ is the baseline linear predictor of clinical profile $$X$$ and $$g_j$$ the dosage of term $$j$$. The intercept $$a_X$$ is chosen for each profile so that the risk averaged over genotypes equals the clinical score's risk, $$\operatorname{expit}(\eta_X)$$. The clinical score is therefore exactly calibrated within every profile, and a gain in net benefit cannot come from correcting its miscalibration (the profile-preserving truth). An earlier version used a single global intercept, which holds the overall prevalence but leaves the clinical score slightly miscalibrated within profiles; it is kept as a sensitivity analysis (Supplementary Methods).
+
+True effects were drawn 2,000 times from each term's pooled posterior, either as the pooled mean (mean reading) or as a new-study effect that includes between-study heterogeneity (predictive reading). Three scores were compared under the same truth: the clinical score alone; a ceiling score with the true effects, the best any genetic score could do; and a realised score with the pooled posterior medians. Genetic scores were recentred within each profile in the same way as the truth.
+
+Net benefit at threshold $$p_t$$ is $$\text{TP}/n - (\text{FP}/n) \cdot p_t/(1-p_t)$$, and the gain is the net benefit of a genetic score minus that of the clinical score. Gains were computed exactly over the 128 profiles and all genotype combinations (81 for 4 terms), without patient-level sampling.
+
+### Minimum Clinically Important Difference
+
+Before any genetic result, the MCID was defined as 20% more true cases at no increase in false positives, $$0.2 \times \text{TP}_{\text{clin}}/n$$: +0.00458 at the primary 5% threshold, the high-risk cut-off of the original score, and +0.00160 at the secondary 20% threshold. We report the median gain over draws (90% range), extra true cases per 1,000 admissions, and the share of draws reaching the MCID.
+
+### Secondary Analyses
+
+Secondary analyses, all under the profile-preserving truth, are detailed in the Supplementary Methods: the observed gain in 2,000 simulated studies of the cohort's size; robustness to the correlation structure and baseline equation; Shapley attribution among terms; effect modification by prolonged neutropenia, testing the hypothesis that per-copy effects are larger in neutropenic admissions [@feys2026] against the stratum effects of the only stratified study [@brunel2018], with an interaction test in 1,000 simulated studies per scenario; donor genotype in allogeneic recipients; and a sweep of 4,000 architectures of k independent loci (k = 1–20, per-allele odds ratio 1.1–3.0, risk-allele frequency 0.05–0.50), extended to estimated weights, pathogen specificity (only a fraction of cases arising through the pathway the loci act on), incomplete tagging, the winner's curse and linkage among causal loci. NRI was tertiary.
+
+### Patient Consent Statement
+
+This is a secondary analysis of retrospective registry data [@stanzani2019]. \[Ethics committee approval or waiver for the registry and for this secondary analysis: committee, reference number and date; statement on consent or its waiver.\] The analysis used a pseudonymised extract without names or birth dates. No patient was genotyped: genotypes were simulated, and genetic effects came from published studies.
+
+### Software and Data
+
+Analyses used R 4.6.1 with package versions pinned by renv. The code, tests, decision record and all summary outputs are public at https://github.com/lewis-id-lab/PROSE.
+
+## Results
+
+### Cohort, Baseline and Evidence
+
+The refit baseline's odds ratios ranged from 2.15 for uncontrolled malignancy to 7.28 for prior mould disease, and every published coefficient lay inside the refit's 90% bootstrap interval. The aROC was 0.858 (0.853 after optimism correction) and the calibration slope 0.97. At the 5% threshold the baseline flagged 15.7% of admissions (net benefit 0.0158). The MCID of +0.00458 (patient bootstrap 90% interval, 0.00387–0.00566) corresponds to 4.6 extra true cases per 1,000 admissions at no extra false positives.
+
+Each term rests on 3 to 5 studies (Table 1; Supplementary Figure S2). CD209 is the only term of the 4-term panel whose interval excludes an odds ratio of 1; PTX3 is borderline (posterior probability of an effect below zero, 5.5%), and CLEC7A Y238X is centred below 1. The second CLEC7A parameter was estimated at 1.86 per copy; 2 East Asian studies pointed the other way, as expected of a tag SNP on different haplotype backgrounds.
+
+### Primary Result
+
+With the true effects in the score, the 4-term panel raised net benefit at 5% by a median of +0.00056 (90% range, 0.00015–0.00127; Table 2, Figure 1): 1.1 extra true cases per 1,000 admissions, against the 4.6 the MCID requires. The gain came with extra false positives, and the share of admissions flagged rose from 15.7% to 16.8% (Figure 2). No draw reached the MCID under the mean reading, and 0.6% did under the predictive reading. With the pooled estimates in the score the gain was +0.00040 (−0.00010 to 0.00091), and no draw reached the MCID. The expected aROC rose from 0.861 to 0.873 with the ceiling score and to 0.870 with the realised score. At the secondary 20% threshold the ceiling score gained +0.00107 and reached the MCID of +0.00160 in 17% of draws (36% under the predictive reading).
+
+Adding the second CLEC7A parameter roughly doubled the gain at 5%, to +0.00115 (0.00046 to 0.00220), about a quarter of the MCID; it was reached in no draw under the mean reading and in 1.5% under the predictive reading. At 20% the 5-term ceiling score reached the MCID in 64% of draws.
+
+The gains were not a correction of induced miscalibration: under the global-intercept truth, where gains at 5% were 5% to 6% larger, the best clinical-only rule beat the clinical score by at most 0.00027 in any draw (Supplementary Table S2).
+
+### Sampling Variability, Robustness and Attribution
+
+A study of the cohort's size would observe the gain with a standard deviation at least as large as the expected gain (0.00064 to 0.00116 at 5%); with effects at the pooled medians, the observed gain was positive in 71% of simulated studies and never reached the MCID. Alternative correlation structures, baseline equations and cohorts moved the median gain by at most 0.00016. CD209 supplied 51.4% of the Shapley gain at 5%, PTX3 22.6%, TLR4 19.0% and CLEC7A 7.0%; with the second CLEC7A parameter, CLEC7A supplied 50.9% (Supplementary Figure S3).
+
+### Effect Modification by Neutropenia
+
+Neutropenic admissions were 28% of the cohort but held 106 of the 133 events (80%; event rate 9.2%). With homogeneous effects the gain per admission was 11 times larger in neutropenic admissions, and that stratum supplied 80% of the gain at 5%. The only stratified evidence [@brunel2018] points against the hypothesis: on the per-copy PTX3 h2 scale, its rs2305619 effect was +1.17 in non-neutropenic and −0.13 in neutropenic courses (difference −1.30, SE 0.72, P = .07). The 5% MCID came nearest only when the whole effect was placed in non-neutropenic admissions (Figure 3), where the oracle score gained +0.00314 and reached the MCID in 2% of draws. A common score with pooled estimates lost little under the hypothesised pattern but was harmful if Brunel's stratum effects held (−0.00016 with 4 terms, −0.00086 with 5). With 5 terms, an interaction test in studies of the cohort's size detected the modification in 89% of studies when the whole effect was in neutropenic admissions, 60% for a ratio of 4 and at least 99.7% for modifications of Brunel's size (false-positive rate 5.0%; Supplementary Figure S4).
+
+### Donor Genotype
+
+In the allogeneic stratum (272 admissions, 43 events) the baseline already flagged 77% of admissions at 5%. Donor genotype changed true cases by 0.0 to +0.5 per 1,000 transplant admissions at 5%, against about 30 needed for the stratum's MCID, and added 15 to 25 at 20%, against about 12 needed; the donor evidence is 1 or 2 studies per term and none for CD209.
+
+### Architectures That Would Reach the MCID
+
+Of the 4,000 architectures, 40% reached the 5% MCID and 77% the 20% MCID (Figure 4; Supplementary Figure S5). One locus was never enough (at most 37% of the MCID). No number of independent loci up to 20 with odds ratios of 1.5 or less reached it; an odds ratio of 2.0 needed 9 to 12 loci at frequencies of 0.2 to 0.5, and an odds ratio of 3.0 needed 4 to 5. The 4-term panel corresponds to about 7 loci of odds ratio 1.3 at frequency 0.3 and would need to be roughly 8 times stronger to reach the MCID. With estimated weights, a score kept a median of 96%, 89% and 58% of the ceiling gain at per-locus standard errors of 0.10, 0.20 and 0.40; the present pooled estimates have standard errors of 0.18 to 0.38.
+
+These requirements are a best case (Figure 5). If only 80% of cases arose through the pathway the loci act on, the share of a 600-architecture grid reaching the 5% MCID fell from 24% to 9%–10%, and at frequency 0.3 the loci needed for an odds ratio of 2.0 rose from 10 to 19 or 20; at 60% or less none reached it. A scored variant correlated 0.7 with the causal one kept 42% to 49% of the gain and one correlated 0.9 lost about a fifth, in line with the squared correlation. Unequal locus frequencies changed little, and the winner's curse mattered only for imprecise weights (standard error 0.40: 9% of architectures reached the MCID, against 16%). Linkage among distinct causal loci raised the share reaching the MCID, so the finding for odds ratios of 1.5 or less holds for independent loci only.
+
+### Reclassification
+
+Continuous NRI was large where net benefit barely moved: 34% (90% range, 19%–53%) for the 4-term panel with true effects, against a categorical NRI at 5% of 2.4% (Supplementary Table S4). Simulating the 3 PTX3 SNPs independently, as the earlier analysis did, gave a continuous NRI of 25% and 4 times the net-benefit gain of the correct h2 haplotype (+0.00033 against +0.00008); a 3-SNP score on real, linked chromosomes lowered net benefit yet had a continuous NRI of 29% (Supplementary Figure S6).
+
+## Discussion
+
+On the published evidence, adding the 4 best-evidenced host variants to a validated clinical score for IMD would change few decisions at the 5% threshold. With the true effects in the score the panel found about 1 extra case per 1,000 admissions, against a prespecified bar of 4.6, in every sensitivity setting. The most favourable addition the evidence allows, a second CLEC7A parameter, left the gain at about a quarter of the MCID. A real gain of this size would also be hard to observe: it would appear as no gain, or a loss, in a fifth to a third of cohorts the size of the derivation cohort.
+
+Our results differ from the earlier NRI of 22.5% for 2 reasons. First, the earlier analysis simulated rs2305619, rs3816527 and rs1840680 as independent risks, although in European haplotypes they tag 1 haplotype class (r² 0.79 to 0.996), and so counted the signal 3 times; as 1 haplotype, PTX3 adds about 2% of the MCID. Second, NRI counts movements across risk categories without weighing their consequences; it can be positive for uninformative markers and can reward miscalibration [@kerr2014; @pepe2014; @hilden2013]. Here it was 34% with a net-benefit gain an eighth of the MCID, and it did not register the harm of a miscalibrated score. Genotype does improve the ranking (aROC +0.012), but few admissions cross the threshold: about 9 extra false positives were flagged per extra true case, which is beneficial at 5% (where a true case is worth up to 19 false positives) but too rare to matter.
+
+Genotype might carry more value in some settings. At the secondary 20% threshold the 5-term ceiling score reached the MCID in 64% of draws, but this rests on a parameter estimated from 3 studies and is a hypothesis. Neutropenic admissions supplied about four-fifths of the gain in every scenario but one; the only stratified data [@brunel2018] point against the inflammatory-levelling hypothesis but come from 1 small study with a different definition of neutropenia. A genotyped, neutropenia-stratified cohort of this size would detect a modification of the hypothesised size in 60% to 89% of studies and one of Brunel's size almost always, and would show whether a single pooled score is safe. In allogeneic recipients, where the biological case for donor genotype is strongest [@cunha2014], the baseline already flags 77% of admissions at 5%, leaving little room for genotype.
+
+Reaching the frontier needs loci with odds ratios of 2 or more, or many precisely weighted loci. A per-locus standard error of 0.1 needs about 1,000 balanced subjects per locus at a common frequency; a cohort of Bologna's size gives 0.14 to 0.22, and to our knowledge no genome-wide association study of invasive aspergillosis has been published. The frontier also assumes that every case responds to the loci and that the scored variants are causal; otherwise the requirements rise steeply, and variants specific to 1 pathogen are a weak basis for a score that decides for all moulds.
+
+Strengths include prespecification locked in version control with every later change disclosed, exact computation, haplotype modelling of linked SNPs, source verification of ambiguous contrasts, admission-level clinical data and public code. The evidence is thin, some cohorts overlap, and small candidate-gene studies are prone to publication bias and inflated effects; if so, our pooled effects are optimistic, which strengthens the negative conclusion at 5%. The per-copy mapping assumes additive effects, Hardy–Weinberg equilibrium and European haplotype frequencies. The realised score uses shrunken posterior medians and ignores the winner's curse, so real-world gains would be lower. Genotype is assumed independent across genes and of the clinical profile, only candidate genes are modelled, and the genetic effect is the same on the logit scale in every profile; the primary construction of the truth was adopted after the global-intercept results were known, although it changed no conclusion. The cohort is a single pre-pandemic centre, the outcome is all moulds, the baseline is evaluated on its derivation data, and prophylaxis has changed since 2016. The title-and-abstract screen was automated and its exclusions were not reviewed by a human. Finally, net benefit at a fixed threshold captures 1 use of a risk score; uses such as choosing an antifungal agent or enriching a trial were not evaluated.
+
+In conclusion, host genotype at PTX3, CLEC7A, TLR4 and CD209 is unlikely to change decisions at the 5% threshold for IMD in haematological inpatients. Genotyping would become worth doing only with variants of larger effect, or many more of them, than candidate-gene studies have found. A more immediate use for a genotyped cohort would be to test whether genetic effects depend on neutropenia.
+<!-- /wc:text -->
+
+## Notes
+
+**Author contributions.** \[CRediT roles for each author, for example: conceptualisation; methodology; software; formal analysis; investigation (literature search, screening and extraction); data curation; writing, original draft; writing, review and editing; supervision.\]
+
+**Acknowledgments.** \[Acknowledgments, or delete.\]
+
+**Financial support.** \[Funding sources and grant numbers, and the role of the funders; or "This work received no specific funding."\]
+
+**Potential conflicts of interest.** \[Each author's disclosures. All authors have submitted the ICMJE Form for Disclosure of Potential Conflicts of Interest. Conflicts that the editors consider relevant to the content of the manuscript have been disclosed.\]
+
+**Use of AI tools.** \[Statement on the AI-assisted title-and-abstract screen and on any use of AI-assisted tools in preparing the manuscript or code, as required by the journal.\]
+
+**Data availability.** The code, the dated decision record (prespecification locked at the tag `prespec-lock`), the extraction tables with their corrections, the allele and haplotype frequency tables and all fitted results are public at https://github.com/lewis-id-lab/PROSE. \[Archive DOI to add at submission.\] The patient-level BOSCORE data are personal data and are not shared; \[conditions of access and contact\].
+
+## References
+
+::: {#refs}
+:::
+
+{{< pagebreak >}}
+
+## Figure Legends
+
+**Figure 1.** Net-benefit gain over the clinical score against the minimum clinically important difference (MCID; dashed line) at the 5% and 20% risk thresholds, under the profile-preserving truth, for the 4-term panel and for the 5-term panel with the European or the all-ancestry estimate of the second CLEC7A parameter. Points, median over 2,000 draws of the true effects (pooled-mean reading); bars, 90% range. Dark points, true effects in the score (ceiling); light points, pooled estimates in the score (realised).
+
+**Figure 2.** The primary result at the 5% threshold as cases per 10,000 admissions (326 cases of invasive mould disease), for the 4-term panel with the true effects in the score. Each circle is 1 case. The clinical score finds 229 and the genetic score adds 11; the minimum clinically important difference (MCID) asks for 46 more than the clinical score at no extra false positives, so 35 further cases are needed; 51 are missed in either case. The 11 added cases come with 99 more false positives per 10,000 admissions, so the net-benefit gain is the equivalent of 5.6 cases against the 45.8 the MCID requires.
+
+**Figure 3.** Whole-cohort net-benefit gain under 6 scenarios of effect modification by neutropenia, for 4 scores, at the 5% and 20% thresholds, for the 4- and 5-term panels under the profile-preserving truth. Scenarios give the ratio of the per-copy effect in neutropenic to that in non-neutropenic admissions, with the event-weighted average held at the pooled effect; "Brunel's stratum effects" applies the stratum effects of the only stratified study directly. Oracle, the true stratum-specific effects; common, the pooled effects in both strata; assumed Feys and assumed Brunel, scores that assume a ratio of 4 or 1/4. Dashed line, minimum clinically important difference; points, median; bars, 90% range over draws of the true effects.
+
+**Figure 4.** Gain of the ceiling score relative to the minimum clinically important difference (MCID) at the 5% threshold under the profile-preserving truth, by number of independent risk loci, per-allele odds ratio and risk-allele frequency, in 4 bands; the darkest band reaches the MCID. Circle, the architecture with the same gain as the 4-term panel (7 loci of odds ratio 1.3 at frequency 0.3).
+
+**Figure 5.** How the requirement moves when the idealised assumptions are relaxed: gain of the ceiling score relative to the minimum clinically important difference (MCID) at the 5% threshold and a risk-allele frequency of 0.3, in the 4 bands of Figure 4. The edge of the darkest band is the idealised frontier: independent causal variants, every case responsive to them, weights known exactly. White lines show the fewest loci that reach the MCID under 3 separate departures. For the 2 tag lines the scored variant is correlated 0.9 or 0.7 (r) with the causal one and the weights are estimated with a standard error of 0.10 per locus (median of 12 replicate discovery studies). For the pathogen line only 80% of cases arise through the pathway the loci act on, and the weights are known exactly and fitted to the all-mould outcome. Points are computed architectures; the segments between them are drawn for reading only. With a tag at 0.7, odds ratios below 2.5 do not reach the MCID within 20 loci.
+
+{{< pagebreak >}}
+
+## Tables
+
+**Table 1.** Pooled Effects per Copy of Each Term's Risk Haplotype Class (Primary Analysis: Recipient Genotype, Odds-Ratio Scale)
+
+```{r}
+#| label: table-pooled
+pool_row <- function(file, term, risk_class, freq) {
+  rd(file)[1, ] |>
+    transmute(Term = term, `Risk class` = risk_class, Frequency = freq, Studies = k,
+              OR = or, `90% CrI` = sprintf("%.2f to %.2f", or_lo, or_hi), tau = tau)
+}
+bind_rows(
+  pool_row("ptx3_h2_pooled.csv", "PTX3", "h2 (A at rs2305619)", 0.482),
+  pool_row("clec7a_pooled.csv", "CLEC7A", "Y238X (C at rs16910526)", 0.077),
+  pool_row("tlr4_pooled.csv", "TLR4", "G-T (rs4986790, rs4986791)", 0.061),
+  pool_row("cd209_pooled.csv", "CD209", "G at rs4804800", 0.125),
+  pool_row("clec7a_second_pooled.csv", "CLEC7A, second parameter (secondary)", "A-G (G at rs7309123, non-Y238X)", 0.349)
+) |>
+  gt() |>
+  fmt_percent(Frequency, decimals = 1) |>
+  fmt_number(c(OR, tau), decimals = 2) |>
+  cols_label(tau = "τ")
+```
+
+Abbreviations: CrI, credible interval; OR, odds ratio per copy; τ, between-study standard deviation on the log-odds scale. Bayesian random-effects model, μ ~ N(0, 1), τ ~ half-normal(0.5). Frequencies are gnomAD v4 non-Finnish European. TLR4 was pooled under a carrier model with a continuity correction, because no cohort had minor homozygotes.
+
+{{< pagebreak >}}
+
+**Table 2.** Net-Benefit Gain Over the Clinical Score Under the Profile-Preserving Truth
+
+```{r}
+#| label: table-headline
+rd("calibration_check_layer.csv") |>
+  filter(comparison == "profile") |>
+  transmute(panel = recode(panel, "four terms" = "Four terms (primary)", "five terms" = "Five terms, CLEC7A A-G added (secondary)"),
+            truth, scenario = score, threshold,
+            gain, lo, hi, extra = extra_cases_per_1000, p = p_meets_mcid, auc) |>
+  mutate(panel = factor(panel, unique(panel)),
+         Threshold = paste0(threshold * 100, "%"),
+         Reading = truth,
+         Score = if_else(scenario == "ceiling", "Ceiling", "Realised"),
+         range = sprintf("%.5f to %.5f", lo, hi)) |>
+  arrange(panel, threshold, Reading, Score) |>
+  select(panel, Threshold, Reading, Score, gain, range, extra, p, auc) |>
+  gt(groupname_col = "panel") |>
+  fmt_number(gain, decimals = 5, pattern = "+{x}") |>
+  fmt_number(extra, decimals = 1) |>
+  fmt_number(auc, decimals = 3) |>
+  fmt_percent(p, decimals = 1) |>
+  cols_label(gain = "Median gain", range = "90% range", extra = "Extra true cases per 1,000",
+             p = "Draws reaching MCID", auc = "aROC")
+```
+
+Abbreviations: aROC, area under the receiver operating characteristic curve; MCID, minimum clinically important difference (+0.00458 at 5%, +0.00160 at 20%). Median and 90% range over 2,000 draws of the true effects. Ceiling, true effects in the score; realised, pooled estimates in the score. Mean reading, the true effect is the pooled mean; predictive reading, a new-study effect including between-study heterogeneity. Results under the global-intercept truth are in Supplementary Table S2.
