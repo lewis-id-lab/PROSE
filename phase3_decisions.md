@@ -3388,3 +3388,30 @@ Code and outputs: none (this addendum changes only `phase3_decisions.md`).
 **Pointer.** D27 and addenda 24 and 25 (profile-preserving truth, script 31). No earlier entry is changed.
 
 Code and outputs: `scripts/55_threshold_curve.R` (to write `output/threshold_curve_profile.csv` and `output/figures/fig_threshold_curve_profile.png` when run on the cohort), `status.md`, `submission/manuscript.qmd`.
+
+### Addendum 48, results (25 November 2026): script 55 run on the cohort
+
+**What had been seen.** Everything listed under addendum 48 above. Nothing else had been computed at thresholds other than 5% and 20% when the script was run. The analysis is exploratory (thresholds chosen after the 5% and 20% results were known); the primary and secondary analyses are unchanged.
+
+**Run.** `scripts/55_threshold_curve.R` with `PROSE_SCHEME=profile`, on `boscore.xlsx` (4,078 admissions; identifier columns are skipped at read time), 2,000 draws per reading, thresholds 2% to 30% by 1%. The built-in checks passed: the run reproduced script 31 at 5% and 20% (gain, share reaching the MCID, extra cases) and the MCID of script 11 at 5%, 10% and 20%. Run in a clean R process on R 4.5.1 (renv reported the project out of sync with the lockfile for R 4.6.1; the checks passed). No orphaned workers.
+
+**Result (ceiling score, pooled-mean reading; median over draws).** MCID is the pre-specified rule at each threshold (+0.00458 at 5%, +0.00285 at 10%, +0.00160 at 20%, +0.00131 at 30%).
+
+| Threshold | Four terms: gain | gain / MCID | draws reaching MCID | Five terms: gain | gain / MCID | draws reaching MCID |
+|---|---|---|---|---|---|---|
+| 5% | +0.00056 | 0.12 | 0% | +0.00115 | 0.25 | 0% |
+| 10% | +0.00128 | 0.45 | 1.4% | +0.00209 | 0.73 | 15.9% |
+| 20% | +0.00107 | 0.67 | 16.7% | +0.00183 | 1.14 | 64.1% |
+| 30% | +0.00063 | 0.48 | 8.4% | +0.00128 | 0.97 | 47.6% |
+
+All thresholds are in `output/threshold_curve_profile.csv` (also the predictive reading, the realised score, 90% ranges, extra true cases per 1,000 and the share flagged); figure: `output/figures/fig_threshold_curve_profile.png`.
+
+**Reading.** The four-term median gain stays below the MCID at every threshold from 2% to 30% for both scores (largest ratio 0.67 at 20% for the ceiling score, 0.52 at 19% for the realised score). The five-term ceiling score reaches the MCID at its median only at 19% to 25% (ratio 1.14 at 20%); the realised five-term score does not at any threshold (largest ratio 0.96 at 20%). In absolute terms the gain peaks near 9% to 10%; the MCID falls steeply between 8% and 20% as the clinical score flags fewer admissions, which is why the ratio is better at 20% than at 10%. The curve is step-like because the 128 profiles are discrete (as expected in the addendum), and the 90% ranges are wide. The 5% and 20% rows equal the figures in "What had been seen" (0.12 and 0.67; 0.25 and 1.14).
+
+**A note on "extra true cases".** In `output/threshold_curve_profile.csv`, `extra_cases_per_1000` is the median extra true positives of the score over the clinical score (1.1 per 1,000 for the four-term panel at 5%), not the net-benefit gain times 1,000 (0.56). The score also flags more admissions, so this figure includes extra false positives, whereas the MCID of 4.6 per 1,000 is defined at no extra false positives. The two are not on one scale; the manuscript's "1.1 against 4.6" should say so. Not yet changed.
+
+**Manuscript.** One sentence labelled exploratory was added to the Results ("Primary result" section) of `manuscript.qmd`. The submission has not been changed.
+
+**Pointer.** Addendum 48 above (definition and status). No earlier entry is changed.
+
+Code and outputs: `scripts/55_threshold_curve.R`, `output/threshold_curve_profile.csv`, `output/figures/fig_threshold_curve_profile.png`, `status.md`, `manuscript.qmd`.

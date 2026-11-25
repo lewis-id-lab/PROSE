@@ -7,7 +7,7 @@ the decisions themselves are in `phase3_decisions.md` and the position is in `st
 
 ## Where things are
 
-- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 47 (read the last one before adding the next). Append a dated addendum for every change after the
+- `phase3_decisions.md`: the decision record. Decisions D1 to D27 and addenda 1 to 48 (read the last one before adding the next). Append a dated addendum for every change after the
   pre-specification lock (tag `prespec-lock`) and say what had been seen when the change was made. Do not rewrite earlier addenda; add a pointer.
 - `status.md` (hand-off, script run-order table), `02_current_status.md` (working record), `index.qmd` (overview table): keep their phase tables and
   numbers in step with the addenda. `manuscript.qmd` carries its numbers as prose, not inline code, so a rerun means editing the prose.
