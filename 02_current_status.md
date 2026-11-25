@@ -26,7 +26,7 @@ exports were uploaded to Covidence rather than pre-deduplicated files, so Covide
 stays meaningful.
 
 One audit-trail item remains open: the complete automated screening decision file for the 622 automated exclusions has not been
-assembled, and the 29 full-text exclusions for inadequate data for simulation are not yet checked against the Covidence export (addendum 46). The PubMed searches were run on 7 July 2026 and the Embase search on 8 October 2026 (the PubMed date was recorded on
+assembled, and the 29 full-text exclusions for inadequate data for simulation are not yet checked against the Covidence export (addenda 46 and 47). The PubMed searches were run on 7 July 2026 and the Embase search on 8 October 2026 (the PubMed date was recorded on
 7 November 2026).
 
 ## 3. Extraction — round 1, with the Job A full-text pass applied

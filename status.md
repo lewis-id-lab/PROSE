@@ -364,7 +364,7 @@ three-haplotype split is an unrun sensitivity analysis. East Asian CLEC7A haplot
     review of the discussion.
 
 Loose ends for write-up: the PubMed search was run on 7 July 2026 and Embase on 8 October 2026 (recorded 7 November); the automated
-screening decision file for the 622 automated exclusions is not assembled, and the 29 full-text exclusions for inadequate data for simulation are not yet checked against the Covidence export (addendum 46); Skonieczna 2017's supplement is missing; whether an
+screening decision file for the 622 automated exclusions is not assembled, and the 29 full-text exclusions for inadequate data for simulation are not yet checked against the Covidence export (addenda 46 and 47); Skonieczna 2017's supplement is missing; whether an
 Italian thesis title is required (F4).
 
 ## Repository map
