@@ -17,6 +17,7 @@ source("R/outcome_risk.R")
 
 pars <- load_baseline_params()
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
+require_patient_data(base, "The outcome-risk sensitivity analysis")
 risk_pub <- plogis(profile_logit(pars, all_profiles()))
 at <- c(0.05, 0.10, 0.20)
 nprof <- 2L^length(PREDICTORS)

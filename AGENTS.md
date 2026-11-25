@@ -50,6 +50,10 @@ and addenda 38 and 39 were first run on the global truth. Both scripts honour `P
 Patient-level data are gitignored: `boscore.xlsx`, `bs.xlsx` and `BOSCORE_recoded_2019.xlsx` in the project root, and `data/restricted/`. Eight tests
 need them. `data/restricted/` is rebuilt by script 08 (needs `boscore.xlsx` and `bs.xlsx`, checks the reconciliation) and script 06 (needs
 `BOSCORE_recoded_2019.xlsx`). The per-draw simulation files are gitignored too (regenerated from fixed seeds). The repository is public.
+`data/public/profile_admissions.csv` is the one cohort-derived file that is committed: admissions per clinical profile, cells of 1 to 4 suppressed
+(rule of 25 November 2026; `R/public_cohort.R`, written by script 56). Without the patient files `load_base_cohort()` falls back to it, and
+`reproduce.R` reruns the public steps against the committed outputs. Never add outcome, patient, date or allo-HSCT columns to it. Script 13 is
+not rerun by `reproduce.R`: it would overwrite the hand-extended `extraction_corrections.csv`.
 
 ## Git
 

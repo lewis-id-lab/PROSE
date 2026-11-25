@@ -115,8 +115,11 @@ boscore_cohort <- function(bc) {
 
 # The base cohort drops the twins; include_twins = TRUE gives the 4,127 rows of the paper
 select_cohort <- function(cohort, include_twins = FALSE) {
+  if (include_twins && isTRUE(attr(cohort, "public"))) {
+    stop("The 4,127-row cohort with twins needs the patient-level data; the public table holds the 4,078 base admissions only.", call. = FALSE)
+  }
   s <- if (include_twins) rep(TRUE, nrow(cohort$rows)) else !cohort$rows$twin_duplicate
-  list(rows = cohort$rows[s, , drop = FALSE], X = cohort$X[s, , drop = FALSE])
+  structure(list(rows = cohort$rows[s, , drop = FALSE], X = cohort$X[s, , drop = FALSE]), public = attr(cohort, "public"))
 }
 
 cohort_summary <- function(cohort, pars) {
@@ -210,8 +213,24 @@ cohort_from_pseudonymised <- function(path) {
        X = as.matrix(d[, PREDICTORS]))
 }
 
-# Prefer the pseudonymised copy; otherwise build the cohort from the identified file
-load_base_cohort <- function(restricted = "data/restricted/base_cohort_pseudonymised.csv", boscore = "boscore.xlsx") {
+# Prefer the pseudonymised copy; otherwise build the cohort from the identified file; with neither, fall back to
+# the public profile table (R/public_cohort.R), which carries the predictors only
+load_base_cohort <- function(restricted = "data/restricted/base_cohort_pseudonymised.csv", boscore = "boscore.xlsx",
+                             public = "data/public/profile_admissions.csv", public_meta = "data/public/profile_admissions_meta.csv") {
   if (file.exists(restricted)) return(cohort_from_pseudonymised(restricted))
-  boscore_cohort(read_boscore(boscore))
+  if (file.exists(boscore) || !file.exists(public)) return(boscore_cohort(read_boscore(boscore)))
+  message("Patient-level cohort not found: using the public profile table ", public,
+          " (predictors only; suppressed cells imputed, outcomes and patients NA).")
+  cohort_from_public(public, public_meta)
 }
+
+# The public fallback of load_base_cohort() lives in R/public_cohort.R, next to this file
+local({
+  here <- NULL
+  for (i in rev(seq_len(sys.nframe()))) {
+    f <- sys.frame(i)$ofile
+    if (!is.null(f)) { here <- dirname(f); break }
+  }
+  path <- if (!is.null(here)) file.path(here, "public_cohort.R") else file.path("R", "public_cohort.R")
+  if (!exists("cohort_from_public", mode = "function") && file.exists(path)) source(path)
+})

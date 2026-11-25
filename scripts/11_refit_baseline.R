@@ -18,6 +18,7 @@ source("R/refit_baseline.R")
 
 pars <- load_baseline_params()
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
+require_patient_data(base, "Refitting the baseline equation")
 y <- base$rows$case; n <- length(y)
 at <- c(0.05, 0.10, 0.20)
 nprof <- 2L^length(PREDICTORS)

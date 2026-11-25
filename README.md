@@ -23,6 +23,14 @@ locked at the git tag `prespec-lock`.
 No patient-level data are in this repository. The admission-level files (`*.xlsx`, `*.dta`, `*.sav`) and the pseudonymised extracts in `data/restricted/`
 are gitignored; they are personal data and must be copied between computers by a secure route. Tests that need them skip when they are absent.
 
+## Reproducing the results without patient data
+
+`Rscript reproduce.R` reruns every step that does not need patient-level data. It uses the de-identified table of admissions per clinical
+profile in `data/public/` (cells under five suppressed; see its README) and the committed aggregate outputs of the restricted steps
+(the refit baseline and the MCID, scripts 09 to 11). It writes `output/reproduce_report.csv`, which compares every regenerated output
+with the committed one. `Rscript reproduce.R --list` shows the plan; `Rscript reproduce.R 16 23` runs selected scripts. Scripts 05 to 11,
+19 and 20 need the patient-level cohort and stop with a message when only the public table is present.
+
 ## Updating the website
 
 Edit the `.qmd` pages (the decision record is included in the Pre-specified decisions page), run `quarto render`, and commit `docs/` and `_freeze/`
