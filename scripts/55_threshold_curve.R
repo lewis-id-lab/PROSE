@@ -49,7 +49,6 @@ if (!dry_run) {
 
 cl <- start_workers(cores = max(1L, min(10L, parallel::detectCores() - 1L)),
                     files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/aim4_sweep.R", "R/prs_benchmark.R", "R/calibration_check.R"))
-on.exit(parallel::stopCluster(cl), add = TRUE)
 
 run_draws <- function(grid, effects, beta_score) {
   jobs <- do.call(rbind, lapply(names(effects), function(h) data.frame(truth = h, draw = seq_len(min(n_draw, nrow(effects[[h]]))))))
@@ -120,3 +119,5 @@ ggsave(file.path(out_dir, "figures", "fig_threshold_curve_profile.png"),
 
 print(subset(curve, truth == "mean" & threshold %in% c(0.05, 0.10, 0.15, 0.20, 0.25, 0.30),
              c("panel", "score", "threshold", "gain", "mcid", "gain_over_mcid", "p_meets_mcid", "extra_cases_per_1000", "flagged_clinical")), row.names = FALSE)
+
+parallel::stopCluster(cl)
