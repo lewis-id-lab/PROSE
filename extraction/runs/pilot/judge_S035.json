@@ -1,0 +1,1029 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 59505,
+   "output": 13385
+  },
+  "finished_at": "2026-11-25T20:21:48",
+  "study_id": "S035",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 45
+ },
+ "blinding": {
+  "I0124": "A=original",
+  "I0125": "A=reextraction",
+  "I0126": "A=reextraction",
+  "I0127": "A=reextraction",
+  "I0128": "A=original",
+  "I0129": "A=reextraction",
+  "I0130": "A=reextraction",
+  "I0131": "A=reextraction",
+  "I0132": "A=original",
+  "I0133": "A=original",
+  "I0134": "A=original",
+  "I0135": "A=original",
+  "I0136": "A=original",
+  "I0137": "A=reextraction",
+  "I0138": "A=original",
+  "I0139": "A=original",
+  "I0140": "A=original",
+  "I0141": "A=original",
+  "I0142": "A=reextraction",
+  "I0143": "A=reextraction",
+  "I0144": "A=original",
+  "I0154": "A=reextraction",
+  "I0155": "A=original",
+  "I0156": "A=reextraction",
+  "I0157": "A=reextraction",
+  "I0158": "A=reextraction",
+  "I0159": "A=reextraction",
+  "I0160": "A=reextraction",
+  "I0161": "A=original",
+  "I0171": "A=original",
+  "I0172": "A=reextraction",
+  "I0173": "A=reextraction",
+  "I0174": "A=reextraction",
+  "I0175": "A=original",
+  "I0176": "A=reextraction",
+  "I0177": "A=original",
+  "I0178": "A=original",
+  "I0188": "A=reextraction",
+  "I0189": "A=reextraction",
+  "I0190": "A=reextraction",
+  "I0191": "A=reextraction",
+  "I0192": "A=original",
+  "I0193": "A=reextraction",
+  "I0194": "A=reextraction",
+  "I0195": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0124",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "A-C-A 0.424 0.625 0.411 0.429 0.687 0.413",
+     "page_or_table": "Table 9, p.7"
+    }
+   ],
+   "item_note": "Table 9 reports A-C-A frequencies of 0.625 (IA) vs 0.411 (no IA) for the 198 patients, with OR 2.95 (1.1\u20137.91), P 0.032 in footnote b."
+  },
+  {
+   "item_id": "I0125",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "A-C-A 0.424 0.625 0.411 0.429 0.687 0.413",
+     "page_or_table": "Table 9, p.7"
+    }
+   ],
+   "item_note": "Table 9 reports A-C-A frequencies of 0.687 (IA) vs 0.413 (no IA) for the 140 AP patients, with OR 3.12 (0.98\u20139.99), P 0.057 in footnote c."
+  },
+  {
+   "item_id": "I0126",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "(ORrs16910526TT  2.28 [95% CI, 0.95 to 5.51] [P value of 0.058])",
+     "page_or_table": "p.6, Results text"
+    }
+   ],
+   "item_note": "The main text reports the TT OR and states that the G allele was protective against fungal colonization in AP patients (Tables S3/S4)."
+  },
+  {
+   "item_id": "I0127",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S1 (supplement, not attached)"
+    }
+   ],
+   "item_note": "Genotype-specific results are only in supplementary Table S1, which is not in the attached paper."
+  },
+  {
+   "item_id": "I0128",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S1 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S1 only."
+  },
+  {
+   "item_id": "I0129",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S1 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S1 only."
+  },
+  {
+   "item_id": "I0130",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S1 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S1 only."
+  },
+  {
+   "item_id": "I0131",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S2 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S2 only."
+  },
+  {
+   "item_id": "I0132",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S2 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S2 only."
+  },
+  {
+   "item_id": "I0133",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S2 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S2 only."
+  },
+  {
+   "item_id": "I0134",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S2 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S2 only."
+  },
+  {
+   "item_id": "I0135",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S3 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S3 only."
+  },
+  {
+   "item_id": "I0136",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S3 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S3 only."
+  },
+  {
+   "item_id": "I0137",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S3 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S3 only."
+  },
+  {
+   "item_id": "I0138",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S3 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S3 only."
+  },
+  {
+   "item_id": "I0139",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S4 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S4 only."
+  },
+  {
+   "item_id": "I0140",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S4 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S4 only."
+  },
+  {
+   "item_id": "I0141",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S4 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S4 only."
+  },
+  {
+   "item_id": "I0142",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table S4 (supplement, not attached)"
+    }
+   ],
+   "item_note": "This result is in supplementary Table S4 only."
+  },
+  {
+   "item_id": "I0143",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (partially, in text)",
+     "verdict": "B",
+     "quote": "G allele carriers displayed a lower rate of fungal colonization (7.5% with fungal colonization versus 18.4% without fungal colonization)",
+     "page_or_table": "p.9 Discussion; p.7 text (Table S5)"
+    }
+   ],
+   "item_note": "The full distribution is in Table S5. The main text gives only partial figures for the AP group (GG 1%, GT 13%; 7.5% vs 18.4%)."
+  },
+  {
+   "item_id": "I0144",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (partially, in text)",
+     "verdict": "A",
+     "quote": "However, the only carrier of the GG genotype, who did not receive AP, experienced fungal colonization by Candida spp. (Table S5).",
+     "page_or_table": "p.7 text (Table S5)"
+    }
+   ],
+   "item_note": "The full distribution is in Table S5. The main text gives only fragments for the non-AP group."
+  },
+  {
+   "item_id": "I0154",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "24",
+     "verdict": "B",
+     "quote": "AA 24 (27) 18 (16.5) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "45",
+     "verdict": "B",
+     "quote": "AG 45 (50.6) 55 (50.5) 1.68 (0.79\u20133.57) 0.092 317.3",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "20",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 2.54 (1.09\u20135.94)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "18",
+     "verdict": "B",
+     "quote": "AA 24 (27) 18 (16.5) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "55",
+     "verdict": "B",
+     "quote": "AG 45 (50.6) 55 (50.5) 1.68 (0.79\u20133.57) 0.092 317.3",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "36",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 2.54 (1.09\u20135.94)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.54",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 2.54 (1.09\u20135.94)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.09",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 2.54 (1.09\u20135.94)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "5.94",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 2.54 (1.09\u20135.94)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.092",
+     "verdict": "B",
+     "quote": "AG 45 (50.6) 55 (50.5) 1.68 (0.79\u20133.57) 0.092 317.3",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "A's values come from Table 4 (invasive fungal infection), a different outcome. B matches Table 3 (Candida/Aspergillus detection)."
+  },
+  {
+   "item_id": "I0155",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "5",
+     "verdict": "A",
+     "quote": "AA 5 (45.5) 37 (19.8) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "5",
+     "verdict": "A",
+     "quote": "AG 5 (45.5) 95 (50.8) 2.75 (0.73\u201310.4) 0.07 135.1",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "1",
+     "verdict": "A",
+     "quote": "GG 1 (9.1) 55 (29.4) 9.12 (0.99\u201384.3)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "37",
+     "verdict": "A",
+     "quote": "AA 5 (45.5) 37 (19.8) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "95",
+     "verdict": "A",
+     "quote": "AG 5 (45.5) 95 (50.8) 2.75 (0.73\u201310.4) 0.07 135.1",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "55",
+     "verdict": "A",
+     "quote": "GG 1 (9.1) 55 (29.4) 9.12 (0.99\u201384.3)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "9.12",
+     "verdict": "A",
+     "quote": "GG 1 (9.1) 55 (29.4) 9.12 (0.99\u201384.3)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.99",
+     "verdict": "A",
+     "quote": "GG 1 (9.1) 55 (29.4) 9.12 (0.99\u201384.3)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "84.3",
+     "verdict": "A",
+     "quote": "GG 1 (9.1) 55 (29.4) 9.12 (0.99\u201384.3)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.07",
+     "verdict": "A",
+     "quote": "AG 5 (45.5) 95 (50.8) 2.75 (0.73\u201310.4) 0.07 135.1",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": "B's values come from Table 5 (invasive aspergillosis), a different outcome. A matches Table 6 (invasive candidiasis)."
+  },
+  {
+   "item_id": "I0156",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AGGG 65 (73) 91 (83.5) 1.94 (0.95\u20133.98) 0.066 313.4",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0157",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 36 (33) 1.76 (0.92\u20131.76) 0.086 313.8",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0158",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AGGG 6 (54.5) 150 (80.2) 3.8 (1.05\u201313.57) 0.048 131.3",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0159",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 55 (29.4) 4.8 (0.59\u201339.22) 0.076 132",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0160",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG 3 (37.5) 63 (47.7) 3.14 (0.62\u201315.8) 0.18 101",
+     "page_or_table": "Table 8, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0161",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "ORrs1840680GG  0.84 [95% CI, 0.22 to 3.21]",
+     "page_or_table": "p.7, Meta-analysis text"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0171",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "23",
+     "verdict": "A",
+     "quote": "AA 23 (25.8) 18 (16.5) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "46",
+     "verdict": "A",
+     "quote": "AG 46 (51.7) 58 (53.2) 1.65 (0.77\u20133.52) 0.18 318.6",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "20",
+     "verdict": "A",
+     "quote": "GG 20 (22.5) 33 (30.3) 2.22 (0.94\u20135.24)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "18",
+     "verdict": "A",
+     "quote": "AA 23 (25.8) 18 (16.5) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "58",
+     "verdict": "A",
+     "quote": "AG 46 (51.7) 58 (53.2) 1.65 (0.77\u20133.52) 0.18 318.6",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "33",
+     "verdict": "A",
+     "quote": "GG 20 (22.5) 33 (30.3) 2.22 (0.94\u20135.24)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.22",
+     "verdict": "A",
+     "quote": "GG 20 (22.5) 33 (30.3) 2.22 (0.94\u20135.24)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.94",
+     "verdict": "A",
+     "quote": "GG 20 (22.5) 33 (30.3) 2.22 (0.94\u20135.24)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "5.24",
+     "verdict": "A",
+     "quote": "GG 20 (22.5) 33 (30.3) 2.22 (0.94\u20135.24)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.18",
+     "verdict": "A",
+     "quote": "AG 46 (51.7) 58 (53.2) 1.65 (0.77\u20133.52) 0.18 318.6",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "B's values come from Table 4 (invasive fungal infection), a different outcome. A matches Table 3."
+  },
+  {
+   "item_id": "I0172",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "4",
+     "verdict": "B",
+     "quote": "AA 4 (36.4) 37 (19.8) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "AG 6 (54.5) 98 (52.4) 1.94 (0.5\u20137.58) 0.18 137",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "1",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 6.66 (0.69\u201364.0)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "37",
+     "verdict": "B",
+     "quote": "AA 4 (36.4) 37 (19.8) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "98",
+     "verdict": "B",
+     "quote": "AG 6 (54.5) 98 (52.4) 1.94 (0.5\u20137.58) 0.18 137",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "52",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 6.66 (0.69\u201364.0)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "6.66",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 6.66 (0.69\u201364.0)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.69",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 6.66 (0.69\u201364.0)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "64.0",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 6.66 (0.69\u201364.0)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.18",
+     "verdict": "B",
+     "quote": "AG 6 (54.5) 98 (52.4) 1.94 (0.5\u20137.58) 0.18 137",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": "A's values come from Table 5 (invasive aspergillosis), a different outcome. B matches Table 6 (invasive candidiasis)."
+  },
+  {
+   "item_id": "I0173",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AGGG 66 (74.2) 91 (83.5) 1.83 (0.89\u20133.76) 0.099 314.1",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0174",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 20 (22.5) 33 (30.3) 1.55 (0.8\u20133.01) 0.19 315",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0175",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AGGG 7 (63.6) 150 (80.2) 2.62 (0.7\u20139.8) 0.17 133.3",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0176",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 1 (9.1) 52 (27.8) 4.26 (0.5\u201334.66) 0.11 132.6",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0177",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG 3 (37.5) 67 (50.8) 3.25 (0.65\u201316.4) 0.19 101.1",
+     "page_or_table": "Table 8, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0178",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "ORrs2305619GG  0.91 [95% CI, 0.24 to 3.48]",
+     "page_or_table": "p.7, Meta-analysis text"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0188",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "19",
+     "verdict": "B",
+     "quote": "CC 19 (21.4) 15 (13.8) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "49",
+     "verdict": "B",
+     "quote": "CA 49 (55.1) 52 (47.7) 1.37 (0.6\u20133.1) 0.069 316.7",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "21",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.56 (1.05\u20136.2)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "15",
+     "verdict": "B",
+     "quote": "CC 19 (21.4) 15 (13.8) 1.00",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "52",
+     "verdict": "B",
+     "quote": "CA 49 (55.1) 52 (47.7) 1.37 (0.6\u20133.1) 0.069 316.7",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "42",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.56 (1.05\u20136.2)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.56",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.56 (1.05\u20136.2)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.05",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.56 (1.05\u20136.2)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "6.2",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.56 (1.05\u20136.2)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.069",
+     "verdict": "B",
+     "quote": "CA 49 (55.1) 52 (47.7) 1.37 (0.6\u20133.1) 0.069 316.7",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "A's values come from Table 4 (invasive fungal infection), a different outcome. B matches Table 3."
+  },
+  {
+   "item_id": "I0189",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "2",
+     "verdict": "B",
+     "quote": "CC 2 (18.2) 32 (17.1) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "7",
+     "verdict": "B",
+     "quote": "CA 7 (63.6) 94 (50.3) 0.87 (0.16\u20134.65) 0.45 138.9",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "2",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.3 (0.3\u201317.85)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "32",
+     "verdict": "B",
+     "quote": "CC 2 (18.2) 32 (17.1) 1.00",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "94",
+     "verdict": "B",
+     "quote": "CA 7 (63.6) 94 (50.3) 0.87 (0.16\u20134.65) 0.45 138.9",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "61",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.3 (0.3\u201317.85)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.3",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.3 (0.3\u201317.85)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.3",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.3 (0.3\u201317.85)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "17.85",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.3 (0.3\u201317.85)",
+     "page_or_table": "Table 6, p.5"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.45",
+     "verdict": "B",
+     "quote": "CA 7 (63.6) 94 (50.3) 0.87 (0.16\u20134.65) 0.45 138.9",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": "A's values come from Table 5 (invasive aspergillosis), a different outcome. B matches Table 6 (invasive candidiasis)."
+  },
+  {
+   "item_id": "I0190",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "CAAA 70 (78.7) 94 (86.2) 1.74 (0.8\u20133.78) 0.16 314.8",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0191",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AA 21 (23.6) 42 (38.5) 2.02 (1.07\u20133.84) 0.029 312",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0192",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "CAAA 9 (81.8) 155 (82.9) 1.19 (0.24\u20136.04) 0.83 135.1",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0193",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AA 2 (18.2) 61 (32.6) 2.55 (0.52\u201312.5) 0.21 133.6",
+     "page_or_table": "Table 6, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0194",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "CA 3 (37.5) 65 (49.2) 4.35 (0.81\u201323.3) 0.083 99.5",
+     "page_or_table": "Table 8, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0195",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "0.70 [95% CI, 0.18 to 2.68]",
+     "page_or_table": "p.7, Meta-analysis text"
+    }
+   ],
+   "item_note": "This is OR rs3816527 AA = 0.70 from this study's data in the meta-analysis."
+  }
+ ]
+}

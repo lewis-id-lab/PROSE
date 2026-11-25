@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 32406,
+   "output": 2376
+  },
+  "finished_at": "2026-11-25T20:25:48",
+  "study_id": "S066",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 8
+ },
+ "blinding": {
+  "I0334": "A=original",
+  "I0335": "A=reextraction",
+  "I0336": "A=reextraction",
+  "I0337": "A=reextraction",
+  "I0338": "A=reextraction",
+  "I0339": "A=reextraction",
+  "I0340": "A=original",
+  "I0341": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0334",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (A/A, A/G, G/G genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "A",
+     "quote": "IA 35 (85) 6 (15) 0 (0) 76 (93) 6 (7) 0.13",
+     "page_or_table": "Table 2, Recipient gene TLR4 896A>G, p. 821"
+    }
+   ],
+   "item_note": "Table 2 gives genotype and allele frequencies with one P-value per SNP and does not say which comparison the P refers to. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0335",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (A/A, A/G, G/G genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "B",
+     "quote": "IA 34 (83) 7 (17) 0 (0) 75 (91) 7 (9) 0.21",
+     "page_or_table": "Table 2, Donor gene TLR4 896A>G, p. 821"
+    }
+   ],
+   "item_note": "The P-value's comparison is not specified in the paper. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0336",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (C/C, C/T, T/T genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "B",
+     "quote": "IA 36 (88) 5 (12) 0 (0) 77 (94) 5 (6) 0.15",
+     "page_or_table": "Table 2, Recipient gene TLR4 1196C>T, p. 821"
+    }
+   ],
+   "item_note": "The P-value's comparison is not specified in the paper. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0337",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (C/C, C/T, T/T genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "B",
+     "quote": "IA 35 (85) 6 (15) 0 (0) 76 (93) 6 (7) 0.27",
+     "page_or_table": "Table 2, Donor gene TLR4 1196C>T, p. 821"
+    }
+   ],
+   "item_note": "The P-value's comparison is not specified in the paper. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0338",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (G/G, G/A, A/A genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "B",
+     "quote": "IA 38 (93) 3 (7) 0 (0) 79 (96) 3 (4) 0.16",
+     "page_or_table": "Table 2, Recipient gene TLR2 2258G>A, p. 821"
+    }
+   ],
+   "item_note": "The P-value's comparison is not specified in the paper. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0339",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic_3level (G/G, G/A, A/A genotype frequencies with allele frequencies; single P-value)",
+     "verdict": "B",
+     "quote": "IA 39 (95) 2 (5) 0 (0) 80 (98) 2 (2) 0.17",
+     "page_or_table": "Table 2, Donor gene TLR2 2258G>A, p. 821"
+    }
+   ],
+   "item_note": "The P-value's comparison is not specified in the paper. The verdict follows the paper_result description (genotypic_3level)."
+  },
+  {
+   "item_id": "I0340",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported: T allele 13% (IA) vs 5% (control), P = 0.007",
+     "verdict": "B",
+     "quote": "a signifi cantly higher frequency of the mutant T-allele (1174C  T) became apparent, when the recipient had the TLR5-Stop SNP (13% vs. 5%; P  0.007; Table 2)",
+     "page_or_table": "Results, p. 820; Table 2 recipient TLR5, p. 821"
+    }
+   ],
+   "item_note": "Table 2 row: IA 30 (73) 11 (27) 0 (0) 71 (87) 11 (13) 0.007."
+  },
+  {
+   "item_id": "I0341",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported: cumulative incidence of IA 61% vs 28%, P = 0.004; multivariate OR 3.285 (1.20\u20138.99), P = 0.02",
+     "verdict": "B",
+     "quote": "we found a signifi cantly higher occurrence of IA in the group of patients in which the recipient had the TLR5-Stop SNP (61%) as compared to the wild-type group (28%) ( P  0.004; Figure 1a)",
+     "page_or_table": "Results, p. 820; Figure 1a and Table 3, p. 822"
+    }
+   ],
+   "item_note": "Table 3: TLR5-Stop SNP recipient 3.285 1.20 \u2013 8.99 0.02."
+  }
+ ]
+}

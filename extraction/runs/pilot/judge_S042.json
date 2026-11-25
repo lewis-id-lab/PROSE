@@ -1,0 +1,77 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 37952,
+   "output": 1038
+  },
+  "finished_at": "2026-11-25T20:22:15",
+  "study_id": "S042",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 4
+ },
+ "blinding": {
+  "I0200": "A=reextraction",
+  "I0201": "A=original",
+  "I0202": "A=original",
+  "I0205": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0200",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR, 3.0; 95% CI, 1.6 to 5.7; P = 0.0011)",
+     "verdict": "A",
+     "quote": "it was decided to consider them a haplotype and combine data for further analysis; the association with IA remained significant (OR, 3.0; 95% CI, 1.6 to 5.7; P = 0.0011)",
+     "page_or_table": "Page 4, Results (Genetic markers and IA)"
+    }
+   ],
+   "item_note": "The DC-SIGN haplotype result is reported in the Results text, not as a separate row in Table 2. A matches; B is blank."
+  },
+  {
+   "item_id": "I0201",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (20/54 vs 31/268; OR 4.5 (2.2\u20139.2); P <0.001)",
+     "verdict": "B",
+     "quote": "Combination Haplotype and rs7309123 C_3130832_10, C_25996399_10, C_29710787_10 20/54 31/268 4.5 (2.2\u20139.2) <0.001",
+     "page_or_table": "Table 2, page 4"
+    }
+   ],
+   "item_note": "Reported in the Table 2 'Combination' row. B matches; A is blank."
+  },
+  {
+   "item_id": "I0202",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (15/54 vs 30/268; OR 3.1 (1.4\u20136.5); P 0.004)",
+     "verdict": "B",
+     "quote": "DC-SIGN rs11465384 C_25996399_10 15/54 30/268 3.1 (1.4\u20136.5) 0.004",
+     "page_or_table": "Table 2, page 4"
+    }
+   ],
+   "item_note": "Reported in Table 2. B matches; A is blank."
+  },
+  {
+   "item_id": "I0205",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (17/54 vs 55/268; OR 1.8 (0.9\u20133.6); P 0.106)",
+     "verdict": "B",
+     "quote": "DC-SIGN rs7252229 C_29620333_10 17/54 55/268 1.8 (0.9\u20133.6) 0.106",
+     "page_or_table": "Table 2, page 4"
+    }
+   ],
+   "item_note": "Reported in Table 2 (non-significant). B matches; A is blank."
+  }
+ ]
+}

@@ -1,0 +1,91 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 13780,
+   "output": 1685
+  },
+  "finished_at": "2026-11-25T19:51:04",
+  "study_id": "S004",
+  "files": [
+   "Aki et al. - 2015 - Genomic Analysis of Single Nucleotide Polymorphisms Asp299Gly and Thr399Ile in Japanese Patients wit.pdf"
+  ],
+  "prompt_sha": "09980fb3f1cc",
+  "scope": "panel",
+  "n_variants": 2
+ },
+ "targets": [
+  [
+   "TLR4",
+   "rs4986790",
+   "Asp299Gly (1063A/G)"
+  ],
+  [
+   "TLR4",
+   "rs4986791",
+   "Thr399Ile (1363C/T)"
+  ]
+ ],
+ "rows": [
+  {
+   "listed_variant": true,
+   "gene_symbol": "TLR4",
+   "rsid": "rs4986790",
+   "variant_name_as_reported": "Asp299Gly (1063A/G)",
+   "effect_allele": "G",
+   "other_allele": "A",
+   "genetic_model": "genotypic_3level",
+   "comparison_as_reported": "Genotype distribution at nucleotide 1063 in IPA autopsy cases (no SNP found); compared descriptively with HapMap Japanese (0/45)",
+   "subgroup": "Autopsy patients with invasive pulmonary aspergillosis with amplifiable DNA (n=9 genotyped)",
+   "n_cases_hom_effect": 0,
+   "n_cases_het": 0,
+   "n_cases_hom_other": 9,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "no",
+   "page_or_table": "Table 1; p. 331-332, Results",
+   "verbatim_source": "PCR products containing the Asp299Gly (n = 9) and Thr399Ile (n = 8) polymorphisms were sequenced. However, DNA sequencing of these PCR products did not show the presence of these SNPs.",
+   "confidence": "high",
+   "note": "Case-only series; Table 1 lists 9 cases with A/A at nucleotide 1063 (counted from table rows). No study controls; comparison is to HapMap Japanese data reported as 'Asp299Gly: 0/45' (unit unclear, individuals or alleles), so control counts left null. Text wording '9 patients had the TLR4 Asp299Gly polymorphism' refers to PCR products obtained, not variant carriage. No effect estimate or p-value."
+  },
+  {
+   "listed_variant": true,
+   "gene_symbol": "TLR4",
+   "rsid": "rs4986791",
+   "variant_name_as_reported": "Thr399Ile (1363C/T)",
+   "effect_allele": "T",
+   "other_allele": "C",
+   "genetic_model": "genotypic_3level",
+   "comparison_as_reported": "Genotype distribution at nucleotide 1363 in IPA autopsy cases (no SNP found); compared descriptively with HapMap Japanese (0/45)",
+   "subgroup": "Autopsy patients with invasive pulmonary aspergillosis with amplifiable DNA (n=8 genotyped)",
+   "n_cases_hom_effect": 0,
+   "n_cases_het": 0,
+   "n_cases_hom_other": 8,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "no",
+   "page_or_table": "Table 1; p. 331-332, Results",
+   "verbatim_source": "PCR products containing the Asp299Gly (n = 9) and Thr399Ile (n = 8) polymorphisms were sequenced. However, DNA sequencing of these PCR products did not show the presence of these SNPs.",
+   "confidence": "high",
+   "note": "Case-only series; Table 1 lists 8 cases with C/C at nucleotide 1363 (counted from table rows). No study controls; HapMap Japanese reported as 'Thr399Ile: 0/45' (unit unclear), so control counts left null. No effect estimate or p-value."
+  }
+ ],
+ "not_found": [],
+ "paper_note": "Case-only autopsy FFPE series of 27 Japanese IPA patients (10 with amplifiable DNA); neither TLR4 Asp299Gly (0/9) nor Thr399Ile (0/8) was detected, compared descriptively with HapMap Japanese (0/45); no controls, no effect estimates, and population not specified as haematology/transplant."
+}

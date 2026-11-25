@@ -1,0 +1,63 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 10956,
+   "output": 991
+  },
+  "finished_at": "2026-11-25T20:16:16",
+  "study_id": "S018",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 3
+ },
+ "blinding": {
+  "I0013": "A=reextraction",
+  "I0014": "A=reextraction",
+  "I0015": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0013",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "Multiple logistic regression (covariates not named)",
+     "verdict": "B",
+     "quote": "Multiple logistic regression analyses were applied to evaluate the association between the polymorphisms and the occurrence of infectious events.",
+     "page_or_table": "P648 abstract, Methods (p.256)"
+    }
+   ],
+   "item_note": "The PTX3 null result ('No association was found between SNPs of the PTX3 gene and the analysed infectious events.') comes from the multiple logistic regression described in Methods, which covers all six SNPs. That supports adjusted=yes, but the paper names no covariates, so the call is somewhat inferential. No effect estimates are reported for PTX3."
+  },
+  {
+   "item_id": "I0014",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "Multiple logistic regression (covariates not named)",
+     "verdict": "B",
+     "quote": "Multiple logistic regression analyses were applied to evaluate the association between the polymorphisms and the occurrence of infectious events.",
+     "page_or_table": "P648 abstract, Methods (p.256)"
+    }
+   ],
+   "item_note": "The PTX3 null result covers rs2305619 as one of the three PTX3 SNPs analysed by multiple logistic regression. Covariates are not named, and no effect estimates are given."
+  },
+  {
+   "item_id": "I0015",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "Multiple logistic regression (covariates not named)",
+     "verdict": "B",
+     "quote": "Multiple logistic regression analyses were applied to evaluate the association between the polymorphisms and the occurrence of infectious events.",
+     "page_or_table": "P648 abstract, Methods (p.256)"
+    }
+   ],
+   "item_note": "The PTX3 null result covers rs3816527 as one of the three PTX3 SNPs analysed by multiple logistic regression. Covariates are not named, and no effect estimates are given."
+  }
+ ]
+}

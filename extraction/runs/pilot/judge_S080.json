@@ -1,0 +1,840 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 40966,
+   "output": 10867
+  },
+  "finished_at": "2026-11-25T20:30:19",
+  "study_id": "S080",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 53
+ },
+ "blinding": {
+  "I0435": "A=original",
+  "I0436": "A=reextraction",
+  "I0443": "A=reextraction",
+  "I0444": "A=original",
+  "I0445": "A=reextraction",
+  "I0446": "A=reextraction",
+  "I0447": "A=original",
+  "I0448": "A=reextraction",
+  "I0450": "A=original",
+  "I0451": "A=reextraction",
+  "I0452": "A=reextraction",
+  "I0453": "A=reextraction",
+  "I0454": "A=reextraction",
+  "I0455": "A=reextraction",
+  "I0456": "A=reextraction",
+  "I0457": "A=reextraction",
+  "I0458": "A=original",
+  "I0461": "A=original",
+  "I0462": "A=reextraction",
+  "I0463": "A=original",
+  "I0464": "A=reextraction",
+  "I0465": "A=reextraction",
+  "I0466": "A=original",
+  "I0467": "A=original",
+  "I0468": "A=reextraction",
+  "I0469": "A=reextraction",
+  "I0470": "A=reextraction",
+  "I0471": "A=reextraction",
+  "I0472": "A=original",
+  "I0473": "A=reextraction",
+  "I0474": "A=reextraction",
+  "I0475": "A=reextraction",
+  "I0476": "A=original",
+  "I0477": "A=reextraction",
+  "I0478": "A=original",
+  "I0479": "A=reextraction",
+  "I0480": "A=original",
+  "I0481": "A=original",
+  "I0484": "A=original",
+  "I0485": "A=reextraction",
+  "I0486": "A=reextraction",
+  "I0492": "A=original",
+  "I0493": "A=original",
+  "I0494": "A=reextraction",
+  "I0495": "A=original",
+  "I0497": "A=reextraction",
+  "I0498": "A=original",
+  "I0499": "A=reextraction",
+  "I0500": "A=original",
+  "I0501": "A=reextraction",
+  "I0502": "A=original",
+  "I0503": "A=original",
+  "I0504": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0435",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Allelic 1.38 1.05-1.81 .020",
+     "verdict": "B",
+     "quote": "CXCL10 rs1554013 C/T 0.45 SGM1 PT 3 mo Allelic 1.38 1.05-1.81 .020",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "Row is present in Table 4."
+  },
+  {
+   "item_id": "I0436",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 1.59 1.04-2.42 .033",
+     "verdict": "A",
+     "quote": "Recessive 1.59 1.04-2.42 .033",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "Row is present in Table 4 under CXCL10 rs1554013, SGM+, PT, 3 mo."
+  },
+  {
+   "item_id": "I0443",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort genotyping/imputation status is only in Supplemental Table 1, which is not provided."
+  },
+  {
+   "item_id": "I0444",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0445",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0446",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0447",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0448",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0450",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0451",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0452",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0453",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "A/G (alleles printed; effect allele not explicitly stated)",
+     "verdict": "neither",
+     "quote": "PTX3 rs2305619 A/G 0.47 Proven/probable DNR 2 y Allelic 1.20 1.04-1.37 .009",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "A/G",
+     "verdict": "neither",
+     "quote": "PTX3 rs2305619 A/G 0.47 Proven/probable DNR 2 y Allelic 1.20 1.04-1.37 .009",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "The paper never states the effect allele explicitly. Allele orientation is also ambiguous: the Table 4 footnote says major/minor, but the Table 3 footnote says PTX3 alleles are given minor/major. B gives A as the effect allele here but G for the recessive models of the same SNP, which is internally inconsistent. The tested/minor allele under the original-study orientation is G, so B's A does not match."
+  },
+  {
+   "item_id": "I0454",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "G (minor allele per Table 4 'Major/minor' A/G)",
+     "verdict": "B",
+     "quote": "Recessive 1.54 1.02-2.34 .039",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "A",
+     "verdict": "B",
+     "quote": "PTX3 rs2305619 A/G 0.47",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "The effect allele is inferred from allele orientation and is not stated explicitly; orientation is ambiguous between the Table 3 and Table 4 footnotes."
+  },
+  {
+   "item_id": "I0455",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "G (minor allele per Table 4 'Major/minor' A/G)",
+     "verdict": "B",
+     "quote": "Recessive 2.44 1.33-4.42 .004",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "A",
+     "verdict": "B",
+     "quote": "PTX3 rs2305619 A/G 0.47",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "The effect allele is inferred and not stated explicitly."
+  },
+  {
+   "item_id": "I0456",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "A/G (effect allele not explicitly stated)",
+     "verdict": "neither",
+     "quote": "2 y Allelic 1.30 1.04-1.641 .022",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "A/G",
+     "verdict": "neither",
+     "quote": "PTX3 rs2305619 A/G 0.47",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "Same ambiguity as I0453. B's orientation conflicts with its own recessive entries."
+  },
+  {
+   "item_id": "I0457",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "A/G (effect allele not explicitly stated)",
+     "verdict": "neither",
+     "quote": "SGM1 DNR 3 mo Allelic 1.42 1.08-1.86 .01",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "A/G",
+     "verdict": "neither",
+     "quote": "PTX3 rs2305619 A/G 0.47",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": "Same ambiguity as I0453."
+  },
+  {
+   "item_id": "I0458",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "1.33",
+     "verdict": "both",
+     "quote": "PTX3 rs2305619 DNR A/G* 0.47 Recessive 1.33 1.09-1.64 .005",
+     "page_or_table": "Table 3, p2696"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.09",
+     "verdict": "both",
+     "quote": "PTX3 rs2305619 DNR A/G* 0.47 Recessive 1.33 1.09-1.64 .005",
+     "page_or_table": "Table 3, p2696"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.64",
+     "verdict": "both",
+     "quote": "PTX3 rs2305619 DNR A/G* 0.47 Recessive 1.33 1.09-1.64 .005",
+     "page_or_table": "Table 3, p2696"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0461",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "1.30",
+     "verdict": "both",
+     "quote": "2 y Allelic 1.30 1.03-1.61 .024",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.03",
+     "verdict": "both",
+     "quote": "2 y Allelic 1.30 1.03-1.61 .024",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.61",
+     "verdict": "both",
+     "quote": "2 y Allelic 1.30 1.03-1.61 .024",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0462",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "1.41",
+     "verdict": "both",
+     "quote": "PTX3 rs3816527 C/A 0.42 SGM1 DNR 3 mo Allelic 1.41 1.07-1.87 .015",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.07",
+     "verdict": "both",
+     "quote": "PTX3 rs3816527 C/A 0.42 SGM1 DNR 3 mo Allelic 1.41 1.07-1.87 .015",
+     "page_or_table": "Table 4, p2697"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.87",
+     "verdict": "both",
+     "quote": "PTX3 rs3816527 C/A 0.42 SGM1 DNR 3 mo Allelic 1.41 1.07-1.87 .015",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0463",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "not validated (implicit; only 2 SNPs validated)",
+     "verdict": "A",
+     "quote": "we validated 2 SNPs in 2 genes: rs1840680 in PTX3 and rs7309123 in CLECL7a (Table 3)",
+     "page_or_table": "Results, p2697"
+    }
+   ],
+   "item_note": "rs3816527 was among the 20 SNPs analysed and was implicitly not strictly replicated. No specific estimate is reported."
+  },
+  {
+   "item_id": "I0464",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0465",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0466",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0467",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Allelic 1.35 1.03-1.77 .031",
+     "verdict": "B",
+     "quote": "CXCL10 rs3921 C/G 0.45 SGM1 PT 3 mo Allelic 1.35 1.03-1.77 .031",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0468",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 1.55 1.01-2.36 .044",
+     "verdict": "A",
+     "quote": "Recessive 1.55 1.01-2.36 .044",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0469",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 0.53 0.27-1.00 .05",
+     "verdict": "A",
+     "quote": "TNFR1 rs4149570 C/A 0.40 SGM1 DNR 3 mo Recessive 0.53 0.27-1.00 .05",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0470",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 1.57 1.06-2.33 .026",
+     "verdict": "A",
+     "quote": "PLG rs4252125 G/A 0.28 Proven/probable DNR 3 mo Recessive 1.57 1.06-2.33 .026",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0471",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 1.39 1.02-1.90 .037",
+     "verdict": "A",
+     "quote": "2 y Recessive 1.39 1.02-1.90 .037",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0472",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Allelic 1.35 1.03-1.77 .028",
+     "verdict": "B",
+     "quote": "CXCL10 rs4257674 A/G 0.45 SGM1 PT 3 mo Allelic 1.35 1.03-1.77 .028",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0473",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recessive 1.56 1.02-2.38 .041",
+     "verdict": "A",
+     "quote": "Recessive 1.56 1.02-2.38 .041",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0474",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "failed QC (low call rate) on Affymetrix",
+     "verdict": "B",
+     "quote": "all problems occurred with the first platform (Affymetrix), and included 1 SNP with low posterior probability (TNFR1, rs767455), 1 SNP with low Hardy-Weinberg equilibrium (TLR1, rs4833095), and 3 SNPs with low call rates (CLEC7A, rs3901533; CD209, rs4804800 and rs7252229)",
+     "page_or_table": "Results, p2696"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0475",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "The text implies the problem was only on the first platform, but per-cohort details are in the supplement."
+  },
+  {
+   "item_id": "I0476",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0477",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "not validated; MAF 0.05",
+     "verdict": "B",
+     "quote": "an unanticipated result was our inability to validate the TLR4 SNP rs4986790",
+     "page_or_table": "Discussion, p2700"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0478",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0479",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0480",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0481",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "not validated (implicit)",
+     "verdict": "A",
+     "quote": "we validated 2 SNPs in 2 genes: rs1840680 in PTX3 and rs7309123 in CLECL7a (Table 3)",
+     "page_or_table": "Results, p2697"
+    }
+   ],
+   "item_note": "rs4986791 is among the 20 SNPs that passed QC, so it was implicitly not validated. The paper otherwise discusses it only as a prior-study result."
+  },
+  {
+   "item_id": "I0484",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0485",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0486",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0492",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "not validated (implicit)",
+     "verdict": "A",
+     "quote": "we validated 2 SNPs in 2 genes: rs1840680 in PTX3 and rs7309123 in CLECL7a (Table 3)",
+     "page_or_table": "Results, p2697"
+    }
+   ],
+   "item_note": "Non-replication is implicit; no specific estimate is reported."
+  },
+  {
+   "item_id": "I0493",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0494",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0495",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0497",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "validated",
+     "verdict": "B",
+     "quote": "we validated 2 SNPs in 2 genes: rs1840680 in PTX3 and rs7309123 in CLECL7a (Table 3)",
+     "page_or_table": "Results, p2697"
+    }
+   ],
+   "item_note": "The text says rs7309123, but Table 3 lists CLEC7A rs16910526 (DNR + PT)."
+  },
+  {
+   "item_id": "I0498",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0499",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0500",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Supplemental Table 1 (not attached)"
+    }
+   ],
+   "item_note": "Per-cohort QC status is in the supplement only."
+  },
+  {
+   "item_id": "I0501",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Allelic 1.66 1.17-2.34 .004",
+     "verdict": "A",
+     "quote": "S100B rs9722 C/T 0.11 SGM1 DNR 3 mo Allelic 1.66 1.17-2.34 .004",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0502",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Dominant 1.79 1.19-2.69 .005",
+     "verdict": "B",
+     "quote": "Dominant 1.79 1.19-2.69 .005",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0503",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Allelic 1.47 1.09-1.98 .011",
+     "verdict": "B",
+     "quote": "2 y Allelic 1.47 1.09-1.98 .011",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0504",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Dominant 1.54 1.09-2.17 .013",
+     "verdict": "A",
+     "quote": "Dominant 1.54 1.09-2.17 .013",
+     "page_or_table": "Table 4, p2697"
+    }
+   ],
+   "item_note": ""
+  }
+ ]
+}

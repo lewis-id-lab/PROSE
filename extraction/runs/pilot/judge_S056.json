@@ -1,0 +1,574 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 31663,
+   "output": 7066
+  },
+  "finished_at": "2026-11-25T20:24:30",
+  "study_id": "S056",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 18
+ },
+ "blinding": {
+  "I0296": "A=reextraction",
+  "I0297": "A=reextraction",
+  "I0298": "A=reextraction",
+  "I0299": "A=original",
+  "I0300": "A=reextraction",
+  "I0301": "A=reextraction",
+  "I0302": "A=reextraction",
+  "I0303": "A=original",
+  "I0304": "A=original",
+  "I0305": "A=original",
+  "I0306": "A=reextraction",
+  "I0307": "A=original",
+  "I0308": "A=original",
+  "I0309": "A=reextraction",
+  "I0310": "A=original",
+  "I0311": "A=reextraction",
+  "I0312": "A=reextraction",
+  "I0313": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0296",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "C (p .484) and G (p .601) both reported",
+     "verdict": "both",
+     "quote": "C 1 (1.6) \u2014 .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated",
+     "verdict": "both",
+     "quote": "The odds ratios (ORs) and corresponding 95% confidence intervals (CIs) were calculated by unconditional logistic regression analysis.",
+     "page_or_table": "Section 2.3, p. 834"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "1",
+     "verdict": "A",
+     "quote": "rs16910526 CT 1 (3.2) - .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "27",
+     "verdict": "A",
+     "quote": "TT 27 (87.1) 26 (78.8) .583",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "-",
+     "verdict": "A",
+     "quote": "rs16910526 CT 1 (3.2) - .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "26",
+     "verdict": "A",
+     "quote": "TT 27 (87.1) 26 (78.8) .583",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": ".484 (C allele); .601 (G allele)",
+     "verdict": "both",
+     "quote": "G 4 (6.5) 7 (10.6) .601",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "A and B describe different alleles: A extracts the C allele (p .484) and B the G allele (p .601). Both values appear in Table 3 and the paper_result does not name the allele. The counts in A are the genotype counts from the CT and TT rows."
+  },
+  {
+   "item_id": "I0297",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution (per-genotype rows)",
+     "verdict": "B",
+     "quote": "Dectin-1 (CLEC7A) rs16910526 CT 1 (3.2) - .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated",
+     "verdict": "both",
+     "quote": "The odds ratios (ORs) and corresponding 95% confidence intervals (CIs) were calculated by unconditional logistic regression analysis.",
+     "page_or_table": "Section 2.3, p. 834"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "GG 1 (3.2) \u2014 .484",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The .484 in A is the p-value for the GG row only."
+  },
+  {
+   "item_id": "I0298",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GT genotype comparison",
+     "verdict": "B",
+     "quote": "GT 2 (6.5) 7 (21.2) .049*",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated",
+     "verdict": "both",
+     "quote": "The odds ratios (ORs) and corresponding 95% confidence intervals (CIs) were calculated by unconditional logistic regression analysis.",
+     "page_or_table": "Section 2.3, p. 834"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "1",
+     "verdict": "A",
+     "quote": "GG 1 (3.2) \u2014 .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "27",
+     "verdict": "A",
+     "quote": "TT 27 (87.1) 26 (78.8) .583",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "\u2014",
+     "verdict": "A",
+     "quote": "GG 1 (3.2) \u2014 .484",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "26",
+     "verdict": "A",
+     "quote": "TT 27 (87.1) 26 (78.8) .583",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper presents GT as a single genotype row (p .049), not as a formal carrier model."
+  },
+  {
+   "item_id": "I0299",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "rs16910526 CT 1 (3.2) - .484",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0300",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "G 4 (6.5) 7 (10.6) .601",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0301",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "8",
+     "verdict": "A",
+     "quote": "GG 8 (25.8) 6 (18.2) .664",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "12",
+     "verdict": "A",
+     "quote": "AG 12 (38.7) 17 (51.5) .437",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "11",
+     "verdict": "A",
+     "quote": "rs2305619 AA 11(35.5) 10 (30.3) .861",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "6",
+     "verdict": "A",
+     "quote": "GG 8 (25.8) 6 (18.2) .664",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "17",
+     "verdict": "A",
+     "quote": "AG 12 (38.7) 17 (51.5) .437",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "10",
+     "verdict": "A",
+     "quote": "rs2305619 AA 11(35.5) 10 (30.3) .861",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "A's counts are oriented with G as the effect allele."
+  },
+  {
+   "item_id": "I0302",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution",
+     "verdict": "B",
+     "quote": "rs2305619 AA 11(35.5) 10 (30.3) .861",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "AG 12 (38.7) 17 (51.5) .437",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The .437 in A is the p-value for the AG row."
+  },
+  {
+   "item_id": "I0303",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "GG 8 (25.8) 6 (18.2) .664",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0304",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "7",
+     "verdict": "B",
+     "quote": "CC 7 (22.6) 6 (18.2) .900",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "11",
+     "verdict": "B",
+     "quote": "AC 11 (35.5) 16 (48.5) .424",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "13",
+     "verdict": "B",
+     "quote": "rs3816527 AA 13 (41.9) 11 (33.3) .651",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "CC 7 (22.6) 6 (18.2) .900",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "16",
+     "verdict": "B",
+     "quote": "AC 11 (35.5) 16 (48.5) .424",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "11",
+     "verdict": "B",
+     "quote": "rs3816527 AA 13 (41.9) 11 (33.3) .651",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0305",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution",
+     "verdict": "A",
+     "quote": "rs3816527 AA 13 (41.9) 11 (33.3) .651",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "AC 11 (35.5) 16 (48.5) .424",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The .424 in B is the p-value for the AC row."
+  },
+  {
+   "item_id": "I0306",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "CC 7 (22.6) 6 (18.2) .900",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0307",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "\u2014",
+     "verdict": "B",
+     "quote": "GG \u2014 \u2014 \u2014",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "AG 6 (19.3) 6 (18.2) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "25",
+     "verdict": "B",
+     "quote": "rs4986790 AA 25 (80.7) 27 (81.8) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "\u2014",
+     "verdict": "B",
+     "quote": "GG \u2014 \u2014 \u2014",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "AG 6 (19.3) 6 (18.2) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "27",
+     "verdict": "B",
+     "quote": "rs4986790 AA 25 (80.7) 27 (81.8) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0308",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution",
+     "verdict": "A",
+     "quote": "rs4986790 AA 25 (80.7) 27 (81.8) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "AG 6 (19.3) 6 (18.2) 1.000",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The 1.000 in B is a p-value for an individual row."
+  },
+  {
+   "item_id": "I0309",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "\u2014",
+     "verdict": "A",
+     "quote": "TT \u2014 \u2014 \u2014",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "4",
+     "verdict": "A",
+     "quote": "CT 4 (12.9) 8 (24.2) .400",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "27",
+     "verdict": "A",
+     "quote": "rs4986791 CC 27 (87.1) 25 (75.8) .400",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "\u2014",
+     "verdict": "A",
+     "quote": "TT \u2014 \u2014 \u2014",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "8",
+     "verdict": "A",
+     "quote": "CT 4 (12.9) 8 (24.2) .400",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "25",
+     "verdict": "A",
+     "quote": "rs4986791 CC 27 (87.1) 25 (75.8) .400",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0310",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution",
+     "verdict": "A",
+     "quote": "rs4986791 CC 27 (87.1) 25 (75.8) .400",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "CT 4 (12.9) 8 (24.2) .400",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The .400 in B is a p-value for an individual row."
+  },
+  {
+   "item_id": "I0311",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "9",
+     "verdict": "A",
+     "quote": "GG 9 (29) 7 (21.2) .665",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "8",
+     "verdict": "A",
+     "quote": "CG 8 (25.8) 4 (12.1) .280",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "14",
+     "verdict": "A",
+     "quote": "rs7309123 CC 14 (45.2) 22 (66.7) .139",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "7",
+     "verdict": "A",
+     "quote": "GG 9 (29) 7 (21.2) .665",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "4",
+     "verdict": "A",
+     "quote": "CG 8 (25.8) 4 (12.1) .280",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "22",
+     "verdict": "A",
+     "quote": "rs7309123 CC 14 (45.2) 22 (66.7) .139",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0312",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "genotypic distribution",
+     "verdict": "B",
+     "quote": "rs7309123 CC 14 (45.2) 22 (66.7) .139",
+     "page_or_table": "Table 3, p. 836"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "CG 8 (25.8) 4 (12.1) .280",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": "The paper reports no overall 3-level p-value. The .280 in A is the p-value for the CG row."
+  },
+  {
+   "item_id": "I0313",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "GG 9 (29) 7 (21.2) .665",
+     "page_or_table": "Table 3, p. 836"
+    }
+   ],
+   "item_note": ""
+  }
+ ]
+}

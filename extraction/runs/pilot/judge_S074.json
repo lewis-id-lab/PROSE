@@ -1,0 +1,217 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 27200,
+   "output": 3179
+  },
+  "finished_at": "2026-11-25T20:28:22",
+  "study_id": "S074",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 14
+ },
+ "blinding": {
+  "I0401": "A=original",
+  "I0402": "A=original",
+  "I0403": "A=original",
+  "I0404": "A=original",
+  "I0405": "A=reextraction",
+  "I0406": "A=reextraction",
+  "I0407": "A=reextraction",
+  "I0408": "A=reextraction",
+  "I0409": "A=reextraction",
+  "I0410": "A=reextraction",
+  "I0411": "A=reextraction",
+  "I0412": "A=original",
+  "I0413": "A=reextraction",
+  "I0414": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0401",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (genotype distribution only: T/T 171 (99.4), 0 (0), 0 (0), 1 (0.6))",
+     "verdict": "A",
+     "quote": "Dectin-1 (CLEC7A) rs16910526 T/T T/T T/T T/T 171 (99.4) 0 (0) 0 (0) 1 (0.6)",
+     "page_or_table": "Table 3, p.909"
+    }
+   ],
+   "item_note": "The paper reports a whole-cohort genotype distribution for rs16910526 and states 'no ... Dectin-1 (rs16910526) polymorphisms were detected'. No IFD split or OR is given."
+  },
+  {
+   "item_id": "I0402",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 1.960 (0.991\u20133.878), P=0.05)",
+     "verdict": "B",
+     "quote": "G/T 23 (38.3) 37 (61.7) 1.960 (0.991\u20133.878) 0.05",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0403",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 9.462 (0.943\u201394.916), P=0.05)",
+     "verdict": "B",
+     "quote": "G/G 3 (75.0) 1 (25.0) 9.462 (0.943\u201394.916) 0.05",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0404",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 2.158 (1.109\u20134.200), P=0.02)",
+     "verdict": "B",
+     "quote": "G/T+G/G 26 (40.6) 38 (59.4) 2.158 (1.109\u20134.200) 0.02",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0405",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 7.286 (0.74\u201371.766), P=0.08)",
+     "verdict": "A",
+     "quote": "G/G 3 (75.0) 1 (25.0) 7.286 (0.74\u201371.766) 0.08",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": "This is the G/G row that follows the T/T+G/T reference row."
+  },
+  {
+   "item_id": "I0406",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 2.201 (1.206\u20134.019), P-trend 0.01)",
+     "verdict": "A",
+     "quote": "per G allele 2.201 (1.206\u20134.019) 0.01",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0407",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (A/A 172 (100), 0 (0), 0 (0))",
+     "verdict": "B",
+     "quote": "TLR4 rs4986790 A/A G/A A/A 172 (100) 0 (0) 0 (0)",
+     "page_or_table": "Table 3, p.909"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0408",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (C/C 172 (100), 0 (0), 0 (0))",
+     "verdict": "B",
+     "quote": "TLR4 rs4986791 C/C C/T T/T 172 (100) 0 (0) 0 (0)",
+     "page_or_table": "Table 3, p.909"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0409",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (G/G 171 (99.4), 0 (0), 0 (0), missing 1 (0.6))",
+     "verdict": "B",
+     "quote": "TLR2 rs5743708 G/G A/G A/A Missing 171 (99.4) 0 (0) 0 (0) 1 (0.6)",
+     "page_or_table": "Table 3, p.909"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0410",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "unclear",
+     "verdict": "A",
+     "quote": "C/C 3 (75.0) 1 (25.0) 7.532 (0.764\u201374.249) 0.08",
+     "page_or_table": "Table 4, p.910; Methods 1.5, p.908"
+    }
+   ],
+   "item_note": "Table 4 does not state whether ORs are adjusted. Methods say significant SNPs 'were included as confounders in the multiple logistic regression', but the covariates are not specified for these ORs. The adjustment status is therefore ambiguous in the paper."
+  },
+  {
+   "item_id": "I0411",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "unclear",
+     "verdict": "A",
+     "quote": "C/G+C/C 24 (38.1) 39 (61.9) 1.846 (0.945\u20133.606) 0.07",
+     "page_or_table": "Table 4, p.910; Methods 1.5, p.908"
+    }
+   ],
+   "item_note": "No adjustment covariates are stated for Table 4, so the status is ambiguous."
+  },
+  {
+   "item_id": "I0412",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "unclear",
+     "verdict": "B",
+     "quote": "C/C 3 (75.0) 1 (25.0) 9.000 (0.898\u201390.191) 0.06",
+     "page_or_table": "Table 4, p.910; Methods 1.5, p.908"
+    }
+   ],
+   "item_note": "No adjustment covariates are stated for Table 4, so the status is ambiguous."
+  },
+  {
+   "item_id": "I0413",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "unclear",
+     "verdict": "A",
+     "quote": "C/G 21 (35.6) 38 (64.4) 1.622 (0.808\u20133.255) 0.17",
+     "page_or_table": "Table 4, p.910; Methods 1.5, p.908"
+    }
+   ],
+   "item_note": "No adjustment covariates are stated for Table 4, so the status is ambiguous."
+  },
+  {
+   "item_id": "I0414",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR 1.919 (1.047\u20133.518), P-trend 0.03)",
+     "verdict": "A",
+     "quote": "per C allele 1.919 (1.047\u20133.518) 0.03",
+     "page_or_table": "Table 4, p.910"
+    }
+   ],
+   "item_note": ""
+  }
+ ]
+}

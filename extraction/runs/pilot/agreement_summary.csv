@@ -1,0 +1,23 @@
+measure,value
+studies compared,24
+original rows in scope,416
+rows paired with a re-extracted row,239
+paired rows agreeing on every field,110
+paired rows with at least one difference,129
+original rows the re-extraction did not find,177
+re-extracted rows not in the original,101
+differences in genetic_model,43
+differences in p_value,35
+differences in adjusted,35
+differences in ci_lower,29
+differences in ci_upper,29
+differences in n_cases_het,29
+differences in n_cases_hom_effect,27
+differences in effect_estimate,27
+differences in n_ctrl_het,27
+differences in n_ctrl_hom_effect,26
+differences in n_ctrl_hom_other,24
+differences in n_cases_hom_other,22
+differences in other_allele,14
+differences in effect_allele,13
+differences in effect_measure,3

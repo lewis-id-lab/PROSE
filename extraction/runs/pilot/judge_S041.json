@@ -1,0 +1,98 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 23074,
+   "output": 1393
+  },
+  "finished_at": "2026-11-25T20:22:03",
+  "study_id": "S041",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 4
+ },
+ "blinding": {
+  "I0196": "A=reextraction",
+  "I0197": "A=original",
+  "I0198": "A=original",
+  "I0199": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0196",
+   "fields": [
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "106",
+     "verdict": "A",
+     "quote": "106",
+     "page_or_table": "Fig. 1A, page 536 (Normal genotype, no infection bar)"
+    }
+   ],
+   "item_note": "In Fig. 1A (1063A/G), the Normal genotype bar shows 106 patients with no infection, 23 with probable IA and 10 with proven IA. A gives 106 and B leaves the field blank."
+  },
+  {
+   "item_id": "I0197",
+   "fields": [
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "1063AA genotype: 35.8 + 8.6%",
+     "page_or_table": "Fig. 1C, page 536"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.68",
+     "verdict": "A",
+     "quote": "P=0.68",
+     "page_or_table": "Fig. 1C, page 536"
+    }
+   ],
+   "item_note": "The death-in-remission curve in Fig. 1C reports only percentages, not counts. B's 106 is the no-infection count for the IA outcome in Fig. 1A, and its p-value of 0.026 also comes from the IA comparison in Fig. 1A."
+  },
+  {
+   "item_id": "I0198",
+   "fields": [
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "103",
+     "verdict": "B",
+     "quote": "103",
+     "page_or_table": "Fig. 1B, page 536 (Normal genotype, no infection bar)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.025",
+     "verdict": "B",
+     "quote": "P=0.025",
+     "page_or_table": "Fig. 1B, page 536"
+    }
+   ],
+   "item_note": "Fig. 1B reports two p-values: 0.025 for normal genotype vs carrier recipient and 0.006 for normal genotype vs carrier donor. B's 0.025 matches the recipient comparison. A's 0.026 is a value from Fig. 1A (1063A/G), not from this SNP."
+  },
+  {
+   "item_id": "I0199",
+   "fields": [
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "1363CC genotype: 50.1 + 7.4%",
+     "page_or_table": "Fig. 1D, page 536"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.28",
+     "verdict": "B",
+     "quote": "P=0.28",
+     "page_or_table": "Fig. 1D, page 536"
+    }
+   ],
+   "item_note": "The overall survival curve in Fig. 1D reports only percentages, not counts. A's 103 and 0.006 come from the IA incidence comparison in Fig. 1B, not from the survival result."
+  }
+ ]
+}

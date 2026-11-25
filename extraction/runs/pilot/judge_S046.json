@@ -1,0 +1,189 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 34452,
+   "output": 2527
+  },
+  "finished_at": "2026-11-25T20:23:36",
+  "study_id": "S046",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 12
+ },
+ "blinding": {
+  "I0274": "A=reextraction",
+  "I0275": "A=original",
+  "I0278": "A=reextraction",
+  "I0279": "A=reextraction",
+  "I0282": "A=reextraction",
+  "I0283": "A=original",
+  "I0286": "A=reextraction",
+  "I0287": "A=reextraction",
+  "I0290": "A=reextraction",
+  "I0291": "A=reextraction",
+  "I0294": "A=original",
+  "I0295": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0274",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (A/C or C/C) n Z 10 4 (16.7) 6 (12.2) 0.963",
+     "page_or_table": "Table 3, p.285"
+    }
+   ],
+   "item_note": "The paper reports the CLEC7A any-SNP row for patients. B left this row blank."
+  },
+  {
+   "item_id": "I0275",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Any SNP (A/C or C/C) n Z 4 1 (7.1) 3 (17.6) 0.385",
+     "page_or_table": "Table 4, p.286"
+    }
+   ],
+   "item_note": "The paper reports the CLEC7A any-SNP row for donors. A left this row blank."
+  },
+  {
+   "item_id": "I0278",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (G/A or G/A) n Z 59 22 (88.0) 37 (94.9) 0.318",
+     "page_or_table": "Table 3, p.285"
+    }
+   ],
+   "item_note": "The paper reports the INFg any-SNP row for patients. B left this row blank."
+  },
+  {
+   "item_id": "I0279",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (G/A or G/A) n Z 19 10 (83.3) 9 (69.2) 0.409",
+     "page_or_table": "Table 4, p.286"
+    }
+   ],
+   "item_note": "The paper reports the INFg any-SNP row for donors. B left this row blank."
+  },
+  {
+   "item_id": "I0282",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (G/G or A/G) n Z 8 4 (18.2) 4 (10.5) 0.401",
+     "page_or_table": "Table 3, p.285 (TLR4.2)"
+    }
+   ],
+   "item_note": "The paper reports the TLR4.2 any-SNP row for patients. B left this row blank."
+  },
+  {
+   "item_id": "I0283",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Any SNP (G/G or A/G) n Z 4 0 4 (36.4) 0.017",
+     "page_or_table": "Table 4, p.286 (TLR4.2)"
+    }
+   ],
+   "item_note": "The paper reports the TLR4.2 any-SNP row for donors. A left this row blank."
+  },
+  {
+   "item_id": "I0286",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (C/T or T/T) n Z 8 3 (12.0) 5 (13.5) 0.862",
+     "page_or_table": "Table 3, p.285 (TLR4.1)"
+    }
+   ],
+   "item_note": "The paper reports the TLR4.1 any-SNP row for patients. B left this row blank."
+  },
+  {
+   "item_id": "I0287",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (C/T or T/T) n Z 5 1 (6.7) 4 (30.8) 0.097",
+     "page_or_table": "Table 4, p.286 (TLR4.1)"
+    }
+   ],
+   "item_note": "The paper reports the TLR4.1 any-SNP row for donors. B left this row blank."
+  },
+  {
+   "item_id": "I0290",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (G/A, A/A) n Z 8 4 (18.2) 4 (11.1) 0.449",
+     "page_or_table": "Table 3, p.285 (TLR2)"
+    }
+   ],
+   "item_note": "The paper reports the TLR2 any-SNP row for patients. B left this row blank."
+  },
+  {
+   "item_id": "I0291",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Any SNP (G/A, A/A) n Z 1 0 1 (5.6) 0.274",
+     "page_or_table": "Table 4, p.286 (TLR2)"
+    }
+   ],
+   "item_note": "The paper reports the TLR2 any-SNP row for donors. B left this row blank."
+  },
+  {
+   "item_id": "I0294",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Any SNP (G/A or A/A) n Z 32 11 (45.8) 21 (56.8) 0.404",
+     "page_or_table": "Table 3, p.285 (TLR6)"
+    }
+   ],
+   "item_note": "The paper reports the TLR6 any-SNP row for patients. A left this row blank."
+  },
+  {
+   "item_id": "I0295",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Any SNP (G/A or A/A) n Z 13 6 (40) 7 (63.6) 0.234",
+     "page_or_table": "Table 4, p.286 (TLR6)"
+    }
+   ],
+   "item_note": "The paper reports the TLR6 any-SNP row for donors. A left this row blank."
+  }
+ ]
+}

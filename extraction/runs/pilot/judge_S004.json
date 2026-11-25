@@ -1,0 +1,49 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 11845,
+   "output": 1005
+  },
+  "finished_at": "2026-11-25T20:16:07",
+  "study_id": "S004",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 2
+ },
+ "blinding": {
+  "I0011": "A=reextraction",
+  "I0012": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0011",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": null,
+     "verdict": "both",
+     "quote": "Of these 10 patients, 9 patients had the TLR4 Asp299Gly polymorphism and 8 patients had the TLR4 Thr399Ile polymorphism. PCR products containing the Asp299Gly (n \uff1d 9) and Thr399Ile (n \uff1d 8) polymorphisms were sequenced. However, DNA sequencing of these PCR products did not show the presence of these SNPs.",
+     "page_or_table": "Page 331-332, text and Table 1"
+    }
+   ],
+   "item_note": "The paper says nothing about adjustment. The result is a raw descriptive genotype tally (Table 1: 9 genotyped cases, all A/A at nucleotide 1063) with no statistical model. So A's 'no' (unadjusted) and B's 'not_stated' are both consistent with the paper."
+  },
+  {
+   "item_id": "I0012",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": null,
+     "verdict": "both",
+     "quote": "PCR products containing the Asp299Gly (n \uff1d 9) and Thr399Ile (n \uff1d 8) polymorphisms were sequenced. However, DNA sequencing of these PCR products did not show the presence of these SNPs.",
+     "page_or_table": "Page 332, text and Table 1"
+    }
+   ],
+   "item_note": "The paper says nothing about adjustment. The result is a raw descriptive genotype tally (Table 1: 8 genotyped cases, all C/C at nucleotide 1363) with no statistical model. So A's 'no' (unadjusted) and B's 'not_stated' are both consistent with the paper."
+  }
+ ]
+}

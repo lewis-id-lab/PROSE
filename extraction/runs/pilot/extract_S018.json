@@ -1,0 +1,123 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 12852,
+   "output": 1803
+  },
+  "finished_at": "2026-11-25T19:51:19",
+  "study_id": "S018",
+  "files": [
+   "Schnetzke U. et al. - 2017 - Human L-ficolin polymorphisms contribute to susceptibility to infections in patients with acute myel.pdf:270-271"
+  ],
+  "prompt_sha": "09980fb3f1cc",
+  "scope": "panel",
+  "n_variants": 3
+ },
+ "targets": [
+  [
+   "PTX3",
+   "rs3816527",
+   "rs3816527"
+  ],
+  [
+   "PTX3",
+   "rs2305619",
+   "rs2305619"
+  ],
+  [
+   "PTX3",
+   "rs1840680",
+   "rs1840680"
+  ]
+ ],
+ "rows": [
+  {
+   "listed_variant": true,
+   "gene_symbol": "PTX3",
+   "rsid": "rs3816527",
+   "variant_name_as_reported": "rs3816527",
+   "effect_allele": null,
+   "other_allele": null,
+   "genetic_model": "other",
+   "comparison_as_reported": "not reported",
+   "subgroup": "All AML patients (n=186), induction chemotherapy",
+   "n_cases_hom_effect": null,
+   "n_cases_het": null,
+   "n_cases_hom_other": null,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "not_stated",
+   "page_or_table": "p. 256, P648 Results and Summary/Conclusions",
+   "verbatim_source": "Interestingly, no association of PTX3 SNPs and infectious events such as IFD was found in this non-transplant setting.",
+   "confidence": "low",
+   "note": "Conference abstract. Only a collective qualitative null statement for all PTX3 SNPs; no per-variant genetic model, alleles, genotype counts, estimate or p-value. Outcome is infectious events including IFD, not specifically invasive aspergillosis or mould."
+  },
+  {
+   "listed_variant": true,
+   "gene_symbol": "PTX3",
+   "rsid": "rs2305619",
+   "variant_name_as_reported": "rs2305619",
+   "effect_allele": null,
+   "other_allele": null,
+   "genetic_model": "other",
+   "comparison_as_reported": "not reported",
+   "subgroup": "All AML patients (n=186), induction chemotherapy",
+   "n_cases_hom_effect": null,
+   "n_cases_het": null,
+   "n_cases_hom_other": null,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "not_stated",
+   "page_or_table": "p. 256, P648 Results and Summary/Conclusions",
+   "verbatim_source": "Interestingly, no association of PTX3 SNPs and infectious events such as IFD was found in this non-transplant setting.",
+   "confidence": "low",
+   "note": "Conference abstract. Only a collective qualitative null statement for all PTX3 SNPs; no per-variant genetic model, alleles, genotype counts, estimate or p-value. Outcome is infectious events including IFD, not specifically invasive aspergillosis or mould."
+  },
+  {
+   "listed_variant": true,
+   "gene_symbol": "PTX3",
+   "rsid": "rs1840680",
+   "variant_name_as_reported": "rs1840680",
+   "effect_allele": null,
+   "other_allele": null,
+   "genetic_model": "other",
+   "comparison_as_reported": "not reported",
+   "subgroup": "All AML patients (n=186), induction chemotherapy",
+   "n_cases_hom_effect": null,
+   "n_cases_het": null,
+   "n_cases_hom_other": null,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "not_stated",
+   "page_or_table": "p. 256, P648 Results and Summary/Conclusions",
+   "verbatim_source": "Interestingly, no association of PTX3 SNPs and infectious events such as IFD was found in this non-transplant setting.",
+   "confidence": "low",
+   "note": "Conference abstract. Only a collective qualitative null statement for all PTX3 SNPs; no per-variant genetic model, alleles, genotype counts, estimate or p-value. Outcome is infectious events including IFD, not specifically invasive aspergillosis or mould."
+  }
+ ],
+ "not_found": [],
+ "paper_note": "EHA 2017 conference abstract (P648) on 186 non-transplant AML patients after induction chemotherapy. It reports only a pooled qualitative null result for the PTX3 SNPs and infectious events including IFD, with no per-variant numbers; the L-ficolin results given are for sepsis and pneumonia, not IFD."
+}

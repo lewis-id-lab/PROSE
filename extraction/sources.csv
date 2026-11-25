@@ -1,0 +1,64 @@
+study_id,file,pages,role,first_author,year,note
+S001,Guner Ozenen et al. - 2025 - CARD9 Mutations in Patients with Invasive Fungal Infections..pdf,,main,"Guner Ozenen, Gizem",2025,
+S002,Cunha et al. - 2014 - Genetic PTX3 deficiency and aspergillosis in stem-cell transplantation..pdf,,main,"Cunha, Cristina",2014,same PDF assigned to another study; confirm this file holds this paper
+S003,Cunha et al. - 2017 - IL-10 overexpression predisposes to invasive aspergillosis by suppressing antifungal immunity..pdf,,main,"Cunha, Cristina",2017,
+S004,Aki et al. - 2015 - Genomic Analysis of Single Nucleotide Polymorphisms Asp299Gly and Thr399Ile in Japanese Patients wit.pdf,,main,"Aki, Kyoko",2015,
+S005,Hader A. et al. - 2023 - Pathogen-specific innate immune response patterns are distinctly affected by genetic diversity.pdf,,main,Hader A.,2023,
+S006,Zhuansun Y. et al. - 2024 - High frequency of GATA2 variants in patients with pulmonary fungal disease without immunocompromised.pdf,,main,Zhuansun Y.,2024,
+S010,Ozdemir N. et al. - 2011 - Polymorphism in TLR2 Arg753gln and susceptibility to fungal infections in children with leukemia.pdf,,main,Ozdemir N.,2011,same PDF assigned to another study; confirm this file holds this paper; round 1b used a corrected source; confirm the file name
+S014,Zanetti E. et al. - 2010 - Genetic polymorphisms in innate and adaptive immunity-related genes for defining the risk of invasiv.pdf,,main,Zanetti E.,2010,round 1b used a corrected source; confirm the file name
+S018,Schnetzke U. et al. - 2017 - Human L-ficolin polymorphisms contribute to susceptibility to infections in patients with acute myel.pdf,270-271,main,Schnetzke U.,2017,abstract in a 988-page supplement (located 2026-11-25)
+S021,Sainz J. et al. - 2011 - CD209 gene polymorphisms for prediction of susceptibility to invasive pulmonary aspergillosis infect.pdf,322-323,main,Sainz J.,2011,abstract 0743 in a 736-page supplement; the bundle audit pointed at an Ozdemir file (checked 2026-11-25)
+S023,Fischer M. et al. - 2015 - Impact of dectin-1 polymorphisms on susceptibility of invasive fungal disease in patients with acute.pdf,312-313,main,Fischer M.,2015,abstract in a 901-page supplement (located 2026-11-25)
+S026,Tang et al. - 2020 - Pentraxin-3 polymorphisms and pulmonary fungal disease in non-neutropenic patients..pdf,,main,"Tang, Tiantian",2020,
+S027,"Zhong et al. - 2022 - NLRP3, NLRC4 and NLRC5 Gene Polymorphisms Associate with Susceptibility of Pulmonary Aspergillosis i.pdf",,main,"Zhong, Jinjin",2022,
+S028,Carvalho et al. - 2012 - TLR3 essentially promotes protective class I-restricted memory CD8⁺ T-cell responses to Aspergillus.pdf,,main,"Carvalho, Agostinho",2012,
+S029,Brunel et al. - 2018 - Pentraxin-3 polymorphisms and invasive mold infections in acute leukemia patients receiving intensiv.pdf,,main,"Brunel, Anne-Sophie",2018,
+S030,Sung et al. - 2016 - Single nucleotide polymorphism in IL1B is associated with infection risk in paediatric acute myeloid.pdf,,main,"Sung, L.",2016,
+S031,Wang et al. - 2022 - MAVS Expression in Alveolar Macrophages Is Essential for Host Resistance against Aspergillus fumi.pdf,,main,"Wang, Xi",2022,
+S033,Stappers et al. - 2018 - Recognition of DHN-melanin by a C-type lectin receptor is required for immunity to Aspergillus..pdf,,main,"Stappers, Mark H. T.",2018,
+S034,Konuma et al. - 2026 - Toll‐Like Receptor Polymorphisms Influence Graft‐Versus‐Host Disease and Infection Risk After Single.pdf,,main,"Konuma, Takaaki",2026,
+S035,"Herrero-Sánchez et al. - 2018 - Polymorphisms in Receptors Involved in Opsonic and Nonopsonic Phagocytosis, and Correlation with Ris.pdf",,main,"Herrero-Sánchez, M. Carmen",2018,
+S036,Gresnigt et al. - 2018 - Genetic deficiency of NOD2 confers resistance to invasive aspergillosis..pdf,,main,"Gresnigt, Mark S.",2018,
+S037,Griffiths J.S. et al. - 2021 - A Novel Strategy to Identify Haematology Patients at High Risk of Developing Aspergillosis.pdf,,main,Griffiths J.S.,2021,
+S038,Doni A. et al. - 2021 - Serum amyloid P component is an essential element of resistance against Aspergillus fumigatus.pdf,,main,Doni A.,2021,
+S039,Napolioni et al. - 2019 - Genetic Polymorphisms Affecting IDO1 or IDO2 Activity Differently Associate With Aspergillosis in Hu.pdf,,main,"Napolioni, Valerio",2019,
+S040,Zaas et al. - 2008 - Plasminogen alleles influence susceptibility to invasive aspergillosis..pdf,,main,"Zaas, Aimee K.",2008,
+S041,Koldehoff et al. - 2013 - Increased susceptibility for aspergillosis and post-transplant immune deficiency in patients with ge.pdf,,main,"Koldehoff, M.",2013,
+S042,White et al. - 2018 - Predicting Invasive Aspergillosis in Hematology Patients by Combining Clinical and Genetic Risk Fact.pdf,,main,"White, P. Lewis",2018,
+S043,Gonçalves et al. - 2025 - A Functional Polymorphism in IL-36β Modulates Macrophage Antifungal Effector Functions and Increases.pdf,,main,"Gonçalves, Samuel M.",2025,
+S044,Gonçalves et al. - 2021 - Genetic Variation in PFKFB3 Impairs Antifungal Immunometabolic Responses and Predisposes to Invasive-1.pdf,,main,"Gonçalves, Samuel M.",2021,
+S045,Schnetzke et al. - 2024 - Validating genetic variants in innate immunity linked to infectious events in acute myeloid leukemia.pdf,,main,"Schnetzke, Ulf",2024,
+S046,Ceesay et al. - 2016 - Baseline cytokine profiling identifies novel risk factors for invasive fungal disease among haematol.pdf,,main,"Ceesay, M. Mansour",2016,
+S049,Skonieczna et al. - 2017 - Massively parallel targeted resequencing reveals novel genetic variants associated with aspergillosi.pdf,,main,"Skonieczna, Katarzyna",2017,
+S050,Sainz et al. - 2008 - Genetic variants of IL6 gene promoter influence on C-reactive protein levels but are not associated-1.pdf,,main,"Sainz, J.",2008,same PDF assigned to another study; confirm this file holds this paper; round 1b used a corrected source; confirm the file name
+S051,Sainz et al. - 2007 - Interleukin-10 promoter polymorphism as risk factor to develop invasive pulmonary aspergillosis..pdf,,main,"Sainz, Juan",2007,same PDF assigned to another study; confirm this file holds this paper; round 1b used a corrected source; confirm the file name
+S052,Sainz et al. - 2007 - Interleukin-10 promoter polymorphism as risk factor to develop invasive pulmonary aspergillosis..pdf,,main,"Sainz, Juan",2007,same PDF assigned to another study; confirm this file holds this paper
+S053,Sainz et al. - 2008 - Genetic variants of IL6 gene promoter influence on C-reactive protein levels but are not associated-1.pdf,,main,"Sainz, J.",2008,same PDF assigned to another study; confirm this file holds this paper
+S054,Matzaraki et al. - 2022 - Genetic determinants of fungi-induced ROS production are associated with the risk of invasive pulmon.pdf,,main,"Matzaraki, Vasiliki",2022,
+S055,Broen et al. - 2011 - Polymorphisms in CCR6 are associated with chronic graft-versus-host disease and invasive fungal dise.pdf,,main,"Broen, Kelly",2011,
+S056,Kalkanci et al. - 2020 - Retrospective analysis of the association of the expression and single nucleotide polymorphisms (SNP.pdf,,main,"Kalkanci, Ayse",2020,
+S057,Lupiañez et al. - 2016 - Common Genetic Polymorphisms within NFκB-Related Genes and the Risk of Developing Invasive Aspergill.pdf,,main,"Lupiañez, Carmen B.",2016,
+S058,Chai et al. - 2011 - The Y238X Stop Codon Polymorphism in the Human β-Glucan Receptor Dectin-1 and Susceptibility to Inva.pdf,,main,"Chai, Louis Y. A.",2011,
+S059,Sainz et al. - 2010 - TNFR1 mRNA expression level and TNFR1 gene polymorphisms are predictive markers for susceptibility t-1.pdf,,main,"Sainz, J.",2010,
+S060,Mezger et al. - 2008 - Polymorphisms in the chemokine (C-X-C motif) ligand 10 are associated with invasive aspergillosis af.pdf,,main,"Mezger, Markus",2008,
+S061,de Boer et al. - 2011 - Influence of polymorphisms in innate immunity genes on susceptibility to invasive aspergillosis afte.pdf,,main,"de Boer, Mark G. J.",2011,
+S062,Kesh et al. - 2005 - TLR1 and TLR6 Polymorphisms Are Associated with Susceptibility to Invasive Aspergillosis after Allog.pdf,,main,"Kesh, Sandra",2005,
+S063,Seo et al. - 2005 - Protective role of interleukin-10 promoter gene polymorphism in the pathogenesis of invasive pulmona.pdf,,main,"Seo, K. W.",2005,
+S064,Granell et al. - 2006 - Mannan-binding lectin pathway deficiencies and invasive fungal infections following allogeneic stem.pdf,,main,"Granell, Miquel",2006,
+S065,Cunha et al. - 2011 - Genetically-determined hyperfunction of the S100BRAGE axis is a risk factor for aspergillosis in st.pdf,,main,"Cunha, Cristina",2011,
+S066,Grube et al. - 2013 - TLR5 stop codon polymorphism is associated with invasive aspergillosis after allogeneic stem cell tr.pdf,,main,"Grube, Matthias",2013,
+S067,Carvalho A. et al. - 2009 - Polymorphisms in Toll-like receptor genes and susceptibility to infections in allogeneic stem cell t.pdf,,main,Carvalho A.,2009,
+S069,Moreto A. et al. - 2014 - Mannose-binding lectin gene variants and infections in patients receiving autologous stem cell trans.pdf,,main,Moreto A.,2014,
+S070,Cunha et al. - 2010 - Dectin-1 Y238X polymorphism associates with susceptibility to invasive aspergillosis in hematopoieti.pdf,,main,"Cunha, Cristina",2010,
+S071,Sainz et al. - 2012 - Dectin-1 and DC-SIGN polymorphisms associated with invasive pulmonary Aspergillosis infection..pdf,,main,"Sainz, Juan",2012,
+S072,Lupiañez et al. - 2015 - Polymorphisms in Host Immunity-Modulating Genes and Risk of Invasive Aspergillosis Results from the.pdf,,main,"Lupiañez, C. B.",2015,
+S073,Fischer et al. - 2016 - Polymorphisms of Dectin-1 and TLR2 Predispose to Invasive Fungal Disease in Patients with Acute Myel.pdf,,main,"Fischer, Mike",2016,
+S074,Chen et al. - 2019 - Dectin-1 rs3901533 and rs7309123 Polymorphisms Increase Susceptibility to Pulmonary Invasive Fungal.pdf,,main,"Chen, Mei-Jing",2019,
+S075,Lupiañez et al. - 2020 - Polymorphisms within the ARNT2 and CX3CR1 Genes Are Associated with the Risk of Developing Invasive.pdf,,main,"Lupiañez, C. B.",2020,
+S076,Sánchez-Maldonado et al. - 2020 - Polymorphisms within the TNFSF4 and MAPKAPK2 Loci Influence the Risk of Developing Invasive Aspergil-1.pdf,,main,"Sánchez-Maldonado, Jose Manuel",2020,
+S077,Tanpaibule et al. - 2020 - Genetic Risk Surveillance for Invasive Aspergillosis in Hematology Patients A Prospective Observati.pdf,,main,"Tanpaibule, Tananun",2020,
+S078,Bochud et al. - 2008 - Toll-like receptor 4 polymorphisms and aspergillosis in stem-cell transplantation..pdf,,main,"Bochud, Pierre-Yves",2008,
+S079,Cunha et al. - 2014 - Genetic PTX3 deficiency and aspergillosis in stem-cell transplantation..pdf,,main,"Cunha, Cristina",2014,same PDF assigned to another study; confirm this file holds this paper
+S080,Fisher et al. - 2017 - Validation of single nucleotide polymorphisms in invasive aspergillosis following hematopoietic cell.pdf,,main,"Fisher, Cynthia E.",2017,
+S081,Zhao et al. - 2022 - Recipient and donor PTX3 rs2305619 polymorphisms increase the susceptibility to invasive fungal dise.pdf,,main,"Zhao, Chen",2022,

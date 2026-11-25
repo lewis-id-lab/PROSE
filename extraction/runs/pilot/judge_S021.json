@@ -1,0 +1,63 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 11246,
+   "output": 1105
+  },
+  "finished_at": "2026-11-25T20:16:26",
+  "study_id": "S021",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 3
+ },
+ "blinding": {
+  "I0016": "A=reextraction",
+  "I0017": "A=reextraction",
+  "I0019": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0016",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "OR=2.73 95%CI 1.39-5.40; PTrend=0.0035",
+     "page_or_table": "Abstract 0743, p. 311"
+    }
+   ],
+   "item_note": "The paper reports the rs11465384 T allele per-allele result (the second of the three ORs listed with 'respectively'). B left this field blank."
+  },
+  {
+   "item_id": "I0017",
+   "fields": [
+    {
+     "field": "other_allele",
+     "value_in_source": "A",
+     "verdict": "A",
+     "quote": "those carrying the A or G allele, respectively",
+     "page_or_table": "Abstract 0743, p. 311"
+    }
+   ],
+   "item_note": "The A allele is named as the alternative to rs4804800_G in the galactomannan sentence. B left this field blank."
+  },
+  {
+   "item_id": "I0019",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "per-allele OR=1.68 95%CI 0.94-3.00; PTrend=0.078",
+     "page_or_table": "Abstract 0743, p. 311"
+    }
+   ],
+   "item_note": "The paper reports the rs7252229 C allele per-allele result. B left this field blank."
+  }
+ ]
+}

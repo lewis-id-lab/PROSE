@@ -1,0 +1,82 @@
+study_id,first_author,year,source_status,rows,panel_rows,rows_checkable_orientation,not_reproducible,other_allele,interval_flags,hwe_flags,frequency_flags,hand_transcribed,already_corrected_rows,priority
+S007,Nakata K.,2011,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S008,Nazarova E.,2019,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S009,Yang L.,2012,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S011,Ozdemir N.,2011,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S012,Gil L.,2013,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S013,Rudneva M.V.,2018,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S015,Gil L.,2012,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S016,Gil L.,2013,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S017,Shi J.,2014,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S019,Lupianez C.B.,2019,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S020,Sainz J.,2011,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S022,Sainz J.,2015,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S024,Schnetzke U.,2015,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S025,Schnetzke U.,2018,VOID_no_usable_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S032,"Spinnler, Katrin",2010,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S047,"Sellathamby, Shanmugaapriya",2012,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S048,"Rocha, Vanderson",2002,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S068,Sainz J.,2010,no_source,0,0,0,0,0,0,0,0,0,0,P0 no source
+S071,"Sainz, Juan",2012,verified,145,26,66,15,3,0,0,0,0,1,P1 panel
+S026,"Tang, Tiantian",2020,verified,90,90,88,7,31,17,0,0,0,0,P1 panel
+S046,"Ceesay, M. Mansour",2016,verified,18,12,0,0,0,0,0,1,0,0,P1 panel
+S059,"Sainz, J.",2010,verified,13,0,4,3,1,0,0,0,0,0,P1
+S055,"Broen, Kelly",2011,verified,14,0,0,0,0,2,0,0,0,0,P1
+S035,"Herrero-Sánchez, M. Carmen",2018,verified,71,64,53,0,7,0,0,0,0,30,P2 panel
+S045,"Schnetzke, Ulf",2024,verified,72,53,0,0,0,1,0,0,0,0,P2 panel
+S056,"Kalkanci, Ayse",2020,verified,30,13,0,0,0,1,1,0,0,0,P2 panel
+S061,"de Boer, Mark G. J.",2011,verified,17,5,10,0,0,1,0,0,0,0,P2 panel
+S073,"Fischer, Mike",2016,verified,17,16,0,0,0,0,0,0,7,12,P2 panel
+S080,"Fisher, Cynthia E.",2017,verified,126,57,0,0,0,1,0,0,2,5,P2 panel
+S002,"Cunha, Cristina",2014,verified,17,0,0,0,0,2,0,0,0,17,P2
+S027,"Zhong, Jinjin",2022,verified,364,0,23,0,12,0,0,0,4,0,P2
+S034,"Konuma, Takaaki",2026,verified,10,0,0,0,0,0,0,0,6,0,P2
+S036,"Gresnigt, Mark S.",2018,verified,9,0,0,0,0,1,0,0,0,0,P2
+S043,"Gonçalves, Samuel M.",2025,verified,15,0,0,0,0,1,0,0,0,0,P2
+S057,"Lupiañez, Carmen B.",2016,verified,100,0,0,0,0,0,0,0,2,0,P2
+S067,Carvalho A.,2009,verified,21,0,20,0,0,0,1,0,0,0,P2
+S075,"Lupiañez, C. B.",2020,verified,54,0,0,0,0,0,0,0,12,0,P2
+S076,"Sánchez-Maldonado, Jose Manuel",2020,verified,134,0,0,0,0,1,0,0,0,0,P2
+S079,"Cunha, Cristina",2014,verified,10,0,0,0,0,2,0,0,0,0,P2
+S003,"Cunha, Cristina",2017,verified,13,5,0,0,0,0,0,0,0,0,P3 panel
+S004,"Aki, Kyoko",2015,verified,2,2,0,0,0,0,0,0,0,0,P3 panel
+S018,Schnetzke U.,2017,re-extracted_round1b,7,3,0,0,0,0,0,0,0,0,P3 panel
+S021,Sainz J.,2011,re-extracted_round1b,4,2,0,0,0,0,0,0,0,0,P3 panel
+S023,Fischer M.,2015,re-extracted_round1b,2,2,0,0,0,0,0,0,0,0,P3 panel
+S029,"Brunel, Anne-Sophie",2018,verified,36,12,0,0,0,0,0,0,0,0,P3 panel
+S041,"Koldehoff, M.",2013,verified,11,4,0,0,0,0,0,0,0,0,P3 panel
+S042,"White, P. Lewis",2018,verified,9,4,0,0,0,0,0,0,0,0,P3 panel
+S058,"Chai, Louis Y. A.",2011,verified,3,3,1,0,0,0,0,0,0,0,P3 panel
+S066,"Grube, Matthias",2013,verified,18,6,0,0,0,0,0,0,0,0,P3 panel
+S070,"Cunha, Cristina",2010,verified,3,3,0,0,0,0,0,0,0,0,P3 panel
+S072,"Lupiañez, C. B.",2015,verified,86,5,0,0,0,0,0,0,0,0,P3 panel
+S074,"Chen, Mei-Jing",2019,verified,15,8,5,0,0,0,0,0,0,0,P3 panel
+S077,"Tanpaibule, Tananun",2020,verified,15,15,4,0,0,0,0,0,0,1,P3 panel
+S081,"Zhao, Chen",2022,verified,11,5,0,0,0,0,0,0,0,0,P3 panel
+S001,"Guner Ozenen, Gizem",2025,verified,1,0,0,0,0,0,0,0,0,0,P3
+S006,Zhuansun Y.,2024,verified,3,0,0,0,0,0,0,0,0,0,P3
+S010,Ozdemir N.,2011,re-extracted_round1b,1,0,0,0,0,0,0,0,0,0,P3
+S014,Zanetti E.,2010,re-extracted_round1b,5,0,0,0,0,0,0,0,0,0,P3
+S028,"Carvalho, Agostinho",2012,verified,5,0,0,0,0,0,0,0,0,0,P3
+S031,"Wang, Xi",2022,verified,5,0,0,0,0,0,0,0,0,0,P3
+S033,"Stappers, Mark H. T.",2018,verified,2,0,0,0,0,0,0,0,0,0,P3
+S037,Griffiths J.S.,2021,verified,5,0,0,0,0,0,0,0,0,0,P3
+S038,Doni A.,2021,verified,5,0,0,0,0,0,0,0,0,0,P3
+S039,"Napolioni, Valerio",2019,verified,63,0,0,0,0,0,0,0,0,0,P3
+S040,"Zaas, Aimee K.",2008,verified,7,0,0,0,0,0,0,0,0,0,P3
+S044,"Gonçalves, Samuel M.",2021,verified,6,0,0,0,0,0,0,0,0,0,P3
+S049,"Skonieczna, Katarzyna",2017,verified,173,0,0,0,0,0,0,0,0,0,P3
+S050,"Sainz, J.",2008,re-extracted_round1b,19,0,6,0,0,0,0,0,0,0,P3
+S051,"Sainz, Juan",2007,re-extracted_round1b,6,0,0,0,0,0,0,0,0,0,P3
+S052,"Sainz, Juan",2007,verified,5,0,1,0,0,0,0,0,0,0,P3
+S053,"Sainz, J.",2008,verified,14,0,0,0,0,0,0,0,0,0,P3
+S054,"Matzaraki, Vasiliki",2022,verified,6,0,0,0,0,0,0,0,0,0,P3
+S060,"Mezger, Markus",2008,verified,5,0,0,0,0,0,0,0,0,0,P3
+S062,"Kesh, Sandra",2005,verified,21,0,0,0,0,0,0,0,0,0,P3
+S063,"Seo, K. W.",2005,verified,7,0,0,0,0,0,0,0,0,0,P3
+S064,"Granell, Miquel",2006,verified,6,0,0,0,0,0,0,0,0,0,P3
+S065,"Cunha, Cristina",2011,verified,8,0,0,0,0,0,0,0,0,0,P3
+S069,Moreto A.,2014,verified,5,0,0,0,0,0,0,0,0,0,P3
+S078,"Bochud, Pierre-Yves",2008,verified,43,0,0,0,0,0,0,0,0,0,P3
+S005,Hader A.,2023,verified,0,0,0,0,0,0,0,0,0,0,no rows
+S030,"Sung, L.",2016,verified,0,0,0,0,0,0,0,0,0,0,no rows

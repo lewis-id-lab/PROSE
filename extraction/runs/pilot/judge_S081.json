@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 38818,
+   "output": 1854
+  },
+  "finished_at": "2026-11-25T20:30:37",
+  "study_id": "S081",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 8
+ },
+ "blinding": {
+  "I0507": "A=reextraction",
+  "I0508": "A=reextraction",
+  "I0509": "A=reextraction",
+  "I0510": "A=original",
+  "I0511": "A=reextraction",
+  "I0513": "A=original",
+  "I0515": "A=reextraction",
+  "I0517": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0507",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recipient rs2305619: \u03c72 4.520, univariate P 0.034, multivariate P 0.006, HR 10.249 (1.982\u201353.004)",
+     "verdict": "A",
+     "quote": "Recipient rs2305619 4.520 0.034 0.006 10.249 (1.982\u201353.004)",
+     "page_or_table": "Table 3, page 8"
+    }
+   ],
+   "item_note": "The paper reports this result, so A matches and B (blank) does not. Table 3 does not state the genotype contrast; the homozygous vs heterozygous comparison appears in the text on page 5."
+  },
+  {
+   "item_id": "I0508",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "30-day 5.4% vs 1.7%; 100-day 11.7% vs 3.4%; P=0.035",
+     "verdict": "A",
+     "quote": "Te 30-day and 100-day cumulative incidence of IFD in homozygous and heterozygous patients was 5.4% versus 1.7% and 11.7% versus 3.4%, respectively (P=0.035; Fig. 3C).",
+     "page_or_table": "Page 5, The impact of SNP on IFD; Fig. 3C"
+    }
+   ],
+   "item_note": "The recipient cumulative incidence comparison is reported, so A matches."
+  },
+  {
+   "item_id": "I0509",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Donor rs2305619: \u03c72 2.719, univariate P 0.099, multivariate P 0.046, HR 1.384 (0.351\u20135.466)",
+     "verdict": "A",
+     "quote": "Donor rs2305619 2.719 0.099 0.046 1.384 (0.351\u20135.466)",
+     "page_or_table": "Table 3, page 8"
+    }
+   ],
+   "item_note": "The paper reports this result, so A matches."
+  },
+  {
+   "item_id": "I0510",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "30 days 5.4% vs 2.5%; 100 days 10.1% vs 5.9%; P=0.046",
+     "verdict": "B",
+     "quote": "individuals at 30 days and at 100 days (5.4% versus 2.5% and 10.1% versus 5.9%; P=0.046; Fig. 3D).",
+     "page_or_table": "Pages 5\u20136; Fig. 3D"
+    }
+   ],
+   "item_note": "The donor cumulative incidence comparison is reported, so B matches and A (blank) does not."
+  },
+  {
+   "item_id": "I0511",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "30-day 7.9% vs 2.3%; 100-day 15.8% vs 4.6%; P=0.01",
+     "verdict": "A",
+     "quote": "and the 30-day and 100-day cumulative incidence of IFD were 7.9% versus 2.3% and 15.8% versus 4.6%, respectively (P=0.01; Fig. 4B).",
+     "page_or_table": "Page 6, Score system; Fig. 4B"
+    }
+   ],
+   "item_note": "The combined recipient-donor comparison is reported, so A matches."
+  },
+  {
+   "item_id": "I0513",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recipient rs4804800: \u03c72 3.522, P 0.061, multivariate P 0.073, HR 5.898 (0.847\u201341.068)",
+     "verdict": "B",
+     "quote": "Recipient rs4804800 3.522 0.061 0.073 5.898 (0.847\u201341.068)",
+     "page_or_table": "Table 3, page 8"
+    }
+   ],
+   "item_note": "The result is reported, so B matches. The paper does not name the gene for this SNP in Table 3."
+  },
+  {
+   "item_id": "I0515",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Recipient rs7248637: \u03c72 4.159, P 0.041, multivariate P 0.749, HR 1.933 (0.010\u2013366.116)",
+     "verdict": "A",
+     "quote": "Recipient rs7248637 4.159 0.041 0.749 1.933 (0.010\u2013366.116)",
+     "page_or_table": "Table 3, page 8"
+    }
+   ],
+   "item_note": "The result is reported, so A matches. The paper does not name the gene for this SNP in Table 3."
+  },
+  {
+   "item_id": "I0517",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Donor rs7309123: \u03c72 4.349, P 0.037, multivariate P 0.069, HR 1.066 (0.256\u20134.449)",
+     "verdict": "B",
+     "quote": "Donor rs7309123 4.349 0.037 0.069 1.066 (0.256\u20134.449)",
+     "page_or_table": "Table 3, page 8"
+    }
+   ],
+   "item_note": "The result is reported, so B matches. The gene is not named in Table 3; Dectin-1 rs7309123 is mentioned only in reference 16."
+  }
+ ]
+}

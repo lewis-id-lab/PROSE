@@ -1,0 +1,210 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 29721,
+   "output": 2808
+  },
+  "finished_at": "2026-11-25T20:24:53",
+  "study_id": "S058",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 7
+ },
+ "blinding": {
+  "I0314": "A=original",
+  "I0315": "A=reextraction",
+  "I0316": "A=reextraction",
+  "I0317": "A=original",
+  "I0318": "A=reextraction",
+  "I0319": "A=original",
+  "I0320": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0314",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X variant (X)",
+     "verdict": "B",
+     "quote": "HSCT donors to recipients with IA vs control donors 10/68 17/107 0.91 (.39\u20132.13) .83",
+     "page_or_table": "Table 2a, p. 737"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "wild-type (Y)",
+     "verdict": "B",
+     "quote": "Odds ratios (ORs) and 95% confidence intervals (95% CIs) were calculated for the presence (homozygous or heterozygous) or absence (homozygous wildtype [WT] allele) of the Dectin-1 Y238X polymorphism.",
+     "page_or_table": "Statistical Analysis, p. 738"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "0",
+     "verdict": "B",
+     "quote": "All individuals were heterozygous for the Y238X Dectin-1 polymorphism except for one individual in the Non-HSCT group who was homozygous.",
+     "page_or_table": "Table 2b note, p. 738"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "10",
+     "verdict": "B",
+     "quote": "HSCT donors to recipients with IA vs control donors 10/68 17/107 0.91 (.39\u20132.13) .83",
+     "page_or_table": "Table 2a, p. 737"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "0",
+     "verdict": "B",
+     "quote": "All individuals were heterozygous for the Y238X Dectin-1 polymorphism except for one individual in the Non-HSCT group who was homozygous.",
+     "page_or_table": "Table 2b note, p. 738"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "17",
+     "verdict": "B",
+     "quote": "HSCT donors to recipients with IA vs control donors 10/68 17/107 0.91 (.39\u20132.13) .83",
+     "page_or_table": "Table 2a, p. 737"
+    }
+   ],
+   "item_note": "Extraction A left all fields blank."
+  },
+  {
+   "item_id": "I0315",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X variant (X)",
+     "verdict": "A",
+     "quote": "After multivariate adjustment for neutropenia and graft-versus-host disease, the adjusted OR was 1.70 (95% CI, .72\u20134.00; P = .22).",
+     "page_or_table": "Results, p. 739"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "wild-type (Y)",
+     "verdict": "A",
+     "quote": "absence (homozygous wildtype [WT] allele) of the Dectin-1 Y238X polymorphism",
+     "page_or_table": "Statistical Analysis, p. 738"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "0",
+     "verdict": "A",
+     "quote": "All these individuals were heterozygous for the SNP.",
+     "page_or_table": "Results, p. 739"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "13",
+     "verdict": "A",
+     "quote": "Thirteen of the 71 patients (18.3%) who developed IA after HSCT and 12 (11.1%) of 108 control patients had the Dectin-1 Y238X SNP.",
+     "page_or_table": "Results, p. 739"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "0",
+     "verdict": "A",
+     "quote": "All these individuals were heterozygous for the SNP.",
+     "page_or_table": "Results, p. 739"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "12",
+     "verdict": "A",
+     "quote": "Thirteen of the 71 patients (18.3%) who developed IA after HSCT and 12 (11.1%) of 108 control patients had the Dectin-1 Y238X SNP.",
+     "page_or_table": "Results, p. 739"
+    }
+   ],
+   "item_note": "Extraction B left all fields blank."
+  },
+  {
+   "item_id": "I0316",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X variant (X)",
+     "verdict": "A",
+     "quote": "HSCT recipients with IA vs control recipients 13/71 12/108 1.79 (.77\u20134.19) .17",
+     "page_or_table": "Table 2a, p. 737"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "wild-type (Y)",
+     "verdict": "A",
+     "quote": "absence (homozygous wildtype [WT] allele) of the Dectin-1 Y238X polymorphism",
+     "page_or_table": "Statistical Analysis, p. 738"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table 2a, p. 737"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Table 2a, p. 737"
+    }
+   ],
+   "item_note": "The paper prints only carrier counts (13/71 and 12/108); the wild-type homozygote counts 58 and 96 given by B are not printed and would have to be derived."
+  },
+  {
+   "item_id": "I0317",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "5/68 vs 8/107, OR .98 (.27\u20132.80), P .98",
+     "verdict": "B",
+     "quote": "Presence of Y238X in both HSCT recipient & donor 5/68 8/107 .98 (.27\u20132.80) .98",
+     "page_or_table": "Table 2a, p. 737"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0318",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "19.0% vs 7.0%; P = .01",
+     "verdict": "A",
+     "quote": "compared with HSCT recipients (7.0%; P = .01)",
+     "page_or_table": "Results, p. 739; Table 2b"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0319",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "19.0% vs 7.7%; P = .04",
+     "verdict": "B",
+     "quote": "healthy HSCT donors (7.7%; P = .04)",
+     "page_or_table": "Results, p. 739; Table 2b"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0320",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "19.0% vs 6.9%; P = .02",
+     "verdict": "B",
+     "quote": "and the Dutch population (6.9%; P = .02)",
+     "page_or_table": "Results, p. 739; Table 2b"
+    }
+   ],
+   "item_note": ""
+  }
+ ]
+}

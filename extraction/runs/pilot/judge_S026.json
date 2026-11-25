@@ -1,0 +1,1498 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 48668,
+   "output": 26590
+  },
+  "finished_at": "2026-11-25T20:19:40",
+  "study_id": "S026",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 72
+ },
+ "blinding": {
+  "I0031": "A=original",
+  "I0032": "A=reextraction",
+  "I0033": "A=original",
+  "I0034": "A=reextraction",
+  "I0035": "A=reextraction",
+  "I0036": "A=reextraction",
+  "I0037": "A=original",
+  "I0038": "A=original",
+  "I0039": "A=reextraction",
+  "I0040": "A=reextraction",
+  "I0041": "A=reextraction",
+  "I0042": "A=reextraction",
+  "I0043": "A=reextraction",
+  "I0044": "A=original",
+  "I0045": "A=original",
+  "I0046": "A=reextraction",
+  "I0047": "A=original",
+  "I0048": "A=original",
+  "I0049": "A=reextraction",
+  "I0050": "A=reextraction",
+  "I0051": "A=reextraction",
+  "I0061": "A=original",
+  "I0062": "A=reextraction",
+  "I0063": "A=original",
+  "I0064": "A=original",
+  "I0065": "A=original",
+  "I0066": "A=reextraction",
+  "I0067": "A=original",
+  "I0068": "A=original",
+  "I0069": "A=reextraction",
+  "I0070": "A=reextraction",
+  "I0071": "A=reextraction",
+  "I0072": "A=original",
+  "I0073": "A=reextraction",
+  "I0074": "A=original",
+  "I0075": "A=original",
+  "I0076": "A=reextraction",
+  "I0077": "A=original",
+  "I0078": "A=reextraction",
+  "I0079": "A=original",
+  "I0080": "A=original",
+  "I0081": "A=original",
+  "I0082": "A=original",
+  "I0083": "A=reextraction",
+  "I0084": "A=reextraction",
+  "I0085": "A=original",
+  "I0086": "A=reextraction",
+  "I0087": "A=original",
+  "I0088": "A=original",
+  "I0089": "A=original",
+  "I0090": "A=reextraction",
+  "I0091": "A=reextraction",
+  "I0092": "A=original",
+  "I0093": "A=original",
+  "I0094": "A=reextraction",
+  "I0095": "A=reextraction",
+  "I0096": "A=reextraction",
+  "I0097": "A=reextraction",
+  "I0098": "A=reextraction",
+  "I0099": "A=original",
+  "I0100": "A=reextraction",
+  "I0101": "A=reextraction",
+  "I0102": "A=original",
+  "I0103": "A=reextraction",
+  "I0104": "A=original",
+  "I0105": "A=original",
+  "I0106": "A=original",
+  "I0107": "A=original",
+  "I0108": "A=reextraction",
+  "I0109": "A=reextraction",
+  "I0110": "A=original",
+  "I0111": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0031",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG row (model not named in paper); paper_result describes this as other",
+     "verdict": "A",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.10",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.94",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "4.93",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Paper does not name genetic models; GG (major-allele homozygote) vs AG+AA is not a standard recessive model, so 'other' as in paper_result is taken as correct."
+  },
+  {
+   "item_id": "I0032",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.28",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.92",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "6.05",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231 19 (63.33) 2.10 (0.94\u20134.93) 0.077 15 (65.22) 2.28 (0.92\u20136.05) 0.08",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0033",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG + AG row (model not named in paper); paper_result describes this as other",
+     "verdict": "A",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "1.20",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.41",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "4.40",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0034",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG + AG row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.88",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.29",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "3.27",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468 26 (86.67) 1.20 (0.41\u20134.40) 0.759 19 (82.61) 0.88 (0.29\u20133.27) 0.83",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0035",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "1.83",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.50",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "7.45",
+     "verdict": "both",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0036",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "GG + AG row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.74",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.17",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "5.14",
+     "verdict": "both",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0037",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 19 (15.57) 5 (11.11) 0.68 (0.21\u20131.82) 0.468",
+     "page_or_table": "Table 3, p.6 (Case group n=45)"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0038",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG 48 (39.34) 15 (33.33) 0.77 (0.37\u20131.56) 0.478",
+     "page_or_table": "Table 3, p.6 (Case group n=45)"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0039",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 55 (45.08) 25 (55.56) 1.52 (0.77\u20133.05) 0.231",
+     "page_or_table": "Table 3, p.6 (Case group n=45)"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0040",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG + AA 67 (54.91) 20 (44.44) 0.66 (0.33\u20131.30) 0.231",
+     "page_or_table": "Table 3, p.6 (Case group n=45)"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0041",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG + AG 103 (84.43) 40 (88.89) 1.48 (0.55\u20134.69) 0.468",
+     "page_or_table": "Table 3, p.6 (Case group n=45)"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0042",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AA 19 (15.57) 2 (20.00) 1.36 (0.19\u20135.94) 0.714 2 (11.11) 0.68 (0.10\u20132.65) 0.622 1 (6.67) 0.39 (0.02\u20132.11) 0.373",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0043",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG 48 (39.34) 2 (20.00) 0.39 (0.06\u20131.62) 0.24 4 (22.22) 0.44 (0.12\u20131.31) 0.169 8 (53.33) 1.76 (0.60\u20135.33) 0.303",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0044",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0045",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG + AA 67 (54.91) 4 (40.00) 0.55 (0.13\u20132.01) 0.369 6 (33.33) 0.41 (0.14\u20131.13) 0.094 9 (60.00) 1.23 (0.42\u20133.87) 0.709",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0046",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0047",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 19 (15.57) 2 (20.00) 1.36 (0.19\u20135.94) 0.714 2 (11.11) 0.68 (0.10\u20132.65) 0.622 1 (6.67) 0.39 (0.02\u20132.11) 0.373",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0048",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG 48 (39.34) 2 (20.00) 0.39 (0.06\u20131.62) 0.24 4 (22.22) 0.44 (0.12\u20131.31) 0.169 8 (53.33) 1.76 (0.60\u20135.33) 0.303",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0049",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 55 (45.08) 6 (60.00) 1.83 (0.50\u20137.45) 0.369 12 (66.67) 2.43 (0.89\u20137.39) 0.094 6 (40.00) 0.81 (0.26\u20132.39) 0.709",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0050",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG + AA 67 (54.91) 4 (40.00) 0.55 (0.13\u20132.01) 0.369 6 (33.33) 0.41 (0.14\u20131.13) 0.094 9 (60.00) 1.23 (0.42\u20133.87) 0.709",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0051",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG + AG 103 (84.43) 8 (80.00) 0.74 (0.17\u20135.14) 0.714 16 (88.89) 1.47 (0.38\u20139.81) 0.622 14 (93.33) 2.58 (0.47\u201348.16) 0.373",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0061",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.50",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.19",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.44",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.178",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "B reports the GG row values (0.48, 0.16\u20131.23, 0.144) for case group III."
+  },
+  {
+   "item_id": "I0062",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.72",
+     "verdict": "B",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.28",
+     "verdict": "both",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "2.01",
+     "verdict": "B",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.509",
+     "verdict": "B",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772 23 (76.67) 0.72 (0.28\u20132.01) 0.509 16 (69.66) 0.50 (0.19\u20131.44) 0.178",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "A reports the GG row values (0.67, 0.28\u20131.53, 0.355) for case group II."
+  },
+  {
+   "item_id": "I0063",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.48",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.16",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.23",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.144",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "B reports the GG + AG row values for case group III."
+  },
+  {
+   "item_id": "I0064",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.67",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.28",
+     "verdict": "both",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "1.53",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.355",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179 10 (30.00) 0.67 (0.28\u20131.53) 0.355 6 (26.09) 0.48 (0.16\u20131.23) 0.144",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "B reports the GG + AG row values for case group II."
+  },
+  {
+   "item_id": "I0065",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.88",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.20",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "6.10",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.877",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "B reports the IPA GG row values."
+  },
+  {
+   "item_id": "I0066",
+   "fields": [
+    {
+     "field": "effect_estimate",
+     "value_in_source": "2.02",
+     "verdict": "B",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.55",
+     "verdict": "B",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "8.24",
+     "verdict": "B",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.295",
+     "verdict": "B",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "A reports the IPA GG + AG row values."
+  },
+  {
+   "item_id": "I0067",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 22 (18.03) 9 (20.00) 1.13 (0.46\u20132.63) 0.772",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0068",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG + AG 100 (81.97) 36 (80.00) 0.88 (0.38\u20132.17) 0.772",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0069",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG + AA 70 (57.38) 31 (68.89) 1.64 (0.81\u20133.48) 0.179",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0070",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG 52 (42.62) 14 (31.11) 0.61 (0.29\u20131.24) 0.179",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0071",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG 48 (39.34) 22 (48.89) 1.47 (0.74\u20132.94) 0.269",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0072",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 22 (18.03) 2 (20.00) 1.14 (0.16\u20134.93) 0.877 5 (27.78) 1.75 (0.52\u20135.18) 0.333",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0073",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877 13 (72.22) 0.57 (0.19\u20131.93) 0.333",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0074",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG + AA 70 (57.38) 4 (40.00) 0.50 (0.12\u20131.82) 0.295 14 (77.78) 2.60 (0.87\u20139.58) 0.109",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0075",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295 4 (22.22) 0.38 (0.10\u20131.14) 0.109",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0076",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG 48 (39.34) 2 (20.00) 0.38 (0.06\u20131.62) 0.24 9 (50.00) 1.54 (0.56\u20134.22) 0.393",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0077",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 22 (18.03) 2 (20.00) 1.14 (0.16\u20134.93) 0.877 5 (27.78) 1.75 (0.52\u20135.18) 0.333 2 (13.33) 0.70 (0.10\u20132.78) 0.653",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0078",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG + AG 100 (81.97) 8 (80.00) 0.88 (0.20\u20136.10) 0.877 13 (72.22) 0.57 (0.19\u20131.93) 0.333 13 (73.33) 1.43 (0.36\u20139.56) 0.653",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0079",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG + AA 70 (57.38) 4 (40.00) 0.50 (0.12\u20131.82) 0.295 14 (77.78) 2.60 (0.87\u20139.58) 0.109 11 (73.33) 2.04 (0.66\u20137.70) 0.243",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0080",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG 52 (42.62) 6 (60.00) 2.02 (0.55\u20138.24) 0.295 4 (22.22) 0.38 (0.10\u20131.14) 0.109 4 (26.67) 0.49 (0.13\u20131.52) 0.243",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0081",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG 48 (39.34) 2 (20.00) 0.38 (0.06\u20131.62) 0.24 9 (50.00) 1.54 (0.56\u20134.22) 0.393 9 (60.00) 2.31 (0.78\u20137.29) 0.133",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0082",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted; no covariates are mentioned."
+  },
+  {
+   "item_id": "I0083",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0084",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0085",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0086",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0087",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0088",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0089",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0090",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    }
+   ],
+   "item_note": "Paper never states whether ORs are adjusted."
+  },
+  {
+   "item_id": "I0091",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "0",
+     "verdict": "B",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "AC 46 (37.70) 3 (30.00) 0.71 (0.15\u20132.68) 0.629 10 (55.56) 2.06 (0.76\u20135.78) 0.155 6 (40.00) 1.10 (0.35\u20133.25) 0.863",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "9",
+     "verdict": "B",
+     "quote": "AA 72 (59.02) 5 (50.00) 0.69 (0.18\u20132.62) 0.58 6 (33.33) 0.35 (0.11\u20130.96) 0.047* 9 (60.00) 1.04 (0.35\u20133.28) 0.942",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.96",
+     "verdict": "B",
+     "quote": "AC + CC 50 (40.98) 5 (50.00) 1.44 (0.38\u20135.43) 0.58 12(66.67) 2.89 (1.04\u20138.75) 0.047* 6 (40.00) 0.96 (0.30\u20132.83) 0.942",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.30",
+     "verdict": "B",
+     "quote": "AC + CC 50 (40.98) 5 (50.00) 1.44 (0.38\u20135.43) 0.58 12(66.67) 2.89 (1.04\u20138.75) 0.047* 6 (40.00) 0.96 (0.30\u20132.83) 0.942",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "2.83",
+     "verdict": "B",
+     "quote": "AC + CC 50 (40.98) 5 (50.00) 1.44 (0.38\u20135.43) 0.58 12(66.67) 2.89 (1.04\u20138.75) 0.047* 6 (40.00) 0.96 (0.30\u20132.83) 0.942",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.942",
+     "verdict": "B",
+     "quote": "AC + CC 50 (40.98) 5 (50.00) 1.44 (0.38\u20135.43) 0.58 12(66.67) 2.89 (1.04\u20138.75) 0.047* 6 (40.00) 0.96 (0.30\u20132.83) 0.942",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "A's counts and estimates (5/3/2; 0.14, 0.02\u20131.08, 0.033) correspond to the IPA group (AC+AA row), not the ABPA group."
+  },
+  {
+   "item_id": "I0092",
+   "fields": [
+    {
+     "field": "effect_measure",
+     "value_in_source": "NA (OR not calculable)",
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "0",
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "6",
+     "verdict": "A",
+     "quote": "AC 46 (37.70) 3 (30.00) 0.71 (0.15\u20132.68) 0.629 10 (55.56) 2.06 (0.76\u20135.78) 0.155 6 (40.00) 1.10 (0.35\u20133.25) 0.863",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "9",
+     "verdict": "A",
+     "quote": "AA 72 (59.02) 5 (50.00) 0.69 (0.18\u20132.62) 0.58 6 (33.33) 0.35 (0.11\u20130.96) 0.047* 9 (60.00) 1.04 (0.35\u20133.28) 0.942",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15 0 (0.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "B's counts and estimates (5/3/2; 0.69, 0.18\u20132.62, 0.58) correspond to the IPA group AA row, not ABPA CC."
+  },
+  {
+   "item_id": "I0093",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "AC + AA row (model not named in paper); paper_result describes this as other",
+     "verdict": "A",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "B",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.22",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.05",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "0.99",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0094",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "AA row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.40",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.17",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "0.90",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0095",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "AC + AA row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.16",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.04",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "0.73",
+     "verdict": "both",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148 26 (86.67) 0.22 (0.05\u20130.99) 0.041* 19 (82.61) 0.16 (0.04\u20130.73) 0.015*",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0096",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "AA row (model not named in paper); paper_result describes this as other",
+     "verdict": "B",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "adjusted",
+     "value_in_source": "not stated (no covariate adjustment described)",
+     "verdict": "A",
+     "quote": "Logistic regression was used to analyze the associations between SNPs and different pulmonary fungal",
+     "page_or_table": "Methods, Statistical analysis, p.3"
+    },
+    {
+     "field": "effect_estimate",
+     "value_in_source": "0.37",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.14",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "0.92",
+     "verdict": "both",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095 11 (36.67) 0.40 (0.17\u20130.90) 0.031* 8 (34.78) 0.37 (0.14\u20130.92) 0.037*",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": "Model label not stated in paper; judged against paper_result 'other'."
+  },
+  {
+   "item_id": "I0097",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AA 72 (59.02) 20 (44.44) 0.56 (0.28\u20131.10) 0.095",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0098",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AC 46 (37.70) 21 (46.67) 1.45 (0.72\u20132.89) 0.221",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0099",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 4 (8.89) 2.88 (0.65\u201312.67) 0.148",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0100",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AC + AA 118 (96.72) 41 (91.11) 0.35 (0.07\u20131.53) 0.148",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0101",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AC + CC 50 (40.98) 25 (55.56) 1.80 (0.91\u20133.62) 0.095",
+     "page_or_table": "Table 3, p.6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0102",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 72 (59.02) 5 (50.00) 0.69 (0.18\u20132.62) 0.58",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0103",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AC + AA 118 (96.72) 8 (80.00) 0.14 (0.02\u20131.08) 0.033*",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0104",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AA 72 (59.02) 5 (50.00) 0.69 (0.18\u20132.62) 0.58 6 (33.33) 0.35 (0.11\u20130.96) 0.047*",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0105",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AC 46 (37.70) 3 (30.00) 0.71 (0.15\u20132.68) 0.629 10 (55.56) 2.06 (0.76\u20135.78) 0.155",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0106",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "CC 4 (3.28) 2 (20.00) 7.37 (0.93\u201344.44) 0.033* 2 (11.11) 3.69 (0.48\u201320.54) 0.15",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0107",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AC + CC 50 (40.98) 5 (50.00) 1.44 (0.38\u20135.43) 0.58 12(66.67) 2.89 (1.04\u20138.75) 0.047*",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0108",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AC + AA 118 (96.72) 8 (80.00) 0.14 (0.02\u20131.08) 0.033* 16 (88.89) 0.27 (0.05-2.07) 0.15",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0109",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AA 72 (59.02) 5 (50.00) 0.69 (0.18\u20132.62) 0.58 6 (33.33) 0.35 (0.11\u20130.96) 0.047* 9 (60.00) 1.04 (0.35\u20133.28) 0.942",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0110",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AC 46 (37.70) 3 (30.00) 0.71 (0.15\u20132.68) 0.629 10 (55.56) 2.06 (0.76\u20135.78) 0.155 6 (40.00) 1.10 (0.35\u20133.25) 0.863",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0111",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper (OR NA)",
+     "verdict": "B",
+     "quote": "AC + AA 118 (96.72) 8 (80.00) 0.14 (0.02\u20131.08) 0.033* 16 (88.89) 0.27 (0.05-2.07) 0.15 15 (100.00) NA NA",
+     "page_or_table": "Table 5, p.7"
+    }
+   ],
+   "item_note": "Row is printed for ABPA with counts (15, 100%) but OR and P are NA."
+  }
+ ]
+}

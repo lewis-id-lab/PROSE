@@ -1,0 +1,168 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5",
+  "fallback_used": true,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 37041,
+   "output": 2427
+  },
+  "finished_at": "2026-11-25T20:26:22",
+  "study_id": "S070",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 9
+ },
+ "blinding": {
+  "I0342": "A=original",
+  "I0343": "A=reextraction",
+  "I0344": "A=reextraction",
+  "I0345": "A=reextraction",
+  "I0346": "A=reextraction",
+  "I0347": "A=reextraction",
+  "I0348": "A=reextraction",
+  "I0349": "A=original",
+  "I0350": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0342",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X",
+     "verdict": "B",
+     "quote": "D Y238X  R WT 2.50 1.00-6.53 .05",
+     "page_or_table": "Table 2 (p5397)"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "WT",
+     "verdict": "B",
+     "quote": "*For the genetic factors, D WT  R WT genotype combination is the referent category",
+     "page_or_table": "Table 2 footnote (p5397)"
+    }
+   ],
+   "item_note": "The paper labels the alleles/genotypes only as 'Y238X' and 'WT' (rs16910526); the nucleotide designations G/T are not used in the paper's own results (only 'c.714T \u2192 G' appears in a cited reference title, ref 37)."
+  },
+  {
+   "item_id": "I0343",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X",
+     "verdict": "A",
+     "quote": "D Y238X  R Y238X 3.89 1.51-9.99 .005",
+     "page_or_table": "Table 2 (p5397)"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "WT",
+     "verdict": "A",
+     "quote": "*For the genetic factors, D WT  R WT genotype combination is the referent category",
+     "page_or_table": "Table 2 footnote (p5397)"
+    }
+   ],
+   "item_note": "Paper uses Y238X vs WT nomenclature, not G/T."
+  },
+  {
+   "item_id": "I0344",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": "Y238X",
+     "verdict": "A",
+     "quote": "D WT  R Y238X 1.51 0.46-4.93 .49",
+     "page_or_table": "Table 2 (p5397)"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": "WT",
+     "verdict": "A",
+     "quote": "*For the genetic factors, D WT  R WT genotype combination is the referent category",
+     "page_or_table": "Table 2 footnote (p5397)"
+    }
+   ],
+   "item_note": "Paper uses Y238X vs WT nomenclature, not G/T."
+  },
+  {
+   "item_id": "I0345",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "(A) Cumulative incidence according to donor genotype: WT (19%, N  150, reference) and Y238X (38%, N  29; P  .03).",
+     "page_or_table": "Figure 1 legend (p5397); Results p5396"
+    }
+   ],
+   "item_note": "The donor-genotype 36-month cumulative incidence comparison is explicitly reported; A's 'reported in paper' matches, B leaves it blank."
+  },
+  {
+   "item_id": "I0346",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "(B) Cumulative incidence according to recipient genotype: WT (20%, N  157; reference) and Y238X (39%, N  22; P  .11).",
+     "page_or_table": "Figure 1 legend (p5397)"
+    }
+   ],
+   "item_note": "Recipient-genotype comparison is reported in the paper."
+  },
+  {
+   "item_id": "I0347",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "donor Y238X and recipient WT (35%, N  17; P  .07)",
+     "page_or_table": "Figure 1C legend (p5397)"
+    }
+   ],
+   "item_note": "Donor Y238X/recipient WT pair comparison is reported."
+  },
+  {
+   "item_id": "I0348",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "donor WT and recipient Y238X (33%, N  10; P  .38)",
+     "page_or_table": "Figure 1C legend (p5397)"
+    }
+   ],
+   "item_note": "Donor WT/recipient Y238X pair comparison is reported."
+  },
+  {
+   "item_id": "I0349",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "and Y238X (44%, N  12; P  .05)",
+     "page_or_table": "Figure 1C legend (p5397)"
+    }
+   ],
+   "item_note": "Y238X/Y238X pair vs WT pair comparison is reported; B's 'reported in paper' matches, A leaves it blank."
+  },
+  {
+   "item_id": "I0350",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "overall P value for the three-level DECTIN1 Y238X genotype is P  .019.",
+     "page_or_table": "Table 2 footnote (p5397)"
+    }
+   ],
+   "item_note": "The overall 3-level genotype Wald test is reported in the Table 2 footnote."
+  }
+ ]
+}

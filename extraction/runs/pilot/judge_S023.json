@@ -1,0 +1,63 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 10556,
+   "output": 1245
+  },
+  "finished_at": "2026-11-25T20:16:39",
+  "study_id": "S023",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 2
+ },
+ "blinding": {
+  "I0020": "A=original",
+  "I0021": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0020",
+   "fields": [
+    {
+     "field": "effect_allele",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "Importantly, no differences were found between patients with heterozygous Dectin-1 SNP rs16910526 (Y238X, T/G genotype, n=13 patients) and wild type carriers with regard to all analyzed infectious complications.",
+     "page_or_table": "P745 Results, page 296"
+    },
+    {
+     "field": "other_allele",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "Importantly, no differences were found between patients with heterozygous Dectin-1 SNP rs16910526 (Y238X, T/G genotype, n=13 patients) and wild type carriers with regard to all analyzed infectious complications.",
+     "page_or_table": "P745 Results, page 296"
+    }
+   ],
+   "item_note": "The paper gives only the heterozygous genotype 'T/G' and does not say which allele is the variant or effect allele. A's assignment of G as effect and T as other is an inference, so B's blanks match what is printed. This is a judgement call."
+  },
+  {
+   "item_id": "I0021",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "homozygous G/G genotype vs others (recessive)",
+     "verdict": "B",
+     "quote": "patients carrying the homozygous Dectin-1 SNP rs7309123 (G/G genotype, n=43 patients) revealed a significantly higher risk for developing both pneumonia in general (p=0.018, odds ratio (OR): 2.46; 95% confidence interval (CI): 1.2 - 4.9) and pulmonary IFD (p=0.023, OR: 2.3; 95% CI: 1.2 - 4.5)",
+     "page_or_table": "P745 Results, page 296"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "18",
+     "verdict": "A",
+     "quote": "In detail, 24 patients harbouring homozygous Dectin-1 SNP developed pneumonia in general whereas 18 of them fulfilled criteria for IFD.",
+     "page_or_table": "P745 Results, page 296"
+    }
+   ],
+   "item_note": "G/G homozygotes compared against the rest of the cohort corresponds to a recessive model. 18 G/G patients met the criteria for IFD."
+  }
+ ]
+}

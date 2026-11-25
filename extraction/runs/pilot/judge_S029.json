@@ -1,0 +1,336 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 16990,
+   "output": 4447
+  },
+  "finished_at": "2026-11-25T20:20:14",
+  "study_id": "S029",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 12
+ },
+ "blinding": {
+  "I0112": "A=original",
+  "I0113": "A=reextraction",
+  "I0114": "A=original",
+  "I0115": "A=original",
+  "I0116": "A=reextraction",
+  "I0117": "A=reextraction",
+  "I0118": "A=reextraction",
+  "I0119": "A=reextraction",
+  "I0120": "A=reextraction",
+  "I0121": "A=reextraction",
+  "I0122": "A=original",
+  "I0123": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0112",
+   "fields": [
+    {
+     "field": "effect_measure",
+     "value_in_source": "hazard ratio",
+     "verdict": "A",
+     "quote": "homozygosity for the minor allele of PTX3 rs2305619 and/or rs3816527 was an independent predictor of invasive mold infections (hazard ratio=5.06, 95% confidence interval 1.68-15.2; P=0.004)",
+     "page_or_table": "p. e529, text"
+    }
+   ],
+   "item_note": "The paper prints 'hazard ratio', so A matches. The model was fitted with stcrreg (competing risks), so the estimate is technically a subdistribution HR, but the paper does not label it that way."
+  },
+  {
+   "item_id": "I0113",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The paper reports rs2305619 alone only in Online Supplementary Figure S2, which is not attached. A's values (13 cases, P=0.04) correspond to the combined rs2305619 and/or rs3816527 result in Figure 1A ('Homozygous, N=67, F=13, CI=0.21, P=0.04'), not to the SNP-specific result."
+  },
+  {
+   "item_id": "I0114",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The rs2305619-specific result is not in the attached paper. B's values (10 cases, P=0.001) correspond to the combined Figure 1B result ('Homozygous, N=41, F=10, CI=0.27, P=0.001')."
+  },
+  {
+   "item_id": "I0115",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The rs2305619-specific result is not in the attached paper. B's P=0.6 corresponds to the combined Figure 1C result ('Homozygous, N=26, F=3, CI=0.12, P=0.6')."
+  },
+  {
+   "item_id": "I0116",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Homozygous, N=67, F=13, CI=0.21, P=0.04",
+     "page_or_table": "Figure 1A, p. e528"
+    }
+   ],
+   "item_note": "The combined whole-cohort result is reported in Figure 1A and in the text on p. e529."
+  },
+  {
+   "item_id": "I0117",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Homozygous, N=26, F=3, CI=0.12, P=0.6",
+     "page_or_table": "Figure 1C, p. e528"
+    }
+   ],
+   "item_note": "The pre-existing neutropenia subgroup is reported in Figure 1C and in the text ('cumulative incidence 12% versus 17%; P=0.6')."
+  },
+  {
+   "item_id": "I0118",
+   "fields": [
+    {
+     "field": "effect_measure",
+     "value_in_source": "hazard ratio",
+     "verdict": "B",
+     "quote": "homozygosity for the minor allele of PTX3 rs2305619 and/or rs3816527 was an independent predictor of invasive mold infections (hazard ratio=5.06, 95% confidence interval 1.68-15.2; P=0.004)",
+     "page_or_table": "p. e529, text"
+    }
+   ],
+   "item_note": "The paper prints 'hazard ratio', so B matches. The estimate comes from a stcrreg competing-risks model, but the paper does not label it as a subdistribution HR."
+  },
+  {
+   "item_id": "I0119",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The rs3816527-specific result is not in the attached paper. A's values (13 cases, P=0.04) correspond to the combined Figure 1A result."
+  },
+  {
+   "item_id": "I0120",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The rs3816527-specific result is not in the attached paper. A's values (10 cases, P=0.001) correspond to the combined Figure 1B result."
+  },
+  {
+   "item_id": "I0121",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": null,
+     "verdict": "not_found",
+     "quote": "",
+     "page_or_table": "Online Supplementary Figure S2 (not attached)"
+    }
+   ],
+   "item_note": "The rs3816527-specific result is not in the attached paper. B's case count of 8 matches the 'Other' failures in the combined Figure 1C ('Other, N=53, F=8'), but that figure describes the combined rs2305619 and/or rs3816527 grouping, not rs3816527 alone."
+  },
+  {
+   "item_id": "I0122",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "Homozygous, N=67, F=13, CI=0.21, P=0.04",
+     "page_or_table": "Figure 1A, p. e528"
+    }
+   ],
+   "item_note": "The combined whole-cohort result is reported in Figure 1A."
+  },
+  {
+   "item_id": "I0123",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "Homozygous, N=26, F=3, CI=0.12, P=0.6",
+     "page_or_table": "Figure 1C, p. e528"
+    }
+   ],
+   "item_note": "The combined pre-existing neutropenia subgroup is reported in Figure 1C."
+  }
+ ]
+}

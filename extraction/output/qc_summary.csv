@@ -1,0 +1,20 @@
+measure,rows
+variant rows,2008
+rows with six cells and a printed odds ratio (orientation checkable),281
+  reproduced for the effect allele,176
+  reproduced only for the other allele (not an error),54
+"  not reproducible, crude estimate",25
+"  adjusted estimate, not recomputable",26
+rows with a complete interval,997
+  interval flags,30
+    estimate outside its own interval,1
+    interval inverted,0
+    log-scale arms asymmetric,29
+rows with a Hardy-Weinberg test in controls,382
+  p < 0.001,2
+rows with a reference frequency (panel variants),187
+  closer to reference if homozygotes exchanged,1
+hand-transcribed rows,33
+rows already in extraction_corrections.csv,66
+rows with any flag,137
+rows no check could see,876

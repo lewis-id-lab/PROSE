@@ -1,0 +1,364 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 43500,
+   "output": 5575
+  },
+  "finished_at": "2026-11-25T20:27:53",
+  "study_id": "S073",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 17
+ },
+ "blinding": {
+  "I0384": "A=reextraction",
+  "I0385": "A=original",
+  "I0386": "A=reextraction",
+  "I0387": "A=original",
+  "I0388": "A=original",
+  "I0389": "A=original",
+  "I0390": "A=original",
+  "I0391": "A=original",
+  "I0392": "A=original",
+  "I0393": "A=reextraction",
+  "I0394": "A=reextraction",
+  "I0395": "A=reextraction",
+  "I0396": "A=reextraction",
+  "I0397": "A=original",
+  "I0398": "A=original",
+  "I0399": "A=original",
+  "I0400": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0384",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": "4",
+     "verdict": "B",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "44 (derived: 48 total IFD minus 4 Y238X carriers)",
+     "verdict": "B",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "15 (derived: 19 carriers minus 4 cases)",
+     "verdict": "B",
+     "quote": "Dectin-1 Y238X rs16910526 n = 19",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "123 (derived)",
+     "verdict": "B",
+     "quote": "all patients n = 186",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "Only the case count among carriers (4) is printed. The other cells are implied by the Table 2 totals, and B's values are consistent with them for pulmonary IFD (possible/probable/proven). A is blank."
+  },
+  {
+   "item_id": "I0385",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Dectin-1 Y238X 32% n.s. 32% n.s. 21% n.s.",
+     "page_or_table": "Table 3, page 7; Table 2"
+    }
+   ],
+   "item_note": "Y238X results are reported for several pneumonia outcomes."
+  },
+  {
+   "item_id": "I0386",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Dectin-1 Y238X 32% n.s. 32% n.s. 21% n.s.",
+     "page_or_table": "Table 3, page 7; Table 2"
+    }
+   ],
+   "item_note": "Y238X results are reported for several pneumonia outcomes."
+  },
+  {
+   "item_id": "I0387",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Pulmonary IFD** 9 (5%) 2 (17%) 0 (0%) 5 (11%) 9 (7%)",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "Y238X results are reported for several pneumonia outcomes."
+  },
+  {
+   "item_id": "I0388",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": "7",
+     "verdict": "A",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "41 (derived: 48 minus 7)",
+     "verdict": "A",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "5 (derived: 12 minus 7)",
+     "verdict": "A",
+     "quote": "7 out of 12 (58%) fulfilled the criteria of IFD (possible, probable or proven)",
+     "page_or_table": "page 6"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "133 (derived)",
+     "verdict": "A",
+     "quote": "TLR2 R753Q rs5743708 n = 12",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "Only 7/12 is printed. The other cells are implied by the totals, and A is consistent with them. B is blank."
+  },
+  {
+   "item_id": "I0389",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "TLR2 wild type vs. 34% 9.8",
+     "page_or_table": "Table 3, page 7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0390",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Atypical pneumonia (including pulmonary IFD) 58 (31%) 10 (83%) 6 (32%) 21 (45%) 48 (36%)",
+     "page_or_table": "Table 2, page 6; Table 3"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0391",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Pulmonary IFD** 9 (5%) 2 (17%) 0 (0%) 5 (11%) 9 (7%)",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0392",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "19",
+     "verdict": "B",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "40 (G/G + C/G carriers)",
+     "verdict": "A",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "8 (derived: 48 minus 40)",
+     "verdict": "A",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "93 (derived: 133 minus 40)",
+     "verdict": "A",
+     "quote": "Dectin-1 Intronrs7309123 (C/G + G/G genotype) n = 133",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "45 (derived)",
+     "verdict": "A",
+     "quote": "all patients n = 186",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "A puts the combined G/G+C/G carrier count (40) in the het field. B gives only the G/G IFD count (19), which the paper prints in the G/G column. The two extractions use different cell mappings."
+  },
+  {
+   "item_id": "I0393",
+   "fields": [
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "29 (derived: 48 minus 19)",
+     "verdict": "B",
+     "quote": "Pulmonary IFD* 48 (26%) 7 (58%) 4 (21%) 19 (40%) 40 (30%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "28 (derived: 47 minus 19)",
+     "verdict": "B",
+     "quote": "Dectin-1 Intron rs7309123 (G/G genotype) n = 47",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "110 (derived)",
+     "verdict": "B",
+     "quote": "all patients n = 186",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "Values are consistent with the pulmonary IFD (possible/probable/proven) totals. A is blank."
+  },
+  {
+   "item_id": "I0394",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "5",
+     "verdict": "B",
+     "quote": "Pulmonary IFD** 9 (5%) 2 (17%) 0 (0%) 5 (11%) 9 (7%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "4 (derived: 9 minus 5)",
+     "verdict": "B",
+     "quote": "Pulmonary IFD** 9 (5%) 2 (17%) 0 (0%) 5 (11%) 9 (7%)",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "42 (derived)",
+     "verdict": "B",
+     "quote": "Dectin-1 Intron rs7309123 (G/G genotype) n = 47",
+     "page_or_table": "Table 2, page 6"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "135 (derived)",
+     "verdict": "B",
+     "quote": "all patients n = 186",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": "Outcome is probable/proven IFD only."
+  },
+  {
+   "item_id": "I0395",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Dectin-1 C/C + C/G vs. 32% 2.5 27% 2.2 21% 2.6",
+     "page_or_table": "Table 3, page 7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0396",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Dectin-1 rs7309123 53% (1.2\u20134.8) 45% (1.1\u20134.4) 40% (1.3\u20135.3)",
+     "page_or_table": "Table 3, page 7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0397",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Dectin-1 C/C vs. 21% 3.0 19% 2.4 15% 2.4",
+     "page_or_table": "Table 3, page 7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0398",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Dectin-1 rs7309123 44% (1.4\u20136.2) 36% (1.1\u20135.3) 30% (1.1\u20135.6)",
+     "page_or_table": "Table 3, page 7"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0399",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Pulmonary IFD** 9 (5%) 2 (17%) 0 (0%) 5 (11%) 9 (7%)",
+     "page_or_table": "Table 2, page 6"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0400",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "TLR2 R753Q or 56% 3.1 48% 2.9 42% 3.1",
+     "page_or_table": "Table 4, page 8"
+    }
+   ],
+   "item_note": "Pulmonary IFD in Cohort 1 vs Cohort 2: 42% vs 19%, OR 3.1 (1.5\u20136.3), p=0.002."
+  }
+ ]
+}

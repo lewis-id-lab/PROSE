@@ -1,0 +1,812 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 33662,
+   "output": 8232
+  },
+  "finished_at": "2026-11-25T20:23:16",
+  "study_id": "S045",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 56
+ },
+ "blinding": {
+  "I0210": "A=reextraction",
+  "I0211": "A=original",
+  "I0212": "A=original",
+  "I0213": "A=original",
+  "I0214": "A=reextraction",
+  "I0215": "A=original",
+  "I0216": "A=reextraction",
+  "I0217": "A=original",
+  "I0218": "A=original",
+  "I0219": "A=original",
+  "I0220": "A=original",
+  "I0221": "A=reextraction",
+  "I0222": "A=reextraction",
+  "I0223": "A=reextraction",
+  "I0224": "A=original",
+  "I0225": "A=reextraction",
+  "I0226": "A=original",
+  "I0227": "A=original",
+  "I0228": "A=reextraction",
+  "I0229": "A=reextraction",
+  "I0230": "A=original",
+  "I0231": "A=original",
+  "I0232": "A=original",
+  "I0233": "A=reextraction",
+  "I0234": "A=original",
+  "I0235": "A=reextraction",
+  "I0236": "A=reextraction",
+  "I0237": "A=original",
+  "I0238": "A=reextraction",
+  "I0240": "A=original",
+  "I0241": "A=reextraction",
+  "I0242": "A=reextraction",
+  "I0243": "A=original",
+  "I0246": "A=reextraction",
+  "I0247": "A=reextraction",
+  "I0248": "A=reextraction",
+  "I0249": "A=reextraction",
+  "I0250": "A=original",
+  "I0251": "A=reextraction",
+  "I0252": "A=original",
+  "I0255": "A=original",
+  "I0256": "A=original",
+  "I0257": "A=original",
+  "I0258": "A=original",
+  "I0259": "A=original",
+  "I0260": "A=original",
+  "I0261": "A=original",
+  "I0263": "A=reextraction",
+  "I0264": "A=original",
+  "I0265": "A=original",
+  "I0266": "A=original",
+  "I0267": "A=original",
+  "I0268": "A=original",
+  "I0269": "A=reextraction",
+  "I0270": "A=reextraction",
+  "I0271": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0210",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "1.81 (0.66\u20134.99) 0.252",
+     "verdict": "B",
+     "quote": "Dectin-1 Y238X rs 16910526 1.81 (0.66\u20134.99) 0.252",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": "Sepsis column, stratification cohort."
+  },
+  {
+   "item_id": "I0211",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.79 (0.28\u20132-27) 0.673",
+     "verdict": "A",
+     "quote": "0.79 (0.28\u20132-27) 0.673",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": "Pneumonia column, stratification cohort."
+  },
+  {
+   "item_id": "I0212",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "1.94 (0.75\u20135.03) 0.173",
+     "verdict": "A",
+     "quote": "Dectin-1 Y238X rs 16910526 1.94 (0.75\u20135.03) 0.173",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": "Sepsis column, validation cohort."
+  },
+  {
+   "item_id": "I0213",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "2.05 (0.85\u20134.94) 0.110",
+     "verdict": "A",
+     "quote": "2.05 (0.85\u20134.94) 0.110",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": "Pneumonia column, validation cohort."
+  },
+  {
+   "item_id": "I0214",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Y238X early stop codon (prior literature)",
+     "verdict": "B",
+     "quote": "Dectin-1 Y238X represents a polymorphism resulting in an early stop codon leading to diminished Dectin-1 receptor activity [12].",
+     "page_or_table": "Introduction, p.317"
+    }
+   ],
+   "item_note": "The paper cites the variant and its functional effect from prior literature. It does not give the nucleotide alleles."
+  },
+  {
+   "item_id": "I0215",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "Table 3 reports no three-level genotypic result."
+  },
+  {
+   "item_id": "I0216",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "Table 3 reports no three-level genotypic result."
+  },
+  {
+   "item_id": "I0217",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17514136 G/G genotype 1.44 (0.57\u20133.62) 0.439",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0218",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17514136 G/G + A/G genotype 1.93 (1.06\u20133.51), 0.032",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0219",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17514136 A/A + G/A genotype 0.71 (0.28\u20131.82) 0.472",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0220",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17514136 G/G genotype 0.56 (0.73\u20131.59) 0.295",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0221",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Ficolin 2 rs17514136 G/G + A/G genotype 0.99 (0.49\u20131.99) 0.977",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0222",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Ficolin 2 rs17514136 A/A + G/A genotype 11.96 (1.43\u2013100.16), 0.022",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0223",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Ficolin 2 rs17549193 T/T genotype 1.44 (0.57\u20133.62) 0.439",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0224",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17549193 T/T + C/T genotype 1.92 (1.1\u20133.45), 0.031",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0225",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "Ficolin 2 rs17549193 T/T genotype 0.31 (0.73\u20131.28) 0.115",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0226",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "Ficolin 2 rs17549193 T/T + C/T genotype 0.99 (0.49\u20131.98) 0.977",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0227",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/A + G/A genotype (dominant)",
+     "verdict": "A",
+     "quote": "PTX3 rs1840680 A/A + G/A genotype",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0228",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/A + G/A genotype (dominant)",
+     "verdict": "B",
+     "quote": "PTX3 rs1840680 A/A + G/A genotype 2.88 (1.25\u20136.61), 0.013",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0229",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/A + G/A genotype (dominant)",
+     "verdict": "B",
+     "quote": "PTX3 rs2305619 A/A + G/A genotype",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0230",
+   "fields": [
+    {
+     "field": "other_allele",
+     "value_in_source": "C",
+     "verdict": "A",
+     "quote": "PTX3 rs2305619 A/A + A/C genotype",
+     "page_or_table": "Table 3B continued, p.321"
+    },
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/A + A/C genotype (dominant)",
+     "verdict": "A",
+     "quote": "PTX3 rs2305619 A/A + A/C genotype 2.88 (1.25\u20136.61), 0.013",
+     "page_or_table": "Table 3B continued, p.321"
+    }
+   ],
+   "item_note": "The table prints A/C, although the discussion refers to AA + AG."
+  },
+  {
+   "item_id": "I0231",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "GG genotype (prior literature)",
+     "verdict": "A",
+     "quote": "Cunha et al. reported that the GG phenotype of the PTX3 SNPs rs2305619/rs1840690",
+     "page_or_table": "Introduction, p.317"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0232",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0233",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0234",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/A + A/C genotype (dominant)",
+     "verdict": "A",
+     "quote": "PTX3 rs3816527 A/A + A/C genotype",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0235",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "C/C + A/C genotype (dominant)",
+     "verdict": "B",
+     "quote": "PTX3 rs3816527 C/C + A/C genotype 3.37 (1.61\u20137.06), 0.001",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0236",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "AA genotype (prior literature)",
+     "verdict": "B",
+     "quote": "AA genotype of the of the PTX3 SNP rs3816527, respectively, were associated with an increased risk of IFD following alloHSCT [10]",
+     "page_or_table": "Introduction, p.317"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0237",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0238",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0240",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/A + G/G genotype (dominant)",
+     "verdict": "A",
+     "quote": "DC-SIGN rs4804800 G/A + G/G genotype 2.37 (1.19\u20134.72), 0.015",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0241",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Discussion, p.321"
+    }
+   ],
+   "item_note": "The main text gives no allele pair or risk allele from prior literature for rs4804800."
+  },
+  {
+   "item_id": "I0242",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0243",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0246",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.70 (0.28\u20131.75) 0.439",
+     "verdict": "B",
+     "quote": "TLR4 399 rs4986791 0.70 (0.28\u20131.75) 0.439",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0247",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "1.17 (0.45\u20133.04) 0.754",
+     "verdict": "B",
+     "quote": "1.17 (0.45\u20133.04) 0.754",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0248",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.43 (0.16\u20131.14) 0.09",
+     "verdict": "B",
+     "quote": "TLR4 399 rs4986791 0.43 (0.16\u20131.14) 0.09",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0249",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.55 (0.19\u20131.62) 0.276",
+     "verdict": "B",
+     "quote": "0.55 (0.19\u20131.62) 0.276",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0250",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Thr399Ile",
+     "verdict": "A",
+     "quote": "TLR4 Thr399Ile (T399I, rs4986791)",
+     "page_or_table": "Methods, p.318"
+    }
+   ],
+   "item_note": "Only the amino-acid allele pair is given. No risk allele is stated."
+  },
+  {
+   "item_id": "I0251",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0252",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0255",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "4.26 (0.91\u201320.0) 0.067",
+     "verdict": "A",
+     "quote": "TLR2 Arg753Gln rs5743708 4.26 (0.91\u201320.0) 0.067",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0256",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "9.52 (1.96\u201346.23), 0.005",
+     "verdict": "A",
+     "quote": "9.52 (1.96\u201346.23), 0.005",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0257",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "1.17 (0.33\u20134.22) 0.805",
+     "verdict": "A",
+     "quote": "TLR2 Arg753Gln rs5743708 1.17 (0.33\u20134.22) 0.805",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0258",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.94 (0.26\u20133.38) 0.925",
+     "verdict": "A",
+     "quote": "0.94 (0.26\u20133.38) 0.925",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0259",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "Arg753Gln",
+     "verdict": "A",
+     "quote": "TLR2 Arg753Gln (R753Q, rs5743708)",
+     "page_or_table": "Methods, p.318"
+    }
+   ],
+   "item_note": "Only the amino-acid allele pair is given. No risk allele is stated."
+  },
+  {
+   "item_id": "I0260",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0261",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0263",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "A/G + A/A genotype (dominant)",
+     "verdict": "B",
+     "quote": "DC-SIGN rs7248637 A/G + A/A genotype 1.94 (0.91\u20134.14) 0.852",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0264",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Main text"
+    }
+   ],
+   "item_note": "The main text gives no allele pair or risk allele from prior literature for rs7248637."
+  },
+  {
+   "item_id": "I0265",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3A"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0266",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "B",
+     "quote": "",
+     "page_or_table": "Table 3B"
+    }
+   ],
+   "item_note": "No three-level genotypic result is reported."
+  },
+  {
+   "item_id": "I0267",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G + C/G genotype (dominant)",
+     "verdict": "A",
+     "quote": "Dectin-1 rs7309123 G/G + C/G genotype 2.84 (1.42\u20135.67), 0.003",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0268",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G genotype (recessive)",
+     "verdict": "A",
+     "quote": "Dectin-1 rs7309123 G/G genotype 1.55 (0.78\u20133.07) 0.208",
+     "page_or_table": "Table 3A, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0269",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G + C/G genotype (dominant)",
+     "verdict": "B",
+     "quote": "Dectin-1 rs7309123 G/G + C/G genotype 1.46 (0.72\u20132.98) 0.296",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0270",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G genotype (recessive)",
+     "verdict": "B",
+     "quote": "Dectin-1 rs7309123 G/G genotype 1.03 (0.44\u20132.41) 0.945",
+     "page_or_table": "Table 3B, p.320"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0271",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": null,
+     "verdict": "A",
+     "quote": "",
+     "page_or_table": "Main text"
+    }
+   ],
+   "item_note": "The main text gives no allele pair or risk allele from prior literature for rs7309123."
+  }
+ ]
+}

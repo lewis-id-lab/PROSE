@@ -1,0 +1,91 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 12448,
+   "output": 1970
+  },
+  "finished_at": "2026-11-25T19:51:55",
+  "study_id": "S023",
+  "files": [
+   "Fischer M. et al. - 2015 - Impact of dectin-1 polymorphisms on susceptibility of invasive fungal disease in patients with acute.pdf:312-313"
+  ],
+  "prompt_sha": "09980fb3f1cc",
+  "scope": "panel",
+  "n_variants": 2
+ },
+ "targets": [
+  [
+   "DECTIN-1",
+   "rs16910526",
+   "Y238X (rs16910526)"
+  ],
+  [
+   "CLEC7A",
+   "rs7309123",
+   "Dectin-1 SNP rs7309123 (G/G genotype)"
+  ]
+ ],
+ "rows": [
+  {
+   "listed_variant": true,
+   "gene_symbol": "CLEC7A",
+   "rsid": "rs7309123",
+   "variant_name_as_reported": "Dectin-1 SNP rs7309123 (G/G genotype)",
+   "effect_allele": "G",
+   "other_allele": null,
+   "genetic_model": "other",
+   "comparison_as_reported": "homozygous G/G genotype vs not stated (presumably other genotypes)",
+   "subgroup": "Adult AML patients during induction chemotherapy (n=164); outcome pulmonary IFD",
+   "n_cases_hom_effect": 18,
+   "n_cases_het": null,
+   "n_cases_hom_other": null,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "OR",
+   "effect_estimate": 2.3,
+   "ci_lower": 1.2,
+   "ci_upper": 4.5,
+   "p_value": "0.023",
+   "adjusted": "unclear",
+   "page_or_table": "Abstract P745, Results (haematologica 2015;100(s1):296)",
+   "verbatim_source": "patients carrying the homozygous Dectin-1 SNP rs7309123 (G/G genotype, n=43 patients) revealed a significantly higher risk for developing ... pulmonary IFD (p=0.023, OR: 2.3; 95% CI: 1.2 - 4.5). In detail, 24 patients harbouring homozygous Dectin-1 SNP developed pneumonia in general whereas 18 of them fulfilled criteria for IFD.",
+   "confidence": "medium",
+   "note": "Model word not given by paper; GG vs reference group not specified (likely recessive GG vs GT+TT). Other allele not reported. 18 GG patients met IFD criteria (43 GG patients total); counts for other genotypes not reported. Methods state multiple logistic regression but unclear whether this OR is multivariable-adjusted. Outcome is pulmonary IFD (EORTC/MSG), not specifically IA."
+  },
+  {
+   "listed_variant": true,
+   "gene_symbol": "CLEC7A",
+   "rsid": "rs16910526",
+   "variant_name_as_reported": "Dectin-1 SNP rs16910526 (Y238X, T/G genotype)",
+   "effect_allele": null,
+   "other_allele": null,
+   "genetic_model": "carrier",
+   "comparison_as_reported": "heterozygous T/G (n=13) vs wild type carriers",
+   "subgroup": "Adult AML patients during induction chemotherapy (n=164); all analyzed infectious complications incl. IFD",
+   "n_cases_hom_effect": null,
+   "n_cases_het": null,
+   "n_cases_hom_other": null,
+   "n_ctrl_hom_effect": null,
+   "n_ctrl_het": null,
+   "n_ctrl_hom_other": null,
+   "effect_measure": "none_reported",
+   "effect_estimate": null,
+   "ci_lower": null,
+   "ci_upper": null,
+   "p_value": null,
+   "adjusted": "not_stated",
+   "page_or_table": "Abstract P745, Results (haematologica 2015;100(s1):296)",
+   "verbatim_source": "no differences were found between patients with heterozygous Dectin-1 SNP rs16910526 (Y238X, T/G genotype, n=13 patients) and wild type carriers with regard to all analyzed infectious complications.",
+   "confidence": "medium",
+   "note": "Only qualitative null result; no estimate, p-value or case/control genotype counts. Paper does not state which allele (T or G) is the variant/stop allele, so alleles left null. 13 heterozygous patients total."
+  }
+ ],
+ "not_found": [],
+ "paper_note": "Conference abstract (EHA 2015, P745) of 164 AML patients; rs7309123 GG associated with pulmonary IFD (OR 2.3), rs16910526 Y238X heterozygotes showed no difference; no genotype tables reported."
+}

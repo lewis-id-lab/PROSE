@@ -1,0 +1,301 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 47193,
+   "output": 4148
+  },
+  "finished_at": "2026-11-25T20:28:55",
+  "study_id": "S077",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 17
+ },
+ "blinding": {
+  "I0415": "A=original",
+  "I0416": "A=reextraction",
+  "I0419": "A=original",
+  "I0420": "A=reextraction",
+  "I0421": "A=original",
+  "I0422": "A=reextraction",
+  "I0423": "A=reextraction",
+  "I0424": "A=reextraction",
+  "I0425": "A=reextraction",
+  "I0426": "A=reextraction",
+  "I0427": "A=original",
+  "I0428": "A=reextraction",
+  "I0429": "A=reextraction",
+  "I0430": "A=original",
+  "I0432": "A=reextraction",
+  "I0433": "A=original",
+  "I0434": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0415",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": "9",
+     "verdict": "B",
+     "quote": "T/C 31 (10.5) 9 (26.5) 5.517 (2.043\u201314.896) 0.001",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "31",
+     "verdict": "B",
+     "quote": "T/C 31 (10.5) 9 (26.5) 5.517 (2.043\u201314.896) 0.001",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The heterozygote (T/C) counts are 9 IA cases and 31 controls. A left both fields blank."
+  },
+  {
+   "item_id": "I0416",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "1",
+     "verdict": "A",
+     "quote": "C/C 2 (0.7) 1 (2.9) 3.538 (0.194\u201364.546) 0.394",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "2",
+     "verdict": "A",
+     "quote": "C/C 2 (0.7) 1 (2.9) 3.538 (0.194\u201364.546) 0.394",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The homozygous C/C counts are 1 IA case and 2 controls. B left both fields blank."
+  },
+  {
+   "item_id": "I0419",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "C/C + T/C vs T/T (presence, homozygous or heterozygous)",
+     "verdict": "both",
+     "quote": "C/C ? T/C 33 (11.1) 10 (29.4) 5.297 (2.032\u201313.809) 0.001",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The paper does not name the model. It compares the presence of the SNP (homozygous or heterozygous) with homozygous wild-type. 'Dominant' and 'carrier' describe the same comparison, so both match."
+  },
+  {
+   "item_id": "I0420",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "2.275 (1.166\u20134.441), 0.016",
+     "verdict": "B",
+     "quote": "IL10rs1800896 C\ncarriage\n35 (10.4) 11 (21.6) 2.275 (1.166\u20134.441),\n0.016",
+     "page_or_table": "Table 4 continued, p. 817"
+    }
+   ],
+   "item_note": "The univariate mortality result for C carriage is reported in Table 4. A left the field blank."
+  },
+  {
+   "item_id": "I0421",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "1.770 (0.881\u20133.554), 0.109",
+     "verdict": "A",
+     "quote": "1.770 (0.881\u20133.554),\n0.109",
+     "page_or_table": "Table 4 continued, p. 817"
+    }
+   ],
+   "item_note": "The multivariate mortality result for C carriage is reported in Table 4. B left the field blank."
+  },
+  {
+   "item_id": "I0422",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0 (0) / 1 (2.9), HR \u2013",
+     "verdict": "A",
+     "quote": "IL10rs1800896 C/C\ngenotype\n0 (0) 1 (2.9) \u2013",
+     "page_or_table": "Table 3, p. 814"
+    }
+   ],
+   "item_note": "The C/C genotype row (admission episodes) is present in Table 3, though no HR is given. B left the field blank."
+  },
+  {
+   "item_id": "I0423",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": "15",
+     "verdict": "A",
+     "quote": "A/G 140 (47.0) 15 (44.1) 1.130 (0.228\u20135.598) 0.881",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "140",
+     "verdict": "A",
+     "quote": "A/G 140 (47.0) 15 (44.1) 1.130 (0.228\u20135.598) 0.881",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The heterozygote (A/G) counts are 15 IA cases and 140 controls. B left both fields blank."
+  },
+  {
+   "item_id": "I0424",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "17",
+     "verdict": "A",
+     "quote": "G/G 124 (41.6) 17 (50.0) 1.398 (0.283\u20136.909) 0.681",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "124",
+     "verdict": "A",
+     "quote": "G/G 124 (41.6) 17 (50.0) 1.398 (0.283\u20136.909) 0.681",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The homozygous G/G counts are 17 IA cases and 124 controls. B left both fields blank."
+  },
+  {
+   "item_id": "I0425",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G + A/G vs A/A",
+     "verdict": "both",
+     "quote": "G/G ? A/G 264 (88.6) 32 (94.1) 1.253 (0.267\u20135.893) 0.775",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "'Carrier' and 'dominant' are equivalent descriptions of G/G + A/G vs A/A."
+  },
+  {
+   "item_id": "I0426",
+   "fields": [
+    {
+     "field": "n_cases_het",
+     "value_in_source": "17",
+     "verdict": "A",
+     "quote": "A/G 135 (45.2) 17 (51.5) 1.499 (0.622\u20133.616) 0.367",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "135",
+     "verdict": "A",
+     "quote": "A/G 135 (45.2) 17 (51.5) 1.499 (0.622\u20133.616) 0.367",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The heterozygote (A/G) counts are 17 IA cases and 135 controls. B left both fields blank."
+  },
+  {
+   "item_id": "I0427",
+   "fields": [
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "6",
+     "verdict": "B",
+     "quote": "G/G 41 (13.7) 6 (18.2) 1.568 (0.485\u20135.069) 0.453",
+     "page_or_table": "Table 2, p. 813"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "41",
+     "verdict": "B",
+     "quote": "G/G 41 (13.7) 6 (18.2) 1.568 (0.485\u20135.069) 0.453",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The homozygous G/G counts are 6 IA cases and 41 controls. A left both fields blank."
+  },
+  {
+   "item_id": "I0428",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G + A/G vs A/A",
+     "verdict": "both",
+     "quote": "G/G ? A/G 176 (58.9) 23 (69.7) 1.516 (0.656\u20133.501) 0.330",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "'Carrier' and 'dominant' are equivalent descriptions of G/G + A/G vs A/A."
+  },
+  {
+   "item_id": "I0429",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "48 (13.4) / 6 (18.2), 1.445 (0.596\u20133.500), 0.415",
+     "verdict": "A",
+     "quote": "DC-SIGNrs4804800\nG/G genotype\n48 (13.4) 6 (18.2) 1.445 (0.596\u20133.500), 0.415",
+     "page_or_table": "Table 3, p. 814"
+    }
+   ],
+   "item_note": "The G/G genotype row (admission episodes) is reported in Table 3. B left the field blank."
+  },
+  {
+   "item_id": "I0430",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "195 (54.5) / 23 (69.7), 1.761 (0.838\u20133.699), 0.135",
+     "verdict": "B",
+     "quote": "DC-SIGNrs4804800\nG carriage\n195 (54.5) 23 (69.7) 1.761 (0.838\u20133.699), 0.135",
+     "page_or_table": "Table 3, p. 814"
+    }
+   ],
+   "item_note": "The G carriage row (admission episodes) is reported in Table 3. A left the field blank."
+  },
+  {
+   "item_id": "I0432",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "G/G + C/G vs C/C",
+     "verdict": "both",
+     "quote": "G/G ? C/G 288 (97.3) 31 (93.9) 0.404 (0.068\u20132.404) 0.319",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "'Carrier' and 'dominant' are equivalent descriptions of G/G + C/G vs C/C."
+  },
+  {
+   "item_id": "I0433",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.311 (0.046\u20132.098), 0.230",
+     "verdict": "B",
+     "quote": "C/G 83 (28.0) 8 (24.2) 0.311 (0.046\u20132.098) 0.230",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The C/G vs C/C result is reported in Table 2. A left the field blank."
+  },
+  {
+   "item_id": "I0434",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "0.449 (0.074\u20132.725), 0.384",
+     "verdict": "B",
+     "quote": "G/G 205 (69.3) 23 (69.7) 0.449 (0.074\u20132.725) 0.384",
+     "page_or_table": "Table 2, p. 813"
+    }
+   ],
+   "item_note": "The G/G vs C/C result is reported in Table 2. A left the field blank."
+  }
+ ]
+}

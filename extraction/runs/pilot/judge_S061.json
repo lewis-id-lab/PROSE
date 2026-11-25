@@ -1,0 +1,287 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 25800,
+   "output": 4277
+  },
+  "finished_at": "2026-11-25T20:25:27",
+  "study_id": "S061",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 13
+ },
+ "blinding": {
+  "I0321": "A=original",
+  "I0322": "A=original",
+  "I0323": "A=original",
+  "I0324": "A=reextraction",
+  "I0325": "A=reextraction",
+  "I0326": "A=original",
+  "I0327": "A=original",
+  "I0328": "A=original",
+  "I0329": "A=original",
+  "I0330": "A=original",
+  "I0331": "A=reextraction",
+  "I0332": "A=reextraction",
+  "I0333": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0321",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "allelic (minor allele frequency comparison; OR 0.70)",
+     "verdict": "B",
+     "quote": "IL10 -1082G.A 5/24/14 13/26/15 0.40 0.48 1.44 0.23 0.70 (0.40\u20131.25)",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "Table 3 shows genotype counts, but its chi-square, p and OR are computed on minor allele frequencies, so the reported effect is allelic. The paper_result label 'carrier' does not match how the table computes the OR."
+  },
+  {
+   "item_id": "I0322",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "no (unadjusted)",
+     "verdict": "A",
+     "quote": "The donor DNA contained the TLR4 1063A.G SNP in 9 of the 43 case patients (21%) and in 4 (7%) of the 61 control patients successfully genotyped for this polymorphism (OR 3.77 95%CI 1.08\u201313.2, p = 0.03).",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "1.08",
+     "verdict": "A",
+     "quote": "(OR 3.77 95%CI 1.08\u201313.2, p = 0.03)",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "13.2",
+     "verdict": "A",
+     "quote": "(OR 3.77 95%CI 1.08\u201313.2, p = 0.03)",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.03",
+     "verdict": "A",
+     "quote": "(OR 3.77 95%CI 1.08\u201313.2, p = 0.03)",
+     "page_or_table": "Results, p.2"
+    }
+   ],
+   "item_note": "This item is the unadjusted carrier result. B gives the adjusted result (0.90\u201315.8, p=0.07)."
+  },
+  {
+   "item_id": "I0323",
+   "fields": [
+    {
+     "field": "adjusted",
+     "value_in_source": "yes",
+     "verdict": "A",
+     "quote": "Following multivariate correction for GVHD, CMV serostatus and duration of neutropenia the adjusted OR was 3.76 (95% CI 0.90\u201315.8, p = 0.07).",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "n_cases_hom_effect",
+     "value_in_source": "2",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_het",
+     "value_in_source": "7",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_cases_hom_other",
+     "value_in_source": "34",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_effect",
+     "value_in_source": "0",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_het",
+     "value_in_source": "4",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "n_ctrl_hom_other",
+     "value_in_source": "57",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    },
+    {
+     "field": "ci_lower",
+     "value_in_source": "0.90",
+     "verdict": "A",
+     "quote": "the adjusted OR was 3.76 (95% CI 0.90\u201315.8, p = 0.07)",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "ci_upper",
+     "value_in_source": "15.8",
+     "verdict": "A",
+     "quote": "the adjusted OR was 3.76 (95% CI 0.90\u201315.8, p = 0.07)",
+     "page_or_table": "Results, p.2"
+    },
+    {
+     "field": "p_value",
+     "value_in_source": "0.07",
+     "verdict": "A",
+     "quote": "the adjusted OR was 3.76 (95% CI 0.90\u201315.8, p = 0.07)",
+     "page_or_table": "Results, p.2"
+    }
+   ],
+   "item_note": "This item is the adjusted result. B's adjusted flag, CI and p belong to the unadjusted result. The donor genotype counts B gives are printed in Table 3 for this SNP."
+  },
+  {
+   "item_id": "I0324",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported (allele frequency 0.13 vs 0.03, OR 4.33)",
+     "verdict": "A",
+     "quote": "TLR4 1063A.G 2/7/34 0/4/57 0.13 0.03 6.82 0.01 4.33 (1.33\u201314.1)",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0325",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "TLR4 1063A.G and IFNG 874T.A 5.74 1.13\u201329.1 0.035 6.09 1.05\u201335.5 0.044",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": "Table 4 reports both an unadjusted and an adjusted result for this pair."
+  },
+  {
+   "item_id": "I0326",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G and IFNG 874T.A 5.74 1.13\u201329.1 0.035 6.09 1.05\u201335.5 0.044",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": "Table 4 reports both an unadjusted and an adjusted result for this pair."
+  },
+  {
+   "item_id": "I0327",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported (p = 0.033)",
+     "verdict": "B",
+     "quote": "showed that the TLR4 1063A.G/IFNG 874T.A combination was most strongly linked with IA (p = 0.033).",
+     "page_or_table": "Results, p.2"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0328",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G and TLR6 745C.T 3.24 0.91\u201311.6 0.071 3.22 0.79\u201313.3 0.102",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0329",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "B",
+     "quote": "TLR4 1063A.G and TLR6 745C.T 3.24 0.91\u201311.6 0.071 3.22 0.79\u201313.3 0.102",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0330",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "allelic (minor allele frequency comparison; OR 2.81)",
+     "verdict": "B",
+     "quote": "TLR4 1363C.T 1/7/34 0/5/56 0.11 0.04 3.43 0.06 2.81 (0.91\u20138.70)",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "The Table 3 OR is computed on minor allele frequencies."
+  },
+  {
+   "item_id": "I0331",
+   "fields": [
+    {
+     "field": "genetic_model",
+     "value_in_source": "allelic (minor allele frequency comparison; OR 1.14)",
+     "verdict": "A",
+     "quote": "TLR6 745C.T 7/25/10 11/29/19 0.46 0.43 0.20 0.67 1.14 (0.65\u20132.00)",
+     "page_or_table": "Table 3, p.4"
+    }
+   ],
+   "item_note": "The Table 3 OR is computed on minor allele frequencies."
+  },
+  {
+   "item_id": "I0332",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "TLR6 745C.T and IFNG 874T.A 2.15 0.96\u20134.80 0.064 1.80 0.33\u20134.32 0.189",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": ""
+  },
+  {
+   "item_id": "I0333",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported",
+     "verdict": "A",
+     "quote": "TLR6 745C.T and IFNG 874T.A 2.15 0.96\u20134.80 0.064 1.80 0.33\u20134.32 0.189",
+     "page_or_table": "Table 4, p.5"
+    }
+   ],
+   "item_note": ""
+  }
+ ]
+}

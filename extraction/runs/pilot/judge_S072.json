@@ -1,0 +1,49 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 65383,
+   "output": 632
+  },
+  "finished_at": "2026-11-25T20:27:06",
+  "study_id": "S072",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 2
+ },
+ "blinding": {
+  "I0382": "A=original",
+  "I0383": "A=reextraction"
+ },
+ "items": [
+  {
+   "item_id": "I0382",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported: non-HSCT OR 0.86 (95% CI 0.52 to 1.45)",
+     "verdict": "B",
+     "quote": "for IFN\u03b3rs2069705, OR of 0.24 [95% CI of 0.10 to 0.59] versus OR of 0.86 [95% CI of 0.52 to 1.45]) (Table 4).",
+     "page_or_table": "Page 649, Results text"
+    }
+   ],
+   "item_note": "The non-HSCT estimate appears only in the Results text. Table 4 lists allo-HSCT patients only."
+  },
+  {
+   "item_id": "I0383",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported: IFN\u03b3 TC haplotype OR 0.34 (95% CI 0.13 to 0.88)",
+     "verdict": "A",
+     "quote": "We observed a significant association with IA only for a relatively rare IFN\u03b3TC haplotype whose effect likely was due to the IFN\u03b3rs2069705 SNP (OR of 0.34 and 95% CI of 0.13 to 0.88; see Table S1 in the supplemental material).",
+     "page_or_table": "Page 649, Results text"
+    }
+   ],
+   "item_note": "Reported in the main text, which cites supplemental Table S1."
+  }
+ ]
+}

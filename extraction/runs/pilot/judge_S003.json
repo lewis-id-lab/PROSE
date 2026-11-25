@@ -1,0 +1,105 @@
+{
+ "meta": {
+  "request_id": null,
+  "model_requested": "claude-opus-5-5",
+  "model_served": "claude-opus-5-5",
+  "fallback_used": false,
+  "stop_reason": "end_turn",
+  "usage": {
+   "input": 39931,
+   "output": 1153
+  },
+  "finished_at": "2026-11-25T20:15:56",
+  "study_id": "S003",
+  "prompt_sha": "44d08b9d8e2b",
+  "n_items": 6
+ },
+ "blinding": {
+  "I0001": "A=original",
+  "I0006": "A=reextraction",
+  "I0007": "A=reextraction",
+  "I0008": "A=reextraction",
+  "I0009": "A=original",
+  "I0010": "A=original"
+ },
+ "items": [
+  {
+   "item_id": "I0001",
+   "fields": [
+    {
+     "field": "p_value",
+     "value_in_source": "<.001",
+     "verdict": "B",
+     "quote": "GG at rs1800896 2.58 (1.44-4.62) .001 2.32 (1.10-4.90) .031 2.48 (1.48-4.18) <.001",
+     "page_or_table": "Table E4, p. 870.e8 (Combined n = 413)"
+    }
+   ],
+   "item_note": "The paper prints the combined P value as <.001. A's 0.0005 is not printed in the paper."
+  },
+  {
+   "item_id": "I0006",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG (N=42, P=0.005)",
+     "page_or_table": "Fig 1A (Donor panel), p. 868"
+    }
+   ],
+   "item_note": "Donor GG vs AA (ref) in the discovery cohort is reported in the Fig 1A Donor panel."
+  },
+  {
+   "item_id": "I0007",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "AG (N=92, P=0.51)",
+     "page_or_table": "Fig 1A (Donor panel), p. 868"
+    }
+   ],
+   "item_note": "Donor AG vs AA (ref) in the discovery cohort is reported in the Fig 1A Donor panel."
+  },
+  {
+   "item_id": "I0008",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "A",
+     "quote": "GG (N=20, P=0.89)",
+     "page_or_table": "Fig 1A (Recipient panel), p. 868"
+    }
+   ],
+   "item_note": "Recipient GG vs AA (ref) in the discovery cohort is reported in the Fig 1A Recipient panel."
+  },
+  {
+   "item_id": "I0009",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "AG (N=46, P=0.47)",
+     "page_or_table": "Fig 1A (Recipient panel), p. 868"
+    }
+   ],
+   "item_note": "Recipient AG vs AA (ref) in the discovery cohort is reported in the Fig 1A Recipient panel."
+  },
+  {
+   "item_id": "I0010",
+   "fields": [
+    {
+     "field": "row_present",
+     "value_in_source": "reported in paper",
+     "verdict": "B",
+     "quote": "GG (N=42, P=0.002)",
+     "page_or_table": "Fig 1B, p. 868; also Table E4 Discovery 2.58 (1.44-4.62) .001"
+    }
+   ],
+   "item_note": "The donor recessive model in the discovery cohort is reported in Fig 1B (Gray test) and in Table E4 (adjusted HR)."
+  }
+ ]
+}
