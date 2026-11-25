@@ -477,6 +477,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure" id="toc-addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure" class="nav-link" data-scroll-target="#addition-11-november-2026-later-the-same-day-the-how-the-bar-moves-figure">Addition, 11 November 2026 (later the same day): the “how the bar moves” figure</a></li>
   <li><a href="#addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style" id="toc-addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style" class="nav-link" data-scroll-target="#addition-11-november-2026-later-the-same-day-the-figure-folder-and-the-website-figures-in-the-same-style">Addition, 11 November 2026 (later the same day): the figure folder, and the website figures in the same style</a></li>
   </ul></li>
+  <li><a href="#addendum-46-19-november-2026-the-prisma-flow-restaged-to-match-the-thesis-and-the-covidence-counts" id="toc-addendum-46-19-november-2026-the-prisma-flow-restaged-to-match-the-thesis-and-the-covidence-counts" class="nav-link" data-scroll-target="#addendum-46-19-november-2026-the-prisma-flow-restaged-to-match-the-thesis-and-the-covidence-counts">Addendum 46, 19 November 2026: the PRISMA flow restaged to match the thesis and the Covidence counts</a></li>
+  <li><a href="#addendum-47-20-november-2026-wording-for-three-statements-in-the-thesis-4.3-4.8" id="toc-addendum-47-20-november-2026-wording-for-three-statements-in-the-thesis-4.3-4.8" class="nav-link" data-scroll-target="#addendum-47-20-november-2026-wording-for-three-statements-in-the-thesis-4.3-4.8">Addendum 47, 20 November 2026: wording for three statements in the thesis (§4.3, §4.8)</a></li>
+  <li><a href="#addendum-48-24-november-2026-an-exploratory-decision-curve-of-the-genetic-gain-from-2-to-30-including-10-defined-before-it-was-run-on-the-cohort" id="toc-addendum-48-24-november-2026-an-exploratory-decision-curve-of-the-genetic-gain-from-2-to-30-including-10-defined-before-it-was-run-on-the-cohort" class="nav-link" data-scroll-target="#addendum-48-24-november-2026-an-exploratory-decision-curve-of-the-genetic-gain-from-2-to-30-including-10-defined-before-it-was-run-on-the-cohort">Addendum 48, 24 November 2026: an exploratory decision curve of the genetic gain from 2% to 30% (including 10%); defined before it was run on the cohort</a>
+  <ul class="collapse">
+  <li><a href="#addendum-48-results-25-november-2026-script-55-run-on-the-cohort" id="toc-addendum-48-results-25-november-2026-script-55-run-on-the-cohort" class="nav-link" data-scroll-target="#addendum-48-results-25-november-2026-script-55-run-on-the-cohort">Addendum 48, results (25 November 2026): script 55 run on the cohort</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -8179,6 +8185,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>PRISMA diagram.</strong> The package’s PNG export is a screen-resolution image (598 pixels wide). <code>scripts/44_prisma_flow.R</code> now renders it from the SVG at 300 dpi, 7 inches wide, and writes the three rotated side labels into the SVG (the package adds them with JavaScript, so its SVG lacks them).</p></li>
 <li><p><strong>Tables.</strong> <code>gt_jama_style()</code> (<code>R/theme_jama.R</code>) gives every <code>gt()</code> table on the pages the same blue-grey look (navy rules above and below, a pale band under bold column labels, light row rules, no vertical lines); <code>_setup.R</code> wraps <code>gt()</code> so that no page changes. The Quarto cache (<code>_freeze/</code>) was cleared once so that the pages re-ran.</p></li>
 </ul>
+</section>
+</section>
+<section id="addendum-46-19-november-2026-the-prisma-flow-restaged-to-match-the-thesis-and-the-covidence-counts" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-46-19-november-2026-the-prisma-flow-restaged-to-match-the-thesis-and-the-covidence-counts">Addendum 46, 19 November 2026: the PRISMA flow restaged to match the thesis and the Covidence counts</h2>
+<p><strong>What had been seen.</strong> All results up to addendum 45. The examiner-style review of the thesis (§4.3) found that the flow in Figure 4.1 (831 screened, 750 excluded, 81 sought, 18 not retrieved, 63 assessed) disagreed with the thesis text (622 records excluded by the automated screen, 209 imported into Covidence, 208 full texts, 127 excluded, 81 included), that the 622 had no box, and that the exclusion reasons (59 review articles, 24 wrong population, 15 conference proceedings) summed to 98 of 127. No analysis was rerun; nothing downstream of the evidence base (60 studies) changes.</p>
+<ul>
+<li><strong>New staging</strong> (<code>scripts/44_prisma_flow.R</code>, <code>output/figures/prisma_flow.png</code>, <code>output/prisma_counts.csv</code>): 1,052 records (PubMed 267, Embase 785); 221 duplicates removed before screening; 622 excluded by the automated, AI-assisted title-and-abstract screen (run by the supervisor alone; no human review; no decision file assembled); 209 records imported into Covidence; 1 excluded on title and abstract; 208 full texts assessed by two reviewers; 127 excluded; 81 included. Below that, an extraction box: 18 with no usable source document (12 no full text, 6 linked to the wrong document), 63 extracted, 3 excluded when read for extraction (the third is S010, addendum 37), 60 in the evidence base. 831 - 622 = 209 and 208 - 127 = 81 are checked in the script.</li>
+<li><strong>Exclusion reasons.</strong> 59 review articles, 24 wrong patient population, 15 conference proceedings, and 29 inadequate data for simulation. The 29 come from the supervisor’s statement on 19 November 2026 that this was their reason; this is a human statement, not a check against the Covidence export, which is not in the repository. It would be settled by the Covidence PRISMA export. “Inadequate data for simulation” is a different kind of reason from the other three (it is judged against what the simulation needs, not the eligibility criteria of the protocol); the thesis should say so.</li>
+<li><strong>Citation chasing.</strong> The 440 records from forward and backward citation chasing (6 October 2026) did not enter screening (confirmed 19 November 2026). They are named in the manuscript text and the caption, not in the diagram.</li>
+<li><strong>Extraction box.</strong> <code>prisma_extraction_box()</code> in <code>R/figure_export.R</code> adds it to the package’s SVG (the package has no such box); the HTML version of the diagram does not have it. Test in <code>tests/testthat/test-figure-export.R</code>.</li>
+<li><strong>Text.</strong> The “Search and extraction” paragraph and the caption of Figure 1 in <code>manuscript.qmd</code> use the new staging, and state that the two-reviewer process began at full text.</li>
+<li><strong>Pointer.</strong> Addendum 37 (S010) is unchanged; its exclusion now appears as one of the 3 excluded at extraction. The earlier flow (831 / 750 / 81 / 18 / 63) was in the status files and the manuscript until this date.</li>
+<li><strong>Still open.</strong> Thesis fixes outside this repository (Figure 4.1, §4.1, §4.3, the agreement statistics, which quote 173 of 209 against 208 full texts, and the abstract); the validation of the automated screen; the protocol date (21 September 2026) against the first PubMed search (7 July 2026).</li>
+</ul>
+<p>Code and outputs: <code>scripts/44_prisma_flow.R</code>, <code>R/figure_export.R</code>, <code>tests/testthat/test-figure-export.R</code>, <code>output/figures/prisma_flow.{png,html}</code>, <code>output/prisma_counts.csv</code>, <code>manuscript.qmd</code>, <code>status.md</code>, <code>02_current_status.md</code>, <code>index.qmd</code>.</p>
+</section>
+<section id="addendum-47-20-november-2026-wording-for-three-statements-in-the-thesis-4.3-4.8" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-47-20-november-2026-wording-for-three-statements-in-the-thesis-4.3-4.8">Addendum 47, 20 November 2026: wording for three statements in the thesis (§4.3, §4.8)</h2>
+<p><strong>What had been seen.</strong> All results up to addendum 46. The student asked three questions on 20 November 2026 while revising the thesis. No analysis was rerun and no file other than this one changed. The three items below are the wording I advised, and the student had not yet decided on them when this was written. They are recommendations from the assistant, not human checks, and none settles a fact.</p>
+<ul>
+<li><strong>TLR2 rs5743708 and TLR6 rs5743810 (§4.8): reason for omission.</strong> What was seen: <code>phase3_decisions.md</code> has no decision about either variant. D3 (16 October) lists the chosen terms without mentioning them, and the only recorded drop is TLR9 rs352140 (D3a: three studies report it, one is usable). <code>02_current_status.md</code> (lines 160 and 164) and <code>data/panel_candidates.csv</code> give each variant three meta-analysable studies (TLR2 reported by five, TLR6 by three); <code>data/cohort_independence.csv</code> shows TLR2’s three studies include one overlapping Jena AML cohort. IL10 and IFNG also had three studies and were kept as optional terms in D3 (dropped later in D14 for prior-dominated estimates), so a threshold of three studies does not account for the difference. Advised wording: each had three meta-analysable studies and was not among the terms selected when the panel was fixed (D3); the record gives no separate reason. Not advised: “omitted because they had three studies”. Confidence that no other reason exists in the repository: moderate (searched the decision record, <code>panel.qmd</code> and the status files for TLR2, TLR6 and both rsIDs). The student or supervisor can say whether an unrecorded reason was given in discussion.</li>
+<li><strong>The 29 full-text exclusions (§4.3): “Inadequate data for simulation”.</strong> What was seen: addendum 46 and script 44 take the 29 from the supervisor’s statement of 19 November 2026; the Covidence export is not in the repository, so the count has not been checked. The reasons sum to 127 (59 + 24 + 15 + 29). Advised wording: keep the figure’s label, and say in the text that the 29 are as reported by the supervisor, that this reason is judged against what the simulation needs and not against the protocol’s eligibility criteria, and (until checked) that the reason counts are not from the Covidence PRISMA export. This would be settled by the Covidence PRISMA export. Addendum 46’s “Still open” list is unchanged.</li>
+<li><strong>Reviewer agreement (§4.3): denominator.</strong> What was seen: the student’s Covidence export has 209 records (the 208 full texts plus the 1 record excluded on title and abstract). The thesis quotes 173 of 209 (addendum 46). Both 173/209 (82.8%) and 173/208 (83.2%) round to 83%, so the percentage does not change. Cohen’s kappa of 0.64 was not recomputed, because the cross-tabulation of the two reviewers’ decisions is not in the repository; it cannot be taken as verified for either denominator. Advised wording: state the stage and the denominator (“at full-text screening, X of 208 records, 83%, Cohen’s κ 0.64”), not drop the count, since the two-reviewer process began at full text (addendum 46). If 173 came from all 209 records, the title-and-abstract record is included and the figure should be recomputed at full text only. Settled by the Covidence agreement export for the full-text stage.</li>
+</ul>
+<p><strong>Pointer.</strong> Addendum 46 (PRISMA restaged; “Still open” list). D3 and D3a (panel and TLR9). D14 (IL10 and IFNG dropped). No earlier entry is changed.</p>
+<p>Code and outputs: none (this addendum changes only <code>phase3_decisions.md</code>).</p>
+</section>
+<section id="addendum-48-24-november-2026-an-exploratory-decision-curve-of-the-genetic-gain-from-2-to-30-including-10-defined-before-it-was-run-on-the-cohort" class="level2">
+<h2 class="anchored" data-anchor-id="addendum-48-24-november-2026-an-exploratory-decision-curve-of-the-genetic-gain-from-2-to-30-including-10-defined-before-it-was-run-on-the-cohort">Addendum 48, 24 November 2026: an exploratory decision curve of the genetic gain from 2% to 30% (including 10%); defined before it was run on the cohort</h2>
+<p><strong>What had been seen.</strong> All results up to addendum 47, including the pre-specified results at 5% (primary) and 20% (secondary) under the profile-preserving truth (<code>output/calibration_check_layer.csv</code>): for the four-term ceiling score (pooled-mean reading) 0.12 of the MCID at 5% and 0.67 at 20%; for the five-term ceiling score 0.25 and 1.14 (64% of draws reaching the 20% MCID). The refit baseline at 10% (<code>output/dca_baseline_refit_summary.csv</code>: 5.7% flagged, 14.3 true positives per 1,000, MCID +0.00285) had been seen; no genetic gain at 10%, or at any threshold other than 5% and 20%, had been computed. The question came from the supervisor (24 November 2026): was there any benefit of the genetic information at higher thresholds, such as 10% or 20%? Because the 5% and 20% results were known, this analysis is exploratory and is not a test of anything; the primary and secondary analyses are unchanged.</p>
+<ul>
+<li><strong>Definition, fixed before the cohort run.</strong> Script 55 computes, exactly and under the profile-preserving truth only, the gain of the ceiling and realised scores over the clinical score for the four-term panel (primary) and the five-term panel, with the same 2,000 draws of the true effects (pooled-mean and predictive readings) as script 31, at every threshold from 2% to 30% by 1%. The MCID at each threshold is the pre-specified rule (20% more true cases at no extra false positives, 0.2 x TP_clin / n) applied to the refit baseline at that threshold. Reported per threshold: median gain and 90% range, gain over MCID, share of draws reaching the MCID, extra true cases per 1,000 and the share flagged. The run stops unless it reproduces script 31 at 5% and 20% (gain, share reaching the MCID and extra cases) and script 11’s MCID at 5%, 10% and 20%.</li>
+<li><strong>Status: not yet run on the cohort.</strong> The patient-level cohort (<code>data/restricted/</code> or <code>boscore.xlsx</code>) was not on the machine on which the script was written, so the profile distribution of the 4,078 admissions was not available. The script was checked end to end in a dry run on the copula profile distribution (<code>output/profile_probabilities.csv</code>, 100 draws, written to a scratch folder and not kept); those numbers are not the cohort’s and are not reported. The results, and what is read from them, are to be added below this addendum (dated) when the script is run where the data are.</li>
+<li><strong>What to expect when reading it (not a prediction to be tested).</strong> Because the 128 clinical profiles are discrete, the clinical score’s flagged set changes in steps as the threshold moves, so the MCID and the gain are step-like in the threshold and not smooth; a threshold that falls just below a large profile’s risk can give a local peak. The curve should be read as a whole, not threshold by threshold, and no threshold chosen after looking at it should be reported as if it had been pre-specified.</li>
+<li><strong>Manuscript.</strong> Nothing in the manuscript or the submission reports this curve yet. The submission Discussion gained one sentence (24 November 2026) on why the pre-specified 20% threshold is more favourable (the clinical score flags 2% of admissions, so the MCID is 1.6 true cases per 1,000 against 2.8 to 3.8 added by genotype) and which decisions such a threshold would fit; that sentence uses only the existing 20% results. The clinical framing (costlier or more toxic interventions such as invasive diagnostic work-up or empirical mould-active treatment, rather than prophylaxis) is the assistant’s suggestion and has not been checked by a clinician.</li>
+</ul>
+<p><strong>Pointer.</strong> D27 and addenda 24 and 25 (profile-preserving truth, script 31). No earlier entry is changed.</p>
+<p>Code and outputs: <code>scripts/55_threshold_curve.R</code> (to write <code>output/threshold_curve_profile.csv</code> and <code>output/figures/fig_threshold_curve_profile.png</code> when run on the cohort), <code>status.md</code>, <code>submission/manuscript.qmd</code>.</p>
+<section id="addendum-48-results-25-november-2026-script-55-run-on-the-cohort" class="level3">
+<h3 class="anchored" data-anchor-id="addendum-48-results-25-november-2026-script-55-run-on-the-cohort">Addendum 48, results (25 November 2026): script 55 run on the cohort</h3>
+<p><strong>What had been seen.</strong> Everything listed under addendum 48 above. Nothing else had been computed at thresholds other than 5% and 20% when the script was run. The analysis is exploratory (thresholds chosen after the 5% and 20% results were known); the primary and secondary analyses are unchanged.</p>
+<p><strong>Run.</strong> <code>scripts/55_threshold_curve.R</code> with <code>PROSE_SCHEME=profile</code>, on <code>boscore.xlsx</code> (4,078 admissions; identifier columns are skipped at read time), 2,000 draws per reading, thresholds 2% to 30% by 1%. The built-in checks passed: the run reproduced script 31 at 5% and 20% (gain, share reaching the MCID, extra cases) and the MCID of script 11 at 5%, 10% and 20%. Run in a clean R process on R 4.5.1 (renv reported the project out of sync with the lockfile for R 4.6.1; the checks passed). No orphaned workers.</p>
+<p><strong>Result (ceiling score, pooled-mean reading; median over draws).</strong> MCID is the pre-specified rule at each threshold (+0.00458 at 5%, +0.00285 at 10%, +0.00160 at 20%, +0.00131 at 30%).</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Threshold</th>
+<th>Four terms: gain</th>
+<th>gain / MCID</th>
+<th>draws reaching MCID</th>
+<th>Five terms: gain</th>
+<th>gain / MCID</th>
+<th>draws reaching MCID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5%</td>
+<td>+0.00056</td>
+<td>0.12</td>
+<td>0%</td>
+<td>+0.00115</td>
+<td>0.25</td>
+<td>0%</td>
+</tr>
+<tr class="even">
+<td>10%</td>
+<td>+0.00128</td>
+<td>0.45</td>
+<td>1.4%</td>
+<td>+0.00209</td>
+<td>0.73</td>
+<td>15.9%</td>
+</tr>
+<tr class="odd">
+<td>20%</td>
+<td>+0.00107</td>
+<td>0.67</td>
+<td>16.7%</td>
+<td>+0.00183</td>
+<td>1.14</td>
+<td>64.1%</td>
+</tr>
+<tr class="even">
+<td>30%</td>
+<td>+0.00063</td>
+<td>0.48</td>
+<td>8.4%</td>
+<td>+0.00128</td>
+<td>0.97</td>
+<td>47.6%</td>
+</tr>
+</tbody>
+</table>
+<p>All thresholds are in <code>output/threshold_curve_profile.csv</code> (also the predictive reading, the realised score, 90% ranges, extra true cases per 1,000 and the share flagged); figure: <code>output/figures/fig_threshold_curve_profile.png</code>.</p>
+<p><strong>Reading.</strong> The four-term median gain stays below the MCID at every threshold from 2% to 30% for both scores (largest ratio 0.67 at 20% for the ceiling score, 0.52 at 19% for the realised score). The five-term ceiling score reaches the MCID at its median only at 19% to 25% (ratio 1.14 at 20%); the realised five-term score does not at any threshold (largest ratio 0.96 at 20%). In absolute terms the gain peaks near 9% to 10%; the MCID falls steeply between 8% and 20% as the clinical score flags fewer admissions, which is why the ratio is better at 20% than at 10%. The curve is step-like because the 128 profiles are discrete (as expected in the addendum), and the 90% ranges are wide. The 5% and 20% rows equal the figures in “What had been seen” (0.12 and 0.67; 0.25 and 1.14).</p>
+<p><strong>A note on “extra true cases”.</strong> In <code>output/threshold_curve_profile.csv</code>, <code>extra_cases_per_1000</code> is the median extra true positives of the score over the clinical score (1.1 per 1,000 for the four-term panel at 5%), not the net-benefit gain times 1,000 (0.56). The score also flags more admissions, so this figure includes extra false positives, whereas the MCID of 4.6 per 1,000 is defined at no extra false positives. The two are not on one scale; the manuscript’s “1.1 against 4.6” should say so. Not yet changed.</p>
+<p><strong>Manuscript.</strong> One sentence labelled exploratory was added to the Results (“Primary result” section) of <code>manuscript.qmd</code>. The submission has not been changed.</p>
+<p><strong>Pointer.</strong> Addendum 48 above (definition and status). No earlier entry is changed.</p>
+<p>Code and outputs: <code>scripts/55_threshold_curve.R</code>, <code>output/threshold_curve_profile.csv</code>, <code>output/figures/fig_threshold_curve_profile.png</code>, <code>status.md</code>, <code>manuscript.qmd</code>.</p>
 
 
 <!-- -->
