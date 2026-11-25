@@ -1,7 +1,10 @@
 ---
 title: "Draft manuscript"
 author:
-  - name: "[Author list to be completed: see Authors and contributions]"
+  - name: "Marta Stanzani, M.D., Ph.D."
+  - name: "Eunhae Kim, M.D."
+  - name: "Dimitrios P. Kontoyiannis, M.D., Sc.D"
+  - name: "Russell E. Lewis, Pharm.D."
 subtitle: "Abstract, introduction, methods, results and discussion: working draft"
 date: today
 bibliography: references.bib
