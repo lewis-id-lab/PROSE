@@ -30,7 +30,7 @@ rd <- function(f) read.csv(file.path("output", f))
 
 ## Introduction
 
-Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [@pagano2017]. Decisions concerning antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depends on an estimated risk for a patient for developing invasive mold disease (IMD). Clinical risk scores have been proposed to facilitate this individualized assessment [@stanzani2013;@stanzani2019;@wang2019; @montesinos2015; @Sun2021; @Rodríguez-Veiga2019]. We previously developed a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019]. It reached an aROC of 0.85 for proven or probable IMD within 60 days and differentiated high-risk populations at a predicted probability of 5%.
+Invasive mould disease, mostly invasive aspergillosis, remains a major cause of morbidity and death in patients with haematological malignancies [@pagano2017]. Decisions concerning antifungal prophylaxis, diagnostic work-up and pre-emptive treatment depends on an estimated risk for a patient for developing invasive mold disease (IMD). Clinical risk scores have been proposed to facilitate this individualized assessment [@stanzani2013; @stanzani2019; @wang2019; @montesinos2015; @Sun2021; @Rodríguez-Veiga2019]. We previously developed a score from seven routinely recorded host factors in 4,127 admissions to the haematology unit in Bologna [@stanzani2019]. It reached an aROC of 0.85 for proven or probable IMD within 60 days and differentiated high-risk populations at a predicted probability of 5%.
 
 Host genetics might add information that clinical factors do not capture. Candidate-gene studies have reported associations between invasive aspergillosis and variants in genes of innate antifungal immunity: the long pentraxin PTX3, the β-glucan receptor dectin-1 (*CLEC7A*), Toll-like receptor 4 and DC-SIGN (*CD209*) [@cunha2014; @sainz2012; @brunel2018; @fisher2017; @kalkanci2020; @schnetzke2024]. After allogeneic transplantation, the reconstituted innate immune system is donor-derived, which has led to proposals to use donor genotype to stratify transplant recipients [@cunha2014]. These findings have prompted proposals for genetically augmented risk scores.
 
@@ -64,20 +64,24 @@ We repeated key analyses under three alternative specifications of the clinical 
 
 ### Evidence synthesis
 
-**Search and extraction.** We searched PubMed (267 records; 7 July 2026) and Embase (785 records; 8 October 2026) for studies of host genetic variants and invasive fungal disease. After 221 duplicates were removed, 831 records were screened on title and abstract and 750 were excluded. Eighty-one reports were sought for retrieval. Eighteen could not be retrieved (twelve had no full text available, and for six the link pointed to the wrong document), and 63 were assessed in full. Three were excluded: a functional genomics study with no clinical outcome, a paediatric acute myeloid leukaemia study that did not analyse genotype against the fungal endpoint, and a study that compared patients with leukaemia against healthy controls without analysing infection by genotype. Sixty studies were included (@fig-prisma).
+**Search and extraction.** We searched PubMed (267 records; 7 July 2026) and Embase (785 records; 8 October 2026) for studies of host genetic variants and invasive fungal disease. After 221 duplicates were removed, 831 records were screened by two investigators on title and abstract and 750 were excluded using the Covidence platform (www.coividence.org). Eighty-one full-text reports were sought for retrieval. Eighteen could not be retrieved (twelve had no full text available, and for six the link pointed to the wrong document), and 63 were assessed in full. Three were excluded: a functional genomics study with no clinical outcome, a paediatric acute myeloid leukaemia study that did not analyse genotype against the fungal endpoint, and a study that compared patients with leukaemia against healthy controls without analysing infection by genotype. Sixty studies were included (@fig-prisma).
 
 ![PRISMA 2020 flow diagram of the literature search and study selection (databases only). The 750 records excluded at title and abstract were not recorded with reasons.](output/figures/prisma_flow.png){#fig-prisma}
 
-The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables. \[Describe the extraction process and the round-2 human verification.\]
+Data were extracted using a purpose-built script using a large-language model (Claude Fabel 5.1, Anthropic). The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables.
 
 Every row whose comparison text had no reference marker was checked against the source tables. That covered seven studies. The two reversals found [@herrerosanchez2018; @fischer2016] and one duplicated row read in the opposite direction [@sainz2012] were corrected and logged with their evidence (43 corrected rows in all).
 
-**Panel.** Candidate variants needed at least three meta-analysable studies. Within each gene, pairwise linkage was measured in phased 1000 Genomes phase 3 European haplotypes (503 samples) [@genomes2015]. Haplotype frequencies were rescaled to gnomAD v4 non-Finnish European allele frequencies [@gnomad] by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term per gene. Each term is an additive per-copy effect of a risk haplotype class:
+**Panel.** Candidate variants needed at least three meta-analysable studies. Within each gene, pairwise linkage was measured in phased 1000 Genomes phase 3 European haplotypes (503 samples) [@genomes2015]. Haplotype frequencies were rescaled to gnomAD v4 non-Finnish European allele frequencies [@gnomad] by iterative proportional fitting. Linked SNPs were collapsed into one haplotype term per gene. Each term is an additive per-copy effect of a risk haplotype class (@tbl-terms).
 
-- **PTX3:** h2, the class carrying A at rs2305619 (tagged equally by rs1840680), frequency 48.2%.
-- **CLEC7A:** the Y238X haplotype, the C allele of rs16910526, which lies only on one rs7309123 background, frequency 7.7%.
-- **TLR4:** the G-T haplotype of rs4986790 and rs4986791, frequency 6.1%. It was pooled under a carrier model with a continuity correction, because no cohort had minor homozygotes.
-- **CD209:** chromosomes carrying G at rs4804800, frequency 12.5%.
+| Term | Risk haplotype class | Frequency | Note |
+|--------|------------------------------------|--------|------------------------------------|
+| PTX3 | h2: the class carrying A at rs2305619 (tagged equally by rs1840680) | 48.2% | |
+| CLEC7A | Y238X: the C allele of rs16910526, which lies only on one rs7309123 background | 7.7% | |
+| TLR4 | G-T haplotype of rs4986790 and rs4986791 | 6.1% | Pooled under a carrier model with a continuity correction, because no cohort had minor homozygotes |
+| CD209 | Chromosomes carrying G at rs4804800 | 12.5% | |
+
+: Haplotype terms of the genetic panel. {#tbl-terms}
 
 TLR9 rs352140 was dropped because only one study was usable. IL10 rs1800896 and IFNG rs2069705 were dropped because they had one and two studies respectively, and the two IFNG studies disagreed in direction. One study [@herrerosanchez2018] was excluded from the primary analysis because its main endpoint included colonisation.
 
@@ -98,24 +102,11 @@ $$\sum_g \pi_g \operatorname{expit}\!\left(\eta_X + \beta^\top g + a_X\right) = 
 where $$\pi_g$$ is the Hardy–Weinberg probability of genotype $$g$$. The conditional effect of genotype is the same in every profile; what is held fixed is that the clinical score is exactly calibrated within every clinical profile. A change in net benefit therefore cannot come from correcting miscalibration of the clinical score, and reflects the information in genotype. We call this the **profile-preserving truth**. Each genetic score is built in the same way, with an intercept per profile that holds its mean risk at $$\operatorname{expit}(\eta_X)$$ (for a score with estimated weights simulated on a sample of genotypes, the mean over that sample).
 
 The first version of the layer (D5) used one intercept $$a$$ for all profiles, which holds the overall prevalence at 3.26% but not the risk within each profile. Because $$\operatorname{E}_g\{\operatorname{expit}(\eta_X + \beta^\top g + a)\} \neq
-\operatorname{expit}(\eta_X)$$ (Jensen's inequality), the clinical score is then miscalibrated within profiles under the simulated truth, and some of a genetic score's gain could be the correction of that miscalibration. We keep this **global-intercept truth** as a sensitivity analysis and compare three things (addendum 24):
-
-- **current:** the global-intercept truth, with the clinical score $$\operatorname{expit}(\eta_X)$$ as the comparator (the construction of the first version);
-- **marginal:** the same truth, with the best clinical-only rule under it as the comparator, the marginal risk $$m(X) = \sum_g \pi_g \operatorname{expit}(\eta_X + \beta^\top g + a)$$;
-- **profile:** the profile-preserving truth, with $$\operatorname{expit}(\eta_X)$$ as the comparator, which is then exactly calibrated.
+\operatorname{expit}(\eta_X)$$ (Jensen's inequality), the clinical score is then miscalibrated within profiles under the simulated truth, and some of a genetic score's gain could be the correction of that miscalibration. We keep this **global-intercept truth** as a sensitivity analysis and compare three things (addendum 24). The *current* comparison uses the global-intercept truth, with the clinical score $$\operatorname{expit}(\eta_X)$$ as the comparator (the construction of the first version). The *marginal* comparison uses the same truth, with the best clinical-only rule under it as the comparator, the marginal risk $$m(X) = \sum_g \pi_g \operatorname{expit}(\eta_X + \beta^\top g + a)$$. The *profile* comparison uses the profile-preserving truth, with $$\operatorname{expit}(\eta_X)$$ as the comparator, which is then exactly calibrated.
 
 **Which comparison answers the clinical question.** The question is whether adding genotype to a clinical score that is already calibrated would change decisions for patients stratified by that score. The profile comparison estimates this. The current comparison handicaps the clinical score by construction. The marginal comparison removes that handicap while keeping the truth, so the difference between current and marginal measures the part of the gain that is a correction of induced miscalibration, and the difference between marginal and profile measures the effect of the truth itself being a different simulated population.
 
-True effects $$\beta_j$$ were drawn 2,000 times from each term's pooled posterior under two readings:
-
-- **mean:** the pooled mean μ;
-- **predictive:** a new-study effect drawn from N(μ, τ), which carries between-study heterogeneity.
-
-Three scores were compared under the same truth:
-
-- the clinical score alone;
-- the **ceiling** score, which uses the true effects (the best any genetic score could do);
-- the **realised** score, which uses the pooled posterior medians, recentred.
+True effects $$\beta_j$$ were drawn 2,000 times from each term's pooled posterior under two readings. In the **mean** reading the true effect is the pooled mean μ. In the **predictive** reading it is a new-study effect drawn from N(μ, τ), which carries between-study heterogeneity. Three scores were compared under the same truth: the clinical score alone; the **ceiling** score, which uses the true effects (the best any genetic score could do); and the **realised** score, which uses the pooled posterior medians, recentred.
 
 Net benefit at threshold $$p_t$$ is
 
@@ -123,62 +114,29 @@ $$\text{NB}(p_t) = \frac{\text{TP}}{n} - \frac{\text{FP}}{n}\cdot\frac{p_t}{1-p_
 
 The gain is the net benefit of a genetic score minus that of the clinical score. It was computed exactly over the 128 clinical profiles and all genotype combinations (81 for four terms), with no patient-level sampling. Under the global-intercept truth, a patient-level simulation on a 100-fold replicated cohort reproduced the exact gain (0.00041 against 0.00040 at 5%).
 
-**MCID.** Before any genetic result, the minimum clinically important difference was defined as 20% more true cases at no increase in false positives. That is $$0.2 \times \text{TP}_{\text{clin}}/n$$. Under the profile-preserving truth the clinical score's true positives are exactly those of the refit baseline, so the MCID is unchanged (+0.00458 at 5%, +0.00160 at 20%). The 5% threshold, the high-risk cut-off of the original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three quantities:
-
-- the median gain over draws, with its 90% range;
-- the extra true cases per 1,000 admissions;
-- the share of draws in which the gain reaches the MCID.
+**MCID.** Before any genetic result, the minimum clinically important difference was defined as 20% more true cases at no increase in false positives. That is $$0.2 \times \text{TP}_{\text{clin}}/n$$. Under the profile-preserving truth the clinical score's true positives are exactly those of the refit baseline, so the MCID is unchanged (+0.00458 at 5%, +0.00160 at 20%). The 5% threshold, the high-risk cut-off of the original score, is primary. The 20% threshold is secondary and does not enter the headline conclusion. We report three quantities: the median gain over draws, with its 90% range; the share of draws in which the gain reaches the MCID; and the median extra true cases per 1,000 admissions. The last is a raw count and includes any extra false positives, so it is not on the same scale as the MCID, which is defined at no extra false positives.
 
 ### Secondary and sensitivity analyses
 
 All of these were run under the profile-preserving truth. The global-intercept versions are kept as sensitivity analyses (addendum 25).
 
-- **Sampling variability.** We simulated 2,000 studies of the cohort's size per scenario. Each study resampled patients with their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.
+**Sampling variability.** We simulated 2,000 studies of the cohort's size per scenario. Each study resampled patients with their admissions, assigned genotypes, drew outcomes from the true risk, and recorded the observed gain of fixed scores.
 
-- **Robustness.** The layer was repeated in four further settings, each with its own MCID:
+**Robustness.** The layer was repeated in four further settings, each with its own MCID: the 150 correlation-ensemble members, the published equation on the 4,078 admissions, the published equation on the 4,127 rows, and a refit on the 4,127 rows.
 
-  - the 150 correlation-ensemble members;
-  - the published equation on the 4,078 admissions;
-  - the published equation on the 4,127 rows;
-  - a refit on the 4,127 rows.
+**Attribution.** The gain was divided among the terms by Shapley decomposition. The value of a subset is the gain of a score carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in the terms, so the split is a fair division of the gain and not a set of separable effects.
 
-- **Attribution.** The gain was divided among the terms by Shapley decomposition. The value of a subset is the gain of a score carrying only those terms, under the full truth. Shapley values sum to the total gain, but net benefit is not additive in the terms, so the split is a fair division of the gain and not a set of separable effects.
+**Effect modification by neutropenia.** This tests the hypothesis that per-copy effects are larger in neutropenic admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues [@feys2026]). The direction we expected was recorded before the run. Admissions were split by the prolonged-neutropenia predictor. Stratum-specific effects were constrained to average, weighted by events, to the pooled effect, and the ratio of the neutropenic to the non-neutropenic effect was set to ∞, 4, 1, 1/4 and 0. A further scenario applied the stratum effects of the only stratified study [@brunel2018] directly. We compared an oracle score, a common score with the pooled estimates, and two scores that assume a direction. To test for an interaction, we simulated 1,000 studies per scenario and fitted a logistic model with the baseline logit as an offset, which estimated the interaction between the genetic score and neutropenia.
 
-- **Effect modification by neutropenia.** This tests the hypothesis that per-copy effects are larger in neutropenic admissions (H_F, from the inflammatory-levelling argument of Feys and colleagues [@feys2026]). The direction we expected was recorded before the run.
+**Donor genotype.** In the allogeneic transplant stratum (272 admissions, 43 events, from an admission-level flag), donor effects from the donor-genotype studies were tested against the stratum's own MCID. The baseline score has no allogeneic item and under-predicts in the stratum, so the truth holds, within each profile, the risk that includes the stratum's recalibration offset, and the scores hold the baseline's risk.
 
-  - **Strata:** admissions were split by the prolonged-neutropenia predictor.
-  - **Truth:** stratum-specific effects were constrained to average, weighted by events, to the pooled effect. The ratio of the neutropenic to the non-neutropenic effect was set to ∞, 4, 1, 1/4 and 0. A further scenario applied the stratum effects of the only stratified study [@brunel2018] directly.
-  - **Scores:** an oracle score, a common score with the pooled estimates, and two scores that assume a direction.
-  - **Interaction test:** in 1,000 simulated studies per scenario, a logistic model with the baseline logit as an offset estimated the interaction between the genetic score and neutropenia.
+**Architecture sweep.** The sweep covered k independent loci with the same risk-allele frequency and the same per-allele odds ratio. The number of loci k ran from 1 to 20, the odds ratio from 1.1 to 3.0 by 0.1, and the frequency from 0.05 to 0.50 by 0.05. This gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per architecture.
 
-- **Donor genotype.** In the allogeneic transplant stratum (272 admissions, 43 events, from an admission-level flag), donor effects from the donor-genotype studies were tested against the stratum's own MCID. The baseline score has no allogeneic item and under-predicts in the stratum, so the truth holds, within each profile, the risk that includes the stratum's recalibration offset, and the scores hold the baseline's risk.
+**Pathogen specificity.** The sweep treats every case as genotype-sensitive. In a further scenario only a fraction f of cases (the target pathogen, for example *Aspergillus* among all invasive mould disease) arises through the pathway the loci act on and the rest are independent of genotype. The true risk is (1 − f) times the clinical risk plus f times the risk with the genetic effect, with an intercept per clinical profile on the genetic part, so that the clinical score stays calibrated in every profile. We assumed f = 1, 0.8, 0.6 and 0.4, because the cohort has no pathogen-level outcome. Two ceiling scores were compared: weights equal to the target-pathogen effect (what a pathogen-specific discovery study would estimate) and weights fitted to the all-mould outcome (what a study of any mould disease would estimate). For f = 0.8 and 0.6 the weights also carried independent error with σ = 0.10, 0.20 and 0.40, with 12 replicate discovery studies per architecture. The grid had odds ratios from 1.2 to 3.0 (10 values), frequencies of 0.1, 0.3 and 0.5, and 1 to 20 loci.
 
-- **Architecture sweep.** The sweep covered k independent loci with the same risk-allele frequency and the same per-allele odds ratio:
+**Stress tests of the realised score.** At f = 1 and 0.8, with σ = 0.10 and 0.20 and odds ratios of 2.0, 2.5 and 3.0, we added three departures from the idealised score, each alone and all together: loci with different frequencies and so different precision; the winner's curse, with the k loci picked by their z-scores from five times as many candidates, the rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one (a separate sweep used 0.5, 0.7, 0.9 and 1.0). The causal loci themselves were also linked in a further sweep: blocks of four adjacent loci with allele correlations of 0.3 and 0.6, with the weights estimated for each locus on its own, as in a single-SNP discovery study, or jointly for the block. All these departures were then applied to the main grid at f = 1 (600 architectures, σ = 0.10 and 0.40).
 
-  - k from 1 to 20;
-  - odds ratio from 1.1 to 3.0 by 0.1;
-  - frequency from 0.05 to 0.50 by 0.05.
-
-  That gives 4,000 architectures, computed exactly by convolution with the ceiling score. In a realised version, each locus weight carried independent error with standard deviation σ from 0.05 to 0.40, with 12 replicate discovery studies per architecture.
-
-- **Pathogen specificity.** The sweep treats every case as genotype-sensitive. In a further scenario only a fraction f of cases (the target pathogen, for example *Aspergillus* among all invasive mould disease) arises through the pathway the loci act on and the rest are independent of genotype. The true risk is (1 − f) times the clinical risk plus f times the risk with the genetic effect, with an intercept per clinical profile on the genetic part, so that the clinical score stays calibrated in every profile. We assumed f = 1, 0.8, 0.6 and 0.4, because the cohort has no pathogen-level outcome. Two ceiling scores were compared: weights equal to the target-pathogen effect (what a pathogen-specific discovery study would estimate) and weights fitted to the all-mould outcome (what a study of any mould disease would estimate). For f = 0.8 and 0.6 the weights also carried independent error with σ = 0.10, 0.20 and 0.40, with 12 replicate discovery studies per architecture. The grid had odds ratios from 1.2 to 3.0 (10 values), frequencies of 0.1, 0.3 and 0.5, and 1 to 20 loci.
-
-- **Stress tests of the realised score.** At f = 1 and 0.8, with σ = 0.10 and 0.20 and odds ratios of 2.0, 2.5 and 3.0, we added three departures from the idealised score, each alone and all together: loci with different frequencies and so different precision; the winner's curse, with the k loci picked by their z-scores from five times as many candidates, the rest null; and incomplete tagging, with the scored variant correlated 0.7 with the causal one (a separate sweep used 0.5, 0.7, 0.9 and 1.0). The causal loci themselves were also linked in a further sweep: blocks of four adjacent loci with allele correlations of 0.3 and 0.6, with the weights estimated for each locus on its own, as in a single-SNP discovery study, or jointly for the block. All these departures were then applied to the main grid at f = 1 (600 architectures, σ = 0.10 and 0.40).
-
-- **Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was computed exactly in three forms:
-
-  - categorical at 5%;
-  - three categories, with cuts at 5% and 20%;
-  - continuous, in which any change in predicted risk counts as a reclassification.
-
-  Five scores were compared with the clinical score:
-
-  - the four-term panel, with true effects or pooled estimates;
-  - the PTX3 h2 term alone;
-  - a score that adds the PTX3 effect once for each of the three SNPs, applied to real, linked chromosomes;
-  - the earlier analysis's structure, in which the three SNPs are simulated independently and the effect enters both the truth and the score.
-
-  The earlier per-SNP effects are not on record, so every PTX3 structure used the pooled per-copy effect, over the same 2,000 posterior draws as the main analysis. We also traced NRI against the per-copy effect from a log odds ratio of 0 to 1.6.
+**Net reclassification improvement (tertiary).** This analysis places the earlier 22.5% figure in context. NRI was computed exactly in three forms: categorical at 5%; three categories, with cuts at 5% and 20%; and continuous, in which any change in predicted risk counts as a reclassification. Five scores were compared with the clinical score. These were the four-term panel with true effects and with pooled estimates; the PTX3 h2 term alone; a score that adds the PTX3 effect once for each of the three SNPs, applied to real, linked chromosomes; and the earlier analysis's structure, in which the three SNPs are simulated independently and the effect enters both the truth and the score. The earlier per-SNP effects are not on record, so every PTX3 structure used the pooled per-copy effect, over the same 2,000 posterior draws as the main analysis. We also traced NRI against the per-copy effect from a log odds ratio of 0 to 1.6.
 
 ### Software
 
