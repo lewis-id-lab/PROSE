@@ -20,7 +20,10 @@ profiles with fewer than five events.
 
 **Use.** When the patient-level files are absent, `load_base_cohort()` rebuilds the cohort from this table, sharing the
 suppressed admissions equally over the suppressed profiles (2 or 3 each). That moves 13 admissions (0.3% of the cohort)
-away from their true profile. `reproduce.R` reruns every step that does not need outcomes or patient identity and reports
+away from their true profile. Admissions are grouped into 1,945 pseudo-patients with the committed distribution of
+admissions per patient (`output/admissions_per_patient.csv`), assigned at random, so the steps that give each patient one
+genotype can run; their sampling results are approximate because the real grouping of profiles within patients is not
+published. `reproduce.R` reruns every step that does not need outcomes or patient identity and reports
 how far each output is from the committed one.
 
 **Regenerating.** `scripts/56_export_public_cohort.R`, on the machine that holds the patient data. It refuses to write a

@@ -13,8 +13,9 @@
 #
 # When neither data/restricted/ nor boscore.xlsx is present, load_base_cohort() rebuilds a stand-in cohort from
 # the public table: suppressed cells share the suppressed admissions equally (integers, the remainder going to the
-# lowest profile indices), so the total is exact and every published cell is exact. Outcomes, patients and the
-# allo-HSCT flag are NA in that cohort, and scripts that need them stop through require_patient_data().
+# lowest profile indices), so the total is exact and every published cell is exact. Patients are pseudo-patients with the
+# published distribution of admissions per patient (pseudo_patients()). Outcomes and the allo-HSCT flag are NA, and scripts
+# that need outcomes or the real patients stop through require_patient_data().
 #
 # Requires R/baseline.R (PREDICTORS, all_profiles, profile_index).
 
@@ -85,14 +86,40 @@ impute_profile_counts <- function(tab, total) {
   as.integer(n)
 }
 
-# A stand-in for load_base_cohort(): one row per admission, predictors only
-cohort_from_public <- function(path = PUBLIC_PROFILE_PATH, meta_path = PUBLIC_META_PATH) {
+# Pseudo-patients for the stand-in cohort. The genetic layer gives each patient one genotype for all their admissions, so the
+# sampling-variability steps need patient groups. The public table has none; the committed output/admissions_per_patient.csv
+# (patients with 1, 2, ..., 7 and 8+ admissions) gives the group sizes, and admissions are assigned to groups at random (seeded).
+# The sizes are exact; which profiles share a patient is not, so patient-level sampling results are approximate.
+PUBLIC_PATIENT_SIZES_PATH <- "output/admissions_per_patient.csv"
+
+pseudo_patient_sizes <- function(app, total) {
+  k <- suppressWarnings(as.integer(app$admissions))
+  top <- which(is.na(k))
+  sizes <- rep(k[-top], app$patients[-top])
+  rest <- total - sum(sizes)
+  n_top <- app$patients[top]
+  if (length(top) != 1L || n_top < 1L) stop("admissions_per_patient needs exactly one open top class", call. = FALSE)
+  floor_k <- as.integer(sub("\\+$", "", app$admissions[top]))
+  if (rest < floor_k * n_top) stop("admissions_per_patient does not add up to the total", call. = FALSE)
+  c(sizes, rest %/% n_top + (seq_len(n_top) <= rest %% n_top))
+}
+
+pseudo_patients <- function(n_adm, app, seed = 5521L) {
+  sizes <- pseudo_patient_sizes(app, n_adm)
+  set.seed(seed)
+  id <- rep(seq_along(sizes), sizes)[sample.int(n_adm)]
+  sprintf("PP%04d", id)
+}
+
+# A stand-in for load_base_cohort(): one row per admission, predictors and pseudo-patients only
+cohort_from_public <- function(path = PUBLIC_PROFILE_PATH, meta_path = PUBLIC_META_PATH, patient_sizes = PUBLIC_PATIENT_SIZES_PATH) {
   pub <- read_public_profile_table(path, meta_path)
   total <- pub$meta$value[pub$meta$key == "total_admissions"]
   n <- impute_profile_counts(pub$table, total)
   X <- all_profiles()[rep(seq_along(n), n), , drop = FALSE]
   storage.mode(X) <- "double"
-  rows <- data.frame(id = NA_real_, admission = sprintf("PUB%04d", seq_len(nrow(X))), patient = NA_character_,
+  patient <- if (file.exists(patient_sizes)) pseudo_patients(nrow(X), utils::read.csv(patient_sizes, stringsAsFactors = FALSE)) else sprintf("PP%04d", seq_len(nrow(X)))
+  rows <- data.frame(id = NA_real_, admission = sprintf("PUB%04d", seq_len(nrow(X))), patient = patient,
                      date = as.Date(NA), year = NA_real_, case = NA_real_, pred = NA_real_, twin_duplicate = FALSE,
                      allo_hsct = NA, stringsAsFactors = FALSE)
   structure(list(rows = rows, X = X), public = TRUE)

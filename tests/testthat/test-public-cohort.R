@@ -46,7 +46,24 @@ test_that("the stand-in cohort keeps the total and every published cell exactly"
   keep <- !out$table$suppressed
   expect_equal(n_pub[keep], n_true[keep])
   expect_true(all(n_pub[out$table$suppressed] >= 1 & n_pub[out$table$suppressed] < PUBLIC_MIN_CELL))
-  expect_true(all(is.na(co$rows$case)) && all(is.na(co$rows$patient)))
+  expect_true(all(is.na(co$rows$case)))
+})
+
+test_that("pseudo-patients follow the published admissions-per-patient distribution exactly", {
+  app <- data.frame(admissions = c("1", "2", "3", "8+"), patients = c(50L, 20L, 10L, 3L))
+  sizes <- pseudo_patient_sizes(app, 50 + 40 + 30 + 27)
+  expect_equal(sum(sizes), 147); expect_equal(length(sizes), 83L)
+  expect_equal(sort(tail(sort(sizes), 3)), c(9, 9, 9))
+  pp <- pseudo_patients(147, app)
+  expect_equal(sort(as.integer(table(pp))), sort(sizes))
+  expect_error(pseudo_patient_sizes(app, 100), "does not add up")
+})
+
+test_that("the committed admissions-per-patient table matches the base cohort", {
+  app <- read.csv(file.path(proj_root, "output", "admissions_per_patient.csv"), stringsAsFactors = FALSE)
+  sizes <- pseudo_patient_sizes(app, 4078)
+  expect_equal(length(sizes), 1945L)
+  expect_true(all(tail(sort(sizes), 14) >= 8))
 })
 
 test_that("load_base_cohort falls back to the public table and select_cohort refuses twins on it", {

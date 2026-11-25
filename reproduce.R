@@ -1,7 +1,7 @@
 # Rerun the analysis from public inputs only and compare every regenerated output with the committed one.
 #
 #   Rscript reproduce.R                 every step that runs without patient data (several hours on one machine)
-#   Rscript reproduce.R 16 23 27        only these scripts, in the order given
+#   Rscript reproduce.R 16 23 27        only these scripts (each under the scheme(s) it has in the plan); "17:profile" for one step
 #   Rscript reproduce.R --list          show the plan and stop
 #
 # Inputs, all in this repository:
@@ -27,16 +27,20 @@ RESTRICTED <- c("05", "06", "07", "08", "09", "10", "11", "19", "20")
 # Script 13 wrote the first version of data/extraction_corrections.csv; later hand-checked corrections were added to that
 # file, so it is an input here and script 13 is not rerun (it would overwrite the file)
 NOT_RERUN <- c("13")
-# Scripts that take PROSE_SCHEME; the manuscript reports the profile-preserving truth
-PROFILE <- c("17", "18", "21", "22", "24", "26", "27", "34", "43", "47", "48", "49", "50", "51")
-PLAN <- c("01", "02", "03", "04", "28",                         # correlation structure, decision curves, haplotypes
-          "12", "14", "15", "45", "46",                         # evidence to parameters
-          "16", "17", "18", "21", "22", "24", "26",             # genetic layer and Aim 3b
-          "23", "25", "27", "29", "30",                         # Aim 4, figures, NRI, polygenic benchmark
-          "31", "32", "33", "34", "35",                         # calibration checks
-          "36", "37", "38", "39", "40", "41", "42",             # scheme comparison
-          "43", "47", "48", "49", "50", "51",                   # Aim 4 pathogen specificity and stress tests
-          "44", "52", "55")                                     # PRISMA flow, manuscript figures, threshold curve
+# Each step is a script and a truth construction (PROSE_SCHEME). The manuscript reports the profile-preserving truth, but the
+# calibration checks (31 to 33) compare both, and script 22 under the profile truth reads script 31's output, so the scripts that
+# take PROSE_SCHEME run under the global truth first and under the profile truth after the checks.
+step <- function(scheme, ...) data.frame(script = c(...), scheme = scheme)
+PLAN <- rbind(
+  step("global", "01", "02", "03", "04", "28"),                    # correlation structure, decision curves, haplotypes
+  step("global", "12", "14", "15", "45", "46"),                    # evidence to parameters
+  step("global", "16", "17", "18", "21", "22", "24", "26"),        # genetic layer and Aim 3b, global truth
+  step("global", "23", "25", "29", "30"),                          # Aim 4, NRI, polygenic benchmark
+  step("global", "31", "32", "33"),                                # calibration checks
+  step("profile", "17", "18", "21", "22", "24", "26", "27", "34"), # the same under the profile-preserving truth, and its figures
+  step("global", "35", "36", "37", "38", "39", "40", "41", "42"),  # headline table, scheme comparison
+  step("profile", "43", "47", "48", "49", "50", "51"),             # Aim 4 pathogen specificity and stress tests
+  step("global", "44", "52", "55"))                                # PRISMA flow, manuscript figures, threshold curve
 
 script_path <- function(n) {
   f <- list.files("scripts", pattern = paste0("^", n, "_.*\\.R$"), full.names = TRUE)
@@ -60,28 +64,46 @@ compare_csv <- function(old, new) {
   c(abs = suppressWarnings(max(d, na.rm = TRUE)), rel = suppressWarnings(max(rel, na.rm = TRUE)), same_shape = 1, na_changed = na_changed)
 }
 
-run_script <- function(n) {
-  scheme <- if (n %in% PROFILE) "profile" else "global"
-  old <- Sys.getenv("PROSE_SCHEME", unset = NA)
-  Sys.setenv(PROSE_SCHEME = scheme)
-  on.exit(if (is.na(old)) Sys.unsetenv("PROSE_SCHEME") else Sys.setenv(PROSE_SCHEME = old))
+# Each script runs in its own R process, as it would from the command line, so no state carries over between scripts.
+# Its output goes to reproduce_logs/<script>_<scheme>.log.
+run_script <- function(n, scheme) {
+  dir.create("reproduce_logs", showWarnings = FALSE)
+  log <- file.path("reproduce_logs", sprintf("%s_%s.log", n, scheme))
   t0 <- Sys.time()
-  env <- new.env(parent = globalenv())
-  ok <- tryCatch({ sys.source(script_path(n), envir = env); "ok" }, error = function(e) paste("error:", conditionMessage(e)))
-  data.frame(script = n, scheme = scheme, status = ok, minutes = round(as.numeric(difftime(Sys.time(), t0, units = "mins")), 2))
+  code <- system2(file.path(R.home("bin"), "Rscript"), c("--no-echo", script_path(n)), env = paste0("PROSE_SCHEME=", scheme),
+                  stdout = log, stderr = log)
+  status <- if (identical(code, 0L)) "ok" else {
+    lines <- readLines(log, warn = FALSE)
+    err <- grep("^Error", lines)
+    paste("error:", if (length(err)) paste(trimws(lines[err[1]:min(length(lines), err[1] + 1L)]), collapse = " ") else paste("exit code", code))
+  }
+  data.frame(script = n, scheme = scheme, status = status, minutes = round(as.numeric(difftime(Sys.time(), t0, units = "mins")), 2))
 }
 
 main <- function(args = commandArgs(trailingOnly = TRUE)) {
-  plan <- if (length(args) && !identical(args, "--list")) sprintf("%02d", as.integer(args)) else PLAN
-  if (length(intersect(plan, NOT_RERUN))) stop("Script 13 would overwrite data/extraction_corrections.csv; it is not rerun.", call. = FALSE)
-  bad <- intersect(plan, RESTRICTED)
+  # Arguments: script numbers (each with the scheme(s) it has in PLAN), or "17:profile" for one step
+  plan <- if (length(args) && !identical(args, "--list")) do.call(rbind, lapply(args, function(a) {
+    p <- strsplit(a, ":", fixed = TRUE)[[1]]
+    n <- sprintf("%02d", as.integer(p[1]))
+    if (length(p) == 2L) return(step(p[2], n))
+    hit <- PLAN[PLAN$script == n, ]
+    if (nrow(hit)) hit else step("global", n)
+  })) else PLAN
+  if (length(intersect(plan$script, NOT_RERUN))) stop("Script 13 would overwrite data/extraction_corrections.csv; it is not rerun.", call. = FALSE)
+  bad <- intersect(plan$script, RESTRICTED)
   if (length(bad)) stop("Scripts ", paste(bad, collapse = ", "), " need the patient-level cohort and are not part of the public rerun.", call. = FALSE)
-  message("Plan: ", paste(plan, collapse = " "), "\nRestricted, not rerun: ", paste(RESTRICTED, collapse = " "))
+  message("Plan: ", paste(paste0(plan$script, ifelse(plan$scheme == "profile", "p", "")), collapse = " "), "  (p = profile-preserving truth)",
+          "\nRestricted, not rerun: ", paste(RESTRICTED, collapse = " "))
   if (identical(args, "--list")) return(invisible(plan))
   if (!file.exists("data/public/profile_admissions.csv")) stop("data/public/profile_admissions.csv is missing.", call. = FALSE)
+  if (file.exists("boscore.xlsx") || file.exists("data/restricted/base_cohort_pseudonymised.csv")) {
+    stop("Patient-level files are present here, so the scripts would read them instead of the public table. Run reproduce.R in a clean clone.", call. = FALSE)
+  }
 
   before <- snapshot_outputs()
-  runs <- do.call(rbind, lapply(plan, function(n) { message("== script ", n); r <- run_script(n); message("   ", r$status); r }))
+  runs <- do.call(rbind, lapply(seq_len(nrow(plan)), function(i) {
+    message("== script ", plan$script[i], " (", plan$scheme[i], ")"); r <- run_script(plan$script[i], plan$scheme[i]); message("   ", r$status); r
+  }))
 
   changed <- Filter(function(f) !file.exists(f) || !(f %in% names(before)) || file.mtime(f) > before[[f]]$mtime,
                     list.files("output", pattern = "\\.csv$", full.names = TRUE))
