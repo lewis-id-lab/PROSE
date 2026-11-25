@@ -48,7 +48,7 @@ ctx <- list(q = q, lp = lp, grid4 = grid4, gP = gP, gI = gI, beta_hat = beta_hat
 point <- scenario_metrics(beta_hat, ctx)
 
 cl <- start_workers(cores = 12, files = c("R/baseline.R", "R/decision_curve.R", "R/genetic_layer.R", "R/nri.R", "R/calibration_check.R"))
-parallel::clusterExport(cl, "scenario_metrics")
+parallel::clusterExport(cl, "scenario_metrics", envir = environment())
 t0 <- Sys.time()
 per_draw <- unlist(parallel::parLapply(cl, split(seq_len(n_draw), rep_len(seq_len(60), n_draw)), function(ix, ctx, effects) {
   lapply(ix, function(i) scenario_metrics(effects[i, ], ctx))

@@ -64,13 +64,16 @@ compare_csv <- function(old, new) {
   c(abs = suppressWarnings(max(d, na.rm = TRUE)), rel = suppressWarnings(max(rel, na.rm = TRUE)), same_shape = 1, na_changed = na_changed)
 }
 
-# Each script runs in its own R process, as it would from the command line, so no state carries over between scripts.
+# Each script runs in its own R process, so no state carries over between scripts.
 # Its output goes to reproduce_logs/<script>_<scheme>.log.
 run_script <- function(n, scheme) {
   dir.create("reproduce_logs", showWarnings = FALSE)
   log <- file.path("reproduce_logs", sprintf("%s_%s.log", n, scheme))
   t0 <- Sys.time()
-  code <- system2(file.path(R.home("bin"), "Rscript"), c("--no-echo", script_path(n)), env = paste0("PROSE_SCHEME=", scheme),
+  # Inside the process the script is sys.source()d into its own environment, as the scripts were written to be run: functions
+  # sent to workers then carry the objects they use (scripts 01 to 03 rely on this)
+  expr <- sprintf('sys.source("%s", envir = new.env())', script_path(n))
+  code <- system2(file.path(R.home("bin"), "Rscript"), c("--no-echo", "-e", shQuote(expr)), env = paste0("PROSE_SCHEME=", scheme),
                   stdout = log, stderr = log)
   status <- if (identical(code, 0L)) "ok" else {
     lines <- readLines(log, warn = FALSE)
