@@ -44,13 +44,24 @@ def run_dir(run):
     return d
 
 
+def excluded_studies():
+    """Studies excluded from the evidence base when read for extraction (eligible_confirmed = no)."""
+    path = os.path.join(os.path.dirname(HERE), "data", "extraction_studies_corrected.csv")
+    if not os.path.exists(path):
+        return set()
+    return {r["study_id"] for r in read_csv(path) if r.get("eligible_confirmed", "").strip().lower() == "no"}
+
+
 def targets(scope, studies):
-    """Variants to look for in each study: names only, no values."""
+    """Variants to look for in each study: names only, no values. Excluded studies are left out."""
     rows, _ = corrected_variants()
     panel = panel_rsids()
+    skip = excluded_studies()
     out = OrderedDict()
     for r in sorted(rows, key=lambda r: (r["study_id"], r["variant_row_id"])):
         if studies and r["study_id"] not in studies:
+            continue
+        if r["study_id"] in skip:
             continue
         rs = norm_rsid(r["rsid"])
         if scope == "panel" and rs not in panel:
@@ -150,7 +161,14 @@ def cmd_extract(a):
             print("%s: %d variants, %d PDF(s), %.1f MB" % (study, len(variants), len(files), size / 1e6))
             continue
         print("%s: extracting %d variants ..." % (study, len(variants)), flush=True)
-        result, rec = call(client, a.model, system, content, schema, a.effort)
+        try:
+            result, rec = call(client, a.model, system, content, schema, a.effort)
+        except Exception as e:  # one bad request (e.g. a PDF over the page limit) should not stop the run
+            if type(e).__name__ in ("AuthenticationError", "PermissionDeniedError", "TypeError"):
+                raise
+            print("   request failed, skipped: %s" % str(e)[:300])
+            log.append({"study_id": study, "status": "request_failed", "error": str(e)[:500]})
+            continue
         rec.update({"study_id": study, "files": [os.path.basename(f) + (":" + p if p else "") for f, p in files],
                     "prompt_sha": sha(system), "scope": a.scope, "n_variants": len(variants)})
         log.append(rec)
@@ -204,8 +222,15 @@ def cmd_judge(a):
             print("%s: %d items" % (study, len(items)))
             continue
         print("%s: judging %d items ..." % (study, len(items)), flush=True)
-        result, rec = call(client, a.model, system, pdf_blocks(files) + [{"type": "text", "text": text}],
-                           schema, a.effort)
+        try:
+            result, rec = call(client, a.model, system, pdf_blocks(files) + [{"type": "text", "text": text}],
+                               schema, a.effort)
+        except Exception as e:
+            if type(e).__name__ in ("AuthenticationError", "PermissionDeniedError", "TypeError"):
+                raise
+            print("   request failed, skipped: %s" % str(e)[:300])
+            log.append({"study_id": study, "status": "request_failed", "error": str(e)[:500]})
+            continue
         rec.update({"study_id": study, "prompt_sha": sha(system), "n_items": len(items)})
         log.append(rec)
         if result is not None:
