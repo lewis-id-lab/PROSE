@@ -21,6 +21,7 @@ all_settings <- c("published_4078", "published_4127", "refit_4127")
 run_these <- if (exists("SENS_ONLY")) SENS_ONLY else all_settings
 
 full <- load_base_cohort()
+require_patient_data(full, "The sensitivity cohorts (4,127 rows with twins)")
 cohorts <- list(`4078` = select_cohort(full, include_twins = FALSE), `4127` = select_cohort(full, include_twins = TRUE))
 published <- load_baseline_params()
 spec <- list(

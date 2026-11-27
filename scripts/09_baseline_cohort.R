@@ -14,6 +14,7 @@ source("R/boscore_data.R")
 
 pars <- load_baseline_params()
 cohort <- load_base_cohort()
+require_patient_data(cohort, "The baseline decision curve with the patient bootstrap")
 base <- select_cohort(cohort, include_twins = FALSE)
 rows <- select_cohort(cohort, include_twins = TRUE)
 risk <- plogis(profile_logit(pars, all_profiles()))

@@ -20,13 +20,20 @@ run_these <- if (exists("ROBUST_ONLY")) ROBUST_ONLY else all_settings
 n_draw <- 1000L
 
 full <- load_base_cohort()
-cohorts <- list(`4078` = select_cohort(full, include_twins = FALSE), `4127` = select_cohort(full, include_twins = TRUE))
+# With only the public profile table, the 4,127-row settings (twins, and a refit that needs outcomes) cannot be built; their cached
+# per-setting files from the cohort run are merged as they are
+public <- is_public_cohort(full)
+if (public) {
+  run_these <- intersect(run_these, c("published_4078", "ensemble"))
+  message("public profile table: running ", paste(run_these, collapse = ", "), " only; the 4,127-row settings use their cached files")
+}
+cohorts <- list(`4078` = select_cohort(full, include_twins = FALSE), `4127` = if (!public) select_cohort(full, include_twins = TRUE))
 published <- load_baseline_params()
 lp_refit <- profile_logit(load_refit_params())
 spec <- list(
   published_4078 = list(cohort = cohorts[["4078"]], lp = profile_logit(published)),
-  published_4127 = list(cohort = cohorts[["4127"]], lp = profile_logit(published)),
-  refit_4127 = list(cohort = cohorts[["4127"]], lp = profile_logit(refit_params(fit_baseline(cohorts[["4127"]])$coef))),
+  published_4127 = if (!public) list(cohort = cohorts[["4127"]], lp = profile_logit(published)),
+  refit_4127 = if (!public) list(cohort = cohorts[["4127"]], lp = profile_logit(refit_params(fit_baseline(cohorts[["4127"]])$coef))),
   ensemble = list(cohort = cohorts[["4078"]], lp = lp_refit))
 profile_q <- function(co) tabulate(profile_index(co$X), 2L^length(PREDICTORS)) / nrow(co$X)
 

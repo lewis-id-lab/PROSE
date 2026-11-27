@@ -28,6 +28,7 @@ source("R/refit_baseline.R"); source("R/evidence_mapping.R"); source("R/genetic_
 sfx <- scheme_suffix()
 at <- c(0.05, 0.20)
 base <- select_cohort(load_base_cohort(), include_twins = FALSE)
+require_patient_data(base, "The allo-HSCT donor stratum")
 lp <- profile_logit(load_refit_params())
 q <- tabulate(profile_index(base$X), 2L^length(PREDICTORS)) / nrow(base$X)
 mcid_tab <- read.csv("output/dca_baseline_refit_summary.csv")
