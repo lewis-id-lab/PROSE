@@ -90,7 +90,8 @@ test_that("every recorded correction matches the real extraction and carries its
   out80 <- apply_corrections(vr, s80)$data
   expect_equal(out80[out80$variant_row_id == "V1087", c("effect_allele", "other_allele")], data.frame(effect_allele = "G", other_allele = "A", row.names = which(out80$variant_row_id == "V1087")))
   expect_equal(out80$effect_allele[out80$variant_row_id == "V1095"], "A")
-  cr <- cr_all[!(cr_all$study_id %in% c("S002", "S080")), ]
+  pilot <- grepl("pilot, 25 Nov 2026|full run, 27 Nov 2026", cr_all$evidence)              # blind re-extraction pilot and full run, tested below
+  cr <- cr_all[!(cr_all$study_id %in% c("S002", "S080")) & !pilot, ]
   expect_equal(nrow(cr), 44L); expect_equal(sum(cr$study_id == "S035"), 30L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S071"), 1L); expect_equal(sum(cr$study_id == "S077"), 1L)
   expect_setequal(cr$study_id, c("S035", "S073", "S071", "S077"))
   expect_equal(cr$corrected_value[cr$variant_row_id == "V0391"], "C/G+G/G vs C/C")
@@ -122,4 +123,47 @@ test_that("after the S073 correction Fischer 2016 reads as risk for rs7309123 G 
   expect_equal(exp(y238x$beta[y238x$study_id == "S073"]), 0.7, tolerance = 0.01)
   g <- rc[rc$study_id == "S073" & rc$rsid == "rs7309123" & !is.na(rc$beta), ]
   expect_true(all(g$y > 0))                                                              # G/G, or G carriers, against the rest: OR above 1
+})
+
+test_that("a blank original value matches a blank cell and corrected counts stay numbers", {
+  vr <- data.frame(variant_row_id = c("V1", "V2"), n_cases_het = c(NA, 4L), effect_allele = c(NA, "G"), stringsAsFactors = FALSE)
+  cr <- data.frame(variant_row_id = c("V1", "V1", "V2"), field = c("n_cases_het", "effect_allele", "n_cases_het"),
+                   original_value = c("", "", "4"), corrected_value = c("12", "G", ""), stringsAsFactors = FALSE)
+  out <- apply_corrections(vr, cr)$data
+  expect_true(is.numeric(out$n_cases_het)); expect_equal(out$n_cases_het, c(12, NA))
+  expect_equal(out$effect_allele, c("G", "G"))
+  expect_error(apply_corrections(vr, transform(cr[1, ], corrected_value = "twelve")), "not a number")
+  expect_error(apply_corrections(vr, transform(cr[3, ], original_value = "5")), "expected '5'")
+})
+
+test_that("the corrections confirmed from the blind re-extraction pilot apply cleanly", {
+  skip_if_not(file.exists(bundle) && file.exists(corr_path), "the evidence bundle or the corrections file is not present")
+  vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
+  cr_all <- read.csv(corr_path, stringsAsFactors = FALSE)
+  pilot <- cr_all[grepl("pilot, 25 Nov 2026", cr_all$evidence, fixed = TRUE), ]
+  expect_equal(nrow(pilot), 96L)
+  expect_true(all(pilot$checked_on == "2026-11-26") && all(nzchar(pilot$checked_by)))
+  out <- apply_corrections(vr, cr_all)$data
+  row <- function(id) out[out$variant_row_id == id, ]
+  expect_equal(row("V1032")$genetic_model, "allelic")                                      # S061 Table 3 OR is the allele comparison
+  expect_equal(unlist(row("V0089")[c("n_cases_hom_effect", "n_cases_het", "n_cases_hom_other")]), c(n_cases_hom_effect = 8, n_cases_het = 12, n_cases_hom_other = 11))
+  expect_equal(row("V0093")$n_cases_hom_effect, 0)                                         # printed as a dash; the other genotypes add to 31
+  expect_equal(c(row("V0223")$effect_allele, row("V0223")$other_allele), c("G", "T"))      # Chai 2011 prints X / Y for Y238X
+  expect_true(all(out$adjusted[out$variant_row_id %in% pilot$variant_row_id[pilot$field == "adjusted"]] %in% c("yes", "no", "unclear", "not_stated")))
+})
+
+test_that("the blank fields filled from the full blinded run apply cleanly and change no filled value", {
+  skip_if_not(file.exists(bundle) && file.exists(corr_path), "the evidence bundle or the corrections file is not present")
+  vr <- read_bundle_table("extraction_variants_round1.csv", bundle)
+  cr_all <- read.csv(corr_path, stringsAsFactors = FALSE)
+  full <- cr_all[grepl("full run, 27 Nov 2026", cr_all$evidence, fixed = TRUE), ]
+  expect_equal(nrow(full), 139L)
+  expect_true(all(is.na(full$original_value) | !nzchar(trimws(full$original_value))))   # fills only, nothing overwritten
+  expect_true(all(nzchar(full$source_location)) && all(full$checked_on == "2026-11-27"))
+  out <- apply_corrections(vr, cr_all)$data
+  filled <- out[out$variant_row_id %in% full$variant_row_id[full$field == "other_allele"], ]
+  expect_true(all(nchar(filled$other_allele) == 1 & filled$other_allele != filled$effect_allele))
+  counts <- full$variant_row_id[startsWith(full$field, "n_")]
+  cells <- out[out$variant_row_id %in% counts, c("n_cases_hom_effect", "n_cases_het", "n_cases_hom_other", "n_ctrl_hom_effect", "n_ctrl_het", "n_ctrl_hom_other")]
+  expect_true(all(!is.na(as.matrix(cells))))                                             # each count fill completes a 2x3 table
 })

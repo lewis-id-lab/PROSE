@@ -140,7 +140,9 @@ def compare(run):
                 item = "I%04d" % n_item
                 pairs.append(pair_row(item, study, o, r, "agree" if not diffs else "disagree", s, diffs, rr))
                 for f in diffs:
-                    disagreements.append(dis_row(item, study, o, f, o.get(f), r.get(f), rr.get("_flipped")))
+                    # rr is the re-extraction in the original's allele orientation, so a proposed value can go
+                    # straight into the original row
+                    disagreements.append(dis_row(item, study, o, f, o.get(f), rr.get(f), rr.get("_flipped")))
             for oi, o in enumerate(O):
                 if oi not in used_o:
                     n_item += 1

@@ -41,10 +41,22 @@ apply_corrections <- function(vr, corrections) {
     if (length(j) != 1) stop("correction for ", cr$variant_row_id, ": row not found or not unique", call. = FALSE)
     if (!(cr$field %in% names(vr))) stop("correction for ", cr$variant_row_id, ": no field ", cr$field, call. = FALSE)
     current <- vr[[cr$field]][j]
-    if (!identical(as.character(current), as.character(cr$original_value))) {
+    # A blank original value stands for a blank cell (NA in the bundle); numbers are compared as numbers
+    blank <- function(x) is.na(x) || !nzchar(trimws(as.character(x)))
+    same <- if (blank(cr$original_value) || blank(current)) blank(cr$original_value) && blank(current) else {
+      a <- suppressWarnings(as.numeric(current)); b <- suppressWarnings(as.numeric(cr$original_value))
+      if (is.numeric(vr[[cr$field]]) && !is.na(a) && !is.na(b)) isTRUE(all.equal(a, b)) else identical(as.character(current), as.character(cr$original_value))
+    }
+    if (!same) {
       stop("correction for ", cr$variant_row_id, " expected '", cr$original_value, "' in ", cr$field, " but found '", current, "'", call. = FALSE)
     }
-    vr[[cr$field]][j] <- cr$corrected_value
+    # Keep the column's type: a count stays a number, a blank correction becomes NA
+    value <- if (blank(cr$corrected_value)) NA else cr$corrected_value
+    if (is.numeric(vr[[cr$field]])) {
+      value <- suppressWarnings(as.numeric(value))
+      if (!blank(cr$corrected_value) && is.na(value)) stop("correction for ", cr$variant_row_id, ": '", cr$corrected_value, "' is not a number for ", cr$field, call. = FALSE)
+    }
+    vr[[cr$field]][j] <- value
   }
   list(data = vr, applied = unique(corrections$variant_row_id))
 }

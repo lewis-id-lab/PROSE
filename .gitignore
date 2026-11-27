@@ -34,3 +34,9 @@ output/genetic_sampling_draws_profile.csv
 output/genetic_ensemble_sampling_draws_profile.csv
 .Rproj.user
 reproduce_logs/
+
+# Extraction checks: source PDFs stay outside the repository
+extraction/**/*.pdf
+__pycache__/
+.pdf_list_tmp.txt
+extraction/*.tar

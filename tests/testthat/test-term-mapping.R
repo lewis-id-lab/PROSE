@@ -122,6 +122,7 @@ test_that("the direction-check log covers every study that has text-parsed rows 
   cf <- file.path(proj_root, "data", "extraction_corrections.csv")
   skip_if_not(file.exists(cf))
   cr <- read.csv(cf, stringsAsFactors = FALSE)
+  cr <- cr[!grepl("pilot, 25 Nov 2026|full run, 27 Nov 2026", cr$evidence), ]  # direction-check corrections only, not the blinded re-extraction
   expect_equal(sum(cr$study_id == "S071"), 1L); expect_equal(sum(cr$study_id == "S073"), 12L); expect_equal(sum(cr$study_id == "S035"), 30L)
   expect_true(all(lg$study_id[nzchar(lg$corrections)] %in% unique(cr$study_id)))
 })

@@ -4,7 +4,7 @@
 #   PubMed 267 and Embase 785 records (1,052); 221 duplicates removed before screening;
 #   622 excluded by the automated (AI-assisted) title-and-abstract screen, run by the supervisor alone; 209 imported into Covidence;
 #   1 excluded on title and abstract in Covidence; 208 full texts assessed by two reviewers; 127 excluded at full text (reasons: 59 review articles, 24 wrong
-#   patient population, 15 conference proceedings; the other 29 inadequate data for simulation, as given by the supervisor on 19 November 2026 and not yet checked against the Covidence export); 81 included.
+#   patient population, 15 conference proceedings with insufficient information (confirmed by the supervisor on 27 November 2026); the other 29 inadequate data for simulation, as given by the supervisor on 19 November 2026 and not yet checked against the Covidence export); 81 included.
 # Extraction stage (the box added below the package's flow): 18 of the 81 had no usable source document (12 with no full text, 6 linked to the wrong document),
 #   63 were extracted, 3 were excluded when read for extraction (the third, S010, Ozdemir 2011, on 6 November 2026, addendum 37), 60 form the evidence base.
 # The 440 records from citation chasing (6 October 2026) did not enter screening and are not in the diagram.
@@ -26,7 +26,7 @@ counts <- list(
   dbr_sought_reports        = 208,
   dbr_notretrieved_reports  = 0,
   dbr_assessed              = 208,
-  dbr_excluded              = "Review article, 59; Wrong patient population, 24; Conference proceedings, 15; Inadequate data for simulation, 29",
+  dbr_excluded              = "Review article, 59; Wrong patient population, 24; Conference proceedings with insufficient information, 15; Inadequate data for simulation, 29",
   new_studies               = 81,
   new_reports               = 81
 )

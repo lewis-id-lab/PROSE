@@ -68,7 +68,7 @@ We repeated key analyses under three alternative specifications of the clinical 
 
 ![PRISMA 2020 flow diagram of the literature search and study selection (databases only). The 750 records excluded at title and abstract were not recorded with reasons.](output/figures/prisma_flow.png){#fig-prisma}
 
-Data were extracted using a purpose-built script using a large-language model (Claude Fabel 5.1, Anthropic). The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables.
+Data were extracted using a purpose-built script using a large language model (Claude Opus 4.8, Anthropic; 15 July 2026) and checked by a blinded second extraction (Claude Opus 5.5, Anthropic; 25 November 2026) described in the supplement. The extraction yielded 2,008 variant rows. Of these, 970 were usable: 823 effect estimates with both confidence limits and an orientable effect allele, 115 complete 2×3 genotype tables and 32 complete 2×2 tables.
 
 Every row whose comparison text had no reference marker was checked against the source tables. That covered seven studies. The two reversals found [@herrerosanchez2018; @fischer2016] and one duplicated row read in the opposite direction [@sainz2012] were corrected and logged with their evidence (43 corrected rows in all).
 
